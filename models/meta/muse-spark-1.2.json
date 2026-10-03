@@ -1,0 +1,317 @@
+{
+  "id": "muse-spark-1.2",
+  "name": "Muse Spark 1.2",
+  "maker": "Meta",
+  "family": "Muse Spark",
+  "class": "Muse Spark",
+  "generation": "1.2",
+  "released": "2026-08-05",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Meta Model API (ids muse-spark-1.2 and muse-spark-1.2-contributor)",
+    "Muse Code (the default model its configuration page names; the page is undated)"
+  ],
+  "context_window": 1048576,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "minimal",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.25,
+    "output": 4.25,
+    "cached_input": 0.15,
+    "notes": "Standard tier per Meta's pricing page (prompts and completions are not used for training); the contributor tier costs 0.10 input, 0.20 output, 0.002 cached and lets Meta train on prompts and completions"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 40,
+      "setting": "xhigh; 130M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-muse-1-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (component of the Artificial Analysis Intelligence Index v4.3.2)",
+      "score": 7,
+      "setting": "xhigh; resolved-task percentage",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-compare-1-3-vs-1-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 80,
+      "setting": "xhigh; Artificial Analysis's 1.3 launch article names 80% as 1.2's score",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-muse-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA v2 (Elo)",
+      "score": 1615,
+      "setting": "xhigh; Artificial Analysis's 1.3 launch article names 1615 as 1.2's score; its earlier article on 1.2 gave 1631 on an earlier index version",
+      "harness": "Artificial Analysis Stirrup harness",
+      "measured_by": "independent",
+      "source": "aa-muse-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ZeroBench",
+      "score": 54.0,
+      "setting": "Meta's multimodal post; vendor run; the post gives GPT-5.6 Sol 54.6",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "meta-muse-1-2-multimodal",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CharXiv Reasoning",
+      "score": 87.6,
+      "setting": "Meta's multimodal post; vendor run; the post gives Opus 5 89.3",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "meta-muse-1-2-multimodal",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau3-Bench Banking",
+      "score": 35,
+      "setting": "xhigh; named as 1.2's score in Artificial Analysis's 1.3 launch article",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-muse-article",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://dev.meta.ai/docs/reasoning",
+    "https://dev.meta.ai/docs/tool-calling",
+    "https://dev.meta.ai/docs/structured-output",
+    "https://dev.meta.ai/docs/coding-agents",
+    "https://dev.meta.ai/docs/prompt-caching"
+  ],
+  "system_card": null,
+  "model_page": "https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2",
+  "sources": [
+    {
+      "id": "meta-muse-1-3-blog",
+      "url": "https://research.meta.ai/blog/introducing-muse-spark-1-3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "better sustain longer-horizon work by collaborating with users and juggling multiple workflows in a single, long thread"
+    },
+    {
+      "id": "meta-muse-code-config",
+      "url": "https://dev.meta.ai/docs/muse-code/configuration.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-models",
+      "url": "https://dev.meta.ai/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-muse-article",
+      "url": "https://artificialanalysis.ai/articles/muse-spark-1-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Muse Spark 1.3 (max), which is in limited preview for Meta's partners, scores 62"
+    },
+    {
+      "id": "aa-muse-1-3-xhigh",
+      "url": "https://artificialanalysis.ai/models/muse-spark-1-3-xhigh",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-muse-1-2",
+      "url": "https://artificialanalysis.ai/models/muse-spark-1-2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "meta-muse-1-2-post",
+      "url": "https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-muse-1-2-multimodal",
+      "url": "https://research.meta.ai/blog/multimodal-intelligence-of-muse-spark-1-2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-muse-1-2-methodology",
+      "url": "https://research.meta.ai/static/muse-spark-1-2-methodology",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-pricing",
+      "url": "https://dev.meta.ai/docs/pricing-rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-reasoning",
+      "url": "https://dev.meta.ai/docs/reasoning",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-tools",
+      "url": "https://dev.meta.ai/docs/tool-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-structured",
+      "url": "https://dev.meta.ai/docs/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-coding",
+      "url": "https://dev.meta.ai/docs/coding-agents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-caching",
+      "url": "https://dev.meta.ai/docs/prompt-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-video",
+      "url": "https://dev.meta.ai/docs/video-understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-blog-index",
+      "url": "https://research.meta.ai/blog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-eval-report-1-1",
+      "url": "https://ai.meta.com/static-resource/muse-spark-1-1-evaluation-report/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-muse-1-2-article",
+      "url": "https://artificialanalysis.ai/articles/muse-spark-1-2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-compare-1-3-vs-1-2",
+      "url": "https://artificialanalysis.ai/models/comparisons/muse-spark-1-3-xhigh-vs-muse-spark-1-2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "kingy-muse-1-3",
+      "url": "https://kingy.ai/blog/muse-spark-1-3-review-benchmarks-pricing-verdict/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-muse-code",
+      "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/muse-code-vs-opencode",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "meta-api-messages",
+      "url": "https://dev.meta.ai/docs/protocols/messages",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03)",
+    "Artificial Analysis Coding Agent Index: no run with 1.2 is listed; the Muse Code entries on Artificial Analysis's coding-agent pages use 1.3",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08)",
+    "max_output: Meta's coding-agent page gives 131,072 for muse-spark-1.3 only; nothing published for 1.2",
+    "reasoning.default: Meta's reasoning page says the level is chosen by the model when the parameter is omitted, which is not a level; Muse Code's own default is high, a harness default",
+    "status: Meta's models page calls it the previous version and Artificial Analysis calls it deprecated; no retirement date is published",
+    "system_card: Meta published no evaluation report for 1.2; the 1.1 evaluation report and the 1.0 safety report are the nearest, and a capability methodology note exists for 1.2",
+    "audio input: Meta's docs list audio for 1.2 without the limitation they state for 1.3; Artificial Analysis also lists speech"
+  ]
+}

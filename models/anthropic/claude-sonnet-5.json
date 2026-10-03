@@ -1,0 +1,364 @@
+{
+  "id": "claude-sonnet-5",
+  "name": "Claude Sonnet 5",
+  "maker": "Anthropic",
+  "family": "Claude 5",
+  "class": "Claude Sonnet",
+  "generation": "5",
+  "released": "2026-06-30",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Claude API",
+    "Claude apps (claude.ai)",
+    "Claude Code",
+    "Amazon Bedrock",
+    "Google Cloud",
+    "Microsoft Foundry",
+    "Claude Platform on AWS"
+  ],
+  "context_window": 1000000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 10.0,
+    "cached_input": 0.2,
+    "notes": "List price, standard rate; the introductory price became the standard one on 2026-08-10 and the planned rise to 3/15 was cancelled. 5-minute cache write 2.50, 1-hour write 4; batch 1/5. Minimum cacheable prompt 1,024 tokens. New tokenizer: about 30% more tokens than Sonnet 4.6."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 88.2,
+      "setting": "xhigh",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (Anthropic 478-problem subset, near-saturated)",
+      "score": 77.4,
+      "setting": "high (default)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "anthropic-optimizing-cost",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 10.3,
+      "setting": "not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-sonnet-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 12.42,
+      "setting": "max",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 14.1,
+      "setting": "max",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 7.1,
+      "setting": "xhigh",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 5.1,
+      "setting": "high",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 2.0,
+      "setting": "medium",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 2.5,
+      "setting": "low",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 38.2,
+      "setting": "max (AA shows 38)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 34.4,
+      "setting": "xhigh",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 31.7,
+      "setting": "high",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 28.1,
+      "setting": "medium",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 24.3,
+      "setting": "low",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode v1.1 (Main)",
+      "score": 42.4,
+      "setting": "not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-sonnet-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0",
+      "score": 34.1,
+      "setting": "not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-sonnet-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (Anthropic's own run, not the Scale leaderboard)",
+      "score": 63.2,
+      "setting": "max, adaptive thinking, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 85.2,
+      "setting": "max, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-sonnet-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 80.4,
+      "setting": "max; Anthropic chose mini-swe-agent over Terminus-2 for fewer timeouts",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "system-card-sonnet-5",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  ],
+  "system_card": "https://www.anthropic.com/claude-sonnet-5-system-card",
+  "model_page": "https://platform.claude.com/docs/en/models/sonnet-5/overview",
+  "sources": [
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-sonnet-5",
+      "url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-terminal-bench-4",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "announce-sonnet-5-5",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-best-practices",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-deprecations",
+      "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-effort",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-optimizing-cost",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-release-notes",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-code-model-config",
+      "url": "https://code.claude.com/docs/en/model-config",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-g10",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "page-sonnet-5",
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "page-sonnet-5-5",
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "system-card-sonnet-5",
+      "url": "https://www.anthropic.com/claude-sonnet-5-system-card",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "status: Anthropic lists it as legacy (still active, no deprecation announced); the format has no legacy value, so it is recorded as ga",
+    "Artificial Analysis Coding Agent Index: no row for this model; the page shows the composite as 'Not publicly available'",
+    "METR 50% time horizon: not listed on metr.org/time-horizons (dated 2026-05-08)",
+    "Terminal-Bench 4.0 maker figure (10.3): effort and harness not stated for Sonnet 5"
+  ]
+}

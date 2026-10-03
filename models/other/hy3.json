@@ -1,0 +1,262 @@
+{
+  "id": "hy3",
+  "name": "Tencent Hy3",
+  "maker": "Tencent",
+  "family": "Hy3",
+  "class": "Tencent Hy",
+  "generation": "3",
+  "released": "2026-07-06",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (tencent/Hy3 and the FP8 build tencent/Hy3-FP8)",
+    "ModelScope, GitCode and CNB mirrors",
+    "vLLM",
+    "SGLang",
+    "CodeBuddy and WorkBuddy (Tencent products, per the model card)"
+  ],
+  "context_window": 262144,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "no_think",
+      "low",
+      "high"
+    ],
+    "default": "no_think"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.14,
+    "output": 0.55,
+    "cached_input": null,
+    "notes": "Artificial Analysis's listed API price. A news summary relays about $0.18 input and $0.59 output from Tencent. Weights are free to run."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 25,
+      "setting": "index v4.3.2 (ten evaluations); rank 27 of 118 on the page; the page does not mark the model deprecated",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (maker run; split not stated)",
+      "score": 57.9,
+      "setting": "highest reasoning effort; SWE-agent scaffold",
+      "harness": "SWE-agent scaffold",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 78.0,
+      "setting": "highest reasoning effort; SWE-agent scaffold",
+      "harness": "SWE-agent scaffold",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 75.8,
+      "setting": "highest reasoning effort; SWE-agent scaffold",
+      "harness": "SWE-agent scaffold",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 71.7,
+      "setting": "highest reasoning effort; parser xml, agent timeout 4 h, 16 CPU cores, 32 GB memory, at most 500 episodes",
+      "harness": "Terminus-2",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 45.6,
+      "setting": "highest reasoning effort; 250-turn budget, 12,000-second timeout per task, 4 CPU cores and 32 GB memory; extra anti-hacking prompt constraints and tool-call monitoring",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE",
+      "score": 28.0,
+      "setting": "highest reasoning effort; 2-hour timeout per task, 2 CPU cores and 8 GB, no network",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BrowseComp",
+      "score": 84.2,
+      "setting": "highest reasoning effort; self-summary approach for context management",
+      "harness": "Tencent's internal agentic-search harness",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "WideSearch",
+      "score": 76.4,
+      "setting": "highest reasoning effort",
+      "harness": "Tencent's internal agentic-search harness",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP-Atlas (public)",
+      "score": 79.1,
+      "setting": "highest reasoning effort; Scale's April 2026 method (100 tool calls per task), 500-task public set, Gemini 2.5 Pro as judge",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon",
+      "score": 48.5,
+      "setting": "highest reasoning effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ClawEval (pass^3)",
+      "score": 68.5,
+      "setting": "highest reasoning effort; version 20260325, 105 queries, Gemini-3.5-flash as judge",
+      "harness": "Tencent's internal harness",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 90.4,
+      "setting": "highest reasoning effort; no tools",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (no tools, text-only)",
+      "score": 37.0,
+      "setting": "highest reasoning effort",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (with tools, text-only)",
+      "score": 53.2,
+      "setting": "highest reasoning effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR",
+      "score": 73.4,
+      "setting": "highest reasoning effort; Tencent's own run on a long-context benchmark",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "hf-hy3",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/tencent/Hy3"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/tencent/Hy3",
+  "sources": [
+    {
+      "id": "hf-hy3",
+      "url": "https://huggingface.co/tencent/Hy3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-hy3-license",
+      "url": "https://huggingface.co/tencent/Hy3/blob/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-hy3-preview",
+      "url": "https://huggingface.co/tencent/Hy3-preview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nyu-hy3",
+      "url": "https://rits.shanghai.nyu.edu/ai/tencent-releases-hy3-295b-open-moe-model-under-apache-2-0/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-hy3",
+      "url": "https://artificialanalysis.ai/models/hy3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-hy4",
+      "url": "https://huggingface.co/tencent/Hy4-preview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Hy3 row on Scale's table read for 2026-10-03; the maker's 57.9 is its own run and states no split",
+    "Terminal-Bench 4.0: no independent Hy3 result read; the maker's Terminal-Bench 2.1 row is entered instead",
+    "Artificial Analysis Coding Agent Index: no Hy3 entry read",
+    "METR 50% time horizon: no Hy3 entry read",
+    "context_window: the card says 256K; Artificial Analysis lists 256k; 262,144 is assumed to be that figure in tokens, and the card does not give the exact count",
+    "max_output: not published on the model card or pages read",
+    "pricing_usd_per_mtok: no Tencent price page was read; the figures are Artificial Analysis's, with a news relay of Tencent's price slightly higher; Artificial Analysis states a 75% cache discount but no cached-input price",
+    "released: the weights repository was created 2026-07-02 and its first upload completed 2026-07-04; 2026-07-06 is the date of a news summary that reports the release, Artificial Analysis says only July 2026, and the card itself carries no date",
+    "system_card: Tencent publishes no system card for Hy3; the Hugging Face card holds benchmarks, serving notes and internal reliability figures, and no safety evaluation",
+    "prompting_guides: Tencent publishes no prompt-writing guide; the model card's quickstart and recommended parameters are the only guidance",
+    "parameters: the card says 295B total, 21B active and a 3.8B multi-token-prediction layer; Artificial Analysis lists 299B total and Hugging Face counts about 298.8B in the weights, which presumably include the extra layer (inferred)",
+    "benchmarks: the card's footnote says results marked with an asterisk are Tencent's own tests of other models; Tencent's own Hy3 runs and the comparison runs use the highest effort tier"
+  ]
+}

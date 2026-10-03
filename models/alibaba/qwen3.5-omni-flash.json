@@ -1,0 +1,514 @@
+{
+  "id": "qwen3.5-omni-flash",
+  "name": "Qwen3.5-Omni-Flash",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.5",
+  "class": "Qwen Omni",
+  "generation": "3.5",
+  "released": "2026-03-30",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud API (qwen3.5-omni-flash over HTTP, qwen3.5-omni-flash-realtime over WebSocket)"
+  ],
+  "context_window": 262144,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text",
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "half",
+    "input_audio": "Realtime API: PCM 16-bit mono at 16 kHz by default (8, 24 or 48 kHz and WAV can be set), images as JPG frames about 1 per second; HTTP API: audio files or Base64 data in a message [qwencloud-rt-guide] [qwencloud-omni-guide]",
+    "output_audio": "Realtime API: PCM 16-bit mono at 24 kHz by default (8, 16 or 48 kHz and WAV can be set); HTTP API: wav only, as Base64 fragments in the stream [qwencloud-rt-guide] [qwencloud-omni-guide]",
+    "voices": "55 preset voices (47 multilingual and 8 dialectal; default Tina) and cloned voices made from an audio sample on both APIs [qwencloud-rt-guide] [qwencloud-voice-cloning]",
+    "languages": [
+      "Realtime: speech recognition in 113 languages and dialects, speech output in 36",
+      "HTTP guide: speech output in 29 languages and 7 Chinese dialects, input in 74 languages and 39 dialects (the counts differ by page)"
+    ],
+    "turn_detection": "Realtime API only: server_vad (default) or semantic_vad, which the guide recommends for this model; threshold default 0.5, silence_duration_ms default 800 (range 200 to 6000); idle_timeout_ms 5000 to 30000 in server_vad mode makes the model prompt a silent user; turn_detection null selects manual commit [qwencloud-client-events] [qwencloud-rt-guide]",
+    "interruption": "Realtime API: semantic interruption tells a real attempt to take the floor from a backchannel or background noise; the server sends speech_started when the user starts to speak, and the client must clear its playback buffer; voice commands change volume, speed and emotion; the HTTP API has no barge-in [qwencloud-rt-guide] [arxiv-qwen3-5-omni]",
+    "latency": "Technical report, first-packet latency at one concurrent request in an internal set-up: 235 ms for audio input and 426 ms for video input on the Flash model [arxiv-qwen3-5-omni]; Artificial Analysis measured an average time to first audio of 0.79 seconds for the realtime Flash model on its Big Bench Audio set [aa-s2s]",
+    "session_limit": "Realtime API: 120 minutes per WebSocket session; retained history of 80 audio turns or 480 seconds of audio and 50 video turns or 120 seconds of video [qwencloud-rt-guide]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.4,
+    "output": 2.2,
+    "cached_input": null,
+    "notes": "QwenCloud model page (read 2026-10-03), by modality: text, image and video input US$0.40; audio input US$3.00; text output US$2.20; output that includes audio US$11.90 (text output is then not charged); Artificial Analysis lists 0.10 input and 0.80 output, which does not match the QwenCloud page; the page shows no cache price; the realtime model qwen3.5-omni-flash-realtime has its own page rates per million tokens: audio input US$4.5, text, image and video input US$0.55, text output US$3.3, text and audio output US$17.7 (output text then not charged); Artificial Analysis lists US$0.162 per hour of input audio and US$0.816 per hour of output audio for it, which does not match the page [qwencloud-page-35flash-rt] [aa-s2s]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 12,
+      "setting": "non-reasoning version; Artificial Analysis flags this score as estimated, not a full run of the current index, and shows no token count or cost per task; 215.6 output tokens per second",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis GPQA Diamond",
+      "score": 74.2,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Humanity's Last Exam",
+      "score": 7.6,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis IFBench",
+      "score": 38.0,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis AA-LCR",
+      "score": 52.0,
+      "setting": "Artificial Analysis long-context reasoning run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis MMMU-Pro",
+      "score": 64.7,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": -65.1,
+      "setting": "Artificial Analysis; accuracy 14.7% and hallucination rate 93.4% on the same run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-5-omni-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMLU-Pro",
+      "score": 79.9,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMLU-Redux",
+      "score": 90.0,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SuperGPQA",
+      "score": 54.9,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA",
+      "score": 76.4,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFEval",
+      "score": 85.2,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench (report)",
+      "score": 38.4,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (report)",
+      "score": 46.0,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LongBench v2",
+      "score": 46.4,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LiveCodeBench v6",
+      "score": 56.6,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HMMT Nov 25",
+      "score": 59.0,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BFCL-V4",
+      "score": 55.3,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "TAU2Bench",
+      "score": 78.0,
+      "setting": "vendor run in the technical report (Table 4); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU",
+      "score": 76.9,
+      "setting": "vendor run in the technical report (Table 6); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU-Pro",
+      "score": 68.2,
+      "setting": "vendor run in the technical report (Table 6); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "RealWorldQA",
+      "score": 77.5,
+      "setting": "vendor run in the technical report (Table 6); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OCRBench",
+      "score": 89.1,
+      "setting": "vendor run in the technical report (Table 6); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "VideoMME (without subtitles)",
+      "score": 77.0,
+      "setting": "vendor run in the technical report (Table 6); harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DailyOmni (audio-visual)",
+      "score": 81.8,
+      "setting": "vendor run in the technical report (Table 7); text query; judge model DeepSeek-V3.2-Thinking where a judge is used",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "WorldSense (audio-visual)",
+      "score": 57.9,
+      "setting": "vendor run in the technical report (Table 7); text query",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "VideoMME with audio",
+      "score": 79.3,
+      "setting": "vendor run in the technical report (Table 7); evaluated with use_audio_in_video=True",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OmniGAIA (tool use)",
+      "score": 33.9,
+      "setting": "vendor run in the technical report (Table 7); evaluated without a thinking prompt and without answer-tag formatting; judge model DeepSeek-V3.2-Thinking",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMAU (audio understanding)",
+      "score": 80.4,
+      "setting": "vendor run in the technical report (Table 5)",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FLEURS average word error rate (percent, lower is better)",
+      "score": 10.8,
+      "setting": "vendor run in the technical report; average over the languages of the FLEURS test set",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "arxiv-qwen3-5-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 59.0,
+      "setting": "realtime Flash model (qwen3.5-omni-flash-realtime); Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech to Speech: arena preference Elo",
+      "score": 841,
+      "setting": "realtime Flash model; human participants compare two unnamed voice models on one scenario; the page lists only models with tool calling",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech to Speech: task success rate (percent)",
+      "score": 29.1,
+      "setting": "realtime Flash model; column labelled Task Success Rate on the page; the page text read does not define it further",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/multimodal-speech",
+    "https://docs.qwencloud.com/developer-guides/speech/omni-models",
+    "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/overview"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.5-omni-flash",
+  "sources": [
+    {
+      "id": "qwencloud-page-35omni-flash",
+      "url": "https://www.qwencloud.com/models/qwen3.5-omni-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-qwen3-5-omni",
+      "url": "https://arxiv.org/abs/2604.15804",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-omni-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/multimodal-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-omni-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/omni-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-s2s-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-voice-cloning",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/voice-cloning",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-old-models-notice",
+      "url": "https://docs.qwencloud.com/changelog/model-deprecations/old-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-accuracy",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-5-omni-flash",
+      "url": "https://artificialanalysis.ai/models/qwen3-5-omni-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-35flash-rt",
+      "url": "https://www.qwencloud.com/models/qwen3.5-omni-flash-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-rt-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/realtime-multimodal-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-client-events",
+      "url": "https://docs.qwencloud.com/api-reference/real-time-multimodal/client-events",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model found. The page text names Qwen only through an older model (Qwen 3 32B) and the leaderboard table is rendered by script, so a row is not ruled out",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis's coding-agent data (read 2026-10-03) holds a Claude Code run for Qwen3.8 Max only; none for this model",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only the generic 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so an entry for this model is not ruled out",
+    "Terminal-Bench 4.0: Artificial Analysis's chart data holds no value for this model; no other independent run found",
+    "retires: no retirement date published; QwenCloud's 2026-10-10 notice retires older Qwen3-Omni-Flash snapshots and names the Plus model of this generation as their replacement, not this model",
+    "released: Artificial Analysis and press reports say 2026-03-30; QwenCloud's page lists dated snapshots 2026-03-15; QwenCloud's changelog page read has no entry for the launch",
+    "context_window: QwenCloud's page says 262K (maximum input 196K); the technical report and Artificial Analysis say 256k; 262,144 kept",
+    "reasoning: QwenCloud says thinking mode exists for Qwen3-Omni-Flash only and the technical report calls the series instruct models, so control is none; the card records no levels",
+    "pricing_usd_per_mtok.cached_input: QwenCloud's page lists context cache as a feature and shows no cache price for this model",
+    "system_card: none; the maker publishes no system card for this model, and the technical report read has no safety or refusal section",
+    "access: only the QwenCloud endpoints were confirmed; no third-party host was checked",
+    "model size: the technical report says the series scales to hundreds of billions of parameters and gives no size for the Flash variant",
+    "Epoch AI: no Epoch AI page for this model was found at the addresses tried, so no Epoch Capabilities Index value is recorded",
+    "structured output: QwenCloud's structured-output guide names the Qwen3.5-Omni-Plus series for JSON Object mode and does not name the Flash model",
+    "voice.duplex: half is this library's reading; Alibaba calls the realtime interaction semantic interruption and does not call this model full-duplex, and Artificial Analysis has no conversational-dynamics run for it [aa-s2s]"
+  ]
+}

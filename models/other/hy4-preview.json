@@ -1,0 +1,261 @@
+{
+  "id": "hy4-preview",
+  "name": "Tencent Hy4 preview",
+  "maker": "Tencent",
+  "family": "Hy4",
+  "class": "Tencent Hy",
+  "generation": "4",
+  "released": "2026-08-28",
+  "status": "preview",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (tencent/Hy4-preview and the FP8 build Hy4-preview-FP8)",
+    "OpenRouter",
+    "Aihubmix",
+    "Vercel AI Gateway",
+    "CodeBuddy",
+    "WorkBuddy",
+    "Yuanbao",
+    "vLLM",
+    "SGLang",
+    "Tencent Cloud TokenHub",
+    "ima"
+  ],
+  "context_window": 1000000,
+  "max_output": 64000,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "no_think",
+      "high"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.834,
+    "output": 2.5,
+    "cached_input": 0.042,
+    "notes": "Input and output match the API price TechNode relays from Tencent (0.834 in, 2.501 out); cached input 0.042 is the OpenRouter and Vercel AI Gateway figure on a price aggregator. A relay of Tencent's yuan list gives 6 in, 18 out and 0.3 cache hit per million tokens. Tencent made the model free in CodeBuddy and WorkBuddy for two weeks at launch"
+  },
+  "benchmarks": [
+    {
+      "name": "Tencent blind engineering evaluation (203 tasks, 163 internal experts, average score out of 4)",
+      "score": 2.99,
+      "setting": "Tencent's own; GLM-5.3 scored 2.92 and Kimi K3 2.94 (the 'out of 4' scale is from a TechNode relay)",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy4",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 85.4,
+      "setting": "highest reasoning setting; up to 500 turns, a 12-hour timeout, 16 CPUs and 32 GB RAM per trial; Tencent's own run",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (maker run; split not stated)",
+      "score": 65.7,
+      "setting": "highest reasoning setting; Tencent's own run; the card does not name the split, and this is not Scale's V2 leaderboard",
+      "harness": "swe-agent scaffold",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 82.9,
+      "setting": "highest reasoning setting; Tencent's own run",
+      "harness": "swe-agent scaffold",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE",
+      "score": 64.3,
+      "setting": "highest reasoning setting; Tencent's own run; 8 CPU, 16 GB sandbox",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon-Verified",
+      "score": 74.1,
+      "setting": "highest reasoning setting; Tencent's own run; internal scaffold with some MCP tools reimplemented, 2 CPU cores and 10 GB per task, 2-hour timeout instead of 5,400 s; 108-task set, 100-step budget, 3-run pass@1",
+      "harness": "internal agent scaffold",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP-Atlas (public)",
+      "score": 83.7,
+      "setting": "highest reasoning setting; Tencent's own run; Scale April 2026 method, 500-task public set, 100 tool calls per task, judge changed from Gemini 2.5 Pro to Gemini 3.1 Pro Preview",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 92.3,
+      "setting": "highest reasoning setting; Tencent's own run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (no tools, text-only)",
+      "score": 43.4,
+      "setting": "highest reasoning setting; Tencent's own run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA V2 (Elo, official)",
+      "score": 1678,
+      "setting": "highest reasoning setting; Tencent's table lists it as official",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-hy4-page",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/tencent/Hy4-preview"
+  ],
+  "system_card": "https://huggingface.co/tencent/Hy4-preview",
+  "model_page": "https://huggingface.co/tencent/Hy4-preview",
+  "sources": [
+    {
+      "id": "hf-hy4",
+      "url": "https://huggingface.co/tencent/Hy4-preview/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "spending longer than necessary reasoning through complex tasks, and a tendency to over-verify its own work"
+    },
+    {
+      "id": "open-weight-f17",
+      "url": "https://huggingface.co/tencent/Hy4-preview/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tencent-hy4-news",
+      "url": "https://technode.com/2026/08/28/tencent-open-sources-hy4-preview-with-770b-parameters-and-a-1m-token-context/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "cloudprice-hy4",
+      "url": "https://cloudprice.net/models/tencent/hy4-preview",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-hy4-page",
+      "url": "https://huggingface.co/tencent/Hy4-preview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "orcarouter-hy4",
+      "url": "https://www.orcarouter.ai/blog/tencent-hy4-preview-open-source",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "orcarouter-hy4-vllm",
+      "url": "https://www.orcarouter.ai/blog/tencent-hy4-preview-vllm-day-zero",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "hf-hy3",
+      "url": "https://huggingface.co/tencent/Hy3/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-hy3-preview",
+      "url": "https://huggingface.co/tencent/Hy3-preview/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-hy3-preview",
+      "url": "https://artificialanalysis.ai/models/hy3-preview",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's leaderboard (11 rows read, none for this model)",
+    "Terminal-Bench 4.0: no standalone score; Artificial Analysis counts Terminal-Bench 4.0 inside its v4.3.2 index without per-model numbers, and the tbench.ai leaderboard rows did not render for the fetcher",
+    "Artificial Analysis Coding Agent Index: no entry for this model among the runs on Artificial Analysis's Coding Agent Index v1.5 page (artificialanalysis.ai/agents/coding-agents), read 2026-10-03",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08; no numbers in the page text)",
+    "Artificial Analysis Intelligence Index: Artificial Analysis lists Hy3-preview but no Hy4 page was found (two direct URLs returned 404)",
+    "context_window: Tencent's card says 1M; aggregators say 1.0M and 1.05M, and TechNode says more than 1 million",
+    "total parameters: the card says 770B while the aggregator says 780B; 770B used",
+    "instruction-file loading in CodeBuddy: not read for this card",
+    "system_card: Tencent has published no system card; the Hugging Face model card is recorded here and holds a known-limitations paragraph and no safety evaluation",
+    "reasoning.levels: only high and no_think appear in the Hy4 card; Hy3 also had low, and whether Hy4 accepts it is not stated",
+    "max_output and cached_input: from a price aggregator, not a Tencent page; input and output prices are Tencent's as relayed by TechNode, and the yuan list (6 in, 18 out, 0.3 cache hit per million tokens) is relayed by OrcaRouter; no Tencent pricing page was read"
+  ]
+}

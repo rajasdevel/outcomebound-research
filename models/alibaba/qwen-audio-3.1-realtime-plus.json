@@ -1,0 +1,139 @@
+{
+  "id": "qwen-audio-3.1-realtime-plus",
+  "name": "Qwen-Audio-3.1-Realtime-Plus",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen Audio",
+  "class": "Qwen Audio Realtime",
+  "generation": "3.1",
+  "released": "2026-09-20",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud realtime API (WebSocket; AOQ and WebRTC also listed), Singapore-region API key"
+  ],
+  "context_window": 262144,
+  "max_output": 16384,
+  "modalities": {
+    "input": [
+      "text",
+      "audio"
+    ],
+    "output": [
+      "text",
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "PCM 16-bit mono at 16 kHz (pcm is the only format); about 100 ms per chunk (3,200 bytes) is advised [qwencloud-audio-events] [qwencloud-audio-guide]",
+    "output_audio": "PCM 16-bit mono at 24 kHz (pcm is the only format) [qwencloud-audio-events] [qwencloud-audio-guide]",
+    "voices": "13 system voices (default longanqian_v3.1; eight are new in 3.1) and cloned voices made with the voice-cloning API; the voice can be set only in the first session.update [qwencloud-audio-guide]",
+    "languages": [
+      "Conversation: German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian and Chinese, with 21 Chinese varieties (Mandarin, Cantonese and regional speech)",
+      "session.input_audio_transcription.language takes 30 source-language codes and session.output_audio.language a target-language code for the speech (a best effort, not a guarantee)"
+    ],
+    "turn_detection": "server_vad (default; threshold -1.0 to 1.0, default 0.5; silence_duration_ms 200 to 6000, default 800, 400 to 800 advised), smart_turn (acoustic and semantic; fillers such as uh or hmm do not start a turn), or null for push-to-talk; the mode can be set only before the first audio is sent [qwencloud-audio-ws] [qwencloud-audio-events]",
+    "interruption": "In server_vad and smart_turn modes new user speech cancels the running response (response.done with status cancelled); the client should clear its playback buffer on input_audio_buffer.speech_started; in smart_turn mode fillers and non-semantic sounds neither start a turn nor interrupt playback; optional speaker enhancement locks onto up to 5 reference voices [qwencloud-audio-guide] [qwencloud-audio-ws]",
+    "latency": "No figure from Alibaba; Artificial Analysis has no row for this model (read 2026-10-03); its row for the 3.0 Plus model shows 1.54 seconds to first audio [aa-s2s]",
+    "session_limit": "Not stated for this API; context of 262K tokens, and the model keeps at most 50 audio turns or 300 seconds of audio (default 20 turns, set with max_history_turns 1 to 50) [qwencloud-audio-guide] [qwencloud-page-audio31]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 6.4,
+    "output": 24.0,
+    "cached_input": null,
+    "notes": "QwenCloud model page (read 2026-10-03), per million tokens: audio input US$6.4 (the input field); text input US$0.8; text output US$6.4; text and audio output US$24 (the output field; output text is then not charged). The page lists a 2K maximum reasoning budget [qwencloud-page-audio31]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime",
+    "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/websocket-api",
+    "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus",
+  "sources": [
+    {
+      "id": "qwencloud-page-audio31",
+      "url": "https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-audio30plus",
+      "url": "https://www.qwencloud.com/models/qwen-audio-3.0-realtime-plus",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-ws",
+      "url": "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/websocket-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-events",
+      "url": "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-s2s-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-rt-overview",
+      "url": "https://docs.qwencloud.com/api-reference/realtime-api/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "released: QwenCloud's changelog dates the model 2026-09-20 [qwencloud-changelog]",
+    "weights: closed; no open-weight release of any Qwen-Audio realtime model found on Alibaba's Hugging Face listing",
+    "voice.session_limit: no maximum session length is stated; only history limits are",
+    "system_card: none published",
+    "benchmarks: Artificial Analysis has no row for this model on its Speech to Speech page (read 2026-10-03) [aa-s2s]",
+    "reasoning: the model page lists a 2K maximum-reasoning figure and thinking limits, but no control to switch reasoning on or off was found",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "id": "gpt-realtime-2",
+  "name": "GPT-Realtime-2",
+  "maker": "OpenAI",
+  "family": "GPT Realtime",
+  "class": "GPT Realtime",
+  "generation": "2",
+  "released": "2026-05-07",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Realtime: WebRTC, WebSocket, SIP)",
+    "Microsoft Foundry"
+  ],
+  "context_window": 128000,
+  "max_output": 32000,
+  "modalities": {
+    "input": [
+      "text",
+      "audio",
+      "image"
+    ],
+    "output": [
+      "text",
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "half",
+    "input_audio": "PCM 16-bit mono at 24 kHz, G.711 mu-law or G.711 A-law over WebSocket and SIP, set in audio.input.format; WebRTC carries audio on media tracks; text and image items are also accepted [openai-ref-client-secrets] [openai-guide-conversations]",
+    "output_audio": "The same three formats, set in audio.output.format; WebRTC returns a remote audio track; a speed multiplier from 0.25 to 1.5 applies as post-processing [openai-ref-client-secrets] [openai-guide-conversations]",
+    "voices": "10 built-in voices (alloy, ash, ballad, coral, echo, sage, shimmer, verse, marin, cedar), with marin and cedar recommended; custom voices for approved customers [openai-guide-conversations] [openai-guide-custom-voices]",
+    "languages": [],
+    "turn_detection": "Server VAD (silence-based: threshold 0.5, prefix_padding_ms 300, silence_duration_ms 500 by default, optional idle_timeout_ms) or semantic VAD (eagerness low, medium, high or auto, with maximum waits of 8 s, 4 s and 2 s); on by default; create_response and interrupt_response can each be set to false; turn_detection null gives push-to-talk with manual commit and response.create [openai-guide-vad] [openai-ref-client-secrets]",
+    "interruption": "Yes. With VAD on, the start of user speech cancels the response in progress. On WebRTC and SIP the server drops unplayed audio from the conversation; on WebSocket the client stops playback and sends conversation.item.truncate [openai-guide-conversations]",
+    "latency": "Artificial Analysis time to first audio on Big Bench Audio: 1.14 s at High effort, 1.22 s at Medium and 1.12 s at Minimal [aa-speech-to-speech]. OpenAI reports a p95 latency cut of at least 25% across its Realtime models since 2026-07-06 [community-realtime-21]",
+    "session_limit": "60 minutes per Realtime session [openai-guide-conversations]"
+  },
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "minimal",
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "low"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 32.0,
+    "output": 64.0,
+    "cached_input": 0.4,
+    "notes": "numbers are audio-token rates; text $4 in, $0.4 cached, $24 out; image $5 in, $0.5 cached; same rates as GPT-Realtime-2.1; Realtime endpoint only"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech to Speech Index (v2)",
+      "score": 73.6,
+      "setting": "High effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech to Speech Index (v2)",
+      "score": 62.7,
+      "setting": "Minimal effort; 1 trial for tau-Voice",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Big Bench Audio (Artificial Analysis, 1,000 spoken questions, percent)",
+      "score": 96.6,
+      "setting": "High effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Big Bench Audio (Artificial Analysis, 1,000 spoken questions, percent)",
+      "score": 93.3,
+      "setting": "Medium effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Big Bench Audio (Artificial Analysis, 1,000 spoken questions, percent)",
+      "score": 71.8,
+      "setting": "Minimal effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau-Voice (Artificial Analysis, airline, retail and telecom task completion, percent)",
+      "score": 39.8,
+      "setting": "High effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau-Voice (Artificial Analysis, airline, retail and telecom task completion, percent)",
+      "score": 37.4,
+      "setting": "Medium effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau-Voice (Artificial Analysis, airline, retail and telecom task completion, percent)",
+      "score": 30.8,
+      "setting": "Minimal effort; 1 trial",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Conversational Dynamics (Artificial Analysis, Full Duplex Bench v1 and v1.5 subset, percent)",
+      "score": 95.3,
+      "setting": "High effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Conversational Dynamics (Artificial Analysis, Full Duplex Bench v1 and v1.5 subset, percent)",
+      "score": 95.2,
+      "setting": "Medium effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Conversational Dynamics (Artificial Analysis, Full Duplex Bench v1 and v1.5 subset, percent)",
+      "score": 96.1,
+      "setting": "Minimal effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Time to first audio on Big Bench Audio (Artificial Analysis, seconds, lower is better)",
+      "score": 1.14,
+      "setting": "High effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Time to first audio on Big Bench Audio (Artificial Analysis, seconds, lower is better)",
+      "score": 1.12,
+      "setting": "Minimal effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Speech Agent Arena preference Elo (Artificial Analysis, overall slice)",
+      "score": 931.66,
+      "setting": "High effort; rank 14 on the page",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AudioMultiChallenge average pass rate (Scale, percent, plus or minus 4.59)",
+      "score": 48.45,
+      "setting": "xHigh effort; entry carries no output-modality marker",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "scale-audiomc",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AudioMultiChallenge average pass rate (Scale, percent, plus or minus 4.45)",
+      "score": 37.61,
+      "setting": "effort not stated; entry carries no output-modality marker",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "scale-audiomc",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/voice-prompting",
+    "https://developers.openai.com/api/docs/guides/realtime",
+    "https://developers.openai.com/api/docs/guides/realtime-conversations",
+    "https://developers.openai.com/api/docs/guides/realtime-vad",
+    "https://developers.openai.com/api/docs/guides/realtime-mcp"
+  ],
+  "system_card": null,
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-realtime-2",
+  "sources": [
+    {
+      "id": "openai-guide-realtime",
+      "url": "https://developers.openai.com/api/docs/guides/realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-conversations",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-vad",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-vad",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-mcp",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-mcp",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-voice-prompting",
+      "url": "https://developers.openai.com/api/docs/guides/voice-prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-voice-cost",
+      "url": "https://developers.openai.com/api/docs/guides/voice-latency-cost",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-ref-client-secrets",
+      "url": "https://developers.openai.com/api/reference/resources/realtime/subresources/client_secrets/methods/create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-custom-voices",
+      "url": "https://developers.openai.com/api/docs/guides/custom-voices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-deprecations",
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-models-list",
+      "url": "https://developers.openai.com/api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-hub",
+      "url": "https://deploymentsafety.openai.com/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-speech-to-speech",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-your-data",
+      "url": "https://developers.openai.com/api/docs/guides/your-data",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-model-gpt-realtime-2",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-model-gpt-realtime-1.5",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-1.5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "community-realtime-2",
+      "url": "https://community.openai.com/t/new-realtime-voice-models-in-the-api/1380471",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "community-realtime-21",
+      "url": "https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "community-default-reasoning",
+      "url": "https://community.openai.com/t/gpt-realtime-model-default-reasoning/1387803",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "community-realtime-2-pauses",
+      "url": "https://community.openai.com/t/gpt-realtime-2-splits-acknowledgment-next-step-into-separate-turns-causing-5-20s-caller-silence-rollback-to-gpt-realtime-1-5-confirmed-as-a-b-fix/1381276",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-audiomc",
+      "url": "https://labs.scale.com/leaderboard/audiomc",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "voice.languages: OpenAI's guides and model pages read list no supported-language set for the Realtime speech-to-speech models",
+    "system_card: OpenAI's Deployment Safety Hub lists no system card or model card for the Realtime models on 2026-10-03",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a voice model; no run exists",
+    "Terminal-Bench 4.0: not applicable to a voice model; no run exists",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis rates speech models on its Speech to Speech Index and its speech-to-text word error rate instead",
+    "Artificial Analysis Coding Agent Index: not applicable to a voice model",
+    "METR 50% time horizon: not applicable to a voice model; no run exists"
+  ]
+}

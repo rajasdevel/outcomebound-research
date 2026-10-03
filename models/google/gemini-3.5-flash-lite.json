@@ -1,0 +1,278 @@
+{
+  "id": "gemini-3.5-flash-lite",
+  "name": "Gemini 3.5 Flash-Lite",
+  "maker": "Google",
+  "family": "Gemini 3.5",
+  "class": "Gemini Flash-Lite",
+  "generation": "3.5",
+  "released": "2026-07-21",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform",
+    "Gemini app",
+    "Google Antigravity managed agent (selectable underlying model)"
+  ],
+  "context_window": 1048576,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "minimal",
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "minimal"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.3,
+    "output": 2.5,
+    "cached_input": 0.03,
+    "notes": "standard price; cached price $0.03 from Google's pricing page (also text, image, video and audio input all $0.30)."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 22,
+      "setting": "reasoning variant, effort not stated; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-3-5-flash-lite",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (public set, Google-reported)",
+      "score": 54.2,
+      "setting": "high; self-computed by Google on the full public set",
+      "harness": "internal version of Google's Antigravity harness",
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-eval",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 54.0,
+      "setting": "high; self-computed by Google",
+      "harness": "Terminus-2",
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MLE-Bench",
+      "score": 39.2,
+      "setting": "high; 30-problem subset, average position score; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPVal-AA v2",
+      "score": 1140,
+      "setting": "Elo; taken from the Artificial Analysis leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified",
+      "score": 74.0,
+      "setting": "high; average of 5 runs, single attempt each, 100-step limit; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CharXiv Reasoning",
+      "score": 74.5,
+      "setting": "high; no tools; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDM-MRCR v2 (8-needle)",
+      "score": 72.2,
+      "setting": "128k average; high; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDM-MRCR v2 (8-needle)",
+      "score": 21.3,
+      "setting": "1M, pointwise; high; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-5-flash-lite-card",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+    "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+    "https://ai.google.dev/gemini-api/docs/function-calling"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-5-flash-lite/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite",
+  "sources": [
+    {
+      "id": "gemini-3-5-flash-lite-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-5-flash-lite/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-spec-gemini-3.5-flash-lite",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-3-5-lite",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-5-flash-lite",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-spec-gemini-3.1-flash-lite",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-thinking",
+      "url": "https://ai.google.dev/gemini-api/docs/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-5-flash-lite",
+      "url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-computer-use",
+      "url": "https://ai.google.dev/gemini-api/docs/computer-use",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-antigravity-agent",
+      "url": "https://ai.google.dev/gemini-api/docs/antigravity-agent",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-caching",
+      "url": "https://ai.google.dev/gemini-api/docs/caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-video-understanding",
+      "url": "https://ai.google.dev/gemini-api/docs/video-understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-latest-model-archive",
+      "url": "https://web.archive.org/web/20260802003901/https://ai.google.dev/gemini-api/docs/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-f15",
+      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-f14",
+      "url": "https://ai.google.dev/gemini-api/docs/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-pro-card",
+      "url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-latest-model",
+      "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-5-flash-lite-eval",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-5_flash-lite_model_evaluation.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "knowledge cutoff on the API model page: not published there; the model card says March 2026 (some domains January 2025)",
+    "retires: the Gemini API lists no shutdown date; Google Cloud's model page gives a retirement date of 2027-07-21 or later",
+    "Artificial Analysis effort setting for the index run: the page says only \"reasoning version\"",
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22)",
+    "Terminal-Bench 4.0: no row on the tbench.ai leaderboard; no independent per-model score found",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
+    "METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08"
+  ]
+}

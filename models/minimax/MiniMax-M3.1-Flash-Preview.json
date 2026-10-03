@@ -1,0 +1,278 @@
+{
+  "id": "MiniMax-M3.1-Flash-Preview",
+  "name": "MiniMax M3.1 Flash Preview",
+  "maker": "MiniMax",
+  "family": "MiniMax M3",
+  "class": "MiniMax M Flash",
+  "generation": "3.1",
+  "released": "2026-09-27",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "MiniMax Code",
+    "M Plan subscription (tiers Go, Explore, Build) by Subscription Key, in MiniMax Code or tools such as Claude Code, Codex, Cursor and OpenCode",
+    "Legacy Token Plan subscription (closed to new purchases; existing subscribers keep it)"
+  ],
+  "context_window": 1000000,
+  "max_output": 524288,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "No per-token price published, and not offered as pay-as-you-go. It is used through an M Plan subscription (tiers Go, Explore at 3 times Go's usage and Build at 7.5 times; tier prices not found on MiniMax pages read) or a legacy Token Plan (Plus 22, Max 55, Ultra 132 dollars a month) [minimax-m-plan, minimax-token-plan-pricing]. MiniMax's own page says no lasting public price is set [minimax-m31-page]."
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://platform.minimax.io/docs/guides/text-generation",
+    "https://platform.minimax.io/docs/guides/text-m3-function-call",
+    "https://platform.minimax.io/docs/m-plan/codex"
+  ],
+  "system_card": null,
+  "model_page": "https://agent.minimax.io/tools/m3-1-flash-preview",
+  "sources": [
+    {
+      "id": "minimax-text-generation",
+      "url": "https://platform.minimax.io/docs/guides/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "startupfortune-m31",
+      "url": "https://startupfortune.com/minimax-slips-a-new-coding-model-into-its-agent-tool-without-a-price-tag/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "datanorth-m31",
+      "url": "https://datanorth.ai/news/minimax-releases-m3-1-flash-preview",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "minimax-release-notes",
+      "url": "https://platform.minimax.io/docs/release-notes/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tb4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "minimax-anthropic-api",
+      "url": "https://platform.minimax.io/docs/api-reference/text-anthropic-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m31-page",
+      "url": "https://agent.minimax.io/tools/m3-1-flash-preview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m-plan",
+      "url": "https://platform.minimax.io/docs/m-plan/intro",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-token-plan-notice",
+      "url": "https://platform.minimax.io/docs/m-plan/token-plan-notice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-token-plan-pricing",
+      "url": "https://platform.minimax.io/docs/guides/pricing-token-plan",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-models-intro",
+      "url": "https://platform.minimax.io/docs/guides/models-intro",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-openai-api",
+      "url": "https://platform.minimax.io/docs/api-reference/text-openai-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-chat-openai-ref",
+      "url": "https://platform.minimax.io/docs/api-reference/text-chat-openai",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-responses-ref",
+      "url": "https://platform.minimax.io/docs/api-reference/responses-create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-prompt-caching",
+      "url": "https://platform.minimax.io/docs/api-reference/text-prompt-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-explicit-cache",
+      "url": "https://platform.minimax.io/docs/api-reference/anthropic-api-compatible-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-rate-limits",
+      "url": "https://platform.minimax.io/docs/guides/rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-agent-generalization",
+      "url": "https://platform.minimax.io/docs/guides/text-m2-agent-generalization",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-pricing",
+      "url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "minimax-m-plan-codex",
+      "url": "https://platform.minimax.io/docs/m-plan/codex",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m-plan-claude-code",
+      "url": "https://platform.minimax.io/docs/m-plan/claude-code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-tool-guide",
+      "url": "https://platform.minimax.io/docs/guides/text-m3-function-call",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-llms-txt",
+      "url": "https://platform.minimax.io/docs/llms.txt",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "max_output: the number is the maximum of max_completion_tokens in MiniMax's OpenAI-compatible reference for this model and M3 (recommended 131072); no other source names an output cap",
+    "pricing: no per-token price; M Plan tier prices not found on the MiniMax pages read",
+    "SWE-Bench Pro (Scale, public V2): no MiniMax row on Scale's leaderboard page (page source searched 2026-10-03)",
+    "Terminal-Bench 4.0: no score from the maker, Artificial Analysis (no page) or the tbench.ai board data read on 2026-10-03",
+    "Artificial Analysis Intelligence Index: no page for this model (404 on 2026-10-03)",
+    "Artificial Analysis Coding Agent Index: no MiniMax entry among the 31 agent-and-model rows on the page (page data read 2026-10-03)",
+    "METR 50% time horizon: no MiniMax model on METR's time-horizons page (page source searched 2026-10-03)",
+    "weights, parameter count and licence: no weights are published (none in MiniMax's Hugging Face organisation on 2026-10-03); a MiniMax page that cites a supplied preview guide lists 428B total and about 23B active parameters, the same figures as M3, with a speed of about 150 tokens per second; neither is on an API or model card, so they are not recorded as card fields",
+    "released: 2026-09-27 comes from two press pages that agree; MiniMax's release notes do not list the model and its docs give no date",
+    "retires: no date published for a preview",
+    "benchmarks: no independent or maker result found (checked 2026-10-03); MiniMax's Codex guide reports only a comparison of a 512K and a 1M window on ProgramBench (200 tasks, similar performance, about 20% lower estimated cost at 512K)",
+    "pricing_usd_per_mtok: input, output, cached_input not published by the maker (checked 2026-10-03)",
+    "prompting_guides: MiniMax publishes no prompting guide for this model; the entries listed are the text-generation page (thinking depth), the tool-use guide and the Codex setup page",
+    "system_card: MiniMax publishes no model card, system card or safety report for this model",
+    "safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found"
+  ]
+}

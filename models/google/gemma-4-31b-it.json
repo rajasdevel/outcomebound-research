@@ -1,0 +1,427 @@
+{
+  "id": "gemma-4-31b-it",
+  "name": "Gemma 4 31B (instruction-tuned)",
+  "maker": "Google",
+  "family": "Gemma 4",
+  "class": "Gemma",
+  "generation": "4",
+  "released": "2026-04-02",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face",
+    "Kaggle",
+    "Ollama",
+    "LM Studio",
+    "vLLM",
+    "llama.cpp",
+    "Google AI Studio",
+    "Gemini API",
+    "Google Cloud Model Garden (Gemini Enterprise Agent Platform)",
+    "NVIDIA NIM"
+  ],
+  "context_window": 262144,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [
+      "off",
+      "on"
+    ],
+    "default": "off"
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "open weights, so Google sets no list price. Google's pricing page lists Gemma 4 in the Gemini API as free tier only, with no paid tier, and says free-tier content may be used to improve its products. Artificial Analysis bases its figures for this model on Google's API and shows $0.00. Self-hosting cost depends on hardware."
+  },
+  "benchmarks": [
+    {
+      "name": "LiveCodeBench v6",
+      "score": 80.0,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-model-card-4",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Codeforces Elo",
+      "score": 2150,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-model-card-4",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 84.3,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-model-card-4",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 15,
+      "setting": "reasoning; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemma-4-31b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Tau2 (average over 3)",
+      "score": 76.9,
+      "setting": "model card average over three; the technical report's airline, retail and telecom rows (75.0, 86.4, 69.3) average to the same 76.9; thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-model-card-4",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMLU Pro",
+      "score": 85.2,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AIME 2026 (no tools)",
+      "score": 89.2,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SciCode",
+      "score": 43.0,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench",
+      "score": 76.0,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR v2 (8-needle, 128k)",
+      "score": 66.4,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal Bench Hard (technical report row; harness and version not stated)",
+      "score": 36.0,
+      "setting": "thinking mode (technical report, Table 5)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU Pro (vision)",
+      "score": 76.9,
+      "setting": "thinking mode, 1120 vision tokens (technical report, Table 6)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemma-4-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Arena Text Elo",
+      "score": 1453,
+      "setting": "rank 76 of 413 models, 95% interval 7, 6,133 votes; page current as of 2026-10-02",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "arena-text",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemma/docs/core/prompt-formatting-gemma4",
+    "https://ai.google.dev/gemma/docs/capabilities/thinking",
+    "https://ai.google.dev/gemma/docs/capabilities/text/function-calling-gemma4",
+    "https://ai.google.dev/gemma/docs/capabilities/vision/image",
+    "https://ai.google.dev/gemma/docs/capabilities/vision/video",
+    "https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api"
+  ],
+  "system_card": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "model_page": "https://huggingface.co/google/gemma-4-31b-it",
+  "sources": [
+    {
+      "id": "gemma-core-docs",
+      "url": "https://ai.google.dev/gemma/docs/core",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-model-card-4",
+      "url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-gemma-4-31b-it",
+      "url": "https://huggingface.co/google/gemma-4-31b-it",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-prompt-formatting-4",
+      "url": "https://ai.google.dev/gemma/docs/core/prompt-formatting-gemma4",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-4-blog",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-releases",
+      "url": "https://ai.google.dev/gemma/docs/releases",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-4-tech-report",
+      "url": "https://arxiv.org/abs/2607.02770",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-thinking",
+      "url": "https://ai.google.dev/gemma/docs/capabilities/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-function-calling-4",
+      "url": "https://ai.google.dev/gemma/docs/capabilities/text/function-calling-gemma4",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-vision-image",
+      "url": "https://ai.google.dev/gemma/docs/capabilities/vision/image",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-vision-video",
+      "url": "https://ai.google.dev/gemma/docs/capabilities/vision/video",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-mtp",
+      "url": "https://ai.google.dev/gemma/docs/mtp/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-mtp-blog",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-qat-blog",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/quantization-aware-training-gemma-4/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-3-prompt-structure",
+      "url": "https://ai.google.dev/gemma/docs/core/prompt-structure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-3-model-card",
+      "url": "https://ai.google.dev/gemma/docs/core/model_card_3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemma-google-cloud",
+      "url": "https://ai.google.dev/gemma/docs/integrations/google-cloud",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ollama-gemma4",
+      "url": "https://ollama.com/library/gemma4",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "classmethod-dgx-spark",
+      "url": "https://dev.classmethod.jp/en/articles/dgx-spark-gemma4-benchmark/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gemma-on-gemini-api",
+      "url": "https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-api-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arena-text",
+      "url": "https://arena.ai/leaderboard/text",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "arxiv-amigo",
+      "url": "https://arxiv.org/abs/2603.28662",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gh-vllm-52049",
+      "url": "https://github.com/vllm-project/vllm/issues/52049",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "nvidia-build-31b",
+      "url": "https://build.nvidia.com/google/gemma-4-31b-it",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemma-4-31b",
+      "url": "https://artificialanalysis.ai/models/gemma-4-31b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemma-audio",
+      "url": "https://ai.google.dev/gemma/docs/capabilities/audio",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-ollama-15539",
+      "url": "https://github.com/ollama/ollama/issues/15539",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gemini-rate-limits",
+      "url": "https://ai.google.dev/gemini-api/docs/rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "max_output: Google publishes no output cap for the open weights or for the Gemini API in the pages read; a third-party catalogue lists 32,768 for the Gemini API model, which no Google page confirms",
+    "agentic coding benchmarks (SWE-Bench, DeepSWE): Google's card and technical report list reasoning, maths, code-contest, tool-use (Tau2), Terminal Bench Hard, vision and long-context scores only",
+    "Terminal Bench Hard (technical report): the report names no harness, benchmark version or tool setup for this row",
+    "access: NVIDIA NIM is confirmed by an NVIDIA Build page for the 31B; Docker, LM Studio and vLLM come from Google's launch post and the Ollama page and were not individually tested",
+    "release date: Google's blog, the Gemini API changelog and the Hugging Face repository's first commit say 2026-04-02; Google's Gemma releases page says 2026-03-31, which this library did not use",
+    "SWE-Bench Pro (Scale, public V2): no Gemma row on Scale's V2 leaderboard (page dated 2026-09-22)",
+    "Terminal-Bench 4.0: no Gemma row could be read on the tbench.ai leaderboard page (its table rows did not load in the fetch); no independent per-model score found",
+    "Artificial Analysis Coding Agent Index: no value shown on the model page read 2026-10-03; the page also marks its per-evaluation scores as not publicly available",
+    "METR 50% time horizon: metr.org/time-horizons lists no Gemma model",
+    "multi-token-prediction drafter release date: Google's blog is dated 2026-05-05 and its releases page lists 2026-04-16; no source settles which is the release",
+    "pricing_usd_per_mtok: Google sets no list price for open weights; see the note for what third-party hosts and the Gemini API free tier show"
+  ]
+}

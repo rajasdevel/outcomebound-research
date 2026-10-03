@@ -1,0 +1,209 @@
+{
+  "id": "grok-4.7-fast",
+  "name": "Grok 4.7 Fast",
+  "maker": "SpaceXAI",
+  "family": "Grok 4.7",
+  "class": "Grok Fast",
+  "generation": "4.7",
+  "released": "2026-09-21",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Cursor",
+    "Grok Build"
+  ],
+  "context_window": 500000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 4.0,
+    "output": 12.0,
+    "cached_input": 1.0,
+    "notes": "xAI's pricing page: Fast is 4.0 / 12.0 / 1.0 below 200k prompt tokens and 6.0 / 18.0 / 1.5 above, billed through a Cursor or Grok Build plan and not on the public API; Cursor's table has the same rates but moves the long-context step to 256k input tokens (standard 2x, Fast 3x the standard rates)"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://docs.x.ai/developers/grok-4-7",
+    "https://cursor.com/docs/models/grok-4-7"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.x.ai/developers/grok-4-7",
+  "sources": [
+    {
+      "id": "xai-47-news",
+      "url": "https://x.ai/news/grok-4-7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "a longer reinforcement learning run on a harder mix of tasks, weighted toward problems that take many hours to complete"
+    },
+    {
+      "id": "cursor-grok-47",
+      "url": "https://cursor.com/docs/models/grok-4-7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-pricing",
+      "url": "https://cursor.com/docs/models-and-pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "grok-f17",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/multi-turn.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Any change to earlier messages breaks the cache. Only append new messages at the end."
+    },
+    {
+      "id": "grok-f1",
+      "url": "https://docs.x.ai/build/features/project-rules.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-47-overview",
+      "url": "https://docs.x.ai/developers/grok-4-7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-release-notes",
+      "url": "https://docs.x.ai/developers/release-notes",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Grok 4.7 Fast is the same model and costs 2x the standard token rates"
+    },
+    {
+      "id": "cursor-harness-doc",
+      "url": "https://cursor.com/docs/rules.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-build-plan",
+      "url": "https://docs.x.ai/build/features/plan-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-build-subagents",
+      "url": "https://docs.x.ai/build/features/subagents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-pricing",
+      "url": "https://docs.x.ai/developers/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-47-card",
+      "url": "https://media.x.ai/v1/website/4p7card-5eccc980.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-grok-47",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "cursor-bench-board",
+      "url": "https://cursor.com/cursorbench",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-docs-prompting",
+      "url": "https://cursor.com/docs/agent/prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-47",
+      "url": "https://docs.x.ai/developers/models/grok-4.7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-grok-47-model",
+      "url": "https://artificialanalysis.ai/models/grok-4-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-composer-25",
+      "url": "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Grok entry on Scale's leaderboard (11 rows: Claude, GPT, Kimi K3, GLM-5.3, Gemini 3.8 Flash, Inkling)",
+    "METR 50% time horizon: not measured; METR's page lists only Grok-4 (2025) and names Grok 4.3 as unmeasured",
+    "benchmarks: none run on Fast alone by the maker or an independent measurer; Artificial Analysis lists no Fast entry",
+    "Terminal-Bench 4.0 and both Artificial Analysis indexes: no separate Fast result",
+    "max_output: not published",
+    "context_window: Cursor shows a 256k standard window with a 500k tier; the maker gives 500k for Grok 4.7 and no separate Fast figure",
+    "retires: no notice found",
+    "Artificial Analysis Intelligence Index: no result found for this model (checked 2026-10-03)",
+    "Artificial Analysis Coding Agent Index: no result found for this model (checked 2026-10-03)",
+    "prompting_guides: xAI publishes no prompting guide; the two pages listed describe Grok 4.7 and its Fast tier (the maker calls it the same model)",
+    "system_card: none for the Fast tier; the Grok 4.7 card covers the model and does not name a Fast tier",
+    "model_page: the maker has no page for Fast alone; the Grok 4.7 overview and the pricing page each carry a Fast section",
+    "pricing outside Cursor and Grok Build: none, Fast is not on the public API"
+  ]
+}

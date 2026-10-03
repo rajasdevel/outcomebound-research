@@ -1,0 +1,583 @@
+{
+  "id": "deepseek-flash",
+  "name": "DeepSeek V4.1-Flash",
+  "maker": "DeepSeek",
+  "family": "DeepSeek V4.1",
+  "class": "DeepSeek Flash",
+  "generation": "4.1",
+  "released": "2026-09-10",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MIT)",
+  "access": [
+    "DeepSeek API (OpenAI Chat Completions, Responses and Anthropic formats)",
+    "Hugging Face weights (deepseek-ai/DeepSeek-V4.1-Flash)",
+    "Claude Code",
+    "Codex",
+    "OpenCode",
+    "DeepSeek Harness",
+    "WorkBuddy/CodeBuddy"
+  ],
+  "context_window": 1000000,
+  "max_output": 393216,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.3,
+    "output": 1.2,
+    "cached_input": 0.006,
+    "notes": "peak-hour list price (01:00-04:00 and 06:00-10:00 UTC, Mon-Fri, not Chinese holidays); off-peak is half: 0.15 / 0.60 / 0.003. Thinking is on by default and can be switched off."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 31.2,
+      "setting": "max effort (scalar 100), Pass@1, 1M context",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 3.0",
+      "score": 30.0,
+      "setting": "max effort, Pass@1",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 90.6,
+      "setting": "max effort, Pass@1, N=3, no network; six of the seven models in the maker's comparison table score 87.9 to 90.6 on it",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 88.0,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 84.1,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "Codex",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 90.3,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "mini-SWE (port of mini-swe-agent)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 86.1,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "Pi",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 85.8,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "DeepSeek Harness (Standard)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 85.8,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "DeepSeek Harness (PTC)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 85.0,
+      "setting": "max effort, Pass@1, N=3, no network",
+      "harness": "OpenCode",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 74.2,
+      "setting": "max effort, resolved, N=8",
+      "harness": "mini-SWE (port of mini-swe-agent)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 72.6,
+      "setting": "max effort, resolved, N=8",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 69.8,
+      "setting": "max effort, resolved, N=8",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 66.2,
+      "setting": "max effort, resolved, N=8",
+      "harness": "Pi",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 65.6,
+      "setting": "max effort, resolved, N=8",
+      "harness": "Codex",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 65.5,
+      "setting": "max effort, resolved, N=8",
+      "harness": "OpenCode",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 70.5,
+      "setting": "max effort, resolved, N=8",
+      "harness": "DeepSeek Harness (Standard)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 67.6,
+      "setting": "max effort, resolved, N=8",
+      "harness": "DeepSeek Harness (PTC)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo-Bench",
+      "score": 65.4,
+      "setting": "max effort; the V4.1-Flash change log and the technical report print 65.4, the Hugging Face card prints 64.0 for the same row",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "deepseek-changelog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SEC-Bench Pro",
+      "score": 62.8,
+      "setting": "max effort, Pass@1",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench",
+      "score": 54.8,
+      "setting": "max effort, Pass@1",
+      "harness": "official scaffold",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 39,
+      "setting": "Max effort reasoning variant, index v4.3.2 (10 evaluations); rank 8 of 118 on the page",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 27,
+      "setting": "Max variant (DeepSeek V4.1 Flash (Max)); percent as shown on Artificial Analysis's comparison page, one of the ten Intelligence Index components",
+      "harness": "Artificial Analysis (harness not stated)",
+      "measured_by": "independent",
+      "source": "aa-cmp-flash-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience (Artificial Analysis Intelligence Index v4.3.2 component)",
+      "score": -5,
+      "setting": "Max variant; index runs from -100 to 100 and penalises wrong answers",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-cmp-flash-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (Artificial Analysis Intelligence Index v4.3.2 component)",
+      "score": 84,
+      "setting": "Max variant; percent",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-cmp-flash-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AI hacking benchmark (Enclave, 11 vulnerable targets and 4 fixed controls)",
+      "score": 11,
+      "setting": "targets compromised out of 11, all 4 fixed controls stayed secure; vendor-run on its own benchmark; effort not stated; six runs used the planned weakness and five used extra routes in the vulnerable versions",
+      "harness": "Enclave's own agent (Bash); harness details not stated",
+      "measured_by": "independent",
+      "source": "enclave-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ProgramBench (Almost@1)",
+      "score": 20.3,
+      "setting": "max effort, share of rollouts scoring at least 0.95",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CyberGym",
+      "score": 88.1,
+      "setting": "max effort, Pass@1; harness not stated for this row",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE with tools",
+      "score": 63.9,
+      "setting": "max effort, Pass@1; harness not stated for this row",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (Pass@1)",
+      "score": 90.9,
+      "setting": "max effort, temperature 1.0, top_p 0.95; single-step, no tools",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Chartography with tools (Pass@1)",
+      "score": 78.9,
+      "setting": "max effort; 512k-token context",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BabyVision with tools (Pass@1)",
+      "score": 89.6,
+      "setting": "max effort; 512k-token context",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ZeroBench-main with tools (Pass@5)",
+      "score": 49.0,
+      "setting": "max effort; 512k-token context",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://api-docs.deepseek.com/guides/thinking_mode",
+    "https://api-docs.deepseek.com/guides/tool_calls",
+    "https://api-docs.deepseek.com/guides/json_mode",
+    "https://api-docs.deepseek.com/guides/vision",
+    "https://api-docs.deepseek.com/guides/kv_cache",
+    "https://api-docs.deepseek.com/guides/anthropic_api",
+    "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/encoding/README.md"
+  ],
+  "system_card": "https://arxiv.org/html/2609.19969",
+  "model_page": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "sources": [
+    {
+      "id": "deepseek-pricing",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-changelog",
+      "url": "https://api-docs.deepseek.com/updates",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "we have decided to continue providing API services for DeepSeek V4 Pro after September 14, 2026, with the billing method remaining unchanged."
+    },
+    {
+      "id": "deepseek-news-260910",
+      "url": "https://api-docs.deepseek.com/news/news260910",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Starting at 04:00 UTC on Sept 14, 2026, all deepseek-v4-pro requests will route to V4.1-Flash at V4.1-Flash rates."
+    },
+    {
+      "id": "deepseek-thinking-mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "the reasoning_content of all previous turns should be passed back to the API"
+    },
+    {
+      "id": "deepseek-anthropic-api",
+      "url": "https://api-docs.deepseek.com/guides/anthropic_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-claude-code",
+      "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-context-caching",
+      "url": "https://api-docs.deepseek.com/guides/kv_cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-flash",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-v41-flash",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-v41-paper",
+      "url": "https://arxiv.org/html/2609.19969",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "this parity does not imply that the model matches the frontier capabilities of leading closed-source systems"
+    },
+    {
+      "id": "open-weight-f2",
+      "url": "https://arxiv.org/html/2609.19969",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-news-260424",
+      "url": "https://api-docs.deepseek.com/news/news260424",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-chat-api",
+      "url": "https://api-docs.deepseek.com/api/create-chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-tool-calls",
+      "url": "https://api-docs.deepseek.com/guides/tool_calls",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-json",
+      "url": "https://api-docs.deepseek.com/guides/json_mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-responses",
+      "url": "https://api-docs.deepseek.com/guides/responses_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-vision",
+      "url": "https://api-docs.deepseek.com/guides/vision",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-rate-limit",
+      "url": "https://api-docs.deepseek.com/quick_start/rate_limit",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-v41-encoding",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/encoding/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-harness-repo",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-cmp-flash-k3",
+      "url": "https://artificialanalysis.ai/models/comparisons/deepseek-v4-1-flash-vs-kimi-k3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "enclave-flash",
+      "url": "https://enclave.ai/blog/deepseek-v41-flash-is-now-our-best-hacking-model",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ipi-dsh-paper",
+      "url": "https://arxiv.org/abs/2608.16393",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "deepseek-codex",
+      "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/codex",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "measured-g10",
+      "url": "https://arize.com/blog/llm-instruction-following-benchmark-2026/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-cmp-pro-k3",
+      "url": "https://artificialanalysis.ai/models/comparisons/deepseek-v4-pro-vs-kimi-k3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not listed on Scale's table (11 models, none from DeepSeek)",
+    "Artificial Analysis Coding Agent Index: no DeepSeek entry readable on the page (scores rendered as not publicly available)",
+    "METR 50% time horizon: no DeepSeek V4 or V4.1 model listed; the page's update log names only DeepSeek-R1 (2025-03-06) and DeepSeek-V3 (2025-06-27) among DeepSeek models, and the graph itself did not render in the page text",
+    "Terminal-Bench 4.0 on the official tbench.ai leaderboard: the rows did not render in the text read; the independent value is Artificial Analysis's 27%, and the 31.2 is the maker's",
+    "pricing_usd_per_mtok: the input and cached-input figures are peak prices; no flat standard rate exists",
+    "context_window: the maker says 1M; whether that is 1,000,000 or 1,048,576 tokens is not stated (the card uses 1,000,000, as Artificial Analysis lists it)",
+    "access: no cloud-marketplace listing (Bedrock, Vertex, Azure) was confirmed on the maker's pages",
+    "benchmarks: the Hugging Face card names no harness for its CyberGym and HLE-with-tools rows, and ExploitGym is not entered; the entered rows are marked not stated",
+    "prompting_guides: DeepSeek publishes no prompt-writing guide for V4.x; the listed pages are API usage guides and the prompt-format reference",
+    "system_card: DeepSeek publishes no system card; the linked V4.1 technical report has no safety or alignment section"
+  ]
+}

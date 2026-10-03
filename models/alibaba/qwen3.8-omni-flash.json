@@ -1,0 +1,270 @@
+{
+  "id": "qwen3.8-omni-flash",
+  "name": "Qwen3.8-Omni-Flash",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.8",
+  "class": "Qwen Omni",
+  "generation": "3.8",
+  "released": "2026-09-18",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud API",
+    "Alibaba Cloud Model Studio",
+    "OpenRouter"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "xhigh"
+    ],
+    "default": "xhigh"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.15,
+    "output": 0.47,
+    "cached_input": 0.016,
+    "notes": "QwenCloud model page (read 2026-10-03): US$0.15 input, US$0.47 output and implicit cache US$0.016 per million tokens; no explicit-cache price is listed; a secondary write-up says Model Studio bills audio input at 7 tokens per second (about US$0.004 per hour of audio)"
+  },
+  "benchmarks": [
+    {
+      "name": "WildClawBench-MM",
+      "score": 71.0,
+      "setting": "vendor-reported at launch, relayed by secondary write-ups; multimodal tool use; the predecessor scored 34.5",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "digitalapplied-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OmniVideoBench",
+      "score": 63.4,
+      "setting": "vendor-reported at launch, relayed by secondary write-ups; audio-visual reasoning; Gemini 3.8 Flash 65.2 in the same relay",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "digitalapplied-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AgenticVBench",
+      "score": 36.8,
+      "setting": "vendor-reported at launch, relayed by one secondary write-up",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "orcarouter-omni",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OmniVideoBench (agent mode)",
+      "score": 67.8,
+      "setting": "vendor-reported at launch, relayed by a secondary write-up; agentic understanding mode, 79,117 tokens per query against 145,736 in the static setting",
+      "harness": "vendor's agent mode",
+      "measured_by": "maker",
+      "source": "digitalapplied-omni",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/multimodal-speech",
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+    "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-omni-flash",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/overview"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.8-omni-flash",
+  "sources": [
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-omni",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-omni-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "digitalapplied-omni",
+      "url": "https://www.digitalapplied.com/blog/qwen3-8-omni-flash-omnimodal-agents-audio-video-cost",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-cache",
+      "url": "https://docs.qwencloud.com/developer-guides/run-and-scale/context-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-thinking",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/deep-thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-omni",
+      "url": "https://www.qwencloud.com/models/qwen3.8-omni-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "runtimewire-omni",
+      "url": "https://runtimewire.com/article/alibaba-qwen3-8-omni-flash-audio-video-agents",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "orcarouter-omni",
+      "url": "https://www.orcarouter.ai/blog/qwen-3-8-omni-flash-launch",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "technode-omni",
+      "url": "https://technode.com/2026/09/18/alibabas-qwen-releases-qwen3-8-omni-flash-with-1m-token-context/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-security",
+      "url": "https://docs.qwencloud.com/developer-guides/security-compliance/data-security",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-qwen-org",
+      "url": "https://huggingface.co/api/models?author=Qwen&sort=lastModified&direction=-1&limit=30",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openrouter-omni",
+      "url": "https://openrouter.ai/qwen/qwen3.8-omni-flash",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-vision",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/vision-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-omni-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/omni-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-av-understanding",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/multimodal-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-accuracy",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-search",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/web-search",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Qwen row among the 11 rows of the Scale leaderboard read on 2026-10-03; the page shows no update date",
+    "Terminal-Bench 4.0: no score found; Artificial Analysis has no page for this model",
+    "Artificial Analysis Coding Agent Index: no row for this model on Artificial Analysis's coding-agent leaderboard (read 2026-10-03)",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so a Qwen3.x entry is not ruled out",
+    "retires: no retirement date published",
+    "Coding benchmarks and all five required benchmarks: none found; the recorded rows are vendor claims relayed by secondary write-ups, and no model card or Artificial Analysis page was found",
+    "weights: closed per secondary write-ups and because Alibaba's Hugging Face listing (read 2026-10-03) has no repository for it; no maker statement found",
+    "Artificial Analysis Intelligence Index: no page found for this model (404 on the expected address, checked 2026-10-03)",
+    "system_card: none; a write-up of 2026-09-18 notes that no model card was available",
+    "access: OpenRouter lists qwen/qwen3.8-omni-flash (read 2026-10-03)",
+    "Media limits: Model Studio's vision page gives videos up to 2 hours for this model; launch write-ups also cite up to an hour of continuous audio-video per call; the audio token rate (7 per second) rests on a write-up"
+  ]
+}

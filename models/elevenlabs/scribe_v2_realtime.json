@@ -1,0 +1,213 @@
+{
+  "id": "scribe_v2_realtime",
+  "name": "Scribe v2 Realtime",
+  "maker": "ElevenLabs",
+  "family": "Scribe",
+  "class": "Scribe Realtime",
+  "generation": "2",
+  "released": "2025-11-11",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "ElevenLabs API: Speech to Text realtime WebSocket",
+    "ElevenAgents (the default speech recognition of an agent)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "streamed PCM at 8, 16, 22.05, 24, 44.1 or 48 kHz (16-bit little-endian, mono only) or mu-law at 8 kHz; 16 kHz recommended; chunks of 0.1 to 1 second [el-stt-commit]",
+    "output_audio": "none: the output is text (partial and committed transcripts, optional word timestamps, entities and edited transcripts)",
+    "voices": null,
+    "languages": [
+      "90+ languages with automatic language recognition, and a change of language during a session [el-models] [el-blog-scribe2rt]"
+    ],
+    "turn_detection": "commit_strategy manual (the default; commit at silence or at a turn boundary, with an automatic commit after about 36 seconds of audio) or vad (commit on silence; the docs' example uses vad_silence_threshold_secs 1.5, vad_threshold 0.4, min_speech_duration_ms 100 and min_silence_duration_ms 100) [el-stt-commit]",
+    "interruption": "not applicable to a transcription model; in ElevenAgents its signals feed the platform's turn-taking system [el-agents-expressive]",
+    "latency": "About 150 ms for partial transcripts [el-models]; Artificial Analysis streaming run: median 0.134 s to the first partial transcript and 0.141 s to the final transcript after speech ends [aa-stt-stream]",
+    "session_limit": "A maximum session time exists (the error session_time_limit_exceeded) but the pages read give no value; the server closes a connection after 15 seconds without client messages; a single-use client token expires after 15 minutes [el-stt-events] [el-stt-commit] [el-stt-client]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per hour of audio, not per token: US$0.39 per hour [el-pricing-api]. Artificial Analysis lists US$6.5 per 1,000 minutes, which equals the list rate [aa-stt-stream]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis AA-WER streaming index, final transcription (word error rate, percent, lower is better)",
+      "score": 3.59,
+      "setting": "weighted mix of AA-AgentTalk (50%), VoxPopuli (25%) and Earnings22 (25%)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-stream",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis AA-AgentTalk streaming word error rate (percent, lower is better)",
+      "score": 2.84,
+      "setting": "streaming run, final transcription",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-stream",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis VoxPopuli streaming word error rate (percent, lower is better)",
+      "score": 2.27,
+      "setting": "streaming run, final transcription",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-stream",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Earnings22 streaming word error rate (percent, lower is better)",
+      "score": 6.43,
+      "setting": "streaming run, final transcription",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-stream",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis time to final transcript after speech end (seconds, lower is better)",
+      "score": 0.141,
+      "setting": "weighted average over the streaming samples",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-stream",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis time to first partial transcript (seconds, lower is better)",
+      "score": 0.134,
+      "setting": "weighted average over the streaming samples",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-stream",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://elevenlabs.io/docs/overview/capabilities/speech-to-text",
+    "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/batch/keyterm-prompting"
+  ],
+  "system_card": null,
+  "model_page": "https://elevenlabs.io/docs/overview/models",
+  "sources": [
+    {
+      "id": "el-models",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-overview",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/speech-to-text",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-api-stt-rt",
+      "url": "https://elevenlabs.io/docs/api-reference/speech-to-text/v-1-speech-to-text-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-commit",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/realtime/transcripts-and-commit-strategies",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-events",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/realtime/event-reference",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-keyterm",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/batch/keyterm-prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-client",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/realtime/client-side-streaming",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-scribe-rt",
+      "url": "https://elevenlabs.io/docs/changelog/2025/11/12",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-blog-scribe2rt",
+      "url": "https://elevenlabs.io/blog/introducing-scribe-v2-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-api",
+      "url": "https://elevenlabs.io/pricing/api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-agents-expressive",
+      "url": "https://elevenlabs.io/docs/eleven-agents/customization/voice/expressive-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-stt-stream",
+      "url": "https://artificialanalysis.ai/speech-to-text/streaming",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: not applicable to a transcription model; the limits are in audio duration and file size",
+    "max_output: not applicable to a transcription model",
+    "system_card: the maker publishes no system card or model card in the pages read",
+    "released: the maker's launch post is dated 2025-11-11; the changelog entry that announces the launch is dated 2025-11-12 [el-blog-scribe2rt] [el-changelog-scribe-rt]",
+    "voice.voices: not applicable to a transcription model",
+    "pricing_usd_per_mtok: the unit differs (US$ per hour of audio), see notes",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

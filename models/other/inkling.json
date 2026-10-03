@@ -1,0 +1,382 @@
+{
+  "id": "inkling",
+  "name": "Inkling",
+  "maker": "Thinking Machines Lab",
+  "family": "Inkling",
+  "class": "Inkling",
+  "generation": null,
+  "released": "2026-07-15",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (thinkingmachines/Inkling)",
+    "Tinker API (Thinking Machines)",
+    "Together AI",
+    "Fireworks",
+    "Modal",
+    "Databricks",
+    "Baseten",
+    "SGLang",
+    "vLLM",
+    "llama.cpp",
+    "Transformers",
+    "Cloudflare Workers AI"
+  ],
+  "context_window": 1000000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "audio"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "minimal",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.0,
+    "output": 4.05,
+    "cached_input": 0.17,
+    "notes": "Tinker serverless inference (beta) list price for the 256K NVFP4 sampling endpoint; Artificial Analysis shows the same input and output for Thinking Machines' API. Tinker's fine-tuning table lists sampling at 64K as 3.74 prefill and 9.36 sample, shown at 1.87 and 4.68 during a limited-time 50% discount (the figures Cloudflare's listing and launch relays give), and 7.48 and 18.72 at 256K before the discount"
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2, Full set)",
+      "score": 89.88,
+      "setting": "xhigh; 642-task public set; confidence interval 2.1; the page says runs use a 250-turn limit and uncapped cost unless greyed out",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (Scale, public V2, HARD subset)",
+      "score": 56.9,
+      "setting": "xhigh; the HARD tab, which the page shows by default; no confidence interval shown",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 25,
+      "setting": "xhigh; 140M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-inkling",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.1, launch)",
+      "score": 41,
+      "setting": "third-party relay of the launch score",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "implicator-inkling",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (public split)",
+      "score": 54.3,
+      "setting": "effort 0.99; vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-inkling",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 63.8,
+      "setting": "best harness; vendor run; per the Inkling-Small card's footnotes, a few web-contaminated solutions were scored 0 (hf-inkling-small)",
+      "harness": "internal coding harness",
+      "measured_by": "maker",
+      "source": "hf-inkling",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 77.6,
+      "setting": "effort 0.99; vendor run; harness named in the Inkling-Small card's footnotes (hf-inkling-small)",
+      "harness": "bash-only harness",
+      "measured_by": "maker",
+      "source": "hf-inkling",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (strict, no internet)",
+      "score": 43.1,
+      "setting": "labelled xhigh in a competitor's table; how that lab ran Inkling is not stated",
+      "harness": "not stated",
+      "measured_by": "third-party-vendor",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 87.2,
+      "setting": "effort 0.99; vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tml-model-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (text only)",
+      "score": 29.7,
+      "setting": "effort 0.99; vendor run; no tools",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tml-model-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench",
+      "score": 79.8,
+      "setting": "effort 0.99; vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tml-model-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "StrongREJECT",
+      "score": 98.6,
+      "setting": "vendor run; safety evaluation on the model card",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tml-model-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FORTRESS (adversarial)",
+      "score": 78.0,
+      "setting": "vendor run; the card's metric direction is not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tml-model-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FORTRESS (benign)",
+      "score": 95.9,
+      "setting": "vendor run; the card's metric direction is not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tml-model-card",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/thinking-effort/",
+    "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/",
+    "https://huggingface.co/blog/thinkingmachines-inkling"
+  ],
+  "system_card": "https://thinkingmachines.ai/model-card/inkling/",
+  "model_page": "https://thinkingmachines.ai/inkling/",
+  "sources": [
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "measured-g22",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Inkling editing the Go module cache on 3 tasks"
+    },
+    {
+      "id": "hf-inkling",
+      "url": "https://huggingface.co/thinkingmachines/Inkling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-inkling",
+      "url": "https://artificialanalysis.ai/models/inkling",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "implicator-inkling",
+      "url": "https://www.implicator.ai/thinking-machines-inkling-takes-u-s-open-model-lead-with-41-score/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-blog-inkling",
+      "url": "https://huggingface.co/blog/thinkingmachines-inkling",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "hf-k2-horizon",
+      "url": "https://huggingface.co/IFM/K2-Horizon-375B-A23B/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-inkling-small",
+      "url": "https://artificialanalysis.ai/models/inkling-small",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "baseten-inkling",
+      "url": "https://www.baseten.co/blog/meet-inkling-thinking-machines-labs-new-model/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "hf-inkling-small",
+      "url": "https://huggingface.co/thinkingmachines/Inkling-Small/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tml-model-card",
+      "url": "https://thinkingmachines.ai/model-card/inkling/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tml-inkling-page",
+      "url": "https://thinkingmachines.ai/inkling/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-thinking-effort",
+      "url": "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/thinking-effort/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-using-inkling",
+      "url": "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-tml-renderers",
+      "url": "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/tml-renderers/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-images",
+      "url": "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/images/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-audio",
+      "url": "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/audio/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-pricing",
+      "url": "https://tinker-docs.thinkingmachines.ai/tinker/models/models_and_pricing/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "vllm-inkling-encoding",
+      "url": "https://docs.vllm.ai/en/latest/api/vllm/renderers/inkling_encoding/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "unsloth-inkling",
+      "url": "https://unsloth.ai/docs/models/inkling",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "cloudflare-inkling",
+      "url": "https://developers.cloudflare.com/ai/models/thinkingmachines/inkling/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "smol-inkling",
+      "url": "https://news.smol.ai/issues/26-07-15-thinky-inkling",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "Terminal-Bench 4.0: no standalone score; Artificial Analysis counts it inside the v4.3.2 index and the tbench.ai rows did not render",
+    "Artificial Analysis Coding Agent Index: no entry for this model among the runs on Artificial Analysis's Coding Agent Index v1.5 page (artificialanalysis.ai/agents/coding-agents), read 2026-10-03",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08; no numbers in the page text)",
+    "max_output: not stated on the model card, Tinker's pages or Artificial Analysis",
+    "context_window: the model card says up to 1M tokens and Unsloth gives 1,048,576; 1000000 is used; hosted options are smaller (Tinker 64K and 256K, Cloudflare 64,000)",
+    "release date: 2026-07-15 per Artificial Analysis and a launch relay (the Hugging Face repo was created 2026-07-14; Baseten's post is dated 07-16)",
+    "generation: the maker does not number generations of this class",
+    "Thinking Machines' announcement blog post: not found; the lab's overview page, model card and Tinker documentation were read instead",
+    "reasoning.default: high (0.9) is Tinker's renderer default when effort is omitted; the model card and other hosts do not state a default"
+  ]
+}

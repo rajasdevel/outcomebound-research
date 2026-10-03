@@ -1,0 +1,205 @@
+{
+  "id": "eleven_v4_turbo",
+  "name": "Eleven v4 Turbo",
+  "maker": "ElevenLabs",
+  "family": "Eleven",
+  "class": "Eleven Realtime",
+  "generation": "4",
+  "released": "2026-09-28",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "ElevenLabs API: Text to Dialogue WebSocket",
+    "ElevenAgents (agent TTS model)",
+    "ElevenCreative"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text streamed in, with optional inline audio tags",
+    "output_audio": "MP3 (22.05 kHz at 32 kbps, 24 kHz at 48 kbps, 44.1 kHz at 32 to 192 kbps), PCM 8 to 48 kHz 16-bit, WAV 8 to 48 kHz, Opus 48 kHz (32 to 192 kbps), mu-law 8 kHz and A-law 8 kHz; the default is mp3_44100_128; MP3 at 192 kbps needs the Creator plan or above, and PCM or WAV at 44.1 kHz needs Pro or above [el-api-tts]; ElevenAgents defaults to PCM 16 kHz output and accepts PCM 8 to 48 kHz and mu-law 8 kHz [el-api-agents]",
+    "voices": "custom cloning: library voices (the maker's pages give 3,000+, 10,000+ and 5,000+ as counts), instant and professional voice clones, and designed voices [el-tts-overview] [el-voices]; the Text to Dialogue WebSocket allows exactly one registered voice for this model [el-ws-ttd]",
+    "languages": [
+      "90+ languages; the models page lists them by ISO 639-3 code [el-models]"
+    ],
+    "turn_detection": "none in the model. The Text to Dialogue WebSocket takes new_turn or a change of voice_id as a turn boundary; in ElevenAgents the platform's turn-taking system decides when the agent speaks [el-ws-ttd] [el-agents-flow]",
+    "interruption": "Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled for the agent or a tool; on the Text to Dialogue WebSocket the docs describe no cancel message [el-agents-flow] [el-ws-ttd]",
+    "latency": "Median inference latency about 100 ms, excluding application and network latency [el-models]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog]",
+    "session_limit": "Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. API list price US$0.04 per 1,000 characters; a promotional price of US$0.011 per 1,000 characters (72% off) runs until 2026-10-12 [el-pricing-api]. In ElevenAgents the platform bills per call minute (US$0.08 per minute on the pricing page) and passes LLM cost through separately [el-pricing-agents]"
+  },
+  "benchmarks": [
+    {
+      "name": "Maker median inference latency (milliseconds)",
+      "score": 100,
+      "setting": "median inference latency, excluding application and network latency; maker figure on the models page",
+      "harness": "ElevenLabs",
+      "measured_by": "maker",
+      "source": "el-models",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Maker median time to first speech (milliseconds)",
+      "score": 150,
+      "setting": "median time from request to audible speech in the maker's launch chart; measured September 2026 over WebSocket streaming with identical scripts and default settings, with network latency measured and removed for all systems; compared with Cartesia Sonic 3.6, xAI TTS, Gemini 3.8 Flash-Lite TTS and OpenAI GPT-4o mini TTS",
+      "harness": "ElevenLabs",
+      "measured_by": "maker",
+      "source": "el-blog-v4",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices",
+    "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4",
+    "https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue"
+  ],
+  "system_card": null,
+  "model_page": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4",
+  "sources": [
+    {
+      "id": "el-models",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-v4-page",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-tts-practices",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-v4",
+      "url": "https://elevenlabs.io/docs/changelog/2026/9/28",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-blog-v4",
+      "url": "https://elevenlabs.io/blog/eleven-v4",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-blog-v4-agents",
+      "url": "https://elevenlabs.io/blog/eleven-v4-turbo-in-elevenagents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-api",
+      "url": "https://elevenlabs.io/pricing/api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-agents",
+      "url": "https://elevenlabs.io/pricing/agents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-api-agents",
+      "url": "https://elevenlabs.io/docs/api-reference/agents/create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-agents-flow",
+      "url": "https://elevenlabs.io/docs/eleven-agents/customization/conversation-flow",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-ws-ttd",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/websockets/realtime-tdd",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-ws-compare",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/websockets/tts-vs-ttd-websockets",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-tts-overview",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-voices",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/voices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-api-tts",
+      "url": "https://elevenlabs.io/docs/api-reference/text-to-speech/convert",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pr-testingcatalog",
+      "url": "https://testingcatalog.com/elevenlabs-launches-eleven-v4-and-v4-turbo-voice-models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: not applicable to a synthesis model; the limit is in characters",
+    "max_output: no per-request character limit is published for this model",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes",
+    "system_card: the maker publishes no system card or model card in the pages read",
+    "Artificial Analysis Speech Arena Elo: Artificial Analysis lists no entry for this model on its text-to-speech pages",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "scribe_v2_medical",
+  "name": "Scribe v2 Medical",
+  "maker": "ElevenLabs",
+  "family": "Scribe",
+  "class": "Scribe Medical",
+  "generation": "2",
+  "released": "2026-09-11",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "ElevenLabs API: Speech to Text (batch)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "audio files (AAC, AIFF, OGG, MP3, Opus, WAV, FLAC, M4A, WebM) and video files (MP4, AVI, MKV, MOV, WMV, FLV, WebM, MPEG, 3GPP); file_format pcm_s16le_16 (16 kHz mono 16-bit PCM) gives lower latency than an encoded file [el-stt-overview] [el-api-stt]",
+    "output_audio": "none: the output is text, with word timestamps, speaker labels and entities including protected health information categories",
+    "voices": null,
+    "languages": [
+      "90+ languages, the same as Scribe v2 [el-models]"
+    ],
+    "turn_detection": "none: a batch model; Scribe v2 Realtime serves live audio",
+    "interruption": "not applicable to a transcription model",
+    "latency": null,
+    "session_limit": "The same request shape and limits as Scribe v2: up to 10 hours of audio per file in standard mode [el-models] [el-stt-overview]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per hour of audio, not per token: US$0.22 per hour, the same as Scribe v2 [el-pricing-api] [el-models]"
+  },
+  "benchmarks": [
+    {
+      "name": "Maker claim: fewer transcription errors on clinical audio than Scribe v2 (percent fewer)",
+      "score": 35,
+      "setting": "maker claim on the models page; no dataset or method is stated",
+      "harness": "ElevenLabs",
+      "measured_by": "maker",
+      "source": "el-models",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://elevenlabs.io/docs/overview/capabilities/speech-to-text",
+    "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/batch/keyterm-prompting"
+  ],
+  "system_card": null,
+  "model_page": "https://elevenlabs.io/docs/overview/models",
+  "sources": [
+    {
+      "id": "el-models",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-overview",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/speech-to-text",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-api-stt",
+      "url": "https://elevenlabs.io/docs/api-reference/speech-to-text/convert",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-scribe-med",
+      "url": "https://elevenlabs.io/docs/changelog/2026/9/11",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-api",
+      "url": "https://elevenlabs.io/pricing/api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: not applicable to a transcription model; the limits are in audio duration and file size",
+    "max_output: not applicable to a transcription model",
+    "system_card: the maker publishes no system card or model card in the pages read",
+    "voice.voices: not applicable to a transcription model",
+    "voice.latency: the maker gives no latency figure for this batch model and no independent run was found",
+    "pricing_usd_per_mtok: the unit differs (US$ per hour of audio), see notes",
+    "Artificial Analysis word error rate: Artificial Analysis lists no entry for this model",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

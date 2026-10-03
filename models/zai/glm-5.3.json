@@ -1,0 +1,714 @@
+{
+  "id": "glm-5.3",
+  "name": "GLM-5.3",
+  "maker": "Zhipu (GLM)",
+  "family": "GLM-5.3",
+  "class": "GLM",
+  "generation": "5.3",
+  "released": "2026-08-18",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (GLM-5.3 License, custom: MIT-style grant; a Model-as-a-Service operator whose group revenue exceeds US$10B over 12 months must pass a Z.ai security review before commercial use)",
+  "access": [
+    "Z.ai API (Anthropic Messages, OpenAI Chat Completions and OpenAI Responses endpoints)",
+    "GLM Coding Plan",
+    "Claude Code (via the Z.ai Anthropic endpoint)",
+    "ZCode",
+    "OpenCode",
+    "OpenRouter",
+    "Vercel AI Gateway",
+    "Microsoft Foundry (Fireworks catalog)",
+    "Hugging Face weights (FP8 checkpoint; BF16 in a separate repository; self-hosted with SGLang, vLLM, Transformers, KTransformers, TokenSpeed or Unsloth)"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.4,
+    "output": 4.4,
+    "cached_input": 0.26,
+    "notes": "Z.ai list price; context-cache storage is limited-time free. Resellers differ: OpenRouter lists a cached read at 0.14 and a separate batch id at 0.45 in and 2.0 out. Z.ai Coding Plan is a points-based subscription, not per-token; off-peak hours (and all weekend) cost half the points."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2, HARD tab)",
+      "score": 84.3,
+      "setting": "max; the tab labelled SWE-Bench Pro V2 HARD on Scale's page (rank 7 on the read date)",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (Scale, public V2, Full tab)",
+      "score": 95.6,
+      "setting": "max; the tab labelled SWE-Bench Pro V2 Full on Scale's page (rank 5, interval +/-1.3 on the page); same run family as the HARD tab",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 41.8,
+      "setting": "max; 330 trials, 95% interval +/-3.2; run dated 2026-08-14; tbench.ai board row 16 of 27 on read date; pass@5 57.6%; average trial 5,831 s; listed cost about US$2.7k",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-4",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 41.9,
+      "setting": "max; Artificial Analysis run inside its Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 34.8,
+      "setting": "low; Artificial Analysis run",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 39.9,
+      "setting": "max; one of three parts of the Coding Agent Index",
+      "harness": "OpenCode",
+      "measured_by": "independent",
+      "source": "aa-coding-agent",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 44.8,
+      "setting": "max; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 34.3,
+      "setting": "low; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 53.6,
+      "setting": "max; index v1.5 (DeepSWE v1.1, Terminal-Bench 4.0 and SWE-Atlas-QnA, equal weight); about $4.24 per task; mean 107 steps and 97% cache-hit rate per task; 0 refusals in 909 attempts",
+      "harness": "OpenCode",
+      "measured_by": "independent",
+      "source": "aa-coding-agent",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 61.4,
+      "setting": "max; Coding Agent Index component",
+      "harness": "OpenCode",
+      "measured_by": "independent",
+      "source": "aa-coding-agent",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Atlas-QnA",
+      "score": 59.4,
+      "setting": "max; Coding Agent Index component",
+      "harness": "OpenCode",
+      "measured_by": "independent",
+      "source": "aa-coding-agent",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 88.2,
+      "setting": "effort not stated; temperature 1.0, top_p 1, max_new_tokens 65536, 6 h timeout",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 3.0",
+      "score": 28.3,
+      "setting": "max; avg@3, 600-turn cap, 10 h timeout, 400K context",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 66.9,
+      "setting": "effort not stated; temperature 0.95, top_p 1.0, 400K context, 6 h timeout",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Marathon (v1.1)",
+      "score": 42.5,
+      "setting": "max; 1M context",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierSWE",
+      "score": 78.1,
+      "setting": "max; run by Proximal, dominance score as of 2026-08-14",
+      "harness": "Proximal's harness (not stated)",
+      "measured_by": "third-party-vendor",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 58.0,
+      "setting": "effort not stated; 1M context, rule-based and model-based anti-cheat checks",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ProgramBench (Almost Solved)",
+      "score": 19.0,
+      "setting": "effort and harness not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Agents' Last Exam (ALE-CLI)",
+      "score": 28.5,
+      "setting": "max; 105 tasks, 1M context, 64K max output, 4 h default timeout",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Z.ai Code Bench v1.0",
+      "score": 34.5,
+      "setting": "max; private in-house benchmark, not reproducible outside Z.ai",
+      "harness": "Claude Code 2.1.207 (stated in the chart caption on the GLM-5.3 docs page)",
+      "measured_by": "maker",
+      "source": "zai-glm53-docs",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Z.ai Code Bench v1.0",
+      "score": 31.4,
+      "setting": "high; private in-house benchmark",
+      "harness": "Claude Code 2.1.207 (stated in the chart caption on the GLM-5.3 docs page)",
+      "measured_by": "maker",
+      "source": "zai-glm53-docs",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon Verified",
+      "score": 73.0,
+      "setting": "pass@1 averaged over 3 runs; results obtained by Z.ai through the official Toolathlon evaluation service",
+      "harness": "Toolathlon evaluation service",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench (v1.0.6)",
+      "score": 48.2,
+      "setting": "effort not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": 14.3,
+      "setting": "max; Artificial Analysis; accuracy 33.9%",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent)",
+      "score": 29.6,
+      "setting": "max; Artificial Analysis; lower is better; the low-effort run scores 64.0",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent)",
+      "score": 64.0,
+      "setting": "low; Artificial Analysis; lower is better",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (long-context reasoning, percent)",
+      "score": 79.7,
+      "setting": "max; Artificial Analysis (low effort 72.7)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (percent)",
+      "score": 91.7,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (percent, no tools)",
+      "score": 42.3,
+      "setting": "max; Artificial Analysis (low effort 36.6)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SciCode (percent)",
+      "score": 59.0,
+      "setting": "max; Artificial Analysis (low effort 42.0)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CritPt (percent)",
+      "score": 19.1,
+      "setting": "max; Artificial Analysis (low effort 14.6)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA (Elo, as listed on Artificial Analysis's model page)",
+      "score": 1652.9,
+      "setting": "max; low effort 1325.4",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CyberGym (percent)",
+      "score": 84.5,
+      "setting": "max; single-run pass@1 over 1,507 tasks, unlimited timeout, no web tools, Git history removed, domain allow-list",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ExploitBench (percent)",
+      "score": 54.4,
+      "setting": "max; 300 interaction rounds, union coverage over 3 revisions, 41 tasks",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ExploitGym (tasks solved in a 2 h budget)",
+      "score": 105,
+      "setting": "max; 869 tasks; budget is API time rescaled by 115 tokens/s plus overhead",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ExploitGym (tasks solved in a 6 h budget)",
+      "score": 130,
+      "setting": "max; 869 tasks; budget is API time rescaled by 115 tokens/s plus overhead",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "PostTrainBench",
+      "score": 39.8,
+      "setting": "max; weighted average over 3 runs; 1M context",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE with tools (percent)",
+      "score": 62.5,
+      "setting": "temperature 1.0, top_p 0.95, 300K context with a context-management strategy; judge GPT-5.6-luna (medium)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA v2 (Elo)",
+      "score": 1769,
+      "setting": "listed in Z.ai's table; Z.ai says Artificial Analysis evaluated the models",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.z.ai/devpack/resources/best-practice",
+    "https://docs.z.ai/devpack/resources/memory-mechanism",
+    "https://docs.z.ai/guides/capabilities/thinking-mode",
+    "https://docs.z.ai/guides/capabilities/thinking",
+    "https://docs.z.ai/guides/overview/migrate-to-glm-new"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.z.ai/guides/llm/glm-5.3",
+  "sources": [
+    {
+      "id": "zai-glm53-docs",
+      "url": "https://docs.z.ai/guides/llm/glm-5.3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "GLM-5.3 always operates with reasoning enabled and supports three reasoning effort levels: low, high, and max."
+    },
+    {
+      "id": "zai-glm53-blog",
+      "url": "https://z.ai/blog/glm-5.3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-glm53",
+      "url": "https://huggingface.co/zai-org/GLM-5.3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "It defaults to `max` if not passed (or if set to any other value)."
+    },
+    {
+      "id": "hf-glm53-license",
+      "url": "https://huggingface.co/zai-org/GLM-5.3/blob/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-pricing",
+      "url": "https://docs.z.ai/guides/overview/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-models-overview",
+      "url": "https://docs.z.ai/guides/overview/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-thinking-mode",
+      "url": "https://docs.z.ai/guides/capabilities/thinking-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-function-calling",
+      "url": "https://docs.z.ai/guides/capabilities/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "tool_choice: Controls function calling strategy, default is auto (only supports auto)"
+    },
+    {
+      "id": "zai-best-practice",
+      "url": "https://docs.z.ai/devpack/resources/best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "This kind of structured task input reduces unnecessary guesswork and makes the agent’s changes more consistent and easier to review."
+    },
+    {
+      "id": "zai-glm52-docs",
+      "url": "https://docs.z.ai/guides/llm/glm-5.2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Do not introduce new dependencies, do not modify API contracts, and do not commit changes proactively."
+    },
+    {
+      "id": "zai-glm52-blog",
+      "url": "https://z.ai/blog/glm-5.2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "We find that GLM-5.2 shows more potential hacking behavior than GLM-5.1."
+    },
+    {
+      "id": "zcode-agents",
+      "url": "https://zcode.z.ai/en/docs/agents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "ZCode only reads the user global AGENTS.md and the current Workspace AGENTS.md."
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Every agent diff is re-graded on a pristine image, and we publish both grades."
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-glm-5-3",
+      "url": "https://artificialanalysis.ai/models/glm-5-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-glm-5-3-low",
+      "url": "https://artificialanalysis.ai/models/glm-5-3-low",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-glm-5-2",
+      "url": "https://artificialanalysis.ai/models/glm-5-2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-flash-vs-53",
+      "url": "https://artificialanalysis.ai/models/comparisons/glm-5-3-flash-vs-glm-5-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mtac-ifbench",
+      "url": "https://arxiv.org/abs/2609.14992",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Even the leading LLM, GLM-5.2, fails to follow about 20% of the process constraints"
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": "GLM-5.3-Prime is the high-speed variant of Z.ai's GLM-5.3, inheriting its full capabilities while delivering 1.5–2× the output throughput through inference acceleration."
+    },
+    {
+      "id": "vercel-glm53",
+      "url": "https://vercel.com/ai-gateway/models/glm-5.3",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "foundry-glm53",
+      "url": "https://ai.azure.com/catalog/models/FW-GLM-5.3",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "zai-release-notes",
+      "url": "https://docs.z.ai/release-notes/new-released",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-deep-thinking",
+      "url": "https://docs.z.ai/guides/capabilities/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-memory-mechanism",
+      "url": "https://docs.z.ai/devpack/resources/memory-mechanism",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-migrate",
+      "url": "https://docs.z.ai/guides/overview/migrate-to-glm-new",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-chat-api",
+      "url": "https://docs.z.ai/api-reference/llm/chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-struct-output",
+      "url": "https://docs.z.ai/guides/capabilities/struct-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-cache",
+      "url": "https://docs.z.ai/guides/capabilities/cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-errors",
+      "url": "https://docs.z.ai/api-reference/api-code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-coding-plan",
+      "url": "https://docs.z.ai/devpack/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-switch-models",
+      "url": "https://docs.z.ai/devpack/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-stream-tool",
+      "url": "https://docs.z.ai/guides/tools/stream-tool",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "vllm-glm53",
+      "url": "https://recipes.vllm.ai/zai-org/GLM-5.3",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "sglang-glm53",
+      "url": "https://docs.sglang.io/cookbook/autoregressive/GLM/GLM-5.3",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "mindstudio-glm53",
+      "url": "https://www.mindstudio.ai/blog/glm-5-3-hands-on-review",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "batch-glm53",
+      "url": "https://www.deeplearning.ai/the-batch/glm-5-3-makes-cybersecurity-gains",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "zai-flash-blog",
+      "url": "https://z.ai/blog/glm-5.3-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-flash-docs",
+      "url": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "METR 50% time horizon: METR's time-horizons page lists no GLM model (page source searched 2026-10-03)",
+    "SWE-Bench Pro under a vendor harness: Scale ran GLM-5.3 only in mini-swe-agent",
+    "Aider polyglot, LiveCodeBench: no run found for GLM-5.3",
+    "reasoning high: no independent measurement; Artificial Analysis lists max and low only",
+    "retires: no retirement date published",
+    "multi-turn instruction following for 5.3: MTAC-IFBench tested GLM-5.2 only",
+    "pricing: Z.ai publishes no batch price; OpenRouter lists a separate batch id",
+    "released: Z.ai's blog is dated 2026-08-14 (announcement); its release notes and Artificial Analysis give 2026-08-18; the Hugging Face repository was created 2026-08-25; 08-18 is used because it is the API date",
+    "active parameters: Z.ai does not state them; Artificial Analysis lists 753B total and 40B active, a vLLM recipe lists about 743B and 39B",
+    "system_card: Z.ai publishes no system card or safety report for GLM-5.3; the blog, docs page and Hugging Face card are the whole record",
+    "safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found"
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "id": "qwen3-coder-next",
+  "name": "Qwen3-Coder-Next",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3-Coder",
+  "class": "Qwen Coder",
+  "generation": "3",
+  "released": "2026-02-03",
+  "status": "retiring",
+  "retires": "2026-10-10",
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face",
+    "QwenCloud API (retiring 2026-10-10)",
+    "Amazon Bedrock",
+    "OpenRouter",
+    "self-hosted via SGLang or vLLM"
+  ],
+  "context_window": 262144,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.3,
+    "output": 1.5,
+    "cached_input": null,
+    "notes": "QwenCloud model page (read 2026-10-03), for inputs up to 32K tokens: US$0.30 input and US$1.50 output per million tokens; no rate for longer inputs and no cache or batch rate on the page; Artificial Analysis shows 0.35 and 1.20; the weights have no per-token price"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 9,
+      "setting": "non-reasoning; 34M output tokens against a class median of 26M",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 0.0,
+      "setting": "Artificial Analysis's own run inside its Intelligence Index v4.3.2, median across providers; non-reasoning; read from the chart data embedded in the model page, not from page text",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis harness)",
+      "score": 38.2,
+      "setting": "Artificial Analysis's own run, earlier index component; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 70.6,
+      "setting": "vendor run, as relayed by a secondary article of 2026-02-05; SWE-Agent scaffold; the Verified set is retired from leading boards",
+      "harness": "SWE-Agent",
+      "measured_by": "maker",
+      "source": "analyticsvidhya-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro",
+      "score": 44.3,
+      "setting": "vendor run, as relayed by a secondary article; SWE-Agent scaffold; not the Scale V2 set",
+      "harness": "SWE-Agent",
+      "measured_by": "maker",
+      "source": "analyticsvidhya-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "score": 36.2,
+      "setting": "vendor run, as relayed by a secondary article; Terminus-2 JSON",
+      "harness": "Terminus-2 (JSON)",
+      "measured_by": "maker",
+      "source": "analyticsvidhya-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 62.8,
+      "setting": "vendor run, as relayed by a secondary article of 2026-02-05; SWE-Agent scaffold",
+      "harness": "SWE-Agent",
+      "measured_by": "maker",
+      "source": "analyticsvidhya-coder-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Aider",
+      "score": 66.2,
+      "setting": "vendor run, as relayed by a secondary article of 2026-02-05",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "analyticsvidhya-coder-next",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/Qwen/Qwen3-Coder-Next"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/Qwen/Qwen3-Coder-Next",
+  "sources": [
+    {
+      "id": "hf-coder-next",
+      "url": "https://huggingface.co/Qwen/Qwen3-Coder-Next",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "This model supports only non-thinking mode and does not generate <think></think> blocks in its output."
+    },
+    {
+      "id": "qwencloud-page-coder",
+      "url": "https://www.qwencloud.com/models/qwen3-coder-next",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-models",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/text-generation-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-coder-next",
+      "url": "https://artificialanalysis.ai/models/qwen3-coder-next",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "analyticsvidhya-coder-next",
+      "url": "https://www.analyticsvidhya.com/?p=250889",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-bedrock-qwen",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards-qwen.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwen-g3",
+      "url": "https://qwenlm.github.io/blog/qwen3-coder/",
+      "read": "2026-09-25",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-coder",
+      "url": "https://openrouter.ai/qwen/qwen3-coder-next",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Qwen row among the 11 rows of the Scale leaderboard read on 2026-10-03; the page shows no update date",
+    "Artificial Analysis Coding Agent Index: no row for this model on Artificial Analysis's coding-agent leaderboard (read 2026-10-03), which lists Qwen3.8 Max only",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so a Qwen3.x entry is not ruled out",
+    "retires: 2026-10-10 is QwenCloud's notice for the hosted endpoint only; the open weights remain on Hugging Face, and no replacement is named on the page",
+    "max_output: 65,536 is the hosted endpoint's limit on QwenCloud's page (64k in its model table); the open weights state none",
+    "cached_input: no cache rate on the QwenCloud page for this model",
+    "benchmark rows: the model card carries its benchmark tables as images and its text gives no scores, so the vendor figures rest on a secondary article that attributes them to the Qwen team",
+    "system_card: none; the maker may not publish one",
+    "access: Amazon Bedrock lists the model (Amazon's documentation) and OpenRouter lists it (read 2026-10-03); Novita rested on an earlier reading that was not re-checked, so it is left out",
+    "class: QwenCloud's model table now files qwen3-coder-next under Legacy and recommends qwen3.7-plus and qwen3.8-max for coding tools; no newer Coder model was found"
+  ]
+}

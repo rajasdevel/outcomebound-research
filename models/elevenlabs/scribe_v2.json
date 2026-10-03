@@ -1,0 +1,177 @@
+{
+  "id": "scribe_v2",
+  "name": "Scribe v2",
+  "maker": "ElevenLabs",
+  "family": "Scribe",
+  "class": "Scribe",
+  "generation": "2",
+  "released": "2026-01-09",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "ElevenLabs API: Speech to Text (batch, with optional webhook)",
+    "ElevenCreative (transcripts, Studio)",
+    "ElevenAgents (the speech recognition of an agent defaults to Scribe Realtime)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "audio files (AAC, AIFF, OGG, MP3, Opus, WAV, FLAC, M4A, WebM) and video files (MP4, AVI, MKV, MOV, WMV, FLV, WebM, MPEG, 3GPP); file_format pcm_s16le_16 (16 kHz mono 16-bit PCM) gives lower latency than an encoded file [el-stt-overview] [el-api-stt]",
+    "output_audio": "none: the output is text, with word timestamps, speaker labels and audio-event tags",
+    "voices": null,
+    "languages": [
+      "90+ languages; the capability page groups them by word error rate: 36 at 5% or less, 21 at 5 to 10%, 18 at 10 to 20% and 19 above 25 up to 50% [el-stt-overview]"
+    ],
+    "turn_detection": "none: a batch model for finished recordings; Scribe v2 Realtime serves live audio",
+    "interruption": "not applicable to a transcription model",
+    "latency": "Batch model, so no latency figure; Artificial Analysis measures a median speed factor of 83.2 (seconds of audio transcribed per second of processing) [aa-stt-board]. Files over 8 minutes are split into up to four parts and transcribed in parallel [el-stt-overview]",
+    "session_limit": "Up to 10 hours of audio per file in standard mode; file size up to 3 GB on the capability page and under 5 GB on the API reference; multichannel mode takes up to 5 channels [el-stt-overview] [el-api-stt]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per hour of audio, not per token: US$0.22 per hour. The pricing page adds US$0.07 per hour for entity detection and US$0.05 per hour for keyterm prompting; the API reference states surcharges of 30% for entity detection, entity redaction and transcript editing, 20% for keyterms and 10% for speaker roles [el-pricing-api] [el-api-stt]. Artificial Analysis lists US$3.67 per 1,000 minutes, which equals the list rate [aa-stt-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis AA-WER v2 index, non-streaming (word error rate, percent, lower is better)",
+      "score": 2.18,
+      "setting": "weighted mix of AA-AgentTalk (50%), VoxPopuli-Cleaned-AA (25%) and Earnings22-Cleaned-AA (25%)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis AA-AgentTalk word error rate (percent, lower is better)",
+      "score": 1.51,
+      "setting": "non-streaming run",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis VoxPopuli-Cleaned-AA word error rate (percent, lower is better)",
+      "score": 1.74,
+      "setting": "non-streaming run",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Earnings22-Cleaned-AA word error rate (percent, lower is better)",
+      "score": 3.95,
+      "setting": "non-streaming run",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis speed factor (seconds of audio per second of processing)",
+      "score": 83.2,
+      "setting": "median over Artificial Analysis's runs",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-stt-board",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://elevenlabs.io/docs/overview/capabilities/speech-to-text",
+    "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/batch/keyterm-prompting"
+  ],
+  "system_card": null,
+  "model_page": "https://elevenlabs.io/docs/overview/models",
+  "sources": [
+    {
+      "id": "el-models",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-overview",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/speech-to-text",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-api-stt",
+      "url": "https://elevenlabs.io/docs/api-reference/speech-to-text/convert",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-stt-keyterm",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/speech-to-text/batch/keyterm-prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-scribe-v2",
+      "url": "https://elevenlabs.io/docs/changelog/2026/1/12",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-blog-scribe2",
+      "url": "https://elevenlabs.io/blog/introducing-scribe-v2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-api",
+      "url": "https://elevenlabs.io/pricing/api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-stt-board",
+      "url": "https://artificialanalysis.ai/speech-to-text",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: not applicable to a transcription model; the limits are in audio duration and file size",
+    "max_output: not applicable to a transcription model",
+    "system_card: the maker publishes no system card or model card in the pages read",
+    "released: the maker's launch post is dated 2026-01-09, as is the Artificial Analysis entry; the changelog entry that announces the model is dated 2026-01-12 [el-blog-scribe2] [el-changelog-scribe-v2]",
+    "voice.voices: not applicable to a transcription model",
+    "pricing_usd_per_mtok: the unit differs (US$ per hour of audio), see notes",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

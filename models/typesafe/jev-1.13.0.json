@@ -1,0 +1,188 @@
+{
+  "id": "jev-1.13.0",
+  "name": "Jev 1.13",
+  "maker": "TypeSafe AI",
+  "family": "Jev",
+  "class": "Jev",
+  "generation": "1.13",
+  "released": "2026-09-15",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "TypeSafe API",
+    "OpenRouter",
+    "Vercel AI Gateway",
+    "Pydantic AI Gateway"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "decision"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.042,
+    "output": 0.0,
+    "cached_input": null,
+    "notes": "TypeSafe charges input tokens only ($42 per billion); output tokens are reported but free; no cache price, free tier, per-question fee or minimum is published; prepaid credits under the customer agreement"
+  },
+  "benchmarks": [
+    {
+      "name": "JevBench v1.5.6 capability score (1,624 decisions: 904 open, 720 sealed)",
+      "score": 80.0,
+      "setting": "jev-1.13.0, hosted API; sub-scores Intelligence 72.0, Calibration 88.0",
+      "harness": "Benchmark Heaven's own runner (the measurer also sells custom evaluations)",
+      "measured_by": "independent",
+      "source": "jevbench",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "TypeSafe workflow evals, overview (agreement with reference labels, percent, mean of four workflows)",
+      "score": 67.8,
+      "setting": "Jev in workflow mode; reference labels are the average of GPT-6 Astra and Claude Fable 5.1 at high thinking, so the score is agreement with two LLMs, not accuracy against people",
+      "harness": "TypeSafe's own workflows, built by its model-capabilities team",
+      "measured_by": "maker",
+      "source": "typesafe-evals",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Entagl authored decision cases (accuracy, percent, 1,357 scored decisions over 283 cases)",
+      "score": 98.5,
+      "setting": "jev-1.13.0; hard cases run three times; 13 languages; an unnamed frontier Gemini model at low reasoning effort scored 99.0 on the same cases",
+      "harness": "Entagl's own cases from its direct-message agent product; no public raw corpus",
+      "measured_by": "third-party-vendor",
+      "source": "entagl",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Distil Labs invoice pay-or-hold (accuracy, 100 synthetic invoices)",
+      "score": 0.79,
+      "setting": "average of three request formulations (0.77, 0.75, 0.84); one run each; the vendor's own fine-tuned Qwen3.5-4B scored 0.98",
+      "harness": "Distil Labs' published pipeline; Distil sells fine-tuning, so it competes with Jev",
+      "measured_by": "third-party-vendor",
+      "source": "distil",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Kev project breadth-v1 test, chance-corrected index",
+      "score": 54.0,
+      "setting": "queried through Vercel AI Gateway; Kev-27B v2 scored 52.3 on the same split",
+      "harness": "the Kev project's own frozen suite; the Kev author builds a competing open model",
+      "measured_by": "third-party-vendor",
+      "source": "kev-release",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.typesafe.ai/primitives",
+    "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
+    "https://docs.typesafe.ai/concepts/state",
+    "https://docs.typesafe.ai/model-jaggedness/jev-1.13"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.typesafe.ai/models",
+  "sources": [
+    {
+      "id": "ts-models",
+      "url": "https://docs.typesafe.ai/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": "64k tokens per request; 32k tokens for `state` plus the longest question"
+    },
+    {
+      "id": "ts-models-price",
+      "url": "https://docs.typesafe.ai/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": "Charged per input token. Output tokens are free."
+    },
+    {
+      "id": "ts-announcement",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": "Our first public model is Jev, available today in early access."
+    },
+    {
+      "id": "ts-system-one",
+      "url": "https://docs.typesafe.ai/concepts/system-one",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": "Jev currently accepts text input only."
+    },
+    {
+      "id": "ts-gateways",
+      "url": "https://docs.typesafe.ai/sdk/python/usage",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": "For example, connect through an AI gateway using its API key and model ID."
+    },
+    {
+      "id": "typesafe-evals",
+      "url": "https://evals.typesafe.ai/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "jevbench",
+      "url": "https://benchmarkheaven.com/jev-models",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": "Jev 1.13.0 leads the Jev-class systems with 80.0."
+    },
+    {
+      "id": "entagl",
+      "url": "https://www.entagl.com/blog/typesafe-jev-benchmark-ai-decision-models",
+      "read": "2026-10-04",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "distil",
+      "url": "https://www.distillabs.ai/blog/jev-or-a-fine-tuned-small-model-we-built-a-pipeline-with-both-to-see-the-real-difference/",
+      "read": "2026-10-04",
+      "kind": "A",
+      "quote": "Jev’s three setups moved by 2 to 3 points between identical runs"
+    },
+    {
+      "id": "kev-release",
+      "url": "https://github.com/jaredpalmer/kev/blob/84847f0a883d900f7de5b7a57eaa341ca7f9a6b4/docs/releases/kev-1.0.md",
+      "read": "2026-10-04",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "openrouter-jev",
+      "url": "https://openrouter.ai/typesafe/jev-1.13",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: TypeSafe gives '64k tokens per request' (state plus every question) and 32k for state plus the longest question, with no exact token count; OpenRouter and Cloudflare list 32K",
+    "max_output: does not apply; Jev returns typed answers (a choice, a probability or a score), not generated tokens",
+    "SWE-Bench Pro (Scale, public V2): does not apply; Jev cannot write code or text",
+    "Terminal-Bench 4.0: does not apply; Jev cannot run an agent loop that produces commands",
+    "Artificial Analysis Intelligence Index: does not apply; the index measures generative models",
+    "Artificial Analysis Coding Agent Index: does not apply; Jev cannot act as a coding agent",
+    "METR 50% time horizon: does not apply; Jev cannot carry out a multi-step task",
+    "pricing_usd_per_mtok.cached_input: no cache price published",
+    "system_card: TypeSafe publishes no system or model card; the nearest documents are the Models page and the jaggedness page",
+    "released: 2026-09-15 is the early-access announcement; OpenRouter lists jev-1.13 from 2026-09-18",
+    "status: TypeSafe's announcement calls Jev early access, while its Models page calls jev-1.13.0 'the most recent stable, official release'; recorded as preview"
+  ]
+}

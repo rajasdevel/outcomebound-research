@@ -1,0 +1,157 @@
+{
+  "id": "qwen3.8-omni-flash-realtime",
+  "name": "Qwen3.8-Omni-Flash-Realtime",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.8",
+  "class": "Qwen Omni Realtime",
+  "generation": "3.8",
+  "released": "2026-09-21",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud realtime API (WebSocket, WebRTC and AOQ)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text",
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "PCM 16-bit at 16 kHz; 1, 2 or 4 channels, and multichannel input must be 16 kHz s16le interleaved; the client-events page scopes the WAV container and the 8, 24 and 48 kHz options to the Qwen3.5 realtime models; images as JPG frames, about 1 per second, over WebSocket, or as an RTP video track over WebRTC [qwencloud-client-events] [qwencloud-rt-guide]",
+    "output_audio": "PCM 16-bit mono at 24 kHz in the model page's example; the client-events page scopes the other rates and WAV to the Qwen3.5 realtime models; over WebRTC the audio arrives as an RTP track [qwencloud-page-38rt] [qwencloud-client-events] [qwencloud-rt-guide]",
+    "voices": "Preset voices (default Tina; longanlingxin is one of the Qwen3.8 voices; the full list is on a separate voice-list page); cloned voices are listed for this model in one place and limited to the Qwen3.5 realtime models in another [qwencloud-rt-guide] [qwencloud-client-events]",
+    "languages": [
+      "Speech recognition: 113 languages and dialects (the model page says over 60)",
+      "Speech output: 36 languages and dialects (the model page says over 30)"
+    ],
+    "turn_detection": "server_vad (default; threshold -1.0 to 1.0, default 0.5; silence_duration_ms 200 to 6000, default 800) or semantic_vad (ignores backchannels and background noise); turn_detection null selects manual mode, where the client sends input_audio_buffer.commit and response.create; WebRTC supports the two VAD modes only; idle_timeout_ms applies to the Qwen3.5 realtime models only [qwencloud-client-events] [qwencloud-rt-guide]",
+    "interruption": "In VAD mode the server emits input_audio_buffer.speech_started when the user starts to speak; the session the server returns shows interrupt_response true by default; over WebSocket the client must clear its own playback buffer; response.cancel cancels a response by hand; the guide says to use headphones so that echo does not trigger an interruption [qwencloud-rt-guide] [qwencloud-client-events] [qwencloud-server-events]",
+    "latency": null,
+    "session_limit": "120 minutes per WebSocket session; at most 196,608 total input tokens; retained history of 100 audio turns or 600 seconds of audio and 50 video turns or 240 seconds of video, oldest first dropped [qwencloud-rt-guide]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.93,
+    "output": 1.87,
+    "cached_input": null,
+    "notes": "QwenCloud model page (read 2026-10-03), per million tokens: audio input US$0.93 (the input field of this card); text input US$0.7; text, image and video input US$0.23; text and audio output US$1.87 (the output field), the page says output text is not charged on top. The realtime guide says this model bills the output audio and its text each at the output rate, which differs from the page. Audio counts 7 tokens per second in and 12.5 per second out; two- and four-channel input counts twice [qwencloud-page-38rt] [qwencloud-rt-guide]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/realtime-multimodal-speech",
+    "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+    "https://docs.qwencloud.com/api-reference/real-time-multimodal/client-events"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.8-omni-flash-realtime",
+  "sources": [
+    {
+      "id": "qwencloud-page-38rt",
+      "url": "https://www.qwencloud.com/models/qwen3.8-omni-flash-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-rt-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/realtime-multimodal-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-client-events",
+      "url": "https://docs.qwencloud.com/api-reference/real-time-multimodal/client-events",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-interaction-flow",
+      "url": "https://docs.qwencloud.com/api-reference/real-time-multimodal/interaction-process",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-s2s-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-rt-overview",
+      "url": "https://docs.qwencloud.com/api-reference/realtime-api/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-qwen-search",
+      "url": "https://huggingface.co/api/models?author=Qwen&search=omni&limit=30&sort=lastModified&direction=-1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-35plus-rt",
+      "url": "https://www.qwencloud.com/models/qwen3.5-omni-plus-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-server-events",
+      "url": "https://docs.qwencloud.com/api-reference/real-time-multimodal/server-events",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "released: QwenCloud's changelog dates the model 2026-09-21; the model page shows no date [qwencloud-changelog]",
+    "weights: closed because Alibaba's Hugging Face listing (read 2026-10-03) holds no Qwen3.8 omni or realtime repository; no maker statement found [hf-qwen-search]",
+    "context_window: the realtime guide gives a limit of 196,608 total input tokens, not a context window",
+    "max_output: not published for this model",
+    "voice.latency: no figure from Alibaba, and no Artificial Analysis row for this model on its Speech to Speech page (read 2026-10-03) [aa-s2s]",
+    "system_card: none published",
+    "access: only QwenCloud pages were read; a page of Alibaba Cloud Model Studio for this realtime model was not read",
+    "benchmarks: no maker table and no independent run found; the maker's model page and guide carry no scores",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

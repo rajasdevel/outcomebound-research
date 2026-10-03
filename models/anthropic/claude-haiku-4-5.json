@@ -1,0 +1,243 @@
+{
+  "id": "claude-haiku-4-5",
+  "name": "Claude Haiku 4.5",
+  "maker": "Anthropic",
+  "family": "Claude Haiku 4",
+  "class": "Claude Haiku",
+  "generation": "4.5",
+  "released": "2025-10-15",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Claude API",
+    "Claude apps (claude.ai)",
+    "Claude Code",
+    "Amazon Bedrock",
+    "Google Cloud",
+    "Microsoft Foundry",
+    "Claude Platform on AWS"
+  ],
+  "context_window": 200000,
+  "max_output": 64000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "budget",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.0,
+    "output": 5.0,
+    "cached_input": 0.1,
+    "notes": "List price, standard rate. 5-minute cache write 1.25, 1-hour write 2; batch 0.50/2.50. The pinned API id is claude-haiku-4-5-20251001; claude-haiku-4-5 is an alias. Minimum cacheable prompt 4,096 tokens."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 25.5,
+      "setting": "xhigh (as Scale labels it; Anthropic lists no effort parameter for Haiku 4.5)",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 16.9,
+      "setting": "reasoning variant (AA page data 16.88)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-haiku-4-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified (launch figure, October 2025)",
+      "score": 73.3,
+      "setting": "128K thinking budget, 50 trials",
+      "harness": "bash and file-edit tools",
+      "measured_by": "maker",
+      "source": "haiku-4-5-announcement",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 63,
+      "setting": "not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "anthropic-optimizing-cost",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 15.4,
+      "setting": "non-reasoning variant (AA page data 15.41)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-haiku-4-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Violative-request harmless response rate (single-turn, percent)",
+      "score": 99.38,
+      "setting": "default and extended thinking combined",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-haiku-4-5",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  ],
+  "system_card": "https://www.anthropic.com/claude-haiku-4-5-system-card",
+  "model_page": "https://platform.claude.com/docs/en/models/haiku-4-5/overview",
+  "sources": [
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-haiku-4-5",
+      "url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "announce-sonnet-5-5",
+      "url": "https://www.anthropic.com/claude-sonnet-5-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-best-practices",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-choosing-model",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-deprecations",
+      "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-models-overview",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-optimizing-cost",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-prompt-caching",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-code-model-config",
+      "url": "https://code.claude.com/docs/en/model-config",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "haiku-4-5-announcement",
+      "url": "https://www.anthropic.com/news/claude-haiku-4-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "haiku-4-5-migration",
+      "url": "https://platform.claude.com/docs/en/models/haiku-4-5/migration-guide",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "page-haiku-4-5",
+      "url": "https://platform.claude.com/docs/en/models/haiku-4-5/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "system-card-haiku-4-5",
+      "url": "https://www.anthropic.com/claude-haiku-4-5-system-card",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "retires: no retirement date announced; the maker's earliest possible date is 2026-10-15 ('not sooner than')",
+    "SWE-Bench Pro (Scale V2) at any other setting: one row only, and its xhigh label conflicts with Haiku 4.5 having no effort parameter",
+    "Artificial Analysis Coding Agent Index: no row for this model; the page shows the composite as 'Not publicly available'",
+    "Terminal-Bench 4.0: no Haiku 4.5 row in Anthropic's tables or on the tbench.ai leaderboard (read from the page's data); AA's page data carries a value of 0 for Haiku 4.5 that its page does not display, so it is not recorded",
+    "METR 50% time horizon: not listed on metr.org/time-horizons (dated 2026-05-08)",
+    "Prompting guide: none specific to Haiku 4.5; the launch figures are from October 2025 and use older benchmark versions",
+    "Claude Code effort default for Haiku 4.5: Haiku 4.5 has no effort parameter, and the Claude Code docs read state no separate default"
+  ]
+}

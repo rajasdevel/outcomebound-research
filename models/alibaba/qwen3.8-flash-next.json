@@ -1,0 +1,315 @@
+{
+  "id": "qwen3.8-flash-next",
+  "name": "Qwen3.8-Flash-Next",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.8",
+  "class": "Qwen Flash",
+  "generation": "3.8",
+  "released": "2026-08-27",
+  "status": "preview",
+  "retires": null,
+  "weights": "open (Qwen Community License 1.0)",
+  "access": [
+    "Hugging Face (BF16 and FP8)",
+    "ModelScope",
+    "self-hosted via SGLang, vLLM, TokenSpeed or KTransformers",
+    "QwenCloud API (as qwen3.8-flash, 1M context)"
+  ],
+  "context_window": 262144,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "xhigh"
+    ],
+    "default": "xhigh"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.15,
+    "output": 0.47,
+    "cached_input": 0.016,
+    "notes": "Hosted price as Artificial Analysis shows it (US$0.15 input, US$0.47 output, 89% cache discount); QwenCloud's page for the hosted qwen3.8-flash shows US$0.15, US$0.47 and an implicit-cache price of US$0.016, which is used for cached_input; the launch post quoted 0.16 for input; the open weights themselves have no per-token price"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 40,
+      "setting": "reasoning; 240M output tokens against a median of 140M; effort not stated",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-8-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 25.3,
+      "setting": "Artificial Analysis's own run inside its Intelligence Index v4.3.2, via Alibaba's API; effort not stated; read from the chart data embedded in the model page, not from page text",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-8-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis harness)",
+      "score": 86.1,
+      "setting": "Artificial Analysis's own run, earlier index component; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-8-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro",
+      "score": 62.5,
+      "setting": "vendor run; Claude Code, temperature 1.0, top_p 0.95, 256K context; refined set (problem tasks corrected, baselines re-run), so not the Scale V2 set",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE 1.1",
+      "score": 58.7,
+      "setting": "vendor run; the higher of Claude Code and mini-SWE-agent (the card says this model did best on mini-SWE-agent); temperature 1.0, top_p 0.95, 256K context",
+      "harness": "mini-SWE-agent (best of two)",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CoWorkBench",
+      "score": 73.9,
+      "setting": "vendor's own in-house benchmark",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 91.7,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LiveCodeBench v6",
+      "score": 91.9,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 81.0,
+      "setting": "vendor run; mini-SWE-agent; temperature 1.0, top_p 0.95, 256K context",
+      "harness": "mini-SWE-agent",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo-Bench",
+      "score": 48.1,
+      "setting": "vendor run; Claude Code; repository-fetching shell commands disabled",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon Verified",
+      "score": 73.5,
+      "setting": "vendor run; Pass@1; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench",
+      "score": 81.3,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "JobBench",
+      "score": 55.7,
+      "setting": "vendor's own in-house benchmark; Pass@1",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR 8-needle, 256K (technical report, Qwen Sparse Attention arm)",
+      "score": 93.0,
+      "setting": "technical report (dated 2026-08-26), Table 3, the Qwen Sparse Attention arm of its comparison with full attention; the report does not tie the table to the post-trained release",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tech-report-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR 8-needle, 512K (technical report, Qwen Sparse Attention arm)",
+      "score": 40.53,
+      "setting": "technical report (dated 2026-08-26), Table 3, the Qwen Sparse Attention arm of its comparison with full attention; the report does not tie the table to the post-trained release",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tech-report-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR 8-needle, 1M (technical report, Qwen Sparse Attention arm)",
+      "score": 26.44,
+      "setting": "technical report (dated 2026-08-26), Table 3, the Qwen Sparse Attention arm of its comparison with full attention; the report does not tie the table to the post-trained release",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "tech-report-flash-next",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+    "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/chat_template.jinja",
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+  "sources": [
+    {
+      "id": "hf-flash-next",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "blog-flash-next",
+      "url": "https://www.alibabacloud.com/blog/qwen3-8-flash-next-a-new-architecture-towards-ultimate-cost-efficiency_603501",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-8-flash-next",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tech-report-flash-next",
+      "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-flash-next-license",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-8-2-4t",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-flash-next-template",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/raw/main/chat_template.jinja",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sglang-flash-next",
+      "url": "https://docs.sglang.io/cookbook/autoregressive/Qwen/Qwen3.8-Flash-Next",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prompting",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-latest-flash",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Qwen row among the 11 rows of the Scale leaderboard read on 2026-10-03; the page shows no update date",
+    "Artificial Analysis Coding Agent Index: no row for this model on Artificial Analysis's coding-agent leaderboard (read 2026-10-03), which lists Qwen3.8 Max only",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so a Qwen3.x entry is not ruled out",
+    "retires: no retirement date published",
+    "status: preview because Alibaba calls the release an experimental preview of the Qwen 4 architecture and sends production use to the hosted qwen3.8-flash; the weights themselves are public",
+    "parameters: the card says 125B plus 51B n-gram embedding parameters with 6B active; Artificial Analysis says 180B total; no card key holds the count",
+    "Release date: launch post 2026-08-27; Artificial Analysis and the hosted model's changelog entry 2026-08-26; Hugging Face repository created 2026-08-24",
+    "access: ModelScope listing exists for the model (page title only; licence there not read)",
+    "Artificial Analysis effort setting: the page does not name the effort it ran",
+    "system_card: none; the technical report covers architecture and pre-training and has no safety section",
+    "max_output: 131,072 is the card's suggested reply length and the hosted Flash limit; the open weights state no hard limit, and the launch post's 65,536 is a maxTokens value in an OpenClaw configuration example",
+    "Post-trained long-context scores: the card reports none; the technical report's RULER and MRCR table compares attention variants and does not say it describes the released model"
+  ]
+}

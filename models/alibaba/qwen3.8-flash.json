@@ -1,0 +1,274 @@
+{
+  "id": "qwen3.8-flash",
+  "name": "Qwen3.8-Flash",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.8",
+  "class": "Qwen Flash",
+  "generation": "3.8",
+  "released": "2026-08-26",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud API (OpenAI-compatible, Anthropic-compatible)",
+    "Alibaba Cloud Model Studio",
+    "OpenRouter"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "xhigh"
+    ],
+    "default": "xhigh"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.15,
+    "output": 0.47,
+    "cached_input": 0.016,
+    "notes": "QwenCloud model page (read 2026-10-03): US$0.15 input, US$0.47 output, implicit cache US$0.016, explicit cache creation US$0.20 and explicit cache read US$0.016 per million tokens; Model Studio shows input from US$0.113 to US$0.15 and output from US$0.382 to US$0.47 by region and tier; the launch post and a news report gave 0.16 for input"
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-bench Pro",
+      "score": 62.5,
+      "setting": "open-weight Flash-Next card figure (Claude Code, temperature 1.0, top_p 0.95, 256K context, refined set, so not the Scale V2 set); QwenCloud's Qwen3.8-Flash page quotes the same figure for the hosted model",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE 1.1",
+      "score": 58.7,
+      "setting": "open-weight Flash-Next card figure; higher of Claude Code and mini-SWE-agent (best on mini-SWE-agent); QwenCloud's Qwen3.8-Flash page quotes the same figure for the hosted model",
+      "harness": "mini-SWE-agent (best of two)",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CoWorkBench",
+      "score": 73.9,
+      "setting": "open-weight Flash-Next card figure, repeated on QwenCloud's Qwen3.8-Flash page; vendor's own in-house benchmark",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/getting-started/latest-model",
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+    "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+    "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.8-flash",
+  "sources": [
+    {
+      "id": "hf-flash-next",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-flash",
+      "url": "https://www.qwencloud.com/models/qwen3.8-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "blog-flash-next",
+      "url": "https://www.alibabacloud.com/blog/qwen3-8-flash-next-a-new-architecture-towards-ultimate-cost-efficiency_603501",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-models",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/text-generation-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-8-flash-next",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aliyun-flash",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tech-report-flash-next",
+      "url": "https://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-vision",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/vision-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-37flash",
+      "url": "https://www.qwencloud.com/models/qwen3.7-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-security",
+      "url": "https://docs.qwencloud.com/developer-guides/security-compliance/data-security",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "runtimewire-flash",
+      "url": "https://runtimewire.com/article/alibaba-qwen3-8-flash-api-qwencloud-pricing",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-flash",
+      "url": "https://openrouter.ai/qwen/qwen3.8-flash",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-latest-flash",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prompting",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-search",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/web-search",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-cache",
+      "url": "https://docs.qwencloud.com/developer-guides/run-and-scale/context-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-vision",
+      "url": "https://docs.qwencloud.com/developer-guides/multimodal/vision",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Qwen row among the 11 rows of the Scale leaderboard read on 2026-10-03; the page shows no update date",
+    "Terminal-Bench 4.0: no score for the hosted endpoint; Artificial Analysis has no page for it (404 on the expected address, checked 2026-10-03), and its figure for the open Flash-Next weights is 25.3%",
+    "Artificial Analysis Coding Agent Index: no row for this model on Artificial Analysis's coding-agent leaderboard (read 2026-10-03), which lists Qwen3.8 Max only",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so a Qwen3.x entry is not ruled out",
+    "retires: no retirement date published",
+    "Artificial Analysis Intelligence Index: no separate entry for the hosted endpoint; the open build scores 40 on v4.3.2",
+    "system_card: none; the maker may not publish one",
+    "access: OpenRouter lists qwen/qwen3.8-flash (read 2026-10-03)",
+    "Benchmark rows: the three vendor figures come from the open Flash-Next card; QwenCloud's Qwen3.8-Flash page repeats them for the hosted model, and no separate hosted run is described",
+    "reasoning: the API reference marks preserve_thinking off by default for qwen3.8-flash while QwenCloud's Qwen3.8-Flash page says it is on by default"
+  ]
+}

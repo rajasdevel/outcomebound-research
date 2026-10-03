@@ -1,0 +1,464 @@
+{
+  "id": "qwen3.6-35b-a3b",
+  "name": "Qwen3.6-35B-A3B",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.6",
+  "class": "Qwen open weights",
+  "generation": "3.6",
+  "released": "2026-04-16",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face (BF16 and FP8)",
+    "QwenCloud API (qwen3.6-35b-a3b)",
+    "OpenRouter",
+    "Hugging Face Transformers",
+    "vLLM",
+    "SGLang",
+    "KTransformers",
+    "llama.cpp (community GGUF quantisations)",
+    "Ollama"
+  ],
+  "context_window": 262144,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.375,
+    "output": 2.25,
+    "cached_input": null,
+    "notes": "QwenCloud model page (read 2026-10-03): US$0.375 input and US$2.25 output per million tokens, no cache price shown; Artificial Analysis shows the same; OpenRouter lists 0.15 and 1.00 with cache read 0.05; self-hosting has no per-token price"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 18,
+      "setting": "reasoning model; 160M output tokens against a median of 82M; 121.6 output tokens per second on Alibaba's API",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 0.0,
+      "setting": "Artificial Analysis's own run inside Intelligence Index v4.3.2, via Alibaba's API; read from the chart data embedded in the model page, not from page text",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis harness)",
+      "score": 44.9,
+      "setting": "Artificial Analysis's own run, earlier index component; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis GPQA Diamond",
+      "score": 84.1,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Humanity's Last Exam",
+      "score": 22.2,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis SciCode",
+      "score": 36.6,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis IFBench",
+      "score": 64.4,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis AA-LCR",
+      "score": 71.7,
+      "setting": "Artificial Analysis long-context reasoning run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": -22.2,
+      "setting": "Artificial Analysis; accuracy 18.8% and hallucination rate 50.5% on the same run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 73.4,
+      "setting": "vendor run; internal scaffold with bash and file-edit tools, temperature 1.0, top_p 0.95, 200K context",
+      "harness": "internal scaffold (bash and file-edit tools)",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (refined set)",
+      "score": 49.5,
+      "setting": "vendor run; internal scaffold with bash and file-edit tools, temperature 1.0, top_p 0.95, 200K context; problem tasks corrected and all baselines re-run on the refined set, so not the Scale V2 set",
+      "harness": "internal scaffold (bash and file-edit tools)",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 67.2,
+      "setting": "vendor run; internal scaffold with bash and file-edit tools, temperature 1.0, top_p 0.95, 200K context",
+      "harness": "internal scaffold (bash and file-edit tools)",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "score": 51.5,
+      "setting": "vendor run; Harbor with Terminus-2, 3-hour timeout, 32 CPU and 48 GB RAM, temperature 1.0, top_p 0.95, top_k 20, 80K max tokens, 256K context, average of 5 runs",
+      "harness": "Harbor / Terminus-2",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SkillsBench (Avg5)",
+      "score": 28.7,
+      "setting": "vendor run via OpenCode on 78 self-contained tasks, average of 5 runs",
+      "harness": "OpenCode",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 29.4,
+      "setting": "vendor run via Claude Code, temperature 1.0, top_p 0.95, at most 900 turns",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Claw-Eval (average)",
+      "score": 68.7,
+      "setting": "vendor run; temperature 0.6, 256K context for the Claw-style benchmarks",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Claw-Eval (pass^3)",
+      "score": 50.0,
+      "setting": "vendor run; temperature 0.6, 256K context for the Claw-style benchmarks",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "QwenClawBench",
+      "score": 52.6,
+      "setting": "vendor run on Alibaba's own real-user-distribution agent benchmark; temperature 0.6, 256K context",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "QwenWebBench (Elo)",
+      "score": 1397,
+      "setting": "vendor run on Alibaba's own front-end code generation benchmark; auto-render with a multimodal judge",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "TAU3-Bench",
+      "score": 67.2,
+      "setting": "vendor run; the official user model is gpt-5.2 at low reasoning effort, with default BM25 retrieval",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCPMark",
+      "score": 37.0,
+      "setting": "vendor run; GitHub MCP v0.30.3, Playwright responses truncated at 32K tokens",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP-Atlas (public set)",
+      "score": 62.8,
+      "setting": "vendor run; the judge model is gemini-2.5-pro",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "WideSearch",
+      "score": 60.1,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 86.0,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LiveCodeBench v6",
+      "score": 80.4,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AIME26",
+      "score": 92.7,
+      "setting": "vendor run on the full AIME 2026 (I and II)",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMLU-Pro",
+      "score": 85.2,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam",
+      "score": 21.4,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU",
+      "score": 81.7,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "VideoMME (with subtitles)",
+      "score": 86.6,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-6-35b-a3b",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/main/chat_template.jinja",
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+  "sources": [
+    {
+      "id": "hf-qwen3-6-35b-a3b",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-qwen3-6-35b-a3b-template",
+      "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/main/chat_template.jinja",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-api-36-35b",
+      "url": "https://huggingface.co/api/models/Qwen/Qwen3.6-35B-A3B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-36-35b",
+      "url": "https://www.qwencloud.com/models/qwen3.6-35b-a3b",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-models",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/text-generation-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prompting",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-6-35b-a3b",
+      "url": "https://artificialanalysis.ai/models/qwen3-6-35b-a3b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "lilting-36-35b",
+      "url": "https://lilting.ch/en/articles/qwen36-35b-ollama-m1max-test",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model found. The page text names Qwen only through an older model (Qwen 3 32B) and the leaderboard table is rendered by script, so a row is not ruled out",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis's coding-agent data (read 2026-10-03) holds a Claude Code run for Qwen3.8 Max only; none for this model",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only the generic 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so an entry for this model is not ruled out",
+    "retires: no retirement date published for the hosted endpoint; the open weights are not covered by any retirement",
+    "released: QwenCloud's changelog lists the hosted model on 2026-04-16; the Hugging Face repository was created on 2026-04-15; Artificial Analysis says 2026-04-16",
+    "max_output: QwenCloud's page and table give 65K (64k); the Hugging Face card suggests 32,768 tokens for most queries and 81,920 for hard problems; 65,536 kept",
+    "reasoning: thinking is on by default and switchable with enable_thinking, and preserve_thinking is an opt-in; the card documents no effort levels, so levels and default are empty",
+    "pricing_usd_per_mtok.cached_input: QwenCloud's model page shows no cache price for this model; Artificial Analysis shows none",
+    "system_card: none; the maker publishes no system card for this model; the Hugging Face card is a model card with benchmarks and settings only",
+    "Epoch AI: no Epoch AI page for this model was found at the addresses tried, so no Epoch Capabilities Index value is recorded",
+    "access: Ollama use rests on one practitioner's run (class A); LM Studio and Jan were not checked at those projects for this model",
+    "benchmarks: Alibaba's Hugging Face tables are vendor runs on its own scaffolds; the blog post that the card points to renders by script and was not read"
+  ]
+}

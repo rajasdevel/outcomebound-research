@@ -1,0 +1,186 @@
+{
+  "id": "evi-3",
+  "name": "Hume EVI 3",
+  "maker": "Hume AI",
+  "family": "EVI",
+  "class": "Hume EVI",
+  "generation": "3",
+  "released": "2025-07-18",
+  "status": "retiring",
+  "retires": "2026-11-13",
+  "weights": "closed",
+  "access": [
+    "Hume EVI API (wss://api.hume.ai/v0/evi), through a config with evi_version 3 (the default when no config is given)",
+    "Hume EVI Playground",
+    "Twilio phone integration"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "half",
+    "input_audio": "Linear 16 PCM (announce it with a session_settings message: format linear16, sample rate and channels, for example 44,100 Hz mono) or a container such as WebM; mu-law is not supported [hume-audio-guide] [hume-chat-ref]",
+    "output_audio": "Base64 WAV chunks at 48 kHz in audio_output messages [hume-chat-ref]",
+    "voices": "More than 100 predesigned voices in the Voice Library, plus custom voices that a user designs or clones; a voice must be set in the config (no default voice for EVI 3) [hume-voice] [hume-evi-version]",
+    "turn_detection": "turn_detection in the config: end_of_turn_silence_ms 500 to 3000 (default 800), speech_detection_threshold 0.0 to 1.0 (default 0.5), prefix_padding_ms 0 to 1000 (default 300) [hume-turn-detection]",
+    "interruption": "By default EVI stops generating and streaming as soon as it hears the user, and sends a user_interruption message; the client must stop playback and clear queued audio; interruption.min_interruption_ms 50 to 2000 (default 800) sets how long the user must speak before EVI yields [hume-interruptibility] [hume-interruption]",
+    "session_limit": "Max duration timeout default 1,800 seconds and at most 1,800 seconds (minimum 30); inactivity timeout default 120 seconds, 30 to 1,800 seconds [hume-timeouts]",
+    "languages": [
+      "English (the overview and version pages)",
+      "English and Spanish (the FAQ)"
+    ],
+    "latency": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Not per token. Hume's pricing page (read 2026-10-03) sells plans by month (Free US$0, Starter US$3, Creator US$7 for the first month then US$14, Pro US$70, Scale US$200, Business US$500, Enterprise on request) with included EVI minutes (5, 40, 200, 1,200, 5,000 and 12,500) and a per-minute figure beside each paid plan (US$0.07, 0.07, 0.06, 0.05 and 0.04). A separate line for additional EVI 3 use shows US$0.06, 0.05 and 0.04 per minute on the Pro, Scale and Business plans. The page text read does not say how these figures relate [hume-pricing]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://dev.hume.ai/docs/speech-to-speech-evi/guides/prompting",
+    "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/system-prompt"
+  ],
+  "system_card": null,
+  "model_page": "https://dev.hume.ai/docs/speech-to-speech-evi/overview",
+  "sources": [
+    {
+      "id": "hume-overview",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-evi-version",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/evi-version",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-turn-detection",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/turn-detection",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-interruption",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/interruption",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-timeouts",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/timeouts",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-prompting",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/guides/prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-audio-guide",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/guides/audio",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-chat-ref",
+      "url": "https://dev.hume.ai/reference/speech-to-speech-evi/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-faq",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/faq",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-changelog",
+      "url": "https://dev.hume.ai/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-pricing",
+      "url": "https://www.hume.ai/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-voice",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/voice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-language-model",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/configuration/language-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-interruptibility",
+      "url": "https://dev.hume.ai/docs/speech-to-speech-evi/features/interruptibility",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "released: Hume's changelog of 2025-07-18 says EVI 3 is available in the API; a company profile found in search gives a May 2025 launch, which was not read [hume-changelog]",
+    "context_window: not published; the language model sets the practical limit",
+    "max_output: not published",
+    "pricing_usd_per_mtok: the unit differs; EVI is priced per minute of use on plans",
+    "voice.duplex: half is this library's reading; Hume describes interruptible turns with silence detection and does not call EVI full-duplex",
+    "voice.latency: Hume gives no figure for EVI 3 on the pages read, and Artificial Analysis lists no Hume model",
+    "voice.languages: the overview and version pages say English; the FAQ says English and Spanish [hume-overview] [hume-faq]",
+    "benchmarks: Artificial Analysis lists no Hume model on its Speech to Speech page (read 2026-10-03) [aa-s2s]",
+    "system_card: none published",
+    "retires: Hume's changelog of 2026-10-02 announces that the EVI and TTS APIs end on 2026-11-13 at 12:01 a.m. EST and that account data is deleted after that date [hume-changelog] [hume-overview]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "id": "deepseek-v4-flash",
+  "name": "DeepSeek V4-Flash (0731)",
+  "maker": "DeepSeek",
+  "family": "DeepSeek V4",
+  "class": "DeepSeek Flash",
+  "generation": "4",
+  "released": "2026-07-31",
+  "status": "deprecated",
+  "retires": "2026-09-10",
+  "weights": "open (MIT)",
+  "access": [
+    "Hugging Face weights (deepseek-ai/DeepSeek-V4-Flash-0731)",
+    "Self-hosting with vLLM or SGLang, with DSpark speculative decoding",
+    "DeepSeek API: retired; the id deepseek-v4-flash is still accepted but temporarily routed to V4.1-Flash and billed at its price"
+  ],
+  "context_window": 1000000,
+  "max_output": 393216,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "low"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.44,
+    "output": 1.32,
+    "cached_input": null,
+    "notes": "Artificial Analysis's record of DeepSeek's API prices for this model; DeepSeek's own pages no longer list the retired id, and requests to deepseek-v4-flash are billed at V4.1-Flash rates. Weights are free to run."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 34,
+      "setting": "Max variant (DeepSeek V4 Flash 0731 (Max)), index v4.3.2 (ten evaluations); rank 11 of 118 on the page; the page marks the model deprecated for benchmarking and suggests V4.1-Flash",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 82.7,
+      "setting": "max effort, temperature 1.0, top-p 0.95; Pass@1 not stated",
+      "harness": "DeepSeek Harness (minimal mode, not yet released when the card was written)",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE",
+      "score": 54.4,
+      "setting": "max effort, temperature 1.0, top-p 0.95; Pass@1 not stated",
+      "harness": "DeepSeek Harness (minimal mode, not yet released when the card was written)",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 54.2,
+      "setting": "max effort, temperature 1.0, top-p 0.95; Pass@1 not stated",
+      "harness": "DeepSeek Harness (minimal mode, not yet released when the card was written)",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CyberGym",
+      "score": 76.7,
+      "setting": "max effort, temperature 1.0, top-p 0.95",
+      "harness": "DeepSeek Harness (minimal mode, not yet released when the card was written)",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon-Verified",
+      "score": 70.3,
+      "setting": "settings not stated; the card gives max effort, temperature 1.0 and top-p 0.95 only for its code-agent tasks",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Agents' Last Exam",
+      "score": 25.2,
+      "setting": "settings not stated; the card gives max effort, temperature 1.0 and top-p 0.95 only for its code-agent tasks",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench (Public)",
+      "score": 25.1,
+      "setting": "settings not stated; the card gives max effort, temperature 1.0 and top-p 0.95 only for its code-agent tasks",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DSBench-FullStack",
+      "score": 68.7,
+      "setting": "internal DeepSeek test set; max effort, temperature 1.0, top-p 0.95",
+      "harness": "DeepSeek Harness (minimal mode, not yet released when the card was written)",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DSBench-Hard",
+      "score": 59.6,
+      "setting": "internal DeepSeek test set of difficult coding-agent problems; max effort, temperature 1.0, top-p 0.95",
+      "harness": "DeepSeek Harness (minimal mode, not yet released when the card was written)",
+      "measured_by": "maker",
+      "source": "hf-v4-flash-0731",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731/blob/main/encoding/README.md",
+    "https://api-docs.deepseek.com/guides/thinking_mode",
+    "https://api-docs.deepseek.com/guides/tool_calls",
+    "https://api-docs.deepseek.com/guides/json_mode",
+    "https://api-docs.deepseek.com/guides/kv_cache"
+  ],
+  "system_card": "https://arxiv.org/html/2606.19348",
+  "model_page": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "sources": [
+    {
+      "id": "hf-v4-flash-0731",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-v4-flash-0731-encoding",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731/blob/main/encoding/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-changelog",
+      "url": "https://api-docs.deepseek.com/updates",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "The previous-generation models V4 Flash and V4 Flash Vision Exp have been retired"
+    },
+    {
+      "id": "deepseek-news-260424",
+      "url": "https://api-docs.deepseek.com/news/news260424",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-v4-report",
+      "url": "https://arxiv.org/html/2606.19348",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-pricing",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-thinking-mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-chat-api",
+      "url": "https://api-docs.deepseek.com/api/create-chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-tool-calls",
+      "url": "https://api-docs.deepseek.com/guides/tool_calls",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-json",
+      "url": "https://api-docs.deepseek.com/guides/json_mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-responses",
+      "url": "https://api-docs.deepseek.com/guides/responses_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-anthropic-api",
+      "url": "https://api-docs.deepseek.com/guides/anthropic_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-context-caching",
+      "url": "https://api-docs.deepseek.com/guides/kv_cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-codex",
+      "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/codex",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-v4-flash-0731",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not listed on Scale's table read for 2026-10-03 (no DeepSeek entry)",
+    "Artificial Analysis Coding Agent Index: the page embeds runs for this model, but the scores are not readable as text",
+    "METR 50% time horizon: no DeepSeek V4 model listed on the page's update log; the graph did not render in the page text",
+    "retires: 2026-09-10 is the day DeepSeek's change log calls V4-Flash retired from the API (the V4.1-Flash release); no earlier notice was found",
+    "pricing_usd_per_mtok: no DeepSeek page read lists a price for the retired id; the figures are Artificial Analysis's, with no peak or off-peak split stated; Artificial Analysis states a 97% cache discount but no cached-input price",
+    "context_window: the maker says 1M; whether that is 1,000,000 or 1,048,576 tokens is not stated (the card uses 1,000,000, as Artificial Analysis lists it)",
+    "max_output: DeepSeek's current pricing page gives 384K for the current ids and the model card recommends 384K for high and max; 393,216 is that figure in tokens, and no page gives a V4-Flash-only limit",
+    "parameters: DeepSeek and Artificial Analysis say 284B total and 13B active; Hugging Face's API counts about 304B parameters in the 0731 weight files, and no page explains the gap (the attached speculative-decoding module may account for part, inferred)",
+    "system_card: DeepSeek publishes no system card; the linked V4 Preview technical report has no safety or alignment section and describes the Preview, not the 0731 post-training",
+    "reasoning default: the weights' reference encoding defaults reasoning_effort to low (no prefix); DeepSeek's API guide gives high as the API default, but it now describes the current ids and this model is no longer served there",
+    "prompting_guides: DeepSeek publishes no prompt-writing guide; the listed pages are the prompt-format reference and API usage guides, which now describe the current ids"
+  ]
+}

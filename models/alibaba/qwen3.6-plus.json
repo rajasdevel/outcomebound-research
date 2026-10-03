@@ -1,0 +1,402 @@
+{
+  "id": "qwen3.6-plus",
+  "name": "Qwen3.6-Plus",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.6",
+  "class": "Qwen Plus",
+  "generation": "3.6",
+  "released": "2026-04-02",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud API",
+    "Alibaba Cloud Model Studio",
+    "OpenRouter",
+    "Claude Code (through the Anthropic-compatible endpoint)",
+    "OpenClaw",
+    "Qwen Code"
+  ],
+  "context_window": 1000000,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.5,
+    "output": 3.0,
+    "cached_input": 0.05,
+    "notes": "QwenCloud model page (read 2026-10-03), tier for inputs up to 256K tokens: US$0.50 input and US$3.00 output per million tokens, explicit cache creation US$0.625 and explicit cache read US$0.05; the page shows no implicit-cache price and no tier for longer inputs; Artificial Analysis shows 0.50 and 3.00 with a 90% cache discount; OpenRouter lists 0.325 and 1.95"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 27,
+      "setting": "reasoning model; Artificial Analysis flags this score as estimated, not a full run of the current index, and shows no token count or cost per task; effort not stated; the page marks the model as superseded by Qwen3.7 Plus",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis harness)",
+      "score": 61.4,
+      "setting": "Artificial Analysis's own run, earlier index component; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis GPQA Diamond",
+      "score": 88.2,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Humanity's Last Exam",
+      "score": 27.8,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis IFBench",
+      "score": 75.2,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis AA-LCR",
+      "score": 78.3,
+      "setting": "Artificial Analysis long-context reasoning run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis MMMU-Pro",
+      "score": 78.0,
+      "setting": "Artificial Analysis run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": 0.9,
+      "setting": "Artificial Analysis; accuracy 26.4% and hallucination rate 34.6% on the same run; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "score": 61.6,
+      "setting": "vendor run from the launch post: Harbor with Terminus-2, 3-hour timeout, 32 CPU and 48 GB RAM, temperature 1.0, top_p 0.95, top_k 20, 80K max tokens, 256K context, average of 5 runs; value read from the post's figure",
+      "harness": "Harbor / Terminus-2",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (refined set)",
+      "score": 56.6,
+      "setting": "vendor run; internal scaffold with bash and file-edit tools, temperature 1.0, top_p 0.95, 200K context; problem tasks corrected and all baselines re-run, so not the Scale V2 set; value read from the post's figure",
+      "harness": "internal scaffold (bash and file-edit tools)",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 78.8,
+      "setting": "vendor run; internal scaffold with bash and file-edit tools, temperature 1.0, top_p 0.95, 200K context; value read from the post's figure",
+      "harness": "internal scaffold (bash and file-edit tools)",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 73.8,
+      "setting": "vendor run; internal scaffold with bash and file-edit tools; value read from the post's figure",
+      "harness": "internal scaffold (bash and file-edit tools)",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Claw-Eval (pass^3)",
+      "score": 58.7,
+      "setting": "vendor run; temperature 0.6, 256K context; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "QwenClawBench",
+      "score": 57.2,
+      "setting": "vendor run on Alibaba's own real-user-distribution agent benchmark; temperature 0.6, 256K context; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "QwenWebBench (Elo)",
+      "score": 1501.7,
+      "setting": "vendor run on Alibaba's own front-end code generation benchmark; auto-render with a multimodal judge; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 37.9,
+      "setting": "vendor run via Claude Code, temperature 1.0, top_p 0.95, at most 900 turns; value read from the post's figure",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (maker run)",
+      "score": 68.3,
+      "setting": "vendor run in the launch post's long-context section; value read from the post's table image",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LongBench v2",
+      "score": 62.0,
+      "setting": "vendor run in the launch post's long-context section; value read from the post's table image",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU",
+      "score": 86.0,
+      "setting": "vendor run; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "RealWorldQA",
+      "score": 85.4,
+      "setting": "vendor run; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OmniDocBench v1.5",
+      "score": 91.2,
+      "setting": "vendor run; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Video-MME (with subtitles)",
+      "score": 87.8,
+      "setting": "vendor run; value read from the post's figure",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "blog-qwen3-6-plus",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005",
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.6-plus",
+  "sources": [
+    {
+      "id": "qwencloud-page-36plus",
+      "url": "https://www.qwencloud.com/models/qwen3.6-plus",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-models",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/text-generation-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "blog-qwen3-6-plus",
+      "url": "https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "blog-qwen3-7",
+      "url": "https://www.alibabacloud.com/blog/qwen3-7-the-agent-frontier_603154",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-cache",
+      "url": "https://docs.qwencloud.com/developer-guides/run-and-scale/context-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-vision",
+      "url": "https://docs.qwencloud.com/developer-guides/multimodal/vision",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prompting",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-snapshot-notice",
+      "url": "https://docs.qwencloud.com/changelog/model-deprecations/snapshot-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-6-plus",
+      "url": "https://artificialanalysis.ai/models/qwen3-6-plus",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aliyun-thinking",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/deep-thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model found. The page text names Qwen only through an older model (Qwen 3 32B) and the leaderboard table is rendered by script, so a row is not ruled out",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis's coding-agent data (read 2026-10-03) holds a Claude Code run for Qwen3.8 Max only; none for this model",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only the generic 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so an entry for this model is not ruled out",
+    "Terminal-Bench 4.0: Artificial Analysis's chart data holds no value for this model (the model has no Terminal-Bench 4.0 run there); no other independent run found",
+    "retires: no retirement date published; the model is not on QwenCloud's 2026-10-10 retirement notices read on 2026-10-03",
+    "max_output: the QwenCloud model page says 65K (also with thinking) and the model table says 64k; 65,536 kept",
+    "reasoning: QwenCloud documents thinking as switchable with enable_thinking and thinking_budget (model table: budget 80k) and preserve_thinking as an opt-in; Alibaba Cloud Model Studio's thinking guide says thinking is on by default; no reasoning_effort levels are documented, so levels and default are empty",
+    "system_card: none; the maker publishes no system card or model card for this model",
+    "access: OpenRouter's listing was read in its models API (class A); Model Studio availability and the Claude Code, OpenClaw and Qwen Code set-ups rest on the launch post",
+    "benchmarks: Alibaba's comparison tables are images; the values recorded here are read from the post's figure, and no maker table of the full result set is published as text",
+    "size: parameter count and architecture are not published; Artificial Analysis lists the size as undisclosed",
+    "Epoch AI: no Epoch AI page for this model was found at the addresses tried, so no Epoch Capabilities Index value is recorded"
+  ]
+}

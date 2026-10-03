@@ -1,0 +1,644 @@
+{
+  "id": "MiniMax-M3",
+  "name": "MiniMax M3",
+  "maker": "MiniMax",
+  "family": "MiniMax M3",
+  "class": "MiniMax M",
+  "generation": "3",
+  "released": "2026-06-01",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MiniMax Community License: free for non-commercial use; commercial use needs a 'Built with MiniMax M3' notice and either a one-time notice to MiniMax or, above US$20M yearly revenue, prior written authorization; an appendix lists prohibited uses, including military use)",
+  "access": [
+    "MiniMax API platform (platform.minimax.io, Anthropic-compatible, OpenAI Chat Completions and OpenAI Responses endpoints, pay as you go)",
+    "MiniMax Code",
+    "Token Plan subscription (closed to new purchases; existing subscribers keep it)",
+    "OpenRouter",
+    "Hugging Face weights (BF16 and MXFP8 checkpoints; MiniMax documents SGLang self-hosting as experimental)"
+  ],
+  "context_window": 1000000,
+  "max_output": 524288,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [
+      "enabled",
+      "adaptive",
+      "disabled"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.3,
+    "output": 1.2,
+    "cached_input": 0.06,
+    "notes": "Standard tier up to 512K input tokens; above 512K it is 0.60 input, 2.40 output, 0.12 cached. The pricing page shows these as already discounted ('permanent 50% off'; list 0.60/2.40/0.12 and 1.20/4.80/0.24). Priority tier is 1.5x. Artificial Analysis lists the same 0.30 and 1.20. OpenRouter lists the same 0.30 and 1.20, a 1,048,576-token context and 512,000 output tokens."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 29.2,
+      "setting": "Artificial Analysis; thinking mode as run by Artificial Analysis not stated on the page",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-cmp-k3-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 2.0,
+      "setting": "Artificial Analysis run inside its Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-cmp-k3-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (maker-reported; published 2026-06-01, before Scale's V2 split)",
+      "score": 59.0,
+      "setting": "MiniMax's own run on internal infrastructure, aligned with the official logic; the split and the thinking mode are not stated",
+      "harness": "Claude Code (internal infrastructure)",
+      "measured_by": "maker",
+      "source": "minimax-m3-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 66.0,
+      "setting": "8 CPU / 16 GB sandbox, 2 h timeout, 128K max output; thinking mode not stated",
+      "harness": "Terminus 2",
+      "measured_by": "maker",
+      "source": "minimax-m3-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP Atlas",
+      "score": 74.2,
+      "setting": "public set; the grader is Gemini 2.5 Pro, as in the official setup; thinking mode not stated",
+      "harness": "official MCP Atlas codebase",
+      "measured_by": "maker",
+      "source": "minimax-m3-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis run)",
+      "score": 65.2,
+      "setting": "inside Artificial Analysis's Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench (percent)",
+      "score": 82.9,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": 1.4,
+      "setting": "Artificial Analysis; accuracy 16.7%",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent)",
+      "score": 18.4,
+      "setting": "Artificial Analysis; lower is better",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (long-context reasoning, percent)",
+      "score": 83.0,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (percent)",
+      "score": 92.9,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (percent, no tools)",
+      "score": 39.0,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SciCode (percent)",
+      "score": 47.1,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CritPt (percent)",
+      "score": 3.7,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA (Elo, as listed on Artificial Analysis's model page)",
+      "score": 1245.4,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU-Pro (percent)",
+      "score": 78.6,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-fficiency (percent)",
+      "score": 34.8,
+      "setting": "internal infrastructure, 1 CPU / 2 GB sandbox, 2 h timeout",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "KernelBench Hard (percent of hardware peak)",
+      "score": 28.8,
+      "setting": "NVIDIA Blackwell sm_120; mean over 9 questions",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BrowseComp (percent)",
+      "score": 83.5,
+      "setting": "from MiniMax's M3 page; agent framework of WebExplorer, history discarded above 64K tokens",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "PostTrainBench",
+      "score": 37.1,
+      "setting": "12 h run, four base models, five benchmarks without LLM judges; the blog gives 0.37",
+      "harness": "Claude Code with a Ralph-Loop mechanism",
+      "measured_by": "maker",
+      "source": "minimax-m3-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified (percent, methodology-note run)",
+      "score": 70.06,
+      "setting": "361 samples, relative coordinates 0-1000, 1920x1080 images, 200 max steps (68.70 at 100 steps); the benchmark image in the Hugging Face card shows 75.2 for the same benchmark, a difference MiniMax does not explain",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified (percent, Hugging Face card table)",
+      "score": 75.2,
+      "setting": "as shown in the card's benchmark image; settings not stated beside the number",
+      "harness": "MiniMax's own harness (not stated)",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU-Pro (percent, maker-reported)",
+      "score": 78.1,
+      "setting": "Hugging Face card image; prompt enforces a format on the last line",
+      "harness": "MiniMax internal evaluation",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OmniDocBench (v1.5)",
+      "score": 91.6,
+      "setting": "Hugging Face card image; long edge up to 3584 pixels, formatting constraints added to the official prompts",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Video-MMMU",
+      "score": 84.6,
+      "setting": "Hugging Face card image; 1 frame a second, up to 512 frames, max output 32K, temperature 1.0, top_p 0.95",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "VideoMME with subtitles",
+      "score": 85.4,
+      "setting": "Hugging Face card image; 1 frame a second, up to 1024 frames; MiniMax's note gives 84.6 at 512 frames",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LOCA-Bench (256k)",
+      "score": 49.3,
+      "setting": "Hugging Face card image; official react mode, environment description length 256k",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Apex-Agents",
+      "score": 27.7,
+      "setting": "Hugging Face card image; ReAct toolbelt framework; scoring model Claude Sonnet 4.6",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Claw-Eval (Pass^3)",
+      "score": 74.5,
+      "setting": "Hugging Face card image; general task group of 161 tasks; scoring model Gemini 3.0 Flash",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SpreadSheetBench-v1",
+      "score": 89.4,
+      "setting": "Hugging Face card image; public dataset",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IMO 2025 (points of 42)",
+      "score": 35,
+      "setting": "Hugging Face card image; MathArena grading with two judge models taking the minimum; 512K max output, test-time scaling up to 10 iterations",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "USAMO 2026 (points of 42)",
+      "score": 36,
+      "setting": "Hugging Face card image; same method as IMO 2025",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Verified",
+      "score": 80.5,
+      "setting": "Hugging Face card image; internal infrastructure, default system prompt overridden, mean of 4 runs; thinking mode not stated",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE Atlas-QnA",
+      "score": 37.9,
+      "setting": "Hugging Face card image; 4 CPU / 8 GB sandbox, 3 h timeout",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 42.1,
+      "setting": "Hugging Face card image; 1 CPU / 2 GB sandbox, 4 h timeout, prompts forbid outside information and suspect Bash commands are intercepted",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "PaperBench",
+      "score": 52.6,
+      "setting": "Hugging Face card image; 12 h with a Ralph-Loop mechanism, 19 papers, scored by Claude Opus 4.6",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OfficeQA Pro",
+      "score": 45.1,
+      "setting": "Hugging Face card image; files given as a file system, exact-match scoring",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.minimax.io/docs/guides/text-m3-function-call",
+    "https://platform.minimax.io/docs/guides/text-m2-agent-generalization",
+    "https://platform.minimax.io/docs/api-reference/text-prompt-caching"
+  ],
+  "system_card": null,
+  "model_page": "https://www.minimax.io/models/text/m3",
+  "sources": [
+    {
+      "id": "aa-cmp-k3-m3",
+      "url": "https://artificialanalysis.ai/models/comparisons/kimi-k3-vs-minimax-m3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-blog",
+      "url": "https://www.minimax.io/blog/minimax-m3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-hf",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-pricing",
+      "url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-text-generation",
+      "url": "https://platform.minimax.io/docs/guides/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-function-call",
+      "url": "https://platform.minimax.io/docs/guides/text-m3-function-call",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-minimax-m3",
+      "url": "https://artificialanalysis.ai/models/minimax-m3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-minimax-m3-launch",
+      "url": "https://artificialanalysis.ai/articles/minimax-m3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "open-weight-g11",
+      "url": "https://www.minimax.io/blog/minimax-m3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tb4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "minimax-anthropic-api",
+      "url": "https://platform.minimax.io/docs/api-reference/text-anthropic-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-token-plan-notice",
+      "url": "https://platform.minimax.io/docs/m-plan/token-plan-notice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-release-notes",
+      "url": "https://platform.minimax.io/docs/release-notes/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-license",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3/blob/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-models-intro",
+      "url": "https://platform.minimax.io/docs/guides/models-intro",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-openai-api",
+      "url": "https://platform.minimax.io/docs/api-reference/text-openai-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-chat-openai-ref",
+      "url": "https://platform.minimax.io/docs/api-reference/text-chat-openai",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-responses-ref",
+      "url": "https://platform.minimax.io/docs/api-reference/responses-create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-prompt-caching",
+      "url": "https://platform.minimax.io/docs/api-reference/text-prompt-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-explicit-cache",
+      "url": "https://platform.minimax.io/docs/api-reference/anthropic-api-compatible-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-rate-limits",
+      "url": "https://platform.minimax.io/docs/guides/rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-agent-generalization",
+      "url": "https://platform.minimax.io/docs/guides/text-m2-agent-generalization",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-page",
+      "url": "https://www.minimax.io/models/text/m3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-hf-readme",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-local-deploy",
+      "url": "https://platform.minimax.io/docs/guides/local-deploy-m3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-msa-paper",
+      "url": "https://arxiv.org/abs/2606.13392",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "aa-minimax-m2-7",
+      "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "willison-glm52",
+      "url": "https://simonwillison.net/2026/jun/17/glm-52/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "reasoning default: depends on the endpoint. Omitting thinking leaves it off on the Anthropic-compatible endpoint and on the Responses endpoint, and enabled on the OpenAI Chat Completions endpoint (MiniMax's reference says adaptive is the default there)",
+    "SWE-Bench Pro (Scale, public V2): no MiniMax row on Scale's leaderboard page (page source searched 2026-10-03)",
+    "Artificial Analysis Coding Agent Index: no MiniMax entry among the 31 agent-and-model rows on the page (page data read 2026-10-03)",
+    "METR 50% time horizon: no MiniMax model on METR's time-horizons page (page source searched 2026-10-03)",
+    "Terminal-Bench 4.0 on the official tbench.ai leaderboard: no MiniMax row in the board data read on 2026-10-03; the value is from Artificial Analysis",
+    "Harness setting: the maker's benchmark rows do not state the thinking mode used",
+    "max_output: the number is the maximum of max_completion_tokens in MiniMax's OpenAI-compatible reference (recommended 131072); OpenRouter lists 512000; no other source names an output cap",
+    "context_window: the M3 page says the API supports up to 1M tokens with a guaranteed minimum of 512K; OpenRouter lists 1,048,576",
+    "prompting_guides: MiniMax publishes no prompting guide for M3; the earlier cited best-practices page (platform.minimax.io/docs/token-plan/prompting-best-practices) returns 404 and no replacement was found; the entries listed are tool-use, agent and caching guides",
+    "system_card: MiniMax publishes no system card or safety report for M3; the technical-report link on the Hugging Face card is the sparse-attention paper (arXiv 2606.13392), which has no safety section",
+    "safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found",
+    "OSWorld-Verified: the launch post's method note gives 70.06% (200 steps) while the Hugging Face card's image shows 75.2; both are recorded and MiniMax does not reconcile them"
+  ]
+}

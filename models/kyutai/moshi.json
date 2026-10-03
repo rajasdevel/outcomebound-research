@@ -1,0 +1,126 @@
+{
+  "id": "moshi",
+  "name": "Moshi (Moshiko and Moshika)",
+  "maker": "Kyutai",
+  "family": "Moshi",
+  "class": "Moshi",
+  "generation": null,
+  "released": null,
+  "status": "ga",
+  "retires": null,
+  "weights": "open (CC-BY-4.0)",
+  "access": [
+    "Self-hosted from Hugging Face: PyTorch bf16 (and an experimental int8), MLX (int4, int8, bf16) and Rust/Candle (int8, bf16) builds",
+    "moshi.chat web demo"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "24 kHz mono, encoded by the Mimi codec at 12.5 frames per second with 8 codebooks (about 1.1 kbit/s) [kyutai-card-moshiko] [kyutai-moshi-paper]",
+    "output_audio": "24 kHz mono through the same codec; the model also predicts time-aligned text tokens (its inner monologue) before each audio frame [kyutai-card-moshiko] [kyutai-moshi-paper]",
+    "voices": "2 fixed synthetic voices, Moshiko (male) and Moshika (female), one per build; the card says the model is trained to produce one voice only, to avoid impersonation, and the paper checks that it keeps its own voice and does not copy the user's (98.7% of segments) [kyutai-gh-moshi] [kyutai-card-moshiko] [kyutai-moshi-paper]",
+    "languages": [
+      "English"
+    ],
+    "turn_detection": "None to configure. The model takes the user's audio and its own audio as parallel streams and decides itself when to speak and when to listen [kyutai-moshi-paper]",
+    "interruption": "Built into the model: it listens while it speaks, and the paper counts interruptions, overlaps and backchannels among the dialogue patterns it models; no setting exists [kyutai-moshi-paper]",
+    "latency": "Kyutai: theoretical 160 ms (an 80 ms frame plus 80 ms acoustic delay), about 200 ms in practice on an L4 GPU [kyutai-gh-moshi] [kyutai-card-moshiko]",
+    "session_limit": "No API and no stated limit; the paper gives a temporal context of 3,000 steps (about 4 minutes) and says the model follows conversations across 5 minutes [kyutai-moshi-paper]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights with no hosted price. The README says the PyTorch build needs a GPU with a significant amount of memory (24 GB) and has no quantization; MLX and Candle builds exist for Mac and Rust [kyutai-gh-moshi]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 4.4,
+      "setting": "listed as Kyutai Moshi; the page does not say which build was run; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench subset)",
+      "score": 61.0,
+      "setting": "weighted average of pause handling 83.2, turn-taking 68.1, interruption handling 63.0 and backchannel handling 29.6 from Full Duplex Bench v1 and v1.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [],
+  "system_card": "https://huggingface.co/kyutai/moshiko-pytorch-bf16",
+  "model_page": "https://github.com/kyutai-labs/moshi",
+  "sources": [
+    {
+      "id": "kyutai-card-moshiko",
+      "url": "https://huggingface.co/kyutai/moshiko-pytorch-bf16",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kyutai-gh-moshi",
+      "url": "https://github.com/kyutai-labs/moshi",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kyutai-moshi-paper",
+      "url": "https://arxiv.org/abs/2410.00037",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "hf-kyutai-list",
+      "url": "https://huggingface.co/api/models?author=kyutai&sort=lastModified&direction=-1&limit=60",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "generation: Kyutai numbers no generations; the class Moshi holds this model and MoshiRAG, which count as its two generations",
+    "released: September 2024 by the model card's citation; the Hugging Face repositories were created on 2024-09-11 (Moshiko) and 2024-09-17 (Moshika); no exact release date was read [hf-kyutai-list]",
+    "context_window: not published as a token count; the paper gives 3,000 steps, about 4 minutes",
+    "max_output: not applicable; the model streams audio without a token cap",
+    "pricing_usd_per_mtok: open weights with no hosted price",
+    "prompting_guides: Kyutai publishes none; the model card and README describe no prompt or system-message input",
+    "Benchmarks: Artificial Analysis lists no tau-Voice or arena result for this model (read 2026-10-03) [aa-s2s]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

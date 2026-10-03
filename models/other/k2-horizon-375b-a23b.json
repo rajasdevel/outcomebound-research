@@ -1,0 +1,272 @@
+{
+  "id": "k2-horizon-375b-a23b",
+  "name": "K2 Horizon 375B-A23B",
+  "maker": "Institute of Foundation Models (MBZUAI)",
+  "family": "K2 Horizon",
+  "class": "K2 Horizon",
+  "generation": null,
+  "released": "2026-09-03",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (IFM/K2-Horizon-375B-A23B, with intermediate checkpoints)",
+    "vLLM",
+    "SGLang",
+    "Transformers",
+    "Ollama (day-zero support per launch coverage)"
+  ],
+  "context_window": 524288,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights; Artificial Analysis shows $0.00 for the one provider it tracks, which is a free listing, not a list price"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 31,
+      "setting": "reasoning; 130M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (strict, no internet)",
+      "score": 42.6,
+      "setting": "vendor run; the same table gives Inkling 43.1, Nemotron 3 Ultra 38.7 and GLM 5.2 46.7",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 70.2,
+      "setting": "vendor run, 89 tasks with 8 attempts each; IFM's own audit with Artificial Analysis's procedure flagged 24 trials and lowered it to 66.9, as relayed by secondary write-ups",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon Verified",
+      "score": 65.3,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Atlas-QnA (strict, no internet)",
+      "score": 48.4,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (after IFM's reward-hacking audit)",
+      "score": 66.9,
+      "setting": "vendor run; IFM audited the 500 passing trials with Artificial Analysis's reward-hacking procedure (GPT-5.6 Sol as judge) and removed 24 flagged trials across 10 tasks, a 3.37-point drop; relayed by two secondary write-ups, the maker's blog was not readable",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "agentpedia-k2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPVal-AA (Elo)",
+      "score": 1441,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau3-Banking",
+      "score": 34.0,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 87.3,
+      "setting": "vendor run; high reasoning effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (without tools)",
+      "score": 32.0,
+      "setting": "vendor run; high reasoning effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Non-Hallucination",
+      "score": 74.7,
+      "setting": "vendor run of Artificial Analysis's evaluation; high reasoning effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR",
+      "score": 76.0,
+      "setting": "vendor run of Artificial Analysis's evaluation; high reasoning effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCPMark",
+      "score": 67.7,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/IFM/K2-Horizon-375B-A23B"
+  ],
+  "system_card": "https://huggingface.co/IFM/K2-Horizon-375B-A23B",
+  "model_page": "https://huggingface.co/IFM/K2-Horizon-375B-A23B",
+  "sources": [
+    {
+      "id": "hf-k2-horizon",
+      "url": "https://huggingface.co/IFM/K2-Horizon-375B-A23B/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-k2-horizon",
+      "url": "https://artificialanalysis.ai/models/k2-horizon-375b-a23b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-open-weights-board",
+      "url": "https://artificialanalysis.ai/models/open-source",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mbzuai-k2-nyu",
+      "url": "https://rits.shanghai.nyu.edu/ai/ifm-releases-k2-horizon-six-open-models/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "agentpedia-k2",
+      "url": "https://agentpedia.codes/blog/k2-horizon-complete-guide",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "hf-k2-horizon-page",
+      "url": "https://huggingface.co/IFM/K2-Horizon-375B-A23B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tbench-integrity",
+      "url": "https://www.tbench.ai/news/leaderboard-integrity-update",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-cai-update",
+      "url": "https://cryptobriefing.com/artificial-analysis-coding-agent-index-reward-hacking/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's leaderboard (11 rows read, none for this model)",
+    "Terminal-Bench 4.0: no standalone score; Artificial Analysis counts Terminal-Bench 4.0 inside its v4.3.2 index without per-model numbers, and the tbench.ai leaderboard rows did not render for the fetcher",
+    "Artificial Analysis Coding Agent Index: no entry for this model among the runs on Artificial Analysis's Coding Agent Index v1.5 page (artificialanalysis.ai/agents/coding-agents), read 2026-10-03",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08)",
+    "max_output: not stated on the card",
+    "pricing: no list price; Artificial Analysis shows a free provider",
+    "released: 2026-09-03 is Artificial Analysis's date and the date given in launch coverage; the Hugging Face repo was created 2026-09-01",
+    "MBZUAI's own launch page returned 403 to the fetcher, so only the Hugging Face card and Artificial Analysis were read",
+    "access: only Hugging Face, vLLM, SGLang and Transformers are confirmed on the card; launch coverage adds day-zero Ollama support, and a third-party guide names Compass, Cerebras and Nebius as hosted-API partners, which no IFM page read confirms (IFM's blog returned 403)",
+    "pricing_usd_per_mtok: input, output, cached_input not published by the maker (checked 2026-10-03)",
+    "generation: the maker does not number generations of this class",
+    "reasoning.default: the card recommends high and lists low, medium and high as allowed values; it states no default",
+    "system_card: IFM has published no system card; the Hugging Face model card is recorded here and a technical report was announced as pending",
+    "Artificial Analysis Intelligence Index: secondary write-ups quote 47 at launch, while Artificial Analysis's own page shows 31 on index v4.3.2; the older index version behind 47 was not found"
+  ]
+}

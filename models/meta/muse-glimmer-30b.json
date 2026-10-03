@@ -1,0 +1,283 @@
+{
+  "id": "muse-glimmer-30b",
+  "name": "Muse Glimmer 30B",
+  "maker": "Meta",
+  "family": "Muse Glimmer",
+  "class": "Muse Glimmer",
+  "generation": null,
+  "released": "2026-08-10",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (meta-models/Muse-Glimmer-30B, bf16; GGUF k-quant builds; DFlash drafter; ExecuTorch exports)",
+    "Hugging Face Inference Endpoints",
+    "Ollama",
+    "Unsloth",
+    "LM Studio",
+    "Fireworks",
+    "Together AI",
+    "OpenRouter",
+    "Transformers",
+    "vLLM",
+    "SGLang",
+    "llama.cpp",
+    "ExecuTorch",
+    "MLX"
+  ],
+  "context_window": 131072,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.32,
+    "output": 1.35,
+    "cached_input": null,
+    "notes": "Open weights, free to self-host. The price is Artificial Analysis's figure across 4 hosted providers (the page does not name them; it shows an 88% cache discount). Meta's own API does not serve it; Meta's API docs list it as self-hosted"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 17,
+      "setting": "high; 59M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-glimmer",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (original 731-task set, Meta scaffold)",
+      "score": 51.2,
+      "setting": "high reasoning; Meta's own run with a bash tool and a file tool, mean of 4 runs; Meta's table gives Qwen3.6-27B 50.2 and Gemma4-31B 36.9",
+      "harness": "Meta's bash and file-tool scaffold",
+      "measured_by": "maker",
+      "source": "hf-glimmer",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Verified",
+      "score": 76.0,
+      "setting": "high reasoning; Meta's own run, mean of 4 runs; Meta's table gives Qwen3.6-27B 77.2 (Qwen's self-reported score)",
+      "harness": "Meta's bash and file-tool scaffold",
+      "measured_by": "maker",
+      "source": "hf-glimmer",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 51.7,
+      "setting": "high reasoning; Meta's table, which per Meta's methodology takes this figure from Artificial Analysis's run; Qwen3.6-27B 60.7",
+      "harness": "Terminus 2 in an E2B sandbox",
+      "measured_by": "maker",
+      "source": "hf-glimmer",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP Atlas (public)",
+      "score": 75.5,
+      "setting": "high reasoning; vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-glimmer",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (component of the Artificial Analysis Intelligence Index v4.3.2)",
+      "score": 1,
+      "setting": "high; resolved-task percentage",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-compare-glimmer-spark12",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AIME 2026",
+      "score": 94.7,
+      "setting": "high reasoning; vendor run; Meta's table gives Gemma4-31B 89.2 and Qwen3.6-27B 94.1",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-glimmer",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Siren AgentDojo (attack success rate, lower is better)",
+      "score": 28.4,
+      "setting": "high reasoning; vendor run; Meta's table gives Gemma4-31B 25.6 and Qwen3.6-27B 40.3; utility 94.2",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-glimmer",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://dev.meta.ai/docs/muse-glimmer/prompting",
+    "https://huggingface.co/meta-models/Muse-Glimmer-30B"
+  ],
+  "system_card": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "model_page": "https://dev.meta.ai/models/muse-glimmer/",
+  "sources": [
+    {
+      "id": "hf-glimmer",
+      "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "since it is generally less capable than Muse Spark"
+    },
+    {
+      "id": "hf-blog-glimmer",
+      "url": "https://huggingface.co/blog/muse-glimmer",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-page",
+      "url": "https://dev.meta.ai/models/muse-glimmer/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-glimmer",
+      "url": "https://artificialanalysis.ai/models/muse-glimmer",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-prompting",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-docs",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-vllm",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/vllm",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-sglang",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/sglang",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-llamacpp",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/llama-cpp",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-quant",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/quantization",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-get",
+      "url": "https://dev.meta.ai/docs/muse-glimmer/get-the-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-post",
+      "url": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-glimmer-methodology",
+      "url": "https://research.meta.ai/static/muse-glimmer-methodology",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-blog-index",
+      "url": "https://research.meta.ai/blog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-compare-glimmer-spark12",
+      "url": "https://artificialanalysis.ai/models/comparisons/muse-glimmer-vs-muse-spark-1-2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "meta-spark-report",
+      "url": "https://ai.meta.com/static-resource/muse-spark-safety-and-preparedness-report/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03); the 51.2 on this card is Meta's run on the original public task set",
+    "Artificial Analysis Coding Agent Index: no score on the model page read; the public coding-agent page's table did not render for the fetcher",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08)",
+    "max_output: not published by Meta; the Hugging Face blog's 8,192 is a maxTokens value in an example OpenClaw configuration, not a stated model limit",
+    "context_window: the model card says '131,072+', Meta's docs page says 128K by default with longer supported, Artificial Analysis says 131k; the Hugging Face blog's 32,768 is a value in an example OpenClaw configuration; 131072 used",
+    "released: the card says 'August 2026'; 2026-08-10 is the date on Meta's blog index and release post (the repository was created 2026-08-09)",
+    "generation: the maker does not number generations of this class",
+    "pricing_usd_per_mtok: cached_input not published; Artificial Analysis shows an 88% cache discount without naming a price",
+    "knowledge cutoff: 2026-01-04 per the model card (not a card key)"
+  ]
+}

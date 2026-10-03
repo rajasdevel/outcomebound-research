@@ -1,0 +1,182 @@
+{
+  "id": "stepaudio-3-realtime-preview",
+  "name": "StepAudio 3 Realtime (preview)",
+  "maker": "StepFun",
+  "family": "StepAudio 3",
+  "class": "StepAudio Realtime",
+  "generation": "3",
+  "released": "2026-09-15",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "StepFun Open Platform Realtime API (wss://api.stepfun.ai/v1/realtime)",
+    "StepFun Voice Studio"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "pcm16 (the only format the Realtime API lists); the sample rate is not stated on the pages for this model [step-realtime-api]",
+    "output_audio": "pcm16 (the only format the Realtime API lists); the sample rate is not stated for this model; the page for the 2.5 model states 24 kHz mono [step-realtime-api] [step-25-realtime]",
+    "voices": "7 system voices (soft-spoken-gentleman, magnetic-voiced-male, vibrant-youth, lively-girl, livelybreezy-female, elegantgentle-female, zixinnansheng) and cloned voices made with the StepAudio 2.5 TTS cloning API; the voice cannot change once the model has produced audio [step-realtime-api]",
+    "languages": [
+      "Chinese",
+      "English"
+    ],
+    "turn_detection": "Server VAD is off by default and is turned on with turn_detection.type server_vad: prefix_padding_ms default 500, silence_duration_ms default 100, energy_awakeness_threshold 0 to 5000 default 2500; otherwise the client commits the audio buffer and sends response.create [step-realtime-api]",
+    "interruption": "StepFun says the user and the model can speak at once, the model stops promptly on a real interruption and keeps the talk coherent through pauses and casual backchannels; with VAD on, the server sends input_audio_buffer.speech_started; response.cancel cancels a response [step-model-page-3] [step-realtime-api]",
+    "latency": "StepFun publishes no figure; Artificial Analysis measured an average time to first audio of 8.83 seconds on its Big Bench Audio set [aa-s2s]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Free for a limited time during the preview. StepFun says the preview name will be retired and a paid version added; no price is announced. For comparison the 2.5 model costs US$1.50 input, US$0.30 cached input and US$10.00 output per million tokens [step-pricing] [step-model-page-3]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 99.7,
+      "setting": "listed as StepAudio 3 Realtime; Artificial Analysis Speech to Speech page, whose table shows 100% rounded; StepFun says the board figures come from internal parameter settings that the API does not yet expose",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench subset)",
+      "score": 98.9,
+      "setting": "Artificial Analysis Speech to Speech page, table value; weighted average of pause handling 100, turn-taking 99.2, interruption handling 98.5 and backchannel handling 98.0 from Full Duplex Bench v1 and v1.5; the embedded data holds this result under a separate preview entry",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "StepAudioChat, reasoning mode (macro average)",
+      "score": 73.0,
+      "setting": "StepFun's technical report, own runs",
+      "harness": "StepFun harness",
+      "measured_by": "maker",
+      "source": "step-paper-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMSU",
+      "score": 90.6,
+      "setting": "StepFun's technical report, own run",
+      "harness": "StepFun harness",
+      "measured_by": "maker",
+      "source": "step-paper-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau-Voice task success (macro, percent)",
+      "score": 56.0,
+      "setting": "StepFun's technical report, own run",
+      "harness": "tau-Voice",
+      "measured_by": "maker",
+      "source": "step-paper-3",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.stepfun.ai/docs/en/api-reference/realtime/chat",
+    "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-3-realtime"
+  ],
+  "system_card": null,
+  "model_page": "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-3-realtime",
+  "sources": [
+    {
+      "id": "step-model-page-3",
+      "url": "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-3-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-realtime-api",
+      "url": "https://platform.stepfun.ai/docs/en/api-reference/realtime/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-audio-models",
+      "url": "https://platform.stepfun.ai/docs/en/guides/models/audio",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-pricing",
+      "url": "https://platform.stepfun.ai/docs/en/guides/pricing/details",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-paper-3",
+      "url": "https://arxiv.org/abs/2609.14005",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "runtimewire-step",
+      "url": "https://runtimewire.com/article/stepfun-stepaudio-3-five-audio-models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "step-25-realtime",
+      "url": "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-2.5-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "released: a trade report dates the five-model StepAudio 3 release 2026-09-15 and the technical report was submitted 2026-09-12; StepFun's pages show no release date [runtimewire-step] [step-paper-3]",
+    "retires: the preview name will retire when the paid version arrives; no date is published [step-model-page-3]",
+    "context_window: not published",
+    "max_output: not published",
+    "reasoning: StepFun describes adaptive reasoning and think-while-speaking and documents no switch; the API streams the reasoning text as response.thinking events [step-model-page-3] [step-realtime-api]",
+    "voice.session_limit: no maximum session length is stated",
+    "pricing_usd_per_mtok: no price yet; the model is free during the preview",
+    "system_card: none; the technical report is a paper [step-paper-3]",
+    "benchmarks: Artificial Analysis lists no tau-Voice or arena result for this model, and the StepFun docs warn that the board results use internal parameter settings the API may not match [aa-s2s] [step-realtime-api]",
+    "voice.languages: the Realtime API page and the audio overview say Chinese and English only [step-realtime-api] [step-audio-models]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

@@ -1,0 +1,226 @@
+{
+  "id": "mistral-large-3",
+  "name": "Mistral Large 3",
+  "maker": "Mistral",
+  "family": "Mistral 3",
+  "class": "Mistral Large",
+  "generation": "3",
+  "released": "2025-12-02",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Mistral API and AI Studio (id mistral-large-2512)",
+    "Amazon Bedrock (listed on Mistral's Bedrock page)",
+    "Azure Foundry (Mistral's docs list Large 3 25.12)",
+    "Hugging Face weights (Mistral-Large-3-675B-Instruct-2512; also Base, BF16, NVFP4 and Eagle repositories)",
+    "IBM watsonx (per Mistral's launch post)",
+    "Modal",
+    "OpenRouter",
+    "Fireworks",
+    "Together AI",
+    "Unsloth",
+    "vLLM"
+  ],
+  "context_window": 256000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.5,
+    "output": 1.5,
+    "cached_input": 0.05,
+    "notes": "List price on Mistral's model page and pricing page and as Artificial Analysis shows it. Cached input is 10% of the input price per Mistral's API reference; Artificial Analysis shows the same 0.05. Batch requests cost 50% less"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 9,
+      "setting": "non-reasoning",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-mistral-large-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (component of the Artificial Analysis Intelligence Index v4.3.2)",
+      "score": 0,
+      "setting": "non-reasoning; resolved-task percentage",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-compare-large-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (Artificial Analysis long-context reasoning, component of the index v4.3.2)",
+      "score": 36,
+      "setting": "non-reasoning",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-compare-large-small",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
+    "https://docs.mistral.ai/capabilities/completion/prompting_capabilities/",
+    "https://docs.mistral.ai/capabilities/function_calling/"
+  ],
+  "system_card": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
+  "model_page": "https://docs.mistral.ai/models/mistral-large-3-25-12",
+  "sources": [
+    {
+      "id": "mistral-models-overview",
+      "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-3-announcement",
+      "url": "https://mistral.ai/news/mistral-3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "debuts at #2 in the OSS non-reasoning models category"
+    },
+    {
+      "id": "hf-mistral-large-3",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-mistral-large-3",
+      "url": "https://artificialanalysis.ai/models/mistral-large-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mistral-pricing",
+      "url": "https://mistral.ai/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-large-3",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2025/12/mistral-large-3-ministral-3-family-available-amazon-bedrock",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mistral-large-3-docs",
+      "url": "https://docs.mistral.ai/models/mistral-large-3-25-12",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-prompting-docs",
+      "url": "https://docs.mistral.ai/capabilities/completion/prompting_capabilities/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-function-calling-docs",
+      "url": "https://docs.mistral.ai/capabilities/function_calling/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-azure-docs",
+      "url": "https://docs.mistral.ai/models/deployment/cloud-deployments/azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-large-3-system-prompt",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512/raw/main/SYSTEM_PROMPT.txt",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-compare-large-small",
+      "url": "https://artificialanalysis.ai/models/comparisons/mistral-large-3-vs-mistral-small-4",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mistral-chat-api",
+      "url": "https://docs.mistral.ai/api/endpoint/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Cached tokens are billed at 10% of the standard input token price."
+    },
+    {
+      "id": "mistral-td-large-3",
+      "url": "https://legal.mistral.ai/documents/Mistral%20Large%203%20-%20Technical%20Documentation%20for%20Downstream%20Providers.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-bedrock-docs",
+      "url": "https://docs.mistral.ai/inference/deployment/cloud-deployments/amazon_bedrock",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03)",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08)",
+    "Artificial Analysis Coding Agent Index: no run with this model is listed on Artificial Analysis's coding-agent pages",
+    "Terminal-Bench 4.0: the tbench.ai leaderboard rows did not render for the fetcher; the figure on this card is Artificial Analysis's own run, a component of its index",
+    "max_output: Mistral's technical documentation gives 256k tokens as the maximum text output, the same as the context window; no separate cap is published",
+    "context_window: published as '256k' only",
+    "id: Mistral's API id is mistral-large-2512; this card and file keep the slug mistral-large-3 that the repository already uses",
+    "retires: the models page lists no retirement date",
+    "maker benchmark scores: Mistral's model card shows charts only; the one text claim is the LMArena rank, which is not a coding-agent measure",
+    "system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card; Mistral's AI-Act technical documentation exists but reports no evaluations",
+    "reasoning: Mistral's December 2025 post said a reasoning version was coming; none was listed on the models page read on 2026-10-03"
+  ]
+}

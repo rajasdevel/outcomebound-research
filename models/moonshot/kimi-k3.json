@@ -1,0 +1,566 @@
+{
+  "id": "kimi-k3",
+  "name": "Kimi K3",
+  "maker": "Moonshot (Kimi)",
+  "family": "Kimi K3",
+  "class": "Kimi K",
+  "generation": "3",
+  "released": "2026-07-16",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Kimi K3 License)",
+  "access": [
+    "Kimi API platform (platform.kimi.ai; OpenAI Chat Completions, Responses and Anthropic-compatible endpoints)",
+    "Kimi apps (Kimi.ai, Kimi Work) and Kimi Code",
+    "Amazon Bedrock (since 2026-09-18)",
+    "Claude Code through the Anthropic-compatible endpoint (alias kimi-k3[1m])",
+    "Codex through the Responses endpoint",
+    "Hugging Face weights (since 2026-07-27)"
+  ],
+  "context_window": 1048576,
+  "max_output": 1048576,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3.0,
+    "output": 15.0,
+    "cached_input": 0.3,
+    "notes": "Moonshot list price, flat with no context-length bands; cache write 3.00 (5 min) or 6.00 (1 h). Bedrock global profile has the same input and output prices (cache write 3.75 for 30 min); the Bedrock US-only profile is 3.30 input, 16.50 output; Bedrock's priority service level is 1.75x and flex 0.5x [aws-bedrock-kimi-k3]. Thinking cannot be switched off, so reasoning tokens are billed with the tokens you use."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 88.2,
+      "setting": "max effort; the default Full tab; uncapped cost and a 250-turn limit",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 13.0,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-cmp-k3-m3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 12.6,
+      "setting": "from DeepSeek's V4.1-Flash comparison table, headed max reasoning effort; whether DeepSeek ran K3 itself or cited another source is not stated",
+      "harness": "not stated",
+      "measured_by": "third-party-vendor",
+      "source": "open-weight-f20",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 44,
+      "setting": "max effort; rank 3 of 118 on the page, index v4.3.2 (10 evaluations)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-kimi-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 88.3,
+      "setting": "max",
+      "harness": "Kimi Code",
+      "measured_by": "maker",
+      "source": "kimi-k3-github",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE (v1.1 tasks)",
+      "score": 67.5,
+      "setting": "max",
+      "harness": "Kimi Code",
+      "measured_by": "maker",
+      "source": "kimi-k3-github",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ProgramBench",
+      "score": 77.8,
+      "setting": "max",
+      "harness": "Kimi Code",
+      "measured_by": "maker",
+      "source": "kimi-k3-github",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Kimi Code Bench 2.0 (in-house)",
+      "score": 72.9,
+      "setting": "max",
+      "harness": "Kimi Code",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 93.5,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "kimi-k3-github",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience (Artificial Analysis Intelligence Index v4.3.2 component)",
+      "score": 20,
+      "setting": "max effort; index runs from -100 to 100 and penalises wrong answers",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-cmp-flash-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (Artificial Analysis Intelligence Index v4.3.2 component)",
+      "score": 89,
+      "setting": "max effort; percent. Moonshot's table cites 74.7 for the same test from Artificial Analysis as of 2026-07-23, version not stated",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-cmp-flash-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ExploitBench (UK AISI and CAISI, 41 Chrome V8 exploit tasks)",
+      "score": 32,
+      "setting": "score in percent (the post calls it a success rate); arbitrary code execution on 0 of 41 tasks against about 20 of 41 for the most capable US models; GLM-5.2 scored 24; preliminary, run before the weights were public",
+      "harness": "UK AISI / CAISI own evaluation setup",
+      "measured_by": "independent",
+      "source": "uk-aisi-caisi-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "The Last Ones cyber range (UK AISI and CAISI, 32-step network attack)",
+      "score": 17,
+      "setting": "mean steps reached of 32 within a 100M-token limit over 10 attempts, one full solve; the most capable US models reached 28.5 on average and GLM-5.2 reached 11",
+      "harness": "UK AISI / CAISI own evaluation setup",
+      "measured_by": "independent",
+      "source": "uk-aisi-caisi-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BrowseComp",
+      "score": 91.2,
+      "setting": "max effort; context compaction triggered at 300K tokens; 90.4 with the full 1M window and no context management",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP-Atlas",
+      "score": 84.2,
+      "setting": "max effort; 500-task public subset, 100-turn limit, Gemini 3.1 Pro as judge",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon-Verified",
+      "score": 76.5,
+      "setting": "max effort; cited by Moonshot from the official leaderboard as of 2026-07-24 (stated in the technical report)",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "kimi-k3-card-arxiv",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified",
+      "score": 84.8,
+      "setting": "max effort",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE-Full without tools",
+      "score": 43.5,
+      "setting": "max effort, top-p 0.95; 56.0 with general tools",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU-Pro without tools",
+      "score": 81.6,
+      "setting": "max effort, three runs, images prepended to text per the official protocol; 83.4 with Python",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Video-MME (with subtitles)",
+      "score": 90.0,
+      "setting": "max effort",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k3-hf",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.kimi.ai/docs/guide/kimi-k3-tool-calling-best-practice",
+    "https://platform.kimi.ai/docs/guide/kimi-k3-quickstart",
+    "https://platform.kimi.ai/docs/guide/use-reasoning-effort",
+    "https://platform.kimi.ai/docs/guide/use-thinking-models",
+    "https://platform.kimi.ai/docs/guide/use-dynamic-tool-loading",
+    "https://platform.kimi.ai/docs/guide/tool-call-repeat",
+    "https://platform.kimi.ai/docs/guide/context-caching",
+    "https://platform.kimi.ai/docs/guide/response_format",
+    "https://platform.kimi.ai/docs/guide/prompt-best-practice",
+    "https://www.kimi.ai/blog/kimi-k3"
+  ],
+  "system_card": "https://arxiv.org/html/2607.24653",
+  "model_page": "https://huggingface.co/moonshotai/Kimi-K3",
+  "sources": [
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-cmp-k3-m3",
+      "url": "https://artificialanalysis.ai/models/comparisons/kimi-k3-vs-minimax-m3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "open-weight-f20",
+      "url": "https://arxiv.org/html/2609.19969",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-kimi-k3",
+      "url": "https://artificialanalysis.ai/models/kimi-k3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-github",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-hf",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-quickstart",
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k3-quickstart",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-toolcalling",
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k3-tool-calling-best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-reasoning-effort",
+      "url": "https://platform.kimi.ai/docs/guide/use-reasoning-effort",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-pricing",
+      "url": "https://platform.kimi.ai/docs/pricing/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-models",
+      "url": "https://platform.kimi.ai/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-bedrock-kimi-k3",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-moonshot-ai-kimi-k3.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "open-weight-g14",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Kimi K3 always has thinking enabled"
+    },
+    {
+      "id": "open-weight-f15",
+      "url": "https://newsletter.ownersnotrenters.com/p/putting-kimi-k3-to-the-claude-code",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tb4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-card-arxiv",
+      "url": "https://arxiv.org/html/2607.24653",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-model-params",
+      "url": "https://platform.kimi.ai/docs/api/models-overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-blog-index",
+      "url": "https://www.kimi.ai/blog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-changelog",
+      "url": "https://platform.kimi.ai/docs/platform-changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-api-overview",
+      "url": "https://platform.kimi.ai/docs/api/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-thinking-models",
+      "url": "https://platform.kimi.ai/docs/guide/use-thinking-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-tool-choice",
+      "url": "https://platform.kimi.ai/docs/guide/use-tool-choice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-dynamic-tools",
+      "url": "https://platform.kimi.ai/docs/guide/use-dynamic-tool-loading",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-tool-repeat",
+      "url": "https://platform.kimi.ai/docs/guide/tool-call-repeat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-response-format",
+      "url": "https://platform.kimi.ai/docs/guide/response_format",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-partial-mode",
+      "url": "https://platform.kimi.ai/docs/guide/use-partial-mode-feature-of-kimi-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-vision",
+      "url": "https://platform.kimi.ai/docs/guide/use-kimi-vision-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-context-caching",
+      "url": "https://platform.kimi.ai/docs/guide/context-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-prompt-guide",
+      "url": "https://platform.kimi.ai/docs/guide/prompt-best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-limits",
+      "url": "https://platform.kimi.ai/docs/pricing/limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-troubleshooting",
+      "url": "https://platform.kimi.ai/docs/guide/troubleshooting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-claude-code",
+      "url": "https://platform.kimi.ai/docs/guide/claude-code-kimi",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-codex",
+      "url": "https://platform.kimi.ai/docs/guide/codex-kimi",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-blog",
+      "url": "https://www.kimi.ai/blog/kimi-k3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k3-license",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3/blob/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-vendor-verifier",
+      "url": "https://www.kimi.ai/blog/kimi-vendor-verifier",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-zdr",
+      "url": "https://platform.kimi.ai/docs/guide/zero-data-retention",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "uk-aisi-caisi-k3",
+      "url": "https://www.aisi.gov.uk/blog/preliminary-assessment-of-kimi-k3s-cyber-capabilities",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-cmp-flash-k3",
+      "url": "https://artificialanalysis.ai/models/comparisons/deepseek-v4-1-flash-vs-kimi-k3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-v41-flash",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-k27-code",
+      "url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-cmp-pro-k3",
+      "url": "https://artificialanalysis.ai/models/comparisons/deepseek-v4-pro-vs-kimi-k3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "Artificial Analysis Coding Agent Index: UNVERIFIED; the page (index v1.5) marks its scores as not publicly available and K3 is not shown.",
+    "METR 50% time horizon: UNVERIFIED; the graph did not render in the page text, and the page's update log names only Kimi K2 Thinking (2025-11-19) among Moonshot models.",
+    "Terminal-Bench 4.0 on the official tbench.ai leaderboard: UNVERIFIED; the table did not render. The 13% is from Artificial Analysis's comparison page and the 12.6 from DeepSeek's table.",
+    "SWE-Bench Pro (maker-reported): Moonshot's K3 card gives no SWE-Bench Pro figure.",
+    "Artificial Analysis harness for Terminal-Bench 4.0 not stated; scores at low and high effort not found.",
+    "Maker rows: Terminal-Bench 2.1, DeepSWE (v1.1 tasks) and ProgramBench are Moonshot's own runs in Kimi Code at max effort; Moonshot's card says other models in those tables used other harnesses (best across harnesses for Terminal-Bench 2.1), so the rows are not like-for-like. GPQA Diamond names no harness.",
+    "released: 2026-07-16 is the API date on Moonshot's blog index, blog post and Artificial Analysis; the changelog gives only 'July 2026'. The weights date 2026-07-27 is the Hugging Face initial commit.",
+    "system_card: Moonshot's linked report is a technical report. It has a cyber-capability section but no alignment, refusal, sycophancy or prompt-injection evaluation, and no deployment-safeguard section.",
+    "modalities: Moonshot's model card lists text and image in its summary table while its API pages and blog accept video; Amazon Bedrock does not accept video for K3."
+  ]
+}

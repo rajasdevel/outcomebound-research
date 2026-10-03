@@ -1,0 +1,179 @@
+{
+  "id": "higgs-realtime",
+  "name": "Higgs Realtime",
+  "maker": "Boson AI",
+  "family": "Higgs",
+  "class": "Higgs Realtime",
+  "generation": null,
+  "released": null,
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Boson AI API (wss://api.boson.ai/v1/realtime, OpenAI Realtime-compatible events)",
+    "Pipecat community integration (pipecat-boson)"
+  ],
+  "context_window": null,
+  "max_output": 4096,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "audio/pcm (PCM16 little-endian mono at 8000, 16000, 24000 or 48000 Hz, default 24000), audio/pcmu (G.711 mu-law, 8000 Hz) or audio/opus (24 kHz, frame size 2.5 to 60 ms, default 20); audio travels base64 in JSON events; near-field or far-field noise reduction is optional [boson-audio]",
+    "output_audio": "The same codecs and rates as the input, set separately; internal processing is 24 kHz 16-bit mono [boson-audio]",
+    "voices": "The default voice, named presets from the Higgs TTS API, and custom cloned voices (voice_<id>) made through the voices API [boson-audio]",
+    "languages": [],
+    "turn_detection": "server_vad (threshold 0.55, prefix_padding_ms 300, silence_duration_ms 500, min_speech_duration 0.125 s), semantic_vad (adds a semantic end-of-turn judgment), or null for manual commit; create_response, interrupt_response and eagerness are accepted but have no effect [boson-turn] [boson-migrate]",
+    "interruption": "Barge-in always interrupts: user speech during playback cancels the response, stops the audio and truncates the assistant item at the interruption point; the client should stop playback on input_audio_buffer.speech_started; conversation.item.truncate trims an item by audio_end_ms [boson-turn]",
+    "latency": "Artificial Analysis: 1.47 seconds average time to first audio on its Big Bench Audio set [aa-s2s]",
+    "session_limit": "An idle timeout closes the session after 5 minutes without user speech; a maximum wall-clock duration also exists, and the server sends session.max_duration_reached with the value; the pages read give no number [boson-migrate]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.75,
+    "output": 4.5,
+    "cached_input": 0.25,
+    "notes": "Boson pricing page (read 2026-10-03), token-billed per million tokens; the page also gives estimates of US$0.0023 per minute of audio input and US$0.014 per minute of audio output, and US$0.0025 per minute for input transcription with higgs-stt-3.1. Billing is prepaid; new accounts get US$10 of trial credit [boson-pricing]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 68.6,
+      "setting": "Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench subset)",
+      "score": 92.8,
+      "setting": "weighted average of pause handling 86.1, turn-taking 99.2, interruption handling 96.0 and backchannel handling 89.8 from Full Duplex Bench v1 and v1.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Agentic Performance (tau-Voice)",
+      "score": 18.6,
+      "setting": "share of replica customer-service scenarios resolved; airline 46.0, retail 5.3, telecom 4.7; only full-duplex models are run",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.boson.ai/models/higgs-realtime/guides/connections-and-sessions",
+    "https://docs.boson.ai/models/higgs-realtime/migrate-an-existing-integration"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.boson.ai/models/higgs-realtime/overview",
+  "sources": [
+    {
+      "id": "boson-overview",
+      "url": "https://docs.boson.ai/models/higgs-realtime/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-sessions",
+      "url": "https://docs.boson.ai/models/higgs-realtime/guides/connections-and-sessions",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-audio",
+      "url": "https://docs.boson.ai/models/higgs-realtime/guides/audio-and-voices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-turn",
+      "url": "https://docs.boson.ai/models/higgs-realtime/guides/turn-detection-and-interruptions",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-tools",
+      "url": "https://docs.boson.ai/models/higgs-realtime/guides/tool-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-migrate",
+      "url": "https://docs.boson.ai/models/higgs-realtime/migrate-an-existing-integration",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-pricing",
+      "url": "https://docs.boson.ai/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-limits",
+      "url": "https://docs.boson.ai/account-billing/usage-and-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pipecat-boson",
+      "url": "https://docs.pipecat.ai/api-reference/server/services/s2s/boson",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "cryptobriefing-higgs",
+      "url": "https://cryptobriefing.com/boson-ai-higgs-realtime-voice-model/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "generation: Boson numbers no generation of this model",
+    "released: a trade article of 2026-07-27 says Boson was preparing the release; the docs show the model live on 2026-10-03; no release date was read [cryptobriefing-higgs]",
+    "context_window: not published; the docs say long conversations are summarised before they exceed the model's context window",
+    "voice.languages: the realtime pages list none; a trade article names over 100 languages for the sister model Higgs TTS 3, not for this model [cryptobriefing-higgs]",
+    "weights: closed; no open release found",
+    "system_card: none published",
+    "benchmarks: Artificial Analysis lists no arena result for this model (read 2026-10-03) [aa-s2s]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

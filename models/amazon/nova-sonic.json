@@ -1,0 +1,199 @@
+{
+  "id": "nova-sonic",
+  "name": "Amazon Nova Sonic",
+  "maker": "Amazon",
+  "family": "Amazon Nova",
+  "class": "Nova Sonic",
+  "generation": "1",
+  "released": "2025-04-08",
+  "status": "deprecated",
+  "retires": "2026-09-14",
+  "weights": "closed",
+  "access": [
+    "Amazon Bedrock (legacy; model id amazon.nova-sonic-v1:0; Regions us-east-1, eu-north-1 and ap-northeast-1; new customers cannot adopt a legacy model)"
+  ],
+  "context_window": 300000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio (speech)"
+    ],
+    "output": [
+      "audio (speech)",
+      "text (transcripts)"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "Linear PCM (audio/lpcm), 16-bit, mono, base64, at 8,000, 16,000 or 24,000 Hz; the sample code captures 16 kHz [nova1-input-events, nova1-speech-guide]",
+    "output_audio": "Linear PCM (audio/lpcm), 16-bit, mono, base64, at 8,000, 16,000 or 24,000 Hz; the prompting examples use 24 kHz. AWS marks generated audio with a watermark [nova1-output-events, nova1-service-card]",
+    "voices": "11 voice IDs: tiffany, matthew, amy, ambre, florian, beatrice, lorenzo, greta, lennart, lupe and carlos [nova1-voices, nova1-service-card]",
+    "languages": [
+      "English (US, UK)",
+      "French",
+      "Italian",
+      "German",
+      "Spanish"
+    ],
+    "turn_detection": "Server side. The v1 guide documents no setting to tune it; the endpointingSensitivity setting appears only in the Nova 2 guide [nova1-speech-guide, nova2-sonic-turn-taking]",
+    "interruption": "Barge-in is supported. The model stops generating, switches to listening and sends a notice, and the client clears its playback queue because audio is generated faster than it plays. The basic Python sample does not implement barge-in [nova1-output-events, nova1-code-examples]",
+    "latency": null,
+    "session_limit": "An 8-minute connection timeout and up to 20 concurrent connections per customer. The client renews the connection and continues by sending the earlier conversation history in the new request [nova1-model-specs, nova1-errors]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3.4,
+    "output": 13.6,
+    "cached_input": null,
+    "notes": "AWS Price List, Amazon Bedrock, on-demand, US East (N. Virginia), published 2026-10-03. Speech input $0.0034 per 1,000 tokens ($3.40 per million). Speech output $0.0136 per 1,000 ($13.60 per million). Text input $0.06 per million and text output $0.24 per million. Other Regions: eu-north-1 speech $4.10 in and $16.30 out; ap-northeast-1 speech $3.70 in and $14.70 out [aws-price-list]."
+  },
+  "benchmarks": [
+    {
+      "name": "LLM-judge overall score, one dealership voice-agent scenario (scale 1 to 5)",
+      "score": 2.4,
+      "setting": "a consultancy's own test; the same test scored Nova 2 Sonic 2.7 with the baseline prompt",
+      "harness": "consultancy's LLM-judge pipeline",
+      "measured_by": "third-party-vendor",
+      "source": "aws-blog-voice-agent",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.aws.amazon.com/nova/latest/userguide/prompting-speech.html",
+    "https://docs.aws.amazon.com/nova/latest/userguide/speech.html"
+  ],
+  "system_card": "https://docs.aws.amazon.com/ai/responsible-ai/nova-sonic/overview.html",
+  "model_page": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-sonic.html",
+  "sources": [
+    {
+      "id": "bedrock-card-nova-sonic",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-sonic.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bedrock-lifecycle-legacy",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle-legacy.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-price-list",
+      "url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/index.json",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-whats-new",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2025/04/amazon-nova-sonic-speech-to-speech-conversations-bedrock/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-speech-guide",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/speech.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-model-specs",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-voices",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/available-voices.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-prompting",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/prompting-speech.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-input-events",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/input-events.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-output-events",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/output-events.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-errors",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/speech-errors.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova1-service-card",
+      "url": "https://docs.aws.amazon.com/ai/responsible-ai/nova-sonic/overview.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-blog-voice-agent",
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-loka-built-a-natural-low-latency-voice-agent-with-amazon-nova-2-sonic/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "repost-inconsistent-tools",
+      "url": "https://repost.aws/questions/QUhD4OjsK5TWaZCmhkV44Glg/nova-sonic-inconsistent-tool-calling",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "nova1-code-examples",
+      "url": "https://docs.aws.amazon.com/nova/latest/userguide/speech-code-examples.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-turn-taking",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-turn-taking.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro: not applicable to a speech-to-speech model; no run found",
+    "Terminal-Bench: not applicable to a speech-to-speech model; no run found",
+    "Artificial Analysis Intelligence Index: not listed for this model; Artificial Analysis scores speech-to-speech models on its own Speech to Speech Index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech-to-speech model; not listed",
+    "METR 50% time horizon: not applicable to a speech-to-speech model; no run found",
+    "pricing_usd_per_mtok.cached_input: the AWS price list has no cached-input rate for this model",
+    "status: the Bedrock card lists the lifecycle as Legacy since 2026-03-13 with an end-of-life date of 2026-09-14. That date has passed on 2026-10-03. The Legacy table, which says it leaves out models already past end of life, still lists the model, and the card still shows pricing and regions. Whether the model still answers requests was not tested",
+    "released: the Bedrock card says March 2025 and the AWS announcement is dated 2025-04-08; 2025-04-08 kept",
+    "max_output: no figure for Nova Sonic found in the guide pages read",
+    "benchmarks: Artificial Analysis lists no row for Nova Sonic v1; the only comparison found is a consultancy's own test",
+    "voice.latency: AWS and Artificial Analysis give no latency figure for Nova Sonic v1 in the pages read"
+  ]
+}

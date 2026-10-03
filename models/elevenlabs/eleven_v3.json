@@ -1,0 +1,218 @@
+{
+  "id": "eleven_v3",
+  "name": "Eleven v3",
+  "maker": "ElevenLabs",
+  "family": "Eleven",
+  "class": "Eleven Expressive",
+  "generation": "3",
+  "released": "2025-06-03",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "ElevenLabs API: Text to Speech and Text to Dialogue (HTTP and stream)",
+    "ElevenCreative (website and Studio)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with optional inline audio tags",
+    "output_audio": "MP3 (22.05 kHz at 32 kbps, 24 kHz at 48 kbps, 44.1 kHz at 32 to 192 kbps), PCM 8 to 48 kHz 16-bit, WAV 8 to 48 kHz, Opus 48 kHz (32 to 192 kbps), mu-law 8 kHz and A-law 8 kHz; the default is mp3_44100_128; MP3 at 192 kbps needs the Creator plan or above, and PCM or WAV at 44.1 kHz needs Pro or above [el-api-tts]",
+    "voices": "custom cloning: library voices (the maker's pages give 3,000+, 10,000+ and 5,000+ as counts), instant and professional voice clones, and designed voices [el-tts-overview] [el-voices]",
+    "languages": [
+      "70+ languages; the models page lists them by ISO 639-3 code [el-models]"
+    ],
+    "turn_detection": "none: a synthesis model. The Text to Dialogue WebSocket takes new_turn or a change of voice_id as a turn boundary; the standard Text to Speech WebSocket does not accept this model [el-ws-ttd] [el-ws-tts]",
+    "interruption": "Not a conversation model: the client stops playback. The docs describe no cancel message for the Text to Dialogue WebSocket [el-ws-ttd]",
+    "latency": "The docs state no inference latency for eleven_v3; Artificial Analysis reports a median of 31.6 characters generated per second (throughput, not latency) [aa-tts-board]. The maker describes Flash models as faster because they are smaller [el-latency-concept]",
+    "session_limit": "5,000 characters per request, about 5 minutes of audio [el-models]; the Text to Dialogue page advises at most 2,000 characters per request [el-ttd-overview]; the Text to Dialogue WebSocket closes after 20 seconds without a client message unless keep_alive is sent [el-ws-ttd]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. API list price US$0.08 per 1,000 characters [el-pricing-api]. On the website the cost is 1 credit per character; API generations are discounted [el-v3-cost]. Artificial Analysis lists US$100 per 1M characters, which does not match the list price [aa-tts-v3]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1171.45,
+      "setting": "blind pairwise listener votes on ElevenLabs's own voices; the model page gives 1171.45 and the leaderboard table read the same day gives 1173.8",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-v3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis text-to-speech median characters per second",
+      "score": 31.6,
+      "setting": "median generation speed; read from the leaderboard data on the Artificial Analysis text-to-speech page",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices",
+    "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4",
+    "https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue"
+  ],
+  "system_card": null,
+  "model_page": "https://elevenlabs.io/docs/overview/models",
+  "sources": [
+    {
+      "id": "el-models",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-v3-help",
+      "url": "https://elevenlabs.io/docs/help-center/product/core-capabilities/text-to-speech/what-is-eleven-v3-alpha",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-v3-cost",
+      "url": "https://elevenlabs.io/docs/help-center/product/core-capabilities/text-to-speech/how-much-does-it-cost-to-generate-using-eleven-v3-alpha",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-blog-v3",
+      "url": "https://elevenlabs.io/blog/eleven-v3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-v3-alpha",
+      "url": "https://elevenlabs.io/docs/changelog/2025/6/8",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-v3-api",
+      "url": "https://elevenlabs.io/docs/changelog/2025/8/20",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-v3-ga",
+      "url": "https://elevenlabs.io/docs/changelog/2026/2/2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-tts-practices",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-ttd-overview",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-api",
+      "url": "https://elevenlabs.io/pricing/api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-api-tts",
+      "url": "https://elevenlabs.io/docs/api-reference/text-to-speech/convert",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-tts-overview",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-voices",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/voices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-ws-ttd",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/websockets/realtime-tdd",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-ws-tts",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/websockets/realtime-tts",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-latency-concept",
+      "url": "https://elevenlabs.io/docs/eleven-api/concepts/latency",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-v3",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/eleven-v3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: not applicable to a synthesis model; the limit is in characters, see voice.session_limit",
+    "max_output: not published in tokens; the per-request limit is 5,000 characters [el-models]",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes",
+    "system_card: the maker publishes no system card or model card in the pages read",
+    "released: the maker's alpha launch post is dated 2025-06-03; the changelog entry that announces the alpha is dated 2025-06-08 [el-blog-v3] [el-changelog-v3-alpha]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

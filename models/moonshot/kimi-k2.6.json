@@ -1,0 +1,312 @@
+{
+  "id": "kimi-k2.6",
+  "name": "Kimi K2.6",
+  "maker": "Moonshot (Kimi)",
+  "family": "Kimi K2",
+  "class": "Kimi K",
+  "generation": "2.6",
+  "released": "2026-04-20",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Modified MIT)",
+  "access": [
+    "Kimi API platform (platform.kimi.ai; OpenAI Chat Completions, Responses and Anthropic-compatible endpoints), id kimi-k2.6",
+    "Kimi Code CLI",
+    "Hugging Face weights (moonshotai/Kimi-K2.6)",
+    "Self-hosting with vLLM, SGLang or KTransformers"
+  ],
+  "context_window": 262144,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [
+      "enabled",
+      "disabled"
+    ],
+    "default": "enabled"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.95,
+    "output": 4.0,
+    "cached_input": 0.16,
+    "notes": "Moonshot list price, one price for the whole 262,144-token window."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 27,
+      "setting": "reasoning variant, index v4.3.2 (ten evaluations); the page marks the model deprecated for benchmarking and suggests K3",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-k26",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro",
+      "score": 58.6,
+      "setting": "thinking on, temperature 1.0, top-p 1.0, 262,144-token window; averaged over 10 runs; in-house SWE-agent-style scaffold (bash, createfile, insert, view, strreplace, submit)",
+      "harness": "in-house scaffold adapted from SWE-agent",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "score": 66.7,
+      "setting": "thinking on, preserve-thinking mode, JSON parser; averaged over 10 runs",
+      "harness": "Terminus-2",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Verified",
+      "score": 80.2,
+      "setting": "thinking on; averaged over 10 runs",
+      "harness": "in-house scaffold adapted from SWE-agent",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Multilingual",
+      "score": 76.7,
+      "setting": "thinking on; averaged over 10 runs",
+      "harness": "in-house scaffold adapted from SWE-agent",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LiveCodeBench v6",
+      "score": 89.6,
+      "setting": "thinking on; averaged over 10 runs, as for all the card's coding tasks",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE-Full with tools",
+      "score": 54.0,
+      "setting": "thinking on; search, code-interpreter and web-browsing tools; 262,144 tokens in total, 49,152 per step; keeps only the most recent round of tool messages once the window passes a threshold",
+      "harness": "Kimi's agent setup with search, code interpreter and browsing",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE-Full",
+      "score": 34.7,
+      "setting": "thinking on, no tools; 98,304-token maximum generation; text-only subset 36.4",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BrowseComp",
+      "score": 83.2,
+      "setting": "thinking on; discard-all context management",
+      "harness": "Kimi's agent setup with search, code interpreter and browsing",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSearchQA (F1)",
+      "score": 92.5,
+      "setting": "thinking on; no context management, tasks over the window counted as failures",
+      "harness": "Kimi's agent setup with search, code interpreter and browsing",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon",
+      "score": 50.0,
+      "setting": "thinking on",
+      "harness": "maker's harness not described",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCPMark",
+      "score": 55.9,
+      "setting": "thinking on",
+      "harness": "maker's harness not described",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified",
+      "score": 73.1,
+      "setting": "thinking on",
+      "harness": "maker's harness not described",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA-Diamond",
+      "score": 90.5,
+      "setting": "thinking on; 98,304-token maximum generation",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AIME 2026",
+      "score": 96.4,
+      "setting": "thinking on; 98,304-token maximum generation",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU-Pro",
+      "score": 79.4,
+      "setting": "thinking on; 98,304 tokens; averaged over 3 runs",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "kimi-k26-hf",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.kimi.ai/docs/guide/kimi-k2-6-quickstart",
+    "https://platform.kimi.ai/docs/guide/use-thinking-models",
+    "https://platform.kimi.ai/docs/guide/prompt-best-practice",
+    "https://platform.kimi.ai/docs/guide/benchmark-best-practice",
+    "https://platform.kimi.ai/docs/api/models-overview"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "sources": [
+    {
+      "id": "kimi-k26-hf",
+      "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k26-quickstart",
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k2-6-quickstart",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-k26-blog",
+      "url": "https://www.kimi.ai/blog/kimi-k2-6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-models",
+      "url": "https://platform.kimi.ai/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-pricing",
+      "url": "https://platform.kimi.ai/docs/pricing/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-model-params",
+      "url": "https://platform.kimi.ai/docs/api/models-overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-thinking-models",
+      "url": "https://platform.kimi.ai/docs/guide/use-thinking-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-benchmark-guide",
+      "url": "https://platform.kimi.ai/docs/guide/benchmark-best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-changelog",
+      "url": "https://platform.kimi.ai/docs/platform-changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-prompt-guide",
+      "url": "https://platform.kimi.ai/docs/guide/prompt-best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-k26",
+      "url": "https://artificialanalysis.ai/models/kimi-k2-6",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "kimi-k25-report",
+      "url": "https://arxiv.org/abs/2602.02276",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kimi-vendor-verifier",
+      "url": "https://www.kimi.ai/blog/kimi-vendor-verifier",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "system_card: Moonshot publishes no system card for K2.6; the Hugging Face card and the tech blog carry benchmark tables and settings only, and the K2.5 report is the nearest technical report",
+    "max_output: not published for K2.6; Moonshot's rule for the K2 models is the window minus the prompt, and the default max_tokens is not stated on the pages read",
+    "released: the Hugging Face repository was created 2026-04-14 and its card was edited 2026-04-20; 2026-04-20 is the release date Artificial Analysis lists and a secondary news report gives, and Moonshot's changelog says only April 2026",
+    "SWE-Bench Pro (Scale, public V2): no K2.6 row on the leaderboard read",
+    "Artificial Analysis Coding Agent Index: no K2.6 entry read on the page",
+    "METR 50% time horizon: not looked up for K2.6; no entry was confirmed",
+    "Terminal-Bench 4.0: no independent K2.6 result read; the Artificial Analysis index components did not render as text",
+    "reasoning levels: the toggle has two states (thinking enabled or disabled); Moonshot documents no effort levels for K2.6",
+    "status: Moonshot's model list shows kimi-k2.6 as served; Artificial Analysis marks it deprecated for its own benchmarking and recommends K3; no retirement date is published"
+  ]
+}

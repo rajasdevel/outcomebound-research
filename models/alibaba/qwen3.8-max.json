@@ -1,0 +1,495 @@
+{
+  "id": "qwen3.8-max",
+  "name": "Qwen3.8-Max",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.8",
+  "class": "Qwen Max",
+  "generation": "3.8",
+  "released": "2026-08-03",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud API (OpenAI-compatible, Anthropic-compatible, OpenAI Responses)",
+    "Alibaba Cloud Model Studio",
+    "Claude Code (Anthropic protocol)",
+    "Codex (Responses protocol)",
+    "Qwen Code",
+    "Qoder CLI",
+    "OpenClaw",
+    "OpenRouter",
+    "Fireworks AI",
+    "Novita",
+    "DeepInfra",
+    "Vercel AI Gateway"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "xhigh"
+    ],
+    "default": "xhigh"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 6.0,
+    "cached_input": 0.25,
+    "notes": "QwenCloud model page (read 2026-10-03): US$2 input, US$6 output, implicit cache US$0.25, explicit cache creation US$2.50 and explicit cache read US$0.17 per million tokens; one price row, no long-input surcharge shown; Model Studio lists US$2 and US$6 in Singapore and US$1.65 and US$4.951 in Beijing and its other regions; Artificial Analysis shows 2.00 and 6.00 with an 88% cache discount. The Batch API page states a 50% discount for qwen-max, qwen-plus, qwen-flash and qwen-turbo and does not name Qwen3.8 ids. The bare id qwen3.8-max now means the 0902 snapshot."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 45,
+      "setting": "0902 snapshot, reasoning; effort not stated",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-8-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 38.9,
+      "setting": "0902 snapshot; Artificial Analysis's own run inside its Intelligence Index v4.3.2; effort not stated; value read from the chart data embedded in the model page (the chart renders client-side), not from page text",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-8-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (v1.5)",
+      "score": 43.3,
+      "setting": "Claude Code (version 2.1.261, released 2026-09-04) with Qwen3.8 Max on Alibaba's API, snapshot not named; components DeepSWE v1.1 51.0, Terminal-Bench 4.0 16.7, SWE-Atlas-QnA 62.1, each the mean of three attempts per task; mean cost US$3.48 per task; read from the leaderboard's chart data",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis harness)",
+      "score": 88.8,
+      "setting": "0902 snapshot; Artificial Analysis's own run, earlier index component; read from the model page's chart data; a launch-week article reports 81.3 for the launch build on Artificial Analysis's Terminus 2 harness",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-8-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.1)",
+      "score": 58,
+      "setting": "launch snapshot after upward revision (first read 53); older index version, not comparable with v4.3.2",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "nyu-rits",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Agentic Index (v4.1)",
+      "score": 58,
+      "setting": "launch snapshot; tied with Opus 5 xhigh per the article",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "nyu-rits",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 86.6,
+      "setting": "vendor run; Claude Code, average of 10, 5-hour timeout, max_tokens 131,072; the table column is labelled Qwen3.8-Max and was published 2026-08-13, before the 0902 snapshot",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro",
+      "score": 67.7,
+      "setting": "vendor run; temperature 1.0, top_p 0.95, 256K context; problem tasks corrected and baselines re-run on the refined set, so not the Scale V2 set; column labelled Qwen3.8-Max",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE 1.1",
+      "score": 56.6,
+      "setting": "vendor run; best of Claude Code and mini-SWE-agent (the card says Max did best on Claude Code); temperature 1.0, top_p 0.95, 256K context; column labelled Qwen3.8-Max",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 92.6,
+      "setting": "vendor run; column labelled Qwen3.8-Max; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified",
+      "score": 86.1,
+      "setting": "vendor-reported, via a secondary article; not in the open-weight card's table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "nyu-rits",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MathArena ArXivMath Overall",
+      "score": 67.59,
+      "setting": "reasoning effort shown as max (not a QwenCloud level); temperature 1.0, top_p 0.95, max tokens 131,072; via OpenRouter; plus or minus 5.59; rank 6 of 12",
+      "harness": "MathArena",
+      "measured_by": "independent",
+      "source": "matharena-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Arena.ai Vision Arena (Elo)",
+      "score": 1301,
+      "setting": "launch week; second place; relayed by The Batch",
+      "harness": "Arena.ai",
+      "measured_by": "independent",
+      "source": "batch-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Arena.ai WebDev Code Arena (Elo)",
+      "score": 1667,
+      "setting": "launch week; fourth place; relayed by The Batch",
+      "harness": "Arena.ai",
+      "measured_by": "independent",
+      "source": "batch-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA v2 (Elo)",
+      "score": 1739,
+      "setting": "launch week; third place; Artificial Analysis figure relayed by The Batch and by NYU RITS",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "batch-max",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench",
+      "score": 82.8,
+      "setting": "vendor run; column labelled Qwen3.8-Max; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR v2 256K (8-needle)",
+      "score": 92.9,
+      "setting": "vendor run; column labelled Qwen3.8-Max",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LongBench v2",
+      "score": 66.3,
+      "setting": "vendor run; column labelled Qwen3.8-Max",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-2-4t",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+    "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+    "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+    "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+    "https://docs.qwencloud.com/developer-guides/run-and-scale/context-cache",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.8-max",
+  "sources": [
+    {
+      "id": "hf-qwen3-8-2-4t",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Qwen3.8-2.4T-A95B is a text-only model that requires thinking mode for all interactions. Multimodal inputs are not supported, and thinking cannot be disabled."
+    },
+    {
+      "id": "blog-qwen3-8-max",
+      "url": "https://www.alibabacloud.com/blog/qwen3-8-max-a-new-bar-for-coding-and-cowork_603421",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-2607-19257",
+      "url": "https://arxiv.org/abs/2607.19257",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-max",
+      "url": "https://www.qwencloud.com/models/qwen3.8-max",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "blog-qwen3-7",
+      "url": "https://www.alibabacloud.com/blog/qwen3-7-the-agent-frontier_603154",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-8-max",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-max",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "nyu-rits",
+      "url": "https://rits.shanghai.nyu.edu/ai/qwen3-8-max-draws-level-with-the-frontier-on-agentic-benchmarks/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-models",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/text-generation-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-search",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/web-search",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-anthropic",
+      "url": "https://docs.qwencloud.com/api-reference/chat/anthropic",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "codersera-max",
+      "url": "https://codersera.com/blog/qwen-3-8-max-complete-guide-2026/amp/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "datanorth-0902",
+      "url": "https://datanorth.ai/news/alibaba-releases-qwen3-8-max-0902",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-vision",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/vision-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "matharena-max",
+      "url": "https://matharena.ai/models/qwen_qwen3_8_max",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-page-37max",
+      "url": "https://www.qwencloud.com/models/qwen3.7-max",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-security",
+      "url": "https://docs.qwencloud.com/developer-guides/security-compliance/data-security",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "penligent-jailbreak",
+      "url": "https://www.penligent.ai/hackinglabs/qwen3-8-jailbreak/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "batch-max",
+      "url": "https://www.deeplearning.ai/the-batch/qwen3-8-max-lands-with-a-bang",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "versely-apsara",
+      "url": "https://www.versely.studio/blog/qwen-4-announced-at-apsara-2026",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-max",
+      "url": "https://openrouter.ai/qwen/qwen3.8-max-0902",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-max-update",
+      "url": "https://docs.qwencloud.com/changelog/model-updates/qwen3.8-max-upgrade",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-max",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen3-8-max",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-vision",
+      "url": "https://docs.qwencloud.com/developer-guides/multimodal/vision",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-cache",
+      "url": "https://docs.qwencloud.com/developer-guides/run-and-scale/context-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "hf-qwen3-8-27b",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prompting",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Qwen row among the 11 rows of the Scale leaderboard read on 2026-10-03; the page shows no update date",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so a Qwen3.x entry is not ruled out",
+    "retires: no retirement date published",
+    "Artificial Analysis effort setting: the model page does not name the effort it ran; the Coding Agent Index row does not name the snapshot",
+    "Benchmark rows: the vendor table sits on the open 2.4T card under a Qwen3.8-Max column, so those figures describe the 2026-08-03 Max build, not the 0902 snapshot; the launch post's benchmark images did not parse",
+    "Arena and GDPval-AA rows: relayed by a news article (class A) for launch week and not read at Arena or Artificial Analysis",
+    "system_card: none; QwenCloud's model page, Model Studio's page and the launch post cite none, and the maker may not publish one",
+    "access: Fireworks AI, Novita, DeepInfra and Vercel AI Gateway rest on a reseller listing (class A) and were not read at each provider; OpenRouter lists the 0902 snapshot and, since 2026-09-23, a higher-priced 'Qwen3.8 Max Prime' variant that no QwenCloud page read names",
+    "reasoning: whether the hosted endpoint adds the effort sentence of the open chat template to the prompt is not stated; QwenCloud's API reference marks preserve_thinking on by default for qwen3.8-max"
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "id": "glm-5.3-flashx",
+  "name": "GLM-5.3-FlashX",
+  "maker": "Zhipu (GLM)",
+  "family": "GLM-5.3",
+  "class": "GLM FlashX",
+  "generation": "5.3",
+  "released": "2026-09-18",
+  "status": "ga",
+  "retires": null,
+  "weights": null,
+  "access": [
+    "Z.ai API",
+    "OpenRouter"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "file"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.37,
+    "output": 1.25,
+    "cached_input": 0.075,
+    "notes": "Z.ai list price; cache storage limited-time free. OpenRouter lists cached read at 0.09."
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://docs.z.ai/devpack/resources/best-practice",
+    "https://docs.z.ai/devpack/resources/memory-mechanism",
+    "https://docs.z.ai/guides/capabilities/thinking-mode",
+    "https://docs.z.ai/guides/capabilities/thinking",
+    "https://docs.z.ai/guides/overview/migrate-to-glm-new"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
+  "sources": [
+    {
+      "id": "zai-flash-docs",
+      "url": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "GLM-5.3-FlashX is now live, delivering inference speeds of 200 tokens/s for faster responses and a smoother experience."
+    },
+    {
+      "id": "zai-pricing",
+      "url": "https://docs.z.ai/guides/overview/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-models-overview",
+      "url": "https://docs.z.ai/guides/overview/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-thinking-mode",
+      "url": "https://docs.z.ai/guides/capabilities/thinking-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-best-practice",
+      "url": "https://docs.z.ai/devpack/resources/best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "This kind of structured task input reduces unnecessary guesswork and makes the agent’s changes more consistent and easier to review."
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": "GLM-5.3-Prime is the high-speed variant of Z.ai's GLM-5.3, inheriting its full capabilities while delivering 1.5–2× the output throughput through inference acceleration."
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Every agent diff is re-graded on a pristine image, and we publish both grades."
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "orcarouter-flashx",
+      "url": "https://www.orcarouter.ai/nl/blog/glm-5-3-flashx-release",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "zai-deep-thinking",
+      "url": "https://docs.z.ai/guides/capabilities/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-migrate",
+      "url": "https://docs.z.ai/guides/overview/migrate-to-glm-new",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-chat-api",
+      "url": "https://docs.z.ai/api-reference/llm/chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-struct-output",
+      "url": "https://docs.z.ai/guides/capabilities/struct-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-cache",
+      "url": "https://docs.z.ai/guides/capabilities/cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-errors",
+      "url": "https://docs.z.ai/api-reference/api-code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-coding-plan",
+      "url": "https://docs.z.ai/devpack/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-switch-models",
+      "url": "https://docs.z.ai/devpack/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-stream-tool",
+      "url": "https://docs.z.ai/guides/tools/stream-tool",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-memory-mechanism",
+      "url": "https://docs.z.ai/devpack/resources/memory-mechanism",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-function-calling",
+      "url": "https://docs.z.ai/guides/capabilities/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-release-notes",
+      "url": "https://docs.z.ai/release-notes/new-released",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mtac-ifbench",
+      "url": "https://arxiv.org/abs/2609.14992",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-glm-5-3-flash",
+      "url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no FlashX row",
+    "Terminal-Bench 4.0: no FlashX row on tbench.ai and no Artificial Analysis page (404 on 2026-10-03)",
+    "Artificial Analysis Intelligence Index: no FlashX page",
+    "Artificial Analysis Coding Agent Index: no FlashX entry",
+    "METR 50% time horizon: METR's page lists no GLM model",
+    "retires: no retirement date published",
+    "weights: null because Z.ai states nothing; OpenRouter says it is built on the Flash architecture, a reseller blog says it has no weights of its own, and no FlashX repository exists on Hugging Face, so it is probably Flash's MIT weights served faster",
+    "reasoning levels: Z.ai's Deep Thinking page names Flash but not FlashX; the shared Flash/FlashX docs page says text parameters match GLM-5.3, and OpenRouter lists max, high, low",
+    "released: Z.ai's page carries no date; 2026-09-18 is OpenRouter's listing date and the date a reseller blog gives for Z.ai's announcement",
+    "benchmarks: no independent or maker result found (checked 2026-10-03)",
+    "system_card: Z.ai publishes no system card or safety report for GLM-5.3-FlashX",
+    "model_page: Z.ai has no page of its own for FlashX; the Flash/FlashX docs page is used",
+    "modalities: Z.ai's shared page lists image, video, text and file input; OpenRouter lists image and video, not file",
+    "Coding Plan: Z.ai's Flash page says FlashX is not yet on the plan (read 2026-10-03)"
+  ]
+}

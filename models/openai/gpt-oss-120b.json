@@ -1,0 +1,265 @@
+{
+  "id": "gpt-oss-120b",
+  "name": "gpt-oss-120b",
+  "maker": "OpenAI",
+  "family": "gpt-oss",
+  "class": "gpt-oss",
+  "generation": null,
+  "released": "2025-08-05",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face (weights)",
+    "Amazon Bedrock",
+    "Microsoft Foundry (preview)",
+    "third-party inference hosts listed by Artificial Analysis (Groq, Cerebras, SambaNova, DeepInfra, CoreWeave, Google Vertex, Together AI and others)"
+  ],
+  "context_window": 131072,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.15,
+    "output": 0.6,
+    "cached_input": 0.075,
+    "notes": "no maker price (open weights); Groq's list price; Artificial Analysis's providers page lists the lowest blended price across hosts at 0.04 per million tokens (CoreWeave), then DeepInfra 0.05 and Crusoe 0.07"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 12,
+      "setting": "high (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-oss-120b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 10,
+      "setting": "low (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-oss-120b-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run)",
+      "score": 0,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-oss-120b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent, lower is better)",
+      "score": 90.8,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-oss-120b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (long-context reasoning, percent)",
+      "score": 52.0,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-oss-120b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified (mini-SWE-agent, 150 steps, CMU critic study)",
+      "score": 20.4,
+      "setting": "medium; no critic",
+      "harness": "mini-SWE-agent",
+      "measured_by": "independent",
+      "source": "cmu-steer-dont-solve",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified (mini-SWE-agent, 150 steps, CMU critic study)",
+      "score": 34.8,
+      "setting": "medium; with a small trained critic",
+      "harness": "mini-SWE-agent",
+      "measured_by": "independent",
+      "source": "cmu-steer-dont-solve",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 62.4,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "arxiv-gpt-oss",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 52.6,
+      "setting": "medium",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "arxiv-gpt-oss",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 47.9,
+      "setting": "low",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "arxiv-gpt-oss",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AIME 2025 (no tools)",
+      "score": 92.5,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "arxiv-gpt-oss",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (no tools)",
+      "score": 80.1,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "arxiv-gpt-oss",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Tau-Bench Retail",
+      "score": 67.8,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "arxiv-gpt-oss",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/cookbook/articles/openai-harmony",
+    "https://developers.openai.com/cookbook/articles/gpt-oss/handle-raw-cot"
+  ],
+  "system_card": "https://arxiv.org/abs/2508.10925",
+  "model_page": "https://huggingface.co/openai/gpt-oss-120b",
+  "sources": [
+    {
+      "id": "hf-gpt-oss-120b",
+      "url": "https://huggingface.co/openai/gpt-oss-120b",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-gpt-oss",
+      "url": "https://arxiv.org/html/2508.10925",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-harmony",
+      "url": "https://developers.openai.com/cookbook/articles/openai-harmony",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-gpt-oss-raw-cot",
+      "url": "https://developers.openai.com/cookbook/articles/gpt-oss/handle-raw-cot",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-oss-120b",
+      "url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-oss-120b-low",
+      "url": "https://artificialanalysis.ai/models/gpt-oss-120b-low",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-providers-gpt-oss-120b",
+      "url": "https://artificialanalysis.ai/models/gpt-oss-120b/providers",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "cmu-steer-dont-solve",
+      "url": "https://arxiv.org/html/2606.21811v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "groq-gpt-oss-120b",
+      "url": "https://console.groq.com/docs/model/openai/gpt-oss-120b",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-gpt-oss-params",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-openai.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "max_output: not published by the maker (Groq's cap and Foundry's listing differ by host)",
+    "METR 50% time horizon: METR's time-horizon page says gpt-oss-120b was added on 2025-08-06 but its current results file has no gpt-oss entry, so no value could be read",
+    "Terminal-Bench 4.0: Artificial Analysis shows 0 inside its Intelligence Index; no tbench.ai leaderboard entry",
+    "Artificial Analysis Coding Agent Index: no entry",
+    "SWE-Bench Pro (Scale, public V2): not on Scale's V2 table on 2026-10-03",
+    "generation: the maker does not number generations of this class",
+    "sampling recommendation: none published by the maker; its vLLM example uses temperature 1"
+  ]
+}

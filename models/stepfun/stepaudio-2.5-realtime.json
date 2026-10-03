@@ -1,0 +1,126 @@
+{
+  "id": "stepaudio-2.5-realtime",
+  "name": "StepAudio 2.5 Realtime",
+  "maker": "StepFun",
+  "family": "StepAudio 2.5",
+  "class": "StepAudio Realtime",
+  "generation": "2.5",
+  "released": "2026-05-24",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "StepFun Open Platform Realtime API (wss://api.stepfun.ai/v1/realtime)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "half",
+    "input_audio": "PCM16, 24 kHz, mono [step-25-realtime]",
+    "output_audio": "PCM16, 24 kHz, mono [step-25-realtime]",
+    "voices": "7 system voices (the same IDs as the 3 preview); the API reference also accepts cloned voices made with the StepAudio 2.5 TTS cloning API, while the model page says only the seven listed IDs are valid for this model; other voice values give a 400 error; the voice cannot change once the model has produced audio [step-25-realtime] [step-realtime-api]",
+    "languages": [
+      "English (the model page)",
+      "Chinese and English (the API page and the audio overview)"
+    ],
+    "turn_detection": "Server VAD is off by default and is turned on with turn_detection.type server_vad: prefix_padding_ms default 500, silence_duration_ms default 100, energy_awakeness_threshold 0 to 5000 default 2500; otherwise the client commits the audio buffer and sends response.create [step-realtime-api]",
+    "interruption": "StepFun says server-side VAD lets the model answer on time and lets the user cut in during a reply; with VAD on, the server sends input_audio_buffer.speech_started; response.cancel cancels a response [step-25-realtime] [step-realtime-api]",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.5,
+    "output": 10.0,
+    "cached_input": 0.3,
+    "notes": "StepFun pricing page (read 2026-10-03), usage-based, per million tokens [step-pricing]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-2.5-realtime",
+    "https://platform.stepfun.ai/docs/en/api-reference/realtime/chat"
+  ],
+  "system_card": null,
+  "model_page": "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-2.5-realtime",
+  "sources": [
+    {
+      "id": "step-25-realtime",
+      "url": "https://platform.stepfun.ai/docs/en/guides/models/stepaudio-2.5-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-realtime-api",
+      "url": "https://platform.stepfun.ai/docs/en/api-reference/realtime/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-audio-models",
+      "url": "https://platform.stepfun.ai/docs/en/guides/models/audio",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-pricing",
+      "url": "https://platform.stepfun.ai/docs/en/guides/pricing/details",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "step-paper-25",
+      "url": "https://arxiv.org/abs/2605.23463",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "llmreference-step25",
+      "url": "https://www.llmreference.com/model/step-audio-2-5-realtime/stepfun",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "released: a reference site gives 2026-05-24 and the technical report was submitted 2026-05-22; StepFun's pages show no release date [llmreference-step25] [step-paper-25]",
+    "context_window: not published",
+    "max_output: not published",
+    "voice.duplex: half is this library's reading; StepFun does not call this model full-duplex and describes VAD-based turns with interruption",
+    "voice.latency: no figure from StepFun, and no Artificial Analysis row for this model (read 2026-10-03) [aa-s2s]",
+    "voice.session_limit: no maximum session length is stated",
+    "benchmarks: no independent run found; the technical report's results were not recorded [step-paper-25]",
+    "system_card: none; the technical report is a paper [step-paper-25]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

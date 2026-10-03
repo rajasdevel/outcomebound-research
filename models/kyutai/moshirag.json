@@ -1,0 +1,114 @@
+{
+  "id": "moshirag",
+  "name": "MoshiRAG",
+  "maker": "Kyutai",
+  "family": "Moshi",
+  "class": "Moshi",
+  "generation": null,
+  "released": null,
+  "status": "ga",
+  "retires": null,
+  "weights": "open (CC-BY-4.0)",
+  "access": [
+    "Self-hosted from Hugging Face: PyTorch bf16 and Rust/Candle bf16 builds of the Moshika-based front end, with a separate retrieval back end"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "24 kHz mono through the Mimi codec, as for Moshi; a separate streaming speech-recognition service must transcribe the user so the retrieval back end gets context [kyutai-card-moshirag]",
+    "output_audio": "24 kHz mono through the Mimi codec, as for Moshi [kyutai-card-moshirag]",
+    "voices": "1 fixed synthetic voice (Moshika); the model is trained to produce one voice only, to avoid impersonation [kyutai-card-moshirag]",
+    "languages": [
+      "English"
+    ],
+    "turn_detection": "None to configure; the model keeps listening and speaking, as Moshi does [kyutai-card-moshirag]",
+    "interruption": "Built into the full-duplex front end; no setting exists; while retrieval runs the model can say short acknowledgments or coarse answers so the talk stays natural [kyutai-card-moshirag]",
+    "latency": "No end-to-end figure read; the front end is Moshi's; the README says the system is sensitive to retrieval latencies above 3 seconds [kyutai-gh-moshirag]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights with no hosted price. The README asks for a GPU with 24 GB or more for the PyTorch front end, optionally a second GPU for the reference encoder or the retrieval model, and a retrieval back end such as a local vLLM server or an OpenAI-compatible API [kyutai-gh-moshirag]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [],
+  "system_card": "https://huggingface.co/kyutai/moshika-rag-pytorch-bf16",
+  "model_page": "https://github.com/kyutai-labs/moshi-rag",
+  "sources": [
+    {
+      "id": "kyutai-card-moshirag",
+      "url": "https://huggingface.co/kyutai/moshika-rag-pytorch-bf16",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kyutai-gh-moshirag",
+      "url": "https://github.com/kyutai-labs/moshi-rag",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "kyutai-moshirag-paper",
+      "url": "https://arxiv.org/abs/2604.12928",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "hf-kyutai-list",
+      "url": "https://huggingface.co/api/models?author=kyutai&sort=lastModified&direction=-1&limit=60",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "kyutai-gh-moshi-readme",
+      "url": "https://github.com/kyutai-labs/moshi",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "generation: Kyutai numbers no generations; the class Moshi holds Moshi and this model, which count as its two generations",
+    "released: the Hugging Face repository was created on 2026-03-19 and the paper is dated 2026-04-14; no exact release date was read [hf-kyutai-list] [kyutai-moshirag-paper]",
+    "context_window: not published",
+    "max_output: not applicable; the model streams audio without a token cap",
+    "pricing_usd_per_mtok: open weights with no hosted price",
+    "prompting_guides: Kyutai publishes none; the card and README describe no prompt or system-message input",
+    "voice.session_limit: no limit stated",
+    "benchmarks: Artificial Analysis lists no row for MoshiRAG (read 2026-10-03); the paper's results are the maker's own [aa-s2s]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

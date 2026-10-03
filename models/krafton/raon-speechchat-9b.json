@@ -1,0 +1,142 @@
+{
+  "id": "raon-speechchat-9b",
+  "name": "Raon-SpeechChat-9B",
+  "maker": "KRAFTON",
+  "family": "Raon",
+  "class": "Raon SpeechChat",
+  "generation": null,
+  "released": "2026-04-01",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (CC-BY-NC-4.0)",
+  "access": [
+    "Hugging Face weights (KRAFTON/Raon-SpeechChat-9B, Transformers with trust_remote_code)",
+    "krafton-ai/Raon-Speech on GitHub",
+    "Self-hosted Docker demo (Raon-SpeechChat-Demo)",
+    "raon.krafton.ai web demo"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": null,
+    "output_audio": null,
+    "voices": "17 built-in personas with customisable system prompts; optional reference audio for voice cloning through ECAPA-TDNN speaker embeddings [raon-card-chat]",
+    "languages": [
+      "English (the SpeechChat card); the base Raon-Speech model covers English and Korean"
+    ],
+    "turn_detection": "None to configure; the model decodes listening and speaking at once. A dedicated backchannel token produces short feedback such as uh-huh, and a backchannel penalty adjusts how often; runtime token forcing selects speak-first or listen-first mode [raon-card-chat]",
+    "interruption": "Built into the model: the card lists natural turn-taking, backchannels and barge-in handling; no separate setting was found [raon-card-chat]",
+    "latency": "Artificial Analysis lists 0.04 seconds to first audio on its Big Bench Audio set; the page does not say how this is measured for a model that can speak while it listens [aa-s2s]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights under a non-commercial licence, with no hosted price. The self-hosted demo asks for an NVIDIA GPU with CUDA 12 and 16 GB or more of memory, and downloads about 25 GB of model files on first run [raon-card-chat]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 57.5,
+      "setting": "listed as Krafton Raon SpeechChat; Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench subset)",
+      "score": 86.2,
+      "setting": "weighted average of pause handling 74.5, turn-taking 86.6, interruption handling 92.0 and backchannel handling 91.8 from Full Duplex Bench v1 and v1.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/krafton-ai/Raon-Speech",
+    "https://huggingface.co/KRAFTON/Raon-SpeechChat-9B"
+  ],
+  "system_card": "https://huggingface.co/KRAFTON/Raon-SpeechChat-9B",
+  "model_page": "https://github.com/krafton-ai/Raon-Speech",
+  "sources": [
+    {
+      "id": "raon-card-chat",
+      "url": "https://huggingface.co/KRAFTON/Raon-SpeechChat-9B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "raon-gh",
+      "url": "https://github.com/krafton-ai/Raon-Speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "raon-paper",
+      "url": "https://arxiv.org/abs/2605.23912",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "hf-krafton-list",
+      "url": "https://huggingface.co/api/models?author=KRAFTON&limit=40&sort=lastModified&direction=-1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "raon-card-ax21b",
+      "url": "https://huggingface.co/KRAFTON/A.X-K2-Raon-Speech-21B-A3B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "generation: Krafton numbers no generation of this model",
+    "released: the Hugging Face repository was created on 2026-04-01 and the technical report is dated 2026-04-08; no release post was read [hf-krafton-list] [raon-paper]",
+    "context_window: not published",
+    "max_output: not applicable; the model streams audio without a token cap",
+    "voice.input_audio: the card and README read state no sample rate or format for the realtime audio; the model uses the Mimi codec",
+    "voice.output_audio: the card and README read state no sample rate or format for the realtime audio; the model uses the Mimi codec",
+    "voice.session_limit: no limit stated",
+    "pricing_usd_per_mtok: open weights with no hosted price",
+    "benchmarks: Artificial Analysis lists no tau-Voice or arena result for this model (read 2026-10-03); the card shows its own results only as an image [aa-s2s] [raon-card-chat]",
+    "system_card: the Hugging Face card is the only model card; it has no safety section",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

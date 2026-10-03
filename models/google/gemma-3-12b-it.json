@@ -1,0 +1,218 @@
+{
+  "id": "gemma-3-12b-it",
+  "name": "Gemma 3 12B (instruction-tuned)",
+  "maker": "Google",
+  "family": "Gemma 3",
+  "class": "Gemma",
+  "generation": "3",
+  "released": "2025-03-10",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Gemma Terms of Use)",
+  "access": [
+    "Hugging Face (gated; accept the Gemma terms)",
+    "Kaggle",
+    "Ollama",
+    "Vertex AI and Cloud Run (per Google's launch post)"
+  ],
+  "context_window": 131072,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "open weights, so Google sets no list price; Artificial Analysis shows $0.00 and no priced host. Self-hosting costs hardware."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 4,
+      "setting": "index v4.3.2 (ten evaluations), non-reasoning model; the page marks the model deprecated for benchmarking",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemma-3-12b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFEval",
+      "score": 88.9,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 40.9,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMLU-Pro",
+      "score": 60.6,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LiveCodeBench",
+      "score": 24.6,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MATH",
+      "score": 83.8,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HumanEval",
+      "score": 85.4,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FACTS Grounding",
+      "score": 75.8,
+      "setting": "instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Global-MMLU-Lite",
+      "score": 69.5,
+      "setting": "0-shot, instruction-tuned; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMMU (val)",
+      "score": 59.6,
+      "setting": "instruction-tuned, vision; Google's model card, sampling settings not stated",
+      "harness": "none (no tools)",
+      "measured_by": "maker",
+      "source": "g3-card",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemma/docs/core/prompt-structure",
+    "https://ai.google.dev/gemma/docs/core/model_card_3"
+  ],
+  "system_card": "https://ai.google.dev/gemma/docs/core/model_card_3",
+  "model_page": "https://huggingface.co/google/gemma-3-12b-it",
+  "sources": [
+    {
+      "id": "g3-card",
+      "url": "https://ai.google.dev/gemma/docs/core/model_card_3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g3-prompt",
+      "url": "https://ai.google.dev/gemma/docs/core/prompt-structure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g3-report",
+      "url": "https://arxiv.org/abs/2503.19786",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g3-blog",
+      "url": "https://blog.google/technology/developers/gemma-3/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g3-releases",
+      "url": "https://ai.google.dev/gemma/docs/releases",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g3-terms",
+      "url": "https://ai.google.dev/gemma/terms",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-gemma-api",
+      "url": "https://ai.google.dev/gemma/docs/core/gemma_on_gemini_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-gemma-3-12b-it",
+      "url": "https://huggingface.co/google/gemma-3-12b-it",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemma-3-12b",
+      "url": "https://artificialanalysis.ai/models/gemma-3-12b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): Gemma 3 is not on Scale's leaderboard read",
+    "Terminal-Bench: no Gemma 3 result read; Google's card lists no agentic or terminal benchmark, and no independent run was found",
+    "Artificial Analysis Coding Agent Index: no Gemma 3 entry read",
+    "METR 50% time horizon: no Gemma 3 entry read",
+    "pricing_usd_per_mtok: open weights; no Google price. Google's current Gemini API page lists only Gemma 4 sizes",
+    "max_output: Google gives total output context equal to the input window minus the prompt (128K tokens)",
+    "reasoning: Gemma 3 has no thinking mode or effort control; no reasoning toggle is documented",
+    "released: Google's release page dates the 1B, 4B, 12B and 27B sizes 2025-03-10 and the 270M 2025-08-14; the Gemini API changelog dates gemma-3-27b-it 2025-03-12",
+    "status: no deprecation is announced for the weights; Artificial Analysis marks the model deprecated for its own benchmarking",
+    "system_card: Google's Gemma 3 model card and technical report give safety results in aggregate for all sizes, with English-only prompts; no per-size or per-policy figures",
+    "sampling: Google's pages read give no recommended temperature, top-p or top-k for Gemma 3 (the Hugging Face generation config is gated)"
+  ]
+}

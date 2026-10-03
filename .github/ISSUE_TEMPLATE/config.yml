@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a vulnerability, a hidden instruction or a leaked private name
+    url: https://github.com/rajasdevel/outcomebound-research/security/advisories/new
+    about: Report these privately. Do not open a public issue.
+  - name: How to contribute
+    url: https://github.com/rajasdevel/outcomebound-research/blob/main/CONTRIBUTING.md
+    about: The routes, the finding format, the evidence rules and the sign-off that every commit needs.

@@ -1,0 +1,378 @@
+{
+  "id": "gpt-live-1",
+  "name": "GPT-Live 1",
+  "maker": "OpenAI",
+  "family": "GPT Live",
+  "class": "GPT Live",
+  "generation": "1",
+  "released": "2026-09-10",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Live: WebRTC, WebSocket, SIP)",
+    "ChatGPT Voice (default voice model on paid plans)"
+  ],
+  "context_window": 128000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "WebSocket: PCM 16-bit mono at 24 kHz (default) or 16 kHz, G.711 mu-law at 8 kHz, or G.711 A-law at 8 kHz, one format for input and output, fixed at session start; WebRTC and SIP negotiate the format; typed text is also accepted; no image or video [openai-guide-websockets] [openai-model-gpt-live-1]",
+    "output_audio": "The same format as the input on a WebSocket, a media track on WebRTC; a sideband connection receives copies as PCM 16-bit mono at 24 kHz [openai-guide-websockets] [openai-guide-server-controls]",
+    "voices": "32 built-in voice names in the API schema, with marin as the default: the ten Realtime voices, the 12 named GPT-Live voices (quartz, ripple, vesper, willow, stone, gleam, meridian, bossa, tempo, beacon, delta, cinder), and ten that the guides do not describe (aube, brise, flitz, harema, juni, nira, noeul, nuri, shitan, sillage); custom voices for authorised customers [openai-ref-live-create] [openai-guide-live-sessions] [community-live-1]",
+    "languages": [],
+    "turn_detection": "None to configure in the guides read: the model decides continuously when to listen, speak, pause or yield, and the guides expose no VAD or end-of-turn setting; the launch note lists explicit turn detection among production features without describing a setting [openai-guide-websockets] [community-live-1]",
+    "interruption": "Yes, native to full duplex: the model stops its answer when the user speaks and can make short listening sounds while the user talks; backend work keeps running after an interruption; microphone input can be muted; an appended instruction can also interrupt speech [openai-guide-live-prompting] [openai-guide-live-delegation] [openai-guide-live-sessions]",
+    "latency": "OpenAI: 0.798 s turn-taking latency, against 1.41 s for GPT-Realtime-2.1 [community-live-1]. Artificial Analysis time to first audio on Big Bench Audio: 1.34 s with an Astra backend at medium effort and 1.24 s with a Sol backend at low effort [aa-speech-to-speech]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "$0.05 per minute of voice session, billed per second without rounding up; a WebRTC session creation bills 15 seconds up front, credited against the running duration; backend model and tool usage is billed separately at their own rates"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech to Speech Index (v2)",
+      "score": 81.5,
+      "setting": "Astra backend at medium effort; 1 trial for tau-Voice",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech to Speech Index (v2)",
+      "score": 80.1,
+      "setting": "Sol backend at low effort; 1 trial for tau-Voice",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Big Bench Audio (Artificial Analysis, 1,000 spoken questions, percent)",
+      "score": 90.1,
+      "setting": "Astra backend, medium effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Big Bench Audio (Artificial Analysis, 1,000 spoken questions, percent)",
+      "score": 89.0,
+      "setting": "Sol backend, low effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau-Voice (Artificial Analysis, airline, retail and telecom task completion, percent)",
+      "score": 67.9,
+      "setting": "Astra backend, medium effort; 1 trial",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau-Voice (Artificial Analysis, airline, retail and telecom task completion, percent)",
+      "score": 59.3,
+      "setting": "Sol backend, low effort; 1 trial",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Conversational Dynamics (Artificial Analysis, Full Duplex Bench v1 and v1.5 subset, percent)",
+      "score": 94.9,
+      "setting": "Astra backend, medium effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Conversational Dynamics (Artificial Analysis, Full Duplex Bench v1 and v1.5 subset, percent)",
+      "score": 97.3,
+      "setting": "Sol backend, low effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Time to first audio on Big Bench Audio (Artificial Analysis, seconds, lower is better)",
+      "score": 1.34,
+      "setting": "Astra backend, medium effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Time to first audio on Big Bench Audio (Artificial Analysis, seconds, lower is better)",
+      "score": 1.24,
+      "setting": "Sol backend, low effort",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Speech Agent Arena preference Elo (Artificial Analysis, overall slice)",
+      "score": 1053.39,
+      "setting": "Sol backend, low effort; rank 4 on the page",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Speech Agent Arena preference Elo (Artificial Analysis, overall slice)",
+      "score": 1048.17,
+      "setting": "Astra backend, medium effort; rank 5 on the page",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Tau3 first-attempt task completion (percent; airline, retail, telecom)",
+      "score": 83.6,
+      "setting": "paired with GPT-6 Astra at medium effort; OpenAI's own run",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "community-live-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "TauBanking task completion (percent)",
+      "score": 38.1,
+      "setting": "paired with GPT-6 Astra at medium effort; OpenAI's own run",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "community-live-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Full Duplex Bench v1.5 interactivity (percent)",
+      "score": 80.1,
+      "setting": "OpenAI's own run",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "community-live-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Full Duplex Bench v3 tool-calling success (percent)",
+      "score": 87.0,
+      "setting": "OpenAI's own run",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "community-live-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Full Duplex Bench v3 response quality (percent)",
+      "score": 90.0,
+      "setting": "OpenAI's own run",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "community-live-1",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/live-prompting",
+    "https://developers.openai.com/api/docs/guides/live",
+    "https://developers.openai.com/api/docs/guides/live-delegation",
+    "https://developers.openai.com/api/docs/guides/live-conversations",
+    "https://developers.openai.com/api/docs/guides/live-migration"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-live",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-live-1",
+  "sources": [
+    {
+      "id": "openai-model-gpt-live-1",
+      "url": "https://developers.openai.com/api/docs/models/gpt-live-1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-live",
+      "url": "https://developers.openai.com/api/docs/guides/live",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-live-prompting",
+      "url": "https://developers.openai.com/api/docs/guides/live-prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-live-delegation",
+      "url": "https://developers.openai.com/api/docs/guides/live-delegation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-live-sessions",
+      "url": "https://developers.openai.com/api/docs/guides/live-conversations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-live-migration",
+      "url": "https://developers.openai.com/api/docs/guides/live-migration",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-live-partners",
+      "url": "https://developers.openai.com/api/docs/guides/live-partner-integrations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-websockets",
+      "url": "https://developers.openai.com/api/docs/guides/voice-websockets",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-webrtc",
+      "url": "https://developers.openai.com/api/docs/guides/voice-webrtc",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-sip",
+      "url": "https://developers.openai.com/api/docs/guides/voice-sip",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-server-controls",
+      "url": "https://developers.openai.com/api/docs/guides/voice-server-controls",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-voice-cost",
+      "url": "https://developers.openai.com/api/docs/guides/voice-latency-cost",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-voice-agents",
+      "url": "https://developers.openai.com/api/docs/guides/voice-agents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-your-data",
+      "url": "https://developers.openai.com/api/docs/guides/your-data",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-ref-live-create",
+      "url": "https://developers.openai.com/api/reference/typescript/resources/live/methods/create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-card",
+      "url": "https://deploymentsafety.openai.com/gpt-live",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "community-live-1",
+      "url": "https://community.openai.com/t/introducing-gpt-live-1-in-the-api/1396471",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-speech-to-speech",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openai-models-list",
+      "url": "https://developers.openai.com/api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "max_output: the model page states no output limit; the frontend model speaks and the backend model has its own limits",
+    "voice.languages: the GPT-Live guides read list voices in English and Portuguese and no supported-language set",
+    "voice.session_limit: the guides read give a close reason expired for a session that reaches its duration limit and state no value",
+    "pricing_usd_per_mtok: the unit is a price per minute of voice session, not per token",
+    "reasoning: the model has no reasoning control; reasoning and tool use run in the delegated backend model",
+    "system_card: the card covers GPT-Live-1 and GPT-Live-1 mini; the mini model is in ChatGPT and is not in the API",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a voice model; no run exists",
+    "Terminal-Bench 4.0: not applicable to a voice model; no run exists",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis rates speech models on its Speech to Speech Index and its speech-to-text word error rate instead",
+    "Artificial Analysis Coding Agent Index: not applicable to a voice model",
+    "METR 50% time horizon: not applicable to a voice model; no run exists",
+    "Scale AudioMultiChallenge: no GPT-Live-1 entry on 2026-10-03"
+  ]
+}

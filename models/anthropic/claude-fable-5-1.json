@@ -1,0 +1,546 @@
+{
+  "id": "claude-fable-5-1",
+  "name": "Claude Fable 5.1",
+  "maker": "Anthropic",
+  "family": "Claude Fable 5",
+  "class": "Claude Fable",
+  "generation": "5.1",
+  "released": "2026-09-01",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Claude API",
+    "Claude apps (claude.ai)",
+    "Claude Code",
+    "Amazon Bedrock",
+    "Google Cloud",
+    "Microsoft Foundry",
+    "Claude Platform on AWS"
+  ],
+  "context_window": 1000000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 10.0,
+    "output": 50.0,
+    "cached_input": 0.25,
+    "notes": "List price, standard rate. 5-minute cache write 12.50, 1-hour write 20; cache read is 0.025x input (0.1x on most models). Batch 5/25. Full 1M window at one price. US-only inference adds 1.1x. Mythos 5.1 is the same model with different safeguards and limited access (the pricing page says Project Glasswing, invitation only; the launch post says trusted access programs); it is not selectable."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 92.2,
+      "setting": "high",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (Anthropic 478-problem subset, near-saturated)",
+      "score": 92.3,
+      "setting": "high (default)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "anthropic-optimizing-cost",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (Anthropic 478-problem subset, near-saturated)",
+      "score": 88.6,
+      "setting": "low",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "anthropic-optimizing-cost",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 55.8,
+      "setting": "max",
+      "harness": "Claude Code (bare mode), production safeguards on; 15 trials per task",
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 57.88,
+      "setting": "max",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 57.88,
+      "setting": "xhigh",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 54.55,
+      "setting": "high",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 53.94,
+      "setting": "medium",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 43.33,
+      "setting": "low",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 52.0,
+      "setting": "max, default fallback",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-index-v4-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 55.1,
+      "setting": "xhigh, default fallback",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 52.0,
+      "setting": "high, default fallback",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 44.9,
+      "setting": "medium, default fallback",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 40.4,
+      "setting": "low, default fallback",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 53.4,
+      "setting": "max, default fallback (AA shows 53)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 53.2,
+      "setting": "xhigh, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 51.2,
+      "setting": "high, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 48.9,
+      "setting": "medium, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 46.8,
+      "setting": "low, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench-Science 0.1",
+      "score": 52.6,
+      "setting": "max",
+      "harness": "Claude Code (bare mode)",
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 3.2.0",
+      "score": 73.4,
+      "setting": "max (run by Cursor)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode v1.1 (Main)",
+      "score": 50.3,
+      "setting": "not stated for this model",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-opus-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0",
+      "score": 51.8,
+      "setting": "max (stated in the announcement text)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-opus-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA v2.1 (Elo)",
+      "score": 1735,
+      "setting": "not stated in the Artificial Analysis article; equals the xhigh value on AA's model page (1735.06; its max value there is 1757.77)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-article-opus-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode v1.1 (Main)",
+      "score": 50.9,
+      "setting": "medium; the card says scores fall from high upward because of the grader's out-of-scope-edit rule",
+      "harness": "Claude Code (run by Cognition)",
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (Anthropic's own run, not the Scale leaderboard)",
+      "score": 81.2,
+      "setting": "max, adaptive thinking, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 67.4,
+      "setting": "max, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierSWE v2 (mean score, as a percentage)",
+      "score": 57.0,
+      "setting": "max; run by Proximal in its agent harness (this card gives 0.57 on a 0 to 1 scale; the Opus 5.5 card lists 56.3)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld 2.0 (partial credit)",
+      "score": 77.9,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (no tools)",
+      "score": 60.9,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1 (Artificial Analysis coding-agent component)",
+      "score": 64.3,
+      "setting": "max, with fallback",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agent-index",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Atlas-QnA (Artificial Analysis coding-agent component)",
+      "score": 64.8,
+      "setting": "max, with fallback (46 of 372 attempts fell back)",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agent-index",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 57.6,
+      "setting": "max, with fallback (28 of 198 attempts fell back; Artificial Analysis coding-agent run)",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agent-index",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  ],
+  "system_card": "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+  "model_page": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+  "sources": [
+    {
+      "id": "aa-article-opus-5-5",
+      "url": "https://artificialanalysis.ai/articles/claude-opus-5-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-fable-5-1",
+      "url": "https://artificialanalysis.ai/models/claude-fable-5-1",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-opus-5-5",
+      "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-sonnet-5-5",
+      "url": "https://artificialanalysis.ai/models/claude-sonnet-5-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-terminal-bench-4",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "announce-fable-5-1",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "announce-opus-5-5",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-choosing-model",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-data-retention",
+      "url": "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-deprecations",
+      "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-effort",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-models-overview",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-optimizing-cost",
+      "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-release-notes",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-code-model-config",
+      "url": "https://code.claude.com/docs/en/model-config",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-g12",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "You are operating autonomously. The user is not watching in real time and cannot answer questions mid-task"
+    },
+    {
+      "id": "claude-g9",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "page-fable-5-1",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "system-card-fable-5-1",
+      "url": "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "best-practices-page",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale V2) below or above high: Scale lists one row, at high",
+    "Artificial Analysis Coding Agent Index: the composite is shown as 'Not publicly available' on its page; the per-benchmark means in the page's data (DeepSWE v1.1, SWE-Atlas-QnA, Terminal-Bench 4.0 with Claude Code) are recorded as separate entries, read from page data and not from displayed text",
+    "METR 50% time horizon: metr.org/time-horizons (last updated 2026-05-08) lists no Fable model; METR contributed to the system card's AI R&D testing but published no horizon",
+    "Aider polyglot, LiveCodeBench: no Claude Fable row found"
+  ]
+}

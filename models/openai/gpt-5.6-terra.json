@@ -1,0 +1,304 @@
+{
+  "id": "gpt-5.6-terra",
+  "name": "GPT-5.6 Terra",
+  "maker": "OpenAI",
+  "family": "GPT-5.6",
+  "class": "GPT Terra",
+  "generation": "5.6",
+  "released": "2026-07-09",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses, Chat Completions, Batch)",
+    "ChatGPT",
+    "Codex",
+    "Microsoft Foundry",
+    "Amazon Bedrock"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 12.0,
+    "cached_input": 0.2,
+    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (4 in, 24 out); Batch and Flex 50%; regional processing +10%; cut 20% on 2026-07-30 (launch price 2.50 and 15, implied by the cut and given by a secondary launch report)"
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 86.3,
+      "setting": "xhigh",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (tbench.ai leaderboard)",
+      "score": 21.5,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "tbench-4-0",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run)",
+      "score": 35.4,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 42,
+      "setting": "max (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 38,
+      "setting": "xhigh (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra-xhigh",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 34,
+      "setting": "high (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra-high",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 30,
+      "setting": "medium (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra-medium",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 28,
+      "setting": "low (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent, lower is better)",
+      "score": 87.9,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (long-context reasoning, percent)",
+      "score": 83.0,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-5-6-terra",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6",
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-5-6",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+  "sources": [
+    {
+      "id": "openai-model-gpt-5.6-terra",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-gpt-5.6",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-gpt56-prompting",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-reasoning-guide",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-deprecations",
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-latest-model",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-56-card",
+      "url": "https://deploymentsafety.openai.com/gpt-5-6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-card-gpt-5-6-terra",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-56-terra.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-5-6-terra",
+      "url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-5-6-terra-xhigh",
+      "url": "https://artificialanalysis.ai/models/gpt-5-6-terra-xhigh",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-5-6-terra-high",
+      "url": "https://artificialanalysis.ai/models/gpt-5-6-terra-high",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-5-6-terra-medium",
+      "url": "https://artificialanalysis.ai/models/gpt-5-6-terra-medium",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-5-6-terra-low",
+      "url": "https://artificialanalysis.ai/models/gpt-5-6-terra-low",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-0",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "rits-gpt-5-6-launch",
+      "url": "https://rits.shanghai.nyu.edu/ai/openai-launches-gpt-5-6-family-sol-terra-and-luna-reach-general-availability/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "Artificial Analysis Coding Agent Index: no Terra row on its page on 2026-10-03",
+    "METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03",
+    "Terminal-Bench 4.0 harness for the Artificial Analysis Intelligence Index row: not stated; the tbench.ai entry names Codex",
+    "SWE-Bench Pro (Scale, public V2) run limits: the 86.3 row is not grayed, which Scale's legend reads as uncapped cost and a 250-turn limit"
+  ]
+}

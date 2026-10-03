@@ -1,0 +1,723 @@
+{
+  "version": 1,
+  "placements": {
+    "qwen3-coder-next": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred by the default rule; vendor SWE-bench Pro 44.3 (SWE-Agent scaffold, via a secondary) is below the 27B's 61.7 (Claude Code), the AA index is 9 against the 27B's 28 to 34, and the model has no reasoning mode.",
+      "notes": []
+    },
+    "qwen3.7-plus": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred by the default rule; the only independent figure is an AA index of 25, and there is no agentic or coding row.",
+      "notes": []
+    },
+    "qwen3.8-2.4t-a95b": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred by the default rule; no independent agentic row. Self-hosting a 2.4T model also puts template, parser and sampling in the user's hands, which argues for the narrowest package.",
+      "notes": []
+    },
+    "qwen3.8-27b": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred: spec at 4-bit or higher, local. Quantisation is not the reason (Q4_K_M matches BF16 on Terminal-Bench 2.1, one run); the reasons are vendor-only agentic numbers (no Scale V2 row), local context limits, and the instruction-count limits of small models. The instruction-count study behind the last (arXiv 2607.19257) tested unversioned 'Qwen 27B' and 'Qwen 35B' models hosted on Ollama and found every model, Claude Sonnet 5 included, at zero perfect responses by 80 rules, so it does not single this model out. Anything below 4-bit takes spec as unknown. No tier comparison exists.",
+      "notes": []
+    },
+    "qwen3.8-flash-next": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred by the default rule. Vendor SWE-bench Pro 62.5 is close to the 27B's 61.7, which sits at spec; no independent agentic row and a 6B-active model.",
+      "notes": []
+    },
+    "qwen3.8-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred; same as Flash-Next (default rule, no independent agentic row).",
+      "notes": []
+    },
+    "qwen3.8-max": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so the default rule (a model with no placement of its own takes the spec tier) applies. Maker and secondary figures (SWE-bench Pro 67.7 in Claude Code, AA Agentic Index 58 on v4.1) would fit design, but there is no Scale V2 row and no tier comparison, so it is not promoted. Revisit when Scale or another independent harness runs it.",
+      "notes": [
+        "The alias qwen3.8-max moved to the 0902 snapshot on 2026-09-05 after a QwenCloud update notice, so a package that names the alias can change behaviour without a version change [qwencloud-changelog, qwen-g13].",
+        "Very verbose in independent measurement: 190M output tokens on AA's index (v4.3.2) against a median of 81M, so cost and latency of an outcome-level ticket run higher than list price suggests [aa-qwen3-8-max]."
+      ]
+    },
+    "qwen3.8-omni-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred by the default rule; the only scores are vendor-reported multimedia ones relayed by secondary write-ups, nothing on coding, and it is a multimedia model rather than a coding one.",
+      "notes": []
+    },
+    "claude-fable-5-1": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "outcome",
+          "confidence": "high"
+        }
+      ],
+      "basis": "Inferred: Scale V2 92.2 at high [scale-swe-pro-v2]; Anthropic's own subset gives 92.3 at high and 88.6 at low, so a lower effort loses about 4 points there [anthropic-optimizing-cost]; the Fable 5 guide says to start at the top of the difficulty range and the effort page says to start at high [claude-g9, anthropic-effort]. Not independently tested below high, and no source compares tiers on it (inferred). Refusals can stall benign work.",
+      "notes": []
+    },
+    "claude-fable-5": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "outcome",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred: no source places Fable 5. It is the same family as Fable 5.1 (outcome at 92.2 on Scale [scale-swe-pro-v2]), but Fable 5 has no Scale row, and its Terminal-Bench 4.0 max score (44.55) is below Opus 5's 51.82 to 53.94 [tbench-leaderboard]; confidence is low, and design is the alternative reading.",
+      "notes": []
+    },
+    "claude-haiku-4-5": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "high"
+        }
+      ],
+      "basis": "Inferred: Scale 25.5 against 88.2 for Sonnet 5 [scale-swe-pro-v2]; Anthropic places it for high-volume work with checkable outputs, GPQA 63 against 92 for Opus 5.5 [anthropic-optimizing-cost]. The row expires: the retirement floor is 2026-10-15 and Haiku 5.5 is unplaced. The Scale effort label (xhigh) is unexplained for a model with no effort parameter.",
+      "notes": []
+    },
+    "claude-opus-5-5": {
+      "placements": [
+        {
+          "effort": "medium and above",
+          "tier": "outcome",
+          "confidence": "high"
+        },
+        {
+          "effort": "low",
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. Anthropic's subset: medium 92.8, low 87.4, and medium is about 2.5 points under high at about 70% of the cost [anthropic-optimizing-cost]; the maker says medium matches or beats Opus 5 at high [claude-g13]; Opus 5 scored 98.0 on Scale in Claude Code at xhigh, but Opus 5.5 has no Scale row. Low is placed at design on an inferred basis: the 8-point drop would fall on the design decisions the outcome tier hands over; no independent run and no tier comparison exists.",
+      "notes": []
+    },
+    "claude-opus-5": {
+      "placements": [
+        {
+          "effort": "medium and above",
+          "tier": "outcome",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred: no source places Opus 5, so the default rule (a model with no placement of its own takes the spec tier) would give spec. The evidence is the highest Scale V2 score (98.0 at xhigh in Claude Code) [scale-swe-pro-v2] and the maker's own statement that Opus 5.5 at medium matches or beats it at high [claude-g13]. Below medium there is no measurement.",
+      "notes": []
+    },
+    "claude-sonnet-5-5": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "design",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No Scale row for Sonnet 5.5; Sonnet 5 scored 88.2 at xhigh, 4 below Fable 5.1 [scale-swe-pro-v2]. Maker figures put 5.5 near Opus 5.5 on CursorBench (55.5 against 57.8) and below it on FrontierCode (46.2 against 54.4) [announce-sonnet-5-5]; Anthropic sends the hardest long-horizon work to Opus [sonnet-5-5-guide]. Design is conservative; promotion to outcome waits for an eval (inferred).",
+      "notes": []
+    },
+    "claude-sonnet-5": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "design",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred: no source places Sonnet 5 itself. Scale V2 88.2 at xhigh is 4 below Fable 5.1 [scale-swe-pro-v2]; Anthropic's subset gives 77.4 at default effort [anthropic-optimizing-cost]. The Sonnet 5.5 row (design) is the placement of its successor; in Anthropic's advisor test an executor at too low an effort stopped consulting its advisor, so low effort deserves caution [anthropic-optimizing-cost].",
+      "notes": []
+    },
+    "composer-2.5": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No source places Composer, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Artificial Analysis rated it third of its May index (62) [aa-composer-25], which argues for design, but that index version differs from the one holding the design-tier rows, and the rest of the evidence is the maker's own [cursor-composer-25-blog].",
+      "notes": []
+    },
+    "deepseek-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred: no independent agentic row exists (Scale's SWE-Bench Pro V2 table has no DeepSeek model, read 2026-10-03), so the default rule gives spec. The maker's numbers (DeepSWE v1.1 74.2, Terminal-Bench 4.0 31.2) are strong but vendor-run, harness-dependent [scale-swe-pro-v2]. Promote only after an independent run.",
+      "notes": []
+    },
+    "deepseek-v4-pro": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred: no independent agentic row for 0813 (Scale's SWE-Bench Pro V2 table has no DeepSeek model, read 2026-10-03), so the default rule gives spec. Maker numbers are vendor-run, Artificial Analysis puts it below V4.1-Flash (36 against 39), and the only independent coding row (CAISI, Preview) trails Opus 4.6 [scale-swe-pro-v2, aa-pro, nist-caisi-v4-pro]. The maker is phasing it out or already routing it to Flash [deepseek-news-260910].",
+      "notes": []
+    },
+    "gemini-3.1-flash-lite": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "high"
+        }
+      ],
+      "basis": "Inferred; spec is the lowest tier and this is a small, low-cost model (AA index 16; Google's own SWE-Bench Pro public-set figure 38.3 and Terminal-Bench 2.1 31.0, the lowest in its own comparison table) [aa-gemini-3-1-flash-lite-preview, gemini-3-5-flash-lite-card].",
+      "notes": []
+    },
+    "gemini-3.1-pro-preview": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred; the placement rests on METR p50 384 and p80 90 minutes, near GPT-5.4's 342 and 54 [metr-time-horizons, sizing-horizon-8]. Evidence against: AA index 30 is below 3.8 Flash's 41 (3.8 Flash is placed at spec); Scale's public V1 leaderboard puts it at 46.1 under mini-swe-agent, below GPT-5.4 (59.1), Claude Opus 4.6 (51.9) and Muse Spark (55.0) [scale-swe-pro-public]. The row is inconsistent with 3.8 Flash's, and spec is the safer reading until measured.",
+      "notes": []
+    },
+    "gemini-3.5-flash-lite": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred; spec is the lowest tier and the model is the smallest current Flash (AA index 22 against 41 for 3.8 Flash). Google reports SWE-Bench Pro (public set) 54.2 and Terminal-Bench 2.1 54.0, its own figures. Google's note that the default effort ends tool use early supports a one-step package with the effort set explicitly [gemini-f24, gemini-3-5-flash-lite-card].",
+      "notes": []
+    },
+    "gemini-3.7-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred by the default rule (a model with no placement of its own takes the spec tier) and by order: it trails 3.8 Flash, which sits at spec, on every score read (AA 39 against 41, tbench.ai Terminal-Bench 4.0 11.2 against 19.1, DeepSWE 65 against 74 on Datacurve's leaderboard). No Scale row [tbench-4-leaderboard, deepswe-leaderboard, aa-gemini-3-7-flash].",
+      "notes": []
+    },
+    "gemini-3.8-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred (spec, by the default rule (a model with no placement of its own takes the spec tier)). Independent evidence: Scale 58.8 at high under mini-swe-agent, about 25 points below GLM-5.3 [scale-swe-pro-v2]; Terminal-Bench 4.0 19.1 under mini-SWE-agent [tbench-4-leaderboard]. Pulling the other way: DeepSWE v1.1 is 74 on Datacurve's leaderboard, level with Opus 5 and GPT-6 Astra, and the AA index is 41 against 30 for 3.1 Pro, [deepswe-leaderboard, aa-gemini-3-8-flash-page]. No source compares the tiers on this model.",
+      "notes": [
+        "Knowledge reaches March 2026 in part and January 2025 in other domains, so a hand-off package should state the date and any facts newer than the model [gemini-3-8-flash-card]."
+      ]
+    },
+    "gemini-4-argon": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier): restricted access, no Scale row, no METR horizon, no guide, and the maker figures are secondhand. Evidence that it may earn a higher tier once open: AA Intelligence Index 53 equals GPT-6 Astra's, and AA's Terminal-Bench 4.0 57 sits near the 59 its article gives for Astra, while Google's own table puts it last of four on Terminal-Bench 4.0 [aa-gemini-4-argon-article, dev-community-argon].",
+      "notes": []
+    },
+    "gemma-4-12b-it": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred by the default rule (a model with no placement of its own takes the spec tier) and by capability: AA index 14 (an estimate), Tau2 69.0 (Google), no agentic coding benchmark, mid-size open model [aa-gemma-4-12b, gemma-model-card-4].",
+      "notes": []
+    },
+    "gemma-4-26b-a4b-it": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred by the default rule (a model with no placement of its own takes the spec tier) and by capability: AA index 17 (an estimate), Tau2 68.2 (Google), no agentic coding benchmark [aa-gemma-4-26b-a4b, gemma-model-card-4].",
+      "notes": []
+    },
+    "gemma-4-31b-it": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred by the default rule (a model with no placement of its own takes the spec tier) (open model, no agentic coding measurement) and by capability: AA index 15, Tau2 76.9 (Google), no SWE or terminal-agent score. Quantisation below 4-bit is unknown, so spec [aa-gemma-4-31b, gemma-model-card-4].",
+      "notes": []
+    },
+    "gemma-4-e2b-it": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "high"
+        }
+      ],
+      "basis": "Inferred; spec is the lowest tier, and this is the smallest model in the family (AA index 8, an estimate) [aa-gemma-4-e2b, gemma-model-card-4].",
+      "notes": []
+    },
+    "gemma-4-e4b-it": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "high"
+        }
+      ],
+      "basis": "Inferred; spec is the lowest tier, and this is a small edge model (AA index 9, an estimate; LiveCodeBench 52, Tau2 42.2) [aa-gemma-4-e4b, gemma-model-card-4].",
+      "notes": []
+    },
+    "muse-glimmer-30b": {
+      "placements": [
+        {
+          "effort": "high",
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. Artificial Analysis index 17 on v4.3.2 and Meta's own SWE-Bench Pro 51.2, level with Qwen3.6-27B's 50.2 in Meta's table, give no sign of a higher tier; no independent coding-agent row exists [aa-glimmer, hf-glimmer].",
+      "notes": []
+    },
+    "muse-spark-1.2": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule; index 40 on v4.3.2 against 45 for 1.3 gives no sign of a higher tier [aa-muse-1-2, aa-muse-1-3-xhigh].",
+      "notes": []
+    },
+    "muse-spark-1.3": {
+      "placements": [
+        {
+          "effort": "xhigh",
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. Artificial Analysis gives index 61 (launch) or 45 (v4.3.2) and Terminal-Bench 2.1 85, but that benchmark is saturated and there is no Scale V2 row or Terminal-Bench 4.0 number, so no basis exists to lift it; a Scale row at xhigh would be the first evidence for design [aa-muse-article, scale-swe-pro-v2]. The ask-and-confirm behaviour is a reason to put authority to proceed in any package.",
+      "notes": []
+    },
+    "MiniMax-M2.7": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier); Artificial Analysis index 23 and Terminal-Bench 4.0 of 0 [aa-cmp-k26-m27]; no Scale row.",
+      "notes": []
+    },
+    "MiniMax-M3.1-Flash-Preview": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier); there is no benchmark, independent run or guide, and it is a six-day-old preview.",
+      "notes": []
+    },
+    "MiniMax-M3": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier). There is no Scale V2 row; Artificial Analysis gives index 29 and Terminal-Bench 4.0 of 2 [aa-cmp-k3-m3]; the maker's 59.0 is its own run on an earlier SWE-Bench Pro task set under Claude Code, and is not comparable with V2.",
+      "notes": [
+        "Trained against a simulated user to ask clarifying questions, take correction and switch tasks, so it may ask where a ticket is silent [open-weight-g11]."
+      ]
+    },
+    "mistral-large-3": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule; Artificial Analysis index 9 and Mistral's own statement that it is not tuned for reasoning give no sign of a higher tier [aa-mistral-large-3, hf-mistral-large-3].",
+      "notes": []
+    },
+    "mistral-medium-3-5": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so the default rule gives spec. What exists is Mistral's own SWE-bench Verified 77.6 (a benchmark these notes treat as retired) and Artificial Analysis index 14 on v4.3.2, below Qwen3.8-27B's 34 and Inkling's 25; no Scale row, no Terminal-Bench 4.0 number [aa-mistral-medium-3-5].",
+      "notes": [
+        "Vibe remote agents run sessions in isolated cloud sandboxes in parallel and notify on finish, so a hand-off can be unattended; local Vibe sessions are the other mode [mistral-vibe-remote-agents]."
+      ]
+    },
+    "mistral-small-2603": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule; Artificial Analysis index 11 and 6.5B active parameters point to a small reader, the case the spec tier is built for [aa-mistral-small-4].",
+      "notes": []
+    },
+    "kimi-k2.7-code": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier). The only independent evidence is Artificial Analysis index 26 and Terminal-Bench 4.0 of 1 [aa-cmp-k27code-m3]; there is no Scale row.",
+      "notes": []
+    },
+    "kimi-k3": {
+      "placements": [
+        {
+          "effort": "max",
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Max takes the same tier as Sonnet 5: 88.2 on Scale equals Sonnet 5, but under mini-swe-agent and not its own harness [scale-swe-pro-v2]; a practitioner passed 30 of 30 runs on two hermetic tasks across five setups [open-weight-f15]. Terminal-Bench 4.0 is 13 [aa-cmp-k3-m3]. Efforts below the lowest named row take the next tier down (inferred); no source measured K3 below max.",
+      "notes": [
+        "Thinking cannot be disabled and effort defaults to max, so a small ticket still pays for deep reasoning unless effort is set lower [kimi-k3-quickstart, kimi-reasoning-effort]."
+      ]
+    },
+    "gpt-5.6-luna": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "No source places it, so the default rule (a model with no placement of its own takes the spec tier) gives spec; Artificial Analysis's Coding Agent Index 43 and Terminal-Bench 4.0 12 at max [aa-sol-luna] agree with the GPT-6 Luna row, which is spec.",
+      "notes": []
+    },
+    "gpt-5.6-terra": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No source places GPT-5.6 Terra, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Scale 86.3 in Codex at xhigh [scale-swe-pro-v2] is higher than the design-tier rows for GLM-5.3 (84.3) and above GPT-5.6 Sol's 82.4, which argues for design, but there is no behavioural evidence for the tier and the model is a superseded generation.",
+      "notes": []
+    },
+    "gpt-6-astra": {
+      "placements": [
+        {
+          "effort": "high and above",
+          "tier": "outcome",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred from measured scores. Scale SWE-Bench Pro V2 90.2 in Codex at high [scale-swe-pro-v2] and Artificial Analysis Terminal-Bench 4.0 59.1 at max [aa-index-v4-3] support outcome at high and above; against it, the lab's own guidance says it asks more and pauses [openai-latest-model]. Below high the row follows the matching rule of one tier down: AA's index falls from 51 at high to 46 at low [aa-model-gpt-6-astra-high, aa-model-gpt-6-astra-low] but no coding run exists at those efforts. One hand-off comparison (63 runs, 9 a cell, three small tasks, one maker, one harness) passed 9 of 9 with the ticket and 9 of 9 with the spec package, so it did not separate the tiers for this model [ob-e17].",
+      "notes": [
+        "Asks clarifying questions more than earlier OpenAI models and can pause after a first implementation; a hand-off package needs explicit permission to proceed and a stated scope [openai-latest-model, openai-astra-blog]."
+      ]
+    },
+    "gpt-6-luna": {
+      "placements": [
+        {
+          "effort": "xhigh and above",
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Coding Agent Index 41 against Sol's 57 and Terminal-Bench 4.0 13 against Sol's 43, all at max [aa-sol-luna]; it stopped on a contradiction in 2 of 3 probed runs [ob-e13]. In the hand-off comparison (63 runs, 9 a cell, three small tasks, one maker, one harness) at xhigh it passed 6 of 9 with the ticket and 9 of 9 with the spec package; the whole gain is one row of one ticket [ob-e17]. Artificial Analysis measured max, not xhigh, so the row is labelled 'max measured'; lower efforts take spec, the lowest tier. Terminal-Bench 4.0 may be domain-skewed (Kimi K3 scores 12.6 there but 88.2 on Scale), so the 13 alone does not set the tier.",
+      "notes": []
+    },
+    "gpt-6-sol": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "design",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Artificial Analysis Coding Agent Index 57 and Terminal-Bench 4.0 43 at max [aa-sol-luna], plus the previous generation's Scale 82.4 (GPT-5.6 Sol, not this model); against it, deliverables omit required elements at max [openai-f19] and there is no guide of its own. Inferred. In the hand-off comparison (63 runs, 9 a cell, three small tasks, one maker, one harness) it passed 9 of 9 at medium effort with the ticket and 9 of 9 with the design package, which leaves the effect of the design package unshown [ob-e17].",
+      "notes": []
+    },
+    "gpt-6.1-sol": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Provisional. Artificial Analysis's index puts it one point under Astra at max and two under at xhigh and high [aa-model-gpt-6-1-sol, aa-model-gpt-6-1-sol-high], which is the first independent support for 'near-Astra', but that is a general index, not a coding run; the coding claims (DeepSWE, OSWorld) are OpenAI's own as relayed [vellum-gpt-6-1-sol]. Inferred: outcome tier waits for a Scale or Coding Agent Index row.",
+      "notes": []
+    },
+    "gpt-oss-120b": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred: no independent agentic run on the stronger scaffolds, the CMU study's agent scores were weak (20.4 on SWE-bench Verified) [cmu-steer-dont-solve], and Artificial Analysis's index is 12 [aa-model-gpt-oss-120b]. A model with no placement of its own takes spec in any case.",
+      "notes": []
+    },
+    "gpt-oss-20b": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred: no independent agentic run beyond the CMU study, where it was the weakest agent (3.0 on SWE-bench Verified) [cmu-steer-dont-solve]; Artificial Analysis's index is 9 [aa-model-gpt-oss-20b].",
+      "notes": []
+    },
+    "hy4-preview": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. The only score is Tencent's own expert rating, close to GLM-5.3 and Kimi K3 on 203 tasks, which is not comparable to Scale; no independent row exists and the model is a preview [hf-hy4].",
+      "notes": []
+    },
+    "inkling-small": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. It sits level with Inkling on Artificial Analysis (26 against 25) and Inkling's Scale V2 row of 56.9 is close to Gemini 3.8 Flash's 58.8, already at spec; Inkling-Small has no Scale row of its own [aa-inkling-small, scale-swe-pro-v2].",
+      "notes": []
+    },
+    "inkling": {
+      "placements": [
+        {
+          "effort": "xhigh",
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred from one independent row: Scale V2 56.9 under mini-swe-agent at xhigh, close to Gemini 3.8 Flash's 58.8, which sits at spec in this table, and far below Sonnet 5's 88.2 at design [scale-swe-pro-v2]. Artificial Analysis index 25 on v4.3.2 agrees. Not tested in any harness of its own.",
+      "notes": []
+    },
+    "k2-horizon-375b-a23b": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. Artificial Analysis index 31 on v4.3.2 is above Inkling's 25, but its coding numbers are the maker's own and there is no Scale or independent agentic row [aa-k2-horizon, hf-k2-horizon].",
+      "notes": []
+    },
+    "mimo-v2.6-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule; index 38 is below Pro's 46 and a 15B-active model is a small reader, the case the spec tier is built for [aa-mimo-flash].",
+      "notes": []
+    },
+    "mimo-v2.6-pro": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. Artificial Analysis index 46 on v4.3.2 is the highest open-weight reading found, close to Muse Spark 1.3's 45 to 48, but no Scale or Terminal-Bench 4.0 row exists; a Scale row could lift it to design, as it did for Kimi K3 and GLM-5.3 [aa-mimo-pro, scale-swe-pro-v2].",
+      "notes": []
+    },
+    "nemotron-3-ultra": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No placement exists for it, so it takes the spec tier by the default rule. Artificial Analysis index 23 on v4.3.2 (below Inkling's 25 and Qwen3.8-27B's 34) and SWE-bench Verified 70.4 from NVIDIA alone give no basis for more [aa-nemotron-page, nvidia-nemotron-blog].",
+      "notes": []
+    },
+    "grok-4.6": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No source places Grok 4.6, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Artificial Analysis Coding Agent Index 47 sits between GPT-6 Luna (41, spec) and GPT-6 Sol (57, design) [aa-grok-47, aa-gpt6-sol-luna]; Terminal-Bench 4.0 20.3 is far below Grok 4.7's 38.0 [xai-47-card]. Grok 4.7's rows sit higher.",
+      "notes": []
+    },
+    "grok-4.7-fast": {
+      "placements": [
+        {
+          "effort": "high and above",
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred: same weights as Grok 4.7 (maker statement, no independent run on Fast), so the Grok 4.7 placement carries over; see that card's basis [xai-47-news].",
+      "notes": []
+    },
+    "grok-4.7": {
+      "placements": [
+        {
+          "effort": "high and above",
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No source places Grok 4.7, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Evidence for design at high and above: Artificial Analysis Coding Agent Index 56 for 4.7 at xhigh in Grok Build [aa-grok-47] against 57 for GPT-6 Sol at max, a design-tier model [aa-gpt6-sol-luna]; at high, DeepSWE 71.0 against 72.7 for GPT-5.6 Sol at max and SWE-Marathon 46.0 against 42.5, both run by third parties but reported in the maker's card [xai-47-card]; Terminal-Bench 4.0 38.0 against 37.3 for GPT-5.6 Sol on the maker's chart [xai-47-card]. Against outcome: no Scale SWE-Bench Pro entry, AA's own Terminal-Bench 4.0 run at 33 (GPT-6 Sol 43 in AA's run), and a long-context regression [grok-f18]. Medium and below is unmeasured, so it takes the next tier down.",
+      "notes": [
+        "At xhigh it used about 81k output tokens per Artificial Analysis index task, more than twice Grok 4.6 (36k at high, 38k at xhigh): allow time and token budget, and do not default tickets to xhigh [grok-f12].",
+        "Artificial Analysis measured lower long-context reasoning than Grok 4.6 (high), a 3.7-point fall on AA-LCR, although the maker says 4.7 manages longer context better: keep the package short and compact long loops [grok-f18, xai-47-news].",
+        "Hallucination rate 29% on AA-Omniscience at xhigh (34% for 4.6 at high, 54% for 4.5): ask for evidence on factual claims in a package [aa-grok-47, grok-f19].",
+        "Trained on anonymized Cursor workflow data and on the Grok Bot harness, with its coding scores run in Grok Build or Cursor harnesses: test a package in the harness that will run it [grok-f14, xai-47-card]."
+      ]
+    },
+    "grok-build-0.1": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred. No independent or maker benchmark found, so the default rule gives spec.",
+      "notes": []
+    },
+    "glm-5.2": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier). Evidence agrees and is stronger than for most: Artificial Analysis Terminal-Bench 4.0 is 1.0 against 41.9 for its successor, and the Intelligence Index is 33.7 against 44.8 [aa-glm-5-2, aa-glm-5-3].",
+      "notes": []
+    },
+    "glm-5.3-flash": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "medium"
+        }
+      ],
+      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier). Evidence agrees: Flash trails GLM-5.3 (itself only design at low-medium confidence) by 3 Intelligence Index points and 9 Terminal-Bench 4.0 points on Artificial Analysis, and no independent SWE-Bench Pro or tbench.ai row exists [aa-flash-vs-53]. No source tests a hand-off package on it.",
+      "notes": []
+    },
+    "glm-5.3-flashx": {
+      "placements": [
+        {
+          "effort": null,
+          "tier": "spec",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Inferred: no placement exists for the model, so it takes spec. It is presented as a faster-serving Flash, and Flash is itself spec; there is no independent run on FlashX [zai-flash-docs].",
+      "notes": []
+    },
+    "glm-5.3": {
+      "placements": [
+        {
+          "effort": "max",
+          "tier": "design",
+          "confidence": "low"
+        }
+      ],
+      "basis": "Max is placed at design: Scale 84.3 (independent, mini-swe-agent, hard-set table) and Terminal-Bench 4.0 41.8 (tbench.ai, Claude Code), against out-of-scope changes and unauthorized commits in Z.ai's own guidance [scale-swe-pro-v2, tbench-4, glm-f11]. Nothing measures the tiers themselves, so this is inferred. High and low take the next tier down by the matching rule for efforts below the lowest named row; the only measured gap is low against max (about 10 Intelligence Index points) [aa-glm-5-3-low]. No source tests an outcome, design or spec package on GLM.",
+      "notes": [
+        "ZCode loads only the user-global and workspace AGENTS.md: no nested files, no @imports, no per-task rule selection, so anything a hand-off needs must be in those files or the ticket [zcode-agents]."
+      ]
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "format_version": 2,
+  "engine_version": "1.0.0",
+  "artifacts": [
+    {
+      "kind": "block",
+      "path": "AGENTS.md",
+      "id": "operating-contract",
+      "sha256": "7a5d5e739badbdd492fac5a1b547c7e52c01d270b96a01799e12c93809e6fe75"
+    },
+    {
+      "kind": "block",
+      "path": "AGENTS.md",
+      "id": "project-facts",
+      "fragments": [
+        "solo",
+        "workspace",
+        "local",
+        "commands"
+      ],
+      "done": [
+        "make check",
+        "make test"
+      ],
+      "inputs": {
+        ".github/workflows/check.yml": "7eabf3ff2e56644c4efc56adddd71b09b769639bf7945c0e7ef05c145faedf5a",
+        ".outcomebound/fragments/commands.md": "a220f88cb35d0a1080be21c3a1146c9c0e6e26aa936775a041a0594e0343dae6",
+        ".outcomebound/fragments/local.md": "4d820ff7cb86712d512ddd6e99cc970dedb7f9f1000b5f1fcf0c6eb0c8b74bfe",
+        ".outcomebound/fragments/solo.md": "8b04fb0830d5e1eb1d6ec52299a261e92c059acf20e134df90e35fb4b1450cb3",
+        ".outcomebound/fragments/workspace.md": "e48dd46e93f5d84a7224b77cd796a0189e61ef9e29e78e7ad48f33dd338e6158"
+      },
+      "style": [
+        "ste"
+      ],
+      "sha256": "aad941eebf24b863cf3c79ac9c98bf8e3f5b367ae0f48d9e08c1821fb47bb831"
+    },
+    {
+      "kind": "block",
+      "path": "AGENTS.md",
+      "id": "guidance-pointers",
+      "sha256": "3009b04942ce283f11e078189389b9ce069a77464285c03d2d79960b60f39622"
+    },
+    {
+      "kind": "fragment",
+      "path": ".outcomebound/fragments/solo.md",
+      "id": "solo",
+      "sha256": "8b04fb0830d5e1eb1d6ec52299a261e92c059acf20e134df90e35fb4b1450cb3"
+    },
+    {
+      "kind": "fragment",
+      "path": ".outcomebound/fragments/workspace.md",
+      "id": "workspace",
+      "sha256": "e48dd46e93f5d84a7224b77cd796a0189e61ef9e29e78e7ad48f33dd338e6158"
+    },
+    {
+      "kind": "fragment",
+      "path": ".outcomebound/fragments/commands.md",
+      "id": "commands",
+      "sha256": "a220f88cb35d0a1080be21c3a1146c9c0e6e26aa936775a041a0594e0343dae6"
+    },
+    {
+      "kind": "ignore",
+      "path": ".agents/.gitignore",
+      "id": "workspace",
+      "sha256": "a6f84c6e2212baaca339efffc76791b702d3f0cc650ff50c8af1906436e2c642"
+    },
+    {
+      "kind": "skill",
+      "path": ".agents/skills/decision-brief/SKILL.md",
+      "id": "decision-brief",
+      "harnesses": [
+        "codex"
+      ],
+      "sha256": "0c50574b397034c8f6f3e75f90cbda5f5c0d0f2a7f48ce56240ac15d983fc3b9"
+    },
+    {
+      "kind": "skill",
+      "path": ".agents/skills/gather-requirements/SKILL.md",
+      "id": "gather-requirements",
+      "harnesses": [
+        "codex"
+      ],
+      "sha256": "ab4653eadf6cb4bf93bbca60f71d9668e790bf45f8599d13eb314e06687274f2"
+    },
+    {
+      "kind": "skill",
+      "path": ".agents/skills/tests-worth-keeping/SKILL.md",
+      "id": "tests-worth-keeping",
+      "harnesses": [
+        "codex"
+      ],
+      "sha256": "f8c192ae2cfd895f702e7f528d993db9bae2a4893c56367bd8b427d8c37e0359"
+    },
+    {
+      "kind": "skill",
+      "path": ".agents/skills/using-outcomebound/SKILL.md",
+      "id": "using-outcomebound",
+      "harnesses": [
+        "codex"
+      ],
+      "sha256": "91dd5d47483cb3bbe3f1a0e4ae8912ecb2c258c6bd58ec8f06f2f7f631bd5980"
+    },
+    {
+      "kind": "skill",
+      "path": ".claude/skills/decision-brief/SKILL.md",
+      "id": "decision-brief",
+      "harnesses": [
+        "claude-code"
+      ],
+      "sha256": "0c50574b397034c8f6f3e75f90cbda5f5c0d0f2a7f48ce56240ac15d983fc3b9"
+    },
+    {
+      "kind": "skill",
+      "path": ".claude/skills/gather-requirements/SKILL.md",
+      "id": "gather-requirements",
+      "harnesses": [
+        "claude-code"
+      ],
+      "sha256": "ab4653eadf6cb4bf93bbca60f71d9668e790bf45f8599d13eb314e06687274f2"
+    },
+    {
+      "kind": "skill",
+      "path": ".claude/skills/tests-worth-keeping/SKILL.md",
+      "id": "tests-worth-keeping",
+      "harnesses": [
+        "claude-code"
+      ],
+      "sha256": "f8c192ae2cfd895f702e7f528d993db9bae2a4893c56367bd8b427d8c37e0359"
+    },
+    {
+      "kind": "skill",
+      "path": ".claude/skills/using-outcomebound/SKILL.md",
+      "id": "using-outcomebound",
+      "harnesses": [
+        "claude-code"
+      ],
+      "sha256": "91dd5d47483cb3bbe3f1a0e4ae8912ecb2c258c6bd58ec8f06f2f7f631bd5980"
+    }
+  ]
+}

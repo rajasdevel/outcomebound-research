@@ -1,0 +1,73 @@
+name: Finding
+description: Add a fact, or correct one, about a model, a harness, a provider or a practice
+title: "Finding: "
+labels: ["finding"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A finding is one observation, with its source. [CONTRIBUTING.md](https://github.com/rajasdevel/outcomebound-research/blob/main/CONTRIBUTING.md) has the evidence rules.
+
+        - Write the claim in **your own words**. Do not paste the prose of a source.
+        - Give the **primary source** and the day you read it.
+        - A quotation is optional. It is **at most 25 words and 300 characters**, copied exactly from the source.
+        - Leave out the names of projects, clients and people that are not public. Leave out anything private.
+        - When you submit this form, you license its text under [CC BY 4.0](https://github.com/rajasdevel/outcomebound-research/blob/main/CONTRIBUTING.md#inbound-terms). A quotation stays the property of its owner.
+        - This issue is public. Do not use it for a vulnerability, an instruction hidden in the text or a leaked private name. Use the [private report form](https://github.com/rajasdevel/outcomebound-research/security/advisories/new) for those.
+
+        **To correct something here:** choose `correction`. In "Corrects", give the path or the evidence id of the wrong text, for example `models/anthropic/claude-opus-5-5.md` or `anthropic-17`. In the claim, say what is true instead and what the source says. The maintainer reads the source again before the text changes. Do not write around a wrong claim. The maintainer rewrites the document where the claim stands.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      description: "fact adds something new. correction fixes something here that is wrong."
+      options:
+        - fact
+        - correction
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: subject
+    attributes:
+      label: Subject
+      description: "What the finding is about, for example claude-opus-5-5, harness:codex or practice:review."
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim
+      description: "One or two sentences in your own words. No project, client or person names."
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Source URL
+      description: "The page you read. A primary source is best."
+      placeholder: "https://"
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: Quotation (optional)
+      description: "At most 25 words and 300 characters, copied exactly from the source."
+    validations:
+      required: false
+  - type: input
+    id: observed_on
+    attributes:
+      label: Date you read the source
+      description: "An ISO date."
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+  - type: input
+    id: corrects
+    attributes:
+      label: Corrects (for a correction)
+      description: "The path or the evidence id that this corrects. Required for a correction. Optional for a fact."
+    validations:
+      required: false

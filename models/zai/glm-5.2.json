@@ -1,0 +1,459 @@
+{
+  "id": "glm-5.2",
+  "name": "GLM-5.2",
+  "maker": "Zhipu (GLM)",
+  "family": "GLM-5.2",
+  "class": "GLM",
+  "generation": "5.2",
+  "released": "2026-06-16",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MIT)",
+  "access": [
+    "Z.ai API",
+    "Claude Code (via the Z.ai Anthropic endpoint)",
+    "OpenRouter",
+    "Hugging Face weights (self-hosted)"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "high",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.4,
+    "output": 4.4,
+    "cached_input": 0.26,
+    "notes": "Z.ai list price, the same as GLM-5.3; cache storage limited-time free. OpenRouter lists a lower resale price (0.41 in, 3.99 out) and shows a default effort of high."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 1.0,
+      "setting": "max; Artificial Analysis run inside its Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 33.7,
+      "setting": "max; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 3.0",
+      "score": 4.6,
+      "setting": "baseline column in Z.ai's GLM-5.3 release; setting not stated for this column",
+      "harness": "Claude Code 2.1.207 (the harness stated for the 5.3 column)",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 46.2,
+      "setting": "baseline column in Z.ai's GLM-5.3 release",
+      "harness": "mini-swe-agent (the harness stated for the 5.3 column)",
+      "measured_by": "maker",
+      "source": "hf-glm53",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Z.ai Code Bench v1.0",
+      "score": 23.4,
+      "setting": "max; private in-house benchmark",
+      "harness": "Claude Code 2.1.207 (chart caption on the GLM-5.3 docs page)",
+      "measured_by": "maker",
+      "source": "zai-glm53-docs",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MTAC-IFBench (all-constraints rate, C-ISR)",
+      "score": 12.7,
+      "setting": "Claude Code v2.1.14; whole-benchmark average over turns; the benchmark paper is co-authored by Tsinghua CoAI and Zhipu",
+      "harness": "Claude Code v2.1.14",
+      "measured_by": "maker",
+      "source": "mtac-ifbench",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MTAC-IFBench (all-constraints rate, C-ISR)",
+      "score": 6.7,
+      "setting": "same study under OpenCode v1.1.21; whole-benchmark average over turns",
+      "harness": "OpenCode v1.1.21",
+      "measured_by": "maker",
+      "source": "mtac-ifbench",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis run)",
+      "score": 77.9,
+      "setting": "max; inside Artificial Analysis's Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench (percent)",
+      "score": 73.3,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": 4.4,
+      "setting": "max; Artificial Analysis; accuracy 24.3%",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent)",
+      "score": 26.3,
+      "setting": "max; Artificial Analysis; lower is better",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (long-context reasoning, percent)",
+      "score": 78.3,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (percent)",
+      "score": 89.5,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (percent, no tools)",
+      "score": 41.1,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SciCode (percent)",
+      "score": 51.2,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Terminus-2)",
+      "score": 81.0,
+      "setting": "temperature 1.0, top_p 1.0, max_new_tokens 48k, 4 h timeout, 500 episodes, 256K context",
+      "harness": "Terminus-2",
+      "measured_by": "maker",
+      "source": "hf-glm52",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Claude Code)",
+      "score": 82.7,
+      "setting": "temperature 1.0, top_p 0.95, 128K output, no wall-clock limit, averaged over 5 runs",
+      "harness": "Claude Code 2.1.167",
+      "measured_by": "maker",
+      "source": "hf-glm52",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (maker-reported, OpenHands; task set not named, published 2026-06-16 before Scale's V2 split)",
+      "score": 62.1,
+      "setting": "temperature 1, top_p 1, max_new_tokens 32k, 400K context",
+      "harness": "OpenHands (tailored instruction prompt)",
+      "measured_by": "maker",
+      "source": "hf-glm52",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierSWE (dominance score)",
+      "score": 74.4,
+      "setting": "maker table in the GLM-5.2 release (dominance as of 2026-06-16); Z.ai's later GLM-5.3 table lists 67.5 for GLM-5.2",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm52",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP-Atlas (public set)",
+      "score": 76.8,
+      "setting": "think mode",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm52",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.z.ai/devpack/resources/best-practice",
+    "https://docs.z.ai/devpack/resources/memory-mechanism",
+    "https://docs.z.ai/guides/capabilities/thinking-mode",
+    "https://docs.z.ai/guides/capabilities/thinking"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.z.ai/guides/llm/glm-5.2",
+  "sources": [
+    {
+      "id": "zai-glm52-docs",
+      "url": "https://docs.z.ai/guides/llm/glm-5.2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Do not introduce new dependencies, do not modify API contracts, and do not commit changes proactively."
+    },
+    {
+      "id": "zai-glm52-blog",
+      "url": "https://z.ai/blog/glm-5.2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "We find that GLM-5.2 shows more potential hacking behavior than GLM-5.1."
+    },
+    {
+      "id": "zai-glm53-docs",
+      "url": "https://docs.z.ai/guides/llm/glm-5.3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "GLM-5.3 always operates with reasoning enabled and supports three reasoning effort levels: low, high, and max."
+    },
+    {
+      "id": "hf-glm53",
+      "url": "https://huggingface.co/zai-org/GLM-5.3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "It defaults to `max` if not passed (or if set to any other value)."
+    },
+    {
+      "id": "zai-pricing",
+      "url": "https://docs.z.ai/guides/overview/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-models-overview",
+      "url": "https://docs.z.ai/guides/overview/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-best-practice",
+      "url": "https://docs.z.ai/devpack/resources/best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "This kind of structured task input reduces unnecessary guesswork and makes the agent’s changes more consistent and easier to review."
+    },
+    {
+      "id": "aa-glm-5-2",
+      "url": "https://artificialanalysis.ai/models/glm-5-2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-glm-5-3",
+      "url": "https://artificialanalysis.ai/models/glm-5-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Every agent diff is re-graded on a pristine image, and we publish both grades."
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mtac-ifbench",
+      "url": "https://arxiv.org/abs/2609.14992",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Even the leading LLM, GLM-5.2, fails to follow about 20% of the process constraints"
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": "GLM-5.3-Prime is the high-speed variant of Z.ai's GLM-5.3, inheriting its full capabilities while delivering 1.5–2× the output throughput through inference acceleration."
+    },
+    {
+      "id": "zai-coding-plan",
+      "url": "https://docs.z.ai/devpack/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-deep-thinking",
+      "url": "https://docs.z.ai/guides/capabilities/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-release-notes",
+      "url": "https://docs.z.ai/release-notes/new-released",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "willison-glm52",
+      "url": "https://simonwillison.net/2026/jun/17/glm-52/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "zai-migrate",
+      "url": "https://docs.z.ai/guides/overview/migrate-to-glm-new",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-chat-api",
+      "url": "https://docs.z.ai/api-reference/llm/chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-struct-output",
+      "url": "https://docs.z.ai/guides/capabilities/struct-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-cache",
+      "url": "https://docs.z.ai/guides/capabilities/cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-errors",
+      "url": "https://docs.z.ai/api-reference/api-code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-switch-models",
+      "url": "https://docs.z.ai/devpack/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-stream-tool",
+      "url": "https://docs.z.ai/guides/tools/stream-tool",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-thinking-mode",
+      "url": "https://docs.z.ai/guides/capabilities/thinking-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-memory-mechanism",
+      "url": "https://docs.z.ai/devpack/resources/memory-mechanism",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-function-calling",
+      "url": "https://docs.z.ai/guides/capabilities/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-glm52",
+      "url": "https://huggingface.co/zai-org/GLM-5.2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no GLM-5.2 row on the leaderboard",
+    "Artificial Analysis Coding Agent Index: no GLM-5.2 entry",
+    "Terminal-Bench 4.0 on tbench.ai: no GLM-5.2 row; only the Artificial Analysis run exists",
+    "METR 50% time horizon: METR's page lists no GLM model",
+    "retires: Z.ai publishes no retirement date",
+    "access: GLM-5.2 is no longer served as itself on the GLM Coding Plan, which routes it to GLM-5.3 (checked 2026-10-03)",
+    "reasoning default: Z.ai's API and Deep Thinking page say max; OpenRouter shows high as its default and offers only xhigh and high; on Z.ai's API 'none' or 'minimal' (or thinking disabled) stops thinking, 'low'/'medium' map to high and 'xhigh' to max",
+    "system_card: Z.ai publishes no system card or safety report for GLM-5.2",
+    "sampling defaults: the 5.2 docs page does not state them; the chat-completion reference gives temperature 1.0 and top_p 0.95 for the GLM-5.x series",
+    "safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found; the 5.2 blog describes reward hacking seen in training"
+  ]
+}

@@ -1,0 +1,440 @@
+{
+  "id": "claude-opus-5",
+  "name": "Claude Opus 5",
+  "maker": "Anthropic",
+  "family": "Claude 5",
+  "class": "Claude Opus",
+  "generation": "5",
+  "released": "2026-07-24",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Claude API",
+    "Claude apps (claude.ai)",
+    "Claude Code",
+    "Amazon Bedrock",
+    "Google Cloud",
+    "Microsoft Foundry",
+    "Claude Platform on AWS"
+  ],
+  "context_window": 1000000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 5.0,
+    "output": 25.0,
+    "cached_input": 0.5,
+    "notes": "List price, standard rate. 5-minute cache write 6.25, 1-hour write 10; cache read 0.1x input. Batch 2.50/12.50. Fast mode (research preview, Claude API only) 10/50. US-only inference adds 1.1x. Thinking can be disabled only at high or below."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 98.0,
+      "setting": "xhigh",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 52.3,
+      "setting": "max",
+      "harness": "Claude Code (bare mode); 15 trials per task",
+      "measured_by": "maker",
+      "source": "system-card-fable-5-1",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 53.94,
+      "setting": "xhigh",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 51.82,
+      "setting": "max",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 50.3,
+      "setting": "high",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 44.85,
+      "setting": "medium",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 34.85,
+      "setting": "low",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "tbench-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 49.0,
+      "setting": "max",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-index-v4-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 46.5,
+      "setting": "xhigh",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 46.0,
+      "setting": "high",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 34.3,
+      "setting": "medium",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 26.3,
+      "setting": "low",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 50.8,
+      "setting": "max (AA shows 51)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 49.7,
+      "setting": "xhigh",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 48.1,
+      "setting": "high",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 44.8,
+      "setting": "medium",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 39.4,
+      "setting": "low",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode v1.1 (Main)",
+      "score": 48.0,
+      "setting": "not stated for Opus 5",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-opus-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0",
+      "score": 46.6,
+      "setting": "max (stated in the announcement text)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announce-opus-5-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode v1.1 (Main)",
+      "score": 53.4,
+      "setting": "best effort (medium), the system card's own figure; run by Cognition",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "system-card-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (Anthropic's own run, not the Scale leaderboard)",
+      "score": 79.2,
+      "setting": "max, adaptive thinking, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 96.0,
+      "setting": "max, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 68.8,
+      "setting": "max, five trials",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "system-card-opus-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1 (Artificial Analysis coding-agent component)",
+      "score": 62.5,
+      "setting": "max",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agent-index",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Atlas-QnA (Artificial Analysis coding-agent component)",
+      "score": 62.1,
+      "setting": "max",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agent-index",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 54.5,
+      "setting": "max (3 of 197 attempts fell back; Artificial Analysis coding-agent run)",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-coding-agent-index",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  ],
+  "system_card": "https://www.anthropic.com/claude-opus-5-system-card",
+  "model_page": "https://platform.claude.com/docs/en/models/opus-5/overview",
+  "sources": [
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-opus-5",
+      "url": "https://artificialanalysis.ai/models/claude-opus-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-terminal-bench-4",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "announce-opus-5-5",
+      "url": "https://www.anthropic.com/claude-opus-5-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-deprecations",
+      "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-effort",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "anthropic-pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-code-model-config",
+      "url": "https://code.claude.com/docs/en/model-config",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-g11",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "claude-g13",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Treat a text-only end of turn as a report rather than as proof the task is done."
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "page-opus-5",
+      "url": "https://platform.claude.com/docs/en/models/opus-5/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "page-opus-5-5",
+      "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "system-card-opus-5",
+      "url": "https://www.anthropic.com/claude-opus-5-system-card",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "system-card-fable-5-1",
+      "url": "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "announce-opus-5",
+      "url": "https://www.anthropic.com/news/claude-opus-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "best-practices-page",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "status: Anthropic lists it as legacy (still active, no deprecation announced); the format has no legacy value, so it is recorded as ga",
+    "Artificial Analysis Coding Agent Index: the composite is shown as 'Not publicly available' on its page; the per-benchmark means in the page's data (DeepSWE v1.1, SWE-Atlas-QnA, Terminal-Bench 4.0 with Claude Code) are recorded as separate entries, read from page data and not from displayed text",
+    "METR 50% time horizon: not listed on metr.org/time-horizons (dated 2026-05-08)"
+  ]
+}

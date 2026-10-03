@@ -1,0 +1,17 @@
+# Agent working state: .agents/.gitignore keeps the workspace folders out of Git and lets the
+# installed skills in .agents/skills/ be committed, as AGENTS.md points to them.
+
+# Collected findings wait here, unlicensed and unread, for a maintainer to rewrite them in their own
+# words; only the folder's placeholder is committed (ingest/seen.jsonl holds digests only).
+/ingest/queue/*
+!/ingest/queue/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Local tool state
+uv.lock
+
+# OS
+.DS_Store

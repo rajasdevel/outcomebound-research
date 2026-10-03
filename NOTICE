@@ -1,0 +1,46 @@
+Copyright 2026 Rajas Abhyankar
+
+This repository holds four kinds of material under two licences, and one kind under neither. This
+file is the one map of which file is which.
+
+1. Prose and data: the Markdown documents (the model cards' format page included), the model cards,
+   the application data (applications/implementer-tiers.json), the evidence ledgers (_evidence/),
+   the digest list ingest/seen.jsonl and a finding that someone submitted on the issue form or in a
+   pull request under the terms in CONTRIBUTING.md. Licence: Creative Commons Attribution 4.0
+   International. The full text is in LICENSE. Credit "rajasdevel, outcomebound-research" (a
+   pseudonym of the copyright holder) and link to https://github.com/rajasdevel/outcomebound-research.
+   A file in ingest/queue/ is not part of the repository: it is not committed, and carries no licence
+   from here. What a maintainer takes from it enters a document or a ledger in the maintainer's own
+   words.
+
+2. Code: scripts/, tests/, the Makefile, the files under .github/ and the other configuration files
+   (.editorconfig, .gitignore, CITATION.cff). The `license` field of CITATION.cff names the licence
+   of the research data (item 1), not of the file itself. Licence: Apache License 2.0. The full text is in
+   LICENSE-CODE.
+
+3. Files that OutcomeBound installs: the blocks that `outcomebound adopt` writes into AGENTS.md
+   (between its outcomebound markers; the project facts that come from
+   .outcomebound/fragments/local.md are this repository's own, under item 1),
+   .outcomebound/manifest.json, .outcomebound/fragments/solo.md, workspace.md and commands.md,
+   .agents/.gitignore, and the skills in .claude/skills/ and .agents/skills/. They are OutcomeBound's, under OutcomeBound's licence:
+   https://github.com/rajasdevel/outcomebound/blob/main/LICENSE. Change them in that project, not
+   here; the next adopt rewrites them.
+
+4. Quoted third-party text: short verbatim quotations. They are held in the "quote" fields of the
+   evidence ledgers and of model-card sources, and they stand inside quotation marks anywhere else:
+   in the documents and in the other text fields of a ledger record or card. Each quotation belongs
+   to the owner of its source, which each record names by URL. Neither licence above covers a
+   quotation: the owner's own terms, or a legal permission to quote such as fair use or the right of
+   quotation, decide what you may do with it. This project keeps itself to quotations of at most 25
+   words, and `scripts/check.py` enforces that. The limit is a house rule that keeps quotations
+   short. It is not a legal test and clears nothing: copyright law sets no word count under which a
+   quotation is allowed, and whether a quotation is allowed depends on the law that applies and on
+   how it is used. Facts are not protected by copyright, and the claims here restate them in our own
+   words.
+
+Benchmark scores and rankings come from the leaderboards and pages that each record or card names
+(for example Artificial Analysis, Scale, tbench.ai, METR and Datacurve). They belong to their owners
+and are cited with their URLs for attribution and verification.
+
+Product, model and company names belong to their owners. Their use here names the thing described
+and does not imply endorsement by, or affiliation with, any of them.

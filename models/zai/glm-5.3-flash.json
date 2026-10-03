@@ -1,0 +1,539 @@
+{
+  "id": "glm-5.3-flash",
+  "name": "GLM-5.3-Flash",
+  "maker": "Zhipu (GLM)",
+  "family": "GLM-5.3",
+  "class": "GLM Flash",
+  "generation": "5.3",
+  "released": "2026-08-26",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MIT)",
+  "access": [
+    "Z.ai API",
+    "GLM Coding Plan",
+    "Claude Code (via the Z.ai Anthropic endpoint)",
+    "ZCode",
+    "OpenCode",
+    "OpenRouter",
+    "Fireworks",
+    "Hugging Face weights (self-hosted: SGLang, vLLM, Transformers)"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "file"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.15,
+    "output": 0.5,
+    "cached_input": 0.03,
+    "notes": "Z.ai list price; cache storage limited-time free; Fireworks lists the same. OpenRouter also lists a batch price of 0.06 input and 0.20 output."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 32.8,
+      "setting": "max; Artificial Analysis run inside its Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 41.8,
+      "setting": "max; index v4.3.2 (GLM-5.3 max scores 44.8 on the same version)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 57.0,
+      "setting": "max; index v4.1.1, an older version that Artificial Analysis's current pages no longer show; Artificial Analysis's score as quoted by Z.ai; about $0.045 per task discounted",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 84.3,
+      "setting": "effort not stated; temperature 1.0, top_p 1, max_new_tokens 65536, 6 h timeout",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "hf-glm53-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 63.4,
+      "setting": "effort not stated; temperature 0.95, top_p 1.0, 400K context, 6 h timeout",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "hf-glm53-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 56.3,
+      "setting": "effort not stated; 1M context",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon Verified",
+      "score": 78.4,
+      "setting": "pass@1 averaged over 3 runs; results obtained by Z.ai through the official Toolathlon evaluation service",
+      "harness": "Toolathlon evaluation service",
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench (v1.0.6)",
+      "score": 48.8,
+      "setting": "effort not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Agents' Last Exam (ALE-CLI)",
+      "score": 26.3,
+      "setting": "max; 64K max output, 1M context",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Z.ai Code Bench v1.0",
+      "score": 29.0,
+      "setting": "max; private in-house benchmark v1.0, so not reproducible outside Z.ai (Claude Opus 4.8 scores 29.5 on it); high effort about 28 and low about 21.5 read from Z.ai's chart",
+      "harness": "Claude Code 2.1.207",
+      "measured_by": "maker",
+      "source": "zai-flash-docs",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis run)",
+      "score": 84.3,
+      "setting": "max; inside Artificial Analysis's Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": 7.5,
+      "setting": "max; Artificial Analysis; accuracy 27.5%",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent)",
+      "score": 27.6,
+      "setting": "max; Artificial Analysis; lower is better",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (long-context reasoning, percent)",
+      "score": 80.0,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (percent)",
+      "score": 91.2,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (percent, no tools)",
+      "score": 39.9,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SciCode (percent)",
+      "score": 51.6,
+      "setting": "max; Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-glm-5-3-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE with tools (percent)",
+      "score": 55.3,
+      "setting": "full set; temperature 1.0, top_p 0.95, 300K context with a context-management strategy; judge GPT-5.6-luna (medium)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "hf-glm53-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA v2 (Elo)",
+      "score": 1773,
+      "setting": "listed in Z.ai's table; Z.ai says Artificial Analysis evaluated the models",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OfficeQA Pro",
+      "score": 62.4,
+      "setting": "Z.ai's vision table; Treasury Bulletin PDF corpus without embedded text, 512K context",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CharXiv Reasoning (with tools)",
+      "score": 89.4,
+      "setting": "Z.ai's vision table",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Chartography (with tools)",
+      "score": 78.0,
+      "setting": "Z.ai's vision table",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BabyVision",
+      "score": 53.4,
+      "setting": "temperature 1.0, top_p 0.95, 164K context, shorter image side resized to at least 1.5K pixels",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MVBench",
+      "score": 77.8,
+      "setting": "Z.ai's vision table; temperature 1.0, top_p 0.95, 256K context",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MMVU",
+      "score": 80.5,
+      "setting": "Z.ai's vision table; temperature 1.0, top_p 0.95, 256K context",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld 2.0",
+      "score": 59.1,
+      "setting": "Z.ai's vision table; harness not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Vision2Web",
+      "score": 77.8,
+      "setting": "Z.ai's vision table",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "zai-flash-blog",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.z.ai/devpack/resources/best-practice",
+    "https://docs.z.ai/devpack/resources/memory-mechanism",
+    "https://docs.z.ai/guides/capabilities/thinking-mode",
+    "https://docs.z.ai/guides/capabilities/thinking",
+    "https://docs.z.ai/guides/overview/migrate-to-glm-new"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+  "sources": [
+    {
+      "id": "zai-flash-blog",
+      "url": "https://z.ai/blog/glm-5.3-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "GLM-5.3-Flash pushes the Pareto frontier of the Artificial Analysis Intelligence Index v4.1.1, scoring 57 at just $0.045 per task (discounted)"
+    },
+    {
+      "id": "zai-flash-docs",
+      "url": "https://docs.z.ai/guides/vlm/glm-5.3-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "GLM-5.3-FlashX is now live, delivering inference speeds of 200 tokens/s for faster responses and a smoother experience."
+    },
+    {
+      "id": "hf-glm53-flash",
+      "url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-pricing",
+      "url": "https://docs.z.ai/guides/overview/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-models-overview",
+      "url": "https://docs.z.ai/guides/overview/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-thinking-mode",
+      "url": "https://docs.z.ai/guides/capabilities/thinking-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-best-practice",
+      "url": "https://docs.z.ai/devpack/resources/best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "This kind of structured task input reduces unnecessary guesswork and makes the agent’s changes more consistent and easier to review."
+    },
+    {
+      "id": "aa-glm-5-3-flash",
+      "url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-flash-vs-53",
+      "url": "https://artificialanalysis.ai/models/comparisons/glm-5-3-flash-vs-glm-5-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Every agent diff is re-graded on a pristine image, and we publish both grades."
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": "GLM-5.3-Prime is the high-speed variant of Z.ai's GLM-5.3, inheriting its full capabilities while delivering 1.5–2× the output throughput through inference acceleration."
+    },
+    {
+      "id": "fireworks-flash",
+      "url": "https://fireworks.ai/models/fireworks/glm-5p3-flash",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "glm-harness",
+      "url": "https://docs.z.ai/devpack/resources/best-practice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-deep-thinking",
+      "url": "https://docs.z.ai/guides/capabilities/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-release-notes",
+      "url": "https://docs.z.ai/release-notes/new-released",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-migrate",
+      "url": "https://docs.z.ai/guides/overview/migrate-to-glm-new",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-chat-api",
+      "url": "https://docs.z.ai/api-reference/llm/chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-struct-output",
+      "url": "https://docs.z.ai/guides/capabilities/struct-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-cache",
+      "url": "https://docs.z.ai/guides/capabilities/cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-errors",
+      "url": "https://docs.z.ai/api-reference/api-code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-coding-plan",
+      "url": "https://docs.z.ai/devpack/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-switch-models",
+      "url": "https://docs.z.ai/devpack/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-stream-tool",
+      "url": "https://docs.z.ai/guides/tools/stream-tool",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-memory-mechanism",
+      "url": "https://docs.z.ai/devpack/resources/memory-mechanism",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "zai-function-calling",
+      "url": "https://docs.z.ai/guides/capabilities/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mtac-ifbench",
+      "url": "https://arxiv.org/abs/2609.14992",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-glm-5-3",
+      "url": "https://artificialanalysis.ai/models/glm-5-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "zcode-agents",
+      "url": "https://zcode.z.ai/en/docs/agents",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Flash row on the leaderboard",
+    "Artificial Analysis Coding Agent Index: no Flash entry (only GLM-5.3 under OpenCode is listed)",
+    "Terminal-Bench 4.0 on the tbench.ai board: no Flash row; only the Artificial Analysis run exists",
+    "METR 50% time horizon: METR's time-horizons page lists no GLM model",
+    "Aider polyglot, LiveCodeBench: no run found",
+    "retires: no retirement date published",
+    "multi-turn instruction following: not measured for Flash",
+    "AA v4.1.1 index: the 57 is quoted by Z.ai; no AA page shows that version, so it is recorded as the maker's quote and Z.ai's claim that GLM-5.3 scored 60 on it was not found in text and is not recorded",
+    "HF README: Flash's benchmark chart on Hugging Face is an image and its machine-readable results list three rows; the full table is in the data embedded in Z.ai's blog page",
+    "system_card: Z.ai publishes no system card or safety report for GLM-5.3-Flash",
+    "safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found",
+    "image, video and file input: Z.ai's page lists all three; Artificial Analysis lists image only, OpenRouter image and video, Fireworks image; Z.ai's API reference gives size and format limits (image 5 MB, video 200 MB, file 50 MB) but not the number of images or videos per Flash request or a video length limit"
+  ]
+}

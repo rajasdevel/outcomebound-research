@@ -1,0 +1,291 @@
+{
+  "id": "gpt-6-luna",
+  "name": "GPT-6 Luna",
+  "maker": "OpenAI",
+  "family": "GPT-6",
+  "class": "GPT Luna",
+  "generation": "6",
+  "released": "2026-09-22",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses, Chat Completions, Batch)",
+    "ChatGPT Work",
+    "Codex",
+    "Microsoft Foundry",
+    "Amazon Bedrock"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.1,
+    "output": 0.5,
+    "cached_input": 0.01,
+    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 38,
+      "setting": "max (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 35,
+      "setting": "xhigh (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna-xhigh",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 33,
+      "setting": "high (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna-high",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 30,
+      "setting": "medium (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna-medium",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 22,
+      "setting": "low (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 41,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run)",
+      "score": 12.6,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run)",
+      "score": 15.2,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent, lower is better)",
+      "score": 76.7,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (long-context reasoning, percent)",
+      "score": 83.3,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-luna",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/latest-model",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-6-astra",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+  "sources": [
+    {
+      "id": "openai-model-gpt-6-luna",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-latest-model",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-reasoning-guide",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-astra-card",
+      "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "codex-models",
+      "url": "https://learn.chatgpt.com/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-card-gpt-6-luna",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-luna.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-luna",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-luna-xhigh",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-xhigh",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-luna-high",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-high",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-luna-medium",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-medium",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-luna-low",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-low",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-sol-luna",
+      "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-0",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not on Scale's V2 table on 2026-10-03",
+    "METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03",
+    "Terminal-Bench 4.0 on the tbench.ai leaderboard: no GPT-6 Luna entry; the rows above are Artificial Analysis's, whose Intelligence Index harness is not stated",
+    "Artificial Analysis Coding Agent Index at xhigh or lower effort: not listed; only the max-effort Codex row exists",
+    "system_card: OpenAI has no card of its own for GPT-6 Luna; the card cited is the GPT-6 Astra system card, whose appendix covers this model",
+    "reasoning.context all_turns and multi-agent support: the pages read list them for the GPT-5.6 models and GPT-6.1 Sol and do not mention GPT-6 Luna"
+  ]
+}

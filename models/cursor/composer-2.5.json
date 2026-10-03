@@ -1,0 +1,234 @@
+{
+  "id": "composer-2.5",
+  "name": "Composer 2.5",
+  "maker": "Cursor",
+  "family": "Composer",
+  "class": "Cursor Composer",
+  "generation": "2.5",
+  "released": "2026-05-18",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Cursor IDE",
+    "Cursor CLI"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": null,
+  "voice": null,
+  "reasoning": {
+    "control": null,
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.5,
+    "output": 2.5,
+    "cached_input": 0.2,
+    "notes": "Cursor's price list for standard speed (no cache-write price listed); the Fast tier is 3.0 input, 15.0 output, 0.5 cache read and is the default in Cursor; drawn from a Cursor plan's model pool, not sold as an API"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 62,
+      "setting": "variant not stated (AA measured both the standard and the Fast variant)",
+      "harness": "Cursor agent, IDE or CLI not stated (Coding Agent Index of 2026-05-20: SWE-Bench-Pro-Hard-AA, Terminal-Bench v2, SWE-Atlas-QnA; not comparable with the later v1.5 that holds Terminal-Bench 4.0)",
+      "measured_by": "independent",
+      "source": "aa-composer-25",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench v3.1 (harder tasks, percent)",
+      "score": 63.2,
+      "setting": "not stated",
+      "harness": "not stated; Cursor's blog table, whose footnote marks only the Opus 4.7 and GPT-5.5 figures as self-reported",
+      "measured_by": "maker",
+      "source": "cursor-composer-25-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0 (percent; superseded by 4.0)",
+      "score": 69.3,
+      "setting": "not stated",
+      "harness": "not stated; Cursor's blog table, whose footnote marks only the Opus 4.7 and GPT-5.5 figures as self-reported",
+      "measured_by": "maker",
+      "source": "cursor-composer-25-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Multilingual (percent)",
+      "score": 79.8,
+      "setting": "not stated",
+      "harness": "not stated; Cursor's blog table, whose footnote marks only the Opus 4.7 and GPT-5.5 figures as self-reported",
+      "measured_by": "maker",
+      "source": "cursor-composer-25-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0 (percent; not comparable with CursorBench v3.1)",
+      "score": 27.7,
+      "setting": "single row; Fast or standard not stated",
+      "harness": "Cursor's own leaderboard (the page does not name the harness; $0.68 and about 17k tokens per task)",
+      "measured_by": "maker",
+      "source": "cursor-bench-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench-Pro-Hard-AA (percent; sub-score of AA's 2026-05-20 Coding Agent Index)",
+      "score": 47,
+      "setting": "variant not stated",
+      "harness": "Cursor agent (AA does not say IDE or CLI; its other Cursor rows run in Cursor CLI)",
+      "measured_by": "independent",
+      "source": "aa-composer-25",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench v2 (percent; sub-score of AA's 2026-05-20 Coding Agent Index; not Terminal-Bench 4.0)",
+      "score": 66,
+      "setting": "variant not stated",
+      "harness": "Cursor agent (AA does not say IDE or CLI; its other Cursor rows run in Cursor CLI)",
+      "measured_by": "independent",
+      "source": "aa-composer-25",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Atlas-QnA (percent; sub-score of AA's 2026-05-20 Coding Agent Index)",
+      "score": 72,
+      "setting": "variant not stated",
+      "harness": "Cursor agent (AA does not say IDE or CLI; its other Cursor rows run in Cursor CLI)",
+      "measured_by": "independent",
+      "source": "aa-composer-25",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://cursor.com/docs/agent/prompting",
+    "https://cursor.com/docs/rules",
+    "https://cursor.com/blog/agent-best-practices"
+  ],
+  "system_card": null,
+  "model_page": "https://cursor.com/blog/composer-2-5",
+  "sources": [
+    {
+      "id": "cursor-pricing",
+      "url": "https://cursor.com/docs/models-and-pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-composer-25-docs",
+      "url": "https://cursor.com/docs/models/cursor-composer-2-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-composer-25-blog",
+      "url": "https://cursor.com/blog/composer-2-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Composer 2.5 is built on the same open-source checkpoint as Composer 2, Moonshot's Kimi K2.5."
+    },
+    {
+      "id": "cursor-composer-25-blog-larger",
+      "url": "https://cursor.com/blog/composer-2-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "10x more total compute"
+    },
+    {
+      "id": "aa-composer-25",
+      "url": "https://artificialanalysis.ai/articles/cursor-composer-2-5-coding-agent-index",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "cursor-harness-doc",
+      "url": "https://cursor.com/docs/rules.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "cursor-agent-overview",
+      "url": "https://cursor.com/docs/agent/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-bench-board",
+      "url": "https://cursor.com/cursorbench",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-composer-15-blog",
+      "url": "https://cursor.com/blog/composer-1-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-best-practices",
+      "url": "https://cursor.com/blog/agent-best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-docs-prompting",
+      "url": "https://cursor.com/docs/agent/prompting",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-composer-2-blog",
+      "url": "https://cursor.com/blog/composer-2",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-agent-security",
+      "url": "https://cursor.com/docs/agent/security",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Composer or Cursor entry on Scale's leaderboard (11 rows: Claude, GPT, Kimi K3, GLM-5.3, Gemini 3.8 Flash, Inkling)",
+    "METR 50% time horizon: not measured; METR's page lists no Composer entry",
+    "Terminal-Bench 4.0: no result found for Composer 2.5",
+    "Artificial Analysis Intelligence Index: not listed for Composer 2.5",
+    "context_window: not published on Cursor's model page or blog",
+    "max_output: not published",
+    "modalities: not stated",
+    "reasoning: Cursor publishes no effort levels or default for Composer 2.5; its blog chart shows it as a single point beside other models' effort curves",
+    "setting and harness of the three maker benchmark rows: Cursor's blog table (an image, read directly) gives scores only, with no effort setting or harness named",
+    "retires: no notice found; Composer 2 is absent from Cursor's current price list and its status is unclear",
+    "system_card: none found in the sources this card cites; the maker may not publish one",
+    "prompting_guides: Cursor publishes no prompting guide for Composer 2.5; the pages listed are its agent prompting, rules and best-practice pages that cover every model it serves"
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "id": "nova-2-sonic",
+  "name": "Amazon Nova 2 Sonic",
+  "maker": "Amazon",
+  "family": "Amazon Nova 2",
+  "class": "Nova Sonic",
+  "generation": "2",
+  "released": "2025-12-02",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Amazon Bedrock (InvokeModelWithBidirectionalStream on the bedrock-runtime endpoint; model id amazon.nova-2-sonic-v1:0; Regions us-east-1, us-west-2, eu-north-1 and ap-northeast-1)",
+    "Amazon Connect (also Asia Pacific (Singapore), Europe (London), Asia Pacific (Seoul) and Europe (Frankfurt))",
+    "Amazon Bedrock console playground",
+    "Integrations the Nova 2 guide describes: Strands Agents, Amazon Bedrock AgentCore, LiveKit, Pipecat and telephony providers"
+  ],
+  "context_window": 1000000,
+  "max_output": 64000,
+  "modalities": {
+    "input": [
+      "audio (speech)",
+      "text"
+    ],
+    "output": [
+      "audio (speech)",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "Linear PCM (audio/lpcm), 16-bit, mono, sent as base64 in audioInput events. Sample rate 8,000, 16,000 or 24,000 Hz. Frames of about 32 ms from the microphone [nova2-sonic-input-events]",
+    "output_audio": "Linear PCM (audio/lpcm), 16-bit, mono, base64, at 8,000, 16,000 or 24,000 Hz as chosen in promptStart. AWS marks all generated audio with an inaudible watermark [nova2-sonic-input-events, nova2-service-card]",
+    "voices": "16 voice IDs on the language-support page and in the promptStart schema: tiffany, matthew, amy, olivia, kiara, arjun, ambre, florian, beatrice, lorenzo, tina, lennart, lupe, carlos, carolina and leo. Tiffany and Matthew are polyglot voices that speak every supported language. The service card says eighteen voices in one sentence and twenty-two in another [nova2-sonic-languages, nova2-sonic-input-events, nova2-service-card]",
+    "languages": [
+      "English (US, UK, India, Australia)",
+      "French",
+      "Italian",
+      "German",
+      "Spanish (US)",
+      "Portuguese (Brazil)",
+      "Hindi"
+    ],
+    "turn_detection": "Server side. sessionStart takes turnDetectionConfiguration.endpointingSensitivity: HIGH (pause of 1.5 seconds), MEDIUM (1.75 seconds, the recommended default) or LOW (about 2 seconds) [nova2-sonic-turn-taking, nova2-sonic-input-events]",
+    "interruption": "Barge-in is supported. The model stops generating, keeps the conversation context and sends an interruption signal. Audio is generated faster than it plays, so the client must clear its playback queue at once [nova2-sonic-barge-in, nova2-sonic-output-events]",
+    "latency": "AWS says its March 2026 refresh cut user-perceived latency at the 50th percentile by 150 ms and gives no absolute figure [nova2-release-notes]. Artificial Analysis measured 1.14 seconds average time to first audio on its Big Bench Audio set [aa-speech-to-speech]. A consultancy's AWS-blog write-up reports 1.39 seconds on the same set [aws-blog-voice-agent].",
+    "session_limit": "A connection lasts at most 8 minutes. The client renews the connection and continues the conversation with saved chat history, which can be 200 KB in total and 50 KB a message and is sent once before audio. The default quota is 20 concurrent InvokeModelWithBidirectionalStream sessions per AWS account in each Region, and AWS says the quota cannot be raised [nova2-sonic-getting-started, nova2-sonic-chat-history, bedrock-card-nova-2-sonic]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3.0,
+    "output": 12.0,
+    "cached_input": null,
+    "notes": "AWS Price List, Amazon Bedrock, on-demand, US East (N. Virginia), published 2026-10-03. Speech input $0.003 per 1,000 tokens ($3.00 per million). Speech output $0.012 per 1,000 ($12.00 per million). Text input $0.33 per million and text output $2.75 per million. AWS says text tokens apply to transcription, tool calls, grounding and chat history [aws-price-list, nova-pricing-page]. Other Regions: eu-north-1 speech $2.91 in and $11.65 out; ap-northeast-1 speech $3.63 in and $14.52 out; us-west-2 speech the same as us-east-1 [aws-price-list]. Artificial Analysis converts this to $0.27 per hour of input audio and $1.08 per hour of output audio [aa-speech-to-speech]. AWS does not state how many tokens one second of speech uses."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio, 1,000 audio questions)",
+      "score": 88,
+      "setting": "leaderboard row 'Nova 2.0 Sonic (Mar 2026)'; the leaderboard shows the integer",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech Agent Arena preference Elo",
+      "score": 974,
+      "setting": "leaderboard row 'Nova 2.0 Sonic (Mar 2026)'; Elo anchored with GPT Realtime 1.5 at 1000",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech Agent Arena task success rate",
+      "score": 57.1,
+      "setting": "leaderboard row 'Nova 2.0 Sonic (Mar 2026)'",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis time to first audio on Big Bench Audio (seconds; lower is better)",
+      "score": 1.14,
+      "setting": "leaderboard row 'Nova 2.0 Sonic (Mar 2026)'",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Big Bench Audio (speech reasoning), consultancy write-up",
+      "score": 87.0,
+      "setting": "reported in an AWS-blog post by a consultancy; run settings not stated",
+      "harness": "Big Bench Audio, as reported by the consultancy",
+      "measured_by": "third-party-vendor",
+      "source": "aws-blog-voice-agent",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LLM-judge overall score, one dealership voice-agent scenario (scale 1 to 5), baseline prompt",
+      "score": 2.7,
+      "setting": "a consultancy's own test; 3.8 after two prompt revisions; Nova Sonic v1 scored 2.4 on the same test",
+      "harness": "consultancy's LLM-judge pipeline",
+      "measured_by": "third-party-vendor",
+      "source": "aws-blog-voice-agent",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-system-prompts.html",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/using-conversational-speech.html",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-turn-taking.html",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-tool-configuration.html"
+  ],
+  "system_card": "https://docs.aws.amazon.com/ai/responsible-ai/nova-2-sonic/overview.html",
+  "model_page": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-2-sonic.html",
+  "sources": [
+    {
+      "id": "bedrock-card-nova-2-sonic",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-amazon-nova-2-sonic.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bedrock-lifecycle",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-price-list",
+      "url": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/index.json",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova-pricing-page",
+      "url": "https://aws.amazon.com/nova/pricing/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-whats-new",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2025/12/amazon-nova-2-sonic-real-time-conversational-ai",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-overview",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/using-conversational-speech.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-getting-started",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-getting-started.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-prompts",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-system-prompts.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-input-events",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-input-events.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-output-events",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-output-events.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-turn-taking",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-turn-taking.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-barge-in",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-barge-in.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-languages",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-language-support.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-tools",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-tool-configuration.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-async-tools",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-async-tools.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-chat-history",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-chat-history.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-cross-modal",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-cross-modal.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-sonic-integrations",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/sonic-integrations.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-release-notes",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/release-notes.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nova2-service-card",
+      "url": "https://docs.aws.amazon.com/ai/responsible-ai/nova-2-sonic/overview.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-speech-to-speech",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aws-blog-voice-agent",
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-loka-built-a-natural-low-latency-voice-agent-with-amazon-nova-2-sonic/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gh-livekit-4887",
+      "url": "https://github.com/livekit/agents/issues/4887",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "nova2-core-inference",
+      "url": "https://docs.aws.amazon.com/nova/latest/nova2-userguide/core-inference.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro: not applicable to a speech-to-speech model; no run found",
+    "Terminal-Bench: not applicable to a speech-to-speech model; no run found",
+    "Artificial Analysis Intelligence Index: not listed for this model; Artificial Analysis scores speech-to-speech models on its own Speech to Speech Index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech-to-speech model; not listed",
+    "METR 50% time horizon: not applicable to a speech-to-speech model; no run found",
+    "pricing_usd_per_mtok.cached_input: the AWS price list has no cached-input rate for this model",
+    "retires: no retirement is announced; the Bedrock card says end of life no sooner than 2026-12-02 with a legacy period of at least 6 months, which is a floor and not a date",
+    "context_window: the Bedrock card and the AWS announcement say 1M tokens; 1,000,000 recorded as the nearest integer",
+    "max_output: the Bedrock card says 64K without an exact figure; 64,000 recorded",
+    "released: AWS refreshed the model in place in March 2026 and from 2026-05-21 to 2026-05-28 without a new model id, so the model served today differs from the 2025-12-02 release",
+    "benchmarks: the Artificial Analysis row is the March 2026 version, taken before the May 2026 refresh; the row has no conversational dynamics or agentic value, so it has no index score",
+    "voice.voices: the service card gives eighteen and twenty-two voices; the language-support page and the promptStart schema list 16 IDs",
+    "voice.latency: AWS publishes no absolute latency figure; the figures recorded are a measurer's and a consultancy's",
+    "access: the inference page of the Nova 2 guide lists inference ids us.amazon.nova-2-sonic-v1:0 and global.amazon.nova-2-sonic-v1:0, and the Bedrock model card says geo and global inference ids are not supported",
+    "pricing_usd_per_mtok: AWS does not state how many tokens a second of speech uses, so a price per minute cannot be derived from AWS pages"
+  ]
+}

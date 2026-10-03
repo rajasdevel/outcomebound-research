@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "placements": {
+    "example-model-1": {
+      "placements": [
+        {"effort": "medium and above", "tier": "outcome", "confidence": "medium"},
+        {"effort": "low", "tier": "design", "confidence": "low"}
+      ],
+      "basis": "Inferred from the SWE-Bench Pro score [scale-swe-pro-v2]; no hand-off comparison exists.",
+      "notes": ["Stops to ask when a scope is unclear unless told it may proceed [scale-swe-pro-v2].", "Adds unrequested tests."]
+    }
+  }
+}

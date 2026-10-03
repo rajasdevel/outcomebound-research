@@ -1,0 +1,431 @@
+{
+  "id": "gpt-6-astra",
+  "name": "GPT-6 Astra",
+  "maker": "OpenAI",
+  "family": "GPT-6",
+  "class": "GPT Astra",
+  "generation": "6",
+  "released": "2026-09-03",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses, Chat Completions, Batch)",
+    "ChatGPT",
+    "Codex",
+    "Microsoft Foundry",
+    "Amazon Bedrock"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 10.0,
+    "output": 50.0,
+    "cached_input": 1.0,
+    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write 12.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (no latency SLA for Astra); Batch and Flex 50%; Ultrafast tier 6x standard (60 input, 300 output; US data residency and global processing only); regional processing +10%"
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2)",
+      "score": 90.2,
+      "setting": "high",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-v2",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (tbench.ai leaderboard)",
+      "score": 58.2,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "tbench-4-0",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (tbench.ai leaderboard)",
+      "score": 57.9,
+      "setting": "xhigh",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "tbench-4-0",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (tbench.ai leaderboard)",
+      "score": 57.9,
+      "setting": "high",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "tbench-4-0",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (tbench.ai leaderboard)",
+      "score": 54.2,
+      "setting": "medium",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "tbench-4-0",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (tbench.ai leaderboard)",
+      "score": 50.6,
+      "setting": "low",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "tbench-4-0",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run)",
+      "score": 59.1,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-index-v4-3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (maker-reported)",
+      "score": 57.7,
+      "setting": "effort not stated (Astra launch table, relayed by Vellum)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-astra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 53,
+      "setting": "max (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 52,
+      "setting": "xhigh (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra-xhigh",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 51,
+      "setting": "high (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra-high",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 50,
+      "setting": "medium (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra-medium",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 46,
+      "setting": "low (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 62,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent, lower is better)",
+      "score": 51.3,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (long-context reasoning, percent)",
+      "score": 80.7,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-astra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 74.8,
+      "setting": "effort not stated (GPT-6.1 Sol launch comparison, relayed by Vellum)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld 2.0 (offline)",
+      "score": 73.5,
+      "setting": "effort not stated (GPT-6.1 Sol launch comparison, relayed by Vellum)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 74.1,
+      "setting": "effort not stated (Astra launch table, relayed by Vellum)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-astra",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld 2.0",
+      "score": 72.6,
+      "setting": "effort not stated (Astra launch table, relayed by Vellum)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-astra",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/latest-model",
+    "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-6-astra",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+  "sources": [
+    {
+      "id": "openai-model-gpt-6-astra",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-latest-model",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-astra-blog",
+      "url": "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-reasoning-guide",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-ultrafast",
+      "url": "https://developers.openai.com/api/docs/guides/ultrafast-mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-astra-card",
+      "url": "https://deploymentsafety.openai.com/gpt-6-astra",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "codex-models",
+      "url": "https://learn.chatgpt.com/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-card-gpt-6-astra",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-astra.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-astra",
+      "url": "https://artificialanalysis.ai/models/gpt-6-astra",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-astra-xhigh",
+      "url": "https://artificialanalysis.ai/models/gpt-6-astra-xhigh",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-astra-high",
+      "url": "https://artificialanalysis.ai/models/gpt-6-astra-high",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-astra-medium",
+      "url": "https://artificialanalysis.ai/models/gpt-6-astra-medium",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-astra-low",
+      "url": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-astra-article",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-gpt-6-astra",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-0",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "vellum-gpt-6-astra",
+      "url": "https://vellum.ai/blog/gpt-6-astra-benchmarks-explained",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "vellum-gpt-6-1-sol",
+      "url": "https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "openai-model-selection",
+      "url": "https://developers.openai.com/api/docs/guides/model-selection",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-deployment-checklist",
+      "url": "https://developers.openai.com/api/docs/guides/deployment-checklist",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "reasoning.default: not stated on the model page or the reasoning guide (the guide states medium for GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna; the Codex documentation starts Astra at Light, which is a harness choice and not an API default)",
+    "METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03; no independent run for Astra",
+    "Terminal-Bench 4.0 harness for the Artificial Analysis Intelligence Index row: not stated; in its Coding Agent Index (Codex) Artificial Analysis reports 56% for Astra, and the tbench.ai leaderboard entries name Codex but not who ran them",
+    "reasoning.context default and all_turns support: the reasoning guide lists all_turns for the GPT-5.6 models and GPT-6.1 Sol and does not mention Astra",
+    "maker rows (DeepSWE, OSWorld, Terminal-Bench 4.0 maker): OpenAI's launch page returns HTTP 403 to this reader; the numbers are relayed by Vellum, which gives no effort setting for Astra, and the Astra launch table (DeepSWE 74.1, OSWorld 72.6) and the GPT-6.1 Sol launch comparison (about 74.8, 73.5) differ",
+    "Terminal-Bench 4.0 (tbench.ai leaderboard) runner: the entries list OpenAI as the agent organisation and Codex as the agent; the page does not say who ran or verified them",
+    "SWE-Bench Pro (Scale, public V2) run limits: the Astra row is not grayed, which Scale's legend reads as uncapped cost and a 250-turn limit"
+  ]
+}

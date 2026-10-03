@@ -1,0 +1,337 @@
+{
+  "id": "mimo-v2.6-pro",
+  "name": "MiMo-V2.6-Pro",
+  "maker": "Xiaomi",
+  "family": "MiMo-V2.6",
+  "class": "MiMo Pro",
+  "generation": "2.6",
+  "released": "2026-09-21",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MIT)",
+  "access": [
+    "Xiaomi MiMo API platform",
+    "Xiaomi AI Studio",
+    "MiMo Code",
+    "MiMo Desktop",
+    "OpenRouter",
+    "Hugging Face weights (MiMo-V2.6-Pro-RL)",
+    "SGLang",
+    "vLLM",
+    "Xiaomi MiMo token plans (subscription)"
+  ],
+  "context_window": 1048576,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [
+      "disabled",
+      "enabled"
+    ],
+    "default": "enabled"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.435,
+    "output": 0.87,
+    "cached_input": 0.0036,
+    "notes": "Xiaomi's own model page: cache-hit input 0.0036, cache-miss input 0.435, output 0.87; Artificial Analysis shows the same input and output and a 99% cache discount. A news relay says the faster mimo-v2.6-pro-ultraspeed costs about ten times the Pro for about twenty times its output speed; it has no card here"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 46,
+      "setting": "reasoning; 140M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 71.9,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 34.9,
+      "setting": "vendor run; Xiaomi's table gives Opus 5 49.0, Fable 5 42.4 and GPT-5.6 Sol 39.9 on the same row",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 89.9,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench v1.0.6",
+      "score": 53.1,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified",
+      "score": 82.0,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon-Verified",
+      "score": 76.9,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ProgramBench",
+      "score": 26.5,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "JobBench",
+      "score": 62.0,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CyberGym",
+      "score": 94.0,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ExploitBench",
+      "score": 47.9,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MiMo Code Bench",
+      "score": 63.2,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA 2.1 (Elo)",
+      "score": 1673,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mimo-pro",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+    "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/deep-thinking",
+    "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output"
+  ],
+  "system_card": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+  "model_page": "https://mimo.mi.com/models/en-US/mimo-v2.6-pro",
+  "sources": [
+    {
+      "id": "hf-mimo-pro",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Tasks and multiple harnesses are mixed in the same batch so capabilities reinforce each other and strategies transfer to harnesses never seen in training."
+    },
+    {
+      "id": "datanorth-mimo",
+      "url": "https://datanorth.ai/news/xiaomi-releases-mimo-v2-6-pro-and-flash",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-mimo-pro",
+      "url": "https://artificialanalysis.ai/models/mimo-v2-6-pro",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mimo-page-pro",
+      "url": "https://mimo.mi.com/models/en-US/mimo-v2.6-pro",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-thinking",
+      "url": "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/deep-thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-thinking-zh",
+      "url": "https://mimo.mi.com/docs/zh-CN/quick-start/usage-guide/text-generation/deep-thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-first-call",
+      "url": "https://mimo.mi.com/docs/zh-CN/quick-start/summary/first-api-call",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-models",
+      "url": "https://mimo.mi.com/docs/en-US/quick-start/summary/model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-structured",
+      "url": "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-image",
+      "url": "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/image-understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-audio",
+      "url": "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/audio-understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mimo-docs-video",
+      "url": "https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/video-understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "litellm-mimo",
+      "url": "https://docs.litellm.ai/blog/mimo_v2_6",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aliyun-mimo",
+      "url": "https://help.aliyun.com/en/model-studio/mimo",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ofox-mimo",
+      "url": "https://ofox.ai/blog/mimo-2-6-api-python-opencode-setup/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "mimo-tech-report",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/main/MiMo_V2_6_technical_report.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-mimo-config",
+      "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/raw/main/config.json",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's leaderboard (11 rows read, none for this model)",
+    "Terminal-Bench 4.0: no independent run and no tbench.ai row (the leaderboard did not render); Xiaomi's own 34.9 is recorded as a maker score",
+    "Artificial Analysis Coding Agent Index: no entry for this model among the runs on Artificial Analysis's Coding Agent Index v1.5 page (artificialanalysis.ai/agents/coding-agents), read 2026-10-03",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08; no numbers in the page text)",
+    "instruction-file loading in MiMo Code: not read",
+    "system_card: Xiaomi has published no system card; the Hugging Face model card is recorded here; Xiaomi's technical report for the V2.6 series covers training and reward-hacking mitigation but reports no refusal, jailbreak or prompt-injection evaluation",
+    "MiMo-V2.6-Pro-UltraSpeed: Xiaomi's docs list the model id mimo-v2.6-pro-ultraspeed and a relay gives a price; no model page, benchmark or card was found, so it has no card here",
+    "max_output: Xiaomi's pages say 128K; 131072 reads that as 128 x 1024 tokens, which no Xiaomi page states; context_window 1048576 is the max_position_embeddings value in the model's config.json"
+  ]
+}

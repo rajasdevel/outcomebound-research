@@ -1,0 +1,160 @@
+{
+  "id": "personaplex-7b-v1",
+  "name": "PersonaPlex-7B-v1",
+  "maker": "NVIDIA",
+  "family": "PersonaPlex",
+  "class": "PersonaPlex",
+  "generation": "1",
+  "released": "2026-01-15",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (NVIDIA Open Model License)",
+  "access": [
+    "Hugging Face weights (gated: the repository asks for contact details)",
+    "NVIDIA/personaplex on GitHub (self-hosted web server and offline script)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "24 kHz audio (WAV or WebAudio) through the Mimi codec of Moshi; a text prompt and a voice prompt are given before the conversation starts [nvidia-card-personaplex]",
+    "output_audio": "24 kHz audio (WAV or WebAudio), with the agent's text [nvidia-card-personaplex]",
+    "voices": "18 packaged voice prompts: 8 natural (NATF0 to NATF3 female, NATM0 to NATM3 male) and 10 varied (VARF0 to VARF4, VARM0 to VARM4); a voice prompt of audio tokens sets the voice and speaking style [nvidia-gh-personaplex] [nvidia-card-personaplex]",
+    "languages": [
+      "English"
+    ],
+    "turn_detection": "None to configure; the model runs two parallel streams, listening and speaking at once, and decides itself when to speak [nvidia-card-personaplex]",
+    "interruption": "Built into the model, which handles interruptions, barge-ins, overlaps and rapid turn-taking; no setting exists [nvidia-card-personaplex]",
+    "latency": "NVIDIA, Full-Duplex-Bench: 0.170 seconds smooth turn-taking latency and 0.240 seconds for the agent to stop after a user interruption, on an A100 80 GB [nvidia-card-personaplex]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights with no hosted price. The repository says a GPU is needed (tested on an A100 80 GB; Ampere and Hopper listed), with a CPU-offload option for small GPUs [nvidia-gh-personaplex] [nvidia-card-personaplex]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 19.1,
+      "setting": "listed as NVIDIA PersonaPlex; Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench subset)",
+      "score": 91.0,
+      "setting": "weighted average of pause handling 90.5, turn-taking 92.4, interruption handling 93.5 and backchannel handling 87.8 from Full Duplex Bench v1 and v1.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Full-Duplex-Bench smooth turn-taking takeover rate",
+      "score": 0.908,
+      "setting": "NVIDIA's own run, A100 80 GB, PyTorch; higher is better",
+      "harness": "NVIDIA harness",
+      "measured_by": "maker",
+      "source": "nvidia-card-personaplex",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Full-Duplex-Bench user-interruption takeover rate",
+      "score": 0.95,
+      "setting": "NVIDIA's own run; GPT-4o rating of the answer 4.29; speaker similarity (WavLM) 0.650",
+      "harness": "NVIDIA harness",
+      "measured_by": "maker",
+      "source": "nvidia-card-personaplex",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/NVIDIA/personaplex"
+  ],
+  "system_card": "https://huggingface.co/nvidia/personaplex-7b-v1",
+  "model_page": "https://github.com/NVIDIA/personaplex",
+  "sources": [
+    {
+      "id": "nvidia-card-personaplex",
+      "url": "https://huggingface.co/nvidia/personaplex-7b-v1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nvidia-gh-personaplex",
+      "url": "https://github.com/NVIDIA/personaplex",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nvidia-paper-personaplex",
+      "url": "https://arxiv.org/abs/2602.06053",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "hf-nvidia-api",
+      "url": "https://huggingface.co/api/models/nvidia/personaplex-7b-v1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nvidia-card-voicechat",
+      "url": "https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-kyutai-list",
+      "url": "https://huggingface.co/api/models?author=kyutai&sort=lastModified&direction=-1&limit=60",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: not published as a token count; the model is based on Moshi",
+    "max_output: not applicable; the model streams audio without a token cap",
+    "voice.session_limit: no limit stated; NVIDIA trained on conversations of up to 10 minutes",
+    "pricing_usd_per_mtok: open weights with no hosted price",
+    "weights: the card says NVIDIA Open Model License with CC-BY-4.0 additional information for the Moshiko base; the Hugging Face tag reads license other, and the safetensors size shows 8B parameters while the card says 7B [nvidia-card-personaplex] [hf-nvidia-api]",
+    "benchmarks: Artificial Analysis lists no tau-Voice or arena result for this model (read 2026-10-03) [aa-s2s]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

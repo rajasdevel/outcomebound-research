@@ -1,0 +1,453 @@
+{
+  "id": "MiniMax-M2.7",
+  "name": "MiniMax M2.7",
+  "maker": "MiniMax",
+  "family": "MiniMax M2",
+  "class": "MiniMax M",
+  "generation": "2.7",
+  "released": "2026-03-18",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MiniMax non-commercial licence: personal, non-profit and research use free; any commercial use needs prior written authorization and a 'Built with MiniMax M2.7' notice)",
+  "access": [
+    "MiniMax API platform (Anthropic-compatible, OpenAI Chat Completions endpoints; pay as you go; also the faster MiniMax-M2.7-highspeed id)",
+    "Token Plan subscription (closed to new purchases; existing subscribers keep it)",
+    "OpenRouter",
+    "NVIDIA NIM endpoint",
+    "Hugging Face weights (self-hosted: SGLang, vLLM, Transformers)"
+  ],
+  "context_window": 204800,
+  "max_output": 204800,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "always-on",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.3,
+    "output": 1.2,
+    "cached_input": 0.06,
+    "notes": "MiniMax pay-as-you-go list price; cache write 0.375. The MiniMax-M2.7-highspeed id (same model, about 100 tokens a second against about 60) costs double on input and output (0.60 and 2.40) with the same 0.06 cache read."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 22.8,
+      "setting": "Artificial Analysis; the page marks the model deprecated and benchmarks the default workload",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-cmp-k26-m27",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 0.0,
+      "setting": "Artificial Analysis run inside its Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-cmp-k26-m27",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis run)",
+      "score": 55.4,
+      "setting": "inside Artificial Analysis's Intelligence Index",
+      "harness": "Artificial Analysis harness (not stated on the page)",
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench (percent)",
+      "score": 75.7,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Index",
+      "score": 0.8,
+      "setting": "Artificial Analysis; accuracy 26.8%",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent)",
+      "score": 35.6,
+      "setting": "Artificial Analysis; lower is better",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR (long-context reasoning, percent)",
+      "score": 78.3,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond (percent)",
+      "score": 87.4,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam (percent, no tools)",
+      "score": 29.6,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SciCode (percent)",
+      "score": 50.1,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPval-AA (Elo, as listed on Artificial Analysis's model page)",
+      "score": 1013.5,
+      "setting": "Artificial Analysis",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-minimax-m2-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Pro (maker-reported; split and harness not stated)",
+      "score": 56.22,
+      "setting": "MiniMax's M2.7 news page and Hugging Face card",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "VIBE-Pro (percent)",
+      "score": 55.6,
+      "setting": "MiniMax's M2.7 news page; repository-level generation across Web, Android, iOS and simulation",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal Bench 2 (maker-reported)",
+      "score": 57.0,
+      "setting": "MiniMax's M2.7 news page; version, harness and timeout not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo (maker-reported)",
+      "score": 39.8,
+      "setting": "MiniMax's M2.7 news page; harness not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE Multilingual (maker-reported)",
+      "score": 76.5,
+      "setting": "MiniMax's M2.7 news page",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Multi SWE Bench (maker-reported)",
+      "score": 52.7,
+      "setting": "MiniMax's M2.7 news page",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon (maker-reported, percent)",
+      "score": 46.3,
+      "setting": "MiniMax's M2.7 news page",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MM Claw (percent)",
+      "score": 62.7,
+      "setting": "MiniMax's own evaluation set of OpenClaw-style tasks; 97% skill adherence over 40 skills of more than 2,000 tokens each",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-news",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MLE Bench Lite (medal rate, percent)",
+      "score": 66.6,
+      "setting": "22 machine-learning competitions; average over three 24 h trials; a harness with memory and self-feedback",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "minimax-m27-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Verified",
+      "score": 79.9,
+      "setting": "M2.7 column of the benchmark table on MiniMax's M3 Hugging Face card; internal infrastructure, default system prompt overridden, mean of 4 runs",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (maker-reported, M3 release table)",
+      "score": 51.1,
+      "setting": "M2.7 column of the M3 Hugging Face card table; 8 CPU / 16 GB sandbox, 2 h timeout, 128K max output",
+      "harness": "Terminus 2",
+      "measured_by": "maker",
+      "source": "minimax-m3-hf-readme",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.minimax.io/docs/guides/text-m2-agent-generalization",
+    "https://github.com/MiniMax-AI/MiniMax-M2.7/blob/main/docs/tool_calling_guide.md",
+    "https://platform.minimax.io/docs/api-reference/text-prompt-caching"
+  ],
+  "system_card": null,
+  "model_page": "https://www.minimax.io/news/minimax-m27-en",
+  "sources": [
+    {
+      "id": "aa-cmp-k26-m27",
+      "url": "https://artificialanalysis.ai/models/comparisons/kimi-k2-6-vs-minimax-m2-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-minimax-m2-7",
+      "url": "https://artificialanalysis.ai/models/minimax-m2-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "minimax-pricing",
+      "url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-text-generation",
+      "url": "https://platform.minimax.io/docs/guides/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-release-notes",
+      "url": "https://platform.minimax.io/docs/release-notes/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tb4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "minimax-anthropic-api",
+      "url": "https://platform.minimax.io/docs/api-reference/text-anthropic-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m27-news",
+      "url": "https://www.minimax.io/news/minimax-m27-en",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m27-license",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7/blob/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-token-plan-notice",
+      "url": "https://platform.minimax.io/docs/m-plan/token-plan-notice",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-models-intro",
+      "url": "https://platform.minimax.io/docs/guides/models-intro",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-openai-api",
+      "url": "https://platform.minimax.io/docs/api-reference/text-openai-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-chat-openai-ref",
+      "url": "https://platform.minimax.io/docs/api-reference/text-chat-openai",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-responses-ref",
+      "url": "https://platform.minimax.io/docs/api-reference/responses-create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-prompt-caching",
+      "url": "https://platform.minimax.io/docs/api-reference/text-prompt-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-explicit-cache",
+      "url": "https://platform.minimax.io/docs/api-reference/anthropic-api-compatible-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-rate-limits",
+      "url": "https://platform.minimax.io/docs/guides/rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-agent-generalization",
+      "url": "https://platform.minimax.io/docs/guides/text-m2-agent-generalization",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-models",
+      "url": "https://openrouter.ai/api/v1/models",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "minimax-m27-hf-readme",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m27-tool-guide",
+      "url": "https://github.com/MiniMax-AI/MiniMax-M2.7/blob/main/docs/tool_calling_guide.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "minimax-m3-hf-readme",
+      "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "max_output: 204800 is the max_completion_tokens maximum for M2.x in MiniMax's OpenAI-compatible reference, equal to the context window, with 65536 recommended; OpenRouter lists 176947",
+    "SWE-Bench Pro (Scale, public V2): no MiniMax row on Scale's leaderboard page (page source searched 2026-10-03)",
+    "Artificial Analysis Coding Agent Index: no MiniMax entry among the 31 agent-and-model rows on the page (page data read 2026-10-03)",
+    "METR 50% time horizon: no MiniMax model on METR's time-horizons page (page source searched 2026-10-03)",
+    "Terminal-Bench 4.0 on the official tbench.ai leaderboard: no MiniMax row in the board data read on 2026-10-03; the value is from Artificial Analysis",
+    "reasoning default: thinking is always on and cannot be disabled (a disable request is accepted and ignored); no levels or default are documented",
+    "status: Artificial Analysis marks the model deprecated; MiniMax's own pages still list and price it and show no deprecation or retirement date, so 'ga' is used",
+    "prompting_guides: MiniMax publishes no prompting guide for M2.7; the earlier cited best-practices page returns 404 and no replacement was found; the entries listed are the agent post, the tool-calling guide and the caching page",
+    "Maker rows: the harness, thinking mode and timeouts behind MiniMax's news-page numbers are not stated",
+    "system_card: MiniMax publishes no system card or safety report for M2.7",
+    "safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found"
+  ]
+}

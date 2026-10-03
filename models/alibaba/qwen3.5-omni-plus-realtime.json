@@ -1,0 +1,154 @@
+{
+  "id": "qwen3.5-omni-plus-realtime",
+  "name": "Qwen3.5-Omni-Plus-Realtime",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.5",
+  "class": "Qwen Omni Realtime",
+  "generation": "3.5",
+  "released": "2026-03-30",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud realtime API (WebSocket, WebRTC and AOQ)"
+  ],
+  "context_window": 262144,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "audio",
+      "video"
+    ],
+    "output": [
+      "text",
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "half",
+    "input_audio": "PCM 16-bit mono at 16 kHz by default; 8, 24 or 48 kHz and a WAV container can be set before the first audio; images as JPG frames (about 1 per second) over WebSocket [qwencloud-rt-guide] [qwencloud-client-events]",
+    "output_audio": "PCM 16-bit mono at 24 kHz by default; 8, 16 or 48 kHz and a WAV container can be set [qwencloud-rt-guide] [qwencloud-client-events]",
+    "voices": "55 preset voices (47 multilingual and 8 dialectal; default Tina) and cloned voices made from an audio sample [qwencloud-rt-guide]",
+    "languages": [
+      "Speech recognition: 113 languages and dialects",
+      "Speech output: 36 languages and dialects"
+    ],
+    "turn_detection": "server_vad (default) or semantic_vad, which the guide recommends for the Qwen3.5 realtime models; threshold default 0.5 and silence_duration_ms default 800 (range 200 to 6000); idle_timeout_ms 5000 to 30000 in server_vad mode makes the model prompt a silent user; turn_detection null selects manual commit [qwencloud-client-events] [qwencloud-rt-guide]",
+    "interruption": "Semantic interruption: the model tries to tell a real attempt to take the floor from a backchannel or background noise; the server sends speech_started when the user starts to speak, and the client must clear its playback buffer; voice commands change volume, speed and emotion [qwencloud-rt-guide]",
+    "latency": "Technical report, first-packet latency at one concurrent request in an internal set-up: 435 ms for audio input and 651 ms for video input on the Plus model [arxiv-qwen3-5-omni]; Artificial Analysis measured an average time to first audio of 2.64 seconds on its Big Bench Audio set [aa-s2s]",
+    "session_limit": "120 minutes per WebSocket session; retained history of 100 audio turns or 600 seconds of audio and 50 video turns or 240 seconds of video [qwencloud-rt-guide]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 16.5,
+    "output": 62.0,
+    "cached_input": null,
+    "notes": "QwenCloud model page (read 2026-10-03), per million tokens: audio input US$16.5 (the input field); text, image and video input US$2.1; text and audio output US$62 (the output field; output text is then not charged); text-only output US$12.4. Audio counts 7 tokens per second in and 12.5 per second out. Artificial Analysis lists US$0.162 per hour of input audio and US$0.816 per hour of output audio, which does not match the page rates [qwencloud-page-35plus-rt] [aa-s2s]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 98.7,
+      "setting": "Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech to Speech: arena preference Elo",
+      "score": 859,
+      "setting": "human participants compare two unnamed voice models on one scenario; the page lists only models with tool calling",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech to Speech: task success rate (percent)",
+      "score": 62.0,
+      "setting": "column labelled Task Success Rate on the page; the page text read does not define it further",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/realtime-multimodal-speech",
+    "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+    "https://docs.qwencloud.com/api-reference/real-time-multimodal/client-events"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.5-omni-plus-realtime",
+  "sources": [
+    {
+      "id": "qwencloud-page-35plus-rt",
+      "url": "https://www.qwencloud.com/models/qwen3.5-omni-plus-realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-rt-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/realtime-multimodal-speech",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-client-events",
+      "url": "https://docs.qwencloud.com/api-reference/real-time-multimodal/client-events",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-s2s-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-rt-overview",
+      "url": "https://docs.qwencloud.com/api-reference/realtime-api/overview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-qwen3-5-omni",
+      "url": "https://arxiv.org/abs/2604.15804",
+      "read": "2026-10-03",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "released: 2026-03-30 follows this library's card for the Flash tier of the same release; the technical report is dated 2026-04-17 and QwenCloud's snapshot id carries 2026-03-15 [arxiv-qwen3-5-omni] [qwencloud-s2s-models]",
+    "weights: closed; no open-weight release of the Plus model found on Alibaba's Hugging Face listing",
+    "voice.duplex: half is this library's reading; Alibaba calls the interaction real-time with semantic interruption and does not call it full-duplex, and the Artificial Analysis conversational-dynamics test has no run for this model",
+    "system_card: none published; the technical report is a paper [arxiv-qwen3-5-omni]",
+    "benchmarks: Artificial Analysis lists no conversational-dynamics or tau-voice run for this model (read 2026-10-03) [aa-s2s]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

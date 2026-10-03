@@ -1,0 +1,399 @@
+{
+  "id": "gemini-3.1-pro-preview",
+  "name": "Gemini 3.1 Pro (Preview)",
+  "maker": "Google",
+  "family": "Gemini 3.1",
+  "class": "Gemini Pro",
+  "generation": "3.1",
+  "released": "2026-02-19",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform (Google Cloud; preview)",
+    "Gemini Enterprise",
+    "Google Antigravity",
+    "Gemini app and NotebookLM",
+    "gemini-3.1-pro-preview-customtools endpoint"
+  ],
+  "context_window": 1048576,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 12.0,
+    "cached_input": 0.2,
+    "notes": "prompts up to 200k tokens; above 200k input 4.00, output 18.00, cached 0.40. Batch is half price. A -customtools variant id serves the same price."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 30,
+      "setting": "index v4.3.2; effort not stated",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-3-1-pro-preview",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "METR 50% time horizon",
+      "score": 384.1,
+      "setting": "minutes; p50 CI 234 to 695; p80 89.8 minutes (CI 52 to 159); METR-Horizon v1.1; METR page last updated 2026-05-08",
+      "harness": "triframe (METR Inspect agent)",
+      "measured_by": "independent",
+      "source": "metr-time-horizons",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (lower is better)",
+      "score": 50,
+      "setting": "at launch (Artificial Analysis index of 2026-02-19); 3 Pro Preview scored 88",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-3-1-pro-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (Scale, public V1 leaderboard)",
+      "score": 46.1,
+      "setting": "thinking; +/-3.6",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale-swe-pro-public",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (public set, Google-reported)",
+      "score": 54.2,
+      "setting": "single attempt, thinking (high); average of 5 runs; Feb 2026 model card",
+      "harness": "Google's own scaffold (bash, file-editing and submit tools)",
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "score": 68.5,
+      "setting": "thinking (high); Terminus-2 harness",
+      "harness": "Terminus-2",
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 12,
+      "setting": "not stated; from the 3.6 Flash model card's comparison column",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "gemini-3-6-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 73.8,
+      "setting": "not stated; from the 3.6 Flash model card's comparison column",
+      "harness": "Terminus-2",
+      "measured_by": "maker",
+      "source": "gemini-3-6-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Humanity's Last Exam",
+      "score": 44.4,
+      "setting": "thinking (high); full set, no tools",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "ARC-AGI-2",
+      "score": 77.1,
+      "setting": "thinking (high); ARC Prize verified, semi-private set",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 94.3,
+      "setting": "thinking (high); no tools",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Verified",
+      "score": 80.6,
+      "setting": "thinking (high); single attempt; average of 10 runs; includes a +0.6-point adjustment for three tasks Google found broken",
+      "harness": "Google's own scaffold (bash, file-editing and submit tools)",
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BrowseComp",
+      "score": 85.9,
+      "setting": "thinking (high); run through Google's Deep Research agent with search, Python and browsing",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MCP Atlas",
+      "score": 69.2,
+      "setting": "thinking (high); public set, figure from Turing per Google's methodology",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR v2 (8-needle)",
+      "score": 84.9,
+      "setting": "128k average; thinking (high)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "MRCR v2 (8-needle)",
+      "score": 26.3,
+      "setting": "1M, pointwise; thinking (high)",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-1-pro-card",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+    "https://ai.google.dev/gemini-api/docs/gemini-3",
+    "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview",
+  "sources": [
+    {
+      "id": "gemini-spec-gemini-3.1-pro-preview",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-1-pro-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-guide",
+      "url": "https://ai.google.dev/gemini-api/docs/gemini-3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-f15",
+      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-thinking",
+      "url": "https://ai.google.dev/gemini-api/docs/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-3-1-pro",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-1-pro",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-1-pro-article",
+      "url": "https://artificialanalysis.ai/articles/gemini-3-1-pro-preview-new-leader-in-ai",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-1-pro-preview",
+      "url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-8-flash-page",
+      "url": "https://artificialanalysis.ai/models/gemini-3-8-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-public",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-6-flash-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-6-flash/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cli-sunset-blog",
+      "url": "https://developers.googleblog.com/en/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-caching",
+      "url": "https://ai.google.dev/gemini-api/docs/caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "measured-g13",
+      "url": "https://arxiv.org/abs/2605.12366",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-structured-output",
+      "url": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-forum-loops",
+      "url": "https://discuss.ai.google.dev/t/infinite-loop-bug-while-using-the-gemini-3/119986",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gemini-latest-model-archive",
+      "url": "https://web.archive.org/web/20260802003901/https://ai.google.dev/gemini-api/docs/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-pro-card",
+      "url": "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-pro-fsf",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3_pro_fsf_report.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-forum-thought-leak",
+      "url": "https://discuss.ai.google.dev/t/bug-gemini-3-1-pro-leaking-raw-thought-blocks-and-stuck-in-infinite-done-loop/125440",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gemini-f14",
+      "url": "https://ai.google.dev/gemini-api/docs/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-models-page",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-1-pro-eval",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-1_pro_model_evaluation.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "knowledge cutoff: the Gemini 3 guide gives January 2025 for Gemini 3 models in general; the 3.1 Pro model card states none",
+    "Terminal-Bench 4.0: no row on the tbench.ai leaderboard; Artificial Analysis's Argon article implies about 4 (57 minus a 53-point gain) but that is a derivation, so no value is recorded",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
+    "METR p50 and p80 values were read on 2026-10-03 from the data embedded in METR's page (last updated 2026-05-08); the visible page text does not render them",
+    "shutdown date: none published; the models page says preview models get at least two weeks notice",
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22); the V1 public row is a different task set",
+    "Scale public V1 row: the leaderboard marks the mini-swe-agent harness with an asterisk and does not give the effort beyond \"thinking\"",
+    "Deep Think mode: the model card evaluates it, but no API page read says whether or how the Gemini API offers it"
+  ]
+}

@@ -1,0 +1,408 @@
+{
+  "id": "gemini-3.7-flash",
+  "name": "Gemini 3.7 Flash",
+  "maker": "Google",
+  "family": "Gemini 3.7",
+  "class": "Gemini Flash",
+  "generation": "3.7",
+  "released": "2026-08-13",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform",
+    "Gemini Enterprise app",
+    "Google Antigravity",
+    "Android Studio",
+    "Gemini app (Spark agent, Google AI Pro and Ultra subscribers)"
+  ],
+  "context_window": 1048576,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.75,
+    "output": 3.75,
+    "cached_input": 0.075,
+    "notes": "introductory rate through 2026-12-31; from 2027-01-01 input 1.50, output 7.50, cached 0.15 (same as 3.8 Flash)."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 11.2,
+      "setting": "high; +/-2.4 (95% CI); rank 27 of 27 rows; Google's 3.8 Flash model card shows the same 11.2",
+      "harness": "mini-SWE-agent",
+      "measured_by": "independent",
+      "source": "tbench-4-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 39,
+      "setting": "high; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-3-7-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 65,
+      "setting": "medium; +/-3; Datacurve leaderboard updated 2026-09-22 (integer shown)",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "deepswe-leaderboard",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 56,
+      "setting": "effort not stated; an earlier index version than v4.3.2, as printed on Google's model card",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 85.8,
+      "setting": "self-computed by Google; effort not stated",
+      "harness": "Terminus 2",
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-eval",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 85.1,
+      "setting": "not stated; from the Google Cloud developer guide, which differs from the model card",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-cloud-guide-3-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 81.6,
+      "setting": "not stated; the 3.7 Flash column of the Google Cloud 3.8 Flash developer guide",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-cloud-guide-3-8",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 65.3,
+      "setting": "high; self-computed by Google",
+      "harness": "mini-swe-agent (LiteLLM 1.96)",
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-eval",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 63.7,
+      "setting": "not stated; from the Google Cloud developer guide",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-cloud-guide-3-7",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode 1.1 Main",
+      "score": 43.6,
+      "setting": "production code quality score; taken from the official leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDPVal-AA v2",
+      "score": 1525,
+      "setting": "Elo; taken from the Artificial Analysis leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench",
+      "score": 30.4,
+      "setting": "private set; taken from the official leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-2.0",
+      "score": 47.9,
+      "setting": "partial score; best of 3 runs, single attempt each; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GDM-MRCR v2 (8-needle)",
+      "score": 97.0,
+      "setting": "128k average; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CharXiv Reasoning",
+      "score": 84.5,
+      "setting": "no tools",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LVBench",
+      "score": 85.4,
+      "setting": "1,024 frames; no tools; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE-Verified",
+      "score": 53.6,
+      "setting": "full 1,811-item verified set; self-computed",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 3.0",
+      "score": 14.9,
+      "setting": "self-computed by Google; highest-scoring thinking level",
+      "harness": "mini-swe-agent (LiteLLM 1.96)",
+      "measured_by": "maker",
+      "source": "gemini-3-7-flash-eval",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+    "https://ai.google.dev/gemini-api/docs/latest-model",
+    "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+    "https://ai.google.dev/gemini-api/docs/function-calling"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+  "sources": [
+    {
+      "id": "gemini-3-7-flash-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-latest-model",
+      "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-g9",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-guide-3-7",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-7-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-prompting",
+      "url": "https://ai.google.dev/gemini-api/docs/prompting-strategies",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-spec-gemini-3.7-flash",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-7-flash",
+      "url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "deepswe-leaderboard",
+      "url": "https://deepswe.datacurve.ai/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-8-flash-article",
+      "url": "https://artificialanalysis.ai/articles/gemini-3-8-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-3-8-flash-page",
+      "url": "https://artificialanalysis.ai/models/gemini-3-8-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-f14",
+      "url": "https://ai.google.dev/gemini-api/docs/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-f15",
+      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-computer-use",
+      "url": "https://ai.google.dev/gemini-api/docs/computer-use",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-cli-sunset-blog",
+      "url": "https://developers.googleblog.com/en/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-long-context",
+      "url": "https://ai.google.dev/gemini-api/docs/long-context",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-structured-output",
+      "url": "https://ai.google.dev/gemini-api/docs/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-video-understanding",
+      "url": "https://ai.google.dev/gemini-api/docs/video-understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-7-flash-fsf",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_fsf_report.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-7-flash-eval",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_model_evaluation.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-3-7-flash",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-guide-3-8",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-8-flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "knowledge cutoff on the API model page: not published there; the 3.7 Flash model card says March 2026 (some domains January 2025)",
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22)",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
+    "METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08",
+    "maker benchmark settings: the methodology PDF names harnesses (Terminus 2, mini-swe-agent) but not the effort for Terminal-Bench 2.1, OSWorld-2.0 or the multimodal tests; the Cloud guide figures have no settings"
+  ]
+}

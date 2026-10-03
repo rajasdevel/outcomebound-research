@@ -1,0 +1,365 @@
+{
+  "id": "gpt-6.1-sol",
+  "name": "GPT-6.1 Sol",
+  "maker": "OpenAI",
+  "family": "GPT-6",
+  "class": "GPT Sol",
+  "generation": "6.1",
+  "released": "2026-09-29",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses; Chat Completions without tools; Batch)",
+    "ChatGPT Work",
+    "Codex",
+    "Microsoft Foundry",
+    "Amazon Bedrock"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 10.0,
+    "cached_input": 0.1,
+    "notes": "list price, standard tier, prompts up to 272K input tokens; cached input is 5% of input; cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; Ultrafast not yet offered (the Codex documentation says it comes later)"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 52,
+      "setting": "max (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 51,
+      "setting": "xhigh (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol-xhigh",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 50,
+      "setting": "high (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol-high",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 48,
+      "setting": "medium (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol-medium",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 42,
+      "setting": "low (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol-low",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 60,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 63,
+      "setting": "xhigh",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 60,
+      "setting": "high",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 61,
+      "setting": "medium",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 57,
+      "setting": "low",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run)",
+      "score": 56.1,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run)",
+      "score": 53.0,
+      "setting": "max",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent, lower is better)",
+      "score": 54.3,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (long-context reasoning, percent)",
+      "score": 83.0,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 75.2,
+      "setting": "a higher reasoning setting not named by Vellum",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-1-sol",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld 2.0 (offline)",
+      "score": 71.4,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "vellum-gpt-6-1-sol",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/latest-model",
+    "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+  "sources": [
+    {
+      "id": "openai-model-gpt-6.1-sol",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-latest-model",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-astra-blog",
+      "url": "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-reasoning-guide",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-prompt-caching",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-61-card",
+      "url": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "codex-models",
+      "url": "https://learn.chatgpt.com/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-card-gpt-6-1-sol",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-1-sol.html",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-1-sol",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-1-sol-xhigh",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol-xhigh",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-1-sol-high",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol-high",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-1-sol-medium",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol-medium",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model-gpt-6-1-sol-low",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-sol-low",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-0",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "vellum-gpt-6-1-sol",
+      "url": "https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not on Scale's V2 table on 2026-10-03",
+    "METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03",
+    "maker rows (DeepSWE, OSWorld): OpenAI's launch page returns HTTP 403 to this reader; the numbers are relayed by Vellum and are not independent",
+    "Terminal-Bench 4.0 on the tbench.ai leaderboard: no GPT-6.1 Sol entry; the rows above are Artificial Analysis's, whose Intelligence Index harness is not stated",
+    "image sizing: OpenAI's image guide names neither GPT-6.1 Sol nor GPT-6 Sol in its sizing table, so the model's patch budgets are not documented there"
+  ]
+}

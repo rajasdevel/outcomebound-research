@@ -1,0 +1,328 @@
+{
+  "id": "gemini-4-argon",
+  "name": "Gemini 4 Argon",
+  "maker": "Google",
+  "family": "Gemini 4",
+  "class": "Gemini Argon",
+  "generation": "4",
+  "released": "2026-09-30",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Fairwind Program (vetted cyber defenders only), as a managed model on Gemini Enterprise or inside CodeMender",
+    "planned, no date: paid Gemini API customers and Google AI Ultra subscribers"
+  ],
+  "context_window": 1000000,
+  "max_output": 1000000,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 10.0,
+    "cached_input": 0.1,
+    "notes": "introductory rate from Google's announcement, no end date given (Artificial Analysis says at least one month); standard rate $4 input, $20 output, $0.20 cached (95% off input). Not billable by the general public yet; Google's pricing page does not list the model."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 57.4,
+      "setting": "self-computed by Google; highest thinking setting through the Gemini API; effort level not named",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 57,
+      "setting": "high; Artificial Analysis's own run of all 66 tasks, three times each",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-4-argon-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 53,
+      "setting": "high; index v4.3.2",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-4-argon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench-AA",
+      "score": 78,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-4-argon-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (lower is better)",
+      "score": 15,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-4-argon-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 77.9,
+      "setting": "self-computed by Google with the mini-swe-agent harness; highest thinking setting",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierSWE v2",
+      "score": 55.0,
+      "setting": "taken from Proximal's public leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Vibe Code Bench",
+      "score": 91.9,
+      "setting": "taken from Vals AI's public leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "PostTrainBench",
+      "score": 45.3,
+      "setting": "self-computed by Google; v1.1, OpenCode harness, 10-hour budget on one H100 GPU",
+      "harness": "OpenCode",
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Vals Index",
+      "score": 68.9,
+      "setting": "knowledge-work composite; sourced from Vals AI per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AutomationBench (Zapier)",
+      "score": 51.3,
+      "setting": "private set; sourced from the Zapier public leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Vals Finance Agent v2",
+      "score": 65.4,
+      "setting": "sourced from Vals AI per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Harvey's Legal Agent Benchmark",
+      "score": 19.6,
+      "setting": "sourced from Vals AI per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CWE-bench v1",
+      "score": 68.0,
+      "setting": "pass@1; taken from the public leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GraphWalks BFS (F1)",
+      "score": 99.7,
+      "setting": "contexts up to 128k; self-computed by Google",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GraphWalks BFS (F1)",
+      "score": 84.2,
+      "setting": "contexts 256k to 1M; self-computed by Google",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Agent's Last Exam",
+      "score": 39.5,
+      "setting": "binary pass rate; self-computed with the ALE-Claw harness, 5-hour window, safety filters on",
+      "harness": "ALE-Claw",
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-2.0",
+      "score": 69.2,
+      "setting": "partial score on the offline subset; self-computed, best of 3 runs; Gemini computer-use harness",
+      "harness": "Gemini CUA harness",
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LVBench",
+      "score": 91.7,
+      "setting": "self-computed without tools at 1 frame per second",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Chartography",
+      "score": 71.6,
+      "setting": "no tools; taken from Surge's public leaderboard per Google's methodology",
+      "harness": null,
+      "measured_by": "third-party-vendor",
+      "source": "gemini-deepmind-page",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [],
+  "system_card": null,
+  "model_page": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+  "sources": [
+    {
+      "id": "google-gemini-4-argon",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-deepmind-page",
+      "url": "https://deepmind.google/models/gemini/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-fairwind",
+      "url": "https://deepmind.google/fairwind-program/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-models-page",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-4-argon-article",
+      "url": "https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-argon-eval",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_argon_model_evaluation.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gemini-4-argon",
+      "url": "https://artificialanalysis.ai/models/gemini-4-argon",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gemini-latest-model-archive",
+      "url": "https://web.archive.org/web/20260802003901/https://ai.google.dev/gemini-api/docs/latest-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "techcrunch-argon",
+      "url": "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "api_id: no API model id published; Google's model page and model card URLs return 404 on 2026-10-03",
+    "context_window: Google does not state an input window; 1M is Artificial Analysis's figure",
+    "reasoning.levels and reasoning.default: not published; Artificial Analysis calls \"high\" the highest available level, so the control type is inferred and the other levels are unknown",
+    "modalities: Google's pages show image and long-video understanding; Artificial Analysis's article adds speech input while its model page lists text and image only, so audio is not confirmed",
+    "knowledge cutoff: not published",
+    "access: general API, Google Cloud, Gemini CLI and Antigravity availability not announced",
+    "prompting_guides: none published for Argon",
+    "system_card: none published; the DeepMind model-card page returns 404, and only an evaluation-methodology PDF and a benchmark table on the Gemini page exist",
+    "maker benchmark results table: the table in the methodology PDF is an image and was not read; the figures above come from the text table on Google's Gemini page",
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22)",
+    "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
+    "METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08",
+    "status: Google says the model is rolling out to vetted cyber defenders only; preview is this library's label because the schema has no limited-access value",
+    "Long Decode Continuation: reported by Artificial Analysis as a Gemini API feature; not found in the Gemini API docs or changelog read"
+  ]
+}

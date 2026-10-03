@@ -1,0 +1,310 @@
+{
+  "id": "gemini-3.8-live-extended-thinking",
+  "name": "Gemini 3.8 Live Extended Thinking",
+  "maker": "Google",
+  "family": "Gemini 3.8",
+  "class": "Gemini Live Extended Thinking",
+  "generation": "3.8",
+  "released": "2026-09-15",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API (Live API over WebSocket)",
+    "Google AI Studio",
+    "Gemini app (Gemini Live)",
+    "Google Workspace (Docs Live, Gmail Live, Keep Live)",
+    "Gemini Enterprise Agent Platform (listed in the model card; Google's Cloud blog of 2026-09-25 says the model remains in private preview)"
+  ],
+  "context_window": 131072,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "audio",
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "audio",
+      "text (a transcript of the audio; the response modality must be audio)",
+      "video (Live Avatar; the model card lists it for this model)"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "Same as gemini-3.8-live: raw 16-bit PCM, little-endian, mono, 16 kHz native, resampled if the MIME type states the rate; images and video as JPEG frames, at most 1 frame a second [gemini-live-capabilities, gemini-live-overview]",
+    "output_audio": "Same as gemini-3.8-live: raw 16-bit PCM, little-endian, 24 kHz, with a SynthID watermark [gemini-live-capabilities, google-3-8-live-blog]",
+    "voices": "Same prebuilt voices as gemini-3.8-live; no count given for the Live API [gemini-live-capabilities]",
+    "languages": [
+      "Same as gemini-3.8-live. Google's pages give 97, 99, 70 and 24 languages and do not say which applies to this model [google-3-8-live-blog, gemini-live-capabilities, gemini-live-overview, gemini-cloud-live-overview]"
+    ],
+    "turn_detection": "Server-side voice activity detection is on by default (realtimeInputConfig.automaticActivityDetection). Settings: start_of_speech_sensitivity, end_of_speech_sensitivity, prefix_padding_ms and silence_duration_ms. The server default for silence is about 800 ms, and Google advises 500 to 800 ms [gemini-live-capabilities]. Automatic detection can be turned off (disabled: true). The client then sends activityStart and activityEnd, and Google advises a client silence threshold of at least 500 ms. A hybrid mode keeps server detection for the start of speech and lets a client detector send audio_stream_end for a fast end of turn [gemini-live-capabilities]. The client sends audioStreamEnd when the microphone pauses for more than one second [gemini-live-capabilities]. Because reasoning runs in the background, turnComplete: true does not mean the session is idle. Google says to read interaction_status: IN_PROGRESS while it works and IDLE when all processing is done [gemini-spec-3-8-live-et, gemini-live-thinking].",
+    "interruption": "Barge-in is supported. When detection hears the user during output, the server cancels the generation, discards pending function calls and sends interrupted: true. The client must drop its queued playback audio at once [gemini-live-capabilities, gemini-live-best-practices]. Google's launch post says the model speaks an early verbal cue, such as a short line that it is checking, and narrates progress while background work runs [google-3-8-live-blog].",
+    "latency": "1.35 seconds average time to first audio at high thinking on Artificial Analysis's Big Bench Audio set [aa-speech-to-speech]. Google publishes no figure.",
+    "session_limit": "Without context window compression an audio-only session ends after 15 minutes and an audio-plus-video session after 2 minutes. With compression and session resumption a session can run without a time limit. One connection lasts about 10 minutes, and the server sends GoAway before it closes the connection. Resumption handles stay valid for 2 hours after the session ends. The session context window is 128k tokens [gemini-live-capabilities, gemini-live-session]. On Gemini Enterprise Agent Platform the limit is 1,000 concurrent sessions per project on pay-as-you-go, and GoAway comes 60 seconds before the end [gemini-cloud-live-session]."
+  },
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3.0,
+    "output": 12.0,
+    "cached_input": null,
+    "notes": "Gemini API pricing page, paid plan, standard rate. Input: text $0.75, audio $3.00 (about $0.005 a minute), image or video $1.00 (about $0.002 a minute). Output: text $4.50, audio $12.00 (about $0.018 a minute), and the output price includes thinking tokens. The input and output fields of this card hold the audio rates. Audio counts 25 tokens a second [gemini-live-best-practices]. Each turn bills the whole session context again, so the cost of a turn grows with session length [gemini-live-best-practices]. Turning on audio transcription adds text output tokens at the text rate. Search grounding: 5,000 free requests a month shared across Gemini 3.x models, then $14 per 1,000 requests. The free plan costs nothing and Google may use its data to improve products; the paid plan is not used for that. One table covers gemini-3.8-live, gemini-3.8-live-extended-thinking and gemini-3.1-flash-live-preview [gemini-pricing]. No caching, no batch."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech to Speech Index",
+      "score": 82.6,
+      "setting": "leaderboard row 'Gemini 3.8 Live Extended Thinking (High)'; equal weight of speech reasoning, agentic performance, arena preference and task success",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio, 1,000 audio questions)",
+      "score": 97.7,
+      "setting": "high thinking; the leaderboard table shows the integer 98 and its summary text shows 97.7",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench v1 and v1.5 subset)",
+      "score": 91.9,
+      "setting": "high thinking; pause handling, turn-taking, interruption handling and backchannel handling combined",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis tau-Voice agentic performance",
+      "score": 68.6,
+      "setting": "high thinking; share of replica customer-service scenarios resolved; full-duplex models only; Google's launch post repeats the figure",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech Agent Arena preference Elo",
+      "score": 990,
+      "setting": "high thinking; pairwise human preference; Elo anchored with GPT Realtime 1.5 at 1000",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Speech Agent Arena task success rate",
+      "score": 89.1,
+      "setting": "high thinking; share of eligible conversations with the correct final tool call or calls",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis time to first audio on Big Bench Audio (seconds; lower is better)",
+      "score": 1.35,
+      "setting": "high thinking; average over the dataset",
+      "harness": "Artificial Analysis speech-to-speech evaluation",
+      "measured_by": "independent",
+      "source": "aa-speech-to-speech",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Sierra tau-Voice-banking (tau3-Banking)",
+      "score": 35.1,
+      "setting": "high thinking; figure in Google's launch post, and the same value on the Sierra tau3-Banking chart of Google's evaluation file, which says the tau-Bench runs used the Gemini API with high thinking and default sampling",
+      "harness": "Sierra tau-Voice-banking, as reported by Google",
+      "measured_by": "maker",
+      "source": "google-3-8-live-blog",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/live-api/thinking",
+    "https://ai.google.dev/gemini-api/docs/live-api/best-practices",
+    "https://ai.google.dev/gemini-api/docs/live-api/capabilities"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-live-extended-thinking",
+  "sources": [
+    {
+      "id": "gemini-spec-3-8-live-et",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-live-extended-thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-live-overview",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-live-capabilities",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/capabilities",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-live-best-practices",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-live-session",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/session-management",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-live-thinking",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-live-tools",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/tools",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-models-page",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-8-audio-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-3-8-live-eval",
+      "url": "https://storage.googleapis.com/deepmind-media/gemini/gemini_3-8_live_model_evaluation.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "google-3-8-live-blog",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "google-cloud-live-avatar-blog",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-3-8-live-with-live-avatar-is-now-generally-available",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-live-overview",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/live-api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-live-session",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/live-api/start-manage-session",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-release-notes",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-speech-to-speech",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "gh-theoremai-25",
+      "url": "https://github.com/masudl-hub/theoremai/issues/25",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "gh-livekit-7302",
+      "url": "https://github.com/livekit/agents/issues/7302",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro: not applicable to a speech-to-speech model; no run found",
+    "Terminal-Bench: not applicable to a speech-to-speech model; no run found",
+    "Artificial Analysis Intelligence Index: not listed for this model; Artificial Analysis scores speech-to-speech models on its own Speech to Speech Index, recorded in benchmarks",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech-to-speech model; not listed",
+    "METR 50% time horizon: not applicable to a speech-to-speech model; no run found",
+    "pricing_usd_per_mtok.cached_input: Google lists caching as not supported for this model",
+    "reasoning.default: no page read names a default thinking level; only low, medium and high are accepted (minimal is rejected)",
+    "status: generally available on the Gemini API since 2026-09-15 per the changelog; Google Cloud's blog of 2026-09-25 says the model remains in private preview on Gemini Enterprise, and the Enterprise Agent Platform's Live API overview lists only gemini-3.8-live and an older 2.5 id. The Live API guide pages still carry a preview banner",
+    "context_window: the model page says 131,072 input tokens and the model card says 128K; 131,072 kept",
+    "modalities: the Live Avatar video output is named for this model in the model card, and in the Cloud blog only for gemini-3.8-live; the Cloud blog says Extended Thinking stays in private preview",
+    "voice.voices: no count of voices for the Live API found",
+    "voice.languages: Google's pages give 97, 99, 70 and 24 languages; none says which applies to this model",
+    "voice.latency: Google publishes no latency figure; the figure recorded is a measurer's",
+    "benchmarks: Google's evaluation file shows its results as chart images. Its Sierra tau3-Banking chart shows 35.1 for this model at high thinking, the same as the launch post. Its EVA-Bench chart is a scatter plot with no data labels. Artificial Analysis ran the model under the id gemini-3.8-live-extended-thinking with thinking high",
+    "pricing_usd_per_mtok: the pricing page gives one table for all three Live models and does not give a separate Extended Thinking price; Artificial Analysis computes a higher cost per hour of input audio for this model ($3.50 against $0.84), which it does not explain on the page"
+  ]
+}

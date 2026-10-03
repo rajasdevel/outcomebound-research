@@ -1,0 +1,280 @@
+{
+  "id": "mistral-medium-3-5",
+  "name": "Mistral Medium 3.5",
+  "maker": "Mistral",
+  "family": "Mistral Medium 3.5",
+  "class": "Mistral Medium",
+  "generation": "3.5",
+  "released": "2026-04-28",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (modified MIT)",
+  "access": [
+    "Mistral API (chat completions, conversations, agents; id mistral-medium-3-5)",
+    "Le Chat (Pro, Team, Enterprise)",
+    "Mistral Vibe CLI and Vibe remote agents",
+    "Azure Foundry (Mistral's docs list Medium 3.5)",
+    "Hugging Face weights (Mistral-Medium-3.5-128B, with an EAGLE head)",
+    "NVIDIA build.nvidia.com and NIM",
+    "OpenRouter",
+    "Ollama",
+    "vLLM",
+    "SGLang",
+    "Transformers",
+    "llama.cpp (Unsloth GGUF builds)"
+  ],
+  "context_window": 256000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [
+      "none",
+      "high"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.5,
+    "output": 7.5,
+    "cached_input": 0.15,
+    "notes": "List price on Mistral's model page and launch post. Cached input is 10% of the input price per Mistral's API reference (prompt_cache_key); Artificial Analysis shows the same 0.15. Batch requests cost 50% less"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 14,
+      "setting": "reasoning; 100M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-mistral-medium-3-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 77.6,
+      "setting": "vendor run; the figure is in Mistral's model card and launch post text; the comparison charts are images",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mistral-medium-3-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "tau3-Telecom",
+      "score": 91.4,
+      "setting": "vendor run; the figure is in Mistral's model card and launch post text; the comparison charts are images",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-mistral-medium-3-5",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (component of the Artificial Analysis Intelligence Index v4.3.2)",
+      "score": 0,
+      "setting": "reasoning; resolved-task percentage",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-compare-1-3-max-vs-medium",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (Artificial Analysis long-context reasoning, component of the index v4.3.2)",
+      "score": 69,
+      "setting": "reasoning",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-compare-1-3-max-vs-medium",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
+    "https://docs.mistral.ai/capabilities/reasoning/",
+    "https://docs.mistral.ai/capabilities/completion/prompting_capabilities/",
+    "https://docs.mistral.ai/capabilities/function_calling/"
+  ],
+  "system_card": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
+  "model_page": "https://docs.mistral.ai/models/mistral-medium-3-5-26-04",
+  "sources": [
+    {
+      "id": "mistral-changelog",
+      "url": "https://docs.mistral.ai/getting-started/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "our frontier-class multimodal model optimized for agentic and coding use cases, with adjustable reasoning via the `reasoning_effort` parameter"
+    },
+    {
+      "id": "mistral-models-overview",
+      "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-medium-3-5-card",
+      "url": "https://docs.mistral.ai/models/mistral-medium-3-5-26-04",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-vibe-remote-agents",
+      "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-mistral-medium-3-5",
+      "url": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-mistral-medium-3-5",
+      "url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "the-decoder-medium-3-5",
+      "url": "https://the-decoder.com/mistrals-new-flagship-medium-3-5-folds-chat-reasoning-and-code-into-one-model/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "mistral-vibe-readme",
+      "url": "https://raw.githubusercontent.com/mistralai/mistral-vibe/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openrouter-medium-3-5",
+      "url": "https://openrouter.ai/mistralai/mistral-medium-3-5/api",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mistral-reasoning-docs",
+      "url": "https://docs.mistral.ai/capabilities/reasoning/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-prompting-docs",
+      "url": "https://docs.mistral.ai/capabilities/completion/prompting_capabilities/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-function-calling-docs",
+      "url": "https://docs.mistral.ai/capabilities/function_calling/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-azure-docs",
+      "url": "https://docs.mistral.ai/models/deployment/cloud-deployments/azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-medium-license",
+      "url": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B/blob/main/LICENSE",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-medium-system-prompt",
+      "url": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B/raw/main/SYSTEM_PROMPT.txt",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-compare-1-3-max-vs-medium",
+      "url": "https://artificialanalysis.ai/models/comparisons/muse-spark-1-3-vs-mistral-medium-3-5",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "mistral-vibe-docs",
+      "url": "https://docs.mistral.ai/vibe/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-chat-api",
+      "url": "https://docs.mistral.ai/api/endpoint/chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Cached tokens are billed at 10% of the standard input token price."
+    },
+    {
+      "id": "mistral-governance-medium-3",
+      "url": "https://legal.mistral.ai/ai-governance/models/mistral-medium-3",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03)",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08)",
+    "Artificial Analysis Coding Agent Index: no run with this model is listed on Artificial Analysis's coding-agent pages",
+    "Terminal-Bench 4.0: the tbench.ai leaderboard rows did not render for the fetcher; the figure on this card is Artificial Analysis's own run, a component of its index",
+    "max_output: not published on Mistral's model page, models page or governance hub",
+    "reasoning.default: the card names none and high as recommended values but does not say which applies when the parameter is omitted",
+    "context_window: Mistral publishes '256k'; Artificial Analysis's model-page summary says 260k and OpenRouter lists 262,144; 256000 is a rounding of Mistral's figure",
+    "id: the docs page and changelog give mistral-medium-3-5 (the docs page shows two further aliases that the static page does not name); no live API check (no key)",
+    "status: the docs page says GA and the governance hub says active; Mistral's 2026-05-22 launch post calls the model public preview; ga used from the docs page",
+    "cloud marketplaces: Mistral's Azure page lists Medium 3.5; its Amazon Bedrock and Vertex AI pages do not",
+    "released: the changelog and docs page say 2026-04-28; Artificial Analysis and Mistral's AI governance hub say 2026-04-29, OpenRouter 2026-04-30, and the launch post is dated 2026-05-22",
+    "system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card, which has usage settings and no safety evaluation",
+    "LEXam Hard (legal reasoning) 31.89: an earlier card value that appears neither in the model card text nor in the launch post; removed",
+    "SWE-bench Verified, tau3-Telecom: the figures are in Mistral's card and post text; the harness, scaffold and settings behind them are not stated"
+  ]
+}

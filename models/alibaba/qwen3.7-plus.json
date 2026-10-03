@@ -1,0 +1,333 @@
+{
+  "id": "qwen3.7-plus",
+  "name": "Qwen3.7-Plus",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3.7",
+  "class": "Qwen Plus",
+  "generation": "3.7",
+  "released": "2026-06-01",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud API",
+    "Alibaba Cloud Model Studio",
+    "OpenRouter",
+    "Fireworks AI"
+  ],
+  "context_window": 1000000,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.4,
+    "output": 1.6,
+    "cached_input": 0.08,
+    "notes": "QwenCloud model page (read 2026-10-03), for inputs up to 256K tokens: list US$0.40 input and US$1.60 output, implicit cache US$0.08, explicit cache creation US$0.50 and explicit cache read US$0.04 per million tokens; the page also shows a 20% discounted price (0.32 and 1.28) and no rate for longer inputs; Artificial Analysis shows 0.40 and 1.60 with an 80% cache discount; OpenRouter lists 0.32 and 1.28; Fireworks lists 0.50 input, 0.10 cached input and 3.00 output on its own blog"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 25,
+      "setting": "reasoning model; 130M output tokens against a median of 100M; effort not stated",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-7-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 1.0,
+      "setting": "Artificial Analysis's own run inside its Intelligence Index v4.3.2, via Alibaba's API; effort not stated; read from the chart data embedded in the model page, not from page text",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-7-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Artificial Analysis harness)",
+      "score": 61.0,
+      "setting": "Artificial Analysis's own run, earlier index component; read from the model page's chart data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-qwen3-7-plus",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1 (Terminus)",
+      "score": 64.0,
+      "setting": "comparison column on the Qwen3.8-27B card; vendor run, no timeout stated",
+      "harness": "Terminus",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-27b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (27B card)",
+      "score": 57.6,
+      "setting": "comparison column on the Qwen3.8-27B card; vendor run with the Claude Code harness, temperature 1.0, top_p 0.95, 256K context, on a refined set, so not the Scale V2 set",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-27b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Pro (Flash-Next card)",
+      "score": 55.8,
+      "setting": "comparison column on the Qwen3.8-Flash-Next card; Claude Code, refined set, so not the Scale V2 set; differs from the 27B card's 57.6",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "hf-flash-next",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 90.3,
+      "setting": "comparison column on the Qwen3.8-27B card; vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-27b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench",
+      "score": 79.1,
+      "setting": "comparison column on the Qwen3.8-27B card; vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-27b",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "OSWorld-Verified",
+      "score": 73.3,
+      "setting": "comparison column on the Qwen3.8-27B card; vendor run; multimodal agent benchmark; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-qwen3-8-27b",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+    "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+    "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+    "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen3.7-plus",
+  "sources": [
+    {
+      "id": "qwencloud-page-plus",
+      "url": "https://www.qwencloud.com/models/qwen3.7-plus",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-models",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/text-generation-models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fireworks-37plus",
+      "url": "https://fireworks.ai/blog/qwen-3p7-plus",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-thinking",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/thinking",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "blog-qwen3-7",
+      "url": "https://www.alibabacloud.com/blog/qwen3-7-the-agent-frontier_603154",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-7-plus",
+      "url": "https://artificialanalysis.ai/models/qwen3-7-plus",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-qwen3-8-27b",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-flash-next",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-structured",
+      "url": "https://docs.qwencloud.com/developer-guides/text-generation/structured-output",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aliyun-vision",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/vision-model",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwen-g8",
+      "url": "https://www.alibabacloud.com/blog/qwen3-6-plus-towards-real-world-agents_603005",
+      "read": "2026-09-25",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwen-f6",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "read": "2026-09-25",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-security",
+      "url": "https://docs.qwencloud.com/developer-guides/security-compliance/data-security",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-8-27b",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-qwen3-8-flash-next",
+      "url": "https://artificialanalysis.ai/models/qwen3-8-flash-next",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-index-v4-3",
+      "url": "https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v4-3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "versely-apsara",
+      "url": "https://www.versely.studio/blog/qwen-4-announced-at-apsara-2026",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "openrouter-plus",
+      "url": "https://openrouter.ai/qwen/qwen3.7-plus",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-api-chat",
+      "url": "https://docs.qwencloud.com/api-reference/chat/openai-chat",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prompting",
+      "url": "https://docs.qwencloud.com/developer-guides/accuracy-tuning/text-generation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-fn-calling",
+      "url": "https://docs.qwencloud.com/developer-guides/tool-calling/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-vision",
+      "url": "https://docs.qwencloud.com/developer-guides/multimodal/vision",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-cache",
+      "url": "https://docs.qwencloud.com/developer-guides/run-and-scale/context-cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Qwen row among the 11 rows of the Scale leaderboard read on 2026-10-03; the page shows no update date",
+    "Artificial Analysis Coding Agent Index: no row for this model on Artificial Analysis's coding-agent leaderboard (read 2026-10-03), which lists Qwen3.8 Max only",
+    "METR 50% time horizon: METR's page (last updated 2026-05-08) mentions only 'Qwen models' (added 2025-06-27) and its chart values are not in the page text, so a Qwen3.x entry is not ruled out",
+    "retires: no retirement date published",
+    "reasoning: QwenCloud documents thinking on by default and switchable (hybrid) with thinking_budget; no reasoning_effort levels are documented for this model, so levels and default are empty",
+    "released: changelog and Artificial Analysis say 2026-06-01; Fireworks says 2026-06-12; resellers say 2026-06-02 or 06-03",
+    "max_output: the QwenCloud model page says 131K (also with thinking) while QwenCloud's model table says 64k; 131,072 kept",
+    "price above 256K input: the model page shows only the tier up to 256K tokens",
+    "model size: Artificial Analysis says undisclosed; the Qwen3.8-Flash-Next card's comparison table lists 397B total and 17B active, which no Plus page confirms",
+    "benchmarks: Alibaba has published no Plus table of its own; the recorded rows are comparison columns on later cards",
+    "system_card: none; the maker may not publish one",
+    "access: OpenRouter lists the model and Fireworks describes it on its own blog (read 2026-10-03); Together AI rested on a search listing that was not confirmed, so it is left out",
+    "benchmarks: the 27B and Flash-Next cards disagree for this model on SWE-bench Pro (57.6 and 55.8) and DeepSWE 1.1 (14.2 and 16.5)"
+  ]
+}

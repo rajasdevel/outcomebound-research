@@ -1,0 +1,231 @@
+{
+  "id": "grok-build-0.1",
+  "name": "Grok Build 0.1",
+  "maker": "SpaceXAI",
+  "family": "Grok Build",
+  "class": "Grok Build",
+  "generation": "0.1",
+  "released": "2026-05-29",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "SpaceXAI API",
+    "Grok Build",
+    "OpenRouter",
+    "Vercel AI Gateway"
+  ],
+  "context_window": 256000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": null,
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.0,
+    "output": 2.0,
+    "cached_input": 0.2,
+    "notes": "list price for prompts under 200k tokens; 2.0 input, 4.0 output, 0.4 cached at 200k and above; no Batch API"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 27,
+      "setting": "reasoning version; effort not stated",
+      "harness": "Artificial Analysis standard harness (index v4.3.2); AA lists the 2026-06-16 snapshot 'Grok Build 0.1 0616' and marks it deprecated",
+      "measured_by": "independent",
+      "source": "aa-build-0616",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "http://web.archive.org/web/20251118014240/https://docs.x.ai/docs/guides/grok-code-prompt-engineering",
+    "https://docs.x.ai/build/features/project-rules"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.x.ai/developers/models/grok-build-0.1",
+  "sources": [
+    {
+      "id": "xai-build01-news",
+      "url": "https://x.ai/news/grok-build-0-1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-build01",
+      "url": "https://docs.x.ai/developers/models/grok-build-0.1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "grok-newer",
+      "url": "https://docs.x.ai/developers/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "grok-f17",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/multi-turn.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Any change to earlier messages breaks the cache. Only append new messages at the end."
+    },
+    {
+      "id": "grok-f1",
+      "url": "https://docs.x.ai/build/features/project-rules.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "short, specific instructions are followed more reliably than long ones"
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "grok-f15",
+      "url": "http://web.archive.org/web/20251118014240/https://docs.x.ai/docs/guides/grok-code-prompt-engineering",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Be thorough and give many details in your system prompt."
+    },
+    {
+      "id": "grok-migration-may15",
+      "url": "https://docs.x.ai/developers/migration/may-15-retirement.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-45-news",
+      "url": "https://x.ai/news/grok-4-5",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-47-overview",
+      "url": "https://docs.x.ai/developers/grok-4-7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-release-notes",
+      "url": "https://docs.x.ai/developers/release-notes",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-models",
+      "url": "https://docs.x.ai/developers/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-47-card",
+      "url": "https://media.x.ai/v1/website/4p7card-5eccc980.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "grok-f16",
+      "url": "http://web.archive.org/web/20251118014240/https://docs.x.ai/docs/guides/grok-code-prompt-engineering",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "grok-f10",
+      "url": "https://docs.x.ai/developers/model-capabilities/text/reasoning.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-build-0616",
+      "url": "https://artificialanalysis.ai/models/grok-build-0-1-06-16",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-regions",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/regions",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-so",
+      "url": "https://docs.x.ai/developers/model-capabilities/text/structured-outputs",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-rates",
+      "url": "https://docs.x.ai/developers/rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-codefast-card",
+      "url": "https://data.x.ai/2025-08-26-grok-code-fast-1-model-card.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-pricing",
+      "url": "https://cursor.com/docs/models-and-pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Grok entry on Scale's leaderboard (11 rows: Claude, GPT, Kimi K3, GLM-5.3, Gemini 3.8 Flash, Inkling)",
+    "METR 50% time horizon: not measured; METR's page lists only Grok-4 (2025) and names Grok 4.3 as unmeasured",
+    "maker benchmarks: the announcement lists none",
+    "max_output: not published",
+    "reasoning: the docs say reasoning is supported; effort levels and default are not stated",
+    "base model, parameter count and knowledge cutoff: not disclosed",
+    "status: the API announcement (2026-05-29) calls it a public beta and xAI's release notes (May 2026 section, no day given) call it early access; the docs page no longer says beta, so preview is a judgement",
+    "retires: no notice found",
+    "released: xAI's release notes list an early-access entry in their May 2026 section without a day; the API announcement of 2026-05-29 (first public availability) is used",
+    "access: the maker's announcement names Cursor, Hermes Agent, OpenClaw, Kilo Code and OpenCode as harnesses where it performs best, which is not a statement that they serve it; Cursor's own price list and model docs do not list grok-build-0.1; Grok Build is listed because the announcement called it the agent's model, though Grok 4.7 is now the agent's default",
+    "Terminal-Bench 4.0: no result found",
+    "Artificial Analysis Coding Agent Index: no Grok Build 0.1 entry found on AA's coding-agents page",
+    "benchmarks: the maker's announcement lists none; Artificial Analysis lists the Intelligence Index for a June 2026 snapshot, and it is not stated whether the live slug is that snapshot",
+    "system_card: none for this model; xAI published a card for the predecessor grok-code-fast-1 on 2025-08-26"
+  ]
+}

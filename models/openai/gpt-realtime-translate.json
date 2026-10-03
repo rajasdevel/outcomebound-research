@@ -1,0 +1,161 @@
+{
+  "id": "gpt-realtime-translate",
+  "name": "GPT-Realtime-Translate",
+  "maker": "OpenAI",
+  "family": "GPT Realtime",
+  "class": "GPT Realtime Translate",
+  "generation": "1",
+  "released": "2026-05-07",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Realtime translation: WebRTC, WebSocket)",
+    "Microsoft Foundry"
+  ],
+  "context_window": 16000,
+  "max_output": 2000,
+  "modalities": {
+    "input": [
+      "audio"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "WebSocket: base64 PCM 16-bit at 24 kHz sent as continuous audio; WebRTC: a source media track [openai-guide-translation]",
+    "output_audio": "Translated audio deltas played as PCM 16-bit on a WebSocket; a remote audio track on WebRTC; transcript deltas for source and target text [openai-guide-translation]",
+    "voices": null,
+    "languages": [
+      "input: more than 70 languages",
+      "output: 13 languages, set with audio.output.language (the guides read give an example code es)"
+    ],
+    "turn_detection": "None: the session streams continuously from the incoming audio, response.create is not used, and the guide says to keep sending audio including silence between phrases [openai-guide-translation]",
+    "interruption": "Not applicable: the model interprets a stream and does not answer the speaker [openai-guide-translation]",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "$0.034 per minute of audio; billed by duration, not by tokens"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/realtime-translation"
+  ],
+  "system_card": null,
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-realtime-translate",
+  "sources": [
+    {
+      "id": "openai-model-gpt-realtime-translate",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-translate",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-translation",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-translation",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-ref-translation-events",
+      "url": "https://developers.openai.com/api/reference/resources/realtime/translation-client-events",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-realtime",
+      "url": "https://developers.openai.com/api/docs/guides/realtime",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-voice-cost",
+      "url": "https://developers.openai.com/api/docs/guides/voice-latency-cost",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-models-list",
+      "url": "https://developers.openai.com/api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-hub",
+      "url": "https://deploymentsafety.openai.com/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "community-realtime-2",
+      "url": "https://community.openai.com/t/new-realtime-voice-models-in-the-api/1380471",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-your-data",
+      "url": "https://developers.openai.com/api/docs/guides/your-data",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "voice.voices: the translation guide and model page read name no voice choice",
+    "voice.latency: OpenAI says the model keeps pace with the speaker and publishes no figure in the pages read",
+    "voice.session_limit: the translation guide read states no session limit",
+    "pricing_usd_per_mtok: the unit is a price per minute of audio, not per token",
+    "reasoning: the model has no reasoning control",
+    "system_card: OpenAI's Deployment Safety Hub lists no system card or model card for this model on 2026-10-03",
+    "benchmarks: no independent measurement of translation quality or latency found on 2026-10-03",
+    "context_window: Microsoft Foundry lists 32,000 input and 4,096 output tokens for this model; the OpenAI model page lists 16,000 and 2,000, and this card follows OpenAI",
+    "voice.languages: the list of the 13 output languages is not in the pages read; the 70+ and 13 counts come from OpenAI's launch announcement as relayed in its Developer Community thread",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a voice model; no run exists",
+    "Terminal-Bench 4.0: not applicable to a voice model; no run exists",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis rates speech models on its Speech to Speech Index and its speech-to-text word error rate instead",
+    "Artificial Analysis Coding Agent Index: not applicable to a voice model",
+    "METR 50% time horizon: not applicable to a voice model; no run exists"
+  ]
+}

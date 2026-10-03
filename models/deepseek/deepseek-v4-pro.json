@@ -1,0 +1,407 @@
+{
+  "id": "deepseek-v4-pro",
+  "name": "DeepSeek V4-Pro (0813)",
+  "maker": "DeepSeek",
+  "family": "DeepSeek V4",
+  "class": "DeepSeek Pro",
+  "generation": "4",
+  "released": "2026-08-13",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MIT)",
+  "access": [
+    "DeepSeek API (OpenAI Chat Completions, Responses and Anthropic formats)",
+    "DeepSeek web and app",
+    "Hugging Face weights (deepseek-ai/DeepSeek-V4-Pro-0813)",
+    "Claude Code (claude-opus names map to it)",
+    "Codex",
+    "DeepSeek Harness"
+  ],
+  "context_window": 1000000,
+  "max_output": 393216,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.32,
+    "output": 3.96,
+    "cached_input": 0.044,
+    "notes": "peak-hour list price (01:00-04:00 and 06:00-10:00 UTC, Mon-Fri, not Chinese holidays); off-peak is half: 0.66 / 1.98 / 0.022. Thinking is on by default and can be switched off."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 12.4,
+      "setting": "max effort, Pass@1; column in the V4.1-Flash table",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 3.0",
+      "score": 11.8,
+      "setting": "max effort, Pass@1; column in the V4.1-Flash table",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v41-flash",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 87.9,
+      "setting": "max effort, temperature 1.0, top_p 0.95",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v4-pro-0813",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE",
+      "score": 62.7,
+      "setting": "max effort; the V4.1-Flash card labels the same 62.7 v1.1 and says DeepSWE v1.1 ran on mini-SWE, while the V4-Pro-0813 card names DeepSeek Harness Minimal for code-agent tasks, so the harness is uncertain",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v4-pro-0813",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "NL2Repo",
+      "score": 61.5,
+      "setting": "max effort",
+      "harness": "DeepSeek Harness (Minimal)",
+      "measured_by": "maker",
+      "source": "hf-v4-pro-0813",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Toolathlon-Verified",
+      "score": 74.1,
+      "setting": "max effort is stated on the card only for code-agent tasks; whether this row counts as one is not said",
+      "harness": "not stated for this row",
+      "measured_by": "maker",
+      "source": "hf-v4-pro-0813",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CyberGym",
+      "score": 83.3,
+      "setting": "max effort is stated on the card only for code-agent tasks; whether this row counts as one is not said",
+      "harness": "not stated for this row",
+      "measured_by": "maker",
+      "source": "hf-v4-pro-0813",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "HLE with tools",
+      "score": 60.0,
+      "setting": "effort not stated for this row (max effort is stated only for code-agent tasks)",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-v4-pro-0813",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Verified (CAISI, NIST) - V4 Pro Preview, not 0813",
+      "score": 74.0,
+      "setting": "max reasoning level, cloud-served, developer-recommended settings; evaluated before the 0813 GA release (published 2026-05-01); GPT-5.5 scored 81 and Opus 4.6 scored 79 in the same table",
+      "harness": "Inspect ReAct agent, 500k weighted-token budget (CAISI)",
+      "measured_by": "independent",
+      "source": "nist-caisi-v4-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 36,
+      "setting": "0813 Max effort reasoning variant, index v4.3.2 (10 evaluations); rank 10 of 118 on the page",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-pro",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 14,
+      "setting": "Max variant (DeepSeek V4 Pro 0813 (Max)); percent as shown on Artificial Analysis's comparison page, one of the ten Intelligence Index components",
+      "harness": "Artificial Analysis (harness not stated)",
+      "measured_by": "independent",
+      "source": "aa-cmp-pro-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience (Artificial Analysis Intelligence Index v4.3.2 component)",
+      "score": 1,
+      "setting": "0813 Max variant; index runs from -100 to 100 and penalises wrong answers",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-cmp-pro-k3",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-LCR v1.1 (Artificial Analysis Intelligence Index v4.3.2 component)",
+      "score": 80,
+      "setting": "0813 Max variant; percent",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-cmp-pro-k3",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://api-docs.deepseek.com/guides/thinking_mode",
+    "https://api-docs.deepseek.com/guides/tool_calls",
+    "https://api-docs.deepseek.com/guides/json_mode",
+    "https://api-docs.deepseek.com/guides/kv_cache",
+    "https://api-docs.deepseek.com/guides/anthropic_api"
+  ],
+  "system_card": "https://arxiv.org/html/2606.19348v1",
+  "model_page": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "sources": [
+    {
+      "id": "deepseek-pricing",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-changelog",
+      "url": "https://api-docs.deepseek.com/updates",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "we have decided to continue providing API services for DeepSeek V4 Pro after September 14, 2026, with the billing method remaining unchanged."
+    },
+    {
+      "id": "deepseek-news-260910",
+      "url": "https://api-docs.deepseek.com/news/news260910",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Starting at 04:00 UTC on Sept 14, 2026, all deepseek-v4-pro requests will route to V4.1-Flash at V4.1-Flash rates."
+    },
+    {
+      "id": "deepseek-thinking-mode",
+      "url": "https://api-docs.deepseek.com/guides/thinking_mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "the reasoning_content of all previous turns should be passed back to the API"
+    },
+    {
+      "id": "deepseek-anthropic-api",
+      "url": "https://api-docs.deepseek.com/guides/anthropic_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-claude-code",
+      "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/claude_code",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-context-caching",
+      "url": "https://api-docs.deepseek.com/guides/kv_cache",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-pro",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-flash",
+      "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agent-index",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "open-weight-f16",
+      "url": "https://arxiv.org/html/2606.19348v1",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "trivial mistakes, misinterpretation of vague prompts, and occasional over-thinking"
+    },
+    {
+      "id": "measured-g10",
+      "url": "https://arize.com/blog/llm-instruction-following-benchmark-2026/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-v4-pro-0813",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-v41-flash",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nist-caisi-v4-pro",
+      "url": "https://www.nist.gov/news-events/news/2026/05/caisi-evaluation-deepseek-v4-pro",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "deepseek-chat-api",
+      "url": "https://api-docs.deepseek.com/api/create-chat-completion",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-tool-calls",
+      "url": "https://api-docs.deepseek.com/guides/tool_calls",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-json",
+      "url": "https://api-docs.deepseek.com/guides/json_mode",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-responses",
+      "url": "https://api-docs.deepseek.com/guides/responses_api",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-vision",
+      "url": "https://api-docs.deepseek.com/guides/vision",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-rate-limit",
+      "url": "https://api-docs.deepseek.com/quick_start/rate_limit",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-news-260424",
+      "url": "https://api-docs.deepseek.com/news/news260424",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-v41-encoding",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/encoding/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-cmp-pro-k3",
+      "url": "https://artificialanalysis.ai/models/comparisons/deepseek-v4-pro-vs-kimi-k3",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "far-ai-v4-pro",
+      "url": "https://www.far.ai/blog/security-stress-test-deepseek-v4-pros-safeguards",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "opencode-issue",
+      "url": "https://github.com/anomalyco/opencode/issues/24122",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "cursor-forum",
+      "url": "https://forum.cursor.com/t/deepseek-v4-pro-error-report/159983",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "deepseek-codex",
+      "url": "https://api-docs.deepseek.com/quick_start/agent_integrations/codex",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not listed on Scale's table (11 models, none from DeepSeek)",
+    "Artificial Analysis Coding Agent Index: no DeepSeek entry readable on the page (its scores show as not publicly available)",
+    "METR 50% time horizon: no DeepSeek V4 model listed; the page's update log names only DeepSeek-R1 (2025-03-06) and DeepSeek-V3 (2025-06-27) among DeepSeek models, and the graph itself did not render in the page text",
+    "Terminal-Bench 4.0 on the official tbench.ai leaderboard: the rows did not render in the text read; the independent value is Artificial Analysis's 14%, and the 12.4 is the maker's, from the V4.1-Flash table",
+    "retires: no date; the 2026-09-10 news post says requests route to V4.1-Flash from 2026-09-14 and the change log of the same date says V4-Pro continues at unchanged billing; the pricing page of 2026-10-03 still lists it",
+    "context_window: the maker says 1M; whether that is 1,000,000 or 1,048,576 tokens is not stated (the card uses 1,000,000, as Artificial Analysis lists it)",
+    "access: no cloud-marketplace listing (Bedrock, Vertex, Azure) was confirmed on the maker's pages",
+    "weights parameters (the card has no key for them): 1.6T total and 49B active per the 2026-04-24 post and Artificial Analysis; Hugging Face's file count for the 0813 repository is about 1.65T; the 0813 model card states no count",
+    "benchmarks: apart from Artificial Analysis's components, no independent run of the 0813 GA model on agentic coding; the CAISI row is the earlier Preview",
+    "prompting_guides: DeepSeek publishes no prompt-writing guide for V4; the listed pages are API usage guides",
+    "system_card: DeepSeek publishes no system card; the linked V4 technical report covers the Preview, not 0813, and has no safety or alignment section"
+  ]
+}

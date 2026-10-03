@@ -1,0 +1,444 @@
+{
+  "id": "grok-4.6",
+  "name": "Grok 4.6",
+  "maker": "SpaceXAI",
+  "family": "Grok 4.6",
+  "class": "Grok",
+  "generation": "4.6",
+  "released": "2026-08-12",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "SpaceXAI API",
+    "Grok Build",
+    "Cursor",
+    "OpenRouter",
+    "Vercel AI Gateway",
+    "Cloudflare",
+    "Snowflake",
+    "Databricks Mosaic",
+    "Grok add-ins for Word, PowerPoint and Excel"
+  ],
+  "context_window": 500000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 6.0,
+    "cached_input": 0.5,
+    "notes": "list price for prompts under 200k tokens; a request that reaches 200k tokens is billed at the higher rate for all its tokens (4.0 / 12.0 / 1.0 at 200k and above); no Batch API; the US regional endpoint costs 10% more; Cursor's Fast tier is $4 / $1 / $12 (twice the price)"
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 20.3,
+      "setting": "high",
+      "harness": "not stated for this row (the 4.7 card's chart, whose Grok 4.7 row ran in Grok Build; results run by Harbor)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-47-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 44,
+      "setting": "high and xhigh (AA lists 44 on both its grok-4-6 and grok-4-6-xhigh pages; AA's Grok 4.7 article labels it high)",
+      "harness": "Artificial Analysis standard harness (Intelligence Index v4.3.2 on AA's model page; AA's August article gave 61 on an earlier version)",
+      "measured_by": "independent",
+      "source": "aa-grok-46-model",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 47,
+      "setting": "xhigh",
+      "harness": "Grok Build (Coding Agent Index v1.5: DeepSWE v1.1 65, Terminal-Bench 4.0 18, SWE-Atlas-QnA 58, per AA's Grok 4.7 article)",
+      "measured_by": "independent",
+      "source": "aa-grok-47",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 3.2 (percent; not comparable with CursorBench 4.0)",
+      "score": 69.9,
+      "setting": "high",
+      "harness": "Cursor agent harness (run by Cursor, a SpaceX subsidiary from 2026-08-14)",
+      "measured_by": "maker",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 3.2 (percent; not comparable with CursorBench 4.0)",
+      "score": 70.8,
+      "setting": "xhigh",
+      "harness": "Cursor agent harness (run by Cursor, a SpaceX subsidiary from 2026-08-14)",
+      "measured_by": "maker",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1 (percent)",
+      "score": 65.9,
+      "setting": "high",
+      "harness": "mini-swe-agent (run by Datacurve, reported in the maker's card; the 4.7 card shows 65.2 for the same row)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "DeepSWE v1.1 (percent)",
+      "score": 67.0,
+      "setting": "xhigh",
+      "harness": "mini-swe-agent (run by Datacurve, reported in the maker's card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Marathon v1.1 (percent resolved)",
+      "score": 31.9,
+      "setting": "high",
+      "harness": "Grok Build (run by Abundant AI, reported in the maker's card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierSWE V2 (mean@5 partial-credit percent)",
+      "score": 25.3,
+      "setting": "xhigh",
+      "harness": "Proximal's Proximus harness (run by Proximal Labs, reported in the 4.7 card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-47-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience hallucination rate (percent, lower is better)",
+      "score": 34,
+      "setting": "high",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-grok-47",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0 (percent; not comparable with CursorBench 3.2)",
+      "score": 41.4,
+      "setting": "xhigh",
+      "harness": "Cursor's own leaderboard (the page does not name the harness)",
+      "measured_by": "maker",
+      "source": "cursor-bench-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0 (percent; not comparable with CursorBench 3.2)",
+      "score": 40.4,
+      "setting": "high",
+      "harness": "Cursor's own leaderboard (the page does not name the harness)",
+      "measured_by": "maker",
+      "source": "cursor-bench-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0 (percent; not comparable with CursorBench 3.2)",
+      "score": 36.1,
+      "setting": "medium",
+      "harness": "Cursor's own leaderboard (the page does not name the harness)",
+      "measured_by": "maker",
+      "source": "cursor-bench-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "CursorBench 4.0 (percent; not comparable with CursorBench 3.2)",
+      "score": 33.4,
+      "setting": "low",
+      "harness": "Cursor's own leaderboard (the page does not name the harness)",
+      "measured_by": "maker",
+      "source": "cursor-bench-board",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "APEX-SWE (percent pass@1)",
+      "score": 56.4,
+      "setting": "high",
+      "harness": "Terminus-2 harness, run by Mercor (reported in the maker's card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FrontierCode v1.1 (extended set, percent)",
+      "score": 61.3,
+      "setting": "high",
+      "harness": "Grok Build harness, run by Cognition (reported in the maker's card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 3.0 (percent; superseded by 4.0)",
+      "score": 26.0,
+      "setting": "high",
+      "harness": "Grok Build harness, run by Harbor (reported in the maker's card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Harvey Legal Agent Benchmark (percent)",
+      "score": 15.8,
+      "setting": "high",
+      "harness": "Vals AI Valkyrie harness, internet off (reported in the maker's card)",
+      "measured_by": "third-party-vendor",
+      "source": "xai-46-card",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.x.ai/developers/model-capabilities/text/reasoning",
+    "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/best-practices",
+    "https://docs.x.ai/build/features/project-rules"
+  ],
+  "system_card": "https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf",
+  "model_page": "https://docs.x.ai/developers/models/grok-4.6",
+  "sources": [
+    {
+      "id": "xai-46-card",
+      "url": "https://media.x.ai/v1/website/card-4p6-4cd2dc57.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Grok 4.6 has a pretraining data cutoff of January 2026"
+    },
+    {
+      "id": "xai-46-news",
+      "url": "https://x.ai/news/grok-4-6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "more self-testing and verification, with the model checking its own work"
+    },
+    {
+      "id": "xai-docs-46",
+      "url": "https://docs.x.ai/developers/models/grok-4.6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-47-card",
+      "url": "https://media.x.ai/v1/website/4p7card-5eccc980.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Grok 4.7 scores 38.0% at xhigh, evaluated with the Grok Build harness."
+    },
+    {
+      "id": "aa-grok-46-model",
+      "url": "https://artificialanalysis.ai/models/grok-4-6-xhigh",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-grok-47",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "grok-f12",
+      "url": "https://artificialanalysis.ai/articles/benchmarking-grok-4-7",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "Grok 4.7 (xhigh) uses approximately 81k output tokens per Intelligence Index task"
+    },
+    {
+      "id": "grok-f19",
+      "url": "https://artificialanalysis.ai/articles/grok-4-5-brings-spacexai-to-the-the-intelligence-frontier",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": "its hallucination rate also increased from 25% to 54%"
+    },
+    {
+      "id": "grok-f10",
+      "url": "https://docs.x.ai/developers/model-capabilities/text/reasoning.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "grok-f17",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/multi-turn.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Any change to earlier messages breaks the cache. Only append new messages at the end."
+    },
+    {
+      "id": "grok-f1",
+      "url": "https://docs.x.ai/build/features/project-rules.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-gpt6-sol-luna",
+      "url": "https://artificialanalysis.ai/articles/gpt-6-sol-and-luna-push-the-cost-efficiency-frontier",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-time-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "cursor-grok-46",
+      "url": "https://cursor.com/docs/models/grok-4-6",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-gen",
+      "url": "https://docs.x.ai/developers/model-capabilities/text/generate-text",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-respref",
+      "url": "https://docs.x.ai/developers/rest-api-reference/inference/responses",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "grok-f15",
+      "url": "http://web.archive.org/web/20251118014240/https://docs.x.ai/docs/guides/grok-code-prompt-engineering",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-cache-best",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/best-practices",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-bench-board",
+      "url": "https://cursor.com/cursorbench",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cursor-grok-47",
+      "url": "https://cursor.com/docs/models/grok-4-7",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-grok-46-high",
+      "url": "https://artificialanalysis.ai/models/grok-4-6",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-fc",
+      "url": "https://docs.x.ai/developers/tools/function-calling",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-compaction",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/context-compaction",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-cache-keys",
+      "url": "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/maximizing-cache-hits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-so",
+      "url": "https://docs.x.ai/developers/model-capabilities/text/structured-outputs",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-img",
+      "url": "https://docs.x.ai/developers/model-capabilities/images/understanding",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-chatref",
+      "url": "https://docs.x.ai/developers/rest-api-reference/inference/chat-completions",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-rates",
+      "url": "https://docs.x.ai/developers/rate-limits",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-docs-pricing",
+      "url": "https://docs.x.ai/developers/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Grok entry on Scale's leaderboard (11 rows: Claude, GPT, Kimi K3, GLM-5.3, Gemini 3.8 Flash, Inkling)",
+    "METR 50% time horizon: not measured; METR's page lists only Grok-4 (2025) and names Grok 4.3 as unmeasured",
+    "retires: no notice found",
+    "Terminal-Bench 4.0 harness for this model's row: the card does not name it",
+    "knowledge cutoff: the model card gives a January 2026 pretraining cutoff (data generated as late as June 2026 in supplemental training); no schema key holds it",
+    "max_output: no maximum is published; the model page gives none, the release note says no text output limit, and the API reference sets a default cap of 128,000 visible tokens when max_output_tokens is unset",
+    "prompting_guides: xAI publishes no prompting guide for a current text model; the pages listed are the maker's reasoning, prompt-caching and Grok Build instruction-file pages, which cover this model; the Grok 4.7 overview is not listed because it describes 4.7 only"
+  ]
+}

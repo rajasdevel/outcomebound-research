@@ -1,0 +1,187 @@
+{
+  "id": "gpt-realtime-whisper",
+  "name": "GPT-Realtime-Whisper",
+  "maker": "OpenAI",
+  "family": "GPT Realtime",
+  "class": "GPT Realtime Transcribe",
+  "generation": "1",
+  "released": "2026-05-07",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Realtime transcription sessions: WebSocket, WebRTC)",
+    "Microsoft Foundry"
+  ],
+  "context_window": 16000,
+  "max_output": 2000,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Streaming audio appended with input_audio_buffer.append (the guide example uses 24 kHz PCM) [openai-guide-transcription-rt]",
+    "output_audio": "None: text output only",
+    "voices": "None: no speech output",
+    "languages": [],
+    "turn_detection": "None: the API reference says turn detection must be null for gpt-realtime-whisper sessions and VAD is not supported; the client commits each audio turn [openai-ref-client-secrets] [openai-guide-vad]",
+    "interruption": "Not applicable: the model transcribes and does not speak",
+    "latency": "Artificial Analysis streaming benchmark: 0.21 s to the first partial transcript and 0.69 s to the final transcript after speech ends [aa-stt-streaming]",
+    "session_limit": null
+  },
+  "reasoning": null,
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "$0.017 per minute of audio; billed by duration, not by tokens"
+  },
+  "benchmarks": [
+    {
+      "name": "AA-WER Streaming Index (Artificial Analysis, final transcripts, percent, lower is better)",
+      "score": 4.89,
+      "setting": "datasets AA-AgentTalk, VoxPopuli, Earnings22; delay setting not stated",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-stt-streaming",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Time to final transcript after speech end (Artificial Analysis streaming, seconds, lower is better)",
+      "score": 0.69,
+      "setting": "delay setting not stated",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-stt-streaming",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Time to first partial transcript (Artificial Analysis streaming, seconds, lower is better)",
+      "score": 0.21,
+      "setting": "delay setting not stated",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-stt-streaming",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/realtime-transcription",
+    "https://developers.openai.com/api/docs/guides/transcription"
+  ],
+  "system_card": null,
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-realtime-whisper",
+  "sources": [
+    {
+      "id": "openai-model-gpt-realtime-whisper",
+      "url": "https://developers.openai.com/api/docs/models/gpt-realtime-whisper",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-model-gpt-live-transcribe",
+      "url": "https://developers.openai.com/api/docs/models/gpt-live-transcribe",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-transcription-rt",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-transcription",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-transcription",
+      "url": "https://developers.openai.com/api/docs/guides/transcription",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-vad",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-vad",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-ref-client-secrets",
+      "url": "https://developers.openai.com/api/reference/resources/realtime/subresources/client_secrets/methods/create",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-models-list",
+      "url": "https://developers.openai.com/api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-hub",
+      "url": "https://deploymentsafety.openai.com/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-stt-streaming",
+      "url": "https://artificialanalysis.ai/speech-to-text/streaming",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-your-data",
+      "url": "https://developers.openai.com/api/docs/guides/your-data",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "voice.languages: the pages read list no supported-language set for this model",
+    "voice.session_limit: the transcription guide read states no session limit",
+    "reasoning: a transcription model has no reasoning control",
+    "pricing_usd_per_mtok: the unit is a price per minute of audio, not per token",
+    "system_card: OpenAI's Deployment Safety Hub lists no system card or model card for this model on 2026-10-03",
+    "context_window: Microsoft Foundry lists 32,000 input and 4,096 output tokens for this model; the OpenAI model page lists 16,000 and 2,000, and this card follows OpenAI",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a voice model; no run exists",
+    "Terminal-Bench 4.0: not applicable to a voice model; no run exists",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis rates speech models on its Speech to Speech Index and its speech-to-text word error rate instead",
+    "Artificial Analysis Coding Agent Index: not applicable to a voice model",
+    "METR 50% time horizon: not applicable to a voice model; no run exists"
+  ]
+}

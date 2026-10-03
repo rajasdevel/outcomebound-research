@@ -1,0 +1,363 @@
+{
+  "id": "nemotron-3-ultra",
+  "name": "NVIDIA Nemotron 3 Ultra",
+  "maker": "NVIDIA",
+  "family": "Nemotron 3",
+  "class": "Nemotron Ultra",
+  "generation": "3",
+  "released": "2026-06-04",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (OpenMDW-1.1)",
+  "access": [
+    "Hugging Face weights (BF16 and NVFP4)",
+    "NVIDIA build.nvidia.com",
+    "NVIDIA NIM",
+    "Amazon SageMaker JumpStart",
+    "Google Cloud",
+    "Microsoft Foundry",
+    "Oracle Cloud",
+    "OpenRouter",
+    "Together AI",
+    "Fireworks AI",
+    "DeepInfra",
+    "Baseten",
+    "Modal",
+    "Nebius Token Factory",
+    "Ollama cloud",
+    "Tinker (Thinking Machines)",
+    "vLLM",
+    "SGLang",
+    "TensorRT-LLM"
+  ],
+  "context_window": 1048576,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "off",
+      "medium_effort",
+      "on"
+    ],
+    "default": "on"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.6,
+    "output": 2.5,
+    "cached_input": null,
+    "notes": "As Artificial Analysis shows it, as the median across the providers it tracks, with a 73% cache discount; NVIDIA publishes no price. Tinker lists it for fine-tuning and sampling at 2.49 prefill and 6.225 sample per million tokens at 64K during a limited-time 50% discount (list 4.98 and 12.45)"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (launch article; index version not stated)",
+      "score": 47.7,
+      "setting": "NVFP4 weights, the recommended inference format",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-nemotron-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (launch article; index version not stated)",
+      "score": 48.2,
+      "setting": "higher precision",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-nemotron-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 23,
+      "setting": "reasoning; 110M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-nemotron-page",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 70.4,
+      "setting": "best of five harnesses (65 to 70.4: Pi, OpenHands, Hermes, OpenCode, mini-SWE-agent); vendor run",
+      "harness": "five open harnesses",
+      "measured_by": "maker",
+      "source": "nvidia-nemotron-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.0",
+      "score": 54,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "nvidia-nemotron-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench",
+      "score": 82,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "nvidia-nemotron-blog",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (strict, no internet)",
+      "score": 38.7,
+      "setting": "a competitor's table; how that lab ran Nemotron is not stated",
+      "harness": "not stated",
+      "measured_by": "third-party-vendor",
+      "source": "hf-k2-horizon",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 56.4,
+      "setting": "vendor run, model card table; the same card's comparison set differs from the blog's Terminal-Bench 2.0 table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified (model card)",
+      "score": 70.7,
+      "setting": "vendor run, model card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 67.7,
+      "setting": "vendor run, model card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "TauBench V3 (average)",
+      "score": 70.9,
+      "setting": "vendor run, model card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "BrowseComp",
+      "score": 44.4,
+      "setting": "vendor run; custom agentic search harness using Tavily for search and browsing, with terminal access (technical report); 44.4 in the card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "nvidia-tech-report",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA (no tools)",
+      "score": 87.0,
+      "setting": "vendor run, model card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "LiveCodeBench v6",
+      "score": 89.0,
+      "setting": "vendor run, model card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "RULER (1M)",
+      "score": 94.7,
+      "setting": "vendor run, model card table",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "AA-Omniscience Non-Hallucination",
+      "score": 78.7,
+      "setting": "vendor run of Artificial Analysis's evaluation, model card table; Artificial Analysis's launch article gives 71",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "IFBench (prompt loose)",
+      "score": 81.7,
+      "setting": "vendor run, model card table; the blog gives 82",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-nemotron",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+    "https://docs.dynamo.nvidia.com/dynamo/dev/recipes/nemotron-3-ultra.md"
+  ],
+  "system_card": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+  "model_page": "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-powers-faster-more-efficient-reasoning-for-long-running-agents/",
+  "sources": [
+    {
+      "id": "nvidia-nemotron-blog",
+      "url": "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-powers-faster-more-efficient-reasoning-for-long-running-agents/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": "Nemotron Ultra is post-trained to deliver consistent accuracy across top harnesses."
+    },
+    {
+      "id": "open-weight-g12",
+      "url": "https://developer.nvidia.com/blog/nvidia-nemotron-3-ultra-powers-faster-more-efficient-reasoning-for-long-running-agents/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-nemotron-article",
+      "url": "https://artificialanalysis.ai/articles/nvidia-nemotron-3-ultra-released",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-nemotron-page",
+      "url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-k2-horizon",
+      "url": "https://huggingface.co/IFM/K2-Horizon-375B-A23B/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-inkling-small",
+      "url": "https://artificialanalysis.ai/models/inkling-small",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-nemotron",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "nvidia-tech-report",
+      "url": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ngc-nemotron-safety",
+      "url": "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/models/nemotron-3-ultra-550b-a55b/hf-590d0da/model-card/safety-and-security",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ngc-nemotron-explain",
+      "url": "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/models/nemotron-3-ultra-550b-a55b/-/model-card/explainability",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "dynamo-nemotron",
+      "url": "https://docs.dynamo.nvidia.com/dynamo/dev/recipes/nemotron-3-ultra.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "unsloth-nemotron",
+      "url": "https://unsloth.ai/docs/models/nemotron-3-ultra",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "hf-nemotron-bias",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16/raw/main/bias.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-pricing",
+      "url": "https://tinker-docs.thinkingmachines.ai/tinker/models/models_and_pricing/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's leaderboard (11 rows read, none for this model)",
+    "Terminal-Bench 4.0: no standalone score; Artificial Analysis counts Terminal-Bench 4.0 inside its v4.3.2 index without per-model numbers, and the tbench.ai leaderboard rows did not render for the fetcher",
+    "Artificial Analysis Coding Agent Index: no entry for this model among the runs on Artificial Analysis's Coding Agent Index v1.5 page (artificialanalysis.ai/agents/coding-agents), read 2026-10-03",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08; no numbers in the page text)",
+    "max_output: not published",
+    "pricing cached_input: not published",
+    "context_window: the technical report and card say 1M (training at 1,048,576 tokens); the card's vLLM and SGLang recipes default to 256K and need a flag for 1M, NVIDIA's Dynamo recipe calls 256K the native length, and Artificial Analysis lists 262k",
+    "Artificial Analysis launch-article index version: not named in the article; a Thinking Machines table lists Nemotron 3 Ultra at 38 on index v4.1, so the launch article's 47.7 is not v4.1 (version unknown)",
+    "NVIDIA's blog: its Table 1 gives Terminal-Bench 2.0 54, IFBench 82, PinchBench 91, ProfBench 56, EnterpriseOps-Gym 33, GDPVal-AA 1,448 and RULER at 1M 95; the card's table gives slightly different figures for the overlapping rows (PinchBench 90.0, IFBench 81.7)",
+    "pricing_usd_per_mtok: cached_input not published by the maker (checked 2026-10-03)",
+    "system_card: NVIDIA publishes a model card on Hugging Face and NGC safety and explainability subcards, and a technical report; none holds refusal, injection or jailbreak measurements",
+    "reasoning.levels: the card and technical report name three modes (off, medium effort, regular) plus an optional reasoning budget; the budget is a number, so it is not a level"
+  ]
+}

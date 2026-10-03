@@ -1,0 +1,163 @@
+{
+  "id": "gpt-transcribe",
+  "name": "GPT-Transcribe",
+  "maker": "OpenAI",
+  "family": "GPT Transcribe",
+  "class": "GPT Transcribe",
+  "generation": "2",
+  "released": "2026-07-28",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Audio transcriptions; Realtime committed-turn transcription over WebSocket)",
+    "Microsoft Foundry"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Audio files up to 25 MB in mp3, mp4, mpeg, mpga, m4a, wav or webm; in a Realtime session, committed audio turns over WebSocket; text context through prompt, keywords and languages [openai-guide-speech-to-text] [openai-guide-transcription-rt]",
+    "output_audio": "None: text output only",
+    "voices": "None: no speech output",
+    "languages": [],
+    "turn_detection": "None: the model transcribes a finished file or a committed turn; in a Realtime session transcription begins after the client sends input_audio_buffer.commit [openai-guide-transcription-rt]",
+    "interruption": "Not applicable: the model transcribes and does not speak",
+    "latency": "Artificial Analysis non-streaming speed factor 41.4 (seconds of audio transcribed per second) [aa-stt-non-streaming]",
+    "session_limit": null
+  },
+  "reasoning": null,
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "$0.0045 per minute of audio; billed by duration, not by tokens"
+  },
+  "benchmarks": [
+    {
+      "name": "AA-WER v2 (Artificial Analysis, non-streaming, percent, lower is better)",
+      "score": 3.31,
+      "setting": "datasets AA-AgentTalk 50%, VoxPopuli-Cleaned 25%, Earnings22-Cleaned 25%",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-stt-non-streaming",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/speech-to-text",
+    "https://developers.openai.com/api/docs/guides/transcription"
+  ],
+  "system_card": null,
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-transcribe",
+  "sources": [
+    {
+      "id": "openai-model-gpt-transcribe",
+      "url": "https://developers.openai.com/api/docs/models/gpt-transcribe",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-speech-to-text",
+      "url": "https://developers.openai.com/api/docs/guides/speech-to-text",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-transcription",
+      "url": "https://developers.openai.com/api/docs/guides/transcription",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-transcription-rt",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-transcription",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-deprecations",
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-models-list",
+      "url": "https://developers.openai.com/api/docs/models",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-hub",
+      "url": "https://deploymentsafety.openai.com/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-stt-non-streaming",
+      "url": "https://artificialanalysis.ai/speech-to-text",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ms-foundry-models",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-guide-your-data",
+      "url": "https://developers.openai.com/api/docs/guides/your-data",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "context_window: the model page states none",
+    "max_output: the model page states none",
+    "voice.languages: the guide reads take language hints as ISO codes and list no supported-language set",
+    "voice.session_limit: no session applies to a file request; the Realtime committed-turn mode states no limit in the guide read",
+    "reasoning: a transcription model has no reasoning control",
+    "pricing_usd_per_mtok: the unit is a price per minute of audio, not per token",
+    "system_card: OpenAI's Deployment Safety Hub lists no system card or model card for this model on 2026-10-03",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a voice model; no run exists",
+    "Terminal-Bench 4.0: not applicable to a voice model; no run exists",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis rates speech models on its Speech to Speech Index and its speech-to-text word error rate instead",
+    "Artificial Analysis Coding Agent Index: not applicable to a voice model",
+    "METR 50% time horizon: not applicable to a voice model; no run exists"
+  ]
+}

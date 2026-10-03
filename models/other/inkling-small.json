@@ -1,0 +1,237 @@
+{
+  "id": "inkling-small",
+  "name": "Inkling-Small",
+  "maker": "Thinking Machines Lab",
+  "family": "Inkling",
+  "class": "Inkling",
+  "generation": null,
+  "released": "2026-07-30",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (thinkingmachines/Inkling-Small)",
+    "Thinking Machines first-party API (Tinker)",
+    "Tinker serverless inference (beta)",
+    "Hugging Face Inference Endpoints",
+    "SGLang",
+    "vLLM",
+    "TokenSpeed",
+    "Unsloth",
+    "Transformers"
+  ],
+  "context_window": 1000000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "audio"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.3,
+    "output": 1.2,
+    "cached_input": 0.06,
+    "notes": "Tinker serverless inference (beta) list price for the 256K NVFP4 sampling endpoint; Artificial Analysis shows the same input and output for Thinking Machines' API. Tinker's fine-tuning table lists sampling at 64K as 1.16 prefill and 2.88 sample, shown at 0.58 and 1.44 during a limited-time 50% discount"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 26,
+      "setting": "reasoning; 140M output tokens",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.1)",
+      "score": 40.0,
+      "setting": "as listed in Thinking Machines' own table; Inkling is 41 in the same table",
+      "harness": "Artificial Analysis",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 80.2,
+      "setting": "vendor run",
+      "harness": "bash-only harness",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "SWE-Bench Pro (public split)",
+      "score": 55.9,
+      "setting": "vendor run; harness not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 64.7,
+      "setting": "best harness; vendor run; Thinking Machines says a few web-contaminated solutions were scored 0",
+      "harness": "internal coding harness",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 89.5,
+      "setting": "vendor run",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "StrongREJECT",
+      "score": 98.4,
+      "setting": "vendor run; safety evaluation on the model card",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FORTRESS (adversarial)",
+      "score": 71.6,
+      "setting": "vendor run; the card's metric direction is not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "FORTRESS (benign)",
+      "score": 96.9,
+      "setting": "vendor run; safety evaluation on the model card; the card's metric direction is not stated",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-inkling-small",
+      "read": "2026-10-03"
+    }
+  ],
+  "prompting_guides": [
+    "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/thinking-effort/",
+    "https://huggingface.co/thinkingmachines/Inkling-Small",
+    "https://huggingface.co/blog/thinkingmachines-inkling"
+  ],
+  "system_card": "https://thinkingmachines.ai/model-card/inkling-small/",
+  "model_page": "https://thinkingmachines.ai/inkling/",
+  "sources": [
+    {
+      "id": "hf-inkling-small",
+      "url": "https://huggingface.co/thinkingmachines/Inkling-Small/raw/main/README.md",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-inkling-small",
+      "url": "https://artificialanalysis.ai/models/inkling-small",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hf-blog-inkling",
+      "url": "https://huggingface.co/blog/thinkingmachines-inkling",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "the-decoder-inkling",
+      "url": "https://the-decoder.com/ex-openai-cto-muratis-thinking-machines-drops-inkling-a-975b-parameter-model-that-leads-us-labs-but-trails-china/",
+      "read": "2026-10-03",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tml-model-card-small",
+      "url": "https://thinkingmachines.ai/model-card/inkling-small/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tml-inkling-page",
+      "url": "https://thinkingmachines.ai/inkling/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-thinking-effort",
+      "url": "https://tinker-docs.thinkingmachines.ai/cookbook/inkling/thinking-effort/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "tinker-pricing",
+      "url": "https://tinker-docs.thinkingmachines.ai/tinker/models/models_and_pricing/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-03",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-03",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no row on Scale's leaderboard (11 rows read, none for this model)",
+    "Terminal-Bench 4.0: no standalone score; Artificial Analysis counts Terminal-Bench 4.0 inside its v4.3.2 index without per-model numbers, and the tbench.ai leaderboard rows did not render for the fetcher",
+    "Artificial Analysis Coding Agent Index: no entry for this model among the runs on Artificial Analysis's Coding Agent Index v1.5 page (artificialanalysis.ai/agents/coding-agents), read 2026-10-03",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08)",
+    "max_output: not stated on the model card, Tinker's pages or Artificial Analysis",
+    "context_window: the model card says up to 1M tokens and Artificial Analysis says 1M; 1000000 is used; Tinker sells 64K and 256K options",
+    "parameters: the card says 276B total and 12B active; Artificial Analysis says 266B total",
+    "generation: the maker does not number generations of this class",
+    "Thinking Machines' announcement blog post: not found; the lab's overview page, model card and Tinker documentation were read instead",
+    "released: 2026-07-30 per the maker's model card; the model was announced in preview with Inkling on 2026-07-15 or 16",
+    "reasoning.levels and default: Tinker's effort page is written for Inkling (its text and code name only thinkingmachines/Inkling), and the Inkling-Small card names no levels; none is recorded for this model"
+  ]
+}

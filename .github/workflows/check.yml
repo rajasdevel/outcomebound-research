@@ -1,0 +1,44 @@
+name: Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# The job reads the repository and writes nothing back to it.
+permissions:
+  contents: read
+
+# One group per ref. The run in progress finishes, so each started commit gets its verdict; a newer
+# push replaces only the run that is waiting.
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        # The oldest and newest Python the scripts support.
+        python-version: ["3.10", "3.14"]
+    steps:
+      # Each action is pinned by commit, the only reference that cannot move; the comment names
+      # the release it is.
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Check
+        run: make check
+
+      - name: Test
+        run: make test
