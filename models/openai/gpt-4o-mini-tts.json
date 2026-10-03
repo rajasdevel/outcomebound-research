@@ -1,0 +1,188 @@
+{
+  "id": "gpt-4o-mini-tts",
+  "name": "GPT-4o mini TTS",
+  "maker": "OpenAI",
+  "family": "GPT-4o",
+  "class": "GPT-4o mini TTS",
+  "generation": null,
+  "released": "2025-03-20",
+  "status": "deprecated",
+  "retires": "2027-01-06",
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Audio speech endpoint, POST /v1/audio/speech; HTTP, SDKs and CLI)",
+    "OpenAI Agents SDK (voice pipeline)",
+    "OpenAI.fm (the maker's demo site)"
+  ],
+  "context_window": 2000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, plus an optional instructions string that steers delivery. The instructions field does not work on tts-1 or tts-1-hd [o-ref-speech]",
+    "output_audio": "mp3 (the default), opus, aac, flac, wav and pcm; PCM is headerless 24 kHz, 16-bit signed, little-endian. OpenAI advises wav or pcm for the fastest response. Streaming uses chunked audio or server-sent events (stream_format audio or sse) [o-guide-tts] [o-ref-speech]",
+    "voices": "13 built-in voices, optimised for English: alloy, ash, ballad, coral, echo, fable, nova, onyx, sage, shimmer, verse, marin and cedar (the guide's first paragraph says 11, and its list gives 13). OpenAI recommends marin or cedar. Custom voices are made from a consent recording and an audio sample of up to 30 seconds, for approved customers only, with at most 20 per organisation. Voices made from a text prompt work only in Live, not on this endpoint [o-guide-tts] [o-ref-speech] [o-custom-voices]",
+    "languages": [
+      "Follows the Whisper language list, 57 languages from Afrikaans to Welsh; the voices are optimised for English and the input text sets the language [o-guide-tts]"
+    ],
+    "turn_detection": "none: a synthesis model [o-guide-tts]",
+    "interruption": "Not a conversation model. The pages read describe no barge-in or cancel message; the client stops playback (inferred) [o-guide-tts]",
+    "latency": "OpenAI publishes no time-to-first-audio figure for this model. Its guide says wav or pcm give the fastest response. Artificial Analysis has a page for the model but shows no Elo or speed for it [o-guide-tts] [aa-4o]",
+    "session_limit": "Input up to 4,096 characters per request by the API reference; the model page gives a limit of 2,000 input tokens. No output duration limit is stated [o-ref-speech] [o-model]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.6,
+    "output": 12.0,
+    "cached_input": null,
+    "notes": "Per token [o-pricing] [o-model]. The input field is the text rate and the output field is the audio rate. The pages read give no price per minute of speech. The older tts-1 costs US$15 and tts-1-hd US$30 per 1M characters [o-pricing]. OpenAI removes all four speech synthesis ids on 2027-01-06 [o-depr]."
+  },
+  "benchmarks": [
+    {
+      "name": "RW-Voice-EQ Bench, Acoustic Quality (human Likert mean)",
+      "score": 3.34,
+      "setting": "five-point Likert mean, default voice (alloy) and default settings, id gpt-4o-mini-tts (the paper dates it 2025-03-20 and does not say which snapshot ran); tied with Fish Audio S2 for second place of 31 configurations. The paper says the model is in the top five of three of its seven TTS dimensions. A paper by a speech vendor",
+      "harness": "RW-Voice-EQ Bench",
+      "measured_by": "third-party-vendor",
+      "source": "hume-rwveq",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/text-to-speech",
+    "https://github.com/openai/openai-fm"
+  ],
+  "system_card": null,
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-4o-mini-tts",
+  "sources": [
+    {
+      "id": "o-guide-tts",
+      "url": "https://developers.openai.com/api/docs/guides/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-ref-speech",
+      "url": "https://developers.openai.com/api/reference/resources/audio/subresources/speech/methods/create",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-model",
+      "url": "https://developers.openai.com/api/docs/models/gpt-4o-mini-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-depr",
+      "url": "https://developers.openai.com/api/docs/deprecations",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-blog-2025-03",
+      "url": "https://openai.com/index/introducing-our-next-generation-audio-models/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-blog-2025-12",
+      "url": "https://developers.openai.com/blog/updates-audio-models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-custom-voices",
+      "url": "https://developers.openai.com/api/docs/guides/custom-voices",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-fm-repo",
+      "url": "https://github.com/openai/openai-fm",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-realtime-conv",
+      "url": "https://developers.openai.com/api/docs/guides/realtime-conversations",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-voice-agents",
+      "url": "https://developers.openai.com/api/docs/guides/voice-agents",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "o-community",
+      "url": "https://community.openai.com/t/tts-no-longer-follows-instructions-parameter/1371743",
+      "read": "2026-10-04",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-4o",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/gpt-4o-mini-tts",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hume-rwveq",
+      "url": "https://arxiv.org/abs/2607.14846",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: OpenAI gives no generation number; the model has two dated snapshots, 2025-03-20 and 2025-12-15",
+    "max_output: no output limit is published in tokens or seconds",
+    "pricing_usd_per_mtok.cached_input: the pricing page lists no cached rate for the model",
+    "system_card: OpenAI published no system card or model card for the model in the pages read",
+    "Artificial Analysis speech arena: the model has a page on the site but no Elo, because the model is not rated there [aa-4o]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

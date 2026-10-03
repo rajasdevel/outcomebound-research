@@ -88,6 +88,12 @@ sources:
   - https://docs.qwencloud.com/developer-guides/speech/s2s-models
   - https://docs.qwencloud.com/api-reference/realtime-api/overview
   - https://artificialanalysis.ai/speech-to-speech
+  - https://github.com/QwenLM/Qwen3-TTS
+  - https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-tts
+  - https://www.alibabacloud.com/help/en/model-studio/qwen-tts-voice-design
+  - https://github.com/FunAudioLLM/CosyVoice
+  - https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512
 ---
 
 # Alibaba Qwen models
@@ -120,6 +126,9 @@ model file says only what differs for its model. Everything here was read on 202
 | Qwen Coder | 3 | [Qwen3-Coder-Next](qwen3-coder-next.md) | open weights; QwenCloud says its hosted endpoint retires on 2026-10-10 [qwencloud-page-coder] |
 | Qwen open weights | 3.8 | [Qwen3.8-2.4T-A95B](qwen3.8-2.4t-a95b.md), [Qwen3.8-27B](qwen3.8-27b.md) | the open 2.4T mixture-of-experts model and the open dense 27B model [hf-qwen3-8-2-4t] [hf-qwen3-8-27b] |
 | Qwen open weights | 3.6 | [Qwen3.6-27B](qwen3.6-27b.md), [Qwen3.6-35B-A3B](qwen3.6-35b-a3b.md) | the open dense 27B model and the open 35B mixture-of-experts model with 3B active parameters [hf-qwen3-6-27b] [hf-qwen3-6-35b-a3b] |
+| Qwen TTS | 3 | [Qwen3-TTS-12Hz-1.7B-VoiceDesign](qwen3-tts-12hz-1.7b-voicedesign.md), [Qwen3-TTS-12Hz-1.7B-CustomVoice](qwen3-tts-12hz-1.7b-customvoice.md) | open weights, Apache-2.0, 2026-01-22; voice design from a written description, and a style instruction on nine fixed voices; voice actor models [qwen3tts-gh] |
+| CosyVoice | 3 | [Fun-CosyVoice3-0.5B-2512](fun-cosyvoice3-0.5b-2512.md) | open weights, Apache-2.0, 2025-12; instructions from a fixed list and inline tags on a cloned voice; from the FunAudioLLM team [cosy-gh] |
+| CosyVoice | 2 | [CosyVoice2-0.5B](cosyvoice2-0.5b.md) | open weights, Apache-2.0, December 2024; the generation before 3 [cosy-gh] |
 
 **Models without a file, with the reason.** The library keeps two generations of each class. Of the models older than that,
 none has a file. Examples are Qwen3.5-397B-A17B and the other Qwen3.5 open models (the open class had no model of the 3.7 generation
@@ -129,6 +138,8 @@ previous generation of the Qwen Omni class. Its HTTP endpoint has no file yet; i
 the replacement for retiring omni models [qwencloud-omni-models] [qwencloud-old-models-notice]. QwenCloud's retirement notices
 of 2026-10-10 retire Qwen3.6-Max-Preview, older Qwen3-Max, Qwen3-VL, Qwen3-Omni-Flash and Qwen3-Coder-Plus models and others;
 none of the previous-generation models above is on them [qwencloud-mainline-notice] [qwencloud-snapshot-notice] [qwencloud-old-models-notice].
+
+**Open-weight speech synthesis.** Alibaba's Qwen team released the Qwen3-TTS series on 2026-01-22. Only two of its five models take an instruction: the 1.7B VoiceDesign model and the 1.7B CustomVoice model. The 0.6B CustomVoice model and the two Base (cloning) models take none, so they have no file [qwen3tts-gh]. The hosted Qwen-Audio TTS models (such as Qwen-Audio-3.0-TTS-Plus) and the hosted Qwen3-TTS-Instruct-Flash, -VD and -VC models are closed, hosted speech models. They were read only for the API facts below, so they have no file. CosyVoice 1.0 (2024) is older than two generations and has no file [ali-doc-tts].
 
 **How the line got here** (dates are those on the sources named):
 
@@ -290,6 +301,8 @@ train models, data residency or zero-retention options [qwencloud-security].
 
 **Realtime API.** All the realtime models share one WebSocket endpoint, `wss://maas.qwencloudapi.com/api-ws/v1/realtime?model=<id>`, with a bearer key and OpenAI-style events (`session.update`, `input_audio_buffer.append`, `response.audio.delta`). The Omni and Qwen-Audio realtime models also run over WebRTC and AOQ, a QUIC-based transport whose client platforms are Android, iOS and HarmonyOS. The guide says WebRTC access is by allowlist only. Audio is PCM, 16 kHz in and 24 kHz out. Turn detection is `server_vad`, `semantic_vad` (Omni) or `smart_turn` (Qwen-Audio), or manual. A Qwen-Audio call needs a Singapore-region key. Billing is per token with separate audio, text and image rates; each page lists its own [qwencloud-rt-overview] [qwencloud-rt-guide] [qwencloud-audio-guide].
 
+**Open-weight speech synthesis.** Qwen3-TTS runs from the `qwen-tts` Python package or from vLLM-Omni, with weights on Hugging Face and ModelScope. CosyVoice runs from the FunAudioLLM/CosyVoice repository (Python, vLLM, TensorRT-LLM, FastAPI and gRPC). Alibaba Cloud Model Studio also hosts speech models of both names: `qwen3-tts-instruct-flash`, `qwen3-tts-vd-2026-01-26`, `qwen3-tts-vc-2026-01-22` and `qwen3-tts-flash` in the Singapore and Beijing regions, and `cosyvoice-v3-plus`, `cosyvoice-v3-flash`, `cosyvoice-v3.5-plus` and `cosyvoice-v3.5-flash` in Beijing. The pages read do not say that a hosted model is the open weights [qwen3tts-gh] [ali-doc-tts] [ali-doc-vd] [cosy-gh].
+
 ## Prompting guides
 
 Alibaba publishes no prompting guide written for any one model in this library. QwenCloud has a general
@@ -385,6 +398,8 @@ temperature of the open cards to 1.0 (the hosted Flash and Omni-Flash default to
 
 **Realtime models.** The Omni realtime guide says nothing about speech-prompt wording beyond one hotel-agent example. The Qwen-Audio guide gives the fullest advice: a clear role, a natural tone that does not cut content, use of all constraints, plain text with no emoji or Markdown, short replies to greetings, one follow-up question per turn, and persona prompts. Each model file says what applies [qwencloud-audio-guide] [qwencloud-rt-guide].
 
+**Speech synthesis.** The Alibaba Cloud voice design page gives rules for writing a voice description: specific words, several dimensions (gender, age, pitch, speed, emotion, voice character, use case), objective wording, no named person, and no repeated synonyms. The limit is 2,048 characters for Qwen-TTS and 500 for CosyVoice, in Chinese or English only. Each voice design for Qwen-TTS costs US$0.2 on the hosted service [ali-doc-vd]. The hosted Qwen3-TTS-Instruct-Flash models take an `instructions` field of up to 1,600 tokens [ali-doc-tts]. The open Qwen3-TTS README gives code examples and no writing guide [qwen3tts-gh]. The CosyVoice code lists its 26 supported instruction strings and its inline tags [cosy-common].
+
 ## System-card practice
 
 Alibaba has published no system card for any model here. A release has a launch post, a Hugging Face model card
@@ -473,6 +488,8 @@ others, and cover fewer models.
   resolved by either site.
 - Data retention and training use for QwenCloud requests are not stated on the pages read.
 - Independent speech-to-speech results for Qwen-Audio 3.1 and Qwen3.8-Omni-Flash-Realtime, and whether the 3.8 realtime model takes cloned voices (the pages disagree).
+- Whether the hosted Qwen3-TTS and CosyVoice models are the open weights.
+- Which instructions the open Qwen3-TTS CustomVoice model supports, and minimum GPU memory for the Qwen3-TTS models.
 
 ## Sources
 
@@ -569,3 +586,8 @@ others, and cover fewer models.
 - [qwencloud-s2s-models] https://docs.qwencloud.com/developer-guides/speech/s2s-models (kind L, read 2026-10-03)
 - [qwencloud-rt-overview] https://docs.qwencloud.com/api-reference/realtime-api/overview (kind L, read 2026-10-03)
 - [aa-s2s] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-03)
+- [qwen3tts-gh] https://github.com/QwenLM/Qwen3-TTS (kind L, read 2026-10-04)
+- [ali-doc-tts] https://www.alibabacloud.com/help/en/model-studio/qwen-tts (kind L, read 2026-10-04)
+- [ali-doc-vd] https://www.alibabacloud.com/help/en/model-studio/qwen-tts-voice-design (kind L, read 2026-10-04)
+- [cosy-gh] https://github.com/FunAudioLLM/CosyVoice (kind L, read 2026-10-04)
+- [cosy-common] https://raw.githubusercontent.com/FunAudioLLM/CosyVoice/main/cosyvoice/utils/common.py (kind L, read 2026-10-04)

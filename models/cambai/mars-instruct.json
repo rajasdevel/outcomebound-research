@@ -1,0 +1,131 @@
+{
+  "id": "mars-instruct",
+  "name": "CAMB.AI MARS-Instruct",
+  "maker": "CAMB.AI",
+  "family": "CAMB.AI MARS 8",
+  "class": "CAMB.AI MARS Instruct",
+  "generation": "8",
+  "released": "2026-01-20",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "CAMB.AI API: streaming text-to-speech (POST), speech_model mars-instruct, with Python and TypeScript SDKs and a live WebSocket",
+    "Cloud marketplaces and on-device SDKs listed for MARS 8 (25+ compute platforms per the launch post)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with inline emotion, delivery and sound tags, a user_instructions field and SSML-style breaks",
+    "output_audio": "wav, flac, adts and raw PCM (pcm_s16le, pcm_s32be, pcm_s32le, pcm_f32le, pcm_f32be) for mars-instruct, at 22.05 kHz [camb-stream] [camb-models]",
+    "voices": "custom cloning from a reference voice (a voice id), voices created from a text description, and a list of public and shared voices [camb-index] [camb-emotion]",
+    "languages": [
+      "142 locales for mars-instruct [camb-models]"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "The maker states higher latency and no real-time use for mars-instruct; it has no time-to-first-byte figure [camb-models] [camb-choose]",
+    "session_limit": "3 to 3,000 characters of text per request [camb-stream]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Not per token. The pricing page shows monthly credit plans from 5K to 1.35M credits at US$0 to US$900 and gives no per-character or per-minute rate or a MARS-Instruct line [camb-pricing]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://docs.camb.ai/tutorials/emotional-voice-control",
+    "https://docs.camb.ai/choosing-a-model",
+    "https://docs.camb.ai/models"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.camb.ai/models",
+  "sources": [
+    {
+      "id": "camb-models",
+      "url": "https://docs.camb.ai/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-choose",
+      "url": "https://docs.camb.ai/choosing-a-model",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-emotion",
+      "url": "https://docs.camb.ai/tutorials/emotional-voice-control",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-stream",
+      "url": "https://docs.camb.ai/api-reference/endpoint/create-tts-stream",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-open",
+      "url": "https://docs.camb.ai/open-source",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-index",
+      "url": "https://docs.camb.ai/llms.txt",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-pricing",
+      "url": "https://www.camb.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "camb-blog",
+      "url": "https://www.camb.ai/blog-post/camb-ai-unveils-mars8-the-first-family-of-tts-models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published in tokens; the limit is 3,000 characters of text per request",
+    "pricing_usd_per_mtok: the unit differs (credit plans); no per-character rate was found, see notes",
+    "benchmarks: no independent measurement of MARS-Instruct was found; Artificial Analysis lists no CAMB.AI model on its text-to-speech page (read 2026-10-04)",
+    "system_card: CAMB.AI publishes no system card for MARS-Instruct in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "voicesculptor-vd",
+  "name": "VoiceSculptor-VD",
+  "maker": "ASLP-lab",
+  "family": "VoiceSculptor",
+  "class": "VoiceSculptor",
+  "generation": null,
+  "released": "2026-01-06",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights ASLP-lab/VoiceSculptor-VD (about 4.01B parameters in the file listing; based on Llasa-3B)",
+    "ASLP-lab/VoiceSculptor repository with an inference script"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text and a Chinese voice description of at most 200 characters [gh-vs-guide]",
+    "output_audio": "A wav file written by the inference script; the pages read state no sample rate [hf-vs]",
+    "voices": "voice design from a description; no preset voices; no cloning documented [hf-vs]",
+    "languages": [
+      "Chinese only; English is not supported in the current version [gh-vs-guide]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under Apache-2.0. No hosted API named on the pages read. The pages read give no GPU memory figure"
+  },
+  "benchmarks": [
+    {
+      "name": "InstructTTSEval-ZH, APS (attribute perception and synthesis)",
+      "score": 75.7,
+      "setting": "the maker's table; DSD 64.7, RP 61.5, average 67.6; MiMo-Audio-7B-Instruct scores 70.1, 66.1, 57.1 in the same table",
+      "harness": "InstructTTSEval",
+      "measured_by": "maker",
+      "source": "hf-vs",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/ASLP-lab/VoiceSculptor/blob/main/docs/voice_design_en.md"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/ASLP-lab/VoiceSculptor-VD",
+  "sources": [
+    {
+      "id": "hf-vs",
+      "url": "https://huggingface.co/ASLP-lab/VoiceSculptor-VD",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-vs-api",
+      "url": "https://huggingface.co/api/models/ASLP-lab/VoiceSculptor-VD",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-vs-guide",
+      "url": "https://github.com/ASLP-lab/VoiceSculptor/blob/main/docs/voice_design_en.md",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-instructtts",
+      "url": "https://arxiv.org/abs/2506.16381",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "qwen3tts-gh",
+      "url": "https://github.com/QwenLM/Qwen3-TTS",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "voxcpm-gh",
+      "url": "https://github.com/OpenBMB/VoxCPM",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: the maker numbers no generation",
+    "released: the repository news entry is dated 2026-01-02 and the Hugging Face repository was created 2026-01-06; the files were last changed 2026-02-26 [hf-vs] [hf-vs-api]",
+    "voice.output_audio: no sample rate is stated",
+    "voice.latency: not stated",
+    "voice.session_limit: not stated",
+    "hardware: no GPU figure read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

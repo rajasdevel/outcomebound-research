@@ -1,0 +1,148 @@
+{
+  "id": "indextts-2",
+  "name": "IndexTTS-2",
+  "maker": "Bilibili (IndexTeam)",
+  "family": "IndexTTS",
+  "class": "IndexTTS",
+  "generation": "2",
+  "released": "2025-09-08",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (bilibili Model Use License Agreement)",
+  "access": [
+    "Hugging Face weights IndexTeam/IndexTTS-2 and ModelScope",
+    "index-tts/index-tts repository (run with --version 2)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text; a speaker reference clip; and optionally an 8-number emotion vector in the order happy, angry, sad, afraid, disgusted, melancholic, surprised, calm; or a separate emotion reference clip with a strength from 0 to 1; or an emotion description in text [gh-index]",
+    "output_audio": "Not stated on the pages read [hf-index2]",
+    "voices": "custom cloning from one reference clip; emotion is separate from timbre [gh-index]",
+    "languages": [
+      "Chinese and English [hf-index2]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights under the bilibili Model Use License Agreement: royalty-free, but a user whose products had more than 100 million monthly active users, or whose annual revenue exceeded RMB 1 billion, must ask bilibili for a separate licence; the model and its derivatives may not be used to improve other AI models except non-commercial ones; no price [index-license]. The licence read is the one in the IndexTTS-2.5 repository The pages read give no GPU figure for version 2"
+  },
+  "benchmarks": [
+    {
+      "name": "EmergentTTS-Eval emotions win rate against Boson's baseline row",
+      "score": 39.29,
+      "setting": "run by Boson AI, a competing maker, with no inline tags; overall 31.12",
+      "harness": "EmergentTTS-Eval",
+      "measured_by": "third-party-vendor",
+      "source": "boson-blog-tts3c",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/index-tts/index-tts"
+  ],
+  "system_card": null,
+  "model_page": "https://github.com/index-tts/index-tts",
+  "sources": [
+    {
+      "id": "gh-index",
+      "url": "https://github.com/index-tts/index-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index25",
+      "url": "https://huggingface.co/IndexTeam/IndexTTS-2.5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index25-api",
+      "url": "https://huggingface.co/api/models/IndexTeam/IndexTTS-2.5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index2",
+      "url": "https://huggingface.co/IndexTeam/IndexTTS-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index2-api",
+      "url": "https://huggingface.co/api/models/IndexTeam/IndexTTS-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "index-license",
+      "url": "https://huggingface.co/IndexTeam/IndexTTS-2.5/raw/main/LICENSE",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-index2",
+      "url": "https://arxiv.org/abs/2506.21619",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "arxiv-index25",
+      "url": "https://arxiv.org/abs/2601.03888",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "boson-blog-tts3c",
+      "url": "https://www.boson.ai/blog/higgs-audio-v3-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the README news entry says 2025-09-08; the Hugging Face repository was created earlier, on 2025-06-18 [gh-index] [hf-index2-api]",
+    "voice.output_audio: not stated for version 2",
+    "voice.latency: the pages read give no latency figure",
+    "voice.session_limit: no maximum is stated",
+    "hardware: no GPU figure read for version 2",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

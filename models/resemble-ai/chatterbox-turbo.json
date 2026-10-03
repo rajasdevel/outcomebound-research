@@ -1,0 +1,127 @@
+{
+  "id": "chatterbox-turbo",
+  "name": "Chatterbox-Turbo",
+  "maker": "Resemble AI",
+  "family": "Chatterbox",
+  "class": "Chatterbox Turbo",
+  "generation": "1",
+  "released": "2025-12-02",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (MIT)",
+  "access": [
+    "Hugging Face weights ResembleAI/chatterbox-turbo (350M parameters, English)",
+    "resemble-ai/chatterbox repository and the chatterbox-tts package on PyPI (class ChatterboxTurboTTS)",
+    "Resemble AI's hosted text-to-speech service (the README links it; its model ids and prices were not read)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "English text with inline bracket tags and a reference clip of about 10 seconds for voice cloning [gh-cb]",
+    "output_audio": "A waveform at the model's sample rate, saved by the caller; every output carries the Perth neural watermark [gh-cb]",
+    "voices": "custom cloning from a reference clip; the README example requires one [gh-cb]",
+    "languages": [
+      "English [gh-cb]"
+    ],
+    "turn_detection": "none: a synthesis model, built for low-latency voice agents [gh-cb]",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "Resemble AI cut the speech-token-to-mel decoder from 10 steps to 1; the pages read give no time-to-first-audio figure for the weights. The hosted Resemble service claims latency under 200 ms [gh-cb]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under the MIT licence. Resemble's hosted service is priced separately and was not read [gh-cb]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://github.com/resemble-ai/chatterbox",
+    "https://huggingface.co/ResembleAI/chatterbox-turbo"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/ResembleAI/chatterbox-turbo",
+  "sources": [
+    {
+      "id": "gh-cb",
+      "url": "https://github.com/resemble-ai/chatterbox",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cb-turbo",
+      "url": "https://huggingface.co/ResembleAI/chatterbox-turbo",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cb-turbo-tokens",
+      "url": "https://huggingface.co/ResembleAI/chatterbox-turbo/raw/main/added_tokens.json",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cb-nano",
+      "url": "https://huggingface.co/ResembleAI/chatterbox-nano",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-resemble-list",
+      "url": "https://huggingface.co/api/models?author=ResembleAI&sort=lastModified&direction=-1&limit=15",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cb-turbo-api",
+      "url": "https://huggingface.co/api/models/ResembleAI/chatterbox-turbo",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cb-nano-api",
+      "url": "https://huggingface.co/api/models/ResembleAI/chatterbox-nano",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "voice.session_limit: no maximum is stated",
+    "voice.latency: see the field; no time-to-first-audio figure was read",
+    "hardware: the README gives no GPU memory figure; it says Turbo needs less compute and memory than the earlier 500M models",
+    "Artificial Analysis Speech Arena Elo: Artificial Analysis lists the original Chatterbox, not this model",
+    "released: the Hugging Face repository was created 2025-12-02 [hf-cb-turbo-api]",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "benchmarks: no maker or independent measurement of delivery control was read for this model",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

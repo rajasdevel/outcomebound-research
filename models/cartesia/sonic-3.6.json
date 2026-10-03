@@ -1,0 +1,279 @@
+{
+  "id": "sonic-3.6",
+  "name": "Cartesia Sonic 3.6",
+  "maker": "Cartesia",
+  "family": "Cartesia Sonic",
+  "class": "Cartesia Sonic",
+  "generation": "3.6",
+  "released": "2026-08-27",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Cartesia TTS API: Bytes (HTTP), SSE and WebSocket, model_id sonic-3.6 or the dated snapshot sonic-3.6-2026-08-27",
+    "Cartesia Playground and Managed Agents (Ink and Sonic)",
+    "Integrations: Pipecat, Twilio, Genesys, Rasa and others"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with optional SSML-like tags (emotion, speed, volume, break, spell) and [laughter]",
+    "output_audio": "Containers: raw (all endpoints), wav and mp3 (the Bytes endpoint only). Encodings: pcm_f32le, pcm_s16le, pcm_mulaw, pcm_alaw. Sample rates: 8000, 16000, 22050, 24000, 44100 and 48000 Hz [cart-format]",
+    "voices": "500+ built-in voices; custom cloning: instant voice clones from a short clip and professional voice clones from 30+ minutes of audio per the cloning guide (the Sonic product page says 15 to 30 minutes) [cart-voices] [cart-ivc] [cart-site]",
+    "languages": [
+      "English",
+      "French",
+      "German",
+      "Spanish",
+      "Portuguese",
+      "Chinese",
+      "Japanese",
+      "Hindi",
+      "Italian",
+      "Korean",
+      "Dutch",
+      "Polish",
+      "Russian",
+      "Swedish",
+      "Turkish",
+      "Tagalog",
+      "Bulgarian",
+      "Romanian",
+      "Arabic",
+      "Czech",
+      "Greek",
+      "Finnish",
+      "Croatian",
+      "Malay",
+      "Slovak",
+      "Danish",
+      "Tamil",
+      "Ukrainian",
+      "Hungarian",
+      "Norwegian",
+      "Vietnamese",
+      "Bengali",
+      "Thai",
+      "Hebrew",
+      "Georgian",
+      "Indonesian",
+      "Telugu",
+      "Gujarati",
+      "Kannada",
+      "Malayalam",
+      "Marathi",
+      "Punjabi",
+      "Odia",
+      "Urdu"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "Cartesia states sub-90 ms model latency on its Sonic page, and a median of about 190 ms for the Sonic 3 launch in its 2025 changelog; neither figure names a snapshot or a measurement path [cart-site] [cart-chlog25]",
+    "session_limit": "A WebSocket context expires 1 second after the last audio is streamed out [cart-contexts]; the longest transcript per request was not found in the pages read"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. Cartesia bills credits, and one credit is one character; about 750 to 800 credits make a minute of audio. Plans: Free US$0 (20K credits), Pro US$5 (100K), Startup US$49 (1.25M), Scale US$299 (8M) and Enterprise (custom). Overage is US$65 per 1M credits on Pro, US$45 on Startup and US$38 on Scale [cart-pricing]. Contexts add no separate charge [cart-contexts]. Artificial Analysis lists US$49 per 1M characters [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1278.08,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.cartesia.ai/build-with-cartesia/capability-guides/volume-speed-emotion",
+    "https://docs.cartesia.ai/build-with-cartesia/capability-guides/ssml-tags",
+    "https://docs.cartesia.ai/build-with-cartesia/capability-guides/prompting-tips",
+    "https://docs.cartesia.ai/use-the-api/tts-websocket/buffering"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.cartesia.ai/build-with-cartesia/tts-models/latest",
+  "sources": [
+    {
+      "id": "cart-sonic36",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/latest",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-sonic35",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/sonic-3-5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-3-to-35",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/sonic-3-to-sonic-3-5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-older",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/older-models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-sunsets",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/tts-models/api-changes",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-emotion",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/volume-speed-emotion",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-ssml",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/ssml-tags",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-prompting",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/prompting-tips",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-voices",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/choosing-a-voice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-ivc",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/clone-voices",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-pron",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/custom-pronunciations",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-norm",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/text-normalization",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-format",
+      "url": "https://docs.cartesia.ai/build-with-cartesia/capability-guides/tts-output-audio-format",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-buffer",
+      "url": "https://docs.cartesia.ai/use-the-api/tts-websocket/buffering",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-contexts",
+      "url": "https://docs.cartesia.ai/use-the-api/tts-websocket/contexts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-bytes",
+      "url": "https://docs.cartesia.ai/api-reference/tts/bytes",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-chlog26",
+      "url": "https://docs.cartesia.ai/changelog/2026",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-chlog25",
+      "url": "https://docs.cartesia.ai/changelog/2025",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-pricing",
+      "url": "https://www.cartesia.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cart-site",
+      "url": "https://www.cartesia.ai/sonic",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published; the transcript limit per request was not found in the pages read",
+    "pricing_usd_per_mtok: the unit differs (credits, one per character), see notes",
+    "system_card: Cartesia publishes no system card or model card in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "emotion model coverage: the emotion guide does not list which snapshots accept emotion tags; it is marked beta [cart-emotion]",
+    "voice.latency: the figures are not tied to Sonic 3.6 by name; the maker's changelog gives no 3.6 latency",
+    "released: the maker's changelog says Sonic 3.6 is generally available from 2026-08-27; Artificial Analysis dates it 2026-08-17 [cart-chlog26] [aa-tts-board]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

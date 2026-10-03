@@ -1,0 +1,148 @@
+{
+  "id": "ming-omni-tts-0.5b",
+  "name": "Ming-omni-tts 0.5B",
+  "maker": "inclusionAI (Ant Group)",
+  "family": "Ming",
+  "class": "Ming-omni-tts",
+  "generation": null,
+  "released": "2026-02-11",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights inclusionAI/Ming-omni-tts-0.5B (the file listing counts about 1.62B parameters although the name says 0.5B)",
+    "inclusionAI/Ming-omni-tts repository with a cookbook script and notebook",
+    "ModelScope",
+    "Gradio demos in Chinese and English"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text, and an instruction as a JSON object with fields for speaker, dialect, style, speaking rate, pitch, volume, emotion, background music and an IP field; optional reference clip with its transcript [ming-test]",
+    "output_audio": "A wav file written by the cookbook script; the 12.5 Hz continuous tokenizer covers speech, music and sound; the pages read state no sample rate [gh-ming]",
+    "voices": "100+ built-in voices and zero-shot voice design from a natural-language description; zero-shot cloning from a clip [gh-ming]",
+    "languages": [
+      "Chinese and English are shown in the maker's examples; Cantonese and other Chinese dialects are named; no full language list was read [gh-ming]"
+    ],
+    "turn_detection": "none: a synthesis model; the cookbook builds two-speaker podcast dialogue from speaker-labelled lines [ming-test]",
+    "interruption": "Not a conversation model",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under Apache-2.0. The maker tested on NVIDIA H800 80 GB and H20 96 GB GPUs with CUDA 12.4 and gives no minimum [gh-ming]"
+  },
+  "benchmarks": [
+    {
+      "name": "InstructTTSEval-ZH, voice design, average of APS, DSD and RP",
+      "score": 73.48,
+      "setting": "the maker's run of Ming-omni-tts-0.5B; APS 83.85, DSD 75.10, RP 61.50; Qwen3TTS-12Hz-1.7B-VD averages 77.13 in the same table",
+      "harness": "InstructTTSEval",
+      "measured_by": "maker",
+      "source": "gh-ming",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "CV3-Eval emotion accuracy, emotional test sets, average (percent)",
+      "score": 70.0,
+      "setting": "the maker's run of Ming-omni-tts-0.5B; 34.3 on the neutral test sets; CosyVoice3-0.5B scores 66.3 and 40.0 in the same tables",
+      "harness": "CV3-Eval",
+      "measured_by": "maker",
+      "source": "gh-ming",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Speech attribute control, instruction success rate, average of rate, volume and pitch (percent)",
+      "score": 94.67,
+      "setting": "the maker's run of Ming-omni-tts-0.5B; speech rate 97.67, volume 95.00, pitch 91.33; CosyVoice3 averages 87.67",
+      "harness": "Ming-omni-tts README table",
+      "measured_by": "maker",
+      "source": "gh-ming",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/inclusionAI/Ming-omni-tts"
+  ],
+  "system_card": null,
+  "model_page": "https://github.com/inclusionAI/Ming-omni-tts",
+  "sources": [
+    {
+      "id": "gh-ming",
+      "url": "https://github.com/inclusionAI/Ming-omni-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ming-test",
+      "url": "https://raw.githubusercontent.com/inclusionAI/Ming-omni-tts/main/cookbooks/test.py",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-ming05",
+      "url": "https://huggingface.co/inclusionAI/Ming-omni-tts-0.5B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-ming05-api",
+      "url": "https://huggingface.co/api/models/inclusionAI/Ming-omni-tts-0.5B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-ming16",
+      "url": "https://huggingface.co/inclusionAI/Ming-omni-tts-16.8B-A3B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-ming16-api",
+      "url": "https://huggingface.co/api/models/inclusionAI/Ming-omni-tts-16.8B-A3B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: the maker numbers no generation",
+    "released: the Hugging Face repositories were created 2026-02-11 [hf-ming05-api]",
+    "voice.latency: the pages read give no latency figure; the maker names a model frame rate of 3.1 Hz after patch compression",
+    "voice.session_limit: not stated",
+    "hardware: tested on 80 GB class GPUs; no minimum stated",
+    "Artificial Analysis Speech Arena Elo: no Ming-omni-tts entry was found in the Artificial Analysis list read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

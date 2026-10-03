@@ -1,0 +1,140 @@
+{
+  "id": "voxcpm2",
+  "name": "VoxCPM2",
+  "maker": "OpenBMB",
+  "family": "VoxCPM",
+  "class": "VoxCPM",
+  "generation": "2",
+  "released": "2026-04-03",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights openbmb/VoxCPM2 (about 2.29B parameters in the file listing)",
+    "voxcpm Python package, OpenBMB/VoxCPM repository, Nano-vLLM production serving, llama.cpp-omni for on-device inference",
+    "Live playground on Hugging Face Spaces"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text, with an optional description or style note in parentheses at the start; optional reference audio (16 kHz accepted) with its transcript [hf-voxcpm2]",
+    "output_audio": "48 kHz audio through the AudioVAE V2 with built-in super-resolution; a streaming generator is available [hf-voxcpm2]",
+    "voices": "voice design from a description; custom cloning in three modes (basic, controllable with style notes, and reference plus transcript) [hf-voxcpm2]",
+    "languages": [
+      "30 languages (Arabic, Burmese, Chinese, Danish, Dutch, English, Finnish, French, German, Greek, Hebrew, Hindi, Indonesian, Italian, Japanese, Khmer, Korean, Lao, Malay, Norwegian, Polish, Portuguese, Russian, Spanish, Swahili, Swedish, Tagalog, Thai, Turkish, Vietnamese) and 9 Chinese dialects; no language tag needed [hf-voxcpm2]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "OpenBMB: real-time factor about 0.30 on an RTX 4090, about 0.13 with Nano-vLLM; no time-to-first-audio figure on the pages read [hf-voxcpm2]",
+    "session_limit": "The model has a maximum sequence length of 8,192 tokens at a 6.25 Hz language-model token rate [hf-voxcpm2]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free for commercial use under Apache-2.0. About 8 GB of GPU memory, with Python 3.10 or later, PyTorch 2.5 or later and CUDA 12 or later [hf-voxcpm2]. No hosted API price read"
+  },
+  "benchmarks": [
+    {
+      "name": "InstructTTSEval-EN, APS (instruction-guided voice design)",
+      "score": 84.2,
+      "setting": "OpenBMB's table; DSD 83.2 and RP 71.4; Qwen3TTS-12Hz-1.7B-VD scores 82.9, 82.4 and 68.4 in the same table",
+      "harness": "InstructTTSEval",
+      "measured_by": "maker",
+      "source": "gh-voxcpm",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "InstructTTSEval-ZH, APS (instruction-guided voice design)",
+      "score": 85.2,
+      "setting": "OpenBMB's table; DSD 71.5 and RP 60.8; Qwen3TTS-12Hz-1.7B-VD scores 85.2, 81.1 and 65.1",
+      "harness": "InstructTTSEval",
+      "measured_by": "maker",
+      "source": "gh-voxcpm",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "BreezeBlue Voice Design Benchmark, Role Fit",
+      "score": 55.28,
+      "setting": "run by BreezeBlue, a competing maker; rank 7 of 7; voice diversity 509",
+      "harness": "BreezeBlue Voice Design Benchmark",
+      "measured_by": "third-party-vendor",
+      "source": "bb-blog2v",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "BreezeBlue Voice Direction Benchmark, direction score (maximum 5)",
+      "score": 2.49,
+      "setting": "run by BreezeBlue; rank 6 of 6; speaker similarity 0.70",
+      "harness": "BreezeBlue Voice Direction Benchmark",
+      "measured_by": "third-party-vendor",
+      "source": "bb-blog2v",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/openbmb/VoxCPM2",
+    "https://voxcpm.readthedocs.io/en/latest/"
+  ],
+  "system_card": null,
+  "model_page": "https://github.com/OpenBMB/VoxCPM",
+  "sources": [
+    {
+      "id": "hf-voxcpm2",
+      "url": "https://huggingface.co/openbmb/VoxCPM2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-voxcpm2-api",
+      "url": "https://huggingface.co/api/models/openbmb/VoxCPM2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-voxcpm",
+      "url": "https://github.com/OpenBMB/VoxCPM",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bb-blog2v",
+      "url": "https://breezeblue.ai/breeze-tts-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the Hugging Face repository was created 2026-04-03 and the GitHub news entry says 2026.04 [hf-voxcpm2-api] [gh-voxcpm]",
+    "Artificial Analysis Speech Arena Elo: the model was not found in the Artificial Analysis list read",
+    "hosted API: none named on the pages read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

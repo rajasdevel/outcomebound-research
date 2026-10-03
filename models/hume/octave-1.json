@@ -1,0 +1,188 @@
+{
+  "id": "octave-1",
+  "name": "Hume Octave 1",
+  "maker": "Hume AI",
+  "family": "Hume Octave",
+  "class": "Hume Octave",
+  "generation": "1",
+  "released": "2025-02-26",
+  "status": "retiring",
+  "retires": "2026-11-13",
+  "weights": "closed",
+  "access": [
+    "Hume TTS API: HTTP, streamed HTTP and WebSocket (wss://api.hume.ai/v0/tts), request field version set to 1",
+    "Hume Platform TTS Playground and Voice Design page",
+    "Integrations: LiveKit, Pipecat, Vapi, Agora and the Vercel AI SDK"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with optional acting instructions in the description field and [pause] tags in the text",
+    "output_audio": "MP3, WAV or PCM; the sample rate rose from 24 kHz to 48 kHz on 2025-04-04 [hume-tts-overview] [hume-changelog]",
+    "voices": "custom cloning from about 15 seconds of audio, voice design from a text description, and a Voice Library of premade voices [hume-tts-overview] [hume-voice-guide]",
+    "languages": [
+      "English",
+      "Spanish"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "About 200 ms model latency per the Octave version table of the maker; instant mode streams the first audio in about 200 ms [hume-tts-overview]",
+    "session_limit": "5,000 characters of text and 1,000 characters of description per utterance, and at most 5 generations per request [hume-tts-overview]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. Hume sells monthly plans with included characters: Free US$0 (10,000 characters), Starter US$3 (30,000), Creator US$14 (140,000; US$7 in the first month at 50% off), Pro US$70 (1,000,000), Scale US$200 (3,300,000) and Business US$500 (10,000,000); Enterprise is custom. Additional characters cost US$0.15 per 1,000 on Creator, US$0.12 on Pro, US$0.10 on Scale and US$0.05 on Business; the page shows no overage rate for Free and Starter, and Enterprise is custom [hume-pricing]. Artificial Analysis lists US$87.50 per 1M characters, which matches no plan figure [aa-tts-board]. Hume ends both APIs on 2026-11-13 [hume-changelog]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1036.11,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Hume blind listener test against ElevenLabs: share of trials in which Octave was chosen as the better match to the given description or prompt (180 raters)",
+      "score": 57.7,
+      "setting": "launch post of 2025-02-26; the post gives 71.6 for audio quality and 51.7 for naturalness in the same test; it does not say whether the prompts were voice descriptions or acting instructions",
+      "harness": "Hume listener test",
+      "measured_by": "maker",
+      "source": "hume-blog-octave",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://dev.hume.ai/docs/text-to-speech-tts/acting-instructions",
+    "https://dev.hume.ai/docs/voice/voice-design",
+    "https://dev.hume.ai/docs/text-to-speech-tts/continuation"
+  ],
+  "system_card": null,
+  "model_page": "https://dev.hume.ai/docs/text-to-speech-tts/overview",
+  "sources": [
+    {
+      "id": "hume-tts-overview",
+      "url": "https://dev.hume.ai/docs/text-to-speech-tts/overview",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-acting",
+      "url": "https://dev.hume.ai/docs/text-to-speech-tts/acting-instructions",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-voice-design",
+      "url": "https://dev.hume.ai/docs/voice/voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-voice-cloning",
+      "url": "https://dev.hume.ai/docs/voice/voice-cloning",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-continuation",
+      "url": "https://dev.hume.ai/docs/text-to-speech-tts/continuation",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-tts-faq",
+      "url": "https://dev.hume.ai/docs/text-to-speech-tts/faq",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-voice-guide",
+      "url": "https://dev.hume.ai/docs/text-to-speech-tts/voice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-timestamps",
+      "url": "https://dev.hume.ai/docs/text-to-speech-tts/timestamps",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-ws-ref",
+      "url": "https://dev.hume.ai/reference/text-to-speech-tts/stream-input",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-changelog",
+      "url": "https://dev.hume.ai/changelog",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-pricing",
+      "url": "https://www.hume.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hume-blog-octave",
+      "url": "https://www.hume.ai/blog/octave-the-first-text-to-speech-model-that-understands-what-its-saying",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model; the limit is in characters, see voice.session_limit",
+    "max_output: not published in tokens; the limit is 5,000 characters of text per utterance [hume-tts-overview]",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters on a monthly plan), see notes",
+    "system_card: Hume publishes no system card or model card for Octave in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "voice.languages: the FAQ and the overview table give English and Spanish for Octave 1; the launch post says English with Spanish fluency [hume-tts-faq] [hume-blog-octave]",
+    "retires: Hume announced on 2026-10-02 that the TTS and EVI APIs end on 2026-11-13 at 12:01 a.m. EST and that account data is deleted afterwards [hume-changelog] [hume-tts-overview]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "id": "omnivoice",
+  "name": "OmniVoice",
+  "maker": "k2-fsa (Next-gen Kaldi)",
+  "family": "OmniVoice",
+  "class": "OmniVoice",
+  "generation": null,
+  "released": "2026-03-30",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (CC BY-NC; code Apache-2.0)",
+  "access": [
+    "Hugging Face weights k2-fsa/OmniVoice (about 0.6B parameters; based on Qwen3-0.6B) and the k2-fsa/OmniVoice repository",
+    "omnivoice package on PyPI"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text with optional non-verbal tags; an optional `instruct` string of speaker attributes; or a reference clip for cloning [gh-omnivoice] [gh-omnivoice-vd]",
+    "output_audio": "Audio returned by the Python package; the pages read state no sample rate [gh-omnivoice]",
+    "voices": "voice design from a fixed attribute vocabulary; custom cloning from a clip [gh-omnivoice-vd]",
+    "languages": [
+      "More than 600 languages; a full list is in the repository [gh-omnivoice]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "The README states a real-time factor as low as 0.025, about 40 times faster than real time, without naming the hardware [gh-omnivoice]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, no price. The code is Apache-2.0, but the model card says the pretrained model is licensed CC BY-NC because of its training data, so the weights are for non-commercial use [hf-omnivoice]. The README lists CUDA, Apple Silicon and Intel Arc GPU routes and gives no memory figure; it was tested on Intel Arc cards with 4 GB and 16 GB [gh-omnivoice]"
+  },
+  "benchmarks": [
+    {
+      "name": "EmergentTTS-Eval emotions win rate against Boson's baseline row",
+      "score": 61.07,
+      "setting": "run by Boson AI, a competing maker, with no inline tags; overall 40.82",
+      "harness": "EmergentTTS-Eval",
+      "measured_by": "third-party-vendor",
+      "source": "boson-blog-tts3d",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/k2-fsa/OmniVoice",
+    "https://raw.githubusercontent.com/k2-fsa/OmniVoice/master/docs/voice-design.md"
+  ],
+  "system_card": null,
+  "model_page": "https://github.com/k2-fsa/OmniVoice",
+  "sources": [
+    {
+      "id": "gh-omnivoice",
+      "url": "https://github.com/k2-fsa/OmniVoice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-omnivoice-vd",
+      "url": "https://raw.githubusercontent.com/k2-fsa/OmniVoice/master/docs/voice-design.md",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-omnivoice",
+      "url": "https://huggingface.co/k2-fsa/OmniVoice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-omnivoice-api",
+      "url": "https://huggingface.co/api/models/k2-fsa/OmniVoice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-omnivoice",
+      "url": "https://huggingface.co/papers/2604.00688",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "boson-blog-tts3d",
+      "url": "https://www.boson.ai/blog/higgs-audio-v3-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: the maker numbers no generation",
+    "released: the Hugging Face repository was created 2026-03-30 and the paper is numbered 2604.00688; the files were last changed 2026-07-03 [hf-omnivoice-api] [arxiv-omnivoice]",
+    "voice.output_audio: no sample rate is stated on the pages read",
+    "voice.session_limit: not stated",
+    "hardware: no memory figure read",
+    "Artificial Analysis Speech Arena Elo: no OmniVoice entry was found in the Artificial Analysis list read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

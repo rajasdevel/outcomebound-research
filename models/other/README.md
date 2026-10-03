@@ -63,13 +63,25 @@ sources:
   - https://github.com/NVIDIA/personaplex
   - https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B
   - https://artificialanalysis.ai/speech-to-speech
+  - https://huggingface.co/BreezeBlue/Breeze-TTS-2
+  - https://breezeblue.ai/breeze-tts-2
+  - https://huggingface.co/openbmb/VoxCPM2
+  - https://huggingface.co/maya-research/maya1
+  - https://github.com/index-tts/index-tts
+  - https://huggingface.co/IndexTeam/IndexTTS-2.5
+  - https://github.com/canopyai/Orpheus-TTS
+  - https://github.com/nari-labs/dia
+  - https://github.com/k2-fsa/OmniVoice
+  - https://huggingface.co/k2-fsa/OmniVoice
+  - https://github.com/inclusionAI/Ming-omni-tts
+  - https://huggingface.co/ASLP-lab/VoiceSculptor-VD
+  - https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator
+  - https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B
 ---
 
 # Models from other makers
 
-This folder holds the models of five makers that have no folder of their own: Tencent (Hy), Thinking Machines Lab (Inkling), the Institute of Foundation Models at MBZUAI (K2 Horizon), Xiaomi (MiMo) and
-NVIDIA (Nemotron and its speech models). All ten models are open-weight. None of the makers publishes a family-wide prompting guide, so the detail sits in the model files; this page gives each
-maker's lineage, the API and guide facts that hold across its models, and what its documents do and do not report. Everything was read on 2026-10-03.
+This folder holds the models of makers that have no folder of their own. Five makers are language and speech models: Tencent (Hy), Thinking Machines Lab (Inkling), the Institute of Foundation Models at MBZUAI (K2 Horizon), Xiaomi (MiMo) and NVIDIA (Nemotron and its speech models). Eleven makers are open-weight voice actor models, which are speech synthesis models whose delivery you direct with written instructions or inline tags: BreezeBlue, OpenBMB, Maya Research, Bilibili (IndexTTS), Canopy Labs, Nari Labs, the k2-fsa group (OmniVoice), inclusionAI (Ming-omni-tts), the ASLP-lab group (VoiceSculptor), the OpenMOSS team (MOSS-VoiceGenerator) and Soul AI Lab (SoulX-Podcast). All 24 models are open-weight. None of the language-model makers publishes a family-wide prompting guide, so the detail sits in the model files. The speech makers publish a model card or README with the tag or instruction syntax, and a few publish a blog post. This page gives each maker's lineage, the API and guide facts that hold across its models, and what its documents do and do not report. Everything was read on 2026-10-03, except the voice actor models, which were read on 2026-10-04.
 
 ## Models and lineage
 
@@ -87,9 +99,21 @@ maker's lineage, the API and guide facts that hold across its models, and what i
 | NVIDIA | Nemotron Ultra | 3 | [Nemotron 3 Ultra](nemotron-3-ultra.md) | GA, open weights | 550B total, 55B active, hybrid Mamba and attention |
 | NVIDIA | PersonaPlex | 1 | [PersonaPlex-7B-v1](personaplex-7b-v1.md) | GA, open weights (gated) | full-duplex speech-to-speech, 7B, built on Kyutai's Moshiko weights; text and voice prompts [nvidia-card-personaplex] |
 | NVIDIA | Nemotron VoiceChat | 1 | [NemotronLabs VoiceChat 11B](nemotron-voicechat-11b.md) | GA, open weights | full-duplex speech-to-speech with tool calling, 11B, hybrid Mamba and Transformer [nvidia-card-voicechat] |
+| BreezeBlue | Breeze TTS | 2 | [Breeze TTS 2](breeze-tts-2.md) | GA, open weights (research and non-commercial licence) | about 3.47B parameters, English and Chinese, voice design, voice direction, vocal-event tags; 2026-08-25 [hf-breeze2] |
+| OpenBMB | VoxCPM | 2 | [VoxCPM2](voxcpm2.md) | GA, open weights (Apache-2.0) | 2B, 30 languages, 48 kHz, voice design and style notes in parentheses; 2026-04 [hf-voxcpm2] |
+| Maya Research | Maya | 1 | [Maya1](maya1.md) | GA, open weights (Apache-2.0) | 3B, English, voice design from a description and 17 emotion tags; 2025-10-18 [hf-maya1] |
+| Bilibili (IndexTeam) | IndexTTS | 2.5 | [IndexTTS-2.5](indextts-2.5.md) | GA, open weights (bilibili licence) | emotion by vector, clip or text description; 5 languages; 2026-08-10 [hf-index25] |
+| Bilibili (IndexTeam) | IndexTTS | 2 | [IndexTTS-2](indextts-2.md) | GA, open weights (bilibili licence) | the generation before 2.5; 2025-09-08 [gh-index] |
+| Canopy Labs | Orpheus | 0.1 | [Orpheus 3B 0.1 finetuned](orpheus-3b-0.1-ft.md) | GA, open weights (Apache-2.0) | Llama 3B base, 8 voices and 8 emotive tags; March 2025; no newer model [gh-orpheus] |
+| Nari Labs | Dia | 1 | [Dia 1.6B (0626)](dia-1.6b-0626.md) | GA, open weights (Apache-2.0) | English dialogue with speaker tags and 21 non-verbal tags; weak direction; 2025-06-26 [gh-dia] |
+| k2-fsa | OmniVoice | none numbered | [OmniVoice](omnivoice.md) | GA, open weights (CC BY-NC; code Apache-2.0) | about 0.6B, 600+ languages, attribute voice design and 13 tags; weak direction; 2026-03-30 [gh-omnivoice] |
+| inclusionAI (Ant Group) | Ming-omni-tts | none numbered | [Ming-omni-tts 0.5B](ming-omni-tts-0.5b.md), [Ming-omni-tts 16.8B-A3B](ming-omni-tts-16.8b-a3b.md) | GA, open weights (Apache-2.0) | structured instruction fields for rate, pitch, volume, emotion and dialect; voice design; speech, sound and music; 2026-02-11 [gh-ming] |
+| ASLP-lab | VoiceSculptor | none numbered | [VoiceSculptor-VD](voicesculptor-vd.md) | GA, open weights (Apache-2.0) | about 4B, Chinese-only voice design from a description; 2026-01-06 [hf-vs] |
+| OpenMOSS (MOSI.AI) | MOSS-VoiceGenerator | none numbered | [MOSS-VoiceGenerator](moss-voicegenerator.md) | GA, open weights (Apache-2.0) | 1.7B, Chinese and English, voice design with a required style instruction (emotion, speed, pitch, character); 2026-02-08 [hf-mossvg] |
+| Soul AI Lab | SoulX-Podcast | none numbered | [SoulX-Podcast-1.7B](soulx-podcast-1.7b.md), [SoulX-Podcast-1.7B-dialect](soulx-podcast-1.7b-dialect.md) | GA, open weights (Apache-2.0) | multi-speaker podcast dialogue in Mandarin and English with paralinguistic tags; a separate dialect checkpoint; weak documented direction; 2025-10-27 [hf-soulx] |
 
 **Without a file** (seen on the sources read; no file was created here): Tencent Hy3-preview (2026-04-23, older than the two generations in scope); the other K2 Horizon sizes (0.9B, 3.7B, 7B, 32B, 36B-A4B);
-Xiaomi's MiMo-V2.5-Pro and MiMo-V2.5, the previous generation, which Xiaomi's API retires on 2026-10-21 (inside the three-week window, so they are let lapse); the Xiaomi model id `mimo-v2.6-pro-ultraspeed`, a faster Pro; Nemotron 3 Super and Nano. Kyutai's gated `personaplex-rl-seamless` fine-tune is listed in the [Kyutai README](../kyutai/README.md).
+Xiaomi's MiMo-V2.5-Pro and MiMo-V2.5, the previous generation, which Xiaomi's API retires on 2026-10-21 (inside the three-week window, so they are let lapse); the Xiaomi model id `mimo-v2.6-pro-ultraspeed`, a faster Pro; Nemotron 3 Super and Nano. Kyutai's gated `personaplex-rl-seamless` fine-tune is listed in the [Kyutai README](../kyutai/README.md). Voice actor candidates without a file: Fish Audio S1 mini (older than the two generations of its class; S2 Pro and S2.1 Pro are in `models/fishaudio/`), Higgs TTS 2, Dia2, Chatterbox (original, Multilingual V3 and Flash), Qwen3-TTS 0.6B and Base models, VoxCPM1.5, Sesame CSM-1B, Kyutai TTS and Pocket TTS, Zonos, Spark-TTS, VibeVoice, Voxtral TTS, NVIDIA Magpie TTS, other MOSS-TTS models, GLM-TTS, MiMo-Audio-7B-Instruct, TADA, Parler-TTS and Breeze TTS 1. `models/README.md` gives the reason for each.
 
 **How each line got here** (dates are those on the sources named):
 
@@ -100,6 +124,17 @@ Xiaomi's MiMo-V2.5-Pro and MiMo-V2.5, the previous generation, which Xiaomi's AP
   0.9B to 375B with data, code, logs and intermediate checkpoints [mbzuai-k2-nyu].
 - **Xiaomi.** MiMo-V2-Pro (2026-03-18) and MiMo-V2.5-Pro (2026-04-22, with MiMo-V2.5) came before MiMo-V2.6, released on 2026-09-21; the V2.5 models are deprecated on Xiaomi's API at 10:00 Beijing time on 2026-10-21 [mimo-docs-models] [datanorth-mimo]. The two earlier dates are the release dates in Artificial Analysis's model list, which marks both models deprecated [aa-coding-agents].
 - **NVIDIA.** The Nemotron 3 family has Nano, Super (2026-03-11) and Ultra (2026-06-04); NVIDIA's Ultra launch post says Nemotron releases are moving to the OpenMDW-1.1 licence [hf-nemotron-super] [hf-nemotron] [nvidia-nemotron-blog]. An Ultra-class model of an earlier family generation, if it exists, has no file here. NVIDIA's speech line is separate: PersonaPlex-7B-v1 (2026-01-15) is a fine-tune of Kyutai's Moshiko weights with text and voice prompts, and NemotronLabs VoiceChat 11B (2026-08-03) is a new hybrid Mamba and Transformer model that adds tool calling and lists PersonaPlex data among its training data [nvidia-card-personaplex] [nvidia-card-voicechat].
+- **BreezeBlue.** Breeze TTS (2026-03-26) is a hosted instruction-following service. Breeze TTS 2 followed with a launch post on 2026-08-07 and open weights on 2026-08-25; the weights are for research and non-commercial use [bb-blog1] [hf-breeze2].
+- **OpenBMB.** VoxCPM (0.5B, 2025-09) and VoxCPM1.5 came first; VoxCPM2 (2026-04) added voice design and style control, which the earlier versions lack [gh-voxcpm].
+- **Maya Research.** Veena (2025-06) is a Hindi and English model; Maya1 (2025-10-18) added description-based voice design and emotion tags. The company's newer Maya 2 models are hosted only [maya-site].
+- **Bilibili.** IndexTTS 1.0 (2025-03), 1.5 (2025-05), 2 (2025-09-08) and 2.5 (2026-08-10); the README news entries name emotion control from version 2 on [gh-index].
+- **Canopy Labs.** Orpheus pretrained and finetuned English models (March 2025) and a multilingual research family (April 2025). No model release since; the repository changed last in December 2025 [gh-orpheus].
+- **Nari Labs.** Dia (2025-04-20, revised 2025-06-26) and Dia2 (1B and 2B, 2025-11); Dia2 documents no non-verbal tags [gh-dia].
+- **k2-fsa.** OmniVoice (2026-03-30), from the Next-gen Kaldi group [gh-omnivoice].
+- **inclusionAI.** Ming-omni-tts in two sizes on 2026-02-11 [gh-ming].
+- **ASLP-lab.** VoiceSculptor-VD (2026-01-06), built on Llasa-3B [hf-vs].
+- **OpenMOSS.** The MOSS-TTS family (2026-02 on): MOSS-TTS, MOSS-TTSD, MOSS-VoiceGenerator, MOSS-SoundEffect and MOSS-TTS-Realtime; only VoiceGenerator takes an emotion or style instruction [hf-mossvg].
+- **Soul AI Lab.** SoulX-Podcast-1.7B and its dialect checkpoint, both on 2025-10-27, with a technical report [hf-soulx].
 
 ## API surface
 
@@ -119,10 +154,12 @@ There is no shared protocol; each maker serves differently.
   Weights are also on Hugging Face; OpenRouter lists the models, and LiteLLM supports them as an OpenAI-compatible provider [litellm-mimo].
 - **NVIDIA.** build.nvidia.com, the NIM microservice, AWS SageMaker JumpStart, Google Cloud, Microsoft Foundry, Oracle Cloud, OpenRouter, Together AI, Fireworks, DeepInfra, Baseten, Ollama cloud, Tinker and others, plus vLLM, SGLang and TensorRT-LLM self-hosting, with an NVFP4 checkpoint that NVIDIA says runs on
   Hopper, Blackwell and Ampere GPUs [nvidia-nemotron-blog] [hf-nemotron] [tinker-pricing]. The two speech models have no hosted API in the sources read: PersonaPlex runs from the `NVIDIA/personaplex` repository (PyTorch, gated weights on Hugging Face), and VoiceChat runs from its Hugging Face checkpoint or from an NVIDIA inference container with a WebSocket interface (Triton and vLLM) [nvidia-gh-personaplex] [nvidia-card-voicechat].
+- **Voice actor models.** None of the eleven voice actor makers above runs a first-party hosted API for these open weights, except BreezeBlue (a hosted platform and realtime WebSocket API with credit plans) and Maya Research (a hosted studio for Maya1 and separate hosted Maya 2 models). Canopy Labs names Baseten as its hosted partner. The other models run from their repositories with PyTorch, and some also from vLLM, vLLM-Omni or SGLang-Omni [hf-breeze2] [maya-site] [gh-orpheus].
+- **Licences.** Apache-2.0: VoxCPM2, Maya1, Orpheus, Dia, Ming-omni-tts, VoiceSculptor-VD, MOSS-VoiceGenerator and SoulX-Podcast. Non-commercial only: Breeze TTS 2 (a research and non-commercial licence) and OmniVoice (CC BY-NC weights, Apache-2.0 code). A company licence with conditions: IndexTTS (bilibili), which requires a separate licence above 100 million monthly active users or RMB 1 billion of annual revenue [hf-breeze2] [hf-omnivoice] [index-license].
 
 ## Prompting guides
 
-None of the five makers publishes a guide on system prompts, roles, structure, examples or output control for its model. What exists:
+None of the five makers of language and speech-to-speech models publishes a guide on system prompts, roles, structure, examples or output control for its model. The eleven voice actor makers publish their direction syntax in a model card or README. What exists:
 
 | Maker | What is published | What it covers |
 | --- | --- | --- |
@@ -131,6 +168,17 @@ None of the five makers publishes a guide on system prompts, roles, structure, e
 | IFM | the "Best Practices" section of the card | effort `high`, sampling, tool-call formats, parsers |
 | Xiaomi | the Hugging Face cards, the MiMo docs (deep thinking, structured output, image, audio, video) and the V2.6 technical report | thinking switch, fixed sampling, reasoning-content rule, JSON mode, media limits; the report covers training harnesses and reward-hacking safeguards |
 | NVIDIA | the Hugging Face card (Quick Start, budget-controlled reasoning) and the Dynamo serving recipe; for the speech models, the PersonaPlex repository README and the VoiceChat card | three reasoning modes, budget, tool-call parser, known serving defects; for PersonaPlex, prompt patterns for three kinds of role; for VoiceChat, a rendered system prompt with a tool-use decision process and an ASCII-only rule |
+| BreezeBlue | the Hugging Face model card and the launch post | three modes (design, clone, direction), the `instruction` text, vocal-event tags, example prompt styles |
+| OpenBMB | the Hugging Face model card | description or style note in parentheses at the head of the text; run two or three times |
+| Maya Research | the Hugging Face model card and an emotions file | description wrapper, 17 tags |
+| Bilibili | the GitHub README and the Hugging Face cards | four ways to give emotion, strength setting, speed factor |
+| Canopy Labs | the GitHub README | voice name prefix, 8 tags |
+| Nari Labs | the GitHub README | speaker tags, 21 tags, audio prompt rules, length advice |
+| k2-fsa | the GitHub README and a voice design page | attribute categories, 13 tags |
+| inclusionAI | the GitHub README and the cookbook script | structured instruction fields |
+| ASLP-lab | the Hugging Face card and a voice design guide | five rules for a Chinese description of at most 200 characters |
+| OpenMOSS | the Hugging Face model card | required `instruction` field, decoding settings |
+| Soul AI Lab | the GitHub README, the Hugging Face cards and example scripts | JSON script of turns, five paralinguistic tags, dialect prompt |
 
 How the advice has moved: Tencent's default flipped from direct answers (Hy3) to thinking (Hy4 preview) [hf-hy3] [hf-hy4]; Xiaomi's docs treat V2.5 and V2.6 alike (thinking on by default, sampling fixed while thinking is on) [mimo-docs-thinking]; the others have a single release.
 Nothing in this folder compares guides across releases beyond that.
@@ -143,6 +191,7 @@ No maker here publishes a system card with measured refusal, injection, sycophan
 - **NVIDIA** a Hugging Face model card, NGC safety and explainability subcards (training-data screening, an instruction-following-versus-injection caveat), and a technical report; no refusal or injection numbers [ngc-nemotron-explain] [nvidia-tech-report]. The two speech models have a Hugging Face card with an ethics paragraph that points to subcards, plus a paper; neither gives a refusal result [nvidia-card-personaplex] [nvidia-card-voicechat].
 - **Tencent, IFM and Xiaomi** a Hugging Face model card with benchmarks and serving settings; Tencent adds a known-limitations paragraph, and Xiaomi a 44-page technical report whose
   reward-hacking section reports a confirmed-hack share below 2% during RL. No refusal, jailbreak or injection evaluation in any [hf-hy4] [hf-k2-horizon] [hf-mimo-pro] [mimo-tech-report].
+- **Voice actor makers (BreezeBlue, OpenBMB, Maya Research, Bilibili, Canopy Labs, Nari Labs, k2-fsa, inclusionAI, ASLP-lab, OpenMOSS, Soul AI Lab).** None publishes a system card. Each publishes a README or model card; most add a use-restriction paragraph that bans impersonation, fraud and cloning without consent. Bilibili and OpenBMB also publish papers or benchmark tables. Comparison tables come from the makers themselves; the only independent measure read is the Artificial Analysis Speech Arena Elo for Breeze TTS 2 (1216.17) and Maya1 (1046.47 on its page headline, 1048.58 in the page data) [aa-breeze2] [aa-maya1].
 
 How to read the benchmark tables the makers publish: comparison models are usually the maker's own runs; settings, harnesses and turn limits are in footnotes (Tencent's appendix is the fullest, naming harness, turn budget and timeout per benchmark); two makers have corrected their own scores (IFM lowered Terminal-Bench 2.1 from 70.2 to 66.9 after a
 reward-hacking audit; Tencent restated some Hy3 numbers after harness and anti-hacking changes) [mbzuai-k2-nyu] [hf-hy4-page]. Terminal-Bench's own notice says its leaderboard now runs an agent judge over passing trials and zeroes trials judged to be reward hacking [tbench-integrity].
@@ -161,6 +210,8 @@ reward-hacking audit; Tencent restated some Hy3 numbers after harness and anti-h
   Nemotron 47.7 on an earlier version), so scores are only comparable within one version.
 - **Independent coding coverage.** Scale's SWE-Bench Pro V2 table lists Inkling only (89.88 on the full set, 56.9 on the HARD tab); Artificial Analysis's Coding Agent Index lists none of
   these models, and METR lists none (latest update shown 2026-05-08) [scale-swe-pro-v2] [aa-coding-agents] [metr-horizons].
+- **Voice actor models.** All 14 are synthesis models with duplex `none`; none has turn detection. Direction takes one of five forms: a written description (VoxCPM2, Maya1, Breeze TTS 2, VoiceSculptor-VD, MOSS-VoiceGenerator), inline tags (Maya1, OmniVoice, Dia, SoulX-Podcast), a fixed instruction list or fields (Ming-omni-tts, IndexTTS), emotion by vector, clip or text (IndexTTS), or a voice name plus tags (Orpheus). Run-to-run variation is documented for VoxCPM2 (one to three runs advised) and Dia (a different voice each run without a prompt) [hf-voxcpm2] [gh-dia].
+- **Hardware stated.** Breeze TTS 2: about 7.7 GiB (eager) to 14.4 GiB; VoxCPM2: about 8 GB; Maya1: 16 GB or more; IndexTTS-2.5: about 6 GB; Dia: about 4.4 GB in bfloat16; Ming-omni-tts: tested on 80 GB class GPUs, with no minimum stated [hf-breeze2] [hf-voxcpm2] [hf-maya1] [hf-index25] [gh-dia] [gh-ming].
 
 ## Open questions
 
@@ -170,6 +221,10 @@ reward-hacking audit; Tencent restated some Hy3 numbers after harness and anti-h
 - Whether Hy4 preview's reasoning-length and over-verification issues are fixed in its release.
 - Hosted-API availability and list prices for K2 Horizon.
 - Whether NVIDIA will host its speech models, and why its interruption results differ from the independent ones.
+- Independent measures of delivery control for all 14 voice actor models; only two have an Artificial Analysis Elo, and SoulX-Podcast documents only five of the many tags its tokenizer defines.
+- Whether Canopy Labs will release a newer Orpheus model.
+- The English values of the Ming-omni-tts instruction fields. The README summary claims 46.7 percent emotion accuracy on the neutral sets, while its table gives 45.0 for the larger model.
+- Minimum GPU memory for most of these models.
 
 ## Sources
 
@@ -221,3 +276,22 @@ reward-hacking audit; Tencent restated some Hy3 numbers after harness and anti-h
 - [nvidia-gh-personaplex] https://github.com/NVIDIA/personaplex (kind L, read 2026-10-03)
 - [nvidia-card-voicechat] https://huggingface.co/nvidia/NVIDIA-NemotronLabs-VoiceChat-11B (kind L, read 2026-10-03)
 - [aa-s2s] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-03)
+- [hf-breeze2] https://huggingface.co/BreezeBlue/Breeze-TTS-2 (kind L, read 2026-10-04)
+- [bb-blog1] https://breezeblue.ai/breeze-tts-1 (kind L, read 2026-10-04)
+- [hf-voxcpm2] https://huggingface.co/openbmb/VoxCPM2 (kind L, read 2026-10-04)
+- [gh-voxcpm] https://github.com/OpenBMB/VoxCPM (kind L, read 2026-10-04)
+- [hf-maya1] https://huggingface.co/maya-research/maya1 (kind L, read 2026-10-04)
+- [maya-site] https://www.mayaresearch.ai (kind L, read 2026-10-04)
+- [gh-index] https://github.com/index-tts/index-tts (kind L, read 2026-10-04)
+- [hf-index25] https://huggingface.co/IndexTeam/IndexTTS-2.5 (kind L, read 2026-10-04)
+- [index-license] https://huggingface.co/IndexTeam/IndexTTS-2.5/raw/main/LICENSE (kind L, read 2026-10-04)
+- [gh-orpheus] https://github.com/canopyai/Orpheus-TTS (kind L, read 2026-10-04)
+- [gh-dia] https://github.com/nari-labs/dia (kind L, read 2026-10-04)
+- [gh-omnivoice] https://github.com/k2-fsa/OmniVoice (kind L, read 2026-10-04)
+- [hf-omnivoice] https://huggingface.co/k2-fsa/OmniVoice (kind L, read 2026-10-04)
+- [gh-ming] https://github.com/inclusionAI/Ming-omni-tts (kind L, read 2026-10-04)
+- [hf-vs] https://huggingface.co/ASLP-lab/VoiceSculptor-VD (kind L, read 2026-10-04)
+- [hf-mossvg] https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator (kind L, read 2026-10-04)
+- [hf-soulx] https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B (kind L, read 2026-10-04)
+- [aa-breeze2] https://artificialanalysis.ai/text-to-speech/models/breeze-tts-2 (kind M, read 2026-10-04)
+- [aa-maya1] https://artificialanalysis.ai/text-to-speech/models/maya-1 (kind M, read 2026-10-04)

@@ -92,6 +92,12 @@ sources:
   - https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896
   - https://community.openai.com/t/gpt-realtime-model-default-reasoning/1387803
   - https://community.openai.com/t/new-realtime-voice-models-in-the-api/1380471
+  - https://developers.openai.com/api/docs/guides/text-to-speech
+  - https://developers.openai.com/api/reference/resources/audio/subresources/speech/methods/create
+  - https://developers.openai.com/api/docs/models/gpt-4o-mini-tts
+  - https://openai.com/index/introducing-our-next-generation-audio-models/
+  - https://github.com/openai/openai-fm
+  - https://community.openai.com/t/tts-no-longer-follows-instructions-parameter/1371743
 ---
 
 # OpenAI models
@@ -169,7 +175,7 @@ are in the next subsection.
 
 ### Voice models
 
-OpenAI also sells voice models. Speech-to-speech models take speech in and give speech out. Transcription models turn speech into text. One translation model turns speech in one language into speech in another. The table lists each one that is in the API on 2026-10-03, with the file that describes it [openai-models-list] [openai-pricing].
+OpenAI also sells voice models. Speech-to-speech models take speech in and give speech out. Transcription models turn speech into text. One speech synthesis model turns text into speech and takes written instructions for how to speak it. One translation model turns speech in one language into speech in another. The table lists each one that is in the API on 2026-10-03, with the file that describes it [openai-models-list] [openai-pricing].
 
 | Model | Id | Released | What it is | Price | File |
 | --- | --- | --- | --- | --- | --- |
@@ -183,16 +189,17 @@ OpenAI also sells voice models. Speech-to-speech models take speech in and give 
 | GPT-Realtime-Whisper | `gpt-realtime-whisper` | 2026-05-07 | earlier streaming speech-to-text | $0.017 per minute | [file](gpt-realtime-whisper.md) |
 | GPT-Transcribe | `gpt-transcribe` | 2026-07-28 | speech-to-text for files and committed turns | $0.0045 per minute | [file](gpt-transcribe.md) |
 | GPT-4o Transcribe | `gpt-4o-transcribe` | 2025-03-20 | earlier file speech-to-text; removal 2027-02-26 | $2.50 in, $10 out per Mtok of audio tokens | [file](gpt-4o-transcribe.md) |
+| GPT-4o mini TTS | `gpt-4o-mini-tts` | 2025-03-20; default snapshot 2025-12-15 since 2026-01-13 | speech synthesis with an `instructions` field for accent, emotion, pace, tone and whispering; removal 2027-01-06 | $0.60 in (text), $12 out (audio) per Mtok | [file](gpt-4o-mini-tts.md) |
 
 **How the lines moved** [openai-changelog] [openai-deprecations]:
 
 - *Realtime.* The Realtime API started on 2024-10-01 over WebSockets with `gpt-4o-realtime-preview`. WebRTC came on 2024-12-17. The API became generally available on 2025-08-28 with `gpt-realtime`, and `gpt-realtime-mini` followed on 2025-10-06. GPT-Realtime-1.5 came on 2026-02-23. GPT-Realtime-2 came on 2026-05-07 with reasoning, a 128,000-token window (up from 32,000) and a 32,000-token output limit (up from 4,096). GPT-Realtime-2.1 and 2.1 Mini came on 2026-07-06. The beta interface was removed on 2026-05-12. OpenAI removes `gpt-realtime`, `gpt-4o-realtime`, `gpt-realtime-mini` and `gpt-4o-mini-realtime` on 2027-01-20 and names GPT-Realtime-2.1 and 2.1 Mini as the replacements. GPT-Realtime-1.5 is on no deprecation list on 2026-10-03. It is a third generation of the class and has no file here, because this library keeps two.
 - *Live.* OpenAI launched GPT-Live-1 and GPT-Live-1 mini in ChatGPT Voice on 2026-07-08. The API has GPT-Live-1 only, since 2026-09-10 [openai-live-card]. OpenAI's audio overview says to start a new conversational voice application with GPT-Live [openai-guide-audio].
 - *Transcription.* The Audio API got `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `gpt-4o-mini-tts` and `whisper-1` on 2025-03-20. GPT-Realtime-Whisper came on 2026-05-07. GPT-Live-Transcribe and GPT-Transcribe came on 2026-07-28. OpenAI removes `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe` and `gpt-4o-transcribe-diarize` on 2027-02-26 and names `gpt-live-transcribe` or `gpt-transcribe` as the replacement. Its transcription guide says that existing integrations may keep GPT-4o Transcribe and GPT-Realtime-Whisper, and that they are not the recommended start for new ones [openai-guide-transcription].
-- *Speech synthesis.* OpenAI removes `tts-1`, `tts-1-hd` and both `gpt-4o-mini-tts` snapshots on 2027-01-06, and names GPT-Realtime-2.1 Mini as the replacement for all four [openai-deprecations]. Its pricing page lists `gpt-4o-mini-tts` at $0.60 per Mtok of text in and $12 of audio out, `tts-1` at $15 per million characters and `tts-1-hd` at $30 [openai-pricing]. These synthesis models have no file here.
+- *Speech synthesis.* [as-of 2026-10-04] The Audio API got `gpt-4o-mini-tts` on 2025-03-20. OpenAI said it was the first of its text-to-speech models that developers could instruct on how to speak, and not only on what to say [openai-blog-audio-models-2025]. The `gpt-4o-mini-tts` name moved to the 2025-12-15 snapshot on 2026-01-13, and the 2025-03-20 snapshot stays under its dated id [openai-changelog]. OpenAI announced on 2026-10-01 that it removes `tts-1`, `tts-1-hd` and both `gpt-4o-mini-tts` snapshots on 2027-01-06, and names GPT-Realtime-2.1 Mini as the replacement for all four. The page does not say how to move a text-to-speech call to that speech-to-speech model [openai-deprecations]. Its pricing page lists `gpt-4o-mini-tts` at $0.60 per Mtok of text in and $12 of audio out, `tts-1` at $15 per million characters and `tts-1-hd` at $30 [openai-pricing]. Only `gpt-4o-mini-tts` has a file here, because only it takes instructions for delivery. `tts-1` and `tts-1-hd` ignore the `instructions` field and have no file [openai-ref-speech].
 - *Chat Completions audio.* `gpt-audio-1.5` (2026-02-23) and `gpt-audio-mini` take and give audio through Chat Completions, without a realtime session. They have no file here. OpenAI removes `gpt-audio`, `gpt-4o-audio` and `gpt-audio-mini` on 2027-01-20 and names `gpt-audio-1.5` as the replacement [openai-changelog] [openai-deprecations].
 
-Classes in this library: *GPT Realtime* (2.1 and 2), *GPT Realtime Mini* (2.1 and 1), *GPT Live* (1), *GPT Realtime Translate* (1), *GPT Realtime Transcribe* (GPT-Live-Transcribe as 2 and GPT-Realtime-Whisper as 1) and *GPT Transcribe* (GPT-Transcribe as 2 and GPT-4o Transcribe as 1). The grouping and the numbering of the two transcription classes are this library's and not OpenAI's. Artificial Analysis rates the speech models on its own Speech to Speech Index, which averages Big Bench Audio, tau-Voice agent tasks, an arena preference score and task success [aa-speech-to-speech]. Its streaming and file speech-to-text results are on the pages for each transcription model.
+Classes in this library: *GPT Realtime* (2.1 and 2), *GPT Realtime Mini* (2.1 and 1), *GPT Live* (1), *GPT Realtime Translate* (1), *GPT Realtime Transcribe* (GPT-Live-Transcribe as 2 and GPT-Realtime-Whisper as 1) and *GPT Transcribe* (GPT-Transcribe as 2 and GPT-4o Transcribe as 1). The grouping and the numbering of the two transcription classes are this library's and not OpenAI's. *GPT-4o mini TTS* is a class of one model with two dated snapshots and no generation number from OpenAI. Artificial Analysis rates the speech models on its own Speech to Speech Index, which averages Big Bench Audio, tau-Voice agent tasks, an arena preference score and task success [aa-speech-to-speech]. Its streaming and file speech-to-text results are on the pages for each transcription model.
 
 ## API surface
 
@@ -542,6 +549,7 @@ OpenAI's voice guidance has three layers. Each is written for one model line and
 | Prompting GPT-Live [openai-guide-live-prompting] | the short voice prompt, backchannel, interruption and delegation policies, optional controls | GPT-Live 1 |
 | Live delegation and migration [openai-guide-live-delegation] [openai-guide-live-migration] | the backend prompt, context updates, task state, migration from Realtime or a text agent | GPT-Live 1 |
 | Developer notes on the Realtime API [openai-blog-realtime-api] [openai-blog-audio-updates] | GA changes, idle timeouts, truncation, hosted prompts, sideband, snapshot gains | `gpt-realtime` (2025) and the December 2025 snapshots |
+| Text to speech guide and the OpenAI.fm demo source [openai-guide-tts] [openai-fm-repo] | the `instructions` field, voices, formats, custom voices; 29 preset instruction strings in the demo's public source | `gpt-4o-mini-tts` |
 
 **How the advice moved.**
 
@@ -551,6 +559,8 @@ OpenAI's voice guidance has three layers. Each is written for one model line and
 - *GPT-Live.* The prompt shrinks. It states style, backchannel, interruption and delegation policies and lets the model choose the wording, and the procedures and tools move to the backend. OpenAI says to keep only the rules that the product needs when migrating from Realtime [openai-guide-live-prompting] [openai-guide-live-migration].
 
 **What carries across the layers.** OpenAI's guides repeat four points. A prompt starts short and gains rules for failures found in evaluation. The voice prompt covers speech and the order of actions. Permissions and confirmations are enforced in application code, because prompt instructions guide the models and do not enforce checks [openai-guide-live-migration]. Tests use real speech: OpenAI's evaluation guidance asks for synthetic audio first, then recorded human audio, then a simulated caller, and for human listening on top [openai-guide-voice-agents].
+
+**Speech synthesis (`gpt-4o-mini-tts`).** [as-of 2026-10-04] OpenAI has no prompting guide for the text-to-speech model beyond its Text to speech guide. The guide says you can prompt the model to control accent, emotional range, intonation, impressions, speed of speech, tone and whispering. It gives one example instruction, a request for a cheerful and positive tone, and lists no supported styles. The API reference caps `instructions` at 4,096 characters [openai-guide-tts] [openai-ref-speech]. The maker's examples are in the public source of its OpenAI.fm demo, which holds 29 preset instruction strings under the MIT licence. Most use short labelled lines. By our count Tone appears in all 29 presets, Pronunciation in 21, Emotion in 15, Voice in 13 and Pacing in 9 [openai-fm-repo]. The API reference says the `instructions` field does not work on `tts-1` or `tts-1-hd` [openai-ref-speech]. Users in one forum thread reported flat delivery from January 2026, after the default snapshot moved, and said the 2025-03-20 snapshot followed instructions better [openai-community-tts-instructions]. OpenAI's December 2025 note reports about 35 percent lower word error rate for the new snapshot and tells developers to re-run their test cases [openai-blog-audio-updates]. The [GPT-4o mini TTS file](gpt-4o-mini-tts.md) holds the detail.
 
 ## System-card practice
 
@@ -711,10 +721,13 @@ ChatGPT versions) that apply to Sol, Terra and Luna are kept on this page. Numbe
 - Why Microsoft Foundry lists 32,000 input and 4,096 output tokens for the Realtime models, translation and transcription while OpenAI's model pages list 128,000 and 32,000 for GPT-Realtime-2 and 2.1 [ms-foundry-models] [openai-models-list].
 - Whether OpenAI's own figures for GPT-Live-1 (a 0.798 s turn-taking latency, 83.6% on Tau3) can be reproduced: Artificial Analysis measured different numbers with a different harness, and OpenAI's launch post could not be opened on 2026-10-03 (HTTP 403), so the figures here come from its Developer Community thread [community-live-1].
 - No independent measurement of GPT-Realtime-Translate quality or latency exists in the sources read.
+- How to move a `gpt-4o-mini-tts` call to GPT-Realtime-2.1 Mini before 2027-01-06. The deprecations page names the model and gives no steps. The Realtime guide shows a response with an empty input that says exact text.
+- Whether `speed` or a pace written in `instructions` wins on `gpt-4o-mini-tts` when both are set.
+- Which snapshot of `gpt-4o-mini-tts` a third-party paper tested.
 
 ## Sources
 
-Kinds: L lab or vendor, M independent measurement, A practitioner account. Every source was read on 2026-10-03.
+Kinds: L lab or vendor, M independent measurement, A practitioner account. Every source was read on 2026-10-03, except the six ids from openai-guide-tts on, which were read on 2026-10-04.
 
 - [openai-latest-model] Using GPT-6, <https://developers.openai.com/api/docs/guides/latest-model> (L)
 - [openai-guide-gpt-5.6] Using GPT-5.6, <https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6> (L)
@@ -797,3 +810,9 @@ Kinds: L lab or vendor, M independent measurement, A practitioner account. Every
 - [community-default-reasoning] <https://community.openai.com/t/gpt-realtime-model-default-reasoning/1387803> (L)
 - [community-realtime-2] <https://community.openai.com/t/new-realtime-voice-models-in-the-api/1380471> (L)
 - [community-realtime-21] <https://community.openai.com/t/new-realtime-models-on-the-api-gpt-realtime-2-1-and-gpt-realtime-2-1-mini/1385896> (L for OpenAI's post; A for the developer replies)
+- [openai-guide-tts] Text to speech, <https://developers.openai.com/api/docs/guides/text-to-speech> (L)
+- [openai-ref-speech] Create speech, <https://developers.openai.com/api/reference/resources/audio/subresources/speech/methods/create> (L)
+- [openai-model-tts] GPT-4o mini TTS, <https://developers.openai.com/api/docs/models/gpt-4o-mini-tts> (L)
+- [openai-blog-audio-models-2025] Introducing next-generation audio models in the API, <https://openai.com/index/introducing-our-next-generation-audio-models/> (L)
+- [openai-fm-repo] OpenAI.fm demo source, <https://github.com/openai/openai-fm> (L)
+- [openai-community-tts-instructions] Forum thread, TTS no longer follows instructions parameter, <https://community.openai.com/t/tts-no-longer-follows-instructions-parameter/1371743> (A)

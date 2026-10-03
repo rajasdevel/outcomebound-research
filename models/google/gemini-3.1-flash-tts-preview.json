@@ -1,0 +1,210 @@
+{
+  "id": "gemini-3.1-flash-tts-preview",
+  "name": "Gemini 3.1 Flash TTS Preview",
+  "maker": "Google",
+  "family": "Gemini 3.1",
+  "class": "Gemini Flash TTS",
+  "generation": "3.1",
+  "released": "2026-04-15",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API (Interactions API and generateContent; REST and SDKs)",
+    "Google AI Studio",
+    "Google Cloud Text-to-Speech API (model name gemini-3.1-flash-tts-preview, in the global region; a separate prompt field and a text field)",
+    "Vertex AI API (generateContent; the global region)",
+    "Google Vids"
+  ],
+  "context_window": 8192,
+  "max_output": 16384,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text only. On the Gemini API, direction goes inside the text, as an optional prompt (Audio Profile, Scene, Director's Notes) and as square-bracket tags [g-archive-guide]. The Cloud Text-to-Speech API has a separate prompt field of up to 4,000 bytes and a text field of up to 4,000 bytes [g-cloud-tts]",
+    "output_audio": "Gemini API: headerless raw PCM (audio/l16, 24 kHz, 16-bit, mono) by default; Google's migration notes say 3.8 changed the unary default to WAV [g-tts-guide]. Cloud Text-to-Speech API: unary LINEAR16 (default), ALAW, MULAW, MP3, OGG_OPUS and PCM, and streaming PCM (default), ALAW, MULAW and OGG_OPUS; the Vertex AI API returns 16-bit 24 kHz PCM without a WAV header [g-cloud-tts]. All output carries a SynthID watermark [g-blog-31]",
+    "voices": "30 prebuilt voices chosen in speech_config; no voice design and no voice replication [g-archive-guide] [g-tts-guide]",
+    "languages": [
+      "70+ languages by the launch post, with automatic detection of the input language; the archived guide lists them with BCP-47 codes [g-blog-31] [g-archive-guide]"
+    ],
+    "turn_detection": "none: a synthesis model. A multi-speaker request names up to 2 speakers in the config and the transcript labels each line with a speaker name [g-archive-guide]",
+    "interruption": "Not a conversation model. Streaming has been available since 2026-06-17; the pages read describe no barge-in message [g-changelog] [g-archive-guide]",
+    "latency": "Google publishes no time-to-first-audio figure; it calls the model low latency. Artificial Analysis reports a median of 29.1 characters generated per second (throughput, not latency) [aa-g31] [g-model-31-page]",
+    "session_limit": "Input up to 8,192 tokens and output up to 16,384 tokens on the model page; the model card gives 16K text in and 32K tokens of audio out; the archived guide gave a session context limit of 32k tokens. The guide advises splitting transcripts that run longer than a few minutes [g-model-31-page] [g-card-31] [g-archive-guide]. On the Cloud Text-to-Speech API the text and prompt fields are at most 4,000 bytes each and 8,000 bytes together, and output past about 655 seconds is truncated [g-cloud-tts]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.0,
+    "output": 20.0,
+    "cached_input": null,
+    "notes": "Per token, Gemini API Standard tier, paid plan [g-pricing]. The input field is the text rate and the output field is the audio rate. Batch costs half: US$0.50 in and US$10.00 out. Audio counts 25 tokens a second. The model page says caching is not supported. Google Cloud's price list shows the same US$1.00 and US$20.00 [g-cloud-pricing]. Artificial Analysis converts the price to US$18.3 per 1M characters [aa-pv]."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1208.55,
+      "setting": "blind pairwise listener votes on each provider's own voices; rank 13 of 93 (range 10 to 14), 3,706 votes, 7 voices; the model page gives 1208.55 and the leaderboard table gives 1209",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-g31",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Artificial Analysis text-to-speech median characters per second",
+      "score": 29.1,
+      "setting": "median generation speed in the benchmark run; read from the data on the model page",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-g31",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "RW-Voice-EQ Bench, Acting / Role-Fit (human Likert mean)",
+      "score": 3.97,
+      "setting": "five-point Likert mean with a standard deviation of 0.04, default voice and settings; the highest of 31 configurations in the dimension. A paper by a speech vendor; the preview model was evaluated",
+      "harness": "RW-Voice-EQ Bench",
+      "measured_by": "third-party-vendor",
+      "source": "hume-rwveq",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "RW-Voice-EQ Bench, Expressiveness (human Likert mean)",
+      "score": 3.64,
+      "setting": "five-point Likert mean with a standard deviation of 0.04; the highest of 31 configurations in the dimension. A paper by a speech vendor",
+      "harness": "RW-Voice-EQ Bench",
+      "measured_by": "third-party-vendor",
+      "source": "hume-rwveq",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "http://web.archive.org/web/20260909120033/https://ai.google.dev/gemini-api/docs/speech-generation",
+    "https://ai.google.dev/gemini-api/docs/speech-generation",
+    "https://cloud.google.com/text-to-speech/docs/gemini-tts"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-1-flash-audio/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-tts-preview",
+  "sources": [
+    {
+      "id": "g-cloud-tts",
+      "url": "https://cloud.google.com/text-to-speech/docs/gemini-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-cloud-pricing",
+      "url": "https://cloud.google.com/text-to-speech/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-tts-guide",
+      "url": "https://ai.google.dev/gemini-api/docs/speech-generation",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-models",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-pv",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "g-model-31-page",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-tts-preview",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-archive-guide",
+      "url": "http://web.archive.org/web/20260909120033/https://ai.google.dev/gemini-api/docs/speech-generation",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-blog-31",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-card-31",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-audio/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-g31",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/gemini-3-1-tts",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "hume-rwveq",
+      "url": "https://arxiv.org/abs/2607.14846",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the changelog and the launch post give 2026-04-15; the deprecations table lists 2026-02-26 in its release-date column [g-changelog] [g-blog-31] [g-deprecations]",
+    "retires: the deprecations page lists no shutdown date and names 3.8 Flash TTS or 3.8 Flash-Lite TTS as the replacement [g-deprecations]",
+    "pricing_usd_per_mtok.cached_input: the model page says caching is not supported",
+    "voice.latency: Google publishes no time-to-first-audio figure; only throughput is given, from a measurer",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "maya1",
+  "name": "Maya1",
+  "maker": "Maya Research",
+  "family": "Maya",
+  "class": "Maya",
+  "generation": "1",
+  "released": "2025-10-18",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights maya-research/maya1 (about 3.30B parameters in the file listing)",
+    "vLLM streaming script in the repository",
+    "Maya Research Studio playground"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text with inline emotion tags, preceded by a voice description inside a description wrapper in the prompt [hf-maya1]",
+    "output_audio": "24 kHz audio decoded from SNAC codes at about 0.98 kbps; streaming with vLLM [hf-maya1]",
+    "voices": "voice design from a description; no preset voices and no cloning documented [hf-maya1]",
+    "languages": [
+      "English [hf-maya1]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "Maya Research states sub-100 ms latency for real-time use with vLLM; the page gives no test set or hardware for it [hf-maya1]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under Apache-2.0. A single GPU with 16 GB or more is advised: A100, H100 or RTX 4090 [hf-maya1]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1046.47,
+      "setting": "blind pairwise listener votes; open weights; the model page headline gives 1046.47 and the leaderboard data in the same page gives 1048.58",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-maya1",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/maya-research/maya1"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/maya-research/maya1",
+  "sources": [
+    {
+      "id": "hf-maya1",
+      "url": "https://huggingface.co/maya-research/maya1",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-maya1-api",
+      "url": "https://huggingface.co/api/models/maya-research/maya1",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-maya1-emotions",
+      "url": "https://huggingface.co/maya-research/maya1/raw/main/emotions.txt",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "maya-site",
+      "url": "https://www.mayaresearch.ai",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-maya1",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/maya-1",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the Hugging Face repository was created 2025-10-18; the files were last changed 2026-07-11 [hf-maya1-api]",
+    "voice.session_limit: the card states no maximum",
+    "tag count: the card names eight tags and says there are 12 or more besides, and its comparison table says 20+; the emotions file in the repository lists 17 [hf-maya1] [hf-maya1-emotions]",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

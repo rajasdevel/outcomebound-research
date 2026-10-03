@@ -1,0 +1,139 @@
+{
+  "id": "step-audio-editx",
+  "name": "Step-Audio-EditX",
+  "maker": "StepFun",
+  "family": "StepAudio",
+  "class": "Step-Audio EditX",
+  "generation": null,
+  "released": "2025-11-12",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (code Apache-2.0; weights licence not stated on the model page)",
+  "access": [
+    "Hugging Face weights stepfun-ai/Step-Audio-EditX (3B) and a 4-bit AWQ build, plus the Step-Audio-Tokenizer",
+    "stepfun-ai/Step-Audio-EditX repository: command-line scripts, Gradio app, Docker, vLLM support (2026-01-23)",
+    "StepFun Audio Studio and Hugging Face Space (an API key from the StepFun Open Platform is needed for the studio)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "audio"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "A reference or source clip of up to about 30 seconds with its transcript, plus target text for cloning, or an edit type and edit value; paralinguistic tags in the text [hf-editx]",
+    "output_audio": "Wave files, one per edit iteration (for example an iter1 and an iter2 file); the pages read state no sample rate [hf-editx]",
+    "voices": "custom cloning from a clip; editing keeps the speaker of the source clip [hf-editx]",
+    "languages": [
+      "Mandarin, English, Sichuanese and Cantonese for cloning; Japanese and Korean added on 2025-11-28; a bracket tag names the dialect or language before the text [hf-editx]"
+    ],
+    "turn_detection": "none: a synthesis and editing model",
+    "interruption": "Not a conversation model",
+    "latency": null,
+    "session_limit": "The README advises keeping audio under 30 seconds per inference [hf-editx]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, no price. About 12 GB of GPU memory is the critical value and 16 GB is safer, on an NVIDIA GPU with CUDA; tested on one L40S; Linux; Python 3.12 or later and PyTorch 2.9.1 or later [hf-editx]. The hosted Audio Studio prices were not read"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1092.01,
+      "setting": "blind pairwise listener votes; listed as Step Audio EditX (Mar 2026), open weights; the model page headline gives 1092.01 and the leaderboard data in the same page gives 1095.18",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-editx",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Emotion editing accuracy after 3 iterations on other systems' voices, average of Chinese and English (README table)",
+      "score": 74.9,
+      "setting": "edits of MiniMax-2.6-hd voices; iteration 0 (no edit) scores 63.3; the same table gives 74.5 for Doubao-Seed-TTS-2.0 voices; speaking-style accuracy rises from 44.2 to 65.8 for MiniMax voices",
+      "harness": "StepFun's evaluation in the README",
+      "measured_by": "maker",
+      "source": "hf-editx",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/stepfun-ai/Step-Audio-EditX",
+    "https://github.com/stepfun-ai/Step-Audio-EditX"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/stepfun-ai/Step-Audio-EditX",
+  "sources": [
+    {
+      "id": "hf-editx",
+      "url": "https://huggingface.co/stepfun-ai/Step-Audio-EditX",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-editx-api",
+      "url": "https://huggingface.co/api/models/stepfun-ai/Step-Audio-EditX",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-editx",
+      "url": "https://github.com/stepfun-ai/Step-Audio-EditX",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-editx",
+      "url": "https://arxiv.org/abs/2511.03601",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "aa-editx",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/step-audio-editx-mar-2026",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "bb-blog2s",
+      "url": "https://breezeblue.ai/breeze-tts-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: the maker numbers no generation of this model",
+    "released: the weights and inference code were released 2025-11-12; the technical report was released 2025-11-06; a model update with more paralinguistic tags followed on 2026-01-23 [hf-editx]",
+    "voice.output_audio: no sample rate is stated",
+    "weights licence: the README states the code licence only, and the Hugging Face licence field is empty [hf-editx] [hf-editx-api]",
+    "voice.latency: not published in the sources read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

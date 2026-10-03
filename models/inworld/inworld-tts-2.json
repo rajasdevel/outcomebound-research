@@ -1,0 +1,215 @@
+{
+  "id": "inworld-tts-2",
+  "name": "Inworld Realtime TTS-2",
+  "maker": "Inworld",
+  "family": "Inworld Realtime TTS",
+  "class": "Inworld Realtime TTS",
+  "generation": "2",
+  "released": "2026-05-05",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Inworld TTS API: unary POST /tts/v1/voice, streaming POST /tts/v1/voice:stream, WebSocket /v1/tts/synthesize:websocket, async and batch jobs (preview), model id inworld-tts-2",
+    "OpenAI-compatible POST /v1/audio/speech (since 2026-09-11)",
+    "Inworld TTS Playground, Inworld CLI and MCP server",
+    "Inworld Realtime API (speech to speech), which renders its speech with this model",
+    "Integrations: LiveKit, Twilio, Pipecat and others"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with bracketed steering instructions, non-verbal tags, SSML break tags, inline IPA and verbatim tags",
+    "output_audio": "MP3 (16 to 48 kHz, 32 to 320 kbps; the default), PCM, WAV and LINEAR16 (16-bit, 8 to 48 kHz), Opus (8 to 48 kHz, 32 to 192 kbps), mu-law and A-law (8 kHz) [iw-audio]",
+    "voices": "built-in voices, instant voice cloning from as little as 3 seconds of audio, professional voice cloning (beta), and voice design from a description of 7 to 1,024 characters [iw-audio] [iw-clone] [iw-design] [iw-intro]",
+    "languages": [
+      "200+ languages and locales in two tiers; Tier 1 is Arabic, Chinese, Dutch, English, French, German, Hebrew, Hindi, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish [iw-lang]"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "100 ms P90 time to first audio byte, measured server-side and excluding network latency, at high concurrency per the maker; Inworld Realtime TTS-2 Flash is stated at 20 ms [iw-intro]",
+    "session_limit": "2,000 characters per unary request, 4,000 per streaming request, 2,000 per WebSocket sendText message, and 100,000 characters per async job (10,000 on On-Demand; async is preview) [iw-unary] [iw-ws]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. Inworld bills per million characters and lowers the rate on higher plans. Realtime TTS-2: On-Demand US$25, Creator US$20 (plan fee US$25 a month), Builder US$17.50 (US$100), Developer US$15 (US$300), Growth US$12.50 (US$1,500) and Enterprise as low as US$5 [iw-pricing] [iw-billing]. The Batch API costs 20% less per character [iw-billing]. On-Demand includes up to 70 minutes of free TTS [iw-billing]. Context text sent in `synthesisContext` is not billed [iw-guide]. Artificial Analysis lists US$20.83 per 1M characters [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1251.26,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.inworld.ai/tts/capabilities/steering",
+    "https://docs.inworld.ai/tts/best-practices/generating-speech",
+    "https://docs.inworld.ai/tts/voice-design"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.inworld.ai/tts/tts-models",
+  "sources": [
+    {
+      "id": "iw-intro",
+      "url": "https://docs.inworld.ai/tts/tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-models",
+      "url": "https://docs.inworld.ai/tts/tts-models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-steering",
+      "url": "https://docs.inworld.ai/tts/capabilities/steering",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-guide",
+      "url": "https://docs.inworld.ai/tts/best-practices/generating-speech",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-audio",
+      "url": "https://docs.inworld.ai/tts/capabilities/generating-audio",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-lang",
+      "url": "https://docs.inworld.ai/tts/capabilities/multilingual",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-design",
+      "url": "https://docs.inworld.ai/tts/voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-pause",
+      "url": "https://docs.inworld.ai/tts/capabilities/pause-controls",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-pron",
+      "url": "https://docs.inworld.ai/tts/capabilities/custom-pronunciation",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-verbatim",
+      "url": "https://docs.inworld.ai/tts/capabilities/verbatim",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-unary",
+      "url": "https://docs.inworld.ai/tts/synthesize-speech",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-ws",
+      "url": "https://docs.inworld.ai/tts/synthesize-speech-websocket",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-billing",
+      "url": "https://docs.inworld.ai/portal/billing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-pricing",
+      "url": "https://inworld.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-release",
+      "url": "https://docs.inworld.ai/release-notes/tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-natural",
+      "url": "https://docs.inworld.ai/realtime/usage/naturalness",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "iw-clone",
+      "url": "https://docs.inworld.ai/tts/instant-voice-cloning",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published in tokens; the limits are in characters, see voice.session_limit",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M characters), see notes",
+    "system_card: Inworld publishes no system card or model card in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "voices: the number of built-in voices is not stated in the pages read",
+    "released: the TTS release notes announce the model on 2026-05-05; Artificial Analysis dates it 2026-08-31 [iw-release] [aa-tts-board]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

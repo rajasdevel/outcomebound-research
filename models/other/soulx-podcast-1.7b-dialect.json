@@ -1,0 +1,124 @@
+{
+  "id": "soulx-podcast-1.7b-dialect",
+  "name": "SoulX-Podcast-1.7B-dialect",
+  "maker": "Soul AI Lab",
+  "family": "SoulX-Podcast",
+  "class": "SoulX-Podcast",
+  "generation": null,
+  "released": "2025-10-27",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights Soul-AILab/SoulX-Podcast-1.7B-dialect (about 2.06B parameters in the file listing)",
+    "Soul-AILab/SoulX-Podcast repository with a command-line script, a web UI and a Docker image with vLLM support"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "A JSON script of speaker turns with a reference clip and its transcript for each speaker; tags inside the turn text [gh-soulx]",
+    "output_audio": "A wav file written by the command-line script; the pages read state no sample rate [gh-soulx]",
+    "voices": "custom cloning from a reference clip for each speaker; cross-dialect cloning [hf-soulx]",
+    "languages": [
+      "Mandarin and English; the dialect checkpoint adds Chinese dialects, named as Sichuanese, Henanese and Cantonese [hf-soulx-d]"
+    ],
+    "turn_detection": "none: a synthesis model; speaker turns are marked in the script [gh-soulx]",
+    "interruption": "Not a conversation model; streaming inference was not yet supported [hf-soulx]",
+    "latency": null,
+    "session_limit": "The paper reports continuous conversation of more than 90 minutes with stable timbre [arxiv-soulx]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under Apache-2.0. No GPU memory figure is stated on the pages read"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://github.com/Soul-AILab/SoulX-Podcast"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B-dialect",
+  "sources": [
+    {
+      "id": "hf-soulx",
+      "url": "https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-soulx-api",
+      "url": "https://huggingface.co/api/models/Soul-AILab/SoulX-Podcast-1.7B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-soulx-d",
+      "url": "https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B-dialect",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-soulx-d-api",
+      "url": "https://huggingface.co/api/models/Soul-AILab/SoulX-Podcast-1.7B-dialect",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-soulx-tokens",
+      "url": "https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B/raw/main/added_tokens.json",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-soulx",
+      "url": "https://github.com/Soul-AILab/SoulX-Podcast",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-soulx",
+      "url": "https://arxiv.org/abs/2510.23541",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: the maker numbers no generation",
+    "released: the Hugging Face repositories were created 2025-10-27 and the paper was submitted the same day [hf-soulx-d-api] [arxiv-soulx]",
+    "voice.latency: no figure read",
+    "tag list: the repository README documents five tags (laughter, sigh, breathing, coughing, throat_clearing) and the model cards name laughter and sighs; the tokenizer defines many more tags, which are not documented controls [gh-soulx] [hf-soulx] [hf-soulx-tokens]",
+    "benchmarks: the paper reports its own tests; no independent result was found; no figure on delivery control was read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

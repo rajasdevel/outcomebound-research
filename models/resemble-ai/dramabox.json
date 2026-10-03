@@ -1,0 +1,102 @@
+{
+  "id": "dramabox",
+  "name": "Dramabox",
+  "maker": "Resemble AI",
+  "family": "Dramabox",
+  "class": "Dramabox",
+  "generation": "1",
+  "released": "2026-04-17",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (LTX-2 Community License)",
+  "access": [
+    "Hugging Face weights ResembleAI/Dramabox (an audio-only 3.3B diffusion transformer, adapted with an IC-LoRA from LTX-2.3)",
+    "resemble-ai/DramaBox code repository",
+    "Hugging Face ZeroGPU demo Space"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "A scene description in plain English: stage directions outside quotation marks and spoken lines inside double quotation marks; optional reference clip of 10 seconds or more (3 to 30 seconds are used) [hf-dramabox]",
+    "output_audio": "A wav file written by the inference script, with the Perth watermark on by default; the pages read state no sample rate [hf-dramabox]",
+    "voices": "custom cloning from a 10-second clip; without a clip the model picks a voice that fits the description [hf-dramabox]",
+    "languages": [
+      "English [hf-dramabox]"
+    ],
+    "turn_detection": "none: a synthesis model; a prompt can hold several lines and several speakers as a scene [hf-dramabox]",
+    "interruption": "Not a conversation model",
+    "latency": "Resemble AI: about 2.5 seconds per generation on an H100 once the server is warm; this is whole-generation time, not time to first audio [hf-dramabox]",
+    "session_limit": "Duration is estimated from the prompt, with a setting to fix it; the card suggests 20 to 60 seconds for music or long scenes [hf-dramabox]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights under the LTX-2 Community License (licence date 2026-01-05). The licence allows use for any purpose under its use restrictions, but an entity with annual revenue of US$10,000,000 or more needs a paid commercial licence from Lightricks [hf-dramabox-license]. About 24 GB of GPU memory at peak with a warm server, plus an 8 GB 4-bit text encoder that downloads at first run [hf-dramabox]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://huggingface.co/ResembleAI/Dramabox"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/ResembleAI/Dramabox",
+  "sources": [
+    {
+      "id": "hf-dramabox",
+      "url": "https://huggingface.co/ResembleAI/Dramabox",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-dramabox-api",
+      "url": "https://huggingface.co/api/models/ResembleAI/Dramabox",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-dramabox-license",
+      "url": "https://huggingface.co/ResembleAI/Dramabox/raw/main/LICENSE",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-resemble-list2",
+      "url": "https://huggingface.co/api/models?author=ResembleAI&sort=lastModified&direction=-1&limit=15",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the Hugging Face repository was created 2026-04-17; the files were last changed 2026-05-13 [hf-dramabox-api]",
+    "weights licence terms: the LTX-2 Community License was read for its commercial threshold only; its use restrictions in Attachment A were not summarised",
+    "benchmarks: none read for this model; Artificial Analysis lists no Dramabox entry",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

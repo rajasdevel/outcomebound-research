@@ -1,0 +1,203 @@
+{
+  "id": "speech-2.8-hd",
+  "name": "MiniMax Speech 2.8 HD",
+  "maker": "MiniMax",
+  "family": "MiniMax Speech",
+  "class": "MiniMax Speech HD",
+  "generation": "2.8",
+  "released": "2026-01-23",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "MiniMax Audio API: synchronous HTTP POST /v1/t2a_v2, WebSocket and bidirectional WebSocket, model speech-2.8-hd; asynchronous long-text jobs",
+    "MiniMax Audio website"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with optional pause markers, inline pronunciation, and interjection tags in parentheses",
+    "output_audio": "mp3, pcm, flac, wav, pcmu_raw, pcmu_wav (G.711 mu-law, 8 kHz) and opus; sample rates 8000, 16000, 22050, 24000, 32000 and 44100 Hz; mono or stereo; MP3 bitrates 32, 64, 128 and 256 kbps; non-streaming output as hex or as a URL valid for 24 hours [mm-t2a-http]",
+    "voices": "a list of system voices, rapid voice cloning from a sample of 10 seconds to 5 minutes (a clone unused for 7 days is deleted), and voice design from a text description [mm-t2a-http] [mm-voice-clone] [mm-voice-design] [mm-news-28]",
+    "languages": [
+      "Chinese",
+      "Cantonese",
+      "English",
+      "Spanish",
+      "French",
+      "Russian",
+      "German",
+      "Portuguese",
+      "Arabic",
+      "Italian",
+      "Japanese",
+      "Korean",
+      "Indonesian",
+      "Vietnamese",
+      "Turkish",
+      "Dutch",
+      "Ukrainian",
+      "Thai",
+      "Polish",
+      "Romanian",
+      "Greek",
+      "Czech",
+      "Finnish",
+      "Hindi",
+      "Bulgarian",
+      "Danish",
+      "Hebrew",
+      "Malay",
+      "Persian",
+      "Slovak",
+      "Swedish",
+      "Croatian",
+      "Filipino",
+      "Hungarian",
+      "Norwegian",
+      "Slovenian",
+      "Catalan",
+      "Nynorsk",
+      "Tamil",
+      "Afrikaans"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": null,
+    "session_limit": "10,000 characters per synchronous request, and streaming is advised above 3,000 characters; asynchronous jobs take up to 1M characters [mm-t2a-http] [mm-async]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. Pay-as-you-go list price US$100 per 1M characters for the synchronous and the asynchronous endpoints [mm-paygo]. Voice design costs US$3 per voice and rapid voice cloning US$1.5 per voice, each charged at first use in synthesis. The pricing page gives US$60 per 1M characters for voice-design preview audio, while the voice design API reference gives US$30 [mm-paygo] [mm-voice-design]. Artificial Analysis lists US$100 per 1M characters [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1172.76,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.minimax.io/docs/api-reference/speech-t2a-http",
+    "https://platform.minimax.io/docs/guides/speech-t2a-websocket",
+    "https://platform.minimax.io/docs/api-reference/voice-design-design"
+  ],
+  "system_card": null,
+  "model_page": "https://platform.minimax.io/docs/guides/speech-t2a-websocket",
+  "sources": [
+    {
+      "id": "mm-t2a-http",
+      "url": "https://platform.minimax.io/docs/api-reference/speech-t2a-http",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-ws-guide",
+      "url": "https://platform.minimax.io/docs/guides/speech-t2a-websocket",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-async",
+      "url": "https://platform.minimax.io/docs/guides/speech-t2a-async",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-voice-design",
+      "url": "https://platform.minimax.io/docs/api-reference/voice-design-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-voice-clone",
+      "url": "https://platform.minimax.io/docs/api-reference/voice-cloning-clone",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-release",
+      "url": "https://platform.minimax.io/docs/release-notes/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-news-28",
+      "url": "https://www.minimax.io/news/minimax-speech-28",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-news-26",
+      "url": "https://www.minimax.io/news/minimax-speech-26",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-paygo",
+      "url": "https://platform.minimax.io/docs/guides/pricing-paygo",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mm-limits",
+      "url": "https://platform.minimax.io/docs/guides/rate-limits",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published in tokens; the limit is in characters, see voice.session_limit",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M characters), see notes",
+    "system_card: MiniMax publishes no system card or model card for Speech 2.8 in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "voice.latency: MiniMax gives no latency figure for Speech 2.8 in the pages read; its Speech 2.6 page gives under 250 ms end to end [mm-news-26]",
+    "released: the model release notes date Speech 2.8 to 2026-01-23; Artificial Analysis dates it 2026-02-14 [mm-release] [aa-tts-board]",
+    "voices: the number of system voices was not counted from the pages read",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

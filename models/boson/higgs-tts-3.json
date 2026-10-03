@@ -1,0 +1,206 @@
+{
+  "id": "higgs-tts-3",
+  "name": "Higgs TTS 3",
+  "maker": "Boson AI",
+  "family": "Higgs",
+  "class": "Higgs TTS",
+  "generation": "3",
+  "released": "2026-06-04",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Boson Higgs TTS 3 Research and Non-Commercial License)",
+  "access": [
+    "Boson AI API: POST /v1/audio/speech, model higgs-tts-3 (hosted)",
+    "Hugging Face weights bosonai/higgs-tts-3-4b (about 4.65B parameters in the file listing)",
+    "Self-hosted with SGLang-Omni or vLLM-Omni (both OpenAI-style /v1/audio/speech servers)",
+    "Boson Workspace playground"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text with inline control tags (up to 5,000 characters per request on the hosted API); optional reference audio for cloning (AAC, WAV, MP3, FLAC or Opus, as a URL, data URI or base64; inline payloads up to 10 MB) with its transcript [boson-api-speech]",
+    "output_audio": "Hosted API: mp3 (default), opus, pcm, wav, aac or flac; streaming needs pcm. The weights decode 24 kHz audio at 25 frames per second [boson-api-speech] [hf-higgs3]",
+    "voices": "6 preset voices (chloe, eleanor, jake, marcus, nora, oliver) plus zero-shot cloning from a reference clip (the maker recommends 5 to 30 seconds of clean speech) and reusable registered voices [boson-tts-voices]",
+    "languages": [
+      "102 languages with single-digit WER or CER, 85 of them under 5; language is auto-detected from the text [boson-tts-languages]"
+    ],
+    "turn_detection": "none: a synthesis model; the maker points to Higgs Realtime for conversation [boson-tts-overview]",
+    "interruption": "Not a conversation model: the client stops playback and cancels the request",
+    "latency": null,
+    "session_limit": "5,000 characters per request on the hosted API; the maker recommends about 300 characters per request because longer text is not yet reliably supported [boson-api-speech]. The weights were trained with an 8,192-token sequence length [hf-higgs3]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Hosted API list price US$0.015 per 1,000 input characters [boson-pricing]. The weights are free for research and non-commercial use; production, hosted or embedded use needs a separate licence from Boson. A creator grant allows monetised podcasts, videos and similar content with credit to Boson [hf-higgs3]. A GPU is required; no minimum memory is stated, and Boson's throughput table used one H100 [hf-higgs3]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1036.42,
+      "setting": "blind pairwise listener votes; listed as Higgs Audio V3 TTS, open weights; the model page headline gives 1036.42 and the leaderboard data in the same page gives 1037.9",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-higgs3",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "EmergentTTS-Eval overall win rate against the baseline row (Boson table)",
+      "score": 53.65,
+      "setting": "judge preference; every model has the same reference audio; no inline control tags were used; baseline is the maker's chosen row",
+      "harness": "EmergentTTS-Eval, run by Boson",
+      "measured_by": "maker",
+      "source": "boson-blog-tts3",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "EmergentTTS-Eval emotions win rate (Boson table)",
+      "score": 53.75,
+      "setting": "same setting; Fish Audio S2 Pro scores 53.04, Qwen3-TTS-1.7B 45.54, MOSS-TTS-v1.5 60.54 and OmniVoice 61.07 in the same table",
+      "harness": "EmergentTTS-Eval, run by Boson",
+      "measured_by": "maker",
+      "source": "boson-blog-tts3",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "SeedTTS word error rate, macro average over 2 languages (lower is better)",
+      "score": 1.11,
+      "setting": "Boson's run; next best listed is OmniVoice at 1.21",
+      "harness": "Seed-TTS eval, run by Boson",
+      "measured_by": "maker",
+      "source": "boson-blog-tts3",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/bosonai/higgs-tts-3-4b/raw/main/PROMPTING.md",
+    "https://docs.boson.ai/models/higgs-tts/tags"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.boson.ai/models/higgs-tts/overview",
+  "sources": [
+    {
+      "id": "hf-higgs3",
+      "url": "https://huggingface.co/bosonai/higgs-tts-3-4b",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-higgs3-prompting",
+      "url": "https://huggingface.co/bosonai/higgs-tts-3-4b/raw/main/PROMPTING.md",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-higgs3-api",
+      "url": "https://huggingface.co/api/models/bosonai/higgs-tts-3-4b",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-blog-tts3",
+      "url": "https://www.boson.ai/blog/higgs-audio-v3-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-tts-overview",
+      "url": "https://docs.boson.ai/models/higgs-tts/overview",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-tts-tags",
+      "url": "https://docs.boson.ai/models/higgs-tts/tags",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-tts-voices",
+      "url": "https://docs.boson.ai/models/higgs-tts/voices",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-tts-languages",
+      "url": "https://docs.boson.ai/models/higgs-tts/languages",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-api-speech",
+      "url": "https://docs.boson.ai/api-reference/audio/create-a-speech",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-pricing",
+      "url": "https://docs.boson.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-higgs",
+      "url": "https://github.com/boson-ai/higgs-audio",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-higgs2",
+      "url": "https://huggingface.co/bosonai/higgs-tts-2-3b-base",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-higgs3",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/higgs-audio-v3-tts",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "Artificial Analysis Speech Arena latency or throughput: the model page gives an Elo only; no characters-per-second figure was read",
+    "released: the maker's blog post and the Hugging Face repository date it 2026-06-04; the weights were last changed 2026-09-04 [boson-blog-tts3] [hf-higgs3-api]",
+    "voice.latency: Boson states no time-to-first-audio figure; its card says only sub-second time to first audio when streaming on a self-hosted server [hf-higgs3]",
+    "hardware: the sources give no minimum GPU memory",
+    "Artificial Analysis lists the model as Higgs Audio V3 TTS; the maker renamed its Higgs Audio models Higgs TTS [aa-higgs3] [hf-higgs2]",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

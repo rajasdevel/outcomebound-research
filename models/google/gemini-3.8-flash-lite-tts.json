@@ -1,0 +1,199 @@
+{
+  "id": "gemini-3.8-flash-lite-tts",
+  "name": "Gemini 3.8 Flash-Lite TTS",
+  "maker": "Google",
+  "family": "Gemini 3.8",
+  "class": "Gemini Flash-Lite TTS",
+  "generation": "3.8",
+  "released": "2026-09-22",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API (Interactions API and generateContent; REST and SDKs)",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform (the model card lists it and the launch post said coming soon; Google Cloud's Text-to-Speech page says the 3.8 models are in Preview through the Gemini Enterprise API only, and not through the Cloud Text-to-Speech API)",
+    "Google Vids"
+  ],
+  "context_window": 8192,
+  "max_output": 16384,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text only, with the same speech_metadata annotations and inline tags as 3.8 Flash TTS. Reference audio goes only to the Voices API [g-tts-guide] [g-voice-repl]",
+    "output_audio": "The same as 3.8 Flash TTS: WAV (24 kHz, 16-bit, mono) by default on a unary request, raw L16 PCM at 24 kHz on a streaming request, and mu-law or A-law on request [g-tts-guide]. Output carries a SynthID watermark [g-blog-38]",
+    "voices": "custom cloning and voice design: the same 30 prebuilt studio voices, Extended Voice Library, voice design and voice replication as 3.8 Flash TTS, with 200 stored custom voices per project [g-tts-guide] [g-voice-design] [g-voice-repl]",
+    "languages": [
+      "101 languages by the model page table (the guide says over 100), with automatic detection of the input language [g-model-lite-page] [g-tts-guide]"
+    ],
+    "turn_detection": "none: a synthesis model. Every turn of a multi-speaker request names its speaker in speech_metadata [g-tts-guide]",
+    "interruption": "Not a conversation model. The pages read describe no barge-in or cancel message; the client stops playback (inferred) [g-tts-guide]",
+    "latency": "Google publishes no time-to-first-audio figure and describes the model only as low latency. Artificial Analysis reports a median of 57.7 characters generated per second (throughput, not latency) [aa-g38l] [g-model-lite-page]",
+    "session_limit": "Input up to 8,192 tokens and output up to 16,384 tokens per request on the Gemini API; the model card gives 8K text in and 64K tokens of audio out [g-model-lite-page] [g-card-38]. A single request takes at most 2 speakers with prebuilt voices [g-tts-guide]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.5,
+    "output": 6.0,
+    "cached_input": 0.125,
+    "notes": "Per token, Gemini API Standard tier, paid plan [g-pricing]. The input field is the text rate and the output field is the audio rate. Both rates are promotional until 2026-12-31 and double on 2027-01-01: text in US$0.50 then US$1.00, audio out US$6.00 then US$12.00 per Mtok. Audio counts 25 tokens a second, so the audio rate is about US$0.0015 per 10 seconds of speech until the change. Cached input is US$0.125 then US$0.25. Batch and Flex cost half of Standard. The free tier costs nothing and Google can use its data to improve products; the paid tier is not used for that. Artificial Analysis converts the price to US$11.0 per 1M characters [aa-pv]."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1241.71,
+      "setting": "blind pairwise listener votes on each provider's own voices; rank 8 of 93 (range 6 to 9), 2,372 votes, 8 voices; the model page gives 1241.71 and the leaderboard table gives 1242",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-g38l",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Artificial Analysis Controlled Voice Arena Elo (English, US and UK)",
+      "score": 1059,
+      "setting": "blind votes on the same 8 cloned voices for every model; rank 10 (range 8 to 13), 2,494 samples; the board fixes OpenAudio S1 at 1000",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-cv",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Artificial Analysis text-to-speech median characters per second",
+      "score": 57.74,
+      "setting": "median generation speed in the benchmark run; read from the data on the model page",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-g38l",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/speech-generation",
+    "https://ai.google.dev/gemini-api/docs/voice-design",
+    "https://ai.google.dev/gemini-api/docs/voice-replication"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash-lite-tts",
+  "sources": [
+    {
+      "id": "g-cloud-tts",
+      "url": "https://cloud.google.com/text-to-speech/docs/gemini-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-tts-guide",
+      "url": "https://ai.google.dev/gemini-api/docs/speech-generation",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-voice-design",
+      "url": "https://ai.google.dev/gemini-api/docs/voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-voice-repl",
+      "url": "https://ai.google.dev/gemini-api/docs/voice-replication",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-models",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-card-38",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-eval-38",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-8-tts/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-blog-38",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-pv",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-cv",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard/controlled-voice",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "g-model-lite-page",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash-lite-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-g38l",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/gemini-3-8-flash-lite-tts",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the changelog and the model pages give 2026-09-22 and the launch post gives 2026-09-23 [g-changelog] [g-blog-38]",
+    "voice.latency: Google publishes no time-to-first-audio figure; only throughput is given, from a measurer",
+    "system_card: the card at the URL covers Live and both TTS models together; its evaluation page shows results as images that could not be read as text [g-eval-38]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

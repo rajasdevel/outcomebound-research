@@ -1,0 +1,143 @@
+{
+  "id": "qwen3-tts-12hz-1.7b-customvoice",
+  "name": "Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen3-TTS",
+  "class": "Qwen TTS",
+  "generation": "3",
+  "released": "2026-01-22",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice and ModelScope",
+    "qwen-tts Python package (PyPI)",
+    "vLLM-Omni (offline inference at release)",
+    "Alibaba Cloud Model Studio hosted models of the same series: qwen3-tts-instruct-flash and qwen3-tts-flash (the docs do not say they are these weights)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text, a speaker name from the 9 built-in voices and an optional style instruction in `instruct` [qwen3tts-gh]",
+    "output_audio": "A waveform and its sample rate returned by the qwen-tts package; the README does not state the rate [qwen3tts-gh]",
+    "voices": "9 premium voices (Vivian, Serena, Uncle_Fu, Dylan, Eric, Ryan, Aiden, Ono_Anna, Sohee) across gender, age, language and Chinese dialects; no cloning in this model [qwen3tts-gh]",
+    "languages": [
+      "Chinese, English, Japanese, Korean, German, French, Russian, Portuguese, Spanish, Italian; each voice can speak all of them, with best quality in its native language [qwen3tts-gh]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "Alibaba states end-to-end synthesis latency as low as 97 ms for the series in streaming mode [qwen3tts-gh]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, no price. A GPU is needed; no minimum memory is stated [qwen3tts-gh]"
+  },
+  "benchmarks": [
+    {
+      "name": "InstructTTSEval-ZH, APS (attribute perception and synthesis, target speaker)",
+      "score": 83.0,
+      "setting": "12Hz-1.7B-CustomVoice, Alibaba's run; DSD 77.8 and RP 61.2 in the same table",
+      "harness": "InstructTTSEval",
+      "measured_by": "maker",
+      "source": "qwen3tts-gh",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "InstructTTSEval-EN, APS (attribute perception and synthesis, target speaker)",
+      "score": 77.3,
+      "setting": "12Hz-1.7B-CustomVoice, Alibaba's run; DSD 77.1 and RP 63.7; GPT-4o-mini-tts scores 76.4 APS in the same table",
+      "harness": "InstructTTSEval",
+      "measured_by": "maker",
+      "source": "qwen3tts-gh",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/QwenLM/Qwen3-TTS"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+  "sources": [
+    {
+      "id": "qwen3tts-gh",
+      "url": "https://github.com/QwenLM/Qwen3-TTS",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-q3tts-vd",
+      "url": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-q3tts-cv",
+      "url": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ali-doc-tts",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ali-doc-vd",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen-tts-voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "breeze-blog2",
+      "url": "https://breezeblue.ai/breeze-tts-2",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "voxcpm-gh",
+      "url": "https://github.com/OpenBMB/VoxCPM",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "voice.session_limit: the model page gives none",
+    "released: the README news entry is dated 2026-01-22; the Hugging Face repositories were created 2026-01-21",
+    "hardware: the sources give no GPU memory figure",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

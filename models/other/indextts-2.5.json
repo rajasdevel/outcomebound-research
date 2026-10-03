@@ -1,0 +1,138 @@
+{
+  "id": "indextts-2.5",
+  "name": "IndexTTS-2.5",
+  "maker": "Bilibili (IndexTeam)",
+  "family": "IndexTTS",
+  "class": "IndexTTS",
+  "generation": "2.5",
+  "released": "2026-08-10",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (bilibili Model Use License Agreement)",
+  "access": [
+    "Hugging Face weights IndexTeam/IndexTTS-2.5 (about 0.8B GPT backbone) and ModelScope",
+    "index-tts/index-tts repository: web UI, Python API, vLLM serving recipe",
+    "ModelScope Studio and Hugging Face Space demos"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text; a speaker reference clip; and optionally an 8-number emotion vector in the order happy, angry, sad, afraid, disgusted, melancholic, surprised, calm; or a separate emotion reference clip with a strength from 0 to 1; or an emotion description in text [gh-index]",
+    "output_audio": "22.05 kHz waveform for IndexTTS-2.5 [hf-index25]",
+    "voices": "custom cloning from one reference clip; emotion is separate from timbre, so one voice can take another clip's emotion [gh-index]",
+    "languages": [
+      "Chinese, English, Japanese, Spanish and Arabic [hf-index25]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights under the bilibili Model Use License Agreement: royalty-free, but a user whose products had more than 100 million monthly active users, or whose annual revenue exceeded RMB 1 billion, must ask bilibili for a separate licence; the model and its derivatives may not be used to improve other AI models except non-commercial ones; no price [index-license]. About 6 GB of GPU memory for inference, Python 3.10 to 3.11, an NVIDIA GPU [hf-index25]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://github.com/index-tts/index-tts",
+    "https://huggingface.co/IndexTeam/IndexTTS-2.5"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/IndexTeam/IndexTTS-2.5",
+  "sources": [
+    {
+      "id": "gh-index",
+      "url": "https://github.com/index-tts/index-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index25",
+      "url": "https://huggingface.co/IndexTeam/IndexTTS-2.5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index25-api",
+      "url": "https://huggingface.co/api/models/IndexTeam/IndexTTS-2.5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index2",
+      "url": "https://huggingface.co/IndexTeam/IndexTTS-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-index2-api",
+      "url": "https://huggingface.co/api/models/IndexTeam/IndexTTS-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "index-license",
+      "url": "https://huggingface.co/IndexTeam/IndexTTS-2.5/raw/main/LICENSE",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-index2",
+      "url": "https://arxiv.org/abs/2506.21619",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "arxiv-index25",
+      "url": "https://arxiv.org/abs/2601.03888",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "boson-blog-tts3c",
+      "url": "https://www.boson.ai/blog/higgs-audio-v3-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "voice.latency: the pages read give no latency figure",
+    "voice.session_limit: no maximum is stated",
+    "benchmarks: no instruction-following or emotion benchmark was read for IndexTTS-2.5; the maker's table lists content accuracy and speaker similarity [gh-index]",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

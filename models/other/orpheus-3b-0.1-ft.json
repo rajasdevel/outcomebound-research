@@ -1,0 +1,105 @@
+{
+  "id": "orpheus-3b-0.1-ft",
+  "name": "Orpheus 3B 0.1 finetuned",
+  "maker": "Canopy Labs",
+  "family": "Orpheus",
+  "class": "Orpheus",
+  "generation": "0.1",
+  "released": "2025-03-17",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights canopylabs/orpheus-3b-0.1-ft (gated: the repository asks for access; about 3.78B parameters in the file listing)",
+    "canopyai/Orpheus-TTS repository: streaming example, llama.cpp CPU inference, watermark option",
+    "Baseten, the maker's preferred hosted inference partner"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text with a voice name in front and optional inline emotion tags [gh-orpheus]",
+    "output_audio": "24 kHz 16-bit mono audio in the README's streaming example [gh-orpheus]",
+    "voices": "8 English voices (tara, leah, jess, leo, dan, mia, zac, zoe), listed by the maker in order of conversational realism; the pretrained model can be conditioned on one or more speech and text pairs [gh-orpheus]",
+    "languages": [
+      "English for this model; the maker released multilingual research models for French, German, Korean, Hindi, Mandarin, Spanish and Italian in April 2025 [gh-orpheus] [hf-canopy-list]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "Canopy Labs states about 200 ms streaming latency, reducible to about 100 ms with input streaming [gh-orpheus]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, no price from the maker. Hosted inference runs on Baseten at its own prices, which were not read [gh-orpheus]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://github.com/canopyai/Orpheus-TTS"
+  ],
+  "system_card": null,
+  "model_page": "https://github.com/canopyai/Orpheus-TTS",
+  "sources": [
+    {
+      "id": "gh-orpheus",
+      "url": "https://github.com/canopyai/Orpheus-TTS",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-orpheus-api",
+      "url": "https://huggingface.co/api/models/canopylabs/orpheus-3b-0.1-ft",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-canopy-list",
+      "url": "https://huggingface.co/api/models?author=canopylabs&sort=lastModified&direction=-1&limit=20",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-orpheus-commits",
+      "url": "https://api.github.com/repos/canopyai/Orpheus-TTS/commits?per_page=5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the Hugging Face repository was created 2025-03-17; the pretrained model on 2025-03-04 [hf-orpheus-api]",
+    "maintenance: the last model upload in the list read is 2025-05-06 and the last repository commit is a packaging fix of 2025-12-05; Canopy Labs published no newer release [hf-canopy-list] [gh-orpheus-commits]",
+    "voice.session_limit: not stated",
+    "hardware: the README gives no GPU memory figure; it documents CPU inference through llama.cpp",
+    "Artificial Analysis Speech Arena Elo: no Orpheus entry was found in the Artificial Analysis list read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "benchmarks: no maker or independent measurement of delivery control was read for this model",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

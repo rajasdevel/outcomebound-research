@@ -1,0 +1,96 @@
+{
+  "id": "dia-1.6b-0626",
+  "name": "Dia 1.6B (0626)",
+  "maker": "Nari Labs",
+  "family": "Dia",
+  "class": "Dia",
+  "generation": "1",
+  "released": "2025-06-26",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights nari-labs/Dia-1.6B-0626 (about 1.61B parameters)",
+    "nari-labs/dia repository and Hugging Face Transformers support",
+    "Hugging Face ZeroGPU Space"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "A dialogue script with speaker tags and inline parenthesis tags; optional audio prompt with its transcript [gh-dia]",
+    "output_audio": "Audio saved by the caller (the Transformers example saves mp3); the pages read state no sample rate [gh-dia]",
+    "voices": "no fixed voices: the model is not tuned to a voice, so each run gives a different voice unless an audio prompt or a fixed seed is used [gh-dia]",
+    "languages": [
+      "English [gh-dia]"
+    ],
+    "turn_detection": "none: a synthesis model; the two speaker tags mark turns inside the script [gh-dia]",
+    "interruption": "Not a conversation model",
+    "latency": "The README table gives realtime factors of x2.1 with compile and x1.5 without, in bfloat16 (generation speed relative to real time, on an unnamed GPU); no time-to-first-audio figure [gh-dia]",
+    "session_limit": "The README advises input that gives 5 to 20 seconds of audio; shorter sounds unnatural and longer speeds up unnaturally [gh-dia]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under Apache-2.0. About 4.4 GB of GPU memory in bfloat16 per the README table [gh-dia]. A larger hosted version had a waitlist at the time of the README [gh-dia]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://github.com/nari-labs/dia"
+  ],
+  "system_card": null,
+  "model_page": "https://github.com/nari-labs/dia",
+  "sources": [
+    {
+      "id": "gh-dia",
+      "url": "https://github.com/nari-labs/dia",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-dia-api",
+      "url": "https://huggingface.co/api/models/nari-labs/Dia-1.6B-0626",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gh-dia2",
+      "url": "https://github.com/nari-labs/dia2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the revision named 0626 was uploaded 2025-06-26; the original Dia-1.6B dates from 2025-04-20 [hf-dia-api]",
+    "voice.output_audio: no sample rate is stated",
+    "benchmarks: no independent or maker measurement of tag control was read",
+    "Artificial Analysis Speech Arena Elo: no Dia entry was found in the Artificial Analysis list read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "id": "gemini-2.5-flash-lite-preview-tts",
+  "name": "Gemini 2.5 Flash-Lite Preview TTS",
+  "maker": "Google",
+  "family": "Gemini 2.5",
+  "class": "Gemini Flash-Lite TTS",
+  "generation": "2.5",
+  "released": null,
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Google Cloud Text-to-Speech API (model name gemini-2.5-flash-lite-preview-tts; the global, us, eu and northamerica-northeast1 regions)",
+    "Vertex AI API (generateContent; the global region and several other regions)"
+  ],
+  "context_window": 8192,
+  "max_output": 16384,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text only, with a prompt field for the style and a text field that can hold bracket markup tags [g-cloud-tts]",
+    "output_audio": "Cloud Text-to-Speech API: unary LINEAR16 (default), ALAW, MULAW, MP3, OGG_OPUS and PCM, and streaming PCM (default), ALAW, MULAW and OGG_OPUS; the Vertex AI API returns 16-bit 24 kHz PCM without a WAV header [g-cloud-tts]",
+    "voices": "30 prebuilt voices, each with a gender; single speaker only; the pages read document no voice design and no voice replication for this model [g-cloud-tts]",
+    "languages": [
+      "The Cloud page lists a table of locales marked GA or Preview, 87 rows by our count and about 24 marked GA; the release note of 2025-09-30 says 80 or more locales for the 2.5 models [g-cloud-tts] [g-cloud-rn]"
+    ],
+    "turn_detection": "none: a synthesis model, and the page lists single-speaker output only [g-cloud-tts]",
+    "interruption": "Not a conversation model. The Cloud API supports streaming synthesis; the page describes no cancel message [g-cloud-tts]",
+    "latency": "Google describes the model as low latency and publishes no figure [g-cloud-tts]",
+    "session_limit": "Cloud Text-to-Speech API: the text field and the prompt field are at most 4,000 bytes each and 8,000 bytes together, and output past about 655 seconds is truncated. Token limits are 8,192 in and 16,384 out [g-cloud-tts]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.5,
+    "output": 10.0,
+    "cached_input": null,
+    "notes": "Per token. Google Cloud's price list gives US$0.50 per Mtok of text in and US$10.00 per Mtok of audio out for this model, listed together with Gemini 2.5 Flash TTS [g-cloud-pricing]. The input field is the text rate and the output field is the audio rate. Artificial Analysis converts the price to US$9.2 per 1M characters [aa-pv]."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1083,
+      "setting": "blind pairwise listener votes on each provider's own voices; listed as Gemini 2.5 Flash Lite TTS; rank 43 of 93 (range 40 to 48), 3,122 votes, 5 voices",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-pv",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://cloud.google.com/text-to-speech/docs/gemini-tts"
+  ],
+  "system_card": null,
+  "model_page": "https://cloud.google.com/text-to-speech/docs/gemini-tts",
+  "sources": [
+    {
+      "id": "g-cloud-tts",
+      "url": "https://cloud.google.com/text-to-speech/docs/gemini-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-cloud-pricing",
+      "url": "https://cloud.google.com/text-to-speech/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g-cloud-rn",
+      "url": "https://cloud.google.com/text-to-speech/docs/release-notes",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-pv",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: no launch date was found; Google Cloud's release note of 2025-12-11 adds regions for it, and Artificial Analysis lists it as December 2025 [g-cloud-rn] [aa-pv]",
+    "system_card: no model card for the 2.5 TTS models was found",
+    "voice.latency: no published figure",
+    "Artificial Analysis throughput: the site lists no model page for this model, so no speed figure was found",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

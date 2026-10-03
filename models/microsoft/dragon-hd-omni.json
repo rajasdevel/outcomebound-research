@@ -1,0 +1,127 @@
+{
+  "id": "dragon-hd-omni",
+  "name": "Dragon HD Omni",
+  "maker": "Microsoft",
+  "family": "Azure Speech HD",
+  "class": "Dragon HD Omni",
+  "generation": null,
+  "released": null,
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Azure Speech in Microsoft Foundry (Speech SDK, Speech CLI and REST; cloud only; preview regions in the blog were East US, West Europe, Sweden Central and Southeast Asia)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: SSML or plain text, with optional bracket style markers and paralinguistic tags in the text [ms-ssml-voice] [ms-hd]",
+    "output_audio": "opus, mp3, pcm and truesilk at 8, 16, 24 and 48 kHz. HD voices run in real time only; batch synthesis is not offered [ms-hd]",
+    "voices": "custom cloning: 700+ voices in the maker's blog and in the capability text of the HD page (its comparison table says 500+); about 300 are AI-generated; personal voice (gated) is a separate Azure Speech feature [ms-hd] [ms-tc-omni]",
+    "languages": [
+      "Multilingual: voice names carry the locale of the original persona (for example de-de, en-us, zh-cn), and the Omni voices detect and switch the spoken language from the text; HD Flash voices speak only zh-CN and en-US [ms-hd] [ms-tc-omni]"
+    ],
+    "turn_detection": "none: a synthesis model. A multi-talker DragonHD voice takes turns inside an mstts:dialog element, one mstts:turn per speaker [ms-ssml-voice]",
+    "interruption": "Not a conversation model. The pages read describe no barge-in message for synthesis; the client stops playback (inferred) [ms-hd]",
+    "latency": "Microsoft's HD voice page lists latency below 300 ms for Azure Speech HD voices; it does not say how this is measured [ms-hd]",
+    "session_limit": "No per-request limit for HD voices is published in the pages read [ms-hd]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. The Azure retail price API lists US$22.00 per 1M characters for Neural HD Text to Speech, effective 2026-03-01 [azure-retail]. Microsoft's pages do not say which HD model that meter covers. Artificial Analysis also shows US$22 for a model it calls Azure HD 2.5 [aa-hd25]. The Azure pricing page shows no figure in the text read."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis median characters per second",
+      "score": 127.98,
+      "setting": "median generation speed in the benchmark run; the site lists the model with release date 2026-07-19, no Elo and no price",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-omni",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/high-definition-voices",
+    "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-voice"
+  ],
+  "system_card": null,
+  "model_page": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/high-definition-voices",
+  "sources": [
+    {
+      "id": "ms-hd",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/high-definition-voices",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-ssml-voice",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-voice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-retail",
+      "url": "https://prices.azure.com/api/retail/prices?$filter=productName%20eq%20%27Azure%20Speech%27%20and%20armRegionName%20eq%20%27eastus%27",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-hd25",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/azure-hd-2-5",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ms-tc-omni",
+      "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/-/4481288",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-omni",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/azure-dragon-hd-omni",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: Microsoft gives the model no generation number",
+    "released: Microsoft's blog announced the preview on 2026-01-07; the Learn pages give no release date, and Artificial Analysis lists 2026-07-19 [ms-tc-omni] [aa-omni]",
+    "status: the blog says preview; the Learn page, updated 2026-05-21, shows no preview banner for Omni, so general availability is unconfirmed [ms-tc-omni] [ms-hd]",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M characters), see notes",
+    "context_window: not applicable to a synthesis model, and no token limit is published",
+    "max_output: no output limit is published in tokens or seconds",
+    "system_card: Microsoft publishes no model card for Dragon HD Omni in the pages read",
+    "Artificial Analysis speech arena: the site lists Dragon HD Omni without an Elo",
+    "style: the HD page says Omni predicts style from natural-language descriptions for two voices, but it shows only keyword styles; no free-text example was found [ms-hd] [ms-tc-omni]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

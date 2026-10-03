@@ -1,0 +1,177 @@
+{
+  "id": "simba-3.2",
+  "name": "Speechify Simba 3.2",
+  "maker": "Speechify",
+  "family": "Speechify Simba",
+  "class": "Speechify Simba",
+  "generation": "3.2",
+  "released": "2026-07-08",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Speechify API: POST /v1/audio/speech, POST /v1/audio/stream and a stream with timestamps, model simba-3.2",
+    "Integrations: LiveKit, Pipecat, Vapi, Deepgram Voice Agent and Puter"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text or SSML (prosody, break, emphasis, sub and speechify:style)",
+    "output_audio": "23 `output_format` values: PCM at 8, 16, 22.05, 24, 44.1 and 48 kHz, mu-law at 8 kHz, MP3 at 22.05 and 24 kHz (32 to 192 kbps), Ogg at 24 kHz, AAC at 24 kHz, and WAV at 24 and 48 kHz (not on streaming); 24 kHz PCM is the model's native output [sp-formats] [sp-latency]",
+    "voices": "catalogue voices and zero-shot voice cloning from a 10 to 30 second sample with verified consent [sp-models] [sp-clone]",
+    "languages": [
+      "English"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "First audio byte 56 ms at the median and 102 ms at p90 on the maker's production streaming path in US East, measured on 2026-09-15; the maker also cites two third-party boards at 106 ms and 123 ms to first audio, which this card did not read [sp-latency]",
+    "session_limit": "2,000 characters per /v1/audio/speech request and 20,000 per streaming request [sp-limits]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, drawn from a US dollar balance that a monthly plan grants; the page gives one rate per plan and no rate per model. Free US$0 (500K characters a month, then pauses), Starter US$10 (1.9M characters, then US$10 per 1M), Pro US$99 (13.5M, then US$8 per 1M) and Scale US$499 (78M, then US$6 per 1M); Enterprise has volume pricing [sp-pricing]. Artificial Analysis lists US$6.58 per 1M characters for both Simba 3.2 and Simba 3.0 [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1241.95,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.speechify.ai/build/guides/text-to-speech/emotion-control",
+    "https://docs.speechify.ai/build/guides/text-to-speech/ssml",
+    "https://docs.speechify.ai/build/guides/text-to-speech/latency"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.speechify.ai/build/guides/concepts/models",
+  "sources": [
+    {
+      "id": "sp-models",
+      "url": "https://docs.speechify.ai/build/guides/concepts/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-emotion",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/emotion-control",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-ssml",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/ssml",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-latency",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/latency",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-limits",
+      "url": "https://docs.speechify.ai/build/guides/concepts/api-limits",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-formats",
+      "url": "https://docs.speechify.ai/build/guides/concepts/audio-formats",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-lang",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/language-support",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-clone",
+      "url": "https://docs.speechify.ai/build/guides/voice-cloning/overview",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-index",
+      "url": "https://docs.speechify.ai/llms.txt",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-pricing",
+      "url": "https://speechify.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-blog-32",
+      "url": "https://speechify.ai/blog/simba-3-2-and-the-models-endpoint",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-chlog-32",
+      "url": "https://docs.speechify.ai/build/changelog/2026/7/8",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published in tokens; the limits are in characters, see voice.session_limit",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M characters from a plan balance), see notes",
+    "system_card: Speechify publishes no system card or model card in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "voices: the number of catalogue voices is not stated in the pages read",
+    "released: the maker's changelog entry of 2026-07-08 makes simba-3.2 available on the speech and stream endpoints; Artificial Analysis dates it 2026-07-01 [sp-chlog-32] [aa-tts-board]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

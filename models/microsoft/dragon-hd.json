@@ -1,0 +1,110 @@
+{
+  "id": "dragon-hd",
+  "name": "Dragon HD",
+  "maker": "Microsoft",
+  "family": "Azure Speech HD",
+  "class": "Dragon HD",
+  "generation": null,
+  "released": null,
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Azure Speech in Microsoft Foundry (Speech SDK, Speech CLI and REST; cloud only)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: SSML or plain text, with optional bracket style markers and paralinguistic tags in the text [ms-ssml-voice] [ms-hd]",
+    "output_audio": "opus, mp3, pcm and truesilk at 8, 16, 24 and 48 kHz. HD voices run in real time only; batch synthesis is not offered [ms-hd]",
+    "voices": "custom cloning: 30+ fine-tuned voices, each with a fixed persona (the Omni page counts 30+ and the comparison table says 30); multi-talker voices exist; personal voice (gated) is a separate Azure Speech feature [ms-hd] [ms-ssml-voice]",
+    "languages": [
+      "Multilingual: voice names carry the locale of the original persona (for example de-de, en-us, zh-cn), and the Omni voices detect and switch the spoken language from the text; HD Flash voices speak only zh-CN and en-US [ms-hd] [ms-tc-omni]"
+    ],
+    "turn_detection": "none: a synthesis model. A multi-talker DragonHD voice takes turns inside an mstts:dialog element, one mstts:turn per speaker [ms-ssml-voice]",
+    "interruption": "Not a conversation model. The pages read describe no barge-in message for synthesis; the client stops playback (inferred) [ms-hd]",
+    "latency": "Microsoft's HD voice page lists latency below 300 ms for Azure Speech HD voices; it does not say how this is measured [ms-hd]",
+    "session_limit": "No per-request limit for HD voices is published in the pages read [ms-hd]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. The Azure retail price API lists US$22.00 per 1M characters for Neural HD Text to Speech, effective 2026-03-01 [azure-retail]. Microsoft's pages do not say which HD model that meter covers. Artificial Analysis also shows US$22 for a model it calls Azure HD 2.5 [aa-hd25]. The Azure pricing page shows no figure in the text read."
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/high-definition-voices",
+    "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-voice"
+  ],
+  "system_card": null,
+  "model_page": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/high-definition-voices",
+  "sources": [
+    {
+      "id": "ms-hd",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/high-definition-voices",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ms-ssml-voice",
+      "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-voice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-retail",
+      "url": "https://prices.azure.com/api/retail/prices?$filter=productName%20eq%20%27Azure%20Speech%27%20and%20armRegionName%20eq%20%27eastus%27",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-hd25",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/azure-hd-2-5",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ms-tc-omni",
+      "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/-/4481288",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "benchmarks: no independent score and no maker figure for this model was found in the pages read",
+    "generation: Microsoft gives the model no generation number",
+    "released: the Learn pages give no release date for Dragon HD",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M characters), see notes",
+    "context_window: not applicable to a synthesis model, and no token limit is published",
+    "max_output: no output limit is published in tokens or seconds",
+    "system_card: Microsoft publishes no model card for Dragon HD in the pages read",
+    "style: the Learn pages disagree on style control for Dragon HD; one section shows bracket styles and mstts:express-as for it, and the element table and the comparison table say express-as is not supported [ms-hd] [ms-ssml-voice]",
+    "Artificial Analysis speech arena: the site's Azure HD 2.5 model may be a Dragon HD version, but Microsoft's pages do not name it, so no score is attached here",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

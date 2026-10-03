@@ -40,6 +40,12 @@ sources:
   - https://artificialanalysis.ai/agents/coding
   - https://datanorth.ai/news/minimax-releases-m3-1-flash-preview
   - https://startupfortune.com/minimax-slips-a-new-coding-model-into-its-agent-tool-without-a-price-tag/
+  - https://platform.minimax.io/docs/api-reference/speech-t2a-http
+  - https://platform.minimax.io/docs/guides/speech-t2a-websocket
+  - https://platform.minimax.io/docs/api-reference/voice-design-design
+  - https://www.minimax.io/news/minimax-speech-28
+  - https://www.minimax.io/news/minimax-speech-26
+  - https://artificialanalysis.ai/text-to-speech
 ---
 
 # MiniMax models
@@ -49,7 +55,7 @@ agent application and in third-party coding tools, and (for M2.7 and M3) as open
 of every MiniMax model in this library: the lineage, the API surface, the guidance MiniMax publishes, what it publishes
 instead of a system card, and behaviour that carries across models. The model files say what differs for each:
 [MiniMax M3](MiniMax-M3.md), [MiniMax M2.7](MiniMax-M2.7.md) and
-[MiniMax M3.1 Flash Preview](MiniMax-M3.1-Flash-Preview.md).
+[MiniMax M3.1 Flash Preview](MiniMax-M3.1-Flash-Preview.md). MiniMax also sells speech synthesis models (Speech 2.8 and Speech 2.6) through the same platform. Two of them, Speech 2.8 HD and Speech 2.8 Turbo, are in this library as voice actor models, and their files are [MiniMax Speech 2.8 HD](speech-2.8-hd.md) and [MiniMax Speech 2.8 Turbo](speech-2.8-turbo.md).
 
 ## Models and lineage
 
@@ -63,6 +69,8 @@ Dates are from MiniMax's release notes unless a row says otherwise. [minimax-rel
 | M2.7 | 2026-03-18 | Agent teams, skills and dynamic tool search; thinking always on; a faster `-highspeed` id of the same model; open weights from 2026-04-09. |
 | M3 | 2026-06-01 | About 428B parameters (23B active), native image and video input, 1M-token context from a sparse-attention design, thinking switchable; open weights from 2026-06-02. |
 | M3.1 Flash Preview | 2026-09-27 (press date) | Always-on thinking with five effort levels; offered only through the M Plan subscription and MiniMax Code; no pay-as-you-go API, no weights, no price. |
+| Speech 2.6 | 2025-10-29 (release notes; the launch page says 2025-10-30) | Speech synthesis, HD and Turbo: an `emotion` request field with `fluent` and `whisper` values, pause markers and inline respelling; under 250 ms end to end per MiniMax. No inline sound tags, so it has no file here. [mm-release-notes, mm-news-26, mm-t2a-http] |
+| Speech 2.8 | 2026-01-23 (release notes; Artificial Analysis dates it 2026-02-14) | Speech synthesis, HD and Turbo: adds 19 interjection tags in parentheses (laughs, sighs, breath and others); the `emotion` field loses `fluent` and `whisper`. Files: [HD](speech-2.8-hd.md), [Turbo](speech-2.8-turbo.md). [mm-release-notes, mm-t2a-http] |
 
 Other facts about the line:
 
@@ -76,6 +84,7 @@ Other facts about the line:
   retirement date. [aa-minimax-m2-7, minimax-pricing]
 - The M3 and M2.7 licences both carry a prohibited-use appendix; M2.7's licence is non-commercial, M3's allows commercial
   use under conditions. See the model files. [minimax-m3-license, minimax-m27-license]
+- Classes in this library for speech: MiniMax Speech HD and MiniMax Speech Turbo, both at generation 2.8. Speech 2.6 and earlier (Speech-02, Speech-01) have no file. Pay-as-you-go lists US$100 per 1M characters for HD and US$60 for Turbo. [mm-paygo, mm-t2a-http]
 
 ## API surface
 
@@ -143,9 +152,11 @@ MiniMax strongly recommends the engines' own tool-call parsers because M2-series
 Recommended sampling: temperature 1.0 and top_p 0.95 (M2.7 adds top_k 40 and a default system prompt naming the model).
 [minimax-m3-local-deploy, minimax-m3-hf-readme, minimax-m27-hf-readme, minimax-m27-tool-guide]
 
+**Speech endpoints.** Synchronous text to speech is `POST https://api.minimax.io/v1/t2a_v2` (up to 10,000 characters; streaming advised above 3,000), with a WebSocket and a bidirectional WebSocket on `wss://api.minimax.io/ws/v1/t2a_v2` and `/t2a_v2_bidi`, and an asynchronous job for up to 1M characters. `api-uw.minimax.io` is advised for US West. Model ids are `speech-2.8-hd`, `speech-2.8-turbo`, `speech-2.6-hd`, `speech-2.6-turbo`, `speech-02-hd`, `speech-02-turbo`, `speech-01-hd` and `speech-01-turbo`. The rate limit is 60 requests a minute. Voice design costs US$3 and rapid cloning US$1.5 per voice. [mm-t2a-http, mm-ws-guide, mm-limits, mm-paygo]
+
 ## Prompting guides
 
-MiniMax publishes no prompting guide for its models. A page once cited as one (a "prompting best practices" page under
+MiniMax publishes no prompting guide for its language models. A page once cited as one (a "prompting best practices" page under
 the Token Plan docs) returns 404 now and has no replacement, so nothing from it is used here. The guidance that exists:
 
 - **Agent post for M2 ("Aligning to What?").** M2 depends on interleaved thinking: the context is the model's memory, so
@@ -176,6 +187,8 @@ the Token Plan docs) returns 404 now and has no replacement, so nothing from it 
   clarifying behaviour. M3.1 Flash Preview: thinking cannot be removed, and MiniMax points to a lower effort to save
   tokens and time.
   [minimax-m27-news, minimax-text-generation]
+
+For speech, MiniMax documents its controls in the API reference only: the `emotion` field, interjection tags (2.8 only), pause markers of the form `<#x#>`, inline respelling, `voice_modify` sliders and `language_boost`. It publishes no separate guide on writing text for the speech models. [mm-t2a-http]
 
 ## System-card practice
 
@@ -227,10 +240,11 @@ What exists on safety and misuse:
 - How M3 behaves when thinking is adaptive and the harness hides or drops thinking blocks.
 - Whether the three endpoints' different M3 thinking defaults are intended; the docs describe them without explaining.
 - Instruction-following results for M2.7, M3 and M3.1 Flash Preview on OctoBench or a similar benchmark.
+- A latency figure for Speech 2.8, and how strongly the emotion field and the interjection tags change delivery.
 
 ## Sources
 
-Every source below was read on 2026-10-03. Kinds: L is the maker's own page, M an independent measurement, P a paper or
+Every source below was read on 2026-10-03, except the speech sources with the prefix `mm-` and `aa-tts-board`, which were read on 2026-10-04. Kinds: L is the maker's own page, M an independent measurement, P a paper or
 standard, A a practitioner, reseller or press document.
 
 - [minimax-models-intro] https://platform.minimax.io/docs/guides/models-intro (L)
@@ -267,3 +281,11 @@ standard, A a practitioner, reseller or press document.
 - [aa-minimax-m3] https://artificialanalysis.ai/models/minimax-m3 (M)
 - [aa-minimax-m2-7] https://artificialanalysis.ai/models/minimax-m2-7 (M)
 - [openrouter-models] https://openrouter.ai/api/v1/models (A)
+- [mm-t2a-http] https://platform.minimax.io/docs/api-reference/speech-t2a-http (L)
+- [mm-ws-guide] https://platform.minimax.io/docs/guides/speech-t2a-websocket (L)
+- [mm-limits] https://platform.minimax.io/docs/guides/rate-limits (L)
+- [mm-paygo] https://platform.minimax.io/docs/guides/pricing-paygo (L)
+- [mm-release-notes] https://platform.minimax.io/docs/release-notes/models (L)
+- [mm-news-26] https://www.minimax.io/news/minimax-speech-26 (L)
+- [mm-news-28] https://www.minimax.io/news/minimax-speech-28 (L)
+- [aa-tts-board] https://artificialanalysis.ai/text-to-speech (M)

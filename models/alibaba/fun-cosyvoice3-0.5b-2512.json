@@ -1,0 +1,170 @@
+{
+  "id": "fun-cosyvoice3-0.5b-2512",
+  "name": "Fun-CosyVoice3-0.5B-2512",
+  "maker": "Alibaba (FunAudioLLM)",
+  "family": "CosyVoice",
+  "class": "CosyVoice",
+  "generation": "3",
+  "released": "2025-12-11",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights FunAudioLLM/Fun-CosyVoice3-0.5B-2512 (base and RL language-model checkpoints in one repository) and ModelScope",
+    "FunAudioLLM/CosyVoice repository: Python, vLLM and TensorRT-LLM serving, FastAPI and gRPC servers",
+    "Alibaba Cloud Model Studio hosts CosyVoice v3 and v3.5 models (cosyvoice-v3-plus, cosyvoice-v3-flash, cosyvoice-v3.5-plus, cosyvoice-v3.5-flash) in the Beijing region; the docs do not say they are these weights"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text, a short reference clip, and an instruction written as a prefix of the form 'You are a helpful assistant. <instruction><|endofprompt|>'; inline tags in the text [cosy-example]",
+    "output_audio": "A waveform tensor with the model's sample rate, saved by the caller; streaming chunks are supported [cosy-example]",
+    "voices": "custom cloning from a reference clip; no preset voices in this release [cosy-gh]",
+    "languages": [
+      "9 languages (Chinese, English, Japanese, Korean, German, Spanish, French, Italian, Russian) and 18+ Chinese dialects and accents [cosy-gh]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "Alibaba's README states latency as low as 150 ms in bi-streaming mode (text in and audio out streaming) [cosy-gh]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, no price. A GPU is the expected target; the README gives no memory figure [cosy-gh]"
+  },
+  "benchmarks": [
+    {
+      "name": "test-zh character error rate, base checkpoint (lower is better)",
+      "score": 1.21,
+      "setting": "Alibaba's table; the RL checkpoint scores 0.81; this measures content accuracy, not instruction following",
+      "harness": "CosyVoice README table, test-zh",
+      "measured_by": "maker",
+      "source": "cosy-gh",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "test-en word error rate, base checkpoint (lower is better)",
+      "score": 2.24,
+      "setting": "Alibaba's table; the RL checkpoint scores 1.68",
+      "harness": "CosyVoice README table, test-en",
+      "measured_by": "maker",
+      "source": "cosy-gh",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://github.com/FunAudioLLM/CosyVoice"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512",
+  "sources": [
+    {
+      "id": "cosy-gh",
+      "url": "https://github.com/FunAudioLLM/CosyVoice",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cosy-example",
+      "url": "https://raw.githubusercontent.com/FunAudioLLM/CosyVoice/main/example.py",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cosy-common",
+      "url": "https://raw.githubusercontent.com/FunAudioLLM/CosyVoice/main/cosyvoice/utils/common.py",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cosy-tokenizer",
+      "url": "https://raw.githubusercontent.com/FunAudioLLM/CosyVoice/main/cosyvoice/tokenizer/tokenizer.py",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cosy3",
+      "url": "https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cosy3-api",
+      "url": "https://huggingface.co/api/models/FunAudioLLM/Fun-CosyVoice3-0.5B-2512",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-cosy2-api",
+      "url": "https://huggingface.co/api/models/FunAudioLLM/CosyVoice2-0.5B",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "arxiv-cosy3",
+      "url": "https://arxiv.org/abs/2505.17589",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "arxiv-cosy2",
+      "url": "https://arxiv.org/abs/2412.10117",
+      "read": "2026-10-04",
+      "kind": "P",
+      "quote": null
+    },
+    {
+      "id": "ali-doc-vd2",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen-tts-voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ming-note",
+      "url": "https://huggingface.co/inclusionAI/Ming-omni-tts-0.5B/raw/main/README.md",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the Hugging Face repository was created 2025-12-11 and the README roadmap lists the release for 2025-12 [hf-cosy3-api] [cosy-gh]",
+    "voice.session_limit: no maximum is stated",
+    "hardware: the sources give no GPU memory figure",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "id": "s2.1-pro",
+  "name": "Fish Audio S2.1 Pro",
+  "maker": "Fish Audio",
+  "family": "Fish Audio S2",
+  "class": "Fish Audio S Pro",
+  "generation": "2.1",
+  "released": "2026-06-23",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Fish Audio API: POST /v1/tts and a WebSocket live endpoint, `model` header s2.1-pro; free development tier `s2.1-pro-free`",
+    "Fish Audio web app and Voice Agents platform"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with inline [bracket] cues, speaker tags and phoneme tags",
+    "output_audio": "wav, pcm, mp3 (64, 128 or 192 kbps) and opus (automatic, or 24 to 64 kbps); the sample rate is the format default (44.1 kHz for most, 48 kHz for opus) unless set [fish-openapi]",
+    "voices": "custom cloning from reference audio (zero-shot, or a saved voice model), a Voice Library, and candidate voices from a natural-language prompt through the voice design endpoint [fish-openapi] [fish-voice-design]",
+    "languages": [
+      "83 languages with automatic language detection, including English, Japanese, Chinese, Korean, Spanish, Arabic, French, German, Portuguese and Russian [fish-models] [fish-blog-s21]"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "About 90 ms time to first audio on the standard API and about 70 ms for a single request, per the maker's launch post; the models page gives production TTFA and DPA guarantees for the paid model [fish-blog-s21] [fish-models]",
+    "session_limit": "The text limit per request was not found in the pages read; the server processes text in chunks of 100 to 300 characters (default 300), and the WebSocket takes text events between a start and a stop event [fish-openapi]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per UTF-8 byte of input text: US$15.00 per 1M bytes for `s2.1-pro` and for `s2-pro`; Fish Audio says 1M bytes is about 180,000 English words or about 12 hours of speech [fish-pricing]. `s2.1-pro-free` runs the same model as `s2.1-pro` at US$0 under a fair-use policy, with no latency guarantee, possible data retention for model improvement, and an end date of 2026-11-30 in the launch post [fish-models] [fish-blog-s21]. Voice design costs US$0.01 per successful request [fish-pricing]. Artificial Analysis lists US$15 per 1M characters [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1141.15,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.fish.audio/developer-guide/core-features/emotions",
+    "https://docs.fish.audio/developer-guide/core-features/fine-grained-control",
+    "https://docs.fish.audio/developer-guide/models-pricing/models-overview"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.fish.audio/developer-guide/models-pricing/models-overview",
+  "sources": [
+    {
+      "id": "fish-models",
+      "url": "https://docs.fish.audio/developer-guide/models-pricing/models-overview",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-emotions",
+      "url": "https://docs.fish.audio/developer-guide/core-features/emotions",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-fine",
+      "url": "https://docs.fish.audio/developer-guide/core-features/fine-grained-control",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-tts-guide",
+      "url": "https://docs.fish.audio/developer-guide/core-features/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-openapi",
+      "url": "https://docs.fish.audio/api-reference/openapi.json",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-pricing",
+      "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-voice-design",
+      "url": "https://docs.fish.audio/features/voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-blog-s21",
+      "url": "https://fish.audio/blog/s2-1-pro-free-api/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-hf-s2",
+      "url": "https://huggingface.co/fishaudio/s2-pro",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-index",
+      "url": "https://docs.fish.audio/llms.txt",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published; the text limit per request was not found in the pages read",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M UTF-8 bytes), see notes",
+    "system_card: Fish Audio publishes no system card for the hosted model in the pages read; the S2 Pro model card is on Hugging Face [fish-hf-s2]",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "weights: the maker says S2.1 Pro is proprietary and S2 Pro was released with open weights; no S2.1 weights are published in the pages read [fish-blog-s21]",
+    "voice.latency: the two figures come from the maker; the launch post gives no sample size or path",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

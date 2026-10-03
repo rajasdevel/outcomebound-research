@@ -47,7 +47,8 @@ of Alibaba are in [the Alibaba folder](../models/alibaba/README.md). xAI's voice
 [../providers/xai.md](../providers/xai.md). General rules for prompts are in
 [prompting.md](prompting.md) and [writing-for-models.md](writing-for-models.md). Rules for judges that
 score conversations are in [llm-as-judge.md](llm-as-judge.md). Text-only agent evaluation is in
-[agent-evals.md](agent-evals.md).
+[agent-evals.md](agent-evals.md). How to direct the delivery of synthetic speech (emotion, tags, voice
+design, cloning, non-verbal sounds) is in [voice-acting.md](voice-acting.md).
 
 **Evidence classes**, as in [the conventions](../CONVENTIONS.md): M measured; L maker or vendor
 documentation or guidance; S standard or law; P practitioner consensus; A anecdote or one
@@ -345,7 +346,8 @@ speaking rate, emotion or the sound of the voice into rules about the words prod
   it" across turns [chk-oai-rt-prompting, chk-lk-prompting]. L.
 - **Emotion and non-verbal sounds.** LiveKit says to set a calm baseline, to switch emotion rarely and
   not inside a sentence, and to cap non-verbal sounds at one per turn. Tag syntax such as `[laughs]`
-  is provider-specific [chk-lk-prompting]. Amazon's older guide lists "visual formatting like bullet
+  is provider-specific [chk-lk-prompting]. [voice-acting.md](voice-acting.md) compares the tag syntax
+  of the makers. Amazon's older guide lists "visual formatting like bullet
   points", voice changes such as accent, age or singing, sound effects, and content that relies on
   being seen as things to leave out [chk-aws-v1-prompting]. L.
 - **Persona.** OpenAI says its `gpt-realtime-1.5` model can "enact the specified role more reliably
@@ -613,7 +615,8 @@ L.
 - Pipecat, Vapi, Twilio and Deepgram pages were not read. Telephony details (SIP, codecs, DTMF) are
   covered only where a maker page named them.
 - Speech synthesis and transcription models of other makers are outside this page, except as the
-  speech side of the chains described above.
+  speech side of the chains described above. The synthesis models that take direction for emotion,
+  tone and character are compared in [voice-acting.md](voice-acting.md).
 
 ## Sources
 

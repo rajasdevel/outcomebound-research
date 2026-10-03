@@ -1,0 +1,258 @@
+{
+  "id": "s2-pro",
+  "name": "Fish Audio S2 Pro",
+  "maker": "Fish Audio",
+  "family": "Fish Audio S2",
+  "class": "Fish Audio S Pro",
+  "generation": "2",
+  "released": "2026-03-09",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Fish Audio Research License)",
+  "access": [
+    "Fish Audio API: POST /v1/tts, `model` header s2-pro",
+    "Hugging Face weights fishaudio/s2-pro with fine-tuning code and an SGLang-based streaming inference engine"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with inline [bracket] cues, speaker tags and phoneme tags",
+    "output_audio": "wav, pcm, mp3 (64, 128 or 192 kbps) and opus (automatic, or 24 to 64 kbps); the sample rate is the format default (44.1 kHz for most, 48 kHz for opus) unless set [fish-openapi]",
+    "voices": "custom cloning from reference audio (zero-shot, or a saved voice model), a Voice Library, and candidate voices from a natural-language prompt through the voice design endpoint [fish-openapi] [fish-voice-design]",
+    "languages": [
+      "80+ languages with automatic language detection; Tier 1 is Japanese, English and Chinese; Tier 2 is Korean, Spanish, Portuguese, Arabic, Russian, French and German [fish-hf-s2] [fish-models]"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "About 100 ms time to first audio and a real-time factor of 0.195 on one H200 GPU, per the maker's model card and models page [fish-hf-s2] [fish-models]. A separate SGLang write-up gives a real-time factor of 0.34 and 63.3 tokens a second on one H200 at batch size 1 [sglang-s2]",
+    "session_limit": "The text limit per request was not found in the pages read; the server processes text in chunks of 100 to 300 characters (default 300), and the WebSocket takes text events between a start and a stop event [fish-openapi]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per UTF-8 byte of input text: US$15.00 per 1M bytes for `s2.1-pro` and for `s2-pro`; Fish Audio says 1M bytes is about 180,000 English words or about 12 hours of speech [fish-pricing]. `s2.1-pro-free` runs the same model as `s2.1-pro` at US$0 under a fair-use policy, with no latency guarantee, possible data retention for model improvement, and an end date of 2026-11-30 in the launch post [fish-models] [fish-blog-s21]. Voice design costs US$0.01 per successful request [fish-pricing]. Artificial Analysis lists US$15 per 1M characters [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1117.15,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Fish Instruction Benchmark, tag adherence rate (TAR)",
+      "score": 93.3,
+      "setting": "percent; quality score 4.51 of 5; Fish Audio's own benchmark",
+      "harness": "Fish Instruction Benchmark",
+      "measured_by": "maker",
+      "source": "fish-blog-s2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "EmergentTTS-Eval overall win rate against gpt-4o-mini-tts",
+      "score": 81.88,
+      "setting": "percent; paralinguistics 91.61, questions 84.41, syntactic complexity 83.39",
+      "harness": "EmergentTTS-Eval",
+      "measured_by": "maker",
+      "source": "fish-blog-s2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Audio Turing Test posterior mean, with instruction rewriting",
+      "score": 0.515,
+      "setting": "Seed-TTS 0.417 and MiniMax-Speech 0.387 in the same table",
+      "harness": "Audio Turing Test",
+      "measured_by": "maker",
+      "source": "fish-blog-s2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Seed-TTS Eval word error rate, English",
+      "score": 0.99,
+      "setting": "percent",
+      "harness": "Seed-TTS Eval",
+      "measured_by": "maker",
+      "source": "fish-blog-s2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "Seed-TTS Eval word error rate, Chinese",
+      "score": 0.54,
+      "setting": "percent",
+      "harness": "Seed-TTS Eval",
+      "measured_by": "maker",
+      "source": "fish-blog-s2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "EmergentTTS-Eval overall win rate against Boson's baseline row",
+      "score": 43.8,
+      "setting": "percent; run by Boson AI with no tags; emotions 53.04; Higgs TTS 3 scored 53.65 overall and 53.75 on emotions in the same table",
+      "harness": "EmergentTTS-Eval",
+      "measured_by": "third-party-vendor",
+      "source": "boson-blog-tts3",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.fish.audio/developer-guide/core-features/emotions",
+    "https://docs.fish.audio/developer-guide/core-features/fine-grained-control",
+    "https://docs.fish.audio/developer-guide/models-pricing/models-overview"
+  ],
+  "system_card": "https://arxiv.org/abs/2603.08823",
+  "model_page": "https://huggingface.co/fishaudio/s2-pro",
+  "sources": [
+    {
+      "id": "fish-models",
+      "url": "https://docs.fish.audio/developer-guide/models-pricing/models-overview",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-emotions",
+      "url": "https://docs.fish.audio/developer-guide/core-features/emotions",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-fine",
+      "url": "https://docs.fish.audio/developer-guide/core-features/fine-grained-control",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-tts-guide",
+      "url": "https://docs.fish.audio/developer-guide/core-features/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-openapi",
+      "url": "https://docs.fish.audio/api-reference/openapi.json",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-pricing",
+      "url": "https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-voice-design",
+      "url": "https://docs.fish.audio/features/voice-design",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-blog-s21",
+      "url": "https://fish.audio/blog/s2-1-pro-free-api/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-hf-s2",
+      "url": "https://huggingface.co/fishaudio/s2-pro",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-index",
+      "url": "https://docs.fish.audio/llms.txt",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "fish-arxiv",
+      "url": "https://arxiv.org/abs/2603.08823",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-blog-s2",
+      "url": "https://fish.audio/blog/fish-audio-open-sources-s2/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "boson-blog-tts3",
+      "url": "https://www.boson.ai/blog/higgs-audio-v3-tts",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-install",
+      "url": "https://speech.fish.audio/install/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fish-inference",
+      "url": "https://speech.fish.audio/inference/",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sglang-s2",
+      "url": "https://github.com/sgl-project/sglang-omni/blob/main/sglang_omni/models/fishaudio_s2_pro/README.md",
+      "read": "2026-10-04",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published; the text limit per request was not found in the pages read",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M UTF-8 bytes), see notes",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "released: the Hugging Face model card gives 2026-03-09 and the arXiv number 2603.08823; Artificial Analysis dates it 2026-03-10 [fish-hf-s2] [aa-tts-board]",
+    "voice.latency: the model card gives a self-hosted figure on one GPU; the hosted figure for this model was not read",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

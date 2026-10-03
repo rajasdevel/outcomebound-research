@@ -1,0 +1,105 @@
+{
+  "id": "moss-voicegenerator",
+  "name": "MOSS-VoiceGenerator",
+  "maker": "OpenMOSS (MOSI.AI)",
+  "family": "MOSS-TTS",
+  "class": "MOSS-VoiceGenerator",
+  "generation": null,
+  "released": "2026-02-08",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights OpenMOSS-Team/MOSS-VoiceGenerator (1.7B, about 2.11B parameters in the file listing)",
+    "OpenMOSS/MOSS-TTS repository (Transformers 5.0.0 and Python 3.12 recommended)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text to synthesise (Chinese or English) and a required `instruction` that describes the voice and style; no reference audio [hf-mossvg]",
+    "output_audio": "A wav file written with the sampling rate in the model config; the pages read do not state the rate [hf-mossvg]",
+    "voices": "voice design from a free-form description; no preset voices; the maker offers it as a voice-design layer for other TTS models in the family [hf-mossvg]",
+    "languages": [
+      "Chinese and English [hf-mossvg]"
+    ],
+    "turn_detection": "none: a synthesis model",
+    "interruption": "Not a conversation model",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Open weights, free under Apache-2.0. No GPU memory figure is stated on the pages read"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator",
+  "sources": [
+    {
+      "id": "hf-mossvg",
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-mossvg-api",
+      "url": "https://huggingface.co/api/models/OpenMOSS-Team/MOSS-VoiceGenerator",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-moss-ttsd",
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTSD-v1.0",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-moss-ttsv15",
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-TTS-v1.5",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "generation: the maker numbers no generation",
+    "released: the Hugging Face repository was created 2026-02-08 [hf-mossvg-api]",
+    "voice.output_audio: no sample rate is stated",
+    "voice.latency: no figure read",
+    "voice.session_limit: not stated",
+    "Artificial Analysis Speech Arena Elo: no MOSS entry was found in the Artificial Analysis list read",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "benchmarks: no maker or independent measurement of delivery control was read for this model",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

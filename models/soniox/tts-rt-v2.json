@@ -1,0 +1,184 @@
+{
+  "id": "tts-rt-v2",
+  "name": "Soniox TTS Real-Time v2",
+  "maker": "Soniox",
+  "family": "Soniox TTS",
+  "class": "Soniox TTS Real-Time",
+  "generation": "2",
+  "released": "2026-08-11",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Soniox TTS WebSocket API (real-time, several streams per connection) and REST API, model tts-rt-v2",
+    "Regions: US, EU, JP and IN",
+    "Python, Node.js, Web and React SDKs"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text, with bracketed audio tags and written emphasis",
+    "output_audio": "Raw pcm_f32le, pcm_s16le, pcm_mulaw and pcm_alaw, wav, flac, mp3, opus and aac; sample rates 8 to 48 kHz depending on the format, 24 kHz by default; MP3 and AAC bitrates 32 to 320 kbps [so-formats]",
+    "voices": "studio-quality built-in voices that each speak every language, and voice cloning from a reference clip of up to 2 minutes made in the console or through the API [so-voices] [so-clone]",
+    "languages": [
+      "60+ languages from one model, every voice in every language; the docs list the ISO codes and some script limits (Serbian and Bosnian in Latin script only, Kazakh in Cyrillic only, Chinese in Simplified only) [so-langs]"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": null,
+    "session_limit": "Each real-time stream and each REST response is capped at 2 minutes of generated audio (fixed); defaults of 3 concurrent streams or requests, 100 requests a minute and 5 streams per connection (the last is fixed) [so-limits-rt] [so-limits-rest]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Billed in tokens, not characters or per Mtok of text. Input text tokens US$4.00 per 1M and output audio tokens US$21.50 per 1M. The maker's page gives about 0.3 input text tokens per character and about 30,000 output audio tokens per hour of speech, which is about US$0.70 per hour of generated speech [so-pricing]. Artificial Analysis lists US$14.23 per 1M characters [aa-tts-board]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
+      "score": 1178.92,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://soniox.com/docs/tts/concepts/emotion-and-tone",
+    "https://soniox.com/docs/tts/concepts/speech-speed",
+    "https://soniox.com/docs/tts/models"
+  ],
+  "system_card": null,
+  "model_page": "https://soniox.com/docs/tts/models",
+  "sources": [
+    {
+      "id": "so-models",
+      "url": "https://soniox.com/docs/tts/models",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-tone",
+      "url": "https://soniox.com/docs/tts/concepts/emotion-and-tone",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-voices",
+      "url": "https://soniox.com/docs/tts/concepts/voices",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-clone",
+      "url": "https://soniox.com/docs/tts/concepts/voice-cloning",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-formats",
+      "url": "https://soniox.com/docs/tts/concepts/audio-formats",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-speed",
+      "url": "https://soniox.com/docs/tts/concepts/speech-speed",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-langs",
+      "url": "https://soniox.com/docs/tts/concepts/supported-languages",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-mixing",
+      "url": "https://soniox.com/docs/tts/concepts/language-mixing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-rt",
+      "url": "https://soniox.com/docs/tts/rt/real-time-generation",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-limits-rt",
+      "url": "https://soniox.com/docs/tts/rt/limits-and-quotas",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-limits-rest",
+      "url": "https://soniox.com/docs/tts/rest-api/limits-and-quotas",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-pricing",
+      "url": "https://soniox.com/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "so-index",
+      "url": "https://soniox.com/docs/llms.txt",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published in tokens; the limit is 2 minutes of generated audio per stream",
+    "pricing_usd_per_mtok: the unit differs (token pricing for text in and audio out), see notes",
+    "system_card: Soniox publishes no system card or model card for TTS in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "voice.latency: Soniox says generation starts from the first few words and gives no figure in the pages read [so-rt]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

@@ -12,11 +12,14 @@ sources:
   - https://arxiv.org/abs/2605.23463
   - https://runtimewire.com/article/stepfun-stepaudio-3-five-audio-models
   - https://artificialanalysis.ai/speech-to-speech
+  - https://huggingface.co/stepfun-ai/Step-Audio-EditX
+  - https://arxiv.org/abs/2511.03601
+  - https://artificialanalysis.ai/text-to-speech/models/step-audio-editx-mar-2026
 ---
 
 # StepFun
 
-StepFun is a Shanghai AI lab. It sells text, vision, image and audio models through its Open Platform. This folder holds its realtime speech-to-speech models. StepFun's text and image models are outside this library. Everything here was read on 2026-10-03.
+StepFun is a Shanghai AI lab. It sells text, vision, image and audio models through its Open Platform. This folder holds its realtime speech-to-speech models and its open-weight speech editing model Step-Audio-EditX. StepFun's text and image models are outside this library. Everything here was read on 2026-10-03, except the Step-Audio-EditX text, which was read on 2026-10-04.
 
 ## Models and lineage
 
@@ -24,12 +27,13 @@ StepFun is a Shanghai AI lab. It sells text, vision, image and audio models thro
 | --- | --- | --- | --- |
 | StepAudio Realtime | 3 | [StepAudio 3 Realtime (preview)](stepaudio-3-realtime-preview.md) | Full-duplex, think-while-speaking, voice agent layer; free during the preview; the preview name will retire [step-model-page-3] |
 | StepAudio Realtime | 2.5 | [StepAudio 2.5 Realtime](stepaudio-2.5-realtime.md) | End-to-end speech-to-speech over WebSocket; billed by token [step-25-realtime] [step-pricing] |
+| Step-Audio EditX | none numbered | [Step-Audio-EditX](step-audio-editx.md) | Open weights (3B). Edits the emotion, speaking style and paralinguistic sounds of a speech clip, and clones a voice; closed lists of 14 emotions, 32 styles and 22 sound tags; released 2025-11-12, updated 2026-01-23; a voice actor model [hf-editx] |
 
 StepFun released five StepAudio 3 models on about 2026-09-15: realtime, ASR, TTS, a unified audio generation model and a music model. The StepAudio 2.5 family came earlier in 2026 with TTS, ASR, chat and realtime models, and its technical report is dated 2026-05-22. A trade report gives the StepAudio 3 date [runtimewire-step] [step-audio-models] [step-paper-25].
 
 Models without a file, with the reason:
 
-- **StepAudio 3 and 2.5 TTS, ASR, Gen and Music, and the Chat models.** They synthesise or transcribe speech, generate audio, or take speech and return text. They are not speech-to-speech conversation models [step-audio-models].
+- **StepAudio 3 and 2.5 TTS, ASR, Gen and Music, and the Chat models.** They synthesise or transcribe speech, generate audio, or take speech and return text. They are not speech-to-speech conversation models [step-audio-models]. Two of them, StepAudio 2.5 TTS and StepAudio 3 TTS, are hosted speech synthesis models that may take direction in natural language. Artificial Analysis lists StepAudio 2.5 TTS at Elo 1179.06 on its page headline (1181.4 in the page data), and BreezeBlue's own direction benchmark lists it with a score of 3.48 of 5. Their StepFun pages were not read, so they have no file [aa-step25tts] [bb-blog2].
 - **`step-audio-2`, `step-1o-audio` and `step-audio-r1.5`.** The pricing page bills them by token under speech models. No realtime guide for them was found, and they are older than the two generations in scope [step-pricing].
 - **Step-Audio R1.1 (Realtime).** Artificial Analysis lists it with 97.6% on speech reasoning and 1.53 seconds to first audio, and with prices per hour of audio. No StepFun page for it was found on the documentation index (read 2026-10-03), so its status as a model that a person can select is not confirmed [aa-s2s].
 
@@ -41,10 +45,11 @@ Models without a file, with the reason:
 - **Open reference client.** StepFun links an open-source console, `Step-Realtime-Console`, on GitHub [step-realtime-api] [step-model-page-3].
 - **Pricing.** Realtime sessions are billed by token. The 2.5 model costs US$1.50 input, US$0.30 cached input and US$10.00 output per million tokens. The 3 preview is free for a limited time [step-pricing].
 - **Rate limits.** The Open Platform API has tiers V0 to V4 set by cumulative cash top-up, with concurrency from 5 to 130. The pricing page does not say whether the tiers apply to the Realtime API [step-pricing].
+- **Open weights.** Step-Audio-EditX runs from the stepfun-ai/Step-Audio-EditX repository (command-line scripts, Gradio app, Docker, vLLM) with weights on Hugging Face and ModelScope; a 4-bit AWQ build exists. About 12 GB of GPU memory is the critical value. StepFun Audio Studio, which needs an Open Platform API key, serves it as a hosted tool [hf-editx].
 
 ## Prompting guides
 
-StepFun publishes no prompting guide for its realtime models. The API reference describes `instructions` as the system message and says it can guide the content and format of replies and audio behaviour, for example speaking quickly or putting emotion in the voice, with no guarantee. The model pages describe use cases and capabilities [step-realtime-api] [step-model-page-3] [step-25-realtime].
+StepFun publishes no prompting guide for its realtime models. The API reference describes `instructions` as the system message and says it can guide the content and format of replies and audio behaviour, for example speaking quickly or putting emotion in the voice, with no guarantee. The model pages describe use cases and capabilities [step-realtime-api] [step-model-page-3] [step-25-realtime]. For Step-Audio-EditX, the model card lists the edit types (clone, emotion, style, paralinguistic, denoise, vad, speed) and the closed value lists, and says the whisper style needs more than one edit iteration [hf-editx].
 
 ## System-card practice
 
@@ -64,6 +69,7 @@ StepFun publishes technical reports on arXiv for the 2.5 family (2026-05-22) and
 - The price of the paid StepAudio 3 Realtime and the name of the production model.
 - Whether Step-Audio R1.1 (Realtime) can be selected through the API.
 - Which languages the 2.5 model supports.
+- The licence of the Step-Audio-EditX weights; the card states only the code licence.
 
 ## Sources
 
@@ -77,3 +83,6 @@ StepFun publishes technical reports on arXiv for the 2.5 family (2026-05-22) and
 - [step-paper-25] https://arxiv.org/abs/2605.23463 (kind P, read 2026-10-03)
 - [runtimewire-step] https://runtimewire.com/article/stepfun-stepaudio-3-five-audio-models (kind A, read 2026-10-03)
 - [aa-s2s] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-03)
+- [hf-editx] https://huggingface.co/stepfun-ai/Step-Audio-EditX (kind L, read 2026-10-04)
+- [aa-step25tts] https://artificialanalysis.ai/text-to-speech/models/step-audio-2.5-tts (kind M, read 2026-10-04)
+- [bb-blog2] https://breezeblue.ai/breeze-tts-2 (kind L, read 2026-10-04)

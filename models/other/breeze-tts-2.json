@@ -1,0 +1,145 @@
+{
+  "id": "breeze-tts-2",
+  "name": "Breeze TTS 2",
+  "maker": "BreezeBlue",
+  "family": "Breeze TTS",
+  "class": "Breeze TTS",
+  "generation": "2",
+  "released": "2026-08-25",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (BreezeBlue Research and Non-Commercial License)",
+  "access": [
+    "Hugging Face weights BreezeBlue/Breeze-TTS-2 (about 3.47B parameters in the file listing) and the breezeblue-ai/breeze-tts repository (Apache-2.0 code, PyTorch)",
+    "BreezeBlue hosted platform and API (breezeblue.ai): Studio, voice library and a realtime WebSocket API, model id breeze-tts-2",
+    "Self-hosted single-concurrency streaming API in the repository"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text with inline vocal-event tags; optional `instruction` text; optional reference audio plus its exact transcript for voice clone and voice direction [hf-breeze2]",
+    "output_audio": "Self-hosted streaming API: mono 24 kHz signed 16-bit little-endian PCM; the command-line tool writes a wav file [hf-breeze2]",
+    "voices": "voice design from a description with no reference audio; custom cloning from a clip with its transcript; direction of a cloned voice [hf-breeze2]",
+    "languages": [
+      "Open weights: English and Chinese [hf-breeze2]. The hosted platform advertises 51 languages with accent control [bb-blog2]"
+    ],
+    "turn_detection": "none: a synthesis model; the hosted realtime API keeps one WebSocket open across turns, and the client starts, appends to, flushes and ends each turn [bb-blog2]",
+    "interruption": "Not a conversation model: the client stops playback",
+    "latency": "BreezeBlue, self-hosted on one NVIDIA H100 with the warmed fast path: under 40 ms to first audio and real-time factor 0.32 [hf-breeze2]. BreezeBlue's own latency benchmark of the hosted API: first audio at the median 133.6 ms and at the 95th percentile 163.3 ms, against 154.5 and 207.6 ms for ElevenLabs Flash v2.5 [bb-blog2]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Hosted plans are priced in credits: Free (400 credits a day), Starter US$9, Creator US$19 and Pro US$99 a month; 250,000, 600,000 and 3.5 million characters a month on the three paid plans; top-up credits cost US$3 for 5,000 [bb-pricing]; the model card says commercial use of hosted output needs a paid subscription [hf-breeze2]. The open weights are for research and non-commercial use only, and self-hosted output counts as non-commercial [hf-breeze2]. Self-hosting needs an NVIDIA GPU: about 7.7 GiB for eager inference, about 14.4 GiB with the fast path, and BreezeBlue advises a 12 GB or 24 GB card [hf-breeze2]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1216.17,
+      "setting": "blind pairwise listener votes; open weights; the highest open-weight entry on the page read",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-breeze2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "BreezeBlue Voice Direction Benchmark, direction score (maximum 5)",
+      "score": 4.25,
+      "setting": "BreezeBlue's own benchmark and run; speaker similarity 0.67; MiMo-V2.5-TTS 3.76, StepAudio 2.5 TTS 3.48, Qwen-Audio 3.0-TTS-Plus 3.33",
+      "harness": "BreezeBlue Voice Direction Benchmark",
+      "measured_by": "maker",
+      "source": "bb-blog2",
+      "read": "2026-10-04"
+    },
+    {
+      "name": "BreezeBlue Voice Design Benchmark, Role Fit",
+      "score": 78.02,
+      "setting": "BreezeBlue's own benchmark and run; voice diversity 708; transcript pass rate 98.5 percent; next best MiMo-V2.5-TTS 72.78",
+      "harness": "BreezeBlue Voice Design Benchmark",
+      "measured_by": "maker",
+      "source": "bb-blog2",
+      "read": "2026-10-04"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/BreezeBlue/Breeze-TTS-2",
+    "https://breezeblue.ai/breeze-tts-2"
+  ],
+  "system_card": null,
+  "model_page": "https://huggingface.co/BreezeBlue/Breeze-TTS-2",
+  "sources": [
+    {
+      "id": "hf-breeze2",
+      "url": "https://huggingface.co/BreezeBlue/Breeze-TTS-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-breeze2-api",
+      "url": "https://huggingface.co/api/models/BreezeBlue/Breeze-TTS-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bb-blog2",
+      "url": "https://breezeblue.ai/breeze-tts-2",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bb-blog1",
+      "url": "https://breezeblue.ai/breeze-tts-1",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bb-pricing",
+      "url": "https://breezeblue.ai/pricing",
+      "read": "2026-10-04",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-breeze2",
+      "url": "https://artificialanalysis.ai/text-to-speech/models/breeze-tts-2",
+      "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-04",
+  "unknown": [
+    "released: the weights and code are dated 2026-08-25 in the model card news; the launch post is dated 2026-08-07 [hf-breeze2] [bb-blog2]",
+    "voice.session_limit: the pages read state no maximum text length",
+    "parameter count: the card text gives no figure; the file listing counts about 3.47B parameters [hf-breeze2-api]",
+    "context_window: not applicable to a synthesis model; the limits are in characters, seconds or tokens of audio, see voice.session_limit",
+    "max_output: not applicable to a synthesis model",
+    "pricing_usd_per_mtok: the unit differs, or the open weights carry no price; see notes",
+    "system_card: the maker publishes no system card; the model card on the weights page is the nearest document",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}
