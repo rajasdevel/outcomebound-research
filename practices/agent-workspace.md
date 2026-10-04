@@ -20,7 +20,7 @@ sources:
 
 # Agent workspace and long runs
 
-> **Own results.** Claims marked (O) record observations the maintainers made in their own long runs (§§2-3, §7). They are one project's observations, not a sample, and the records are not published ([CONVENTIONS](../CONVENTIONS.md)). The harness documentation and the cited studies are general.
+> **Own results.** Claims marked (O) record observations the maintainers made in their own long runs (§§2-3, §7). They are the maintainers' own observations, not a sample, and the records are not published ([CONVENTIONS](../CONVENTIONS.md)). The harness documentation and the cited studies are general.
 
 Re-check when a harness changes where it places, sweeps or isolates worktrees, how it stores
 sessions or memory, or how it stops or resumes a long run.
@@ -365,17 +365,17 @@ a tool writes and reads (inference).
 
 ## 7. What stalls long autonomous runs (W6–W8)
 
-Observed in the maintainers' unattended runs (O, one project; no counts are given):
+Observed in the maintainers' unattended runs (O; no counts are given):
 
 | Cause | What was observed | What removed or would remove it |
 | --- | --- | --- |
-| More work than the window, one item at a time | A queue of work items worked by one agent at a time, each taking an hour or more; in nine hours, only a minority finished | Sizing the whole plan against the window before starting, as an estimate. A later run showed that a stop at about twice the stated size does not help: see the size-stop row below |
+| More work than the window, one item at a time | A queue of work items worked by one agent at a time, each taking an hour or more; in nine hours, only a minority finished | Sizing the whole plan against the window before starting, as an estimate. In a later run, a stop at about twice the stated size ended the run early: see the size-stop row below |
 | Per-item ceremony | A fresh review, per-sentence coverage records and a full verification after each item took a large share of each item's time and of the run | Running the suite once per integration or phase, not per item; keeping the review for what a check cannot catch |
 | Missing tooling | The parallel test plugin was absent from the environment the agents ran in, so verification ran serially; the type checker was installed in only one virtual environment, so every floor call needed a `PATH` prefix or read UNVERIFIED | Tools on the path the harness uses; one interpreter for the build |
 | The critical path ran through the person | Most drafted work items routed a stop condition to the person; an item parked on its stop condition (a size bar, one file outside its bounds) held the chain of items behind it; most questions an overnight run left the person were not theirs to answer; the person received many decisions a day (O) | A stop that names only an act outside the granted authority; a path beyond an item's advisory file list, within that authority, named in the commit and not stopped on |
 | Finished work parked on clerical acts | A finished change waited on a routine re-run of a tool whose change was graded "none"; another waited days for a person to confirm a CI step a command had already read as passed; reversible choices went to the person anyway | Reversible choices decided in the run, each recorded in one line with its undo; observations turned into command checks |
 | The harness refused acts approved in general words | A permission layer that reads only the person's messages refused tracker writes and records that followed from an instruction given in general words | Authority recorded where the harness reads it ([agent-authorization.md](agent-authorization.md) §2) |
-| A size stop and answers required before the start | In a later night of the maintainers' unattended runs, a stop at twice the estimated changed lines ended one run after under an hour of work; most counted lines were earlier work committed unchanged, and the run held every remaining item on that one stop. The hour estimates of the runs that finished were five to seven times longer than the runs took. Three runs whose hand-off asked for several answers before the start did not start; one run held all its work on a decision only a conditional sub-step needed, because the decision was put in the turn's final message (O) | No stop on size, count or duration that the person did not set; a stop that holds only the item that meets it, recorded where the person reads it, while the run continues with items that do not depend on it; a run that starts without answers, each unanswered decision holding only the work that waits on it |
+| A size stop and answers required before the start | In later unattended runs of the maintainers, a stop at twice the estimated changed lines ended one run early; most counted lines were earlier work committed unchanged, and the run held every remaining item on that one stop. The hour estimates of the runs that finished were several times longer than the runs took. Runs whose hand-off asked for several answers before the start did not start; one run held all its work on a decision only a conditional sub-step needed, because the decision was put in the turn's final message (O) | No stop on size, count or duration that the person did not set; a stop that holds only the item that meets it, recorded where the person reads it, while the run continues with items that do not depend on it; a run that starts without answers, each unanswered decision holding only the work that waits on it |
 | Oversized inputs | Task descriptions generated for delegates ran to thousands of words, and some drafts to over ten thousand, because each quoted every cited section verbatim; one draft exceeded the tracker's body limit | A path and section cited; only what the implementer must copy quoted |
 
 **Harness facts (VOLATILE).** Claude Code's auto-mode classifier reads the person's messages and the commands
@@ -459,8 +459,8 @@ These points are this reference's reading of the findings above. They are not or
    ([agent-authorization.md](agent-authorization.md)) (W4, W7).
 5. Steps a person performs that name versions, tags, branches and paths avoid the digest errors
    (W5).
-6. For an unattended run, the stall causes in §7 point to sizing the whole plan as an estimate with no stop on size, a goal started as
-   the first message of a fresh session, recurring acts allowed in the harness, the tools on the
+6. For an unattended run, the stall causes in §7 point to sizing the whole plan as an estimate
+   with no stop on size, a goal started as the first message of a fresh session, recurring acts allowed in the harness, the tools on the
    path, requests that end an item's turn and not the run, and external effects that are safe to
    repeat (W6–W8).
 7. Delegates' reports in the fixed shape above let an orchestrator check the claims that matter
