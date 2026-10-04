@@ -1,6 +1,6 @@
 ---
 last_checked: 2026-10-01
-volatility: MONITOR (standards, measured studies, authorization patterns and engines) / VOLATILE (§2 and §3, Claude Code's and Codex's permission layers)
+volatility: MONITOR (standards, measured studies, authorization patterns and engines) / VOLATILE (§2 and §3, Claude Code's and Codex's permission layers; §9, GitHub's review rules and terms)
 sources:
   - https://code.claude.com/docs/en/permission-modes
   - https://code.claude.com/docs/en/auto-mode-config
@@ -18,6 +18,10 @@ sources:
   - https://docs.cerbos.dev/cerbos/latest/api/index.html
   - https://openfga.dev/docs/authorization-concepts
   - https://cube.dev/articles/semantic-layer-for-ai-agents-2026
+  - https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews (read 2026-10-04)
+  - https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners (read 2026-10-04)
+  - https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization (read 2026-10-04)
+  - https://docs.github.com/en/site-policy/github-terms/github-terms-of-service (read 2026-10-04)
 ---
 
 # Agent authorization: what lets an agent act
@@ -31,7 +35,8 @@ system decides what data and calls an agent may reach.
 Re-check when Claude Code or Codex changes its permission modes, classifier rules or reviewer; a
 vendor publishes new figures for its classifier or reviewer; a study tests a recorded grant for one
 named act; or OWASP, the MCP authorization specification or a named authorization engine publishes
-a new revision. Evidence ledger records are as verified on 2026-09-25.
+a new revision; or GitHub changes who may approve a pull request or how many machine accounts its
+terms allow (§9). Evidence ledger records are as verified on 2026-09-25.
 
 This reference answers who or what decides that an agent may act, and how far each answer holds: a
 person approving each action, a permission rule, a model classifier or reviewer, a recorded grant,
@@ -39,7 +44,8 @@ a sandbox, a policy engine. It covers how approval by a person decays, how the p
 Claude Code and Codex work and what they read, what a grant for one irreversible act needs, what the
 field's authorization guidance asks for (agents as principals, delegation, per-call checks, durable
 consumption of an approval), which authorization engines decide where, and how untrusted content
-and secrets cross the boundary. It is for anyone setting up a repository where agents run with less
+and secrets cross the boundary, and what a hosted repository's review rules hold when an agent works
+under its person's account. It is for anyone setting up a repository where agents run with less
 supervision, writing a grant, building an agent system that acts or reads data for people, or
 deciding what to enforce in configuration rather than in prose. Where agents keep their work and
 what stalls long runs is in [agent-workspace.md](agent-workspace.md); which files, hooks and
@@ -99,6 +105,12 @@ plan, a semantic layer that generates the SQL, row-level security on the table) 
 person may not see never reach the model. A filter applied after retrieval has to check every item
 before the model reads it and cannot correct an aggregate already computed over rows the person may
 not see. L, P — §8.
+
+**A9. On GitHub, an agent that works under its person's account cannot give that person a second
+party.** A pull request's author cannot approve it, so with agents committing as the maintainer, a
+required approval or a required code-owner review can be met only by a bypass; the same token can
+change the rules. GitHub's terms allow one free machine account beside a personal account. L,
+inference [as-of 2026-10-04] — §9.
 
 ## 1. Approval by a person, and why it decays (A1)
 
@@ -585,6 +597,40 @@ permission (relationships, attributes, rows, governed metrics) and where the dat
   not see, or help when a loose filter let another tenant's chunk into the candidates (OWASP's
   "cross-tenant vector bleed", ASI06). P, S.
 
+## 9. Hosted review rules when an agent works under its person's account (VOLATILE) [as-of 2026-10-04]
+
+GitHub's rules act on accounts. What follows holds for a repository where agents commit and open
+pull requests under the maintainer's own account. Each page was read 2026-10-04.
+
+- **The author cannot approve.** "Pull request authors cannot approve their own pull requests." (L,
+  [Approving a pull request with required reviews](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews)).
+  The maintainer is then the author of every agent pull request. A required approval, or a required
+  code-owner review where the maintainer is the owner, can be met only by a bypass, and the rule
+  then records no second party (inference).
+- **Code owners come from the base branch.** "To trigger review requests, pull requests use the
+  version of `CODEOWNERS` from the base branch of the pull request", and code owners must have
+  write permission (L, [About code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)).
+  A pull request therefore cannot change its own owners. Whether `CODEOWNERS` binds at all on a
+  given plan is in [quality-floor.md](quality-floor.md) (Enforcement).
+- **The token carries the role.** Managing branch protection rules and repository rulesets belongs
+  to the admin role (L, [repository roles](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)).
+  An agent that holds the maintainer's token can do through the API what the maintainer's role
+  allows, so it can change or remove the rulesets that are meant to bound it (inference; no token
+  narrower than the maintainer's was tested).
+- **A second account is allowed.** GitHub's Terms of Service (effective 2026-04-27): "You may
+  maintain no more than one free machine account in addition to your free Personal Account", and
+  "the owner of the Account is ultimately responsible for the machine's actions" (L,
+  [Terms of Service](https://docs.github.com/en/site-policy/github-terms/github-terms-of-service)).
+- **AI approvals.** Copilot code review's approval can count toward a required approval, in
+  preview and off by default; Claude Code's and Codex's reviews do not ([review.md](review.md) §8).
+
+**The trade-off** (inference from the facts above):
+
+| Agents work as | Gains | Costs |
+| --- | --- | --- |
+| The maintainer's account and token | One identity in history; no extra credential to keep | No second party for review or code-owner rules, so they need a bypass; the agent holds admin rights, rulesets included; the account does not show which commits an agent wrote |
+| A machine account or a GitHub App with write access and no admin | The maintainer's approval and code-owner review become a real second party; rulesets stay out of the agent's reach | One more account or App and one more credential to keep safe; the person who owns it stays responsible for it; a sign-off that certifies origin is still a person's act |
+
 ## What the evidence supports (inference)
 
 These points are this reference's reading of the findings above. They are not orders.
@@ -611,6 +657,9 @@ These points are this reference's reading of the findings above. They are not or
 9. Where an agent reads data for a person, the permission is decided where the data is selected
    (query plan, semantic layer, row-level security), and every item a post-filter passes is checked
    (A8).
+10. On a hosted repository, review rules separate the agent from its person only when the agent
+    acts under its own identity without admin rights; under the person's account, they need a
+    bypass and the agent can change them (A9).
 
 ## Limits and open questions
 
@@ -685,3 +734,11 @@ Read 2026-10-01 unless dated otherwise.
   control (2026-01-08) <https://www.pinecone.io/learn/rag-access-control/>.
 - Injection and exfiltration: Simon Willison on GitLab Duo (2025-05-23) and the lethal trifecta
   [practitioners-19]; [instruction-file-security-authority-27].
+- GitHub, read 2026-10-04 (§9): Approving a pull request with required reviews
+  <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews>;
+  About code owners
+  <https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners>;
+  repository roles for an organization
+  <https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization>;
+  Terms of Service (effective 2026-04-27)
+  <https://docs.github.com/en/site-policy/github-terms/github-terms-of-service>.

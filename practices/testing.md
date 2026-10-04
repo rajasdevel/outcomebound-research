@@ -80,6 +80,9 @@ did not; a test that asserted Python's own error wording failed only on the newe
 matrix, which reworded it, while local runs used an older one; tests that resolved scripts against
 the working directory, or passed the caller's environment through, ran against something other
 than the code under test. No failure was traced to a cause specific to a middle Python version. (A)
+The reverse also occurs: `pathlib.Path.exists()` on a path under a folder the process cannot read
+raises `PermissionError` on CPython 3.10 to 3.13 and returns `False` on 3.14, so a matrix that runs
+only the newest Python misses that crash. (O) [as-of 2026-10-04]
 
 **K8. A skipped test is not a passing one.** Tests gated on tools absent from both CI and local
 environments skipped silently; `-rs` reports them but never fails them. Unless a job provisions
@@ -368,6 +371,22 @@ current source and documentation (read 2026-10-01). (L, M)
   read 2026-10-01), so the leg recorded as failing is often just the first to fail, not the only
   one that would have. The evidence supports the oldest and newest legs on each push and the full
   matrix before a release, not the full matrix before every landing.
+- A crash can exist only on the older versions. A probe run 2026-10-04 (O) on macOS 27 (arm64), as
+  a user without root, made a folder with mode `000` and asked about a path inside it:
+
+  | Call | CPython 3.10.20, 3.11.15, 3.12.13, 3.13.13 | CPython 3.14.8 |
+  | --- | --- | --- |
+  | `Path.exists()`, `Path.is_dir()`, `Path.is_symlink()` | raise `PermissionError` | return `False` |
+  | `os.path.exists()`, `os.path.lexists()` | return `False` | return `False` |
+  | `os.walk()` over the parent | does not raise: passes the error to `onerror`, or skips the folder when `onerror` is not set | same |
+
+  The cause is in the standard library's source: on 3.13.13, `Path.exists()` calls `stat()` and
+  re-raises every `OSError` except `ENOENT`, `ENOTDIR`, `EBADF` and `ELOOP`; on 3.14.8 it calls
+  `os.path.exists()` (O, installed source read 2026-10-04). A tool that walks a user's tree and calls
+  `Path.exists()` on what it finds therefore crashes on 3.10 to 3.13 where an unreadable folder
+  exists, and a suite run only on 3.14 stays green. A fixture with an unreadable folder, run on the
+  oldest supported version, shows the crash. A run as root, which can bypass the mode, and runs on
+  Linux and Windows were not probed (`UNVERIFIED`).
 - An interpreter's or library's own error wording is a poor assertion: the exception type, or a
   pattern that admits each supported version's wording, holds across versions.
 - A feature can arrive in a patch release: `tarfile.extractall(filter=…)` exists from Python
