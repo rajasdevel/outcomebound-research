@@ -1,8 +1,14 @@
 ---
 last_checked: 2026-10-01
-volatility: MONITOR (lab guidance on verifiers and code review changes with model releases; the measured studies and the recorded runs do not)
+volatility: MONITOR (lab guidance on verifiers and code review changes with model releases; the measured studies and the recorded runs do not) / VOLATILE (§8, which AI reviewers can count as a required approval)
 sources:
   - https://arxiv.org/abs/2502.04313
+  - https://arxiv.org/abs/2604.03196 (read 2026-10-04)
+  - https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests (read 2026-10-04)
+  - https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review (read 2026-10-04)
+  - https://docs.github.com/en/copilot/concepts/agents/code-review (read 2026-10-04)
+  - https://code.claude.com/docs/en/code-review (read 2026-10-04)
+  - https://learn.chatgpt.com/docs/third-party/github (read 2026-10-04)
   - https://arxiv.org/abs/2404.13076
   - https://arxiv.org/abs/2006.14779
   - https://arxiv.org/abs/2602.14611
@@ -14,17 +20,19 @@ sources:
 
 When a second reader of an agent's work or of the spec it runs from adds signal, which reader to
 use, how many rounds a large spec takes, and how to carry a review's findings until each is fixed
-and shown fixed.
+and shown fixed, and which AI reviewers can count as a required approval.
 
 Re-check when a lab changes its guidance on fresh-context verifiers or code review, a study compares
 same-family with cross-family review of code at equal effort, or a new model family joins the
-reviewers in use. Evidence ledger records are as verified on 2026-09-25 and 2026-09-26.
+reviewers in use, or GitHub, Anthropic or OpenAI changes whether its reviewer's approval can count
+toward a merge requirement (§8). Evidence ledger records are as verified on 2026-09-25 and 2026-09-26.
 
 This reference answers when an independent reader of work an agent did, or of a plan it will run
 from, finds something no check found; whether that reader should come from the author's model
 family or another; what a review's verdict does and does not establish; how many rounds a large,
 decision-complete spec takes; what happens to findings deferred as minor; and how to verify that
-the fixes a review accepted actually landed. It is for anyone who decides whether work needs a
+the fixes a review accepted actually landed; and which AI reviewers' approvals a hosted repository
+can count, with what review agents' measured signal is. It is for anyone who decides whether work needs a
 second reader, chooses the reviewer and its instructions, runs review rounds on a spec, or keeps the
 findings a review leaves. How large a change a reviewer can read well is in
 [work-breakdown.md](work-breakdown.md) F8; judges that score evaluation runs are in
@@ -94,6 +102,13 @@ rule-guided code review recovered 98% of required custom findings against a 58.3
 reviewer found issues on 84% of pull requests over 1,000 changed lines and 31% under 50
 [sizing-review-23]; in the maintainers' runs a fresh-context review of one ticket's diff took
 67k–152k tokens and of one larger work package 149k–252k. Moderate. (M, vendor; O) — §7.
+
+**RV9. On GitHub, only Copilot's review can count as a required approval, in preview; the
+measured signal of review agents is low.** Pull requests reviewed only by code review agents merged
+at 45.20% against 68.37% for human-only review, and 12 of 13 agents had average signal ratios below
+60% (arXiv 2604.03196). Copilot's approval counts only where an admin turns it on; Claude Code's
+managed review never approves or blocks; Codex's review is advisory. Moderate: one independent
+study, and vendor pages that change often. (M, L) [as-of 2026-10-04] — §8.
 
 ## 1. When a second reader adds signal
 
@@ -314,6 +329,37 @@ otherwise):
 | Review of one larger work package | a larger Claude model | 149k–252k |
 | A fix round handed to a fresh delegate, which must re-read the work first | a larger Claude model | about 134k (A: one run whose record was not kept) |
 
+## 8. AI reviewers as a merge gate (VOLATILE) [as-of 2026-10-04]
+
+**Measured signal** (M). Chowdhury et al., From Industry Claims to Empirical Reality: An Empirical
+Study of Code Review Agents in Pull Requests (MSR 2026, arXiv 2604.03196, submitted 2026-04-03),
+studied 3,109 unique pull requests in commented review state, taken from 19,450 in the AIDev
+dataset. Pull requests reviewed only by code review agents merged at 45.20%, 23.17 percentage
+points below human-only pull requests (68.37%), and "12 of 13 CRAs exhibit average signal ratios
+below 60%". The authors conclude that review agents "should augment rather than replace human
+reviewers". A merge rate is an outcome of the whole pull request, so the study does not separate the
+reviewer's effect from which pull requests got which reviewer (inference).
+
+**Which reviewer's approval can count** (L, each page read 2026-10-04):
+
+| Reviewer | Can its review satisfy a required approval? | What the vendor documents |
+| --- | --- | --- |
+| GitHub Copilot code review | Yes, in public preview since 2026-09-01; off by default | An admin turns on "Allow Copilot approvals to count toward merge requirements". Optional file-path globs (up to 15): an approval counts only where every changed file matches one. New commits dismiss the approval. Plans: Copilot Pro, Pro+, Max, Business and Enterprise. Each review costs AI credits plus GitHub Actions minutes |
+| Claude Code Code Review (managed) | No | Findings "don't approve or block your PR"; the check run "always completes with a neutral conclusion". A project that wants a gate reads the severity counts from the check run's output in its own CI. Research preview for Team and Enterprise; a review averages $15-25 |
+| Codex cloud code review | Advisory; whether its review can count as an approving review is `UNVERIFIED` | It "posts a standard GitHub code review" and flags only P0 and P1 issues; its rules "don't replace tests, branch protections, or required approvals" |
+
+**Where the reviewer reads its instructions.** Copilot code review reads repository custom
+instructions, agent instructions and skills from the pull request's head branch, not the base
+branch (L). So a pull request can change the instructions that its own reviewer follows, and an
+approval that counts is then shaped by the change it approves (inference). File-path globs that
+leave out the instruction and gate files keep those changes for a human approver (inference).
+Claude's page does not say from which branch it reads `CLAUDE.md` and `REVIEW.md`; for Codex the
+branch is `UNVERIFIED`.
+
+A pull request's author cannot approve it on GitHub, which bears on who else can approve when
+agents work under the maintainer's account: see
+[agent-authorization.md](agent-authorization.md) §9.
+
 ## What the evidence supports (inference)
 
 These points are this reference's reading of the findings above. They are not orders.
@@ -338,6 +384,9 @@ These points are this reference's reading of the findings above. They are not or
    appears, with the reviewer's reproductions re-run, finds what the round missed (RV6).
 9. Review effort scales with the change: a short focused review for a small change, a broad
    adversarial one before a release (RV8).
+10. An AI review that counts as a required approval is, on the measured signal, a weak second
+    party; on GitHub only Copilot's can count, and path globs can keep gate and instruction files
+    for a human (RV9).
 
 ## Limits and open questions
 
@@ -349,7 +398,9 @@ These points are this reference's reading of the findings above. They are not or
   where a later review found it.
 - The outside measurements of review effectiveness predate agents or concern human maintainers
   ([work-breakdown.md](work-breakdown.md) F8); the measured agent-reviewer results are a vendor's
-  own (Anthropic, CodeRabbit, OpenAI) or small (150 samples).
+  own (Anthropic, CodeRabbit, OpenAI) or small (150 samples); the one independent study of review
+  agents in pull requests (arXiv 2604.03196) measures merge rates and signal ratios, not escaped
+  defects.
 - Open: how many rounds a spec should get before its ambition is cut; whether a fix-landing pass
   catches as much as a full re-review at lower cost; whether agreement between two reviews of
   different families predicts a finding that holds.
@@ -366,5 +417,15 @@ arXiv 2502.04313 (2025-02-06, revised 2025-06-12); Panickssery, Bowman and Feng,
 Recognize and Favor Their Own Generations, arXiv 2404.13076 (2024-04-15); Bansal et al., Does the
 Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance, CHI 2021,
 arXiv 2006.14779. Cited from [work-breakdown.md](work-breakdown.md): arXiv 2602.14611.
+
+Read 2026-10-04 (§8): Chowdhury et al., From Industry Claims to Empirical Reality: An Empirical
+Study of Code Review Agents in Pull Requests, MSR 2026, <https://arxiv.org/abs/2604.03196>
+(2026-04-03); GitHub changelog, Copilot code review can now approve pull requests (2026-09-01)
+<https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests>;
+GitHub docs, configure code review
+<https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-code-review>
+and Copilot code review <https://docs.github.com/en/copilot/concepts/agents/code-review>; Claude
+Code, Code Review <https://code.claude.com/docs/en/code-review>; Codex, GitHub integration
+<https://learn.chatgpt.com/docs/third-party/github>.
 
 The (O) claims rest on the maintainers' unpublished observations of September 2026.
