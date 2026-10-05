@@ -18,7 +18,7 @@ sources:
 > **Own results.** Claims marked (O) record the maintainers' own probes and runs, each dated and scoped where it appears. The records are not published ([CONVENTIONS](../CONVENTIONS.md)). All other claims rest on the documentation and reports cited.
 
 Re-check when a Codex release changes how it loads `AGENTS.md`, caps the chain, runs hooks, gates
-trust or protects paths in its sandbox; before relying on a field name; and by 2026-12-27.
+trust, protects paths in its sandbox or changes its question tools; before relying on a field name; and by 2026-12-27.
 
 What Codex loads and in what order, its cap, skills, compaction, trust, hooks, the configuration
 keys that run code, its sandbox's protected paths, how to isolate a run and how to see what it
@@ -276,6 +276,28 @@ reader cannot settle; a lexical scan reports those as `UNVERIFIED`.
   source in the Codex CLI, where a text renderer merged upstream on 2026-09-16 is not yet called;
   unknown for the Codex IDE extension [as-of 2026-09-23].
 
+## 12. Asking the person a question
+
+Codex gives the model two tools that ask the person a question with choices; which one a session
+carries depends on the surface and its mode [as-of 2026-10-05]. Each shows its fields as short
+lines, so text written for a chat message, such as a multi-line list, does not belong in them.
+
+- `request_user_input` (source, `core/src/tools/handlers/request_user_input_spec.rs` and
+  `protocol/src/request_user_input.rs` on `main`, read 2026-10-05): one to three questions, the
+  description says to prefer one. Each question has an `id`, a `header` of 12 characters or fewer,
+  the `question`, and two or three options, each a `label` of one to five words and a
+  `description`. The recommended option goes first, its label ending "(Recommended)"; the client adds
+  an "Other" answer itself, so the list carries none. The tool is available only in some
+  collaboration modes, and it refuses a question with no options.
+- `request_user_input_async` (source, `core/src/tools/handlers/request_user_input_async.rs` on
+  `main`, read 2026-10-05): one or more questions, each a `title` (the whole question with the
+  context needed to answer it) and optional `options`, a list of plain strings. The recommended
+  answer goes first and is preselected; the person may pick one or type an answer.
+- (O) 2026-10-04, Codex desktop app: agents that put a drawn multi-line decision brief whole into
+  the `title` of `request_user_input_async` had it shown to the person as one crammed line. The
+  remedy observed to read well is to show the full brief in the reply first and keep the tool's
+  fields to one line each.
+
 ## Sources
 
 - `AGENTS.md` <https://learn.chatgpt.com/docs/agent-configuration/agents-md>; loader source
@@ -292,6 +314,8 @@ reader cannot settle; a lexical scan reports those as `UNVERIFIED`.
   <https://learn.chatgpt.com/docs/cli/reference> (2026-10-01); approvals and security
   <https://learn.chatgpt.com/docs/agent-approvals-security> (2026-09-25, 2026-10-01; the
   developers.openai.com address redirects there).
+- Question tools: `request_user_input_spec.rs`, `request_user_input_async.rs` and
+  `protocol/src/request_user_input.rs` <https://github.com/openai/codex/tree/main/codex-rs> (2026-10-05).
 
 Checks defined here (verdict PASS, read 2026-09-25):
 - [chk-codex-models] Codex `models.json` at `rust-v0.157.0`: the GPT-6 base-instruction lines in §5.
