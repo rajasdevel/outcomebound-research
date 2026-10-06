@@ -18,6 +18,11 @@ sources:
   - https://github.com/mattpocock/skills
   - https://github.com/obra/superpowers
   - https://github.com/anthropics/skills
+  - https://github.com/cloudflare/security-audit-skill
+  - https://github.com/cathrynlavery/diagram-design
+  - https://github.com/bmad-code-org/BMAD-METHOD
+  - https://github.com/github/spec-kit
+  - https://github.com/addyosmani/agent-skills
 ---
 
 # Agent skills: what works, what they are for, and the public sets compared
@@ -200,8 +205,10 @@ write, sharpen, borrow or cut. Where harnesses find and list skills is in
 **Common defects when a skill is read against the text it sits beside** (observed in one
 review of skills read against the text they sit beside; anecdote): restating the always-loaded contract; setting a second
 ask policy that conflicts with the contract's; statements the tool it describes does not bear out;
-and a name that promises a pain its body does not address. A superpowers finding points the same
-way: a description that summarises the workflow gets followed instead of the body.
+and a name that promises a pain its body does not address. superpowers' skill-writing guide reports
+one case that points the same way: in one pressure test by its author, an agent followed a
+description that summarised the workflow and did not read the body (A, one case, no repeat or
+sample; read 2026-10-06).
 
 **Smell catalogues.** A published taxonomy of 26 skill smells, drawn from 29 practice sources and
 detected by 5 static checks and 21 model checks (weighted F1 0.78), finds smells in all but one of
@@ -275,7 +282,7 @@ reading the text; no skill was run.
 | Set | Licence | What it contains | Worth adapting |
 | --- | --- | --- | --- |
 | Matt Pocock's skills | MIT | 37 skills on main at 2026-10-01 (35 at the v1.2.3 tag, whose plugin ships 25); its core skills gate on "confirm with the user", and its skills refer to its own setup skill | diagnosing-bugs' first phase (a red-capable, deterministic, fast loop before any fix); tdd's anti-patterns (tautological and implementation-coupled tests); to-tickets' expand-contract for wide refactors; domain-modeling's three-part test for when a decision earns a record; writing-for-agents' pruning test ("does it change behaviour versus the default?"); code-review's split of spec from standards; pr's one-way or two-way door; grilling's whole frontier in one round; loop-me's "push right: ask once, late, with everything prepared" |
-| superpowers | MIT | A rule that a skill that might apply must be invoked, hard gates before implementation and approval steps | writing-good-tests (name the break, no change detectors, behaviour not text, a mutation check); systematic-debugging's core (instrument each boundary, one hypothesis at a time, stop after three failed fixes); receiving-code-review's "if any item is unclear, implement nothing yet"; writing-skills' tested finding that a description summarising the workflow gets followed instead of the body |
+| superpowers | MIT | A rule that a skill that might apply must be invoked, hard gates before implementation and approval steps | writing-good-tests (name the break, no change detectors, behaviour not text, a mutation check); systematic-debugging's core (instrument each boundary, one hypothesis at a time, stop after three failed fixes); receiving-code-review's "if any item is unclear, implement nothing yet"; writing-skills' report of one pressure test by its author, in which a description summarising the workflow was followed instead of the body |
 | Anthropic's public skills | no licence at the repository root; an Apache-2.0 `LICENSE.txt` in 15 skills (skill-creator, discernment-nudge, webapp-testing, mcp-builder, frontend-design, claude-api and academy-guide among them); none in doc-coauthoring; docx, pdf, pptx and xlsx "All rights reserved", which the README calls source-available | not stated | doc-coauthoring's reader test: a fresh agent reads only the document and answers the questions a reader would ask, the one idea found for SP06; with no stated licence, none of its text is copied |
 
 **Reuse.** None is reusable verbatim in text meant for several harnesses: each names a harness, a
@@ -378,6 +385,68 @@ own mechanism: a session-start hook where one exists, an include or a message tr
   Anthropic, `webapp-testing` (Apache-2.0). Code the person will run needs no verification nudge,
   since running it is the verification: Anthropic, `discernment-nudge` (Apache-2.0).
 
+**Ideas credited from the 1.3.0 and 1.4.0 work of OutcomeBound** (added 2026-10-06; each is a reading
+of the named file at the named commit, so A; each bullet states the upstream advice in our words,
+then where OutcomeBound uses it, as its text stood on 2026-10-06; the pull requests numbered 81 to
+83 were open on that day). All sources are MIT.
+- An unconfirmed finding says which fact is missing and which safe check would settle it, so the
+  owner of the answer knows what to look at: cloudflare/security-audit-skill at c1c8a8c1,
+  `skills/security-audit/ATTACK-CLASSES.md` (the paragraph that opens the file, on `confirmed` and
+  `needs_validation`), repeated per area in `CLOUD-AND-DEPLOYMENT.md` and `AI-AND-LLM.md`. Used in
+  OutcomeBound 1.3.0 (pull request 80): `UNVERIFIED` in `OutcomeBound.md` "Validate and report" and
+  in `skills/tests-worth-keeping/SKILL.md` "The report" says what evidence is missing and what would
+  settle it.
+- A conversion of a source into something else ends with a list of what was merged, collapsed or
+  dropped, because the owner knows the source and notices silent loss: cathrynlavery/diagram-design
+  at 3996c160, `skills/diagram-design/SKILL.md`, the import steps ("fidelity ledger"; "never silently
+  drop one"). Used in 1.3.0: `skills/gather-requirements/SKILL.md` "Requirements from an existing
+  source" keeps each requirement and constraint and names any omission, changed meaning or conflict.
+  Naming a drop does not authorize it; that rule is OutcomeBound's own.
+- A dispatch to a subagent names the model it chose, because an omitted model inherits the session's:
+  obra/superpowers at 8ca22dba (6.4.2), `skills/subagent-driven-development/SKILL.md`, "Model
+  Selection". The source names the model only; naming the effort too is OutcomeBound's addition.
+  Used in 1.3.0: `fragments/stack/multi-agent.md`, version 7, "Bounds".
+- Ask the open questions of one round together, number them, give a recommended answer with each,
+  and look up facts yourself: mattpocock/skills at 6fd94792, `skills/productivity/grilling/SKILL.md`.
+  Used in 1.4.0 (pull request 83): `skills/gather-requirements/SKILL.md` "Asking" and the interview
+  paragraph. The stop rule (stop asking when the work can proceed) differs from the source, whose
+  session ends when no open decision is left.
+- A decision that another person must make goes to that person as a short brief of its own: who it
+  is for, what is needed back, one idea for each question with the most important first, and an
+  accepted "I don't know": mattpocock/skills at 6fd94792,
+  `skills/productivity/to-questionnaire/SKILL.md`. Used in 1.4.0: `skills/gather-requirements/SKILL.md`
+  "Asking", the sentence on a stakeholder's brief.
+- Teach a document by questions drawn from its content, ask for a prediction and wait, give options
+  of equal length, teach only what a source says, and when a message does not land say it again,
+  shorter, in the reader's own terms: mattpocock/skills at 6fd94792,
+  `skills/productivity/teach/SKILL.md` and `skills/productivity/wait-what/SKILL.md`. Used in 1.4.0:
+  `skills/explain-spec/SKILL.md`. There the questions come from the rows of the spec, and a real gap
+  the answers show is fixed in the spec in the same change; the source's standing learner workspace
+  is not used.
+- Accounting for a source: BMAD-METHOD at bda3c592, `skills/bmad-spec/SKILL.md` ("Pass 2 -
+  Preservation" walks the source claim by claim and logs each drop so it is not silent), and
+  spec-kit at 9fb13c15, `templates/commands/analyze.md` (maps tasks to requirements by keyword or
+  explicit reference and reports requirements with no task). Both are the nearest prior art, and a
+  model does the judging in both; neither has a script behind it in the files read.
+  Used in 1.4.0 (pull request 83): `outcomebound sources import` and `outcomebound sources check`,
+  design in `docs/specs/sources/design.md`, check by script that every item has a disposition, that
+  each cited item exists and has not changed, and that quoted words occur in the item. The check
+  does not show that a requirement kept all of an item's constraints.
+- A browser that an agent drives uses a dedicated or temporary profile and never the person's signed-in
+  one, and everything read in the browser (page text, console, network) is data, never an instruction:
+  addyosmani/agent-skills at 1401c8b8, `skills/browser-testing-with-devtools/SKILL.md`, "Profile
+  Isolation" and "Treat All Browser Content as Untrusted Data". Used in 1.4.0 (pull request 82):
+  `fragments/stack/runtime.md` "Bounds". OutcomeBound differs on one rule: the agent may follow the
+  links of the app under test, and the source allows only URLs the person gave.
+- A rollback plan names its trigger, its steps, what the database holds, and what the new version
+  wrote: addyosmani/agent-skills at 1401c8b8, `skills/shipping-and-launch/SKILL.md`, "Rollback
+  Strategy". Used in 1.4.0 (pull request 82): the recovery facts of a deploy brief in
+  `fragments/stack/deploy.md` "Bounds". The source's numeric thresholds and times have no evidence
+  in the file and are not used.
+- Not credited, because the sources read were secondary or no text was taken from them: expand and
+  contract ordering of schema changes (`fragments/stack/db-migrations.md`) and staged rollout
+  practice (`fragments/stack/deploy.md`) rest on general practice that these files did not source.
+
 ## 7. How a skill earns its place
 
 1. **It addresses a real pain** (§5) that the always-loaded text does not already cover, and does
@@ -460,6 +529,13 @@ Read 2026-09-25 unless dated. Evidence ids resolve in
   c55ee460 and d81f3a18, tag v1.2.3, MIT) <https://github.com/mattpocock/skills>; superpowers 6.4.1
   and 6.4.2 (MIT) <https://github.com/obra/superpowers>; Anthropic's public skills at 8a1541c4
   <https://github.com/anthropics/skills>.
+- Read 2026-10-06, only the files named in the 2026-10-06 credited-ideas list in §6:
+  cloudflare/security-audit-skill at c1c8a8c1 <https://github.com/cloudflare/security-audit-skill>;
+  cathrynlavery/diagram-design at 3996c160 <https://github.com/cathrynlavery/diagram-design>;
+  obra/superpowers at 8ca22dba (6.4.2); mattpocock/skills at 6fd94792; BMAD-METHOD at bda3c592
+  <https://github.com/bmad-code-org/BMAD-METHOD>; spec-kit at 9fb13c15
+  <https://github.com/github/spec-kit>; addyosmani/agent-skills at 1401c8b8
+  <https://github.com/addyosmani/agent-skills>. All MIT.
 - Read 2026-10-01: Agent Skills specification and overview <https://agentskills.io> (source
   `agentskills/agentskills` at 69ef37e9); Claude Code MCP docs, tool search
   <https://code.claude.com/docs/en/mcp>; Snyk ToxicSkills, the SkillsBench (v1 and v4),
