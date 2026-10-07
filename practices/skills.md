@@ -385,10 +385,11 @@ own mechanism: a session-start hook where one exists, an include or a message tr
   Anthropic, `webapp-testing` (Apache-2.0). Code the person will run needs no verification nudge,
   since running it is the verification: Anthropic, `discernment-nudge` (Apache-2.0).
 
-**Ideas credited from the 1.3.0 and 1.4.0 work of OutcomeBound** (added 2026-10-06; each is a reading
-of the named file at the named commit, so A; each bullet states the upstream advice in our words,
-then where OutcomeBound uses it, as its text stood on 2026-10-06; the pull requests numbered 81 to
-83 were open on that day). All sources are MIT.
+**Ideas credited from the 1.3.0 and 1.4.0 work of OutcomeBound** (the first bullets added 2026-10-06 and
+the last three added 2026-10-07; each is a reading of the named file at the named commit, so A;
+each bullet states the upstream advice in our words, then where OutcomeBound uses it, as its text
+stood on the day the bullet was added; the pull requests numbered 81 to 83 were open on
+2026-10-06). All sources are MIT.
 - An unconfirmed finding says which fact is missing and which safe check would settle it, so the
   owner of the answer knows what to look at: cloudflare/security-audit-skill at c1c8a8c1,
   `skills/security-audit/ATTACK-CLASSES.md` (the paragraph that opens the file, on `confirmed` and
@@ -443,6 +444,39 @@ then where OutcomeBound uses it, as its text stood on 2026-10-06; the pull reque
   Strategy". Used in 1.4.0 (pull request 82): the recovery facts of a deploy brief in
   `fragments/stack/deploy.md` "Bounds". The source's numeric thresholds and times have no evidence
   in the file and are not used.
+- Look for what already does the job before writing it, in a fixed order: the codebase, then the
+  standard library, then a feature of the platform, then a dependency that is already installed;
+  the source puts first the question whether the need exists at all, and last the shortest code
+  that works: DietrichGebert/ponytail at 552acd5e, `skills/ponytail/SKILL.md`, "The ladder". Used in
+  1.4.0: `skills/using-outcomebound/SKILL.md`, the sentence that begins "Before writing new code".
+  OutcomeBound keeps the four searches in the source's order and adds a rule for adding a
+  dependency (the project's own); it does not take the question whether the need exists, the
+  one-line rung, or the source's rule that the lazy answer is the default.
+- Reproduce the failure before changing anything; hold one hypothesis at a time, each from
+  something observed, and test it by changing one thing; narrow the case by shrinking the input,
+  reading the history or bisecting; fix the cause and not where it shows; keep the reproduction as
+  a test; a fix that fails after the first needs new evidence, not another variation: Matt
+  Pocock's skills at 6fd94792, `skills/engineering/diagnosing-bugs/SKILL.md`, phases 1 to 5;
+  obra/superpowers at 8ca22dba (6.4.2), `skills/systematic-debugging/SKILL.md`, phases 1, 3 and 4;
+  addyosmani/agent-skills at 1401c8b8, `skills/debugging-and-error-recovery/SKILL.md`, steps 1 to
+  5. Used in 1.4.0: `skills/diagnose/SKILL.md`. The sources differ from it and from each other:
+  Pocock asks for three to five ranked hypotheses before the first test and for a fast, tight
+  loop that is red on the reported symptom before any theory; superpowers asks for a single
+  hypothesis and, after three failed fixes, a question about the architecture; Addy Osmani's file
+  gives no count. OutcomeBound uses no count of hypotheses or attempts. The rule that the search
+  stops when one cause explains every symptom, and the list of unobserved assumptions to check
+  when a fix fails again, are not in the files read and are OutcomeBound's own; the sources'
+  other parts (debug-log tags, performance branch, architecture question) are not used.
+- Check a review finding against the code before acting on it, say so where it is wrong, and ask
+  about an unclear item before acting on it: obra/superpowers at 8ca22dba (6.4.2),
+  `skills/receiving-code-review/SKILL.md`, "The Response Pattern", "Handling Unclear Feedback" and
+  "When To Push Back". Used in 1.4.0: `skills/review-findings/SKILL.md`, "Acting on findings", and
+  `outcomebound review check`. Three things differ. The source has no per-finding disposition;
+  that every finding ends as `fixed`, `rejected` or `deferred`, each with its evidence, the review
+  file format and the script that fails a finding with none are OutcomeBound's own, and the check
+  does not show that a fix or a rejection is right. The source stops all work while any item is
+  unclear; OutcomeBound asks and goes on with the other findings. The source's rules on tone (no
+  thanks, no praise) are not used.
 - Not credited, because the sources read were secondary or no text was taken from them: expand and
   contract ordering of schema changes (`fragments/stack/db-migrations.md`) and staged rollout
   practice (`fragments/stack/deploy.md`) rest on general practice that these files did not source.
@@ -536,6 +570,12 @@ Read 2026-09-25 unless dated. Evidence ids resolve in
   <https://github.com/bmad-code-org/BMAD-METHOD>; spec-kit at 9fb13c15
   <https://github.com/github/spec-kit>; addyosmani/agent-skills at 1401c8b8
   <https://github.com/addyosmani/agent-skills>. All MIT.
+- Read 2026-10-07, only the files named in the 2026-10-07 bullets of the credited-ideas list in §6:
+  DietrichGebert/ponytail at 552acd5e <https://github.com/DietrichGebert/ponytail> (MIT);
+  mattpocock/skills at 6fd94792 <https://github.com/mattpocock/skills> (MIT); obra/superpowers at
+  8ca22dba (6.4.2) <https://github.com/obra/superpowers> (MIT); addyosmani/agent-skills at 1401c8b8
+  <https://github.com/addyosmani/agent-skills> (MIT). The license of each was read from the
+  repository's license record on 2026-10-07.
 - Read 2026-10-01: Agent Skills specification and overview <https://agentskills.io> (source
   `agentskills/agentskills` at 69ef37e9); Claude Code MCP docs, tool search
   <https://code.claude.com/docs/en/mcp>; Snyk ToxicSkills, the SkillsBench (v1 and v4),
