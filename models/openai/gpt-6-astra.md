@@ -276,7 +276,7 @@ shared parts, such as the API rules and the guide-by-guide summary, are in the
   for Astra, not available with EU data residency), and Ultrafast at six times (US residency and global
   processing only, low default rate limits of 500,000 to 5 million tokens a minute by tier, WebSocket
   recommended) [openai-fast-mode] [openai-ultrafast].
-- Rate limits at tier 5: 15,000 requests and 40 million tokens a minute [openai-model-gpt-6-astra].
+- **Rate limits [as-of 2026-10-09].** The Build tier lists 5,000 requests and 1 million tokens per minute; Grow lists 15,000 requests and 40 million tokens per minute. The page also lists the Launch tier. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-6-astra#rate-limits), read 2026-10-09).
 
 ### Migrating from the previous generation
 

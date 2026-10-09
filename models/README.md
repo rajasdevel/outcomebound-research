@@ -61,11 +61,11 @@ older has no file.
     makers direct delivery.
 - ElevenLabs is the one maker whose speech synthesis and transcription models all have files,
   because the maker sells voice models only.
-- OpenAI's realtime transcription and translation models have files, because OpenAI serves them
-  through its Realtime API next to its realtime models. The standalone speech-to-text models of
-  other makers do not.
+- OpenAI's and Google's dedicated transcription and speech translation models have files. These
+  include batch and live transcription interfaces as well as realtime translation. Standalone
+  speech-to-text models outside these makers and ElevenLabs do not have files.
 - Out of scope: plain read-aloud speech synthesis (the text-to-speech models of other makers that
-  are not voice actor models), the standalone speech-to-text models of other makers, and other speech
+  are not voice actor models), standalone speech-to-text outside the coverage above, and other speech
   models that neither hold a conversation nor take direction for delivery (voice changers, dubbing,
   music, sound effects).
   [../practices/voice-agents.md](../practices/voice-agents.md) names some of them when it describes
@@ -170,7 +170,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | [deepseek/](deepseek/README.md) | The models of DeepSeek |
 | [elevenlabs/](elevenlabs/README.md) | The speech synthesis and transcription models of ElevenLabs |
 | [fishaudio/](fishaudio/README.md) | The S2 voice actor models of Fish Audio |
-| [google/](google/README.md) | The Gemini and Gemma models of Google, with the Gemini Live voice models and the Gemini TTS voice actor models |
+| [google/](google/README.md) | The Gemini and Gemma models of Google, with the Gemini Live, transcription and translation models and the Gemini TTS voice actor models |
 | [hume/](hume/README.md) | The EVI voice models and the Octave 1 voice actor model of Hume AI |
 | [inworld/](inworld/README.md) | The Realtime TTS-2 voice actor model of Inworld |
 | [krafton/](krafton/README.md) | The Raon-SpeechChat voice model of KRAFTON |

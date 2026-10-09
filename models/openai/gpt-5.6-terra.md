@@ -151,8 +151,8 @@ model of its class. The family guidance (prompting guides, effort migration, pro
 - No sampling-parameter rule for GPT-5.6 appears on the GPT-5.6 pages read; OpenAI's deployment checklist
   states the removal of `temperature` and `top_p` above effort `none` in its GPT-6 migration paragraph
   [openai-deployment-checklist]. Fast mode costs twice the standard rate ($4
-  in, $24 out); Batch and Flex are half price; tier 5 limits are 15,000 requests and 40 million tokens a
-  minute [openai-model-gpt-5.6-terra] [openai-pricing].
+  in, $24 out); Batch and Flex are half price [openai-model-gpt-5.6-terra] [openai-pricing].
+- **Rate limits [as-of 2026-10-09].** Build lists 5,000 requests and 1 million tokens per minute; Grow lists 15,000 requests and 40 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-5.6-terra#rate-limits), read 2026-10-09).
 - OpenAI asks applications serving individual end users to send a stable `safety_identifier`, since
   real-time classifiers can block or pause requests [openai-guide-gpt-5.6].
 

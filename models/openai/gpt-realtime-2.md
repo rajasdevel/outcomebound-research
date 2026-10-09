@@ -163,7 +163,7 @@ The model page lists no structured-output or JSON-mode feature, only function ca
 
 - The GA interface removed `temperature`. OpenAI's 2025 note says audio output cannot be made deterministic with low values and high values cause audio artefacts, so it advises prompting instead [openai-blog-realtime-api].
 - `max_output_tokens` takes 1 to 4,096 or `inf` per response, including tool calls [openai-ref-client-secrets].
-- Rate limits by tier: 200 requests and 40,000 tokens a minute at tier 1; 20,000 requests and 15 million tokens at tier 5 [openai-model-gpt-realtime-2].
+- **Rate limits [as-of 2026-10-09].** Build lists 400 requests and 200,000 tokens per minute; Grow lists 20,000 requests and 15 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-2#rate-limits), read 2026-10-09).
 - A session lasts at most 60 minutes. The beta header `OpenAI-Beta: realtime=v1` no longer works, and the beta interface ended on 2026-05-12 [openai-guide-conversations] [openai-deprecations].
 
 ### Migrating from the previous generation

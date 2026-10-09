@@ -4,14 +4,18 @@ volatility: VOLATILE (minimums, lifetimes, prices and invalidation rules change 
 sources:
   - https://platform.claude.com/docs/en/build-with-claude/prompt-caching
   - https://platform.claude.com/docs/en/build-with-claude/effort
+  - https://platform.claude.com/docs/en/about-claude/pricing (read 2026-10-09)
   - https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
   - https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
   - https://developers.openai.com/api/docs/guides/prompt-caching
   - https://developers.openai.com/api/docs/guides/upgrading-to-gpt-5p6-sol
   - https://developers.openai.com/api/docs/pricing
+  - https://developers.openai.com/api/docs/models/chat-latest (read 2026-10-09)
   - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/prompt-caching
   - https://docs.x.ai/developers/advanced-api-usage/prompt-caching/multi-turn.md
   - https://ai.google.dev/gemini-api/docs/caching
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe (read 2026-10-09)
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview (read 2026-10-09)
   - https://cursor.com/blog/improved-token-efficiency (read 2026-10-09)
 ---
 
@@ -39,14 +43,16 @@ product (L).
 **CM2. Prompt caching rewards a stable prefix and fails silently.** Providers cache the longest
 unchanged prefix of a request; at Anthropic a change invalidates its level and every later one, in
 the order tools, system, messages. A prefix below the model's minimum (512 to 4,096 tokens at
-Anthropic, 1,024 at OpenAI from GPT-5.6, 4,096 on Gemini 3.x) is processed uncached with no error.
+Anthropic, 1,024 at OpenAI from GPT-5.6, 4,096 on the Gemini 3.x general text models checked) is
+processed uncached with no error.
 Text that changes between requests belongs after the stable text, and only the usage fields show
 whether caching happened. L.
 
 **CM3. Agent loops defeat caches in ways a single request does not.** An Anthropic breakpoint looks
 back only 20 blocks; parallel requests that share a prefix each miss it until the first response
 begins; a top-level change of effort or tools restarts the cache, while per-message effort,
-`configuration_update` items and mid-conversation system messages keep it; edited history breaks it.
+`configuration_update` items and mid-conversation system messages keep it on supported models;
+edited history breaks it.
 From GPT-5.6, OpenAI bills cache writes at 1.25× input, so a prefix that never repeats costs more
 than no cache. L.
 
@@ -85,8 +91,9 @@ All from Anthropic's prompt-caching, effort, mid-conversation system message and
 2026-10-01 [chk-claude-caching, chk-claude-mid-system, chk-claude-refusals]. L.
 
 - **Breakpoints.** Up to 4 `cache_control` breakpoints; a write happens only at a breakpoint.
-- **Minimum prefix.** 512 tokens on Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5, Sonnet 5.5, Fable 5
-  and Mythos 5; 1,024 on Opus 4.8, Sonnet 5, Sonnet 4.6, Sonnet 4.5, Opus 4.1, Opus 4 and Sonnet 4;
+- **Minimum prefix.** 512 tokens on Fable 5.1, Mythos 5.1, Opus 5.5, Opus 5, Sonnet 5.5, Fable 5,
+  Mythos 5 and Haiku 5.5 [as-of 2026-10-09] [cache-oct9]; 1,024 on Opus 4.8, Sonnet 5, Sonnet 4.6,
+  Sonnet 4.5, Opus 4.1, Opus 4 and Sonnet 4;
   2,048 on Mythos Preview, Opus 4.7 and Haiku 3.5; 4,096 on Opus 4.6, Opus 4.5 and Haiku 4.5. The
   minimum does not fall steadily by generation. A shorter prompt "will be processed without
   caching, and no error is returned". These minimums hold on the Claude API, Claude Platform on AWS,
@@ -105,12 +112,20 @@ All from Anthropic's prompt-caching, effort, mid-conversation system message and
   under the `inline-tools-2026-09-15` beta; and thinking blocks passed back unchanged. Claude Code
   keeps its cache across effort changes on Opus 5.5 and Fable 5.1 from v2.1.280, per Latent Space
   ([cross-harness.md](../harnesses/cross-harness.md#3-loading-harness-by-harness)).
+  Haiku 5.5 also keeps the message cache through per-message effort on the Claude API and Google
+  Cloud with adaptive thinking and the `mid-conversation-output-config-2026-07-01` beta. A changed
+  per-message effort with thinking disabled returns 400 [as-of 2026-10-09] [effort-oct9]. L.
 - **Prices.** A 5-minute write costs 1.25× base input, a 1-hour write 2×, a read 0.1× (0.025× on
-  Fable 5.1 and Mythos 5.1, 0.05× on Opus 5.5). Against sending the prefix uncached each time, a
+  Fable 5.1 and Mythos 5.1, 0.05× on Opus 5.5 and Sonnet 5.5 [as-of 2026-10-09] [cache-oct9]).
+  Against sending the prefix uncached each time, a
   5-minute entry comes out ahead once one later request reads it, and a 1-hour entry once two do
   (computed from the multipliers). Anthropic estimates that Fable 5.1's read price, 75% below Fable
   5's, lowers the price of typical workloads by about 25% and of highly agentic ones by up to about
   45% [chk-fable-page].
+- **Haiku 5.5 prices** [as-of 2026-10-09]. The 512-token cache minimum is separate from the
+  100,000-token price threshold. Prompt length counts uncached input, cache writes and cache reads.
+  Over 100,000 tokens, the whole request pays the higher tier: cache reads rise from $0.01 to $0.05
+  per Mtok [price-oct9]. L.
 - **Lifetime.** "The cache is refreshed for no additional cost each time the cached content is
   used." The lifetime counts from the start of the request that wrote or read the entry: in the documentation's example, if a response takes 4 minutes to stream, a follow-up request that reuses the same cached prefix "must start within about 1 minute of that response completing" (5-minute entry).
 - **Lookback.** "The lookback window is 20 blocks": a breakpoint finds an earlier entry only within
@@ -140,6 +155,10 @@ All from Anthropic's prompt-caching, effort, mid-conversation system message and
 
 From OpenAI's prompt-caching guide, GPT-5.6 upgrade guide, reasoning guide and pricing page, read
 2026-10-01 [chk-openai-caching, chk-openai-reasoning, chk-openai-pricing]. L.
+
+**Scope** [as-of 2026-10-09]. The numbered GPT rules below do not establish which cache controls
+`chat-latest` accepts. Its page gives a cached-input price but no numbered identity or cache-control
+settings; mapping it to a GPT generation remains UNVERIFIED [chat-oct9]. L.
 
 - **Minimum and breakpoints.** Caching is on by default. From GPT-5.6 the minimum is 1,024 visible
   input tokens, an implicit breakpoint sits at the end of the latest eligible message, and cached
@@ -200,9 +219,11 @@ rest of the Foundry route is in [`../providers/microsoft-foundry.md`](../provide
   `reasoning_content` (or continue with `previous_response_id`), omitting it being "the top cause of
   cache misses"; the `x-grok-conv-id` header raises the hit rate [grok-f17, chk-xai-caching]. L.
 - **Google.** Implicit caching is on by default from Gemini 2.5, with a minimum of 4,096 tokens on the
-  3.x models (3.1 Pro Preview and 3.5 to 3.8 Flash) and 2,048 on 2.5; cached input is priced at 10%
-  of input on the models checked; requests that share a prefix should be sent close together; the
+  3.x general text models (3.1 Pro Preview and 3.5 to 3.8 Flash) and 2,048 on 2.5; cached input is
+  priced at 10% of input on the models checked; requests that share a prefix should be sent close together; the
   Interactions API supports implicit caching only [chk-gemini-caching]. L.
+  The dedicated Gemini 3.5 Transcribe endpoints and Live Translate Preview do not support caching
+  [as-of 2026-10-09] [transcribe-oct9, translate-oct9]. L.
 
 ## 6. What breaks a cache in an agent loop (STABLE)
 
@@ -267,8 +288,20 @@ These points are this reference's reading of the findings above. They are not or
 
 ## Sources
 
-Read 2026-10-01 unless dated otherwise. Ids in brackets resolve in the evidence files.
+Read 2026-10-01 unless dated otherwise. Ids in brackets resolve below or in the evidence files.
 
+- [cache-oct9] Anthropic, prompt caching, read 2026-10-09, L
+  <https://platform.claude.com/docs/en/build-with-claude/prompt-caching>.
+- [effort-oct9] Anthropic, effort, read 2026-10-09, L
+  <https://platform.claude.com/docs/en/build-with-claude/effort>.
+- [price-oct9] Anthropic, pricing, read 2026-10-09, L
+  <https://platform.claude.com/docs/en/about-claude/pricing>.
+- [chat-oct9] OpenAI, Chat Latest model page, read 2026-10-09, L
+  <https://developers.openai.com/api/docs/models/chat-latest>.
+- [transcribe-oct9] Google, Gemini 3.5 Transcribe (both endpoints), read 2026-10-09, L
+  <https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe>.
+- [translate-oct9] Google, Gemini 3.5 Live Translate Preview, read 2026-10-09, L
+  <https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview>.
 - [chk-claude-caching] Anthropic, prompt caching
   <https://platform.claude.com/docs/en/build-with-claude/prompt-caching>, and effort
   <https://platform.claude.com/docs/en/build-with-claude/effort>.

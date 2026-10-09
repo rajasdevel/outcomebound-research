@@ -149,8 +149,8 @@ remains in the API. The family guidance is in the [OpenAI README](README.md) (pr
 - No sampling-parameter rule for GPT-5.6 appears on the GPT-5.6 pages read; OpenAI's deployment checklist
   states the removal of `temperature` and `top_p` above effort `none` in its GPT-6 migration paragraph
   [openai-deployment-checklist]. Fast mode costs twice the standard rate
-  ($0.40 in, $2.40 out); Batch and Flex are half price; tier 5 limits are 30,000 requests and 180 million
-  tokens a minute [openai-model-gpt-5.6-luna] [openai-pricing].
+  ($0.40 in, $2.40 out); Batch and Flex are half price [openai-model-gpt-5.6-luna] [openai-pricing].
+- **Rate limits [as-of 2026-10-09].** Build lists 5,000 requests and 2 million tokens per minute; Grow lists 30,000 requests and 180 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-5.6-luna#rate-limits), read 2026-10-09).
 
 ### Migrating from the previous generation
 

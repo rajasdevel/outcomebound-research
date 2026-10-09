@@ -102,7 +102,7 @@ Audio and text in, text out. A session takes streamed audio chunks. The guide ex
 
 ### Sampling and API parameters
 
-- Rate limits: tier 1, 500 requests and 60,000 tokens a minute; tier 5, 10,000 requests and 780,000 tokens [openai-model-gpt-live-transcribe].
+- **Rate limits [as-of 2026-10-09].** Build lists 2,000 requests and 210,000 tokens per minute; Grow lists 10,000 requests and 780,000 tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-live-transcribe#rate-limits), read 2026-10-09).
 - Data: the realtime transcription endpoint supports US and EU data residency [openai-guide-your-data].
 - Production checklist from OpenAI: pick latency and accuracy targets before tuning; test real audio, each target language, numbers, dates, currency, emails, product names and domain terms; count empty, truncated and delayed transcripts apart from word error rate; plan how the interface revises partial text; keep a fallback for timestamps, speaker labels and confidence [openai-guide-transcription-rt].
 

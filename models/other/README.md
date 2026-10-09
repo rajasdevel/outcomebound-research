@@ -77,6 +77,8 @@ sources:
   - https://huggingface.co/ASLP-lab/VoiceSculptor-VD
   - https://huggingface.co/OpenMOSS-Team/MOSS-VoiceGenerator
   - https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B
+  - https://reflection.ai/blog/introducing-beam
+  - https://developers.reflection.ai/introduction
 ---
 
 # Models from other makers
@@ -114,6 +116,8 @@ This folder holds the models of makers that have no folder of their own. Five ma
 
 **Without a file** (seen on the sources read; no file was created here): Tencent Hy3-preview (2026-04-23, older than the two generations in scope); the other K2 Horizon sizes (0.9B, 3.7B, 7B, 32B, 36B-A4B);
 Xiaomi's MiMo-V2.5-Pro and MiMo-V2.5, the previous generation, which Xiaomi's API retires on 2026-10-21 (inside the three-week window, so they are let lapse); the Xiaomi model id `mimo-v2.6-pro-ultraspeed`, a faster Pro; Nemotron 3 Super and Nano. Kyutai's gated `personaplex-rl-seamless` fine-tune is listed in the [Kyutai README](../kyutai/README.md). Voice actor candidates without a file: Fish Audio S1 mini (older than the two generations of its class; S2 Pro and S2.1 Pro are in `models/fishaudio/`), Higgs TTS 2, Dia2, Chatterbox (original, Multilingual V3 and Flash), Qwen3-TTS 0.6B and Base models, VoxCPM1.5, Sesame CSM-1B, Kyutai TTS and Pocket TTS, Zonos, Spark-TTS, VibeVoice, Voxtral TTS, NVIDIA Magpie TTS, other MOSS-TTS models, GLM-TTS, MiMo-Audio-7B-Instruct, TADA, Parler-TTS and Breeze TTS 1. `models/README.md` gives the reason for each.
+
+**Restricted preview discovery [as-of 2026-10-09].** Reflection announced Beam on 2026-10-05 as a text-only model for coding, reasoning and agent tasks, with 501B total and 23B active parameters. Access is limited to selected early users through a waitlist. The maker says it will publish weights under Apache-2.0, a technical report, a model card and developer artifacts later in October; this is an announced release, not evidence that those artifacts are public. The API documentation also describes a beta with gradual waitlist access. Full model-card coverage is deferred until public availability and artifacts can be checked. The deferral is this library's scope decision. L [reflection-beam, reflection-api].
 
 **How each line got here** (dates are those on the sources named):
 
@@ -295,3 +299,5 @@ reward-hacking audit; Tencent restated some Hy3 numbers after harness and anti-h
 - [hf-soulx] https://huggingface.co/Soul-AILab/SoulX-Podcast-1.7B (kind L, read 2026-10-04)
 - [aa-breeze2] https://artificialanalysis.ai/text-to-speech/models/breeze-tts-2 (kind M, read 2026-10-04)
 - [aa-maya1] https://artificialanalysis.ai/text-to-speech/models/maya-1 (kind M, read 2026-10-04)
+- [reflection-beam] https://reflection.ai/blog/introducing-beam (kind L, read 2026-10-09)
+- [reflection-api] https://developers.reflection.ai/introduction (kind L, read 2026-10-09)

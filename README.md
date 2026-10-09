@@ -19,12 +19,12 @@ id, and the decision stays with whoever cites it.
 
 ## What is here
 
-On 2026-10-04 the library holds:
+On 2026-10-09 the library holds:
 
 | Path | Holds |
 | --- | --- |
-| [models/](models/README.md) | 165 models from 44 makers, in 104 model classes. 85 of them are voice models (realtime speech-to-speech models, OpenAI's realtime transcription and translation models, the ElevenLabs speech models and 43 voice actor models from 26 makers), with their own rows in the card and a section on turn-taking and speech style. A voice actor model is a speech synthesis model whose delivery you direct with written instructions or inline tags, and [practices/voice-acting.md](practices/voice-acting.md) compares how the makers direct it. Each model has a file (how to instruct it, what its system card reports, how it behaves in practice, its benchmarks) and a JSON card beside it with the same keys for every model. Each maker folder has a README for what holds across its models. [cross-family.md](models/cross-family.md) compares makers, and [FORMAT.md](models/FORMAT.md) gives the card and file formats |
-| [providers/](providers/README.md) | 43 providers: 13 first-party lab APIs, 8 cloud platforms, 6 routers and gateways, 10 inference hosts and 6 local runtimes. Each file says what the route offers, how its API behaves, which features it passes through, and how it prices and limits use |
+| [models/](models/README.md) | 170 models from 45 makers, in 108 model classes. 88 of them are voice models (realtime speech-to-speech models, OpenAI's realtime transcription and translation models, Google's dedicated transcription and live translation models, the ElevenLabs speech models and voice actor models), with their own rows in the card and a section on turn-taking and speech style. A voice actor model is a speech synthesis model whose delivery you direct with written instructions or inline tags, and [practices/voice-acting.md](practices/voice-acting.md) compares how the makers direct it. Each model has a file (how to instruct it, what its system card reports, how it behaves in practice, its benchmarks) and a JSON card beside it with the same keys for every model. Each maker folder has a README for what holds across its models. [cross-family.md](models/cross-family.md) compares makers, and [FORMAT.md](models/FORMAT.md) gives the card and file formats |
+| [providers/](providers/README.md) | 44 providers: 14 first-party lab APIs, 8 cloud platforms, 6 routers and gateways, 10 inference hosts and 6 local runtimes. Each file says what the route offers, how its API behaves, which features it passes through, and how it prices and limits use |
 | [harnesses/](harnesses/) | Six coding harnesses with a file each, one file for the others, [one comparison](harnesses/cross-harness.md) of what they load, cap, compact and run, and two files on extension layers ([claude-code-mods.md](harnesses/claude-code-mods.md), [extension-layers.md](harnesses/extension-layers.md)) |
 | [practices/](practices/) | 24 practice documents, from [prompting](practices/prompting.md) across makers to review, testing, long context, prompt caching, agent memory, [voice agents](practices/voice-agents.md), [voice acting](practices/voice-acting.md) and writing for models |
 | [applications/](applications/README.md) | One application today, built on the base for one use |
@@ -89,8 +89,9 @@ a correction. Git holds every earlier version, and there is no changelog.
 The scope rule keeps the model set current. The library holds two generations per model class:
 the current one and the one before it. When a new generation ships, the oldest card and file of
 that class are removed, and `make check` prints each class that holds more than two. Size variants
-of an open-weight family are separate models. Plain read-aloud speech synthesis and the standalone transcription models of other makers
-have no file; [models/README.md](models/README.md) lists them as candidates.
+of an open-weight family are separate models. Plain read-aloud speech synthesis and standalone
+transcription outside the listed OpenAI, Google and ElevenLabs coverage have no file;
+[models/README.md](models/README.md) gives the scope and candidates.
 
 ## Contributing a finding
 

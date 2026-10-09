@@ -11,6 +11,13 @@ sources:
   - https://allenai.org/blog/ifbench-artificial-analysis
   - https://platform.claude.com/docs/en/release-notes/overview
   - https://developers.openai.com/api/docs/changelog
+  - https://www.anthropic.com/claude-haiku-5-5
+  - https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5
+  - https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
+  - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
+  - https://developers.openai.com/api/docs/models/chat-latest
+  - https://ai.google.dev/gemini-api/docs/models
+  - https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/
 ---
 
 # Models across families: direction of travel, divergences and forecasts
@@ -27,7 +34,9 @@ its own models, is in each maker's README and in one file per model (§4). What 
 [harnesses/cross-harness.md](../harnesses/cross-harness.md); the ranked practices for writing the text are in
 [practices/writing-for-models.md](../practices/writing-for-models.md). The family sweeps were read 2026-09-25; Anthropic's and OpenAI's
 model pages, the releases since and the sources of every finding added later were re-read
-2026-10-01, and each such claim cites a check dated under Sources.
+2026-10-01, and each such claim cites a check dated under Sources. Partial corrections on 2026-10-09
+cover Haiku 5.5, model-file links and the distinction between public and restricted releases. The
+other dated surveys remain historical evidence; this was not a new survey of every lab.
 
 ## Key findings
 
@@ -43,9 +52,11 @@ model pages, the releases since and the sources of every finding added later wer
    mandatory, optional and mandatory again; GPT-6 Sol and Luna accept `none` again (GPT-6 Astra
    and GPT-6.1 Sol do not). API fact (R1) [claude-f1, grok-g10, openai-g13, measured-f24].
 3. **APIs remove the controls prompts used to compensate with.** Anthropic returns HTTP 400 for
-   prefill, `budget_tokens`, non-default sampling and forced `tool_choice` on its newest models;
-   Google ignores sampling and rejects prefill; Z.ai accepts only `tool_choice: auto`. A "must run
-   X" rule then reaches the model only as prose. Enforced by the API (R12).
+   prefill, `budget_tokens` and non-default sampling on Haiku 5.5, but accepts forced `tool_choice`
+   without pre-tool thinking [as-of 2026-10-09] (L) [chk-haiku55-migration]. Fable 5.1, Opus 5.5 and
+   Sonnet 5.5 reject forced calls. Google ignores sampling and rejects prefill; Z.ai accepts only
+   `tool_choice: auto`. Where the API lacks forced calls, a "must run X" rule reaches the model
+   only as prose. API facts (R12).
 4. **Quirks flip direction between releases, so a patch for one model misfires on the next.**
    Claude's narration, delegation and verification, OpenAI's autonomy and preambles, Gemini's
    verbosity and Grok's hallucination rate each reversed within about 18 months. Independent and lab
@@ -80,22 +91,26 @@ model pages, the releases since and the sources of every finding added later wer
 12. **Forecasts.** Forty-one dated forecasts (33 from the family research, 8 from the practice
     research), each with a falsifier. The releases of Sonnet 5.5 (2026-09-28) and GPT-6.1 Sol
     (09-29) settled five early: A1a, A2, A4a and O3 held, and the Sonnet half of A3 was falsified
-    in effect. The next horizons pass on
-    2026-11-30 (Haiku 5.5 availability, Astra's cross-context notes in Codex, Grok 4.8 on the API)
-    (§8).
+    in effect. Haiku 5.5's 2026-10-07 release settles A1b as held and the Haiku half of A3 as
+    falsified [as-of 2026-10-09] (L) [chk-haiku55-release, chk-haiku55-new]. The next remaining
+    dated horizons pass on 2026-11-30 (Astra's cross-context notes in Codex and Grok 4.8 on the
+    API) (§8).
 
 ## 1. Scope, method and evidence
 
 ### Scope
 
-- **Tracked families.** Anthropic (Claude Fable 5.1, Opus 5.5 and Sonnet 5.5; Haiku 5.5
-  announced), OpenAI (GPT-6 Astra, Sol and Luna), xAI (Grok 4.6 and 4.7), Z.ai (GLM-5.3) and Alibaba
-  (Qwen3.8-Max; Qwen 4 in training). Below, this is the tracked list.
+- **Tracked families.** Anthropic, OpenAI, xAI, Z.ai and Alibaba. The original survey tracked
+  Fable 5.1, Opus 5.5, Sonnet 5.5, GPT-6 Astra/Sol/Luna, Grok 4.6/4.7, GLM-5.3 and Qwen3.8-Max,
+  with Qwen 4 in training. GPT-6.1 Sol was added on 2026-10-01. Haiku 5.5 is now released
+  [as-of 2026-10-09] (L) [chk-haiku55-release]. Below, this is the tracked family list; model
+  inventories are in §4.
 - **Comparisons.** Google, Meta and the other labs (Moonshot, DeepSeek, MiniMax, Mistral, NVIDIA,
   Tencent, Xiaomi), and the open-weight lines of the closed labs.
 - **Window.** Mostly January 2025 to 25 September 2026, reaching back to Claude 3.7 Sonnet (2025-02)
   for lineage and to METR's series since 2023 for time horizons; Anthropic's and OpenAI's releases and pages,
-  and the later additions (§1, item 6), are read to 2026-10-01. Forecasts run to
+  and the later additions (§1, item 6), were read to 2026-10-01. The 2026-10-09 partial corrections
+  have their own dates. Forecasts run to
   2027-03-31 unless a row says otherwise.
 
 ### How the research was done
@@ -130,7 +145,9 @@ model pages, the releases since and the sources of every finding added later wer
    detail") and findings on Claude and GPT-5.6 from earlier topic research were re-read at their
    source on 2026-10-01, with Anthropic's and OpenAI's model and prompting pages as a whole; a
    finding whose source could not be re-read says so and gives the day it was first read. Sonnet 5.5
-   and GPT-6.1 Sol, released after the sweeps, are added from their own pages.
+   and GPT-6.1 Sol, released after the sweeps, are added from their own pages. The 2026-10-09
+   corrections reconcile Haiku 5.5 and selected model-file coverage; they do not rerank the historical
+   eight-group trends or recheck the other labs.
 
 ### Evidence labels and citations
 
@@ -219,7 +236,7 @@ auto-generated captions on 2026-09-29; timestamps may drift about 15 seconds.
 
 ## 3. Trends R1–R16
 
-**How the trends are ranked.** Eight groups: the five tracked families, Google, the other labs,
+**How the trends were ranked in the 2026-09-25 survey.** Eight groups: the five tracked families, Google, the other labs,
 and Meta. The gpt-oss and Gemma lines add no trend evidence, because the research did not cover how
 to prompt them. Trends are ranked by the number of groups showing them, ties going to the strongest
 evidence. The ids are stable; the rank column gives the order.
@@ -265,7 +282,9 @@ evidence. The ids are stable; the rank column gives the order.
   [grok-g10, claude-g9, open-weight-g14, glm-g9, qwen-g11, claude-g13, openai-g12, gemini-g9].
   Sonnet 5.5 returns 400 for `thinking: {"type": "disabled"}` and offers `between_tools` instead,
   which turns off thinking before the first reply at `high` effort or below; in a request without
-  tools it answers without thinking, as `disabled` did on Sonnet 5 [chk-sonnet-55].
+  tools it answers without thinking, as `disabled` did on Sonnet 5 [chk-sonnet-55]. Haiku 5.5
+  accepts `disabled` at `low`, `medium` and `high`; `xhigh` and `max` return 400
+  [as-of 2026-10-09] (L) [chk-haiku55-new].
 - **Lab guidance.** Effort is the thinking control [claude-f1, gemini-f5, glm-f15, open-weight-f10,
   openai-f18]. Anthropic says to delete "think carefully" on models that always think, and warns
   that "show your reasoning" can trigger refusals [claude-f2, claude-f3].
@@ -486,8 +505,10 @@ Alibaba.
   whether an agent's completion claims are honest, and is kept apart from R6.
 
 **R12. APIs remove the controls prompts used to compensate with.** 5 groups.
-- **Anthropic:** prefill, `budget_tokens`, non-default sampling and forced `tool_choice` all return
-  400 [claude-g5, claude-g7, claude-g10, claude-g12, claude-g13]. Sonnet 5.5 returns 400 for
+- **Anthropic:** the controls removed vary by model [claude-g5, claude-g7, claude-g10, claude-g12,
+  claude-g13]. Haiku 5.5 rejects prefill, manual `budget_tokens` and non-default sampling, but
+  accepts forced `tool_choice` without pre-tool thinking [as-of 2026-10-09] (L)
+  [chk-haiku55-migration]. Sonnet 5.5 returns 400 for
   `budget_tokens`, non-default sampling, forced `tool_choice` and `thinking: {"type": "disabled"}`;
   for a tool that must be called, its docs say to "say in the prompt when the tool applies"
   [chk-sonnet-55].
@@ -497,7 +518,9 @@ Alibaba.
   glm-f15].
 - **xAI:** penalty parameters and `stop` return errors on reasoning models [grok-f10].
 - **DeepSeek:** thinking mode ignores temperature [open-weight-harness].
-- **Consequence.** A "must run X" rule reaches the model only as prose [glm-f20].
+- **Consequence.** Where an API lacks forced calls, a "must run X" rule reaches the model only as
+  prose [glm-f20]. A forced call controls tool selection, not whether the tool completes the task
+  correctly (inference).
 
 **R14. Scope expansion recurs.** 5 groups.
 - **Anthropic:** Opus 4.5 and 4.6 overengineer, Opus 5 expands scope, and Fable 5.1 adds unrequested
@@ -624,17 +647,18 @@ GLM-5.1→5.2 and the Qwen Max line; this is not universal.** 4 groups.
 Each maker has a README with its model lineage (what replaced what), API surface, prompting guides
 and family-wide behaviour. Each model has its own file with how to instruct it, what its system card
 reports, how it behaves in practice and its benchmarks. Older models than the two generations in
-scope have no file; their findings stay in this reference. The table of every model is in
-[README.md](README.md).
+scope have no file; their findings stay in this reference. This table gives selected entries, with
+coverage links updated on 2026-10-09; it is not the complete inventory or a new release check of
+every maker. The complete table is in [README.md](README.md).
 
-| Maker | Maker README | Model files |
+| Maker | Maker README | Selected model files |
 | --- | --- | --- |
-| Anthropic | [anthropic/README.md](anthropic/README.md) | [Fable 5.1](anthropic/claude-fable-5-1.md), [Fable 5](anthropic/claude-fable-5.md), [Opus 5.5](anthropic/claude-opus-5-5.md), [Opus 5](anthropic/claude-opus-5.md), [Sonnet 5.5](anthropic/claude-sonnet-5-5.md), [Sonnet 5](anthropic/claude-sonnet-5.md), [Haiku 4.5](anthropic/claude-haiku-4-5.md) |
-| OpenAI | [openai/README.md](openai/README.md) | [GPT-6.1 Sol](openai/gpt-6.1-sol.md), [GPT-6 Astra](openai/gpt-6-astra.md), [GPT-6 Sol](openai/gpt-6-sol.md), [GPT-6 Luna](openai/gpt-6-luna.md), GPT-5.6 Sol, [GPT-5.6 Terra](openai/gpt-5.6-terra.md), [GPT-5.6 Luna](openai/gpt-5.6-luna.md), [gpt-oss-120b](openai/gpt-oss-120b.md), [gpt-oss-20b](openai/gpt-oss-20b.md) |
+| Anthropic | [anthropic/README.md](anthropic/README.md) | [Fable 5.1](anthropic/claude-fable-5-1.md), [Fable 5](anthropic/claude-fable-5.md), [Opus 5.5](anthropic/claude-opus-5-5.md), [Opus 5](anthropic/claude-opus-5.md), [Sonnet 5.5](anthropic/claude-sonnet-5-5.md), [Sonnet 5](anthropic/claude-sonnet-5.md), [Haiku 5.5](anthropic/claude-haiku-5-5.md), [Haiku 4.5](anthropic/claude-haiku-4-5.md) |
+| OpenAI | [openai/README.md](openai/README.md) | [GPT-6.1 Sol](openai/gpt-6.1-sol.md), [GPT-6 Astra](openai/gpt-6-astra.md), [GPT-6 Sol](openai/gpt-6-sol.md), [GPT-6 Luna](openai/gpt-6-luna.md), [Chat Latest](openai/chat-latest.md), [GPT-5.6 Terra](openai/gpt-5.6-terra.md), [GPT-5.6 Luna](openai/gpt-5.6-luna.md), [gpt-oss-120b](openai/gpt-oss-120b.md), [gpt-oss-20b](openai/gpt-oss-20b.md) |
 | xAI (SpaceXAI) | [xai/README.md](xai/README.md) | [Grok 4.7](xai/grok-4.7.md), [Grok 4.7 Fast](xai/grok-4.7-fast.md), [Grok 4.6](xai/grok-4.6.md), [Grok Build 0.1](xai/grok-build-0.1.md) |
 | Z.ai | [zai/README.md](zai/README.md) | [GLM-5.3](zai/glm-5.3.md), [GLM-5.3-Flash](zai/glm-5.3-flash.md), [GLM-5.3-FlashX](zai/glm-5.3-flashx.md), [GLM-5.2](zai/glm-5.2.md) |
 | Alibaba | [alibaba/README.md](alibaba/README.md) | [Qwen3.8-Max](alibaba/qwen3.8-max.md), [Qwen3.8-2.4T-A95B](alibaba/qwen3.8-2.4t-a95b.md), [Qwen3.8-27B](alibaba/qwen3.8-27b.md), [Qwen3.8-Flash](alibaba/qwen3.8-flash.md), [Qwen3.8-Flash-Next](alibaba/qwen3.8-flash-next.md), [Qwen3.8-Omni-Flash](alibaba/qwen3.8-omni-flash.md), [Qwen3.7-Plus](alibaba/qwen3.7-plus.md), [Qwen3-Coder-Next](alibaba/qwen3-coder-next.md) |
-| Google | [google/README.md](google/README.md) | [Gemini 3.8 Flash](google/gemini-3.8-flash.md), [Gemini 3.7 Flash](google/gemini-3.7-flash.md), [Gemini 3.5 Flash-Lite](google/gemini-3.5-flash-lite.md), [Gemini 3.1 Pro Preview](google/gemini-3.1-pro-preview.md), [Gemini 3.1 Flash-Lite](google/gemini-3.1-flash-lite.md), [Gemini 4 Argon](google/gemini-4-argon.md), and the Gemma 4 models listed in the maker README |
+| Google | [google/README.md](google/README.md) | [Gemini 3.8 Flash](google/gemini-3.8-flash.md), [Gemini 3.7 Flash](google/gemini-3.7-flash.md), [Gemini 3.5 Flash-Lite](google/gemini-3.5-flash-lite.md), [Gemini 3.1 Pro Preview](google/gemini-3.1-pro-preview.md), [Gemini 3.1 Flash-Lite](google/gemini-3.1-flash-lite.md), [Gemini 3.5 Live Translate Preview](google/gemini-3.5-live-translate-preview.md), [Gemini 3.5 Transcribe](google/gemini-3.5-transcribe.md), [Gemini 3.5 Transcribe Live](google/gemini-3.5-transcribe-live.md), [Gemini 4 Argon (restricted)](google/gemini-4-argon.md), and the Gemma 4 models listed in the maker README |
 | Meta | [meta/README.md](meta/README.md) | [Muse Spark 1.3](meta/muse-spark-1.3.md), [Muse Spark 1.2](meta/muse-spark-1.2.md), [Muse Glimmer 30B](meta/muse-glimmer-30b.md) |
 | Moonshot | [moonshot/README.md](moonshot/README.md) | [Kimi K3](moonshot/kimi-k3.md), [Kimi K2.7 Code](moonshot/kimi-k2.7-code.md) |
 | DeepSeek | [deepseek/README.md](deepseek/README.md) | [DeepSeek V4 Pro](deepseek/deepseek-v4-pro.md), [DeepSeek Flash](deepseek/deepseek-flash.md) |
@@ -645,12 +669,12 @@ scope have no file; their findings stay in this reference. The table of every mo
 
 ## 5. Divergences that matter for text shared across families (volatile)
 
-| Dimension | Where families stand today | Why it matters for shared text | Observed direction |
+| Dimension | Dated family evidence | Why it matters for shared text | Observed direction |
 | --- | --- | --- | --- |
-| Effort levels and defaults | Opus 5.5 medium (Opus 5 high) [claude-g13]; Sonnet 5.5 high, its levels recalibrated against Sonnet 5's [chk-sonnet-55]; GPT-6 Sol and Luna medium, Astra has no `none` and Codex runs it at low [openai-g13, chk-codex-models]; GPT-6.1 Sol medium, with no `none` [chk-openai-gpt61]; Grok 4.7 high [grok-g12]; GLM-5.3 max [glm-g9]; Qwen3.8 xhigh [qwen-g10]; Gemini 3.5+ medium, 3.1 Pro high [gemini-g7, gemini-f5]; Kimi K3 max, DeepSeek high [open-weight-g14, open-weight-f10] | Level names do not map across models [claude-f1], so the same text runs at very different depths | Every group had an effort control by 2026. Anthropic and Google lowered defaults; OpenAI raised its default from none (5.1, 5.2) to medium (5.5, GPT-6 Sol/Luna); Z.ai, Alibaba and Moonshot default to max or xhigh, xAI and DeepSeek to high [openai-f18] |
-| Whether thinking can be turned off | No on Fable, Opus 5.5, GPT-6 Astra and 6.1 Sol, Grok 4.5+, GLM-5.3, Qwen3.8-2.4T and Kimi K3. Only before the first reply on Sonnet 5.5 (`between_tools`, at `high` or below; `disabled` returns 400) [chk-sonnet-55]. Yes on GPT-6 Sol and Luna (`none`), Qwen3.8-27B, MiniMax M3, DeepSeek, GLM ≤5.2, and Opus 4.8 (off unless set) [claude-g13, grok-g10, glm-g9, qwen-g11, open-weight-g14, openai-g13, open-weight-g11, glm-f15, claude-f2] | "Think" cues help some configurations and waste effort or trigger refusals on others [claude-f2, claude-f3] | Mixed. More flagships made it impossible to disable between June and September 2026; xAI reversed twice, and OpenAI's newest models allow `none` [grok-f10, openai-g13] |
+| Effort levels and defaults | Opus 5.5 medium (Opus 5 high) [claude-g13]; Sonnet 5.5 high, its levels recalibrated against Sonnet 5's [chk-sonnet-55]; Haiku 5.5 medium [as-of 2026-10-09] (L) [chk-haiku55-guide]; GPT-6 Sol and Luna medium, Astra has no `none` and Codex runs it at low [openai-g13, chk-codex-models]; GPT-6.1 Sol medium, with no `none` [chk-openai-gpt61]; Grok 4.7 high [grok-g12]; GLM-5.3 max [glm-g9]; Qwen3.8 xhigh [qwen-g10]; Gemini 3.5+ medium, 3.1 Pro high [gemini-g7, gemini-f5]; Kimi K3 max, DeepSeek high [open-weight-g14, open-weight-f10] | Level names do not map across models [claude-f1], so the same text runs at very different depths | Every group had an effort control by 2026. Anthropic and Google lowered defaults; OpenAI raised its default from none (5.1, 5.2) to medium (5.5, GPT-6 Sol/Luna); Z.ai, Alibaba and Moonshot default to max or xhigh, xAI and DeepSeek to high [openai-f18] |
+| Whether thinking can be turned off | No on Fable, Opus 5.5, GPT-6 Astra and 6.1 Sol, Grok 4.5+, GLM-5.3, Qwen3.8-2.4T and Kimi K3. Only before the first reply on Sonnet 5.5 (`between_tools`, at `high` or below; `disabled` returns 400) [chk-sonnet-55]. Yes on Haiku 5.5 at `high` or below [as-of 2026-10-09] (L) [chk-haiku55-new]; GPT-6 Sol and Luna (`none`), Qwen3.8-27B, MiniMax M3, DeepSeek, GLM ≤5.2, and Opus 4.8 (off unless set) [claude-g13, grok-g10, glm-g9, qwen-g11, open-weight-g14, openai-g13, open-weight-g11, glm-f15, claude-f2] | "Think" cues help some configurations and waste effort or trigger refusals on others [claude-f2, claude-f3] | Mixed. More flagships made it impossible to disable between June and September 2026; xAI reversed twice, and OpenAI's newest models allow `none` [grok-f10, openai-g13] |
 | Autonomy | Astra asks more [openai-g12]; GPT-5.6 Sol sought workarounds in 64% of rollouts [openai-f14]; Fable 5.1 may stop early, Opus 5 expands scope [claude-g12, claude-g11]; GLM-5.3 is trained to own work [glm-g9]; MiniMax M3, Gemini 3.7 and Muse Spark 1.3 are trained to clarify or confirm [open-weight-g11, gemini-g9, chk-meta] | An "ask first" or "keep going" patch written for one model misfires on another [openai-f3, openai-f12] | Swung within families; no convergence observed |
-| Self-verification | Anthropic removes verification instructions for Opus 5 but still recommends a self-check elsewhere [claude-g11, claude-f14]; Astra tests on its own, yet the GPT-5.6 guide asks for validation [openai-f10]; Gemini 3.8 and Grok 4.6/4.7 verify by design [gemini-g10, grok-f13]; Hy4 over-verifies [open-weight-f17] | A blanket "verify everything" causes over-verification on the newest models | More labs claimed trained-in verification in 2026 (lab claims); guidance diverged [claude-f14] |
+| Self-verification | Anthropic removes verification instructions for Opus 5 but still recommends a self-check elsewhere [claude-g11, claude-f14]; Astra tests on its own, yet the GPT-5.6 guide asks for validation [openai-f10]; Gemini 3.8 and Grok 4.6/4.7 verify by design [gemini-g10, grok-f13]; Hy4 over-verifies [open-weight-f17] | A blanket "verify everything" can cause over-verification on some models; Haiku 5.5 at low/medium sometimes needs explicit checks [as-of 2026-10-09] (L) [chk-haiku55-guide] | More labs claimed trained-in verification in 2026 (lab claims); guidance diverged [claude-f14] |
 | Following precise constraints | IFBench: Grok 4.20 82.9%, Gemini 3 Flash 78.0%, GPT-5.5 75.9%, Claude 54.3–58.6% [measured-g11]. Half-life for multiple constraints on one output: GPT-5.5 7, Opus 4.7 6, Kimi K2.6 1 [measured-g16] | A format rule that one family meets, another misses | Within-family gains of 2 → 7 for GPT and 3 → 6 for Opus in one study [measured-f2]; no evidence the gap between families closed; current frontier `UNVERIFIED` [measured-f3]: current-generation IFBench figures are self-reported only: the llm-stats board (42 models, none verified; Qwen3.8 Max leads at 0.828) has no Claude, Gemini, Grok or GPT-6 row, and Artificial Analysis shows no IFBench score for Opus 5.5, Sonnet 5.5, Fable 5.1 or any GPT-6 model [measured-f3 detail, chk-ifbench] |
 | Open versus closed: capability | Within one evaluator and version only. SWE-Bench Pro V2 (Scale, 642 tasks, endpoint-only, re-graded): Opus 5 (Claude Code, xhigh) 98.0, Fable 5.1 92.2, GPT-6 Astra (Codex) 90.2, Sonnet 5 88.2, Kimi K3 88.2, GLM-5.3 84.3, GPT-5.6 Sol 82.4, Gemini 3.8 Flash 58.8 [measured-g22]. Terminal-Bench 4.0 in DeepSeek's table: V4.1-Flash 31.2, K3 12.6, Opus 5 51.8; the same table has V4.1-Flash ahead of Opus 5 on DeepSWE v1.1 and on TB 2.1, which it shows saturated (V4.1-Flash 90.6, Opus 5 89.1, K3 88.3) [open-weight-f20, open-weight-f20 detail]. An Artificial Analysis snapshot of 2026-04-30 put Kimi K2.6, MiMo V2.5 Pro and DeepSeek V4 Pro 3–6 points behind GPT-5.5 on its Intelligence Index, with wider gaps on CritPt (4–12% against 27%) and TerminalBench Hard (43–46% against 61%) [open-weight-f21] | Shared text is also read by weaker models; one framework paper lists deterministic checks as a way to bridge instruction-following gaps [capability-tier-readers-23] | Not established from same-version data; the gap depends on the benchmark: under 10 points on SWE-Bench Pro V2, about 20 on TB 4.0 in DeepSeek's table, reversed on TB 2.1. Index versions are not comparable, so no widening or narrowing is shown |
 | Open versus closed: serving setup | Self-hosters own chat templates, tool-call parsers and sampling, and Qwen's template inserts effort as text [qwen-f2, qwen-f22]. Open labs recommend temperature 1.0 and top_p 0.95 [glm-g10, qwen-f23, open-weight-harness]; closed APIs reject or ignore sampling [claude-g10, gemini-g8] | Behaviour depends on serving configuration, not prose | Open labs converged on 1.0/0.95 (Qwen moved from 0.6 between 3.5 and 3.6); closed APIs moved to rejecting or ignoring sampling |
@@ -658,7 +682,7 @@ scope have no file; their findings stay in this reference. The table of every mo
 | How instruction files are found | Every checked harness reads a root `AGENTS.md`, some with conditions ([harnesses/cross-harness.md](../harnesses/cross-harness.md)) | Content behind imports, nested files or path rules silently disappears in some harnesses | Root `AGENTS.md` support spread from Codex (May 2025) to Claude Code (September 2026); imports, nesting, path rules, local override files and size limits did not converge |
 | Authority of instruction files | Codex injects them as user-role messages, and its base instructions rank the user above skills and external files [openai-harness, openai-f2]. Grok Build: chat instructions override them [grok-f2]. DeepSeek Harness: they "do not override system, developer, or direct user instructions" [open-weight-harness]. Gemini CLI gives them "absolute precedence" over its default workflows but not over its safety mandates [gemini-f19]. OctoBench measured the system prompt and the user overriding project docs [open-weight-f5] | An instruction file cannot guarantee that a rule wins; Gemini CLI's override matters for its "reproduce the bug with a test" default | No harness in the evidence ranks instruction files above the user; no change observed |
 | Formatting and narration | Fable 5.1 formats and narrates less [claude-g12]; Astra defaults to lists and tables [openai-g12]; GPT-5 did not use Markdown by default [openai-g3]; Opus 5.5 sends updates as thinking blocks [claude-g13] | Anti-formatting or narration rules have the opposite effect on the next model [claude-f20] | Swung between releases |
-| Forcing tool calls | Removed in Fable 5.1, Opus 5.5 and Sonnet 5.5 [claude-g12, claude-g13, chk-sonnet-55]; GLM accepts only `auto` [glm-f20]; Gemini 3.1 Pro has a separate endpoint for when it prefers bash [gemini-g6] | "Always call X" is a request, not a guarantee | Anthropic removed forced `tool_choice` in September 2026; GLM never offered it |
+| Forcing tool calls | Removed in Fable 5.1, Opus 5.5 and Sonnet 5.5 [claude-g12, claude-g13, chk-sonnet-55]; accepted in Haiku 5.5 without pre-tool thinking [as-of 2026-10-09] (L) [chk-haiku55-migration]; GLM accepts only `auto` [glm-f20]; Gemini 3.1 Pro has a separate endpoint for when it prefers bash [gemini-g6] | "Always call X" is a request, not a guarantee | Anthropic's September 2026 models removed forced `tool_choice`; Haiku 5.5 retains it. GLM never offered it |
 | Delegation | Opus 4.6 eager, 4.8 less, Opus 5 readily [claude-f21]; local Codex delegates when asked or instructed [openai-f22]; Kimi K2.5 directs its own swarms [open-weight-g7] | "Use subagents" and "don't" both misfire depending on the model | Swung within Claude; Claude Code added subagent caps as environment variables in v2.1.217+ [claude-f21] |
 | Smaller models | GPT-5.4 mini and nano need longer, more explicit prompts [openai-g9]; Gemini Flash-Lite subagents need effort raised [gemini-f24]; GPT-6 Sol and Luna inherit Astra's guidance with "evaluate with your chosen model" [openai-g13] | Text trimmed for flagships may say too little for smaller models | `UNVERIFIED` |
 | Prompt-injection robustness | Grok 4.20: AgentDojo attack success 0.33 [lab; grok-g7]. OpenAI's Astra system card reports 99.99% instruction-hierarchy robustness [lab; measured-g21]. Anthropic says to tag pasted text [claude-g13]; Grok Build treats quoted messages and copied UI metadata as context, not instructions [grok-f7] | Quoted content in a prompt may be obeyed | No common measurement; `UNVERIFIED` |
@@ -698,7 +722,7 @@ and "Stop" marks advice against.
 | Stop 2 | Setting thinking depth or brevity in prose in shared text ("think step by step", "think carefully", "be brief"): effort is a harness setting. Where a configuration needs a "think carefully" line (Opus 4.8, Sonnet 5 at low effort, Qwen's template, xAI's Foundry advice), the line belongs to that model's harness or adapter configuration (inference) | R1 | claude-f1, gemini-f2, open-weight-f10, openai-f18, claude-f2, qwen-f2, grok-f11 |
 | Stop 3 | CRITICAL / YOU MUST, and "If in doubt, use X" | R13 | claude-f4, claude-f5 |
 | Stop 4 | Repeated "ask first", or broad caution | R11 | openai-g11, openai-f3 |
-| Stop 5 | Blanket "verify" or "run tests" instructions, and "read X before every edit" | R15 | claude-g11, openai-f10, openai-f11 |
+| Stop 5 | Blanket "verify" or "run tests" instructions, and "read X before every edit"; this is not a ban on model-specific check instructions when the guide reports skipped checks, as for Haiku 5.5 [as-of 2026-10-09] (L) [chk-haiku55-guide] | R15 | claude-g11, openai-f10, openai-f11 |
 | Stop 6 | Narration and formatting rules tuned to one model | R9 | claude-f19, claude-f20, openai-f17, gemini-f25 |
 | Stop 7 | Vague filters in review prompts ("only high severity", "be conservative"): Anthropic's guidance for Opus 4.8, Sonnet 5 and Opus 5 asks for full coverage and filtering in a separate step | — | claude-f13, measured-f14 |
 | Stop 8 | Open-ended thrift ("save tokens", "don't be wasteful"): one harness team reported it made the model refuse ambitious tasks [anec]. The reason is that report, not R8's token trend: the risk lies in the text's own wording | — | openai-f23 |
@@ -710,36 +734,33 @@ and "Stop" marks advice against.
 
 ## 7. Release watch (volatile)
 
-**Two releases since 2026-09-25, both in tracked families:** Claude Sonnet 5.5 (2026-09-28) and
-GPT-6.1 Sol (2026-09-29). A re-check on 2026-10-01 of Anthropic's release notes and news, OpenAI's
-API and Codex changelogs, xAI's release notes (x.ai/news refused the request), the Gemini
-changelog, Z.ai's release notes, DeepSeek's updates and the labs' Hugging Face organisations found
-no Haiku 5.5, Fable 5.2, Grok 4.8, Qwen 4, Gemini 3.5 Pro or Gemini 4, GPT-6 Terra, DeepSeek
-V4.1-Pro or GLM-6 [chk-sonnet-55, chk-openai-gpt61, chk-releases].
+**Partial update [as-of 2026-10-09].** Haiku 5.5 is generally available from 2026-10-07 on the
+Claude API, Bedrock, Claude Platform on AWS, Google Cloud and Microsoft Foundry (L)
+[chk-haiku55-release, chk-haiku55-release-notes]. Its [model file](anthropic/claude-haiku-5-5.md)
+records the new controls and migration limits. [Chat Latest](openai/chat-latest.md) is a rolling
+ChatGPT Instant alias, not a new numbered GPT generation (L) [chk-chat-latest-oct09]. Google's
+inventory lists separate Gemini 3.5 [Translate](google/gemini-3.5-live-translate-preview.md),
+[Transcribe](google/gemini-3.5-transcribe.md) and [Transcribe Live](google/gemini-3.5-transcribe-live.md)
+endpoints (L) [chk-google-inventory-oct09]; adding their files is coverage work, not an October
+launch claim. Gemini 4 Argon was announced on 2026-09-30 with phased access for trusted cyber
+defenders through Fairwind. This is restricted access, not a general public Gemini 4 launch (L)
+[chk-argon-oct09].
 
-**As of 2026-09-25 no generally available successor had been found**, so the newest flagships were,
-and apart from those two still are, Opus 5.5 and Fable 5.1; GPT-6 Astra, Sol and Luna; Grok 4.6 and
-4.7; GLM-5.3; and Qwen3.8-Max [claude-newer, openai-newer, grok-newer, glm-newer, qwen-newer,
-measured-newer]. That check covered the Gemini API changelog, xAI release notes, Z.ai release notes,
-the QwenCloud model changelog and Anthropic's Opus 5.5 page, OpenAI's API changelog (latest entries
-then Astra 09-03, Sol and Luna 09-22) [chk-openai-changelog], Mistral's changelog and news (no LLM
-after OCR 4.1, GA 08-31, which is not a general LLM) [chk-mistral-changelog, chk-mistral-news] and
-Meta's Muse Spark 1.3 post [chk-meta].
+**Historical release survey, 2026-10-01.** At that check, two releases since 2026-09-25 were recorded
+in tracked families: Sonnet 5.5 (2026-09-28) and GPT-6.1 Sol (2026-09-29). The survey recorded no
+Haiku 5.5, Fable 5.2, Grok 4.8, Qwen 4, public Gemini 4, Gemini 3.5 Pro, GPT-6 Terra,
+DeepSeek V4.1-Pro or GLM-6 [chk-sonnet-55, chk-openai-gpt61, chk-releases]. Its release-source
+coverage and access limits are recorded under [chk-releases]. The 2026-09-25 flagship list and
+release checks remain dated observations [claude-newer, openai-newer, grok-newer, glm-newer,
+qwen-newer, measured-newer, chk-openai-changelog, chk-mistral-changelog, chk-mistral-news, chk-meta].
 
-**Announced, not released,** each with its status and source in its family's file: Claude Haiku 5.5
-([anthropic/README.md](anthropic/README.md)); Claude Fable 5.2, rumour only
-([anthropic/README.md](anthropic/README.md)); Grok 4.8
-([xai/README.md](xai/README.md)); Qwen 4
-([alibaba/README.md](alibaba/README.md)); Gemini 4 and Gemini 3.5 Pro
-([google/README.md](google/README.md)); DeepSeek V4.1-Pro
-([deepseek/README.md](deepseek/README.md)); GLM-6.0
-([zai/README.md](zai/README.md)); Muse Spark open weights
-([meta/README.md](meta/README.md)); and, for features, Astra's
-cross-context notes as Codex's default and Anthropic's expanded Cyber Verification Program
-([openai/README.md](openai/README.md),
-[anthropic/README.md](anthropic/README.md)). Newer variants within each family
-(Mythos 5.1, GPT-5.6 Terra, Grok 4.7 Fast, the GLM-5.3 variants, the Qwen3.8 snapshots) are in the
-same files.
+**Historical watchlist, 2026-10-01.** The family files then tracked Claude Fable 5.2 (rumour only),
+Grok 4.8, Qwen 4, Gemini 3.5 Pro, DeepSeek V4.1-Pro, GLM-6.0 and Muse Spark open weights. Feature
+watch items included Astra's cross-context notes as Codex's default and Anthropic's expanded Cyber
+Verification Program. This partial update did not recheck those items. Their current status is
+`UNVERIFIED` here; the maker files in §4 retain their own evidence dates. Haiku 5.5 is removed from
+the open release watch. Argon's restricted rollout is recorded above without scoring a general
+Gemini 4 launch.
 
 **Families outside the tracked list.** The research recommends tracking at least Google, Moonshot
 and Meta as well; their current models are in [google/README.md](google/README.md),
@@ -763,11 +784,21 @@ P8); 2027-08-22 (P5); 2028-03-14 (P8).
 - **A3, Sonnet half: falsified.** `thinking: {"type": "disabled"}` returns 400, as forecast, but
   the falsifier is met: the docs offer `between_tools`, which turns off thinking before the first reply at
   `high` effort or below and, in a request without tools, answers without thinking "as with
-  `disabled` on Claude Sonnet 5". The Haiku half stays open.
+  `disabled` on Claude Sonnet 5". The Haiku half was still open at this check.
 - **A4a held.** "Prompting Claude Sonnet 5.5" tells readers to remove instructions such as "hold
   all findings for the final response", wording that discourages tool use, and instructions not to
   think, though it also says Sonnet 5 prompts "should perform well without changes".
 - **O3 held.** GPT-6.1 Sol, a GPT-6.x release, shipped on the API and in Codex on 2026-09-29.
+
+**Scored early [as-of 2026-10-09].** The original forecast wording, confidence, basis and falsifier
+below stay unchanged.
+
+- **A1b held.** Haiku 5.5 became generally available on 2026-10-07, before the 2026-11-30 horizon
+  (L) [chk-haiku55-release, chk-haiku55-release-notes].
+- **A3, Haiku half: falsified.** Its docs permit `thinking: {"type": "disabled"}` at `high` or below;
+  this meets the original falsifier (L) [chk-haiku55-new]. Both halves are now falsified.
+- **A4b remains unscored (`UNVERIFIED`) in this partial pass.** A dedicated guide exists, but whether its advice
+  meets the forecast's removal criterion has not been established here [chk-haiku55-guide].
 
 **From the family research.**
 
@@ -868,8 +899,8 @@ These points are this reference's reading of the trends and rows above. They are
 - R16 shows that aggregate scores hide item-level regressions and that aliases such as `qwen3.8-max`
   move. A small pinned set of scenarios, re-run against a dated snapshot at each model or point
   release, can show what a score hides.
-- R12 shows that neither an API control nor a prose rule can be relied on to force a tool call or a
-  sampling setting.
+- R12 shows that available API controls vary by model. A prose rule cannot restore a removed
+  control; forcing a call where supported does not prove that the task succeeded.
 - This reference scores each forecast at its horizon; a falsified forecast reopens whatever rests on it.
 
 ## Limits and open questions
@@ -879,7 +910,8 @@ These points are this reference's reading of the trends and rows above. They are
 - No study runs one instruction file across current flagships of several families, and none tests
   one shared file across model sizes.
 - Model and API facts drift monthly; the lineage tables in the model files are as of 2026-09-25,
-  with Anthropic's rows, GPT-5.6 and GPT-6.1 Sol re-read on 2026-10-01.
+  with Anthropic's rows, GPT-5.6 and GPT-6.1 Sol re-read on 2026-10-01. Haiku 5.5 release/control
+  claims and selected model links have partial 2026-10-09 dates; the other labs were not refreshed.
 - Re-check due: at each release in a tracked family, and at the forecast horizons above; a full
   refresh of the family sweeps is due by 2026-12-25.
 
@@ -887,6 +919,18 @@ These points are this reference's reading of the trends and rows above. They are
 
 Every cited id's URL and date are in the evidence file; this section lists the sources by kind.
 Read 2026-09-25 unless dated otherwise.
+
+**Partial correction sources, read 2026-10-09 (L).** These support only the corrected claims;
+`last_checked` stays 2026-09-25 because the whole document was not reverified.
+
+- [chk-haiku55-release] <https://www.anthropic.com/claude-haiku-5-5>, October 7 release and availability.
+- [chk-haiku55-release-notes] <https://platform.claude.com/docs/en/release-notes/overview>, October 7 entry.
+- [chk-haiku55-new] <https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5>, disabled thinking through high.
+- [chk-haiku55-migration] <https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide>, forced tool choice and removed controls.
+- [chk-haiku55-guide] <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5>, effort default and skipped checks.
+- [chk-chat-latest-oct09] <https://developers.openai.com/api/docs/models/chat-latest>, regularly updated ChatGPT Instant alias.
+- [chk-google-inventory-oct09] <https://ai.google.dev/gemini-api/docs/models>, the three 3.5 speech endpoints.
+- [chk-argon-oct09] <https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/>, September 30 announcement and restricted rollout.
 
 **Checks defined here** (verdict PASS unless stated):
 - [chk-claude-caching] Anthropic prompt caching, read 2026-10-01.

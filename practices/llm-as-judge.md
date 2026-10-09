@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: STABLE (bias, validity and consistency findings are structural) / MONITOR (§4 reasoning effort for judges is active research; vendor rules on sampling parameters change with releases)
 sources:
+  - https://arxiv.org/html/2610.11050v1 (read 2026-10-09)
   - https://arxiv.org/abs/2606.19544
   - https://arxiv.org/abs/2606.13685
   - https://arxiv.org/abs/2607.08535
@@ -37,7 +38,7 @@ limits that follow from them, are in [evaluations.md](https://github.com/rajasde
 standard; (P) practitioner consensus; (A) an anecdote or one person's view; (F) a forecast; (O)
 the maintainers' own runs, published in OutcomeBound's evaluation record. "(inference)" marks a step this reference draws from the cited evidence.
 **Citations.** Papers by arXiv number and pages by name, listed under Sources with the day they
-were read; every source was read 2026-10-01.
+were read; sources were read 2026-10-01 unless a later date is stated.
 
 ## 1. Consistency is not validity
 
@@ -65,6 +66,19 @@ were read; every source was read 2026-10-01.
   of dev and test (P, Husain and Shankar's evals FAQ, which calls itself "sharp opinions about what
   works in most cases"). Anthropic: model-based graders "should be closely calibrated with human
   experts" (L, Demystifying evals for AI agents).
+
+### 1.1 Judging a completed workflow (MONITOR) [as-of 2026-10-09]
+
+[AgentHorizon](https://arxiv.org/html/2610.11050v1), submitted 2026-10-08 and read 2026-10-09,
+pairs related instructions with human-recorded workflows and swaps instructions to construct
+near misses. Judges differ in how often they accept valid workflows and reject mismatches.
+Tool-based judging helps some configurations and harms others, but harness changes prevent
+attributing the difference to tool access alone (M, preprint).
+
+Calibration can include plausible completed workflows that violate one constraint or add an
+unwanted action (inference). The study uses English screenshots and action logs, covers constructed
+near misses rather than general agent failures, and has no independent human inter-annotator
+agreement. Its results do not establish current model rankings.
 
 ## 2. Biases
 
@@ -266,8 +280,8 @@ These points are this reference's reading of the findings above. They are not or
 ## Limits
 
 - Most measurements are on chat and preference benchmarks (MT-Bench, JudgeBench, RewardBench,
-  HelpSteer2) and on specific judge models, many now superseded; how they transfer to judging
-  agent transcripts or code is not measured here.
+  HelpSteer2) and specific, often superseded models. AgentHorizon adds computer-use trajectory
+  evidence (§1.1); transfer to judging code remains unmeasured here.
 - The effort studies disagree in shape: steady gains on JudgeBench and in automated scoring, with
   how much a level adds depending on task and model; no study read measures a judge's accuracy at
   every effort level of a current reasoning model on a typical rubric.
@@ -278,7 +292,9 @@ These points are this reference's reading of the findings above. They are not or
 
 ## Sources
 
-All read 2026-10-01.
+Read 2026-10-01 unless dated otherwise.
+
+- AgentHorizon, preprint (2026-10-08), <https://arxiv.org/html/2610.11050v1>, read 2026-10-09 for §1.1.
 
 - Norman, Rivera and Hughes, "Reliability without Validity", arXiv 2606.19544 (2026-06-17),
   <https://arxiv.org/abs/2606.19544>.

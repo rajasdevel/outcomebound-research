@@ -145,6 +145,16 @@ skipped [chk-claude-memory].
   4.5 and later). With tool search, a server that failed to connect or needs sign-in is named to
   Claude; without it, it is not. L.
 
+### 3.1 Verification recipes and commit instructions [as-of 2026-10-09]
+
+The [skills page](https://code.claude.com/docs/en/skills), read 2026-10-09, describes `/verify`
+recording a recipe in `.claude/skills/verify/SKILL.md`, at the root or a touched monorepo package.
+A root recipe replaces bundled `/verify`. Since v2.1.286, commit instructions tell the model to
+run an invocable `verify` or `simplify` skill immediately before commits, except documentation or
+test changes, if the skill was present at session start and `includeGitInstructions` is enabled.
+Enterprise, personal, project and additional-directory skills, and legacy `.claude/commands`
+files, count; bundled, plugin and claude.ai account skills do not. This is a model instruction, not a deterministic Git gate (inference). L.
+
 ## 4. Compaction, checkpoints and long sessions
 
 - **What is re-injected.** The root `CLAUDE.md`, unscoped rules and auto memory are re-injected
@@ -212,8 +222,7 @@ skipped [chk-claude-memory].
   as the CLI: user, project and local settings, `CLAUDE.md` files, and `.claude/` skills, agents and
   commands; `settingSources: []` limits it to what the program configures, and some inputs (such as
   user-level sandbox credential rules) are read whatever its value. Write-ups from 2025 describe the
-  opposite default. `--bare` skips hooks, skills, plugins, MCP servers, auto memory and `CLAUDE.md`
-  for scripted calls, so the same call gives the same result on every machine. The SDK's
+  opposite default. The limits of `--bare` for scripted calls are described below. The SDK's
   `total_cost_usd` and `costUSD` are client-side estimates from a bundled price table, not billing.
   Lab-guidance, SDK, headless and cost pages [as-of 2026-10-01]. Whether an SDK session reads
   `AGENTS.md` by the rules in §1 is `UNVERIFIED`.
@@ -231,6 +240,16 @@ skipped [chk-claude-memory].
   from the store deletes its local copy at the end, and the SDK never deletes from the store, so
   retention is the adapter's. Its page carries no alpha or beta label. Headless, structured-outputs
   and session-storage pages [as-of 2026-10-01]. L.
+
+- **Bare mode limits** [as-of 2026-10-09]. The
+  [headless page](https://code.claude.com/docs/en/headless), read 2026-10-09, says `--bare` skips
+  automatic discovery of hooks, skills, commands, agents, plugins, MCP servers, auto memory and
+  `CLAUDE.md`. Explicit flags can still supply configuration. `--add-dir` loads that directory's
+  `.claude/skills`, but not its commands or agents. Bare mode sends no system reminders, including
+  the available-skills list, and disables background tasks: a timed-out command stops. Before
+  v2.1.286, interactive bare mode still connected normal MCP servers, and bare runs still sent
+  reminders and allowed background tasks. These controls do not establish identical results on
+  different machines (inference); runtime behavior was not tested. L.
 
 ## 6. Trust
 
@@ -429,8 +448,8 @@ section holds what a harness row needs. Permission-modes and sandboxing pages [a
 ## 10. Session storage, plugins, models and routes
 
 - **Session storage.** Checkpoint snapshots are kept for the 100 most recent checkpoints and go in
-  the retention sweep about 30 days after the session last saved one (§4); `--bare` keeps hooks,
-  skills, plugins, MCP servers, auto memory and `CLAUDE.md` out of a scripted call (§5). Where
+  the retention sweep about 30 days after the session last saved one (§4); `--bare` limits automatic
+  discovery, with explicit-input exceptions described in §5 [as-of 2026-10-09]. Where
   sessions, transcripts and memory live on disk, and what the retention sweep removes, are in
   [agent-workspace.md](../practices/agent-workspace.md#4-memory-and-session-history-on-one-machine-w3).
 - **Plugins.** A plugin whose manifest and marketplace entry set no `version` is versioned by its
@@ -505,6 +524,9 @@ section holds what a harness row needs. Permission-modes and sandboxing pages [a
   reference <https://code.claude.com/docs/en/plugins-reference> and loading
   <https://code.claude.com/docs/en/plugins/loading>, Agent SDK features, Python reference and cost
   tracking <https://code.claude.com/docs/en/agent-sdk/claude-code-features>.
+- Read 2026-10-09: skills <https://code.claude.com/docs/en/skills> (verification recipes and
+  v2.1.286 commit instructions); headless <https://code.claude.com/docs/en/headless> (bare-mode
+  exceptions and version limits).
 - Routes (2026-10-01): LiteLLM drop unsupported params
   <https://docs.litellm.ai/docs/completion/drop_params> and forwarding client headers
   <https://docs.litellm.ai/docs/proxy/forward_client_headers>; LiteLLM issue

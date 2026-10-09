@@ -7,6 +7,9 @@ sources:
   - https://geminicli.com/docs/reference/configuration
   - https://geminicli.com/docs/hooks/
   - https://geminicli.com/docs/hooks/reference/
+  - https://geminicli.com/docs/reference/policy-engine/ (read 2026-10-09)
+  - https://geminicli.com/docs/changelogs/latest/ (v0.63.0, read 2026-10-09)
+  - https://github.com/google-gemini/gemini-cli/pull/29539 (read 2026-10-09)
 ---
 
 # Gemini CLI
@@ -99,7 +102,20 @@ names a command or program the harness runs.
 
 | Project files | Executes | Tool servers | Enables all servers | Endpoint overrides | Permission bypass | Deny rules |
 | --- | --- | --- | --- | --- | --- | --- |
-| `.gemini/settings.json` | `hooks` | `mcpServers` | — | environment variables, not settings | `general.defaultApprovalMode`, `tools.allowed`, `mcpServers.*.trust` | `tools.exclude`, `mcp.excluded` |
+| `.gemini/settings.json` | `hooks` | `mcpServers` | — | environment variables, not settings | `general.defaultApprovalMode`, `tools.allowed`, `mcpServers.*.trust` | `tools.exclude` (deprecated; §7.1), `mcp.excluded` |
+
+### 7.1 Policy files and headless planning [as-of 2026-10-09]
+
+- The [policy-engine reference](https://geminicli.com/docs/reference/policy-engine/), read
+  2026-10-09, says `ask_user` becomes `deny` in headless mode. It deprecates `tools.exclude` in
+  favor of policy-engine deny rules. User policies load from `~/.gemini/policies/*.toml`; the
+  workspace tier, `.gemini/policies`, is currently disabled and has no effect. The page gives no
+  version boundary for that limitation. Runtime enforcement was not tested. L.
+- The [v0.63.0 release notes](https://geminicli.com/docs/changelogs/latest/) (2026-10-06) include
+  autonomous planning in headless runs. [PR 29539](https://github.com/google-gemini/gemini-cli/pull/29539)
+  describes removing the interactive consultation and agreement step there, so the agent can draft
+  a plan and proceed through `exit_plan_mode`. This changes planning flow; it does not establish
+  permission bypass or successful task completion (inference). Both sources read 2026-10-09. L.
 
 ## 8. Observing what loaded, and surface signals
 
@@ -114,6 +130,9 @@ names a command or program the harness runs.
   <https://raw.githubusercontent.com/google-gemini/gemini-cli/main/packages/core/src/prompts/snippets.ts>
   (last commit 2026-09-08).
 - Configuration <https://geminicli.com/docs/reference/configuration> (2026-09-27).
+- Policy engine <https://geminicli.com/docs/reference/policy-engine/>, v0.63.0 release notes
+  <https://geminicli.com/docs/changelogs/latest/> and planning change
+  <https://github.com/google-gemini/gemini-cli/pull/29539> (read 2026-10-09).
 - Hooks <https://geminicli.com/docs/hooks/> and <https://geminicli.com/docs/hooks/reference/>
   (2026-09-29); issue <https://github.com/google-gemini/gemini-cli/issues/20426> (2026-09-29).
 

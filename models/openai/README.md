@@ -234,9 +234,12 @@ Responses API, which keeps reasoning items between calls and takes the newer too
 and GPT-6 Luna call functions only at effort `none` [openai-latest-model]. Every GPT-6 and GPT-5.6 model has a
 1,050,000-token window, at most 922,000 input tokens and 128,000 output tokens, with text and image in and
 text out. Knowledge cutoffs on the model pages: the GPT-5.6 models 2026-02-16, GPT-6 Sol 2026-04-20, GPT-6
-Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18. At rate-limit tier 1 the limits are 500 requests
-and 500,000 tokens a minute; at tier 5 they are 15,000 requests and 40 million tokens for Astra, Sol and
-Terra, and 30,000 requests and 180 million tokens for Luna [openai-model-gpt-6-luna].
+Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18.
+
+**Rate limits [as-of 2026-10-09].** The October 6 change replaced five numbered paid tiers with Build,
+Launch and Grow. Limits differ by model and service tier; the [provider file](../../providers/openai.md#limits-and-data)
+and each model page give the current limits. Actual organization limits can differ. L
+([changelog](https://developers.openai.com/api/docs/changelog), read 2026-10-09).
 
 **Tools in the Responses API**, the same list on every model page: web search, file search, image
 generation, code interpreter, hosted shell, apply patch, skills, computer use, MCP and tool search. The
@@ -415,7 +418,7 @@ With VAD on, the start of user speech cancels the response in progress. The mode
 - **Session and window.** 60 minutes a session. The 2026 models have a 128,000-token window and 32,000 output tokens; earlier ones have 32,000 and 4,096 [openai-guide-conversations] [openai-model-gpt-realtime-2].
 - **Truncation.** When the conversation passes the input limit the server drops the oldest items. A retention ratio such as 0.8 drops more than needed once, so the prompt cache breaks less often. `token_limits.post_instructions` caps input. `truncation: "disabled"` gives an error instead. The API does no summarising [openai-guide-voice-cost] [openai-blog-realtime-api].
 - **Tokens.** User audio is 1 token per 100 ms and assistant audio 1 token per 50 ms. Each response resends the whole conversation, so later turns cost more. Cached audio input costs about 1.25% of the uncached rate on the full models ($0.40 against $32). VAD removes empty audio. Input transcription uses a different model and a different price. There is no charge for bandwidth or connections. OpenAI advises testing with the larger model first and then trying the mini model [openai-guide-voice-cost] [openai-pricing].
-- **Rate limits** are requests and tokens a minute: 200 and 40,000 at tier 1, 20,000 and 15 million at tier 5 for the Realtime models [openai-model-gpt-realtime-2.1].
+- **Rate limits [as-of 2026-10-09].** GPT-Realtime-2.1 lists 400 requests and 200,000 tokens per minute at Build, and 20,000 requests and 15 million tokens per minute at Grow. Its page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-2.1#rate-limits), read 2026-10-09).
 
 #### GPT-Live API
 

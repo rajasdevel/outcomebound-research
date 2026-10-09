@@ -190,6 +190,16 @@ Hooks page, read 2026-09-24, 2026-09-29 and 2026-10-01. Lab-guidance.
   tool hooks as a useful guardrail, not a complete enforcement boundary." A blocking `PostToolUse`
   "doesn't undo the completed Bash command"; Codex replaces the tool's result with the hook's
   feedback, so the model sees the hook's text, not the output.
+- **Pre-tool failure behavior** [as-of 2026-10-09]. The
+  [hooks page](https://learn.chatgpt.com/docs/hooks), read 2026-10-09, says unsupported
+  `PreToolUse` output fields, including `permissionDecision: "ask"`, `continue: false`,
+  `stopReason` and `suppressOutput`, report a hook error and let the tool continue. Supported denial
+  forms are `hookSpecificOutput.permissionDecision: "deny"`, legacy `decision: "block"`, or exit
+  2 with stderr. This claim concerns `PreToolUse`, not every hook event. L.
+- **Existing shell sessions** [as-of 2026-10-09]. The same page says `exec_command` runs shell
+  hooks, but `write_stdin` input or polling on its existing session does not run `PreToolUse`
+  again. A pre-tool check therefore does not inspect each later input to that process (inference).
+  No minimum CLI version is stated; runtime behavior was not tested. L.
 - **Attribution.** "Subagent hooks use the parent session id", and only `SubagentStart` and
   `SubagentStop` carry an `agent_id`, so a tool event cannot be attributed to one subagent;
   `transcript_path`'s format "isn't a stable interface".
@@ -308,7 +318,8 @@ lines, so text written for a chat message, such as a multi-line list, does not b
   <https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex.md>.
 - Config reference <https://learn.chatgpt.com/docs/config-file/config-reference> and permissions
   <https://learn.chatgpt.com/docs/permissions> (2026-09-27, 2026-10-01); hooks
-  <https://learn.chatgpt.com/docs/hooks> (2026-09-29, 2026-10-01); issue
+  <https://learn.chatgpt.com/docs/hooks> (2026-09-29, 2026-10-01; pre-tool output and shell-session
+  coverage read 2026-10-09); issue
   <https://github.com/openai/codex/issues/17532> (2026-09-29, 2026-10-01); app-server
   <https://learn.chatgpt.com/docs/app-server> (2026-09-24, 2026-10-01); CLI reference
   <https://learn.chatgpt.com/docs/cli/reference> (2026-10-01); approvals and security

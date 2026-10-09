@@ -154,7 +154,7 @@ The model page lists structured outputs, fine-tuning and predicted outputs as no
 
 ### Sampling and API parameters
 
-- Rate limits are concurrent sessions: 25 at tier 1, 50, 200, 300, and 500 at tier 5. The free tier is not supported [openai-model-gpt-live-1].
+- **Rate limits [as-of 2026-10-09].** Limits count concurrent sessions: 50 at Build, 300 at Launch and 500 at Grow. Free is not supported. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-live-1#rate-limits), read 2026-10-09).
 - Billing is per second of session time, including silence and backend waits, with no rounding to the minute. A `session.usage.updated` event reports cumulative seconds, and each update replaces the last one. Keep reading until `session.closed`, which carries the final usage. Without it, usage is unconfirmed [openai-guide-voice-cost] [openai-guide-live-sessions].
 - Muting the microphone does not close the session. OpenAI says that an idle session can be closed and resumed with a fork or saved text history when the saving is worth the reconnection cost [openai-guide-live-sessions] [openai-guide-voice-cost].
 - Data: GPT-Live sessions can run under Zero Data Retention, support US and EU data residency, and keep abuse-monitoring logs for 30 days. Stored recordings last 30 days and OpenAI offers no public deletion endpoint for a stored session [openai-guide-your-data].

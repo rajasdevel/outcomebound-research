@@ -1,0 +1,322 @@
+{
+  "scope": {
+    "read_date": "2026-10-09",
+    "cutoff_utc": "2026-10-09T07:10:10Z",
+    "previous_sweep_date": "2026-09-25",
+    "previous_recheck_date": "2026-09-26",
+    "repository_commit": "233b11b15c16173c9a1a888343ce6e78b92f4160",
+    "inventory": "16 posts after 2026-09-25 plus 3 boundary-day posts, retained because the previous sweep hour was not fixed. API page crossed to 2026-09-23. Feed and API agreed in this window. No 2026-10-09 post was present at the cutoff.",
+    "previous_ledger": "57 Latent Space URL rows, 26 unique URLs, in the 2026-09-25 and 2026-09-26 ledgers. None of these 19 post URLs was listed; absence of a URL does not establish a new idea."
+  },
+  "coverage_sources": [
+    {
+      "url": "https://www.latent.space/feed",
+      "route": "public XML fetched with standard-library HTTP",
+      "entries": 20
+    },
+    {
+      "url": "https://www.latent.space/api/v1/archive?sort=new&offset=0&limit=50",
+      "route": "public archive API fetched with standard-library HTTP",
+      "entries": 23,
+      "oldest_published": "2026-09-23T06:41:41.225Z"
+    },
+    {
+      "url": "https://www.latent.space/archive",
+      "route": "readable archive page; recent 12 items"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.latent.space/p/ainews-not-much-happened-today-60f",
+      "published": "2026-10-08T23:29:43.993Z",
+      "label": "Quiet news",
+      "read_scope": "free article body and roundup through article end; comments not evidence",
+      "disposition": "new",
+      "note": "MiMo integrity lead followed to the primary Vals audit and added to agent-evals §10.4. mxc/Quicksand, other tooling and research mentions remain deferred discovery.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/periodic",
+      "published": "2026-10-08T16:27:54.112Z",
+      "label": "Periodic Labs",
+      "read_scope": "transcript; targeted 53:16–58:13",
+      "disposition": "new",
+      "note": "practices/agent-evals.md: attempt/campaign audit hypothesis; A.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-claude-haiku-55-better-than",
+      "published": "2026-10-08T07:27:51.858Z",
+      "label": "Haiku 5.5 news",
+      "read_scope": "free introduction and model/news body to paywall before Other News; paid remainder unavailable",
+      "disposition": "covered",
+      "note": "Primary model audit covers the model; cost-per-task and token-use caveats need task-matched measurement. SDK availability is a discovery lead only, not adopted here.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/stacklok",
+      "published": "2026-10-07T14:10:45.824Z",
+      "label": "Stacklok",
+      "read_scope": "direct reported interview; whole article",
+      "disposition": "new",
+      "note": "harnesses/others.md: Mecatl; A motivation, followed pinned L guides.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-quasi-riemann-hypothesis-openai",
+      "published": "2026-10-07T04:55:44.877Z",
+      "label": "OpenAI math news",
+      "read_scope": "free introduction and roundup to paywall in Reddit recap; paid remainder unavailable",
+      "disposition": "new",
+      "note": "METR viewer-integrity lead followed to its Oct 6 primary post and added to agent-evals §10.4. Math and remaining research claims deferred.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
+      "published": "2026-10-06T06:28:43.866Z",
+      "label": "Reflection Beam news",
+      "read_scope": "free introduction and roundup to paywall in Reddit recap; paid remainder unavailable",
+      "disposition": "covered",
+      "note": "Beam early-access disposition and Pi Durable are covered. Other compression, verifier, routing, memory and platform claims remain discovery only; no gains adopted.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-not-much-happened-today-cee",
+      "published": "2026-10-03T08:45:15.490Z",
+      "label": "Quiet news",
+      "read_scope": "free article body and roundup through article end; comments not evidence",
+      "disposition": "covered",
+      "note": "Pi Durable and Cursor Rollouts covered. Other multi-harness, controller, compression, benchmark, routing and platform leads deferred to primary research; no new policy from summary claims.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/airbnb",
+      "published": "2026-10-02T14:04:49.734Z",
+      "label": "Airbnb",
+      "read_scope": "direct reported interview; whole article",
+      "disposition": "new",
+      "note": "practices/work-breakdown.md: shared prototype and human explanation; A. Productivity figures not adopted.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc",
+      "published": "2026-10-02T06:40:53.795Z",
+      "label": "Pi 1.0 news",
+      "read_scope": "free introduction and linked primary posts; paid remainder unavailable",
+      "disposition": "new",
+      "note": "harnesses/pi.md: separate Pi Durable; discovery only, followed L primary sources.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/rlm",
+      "published": "2026-10-02T00:28:04.860Z",
+      "label": "Recursive language models",
+      "read_scope": "transcript; targeted mechanism and transfer discussion; linked author essay",
+      "disposition": "deferred",
+      "note": "Research hypothesis only. No general benefit claimed for an untrained coding harness.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-gemini-4-argon-gdms-answer",
+      "published": "2026-10-01T06:45:05.428Z",
+      "label": "Gemini 4 Argon news",
+      "read_scope": "free introduction and roundup to paywall in Reddit recap; paid remainder unavailable",
+      "disposition": "covered",
+      "note": "Primary model audit covers Argon. Runtime, embedding, context-policy and safety-paper mentions are discovery only. No private-preview availability or measured transfer adopted from AINews.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/devday-2026",
+      "published": "2026-09-30T22:23:40.969Z",
+      "label": "DevDay interview",
+      "read_scope": "transcript; targeted caching discussion 32:35–35:17",
+      "disposition": "covered",
+      "note": "practices/prompt-caching.md covers cache-aware layout; preview availability claims not adopted without official docs.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-openai-devday-2026-dots-61",
+      "published": "2026-09-30T05:53:10.644Z",
+      "label": "DevDay news",
+      "read_scope": "free introduction and roundup to paywall in Reddit recap; paid remainder unavailable",
+      "disposition": "covered",
+      "note": "Primary model/provider audit covers launch mechanics. Harness-dependent scores, safety monitoring and speculative-grader claims reinforce existing eval limits; remaining leads deferred, no summary numbers adopted.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-amd-buys-world-labs-for-82b",
+      "published": "2026-09-29T02:55:27.949Z",
+      "label": "AMD and World Labs news",
+      "read_scope": "free introduction and Sonnet launch roundup to paywall before Technical details; paid remainder unavailable",
+      "disposition": "covered",
+      "note": "Spatial/corporate lead outside practice scope; Sonnet guidance routes to primary model audit. No technical specs adopted from the partial body.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-opus-55-is-good-at-explainer",
+      "published": "2026-09-29T02:44:29.644Z",
+      "label": "Opus explainer news",
+      "read_scope": "free article body and roundup through article end; comments not evidence",
+      "disposition": "covered",
+      "note": "Creative demos are uncontrolled and outside the selected coding-practice outcome. Decision-model and memory-agent mentions are discovery only; typed output is not correctness and effort is task-dependent in existing references.",
+      "boundary_day": false,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/thariq",
+      "published": "2026-09-29T01:48:18.937Z",
+      "label": "Claude Code interview",
+      "read_scope": "transcript; targeted implementation notes and instruction cleanup",
+      "disposition": "covered",
+      "note": "harnesses/cross-harness.md T1/T2 already records this interview via dated YouTube captions; stronger attribution, not a new practice.",
+      "boundary_day": false
+    },
+    {
+      "url": "https://www.latent.space/p/openrouter",
+      "published": "2026-09-25T23:14:41.533Z",
+      "label": "OpenRouter",
+      "read_scope": "transcript; targeted model-fusion history",
+      "disposition": "covered",
+      "note": "providers/openrouter.md covers routing. Informal fusion preference is deferred, not independent benefit evidence.",
+      "boundary_day": true
+    },
+    {
+      "url": "https://www.latent.space/p/ainews-the-future-of-latent-space",
+      "published": "2026-09-25T05:37:00.787Z",
+      "label": "Newsletter business update",
+      "read_scope": "free article body and roundup through article end; comments not evidence",
+      "disposition": "covered",
+      "note": "Business introduction outside scope; practical roundup substantially duplicates the Opus explainer roundup. No additional recommendation from repeated anecdotes.",
+      "boundary_day": true,
+      "discovery_only": true
+    },
+    {
+      "url": "https://www.latent.space/p/runway",
+      "published": "2026-09-25T01:30:57.707Z",
+      "label": "Runway",
+      "read_scope": "transcript; targeted real-time world-model discussion",
+      "disposition": "irrelevant",
+      "note": "Creative/video runtime discussion does not change this coding-agent practice pass.",
+      "boundary_day": true
+    }
+  ],
+  "followed_primary_sources": [
+    {
+      "url": "https://earendil.com/posts/pi-1-0/",
+      "published": "2026-10-01",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "use": "Pi release and separate experimental package."
+    },
+    {
+      "url": "https://earendil.com/posts/pi-durable/",
+      "published": "2026-10-01",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "use": "One process per storage; framework scope."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/earendil-works/pi/6fb2e7815167e6b19006fc526d1a5d0f5f998787/packages/durable/README.md",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "commit": "6fb2e7815167e6b19006fc526d1a5d0f5f998787",
+      "commit_date": "2026-10-08T15:26:34Z",
+      "use": "Replay, submission deduplication and background abort semantics; experimental API."
+    },
+    {
+      "url": "https://github.com/earendil-works/pi/releases/tag/v1.1.0",
+      "published": "2026-10-07T22:26:31Z",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "use": "Latest release observed and reported launch-directory environment-file fix."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/stacklok/mecatl/a4771a7872a63a4a26f14812998af6dbbc3bc188/README.md",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "commit": "a4771a7872a63a4a26f14812998af6dbbc3bc188",
+      "commit_date": "2026-10-09T06:54:18Z",
+      "sha256": "7e6bd61d7d7eef39a6edc6323a40f30a22b7e55996c6b3fa8d77a7524dace62d",
+      "use": "Runtime boundaries, reference backing services, auth and tenant-isolation limits."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/stacklok/mecatl/a4771a7872a63a4a26f14812998af6dbbc3bc188/user-docs/cloud-native-harness.md",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "commit": "a4771a7872a63a4a26f14812998af6dbbc3bc188",
+      "sha256": "4a2f6358cf5a03de3d9fab6857edb26833df962327965eb339e79125a69f07da",
+      "use": "Turn-boundary recovery, integration limits and explicit future directions."
+    },
+    {
+      "url": "https://github.com/stacklok/mecatl/releases/tag/v0.0.47",
+      "published": "2026-10-08T10:03:58Z",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "read_scope": "GitHub API release metadata",
+      "use": "Latest release observed; pinned documentation is a later commit."
+    },
+    {
+      "url": "https://alexzhang13.github.io/blog/2026/mgh/",
+      "published": "2026-04",
+      "read": "2026-10-09",
+      "evidence": "A",
+      "disposition": "deferred",
+      "use": "Author research hypothesis, reached from RLM interview; no general harness transfer adopted."
+    },
+    {
+      "url": "https://www.vals.ai/blogs/mimo-reward-hacking",
+      "published": "2026-10-07",
+      "read": "2026-10-09",
+      "evidence": "M",
+      "read_scope": "full reported artifact audit and selected model trace examples",
+      "use": "Unreachable solution objects and file-scope metadata leakage; independent reproduction UNVERIFIED."
+    },
+    {
+      "url": "https://metr.substack.com/p/2026-10-06-ai-systems-could-cover-up-misbehavior",
+      "published": "2026-10-06",
+      "read": "2026-10-09",
+      "evidence": "A reported staged demonstration; L guidance",
+      "read_scope": "full primary post and limits",
+      "use": "Viewer/database evidence boundary; observed deployment exploitation not established."
+    },
+    {
+      "url": "https://github.com/UKGovernmentBEIS/inspect_ai/pull/5566",
+      "published": "merged 2026-10-01",
+      "read": "2026-10-09",
+      "evidence": "L",
+      "read_scope": "primary source independently read by second reviewer; merge status only",
+      "use": "Separate untrusted-mode merge, not installed release verification."
+    }
+  ],
+  "access_limits": [
+    "The web reader could not render the XML feed or archive API. Public HTTP fallback succeeded, so metadata date coverage is verified.",
+    "The Pi AINews paid remainder was not available. Its free links were discovery only; software claims use primary guides.",
+    "Available free AINews bodies and introductions were scanned for all ten rows that were initially headline-only. Paid remainders remain unavailable. These summaries are discovery, not support for adopted technical claims.",
+    "Audio and video were not played. Transcript timestamps and direct reported interviews are distinguished in read_scope.",
+    "Pinned Mecatl raw/blob URLs failed in the web reader; a public standard-library HTTP read of both pinned files succeeded.",
+    "This is complete archive metadata coverage through the cutoff, not complete access to every article body or proof that these practices improve coding outcomes."
+  ],
+  "checks": {
+    "archive_window": "PASS",
+    "primary_source_read": "PASS",
+    "nonduplication_comparison": "PASS",
+    "practice_transfer": "UNVERIFIED",
+    "runtime_behaviour": "UNVERIFIED",
+    "available_body_scan": "PASS",
+    "scoped_form_and_links": "PASS"
+  },
+  "unreachable": [
+    "Paid remainders of the Haiku, Quasi-Riemann, Reflection Beam, Gemini Argon, DevDay, AMD/World Labs and Pi AINews posts were unavailable. Free introductions and available summary bodies were read without login or paywall bypass.",
+    "The AINews links to the Vals and METR Twitter posts failed in the web reader; official-domain search reached the full primary articles.",
+    "Pinned Mecatl web raw/blob reads failed; public HTTP fallback read both pinned files.",
+    "The web reader could not render the feed/archive API; public HTTP fallback verified the date window."
+  ]
+}

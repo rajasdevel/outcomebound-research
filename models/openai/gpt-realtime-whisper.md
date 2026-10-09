@@ -97,7 +97,7 @@ Audio and text in, text out [openai-model-gpt-realtime-whisper].
 
 ### Sampling and API parameters
 
-- Rate limits count minutes of audio per minute: 100 at tier 1 up to 1,300 at tier 5 [openai-model-gpt-realtime-whisper].
+- **Rate limits [as-of 2026-10-09].** Limits count minutes of audio per minute: 350 at Build, 1,000 at Launch and 1,300 at Grow. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-whisper#rate-limits), read 2026-10-09).
 - Data: US and EU data residency for the realtime transcription endpoint [openai-guide-your-data].
 
 ### Migrating from the previous generation
