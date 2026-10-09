@@ -14,6 +14,11 @@ sources:
   - https://ai.google.dev/gemini-api/docs/libraries
   - https://ai.google.dev/gemini-api/docs/changelog
   - https://ai.google.dev/gemini-api/docs/latest-model
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe
+  - https://ai.google.dev/gemini-api/docs/live-api/live-translate
+  - https://ai.google.dev/gemini-api/docs/live-api/live-transcribe
+  - https://ai.google.dev/gemini-api/docs/deprecations
 ---
 
 # Google Gemini API and AI Studio
@@ -37,6 +42,18 @@ On 2026-10-03 the models page lists text and multimodal Gemini models, live audi
 
 The page also lists 3.6 Flash and 3.5 Flash as stable and 3 Flash as a preview; they are older than the two generations the model files cover. The Gemma 4 files ([12B](../models/google/gemma-4-12b-it.md), [31B](../models/google/gemma-4-31b-it.md) and the other sizes) are open weights and are not served through this API according to the models page; the [maker README](../models/google/README.md) covers them. Google marks each id as stable, preview, latest (a moving alias) or experimental; the README gives the notice periods. [models]
 
+### Dedicated speech inventory [as-of 2026-10-09]
+
+| Model file | Selectable id | Catalogue status |
+| --- | --- | --- |
+| [Gemini 3.5 Live Translate](../models/google/gemini-3.5-live-translate-preview.md) | `gemini-3.5-live-translate-preview` | public preview; speech-to-speech translation |
+| [Gemini 3.5 Transcribe](../models/google/gemini-3.5-transcribe.md) | `gemini-3.5-transcribe` | stable; file speech-to-text |
+| [Gemini 3.5 Transcribe Live](../models/google/gemini-3.5-transcribe-live.md) | `gemini-3.5-transcribe-live` | stable; streaming speech-to-text |
+
+The catalogue lists all three ids. These dedicated models now have full research files. No new general language model was found between the previous catalogue check and this check. Image and video coverage remains deferred: Nano Banana 2.1, Pro and 2 Lite, and Omni Flash have an explicit disposition in the [maker README](../models/google/README.md#recent-coverage-decisions-as-of-2026-10-09). The restricted 3.8 Flash Cyber variant is listed on Google's Cloud route, not this catalogue [L: models-october].
+
+The API preview ids for 3.1 Flash Live, 3.1 Flash TTS and 2.5 Pro TTS have an earliest shutdown of 2026-11-17. The replacement ids are 3.8 Live for the Live model and either 3.8 TTS model for the speech synthesis routes. This does not retire the Cloud GA Pro TTS id [L: deprecations-october].
+
 ## API surface
 
 - **Protocols.** Two native interfaces, generateContent and the newer Interactions API, which the [maker README](../models/google/README.md) records as storing conversation state on the server by default; the README describes both. Native endpoints sit on `generativelanguage.googleapis.com`. [openai]
@@ -59,6 +76,12 @@ This is the maker's own API, so parity means what each interface and route does.
 - **Vision, audio, video.** Multimodal input on the lead models, and separate image, video, music, speech and transcription models. [models]
 - **Streaming.** Supported on chat completions and in the native interfaces. [openai]
 - **What the Cloud route changes.** The README records different image and PDF limits, fixed sampling values, Provisioned Throughput and regional endpoints on the Cloud platform, and a preview status for the Interactions API there.
+
+### Dedicated speech controls [as-of 2026-10-09]
+
+Live Translate uses a Live WebSocket with translation configuration instead of system instructions or tools. Its endpoint accepts only speech audio. Transcribe Live uses the same connection type for text transcript events; its ten-minute limit, VAD controls and lack of diarization or word timestamps are specific to transcription. Neither dedicated guide establishes the tool or reasoning parity of a conversational Live model [L: translate-october, transcribe-live-october, transcribe-model-october].
+
+The full model files distinguish audio-input and text-output prices and capture missing token integers and source disagreements. The provider's general thinking and schema guidance above does not establish support for these dedicated endpoints.
 
 ## Pricing
 
@@ -95,3 +118,8 @@ Per token, with a free tier that exchanges data use for no charge, and a paid ti
 | libraries | https://ai.google.dev/gemini-api/docs/libraries | L | 2026-10-03 |
 | changelog | https://ai.google.dev/gemini-api/docs/changelog | L | 2026-10-03 |
 | latest | https://ai.google.dev/gemini-api/docs/latest-model | L | 2026-10-03 |
+| models-october | https://ai.google.dev/gemini-api/docs/models | L | 2026-10-09 |
+| deprecations-october | https://ai.google.dev/gemini-api/docs/deprecations | L | 2026-10-09 |
+| translate-october | https://ai.google.dev/gemini-api/docs/live-api/live-translate | L | 2026-10-09 |
+| transcribe-live-october | https://ai.google.dev/gemini-api/docs/live-api/live-transcribe | L | 2026-10-09 |
+| transcribe-model-october | https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe | L | 2026-10-09 |

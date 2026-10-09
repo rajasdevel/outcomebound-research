@@ -1,0 +1,266 @@
+{
+  "id": "claude-haiku-5-5",
+  "name": "Claude Haiku 5.5",
+  "maker": "Anthropic",
+  "family": "Claude 5.5",
+  "class": "Claude Haiku",
+  "generation": "5.5",
+  "released": "2026-10-07",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Claude API",
+    "Claude apps (claude.ai)",
+    "Claude Code",
+    "Amazon Bedrock",
+    "Google Cloud",
+    "Microsoft Foundry",
+    "Claude Platform on AWS"
+  ],
+  "context_window": 1000000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.1,
+    "output": 0.5,
+    "cached_input": 0.01,
+    "notes": "Standard Claude API rates for prompts up to 100,000 tokens. Over 100,000: input 0.50, output 2.50, cache read 0.05 per Mtok. Prompt length includes uncached input, cache writes and cache reads; the higher tier applies to the whole request. Cache writes: 5-minute 0.125/0.625, 1-hour 0.20/1.00, below/above threshold. Batch input/output 0.05/0.25 below and 0.25/1.25 above. US-only inference adds 1.1x. A retirement floor of 2027-10-07 is not an announced retirement [page, price]."
+  },
+  "benchmarks": [
+    {
+      "name": "SWE-Bench Pro (Scale, public V2; displayed leaderboard row)",
+      "score": 52.94,
+      "setting": "high; displayed interval +/-13.01; the text view does not expose full/HARD selection, sample count or interval definition",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "scale",
+      "read": "2026-10-09"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3.2)",
+      "score": 43,
+      "setting": "max; rounded published score; AutomationBench-AA component used a pre-release model with an over-refusal issue and is due for re-run",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-10-09"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 33,
+      "setting": "release analysis, rounded 33 percent; AA method is pass@1 averaged over three repeats on all 66 tasks; effort is not separately restated for this row in the article; uncertainty not stated [aa-tb-method]",
+      "harness": "mini-swe-agent (Artificial Analysis)",
+      "measured_by": "independent",
+      "source": "aa-art",
+      "read": "2026-10-09"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 39.2,
+      "setting": "max; 10 trials per task, 66 tasks; no internet egress; production safeguards on, no fallback; 12/660 trials blocked and failed; standard error +/-1.9 points treating trials as independent",
+      "harness": "Claude Code (--bare mode)",
+      "measured_by": "maker",
+      "source": "sc",
+      "read": "2026-10-09"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5",
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices"
+  ],
+  "system_card": "https://www.anthropic.com/document/claude-haiku-5-5-system-card",
+  "model_page": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+  "sources": [
+    {
+      "id": "ann",
+      "url": "https://www.anthropic.com/claude-haiku-5-5",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "page",
+      "url": "https://platform.claude.com/docs/en/models/haiku-5-5/overview",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "wn",
+      "url": "https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mig",
+      "url": "https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "g",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "bp",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "eff",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "think",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/thinking",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "price",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cache",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "json",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "vision",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/vision",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "refuse",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sc",
+      "url": "https://www.anthropic.com/document/claude-haiku-5-5-system-card",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-art",
+      "url": "https://artificialanalysis.ai/articles/claude-haiku-5-5",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model",
+      "url": "https://artificialanalysis.ai/models/claude-haiku-5-5",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-agent",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-tb-method",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "ctx",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "budgets",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/task-budgets",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-09",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): the displayed Haiku row does not expose the full/HARD selection, sample count or definition of +/-13.01; preserve those limits before comparing scores",
+    "Artificial Analysis Coding Agent Index: the public text view of the coding-agents page exposes no Haiku 5.5 composite; no value extracted",
+    "Terminal-Bench 4.0 (tbench.ai): the requested leaderboard URL redirects to the home page, so a separate author leaderboard result was not verified",
+    "METR 50% time horizon: no Haiku 5.5 result found on the page read 2026-10-09",
+    "Artificial Analysis Intelligence Index: release analysis says AutomationBench-AA used a pre-release deployment with excess refusals and will be rerun; the exact rerun revision remains unsettled",
+    "Terminal-Bench 4.0 (Artificial Analysis): the release article states 33 percent, but does not state uncertainty for the Haiku run; AA's benchmark page documents three repeats/task"
+  ]
+}

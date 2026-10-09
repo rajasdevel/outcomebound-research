@@ -10,6 +10,8 @@ sources:
   - https://cursor.com/docs/context/mcp
   - https://cursor.com/docs/cli/reference/permissions
   - https://cursor.com/changelog/2-2
+  - https://cursor.com/blog/improved-token-efficiency (read 2026-10-09)
+  - https://cursor.com/blog/rollouts-and-security-reviewer (read 2026-10-09)
 ---
 
 # Cursor
@@ -154,6 +156,15 @@ Cursor also runs the hooks in Claude Code's settings files (§4.2), so a reposit
   `CURSOR_LAYOUT`, `CURSOR_WORKSPACE_LABEL` and `VSCODE_PID`, and a terminal it opens may inherit
   `CURSOR_AGENT` (A, observed 2026-09-23). Match on the most specific set of variables
   ([cross-harness.md](cross-harness.md#11-rendering-in-harness-surfaces)).
+
+## 9. Production harness and rollout reports [as-of 2026-10-09]
+
+Cursor's reports of 2026-09-23 describe changes to context assembly and new deployment monitoring.
+The claims and limits are recorded once in
+[the harness ablation](../practices/writing-for-models.md#97-a-production-harness-ablation-as-of-2026-10-09)
+and [the rollout workflow](../practices/releasing.md#10-evidence-after-deployment-and-paid-service-bounds-volatile-as-of-2026-10-09).
+These are vendor reports (L), read 2026-10-09; they do not establish that the rule-loading and hook
+behavior above changed.
 
 ## Sources
 

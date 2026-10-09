@@ -12,6 +12,7 @@ sources:
   - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/prompt-caching
   - https://docs.x.ai/developers/advanced-api-usage/prompt-caching/multi-turn.md
   - https://ai.google.dev/gemini-api/docs/caching
+  - https://cursor.com/blog/improved-token-efficiency (read 2026-10-09)
 ---
 
 # Prompt caching
@@ -232,6 +233,11 @@ A summary of §2–§5 for checking a harness or a prompt design:
   all until the provider fixed it (A [as-of 2026-07], not re-checked). Probe the route actually used,
   gateway included ([`../providers/litellm.md`](../providers/litellm.md)), before estimating what a
   workload will pay.
+- **One production cache change** [as-of 2026-10-09]. Cursor reported 20% fewer cold cache misses
+  after placing breakpoints after stable layers and moving variable setup beyond them. L (vendor
+  report of 2026-09-23), [source](https://cursor.com/blog/improved-token-efficiency), read
+  2026-10-09. The combined experiment and its measurement limits are in
+  [writing-for-models.md](writing-for-models.md#97-a-production-harness-ablation-as-of-2026-10-09).
 
 ## What the evidence supports (inference)
 

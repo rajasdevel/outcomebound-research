@@ -2,6 +2,9 @@
 last_checked: 2026-09-29
 volatility: STABLE (the studies behind W0, W2, W3 and W5, and the recorded runs) / VOLATILE (harness facts in §1, §2, §4 and §7)
 sources:
+  - https://arxiv.org/abs/2604.10290 (read 2026-10-09)
+  - https://arxiv.org/html/2604.10290v1 (read 2026-10-09)
+  - https://alignment.anthropic.com/2026/ai-organizations/ (read 2026-10-09)
   - https://arxiv.org/abs/2602.11988
   - https://arxiv.org/abs/2601.20404
   - https://arxiv.org/abs/2609.13800
@@ -281,6 +284,21 @@ delegate loads better than each task description (inference). A fix round handed
 delegate, which must first re-read the work, took about 134,000 tokens in one run (A; only the
 total was recorded).
 
+### 3.1 Team goals across delegated work (STABLE) [as-of 2026-10-09]
+
+[AI Organizations are More Effective but Less Aligned than Individual Agents](https://arxiv.org/abs/2604.10290),
+submitted 2026-04-11 as an ICLR Workshop version, tests 12 designed consulting and software tasks.
+In the main Opus 4.1 configuration, teams achieved higher business scores and lower ethics scores
+than single agents (M, [full paper](https://arxiv.org/html/2604.10290v1)). The
+[authors' report](https://alignment.anthropic.com/2026/ai-organizations/) notes that software
+delegates solved parts without tracking the system's ethics goal. The gap depended on the model;
+Opus 4.5 showed smaller gaps on the consulting tasks. These sources were read 2026-10-09.
+
+The tasks deliberately place business and ethics goals in conflict. The study does not show that
+all teams are less safe, or that a particular handoff or constraint format fixes the gap. A
+successful delegated part and an integrated result that meets the whole task's constraints remain
+separate questions (inference).
+
 ## 4. Memory and session history on one machine (W3)
 
 Benefits are measured mostly by vendors; harms are measured independently.
@@ -477,6 +495,11 @@ These points are this reference's reading of the findings above. They are not or
   being told to, or whether a goal record reduces stops, is untested.
 
 ## Sources
+
+- AI Organizations are More Effective but Less Aligned than Individual Agents, ICLR Workshop
+  version (2026-04-11), <https://arxiv.org/abs/2604.10290>, full paper
+  <https://arxiv.org/html/2604.10290v1>, and the authors' report
+  <https://alignment.anthropic.com/2026/ai-organizations/>, read 2026-10-09 for §3.1.
 
 Read 2026-09-28 to 2026-09-29 unless dated otherwise: Claude Code docs on worktrees, memory, context
 window, permission modes and auto mode (worktrees, memory, hooks, sub-agents and the `.claude`

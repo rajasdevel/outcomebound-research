@@ -1,0 +1,134 @@
+{
+  "id": "gemini-3.5-live-translate-preview",
+  "name": "Gemini 3.5 Live Translate Preview",
+  "maker": "Google",
+  "family": "Gemini 3.5",
+  "class": "Gemini Live Translate",
+  "generation": "3.5",
+  "released": null,
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API (Live API over WebSockets or Google GenAI SDK)",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform (global endpoint, preview)"
+  ],
+  "context_window": 131072,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "audio"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": null,
+    "input_audio": "Raw 16-bit mono little-endian PCM at 16 kHz; 100 ms chunks [translate-guide]",
+    "output_audio": "Raw 16-bit mono little-endian PCM at 24 kHz; optional transcript text [translate-guide]",
+    "voices": "Attempts to retain source speaker voice characteristics; no selectable voice count published [translate-guide]",
+    "languages": [
+      "70+ languages; the full supported-language and BCP-47 table is in the translation guide [translate-guide]"
+    ],
+    "turn_detection": "Continuous translation while the speaker talks; does not wait for conversation turns [translate-guide]",
+    "interruption": null,
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3.5,
+    "output": 21.0,
+    "cached_input": null,
+    "notes": "Gemini API Standard paid plan: input and output fields are audio rates, USD per million tokens. Audio counts 25 tokens per second; the pricing page estimates about $0.0368 per minute for combined input and output. Free tier offered; caching, Batch, Flex and Priority are not supported [pricing] [translate-model]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/live-api/live-translate",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-5-live-translate"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-5-audio/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview",
+  "sources": [
+    {
+      "id": "models",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "audio-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-5-audio/",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "translate-model",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "translate-guide",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/live-translate",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "translate-cloud",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-5-live-translate",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "translate-eval",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-5-live-translate",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-09",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "Terminal-Bench 4.0: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "Artificial Analysis Intelligence Index: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "Artificial Analysis Coding Agent Index: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "METR 50% time horizon: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "released: Gemini API documentation and deprecations give June 2026; Cloud gives August 2026; no exact first-public day found, so no ISO day is invented",
+    "voice.duplex: the guide describes continuous input and output streams, but gives no full- or half-duplex conversation classification",
+    "voice.interruption: translation-specific cancellation or barge-in semantics not stated",
+    "voice.latency: the evaluation method defines initial and word-level latency, but publishes no numeric result",
+    "voice.session_limit: no translation-specific session duration or resumption/compression guarantee found in the sources read",
+    "pricing_usd_per_mtok.cached_input: caching is not supported",
+    "benchmarks: Google publishes translation, latency and naturalness methodology without scores; no independent translation measurement found in the cited sources",
+    "modalities: the shared model card lists text input, but the selectable endpoint and translation guide allow only audio input; endpoint-specific description kept",
+    "access: the Cloud page describes a Live WebSocket session but its capability table marks Live API not supported; runtime access has not been tested"
+  ]
+}

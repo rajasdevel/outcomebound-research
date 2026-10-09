@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: MONITOR (standards, measured studies, authorization patterns and engines) / VOLATILE (§2 and §3, Claude Code's and Codex's permission layers; §9, GitHub's review rules and terms)
 sources:
+  - https://arxiv.org/html/2607.20759v1 (read 2026-10-09)
   - https://code.claude.com/docs/en/permission-modes
   - https://code.claude.com/docs/en/auto-mode-config
   - https://www.anthropic.com/engineering/claude-code-auto-mode
@@ -506,6 +507,25 @@ or a hook note cannot replace.
   out is avoided as a combination [practitioners-19]; adaptive attackers bypassed all 12 recent
   injection defenses one study tested [instruction-file-security-authority-27]. P, M.
 
+### 6.1 Malicious issue requests (STABLE) [as-of 2026-10-09]
+
+[IssueTrojanBench](https://arxiv.org/html/2607.20759v1), submitted 2026-07-22 and read 2026-10-09,
+records an Exploit Execution Metric score of 1 in 2,776 of 4,176 runs (66.5%) across six tested
+Cursor, Claude Code and Codex Desktop configurations. All six used auto-accept or autonomous
+execution without per-command approval (M, preprint). For dependency attacks, the metric counts
+a `pip install` attempt or a fallback status file; the packages do not exist and their installs
+always fail. For the other categories, it counts scripts or policy files with expected content.
+The score does not establish completed installation, active hooks, effective policy changes or
+resource exhaustion. Boundary markers did not reliably prevent these scored attempts or artifacts.
+
+The study uses GPT-5.3 Codex, GPT-5.4 and Sonnet 4.6, one task prompt and one attack phrasing
+strategy. Its attribution of rejections partly relies on asking agents to explain them. The authors
+call the permission setting the highest-risk scenario. The rate is specific to those settings and
+attacks, not current product rankings or evidence that sandboxes never help.
+
+Issue content that requests changes to dependencies, permissions or hooks is therefore a relevant
+case for checking an action's source and scope even when the file write is permitted (inference).
+
 ## 7. Secrets (A7)
 
 - In a simulated month of thousands of agents interacting across communities, privacy violations
@@ -675,6 +695,9 @@ These points are this reference's reading of the findings above. They are not or
 ## Sources
 
 Read 2026-10-01 unless dated otherwise.
+
+- IssueTrojanBench, preprint (2026-07-22), <https://arxiv.org/html/2607.20759v1>, read 2026-10-09
+  for §6.1.
 
 - Claude Code: permission modes <https://code.claude.com/docs/en/permission-modes>; auto-mode
   configuration <https://code.claude.com/docs/en/auto-mode-config>; hooks

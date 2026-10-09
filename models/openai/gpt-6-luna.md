@@ -30,6 +30,8 @@ sources:
   - https://artificialanalysis.ai/models/
   - https://developers.openai.com/api/docs/guides/model-selection
   - https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6
+  - https://developers.openai.com/api/docs/guides/decisions
+  - https://developers.openai.com/api/reference/python/resources/decisions/methods/create
 ---
 
 # GPT-6 Luna
@@ -54,12 +56,12 @@ about half that model's token price, and it is one of the three models in OpenAI
 | Released | 2026-09-22 |
 | Status | ga |
 | Weights | closed |
-| Access | OpenAI API (Responses, Chat Completions, Batch); ChatGPT Work; Codex; Microsoft Foundry; Amazon Bedrock |
+| Access | OpenAI API (Responses, Chat Completions, Batch); ChatGPT Work; Codex; Microsoft Foundry; Amazon Bedrock; OpenAI Decisions API (public beta; text/image typed decisions) [as-of 2026-10-09] [openai-decisions-oct09] |
 | Context window | 1050k tokens |
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: none, low, medium, high, xhigh, max (default medium) |
-| Price | $0.1 in / $0.5 out per Mtok; cached input $0.01; list price, standard tier, prompts up to 272K input tokens; cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast |
+| Price | $0.1 in / $0.5 out per Mtok; cached input $0.01; list price, standard tier, prompts up to 272K input tokens; cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09] |
 | Key benchmarks | Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 12.6 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run): 15.2 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Intelligence Index: 38 (max (index v4.3.2), independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Artificial Analysis Intelligence Index: 35 (xhigh (index v4.3.2), independent) [aa-model-gpt-6-luna-xhigh](https://artificialanalysis.ai/models/gpt-6-luna-xhigh); Artificial Analysis Intelligence Index: 33 (high (index v4.3.2), independent) [aa-model-gpt-6-luna-high](https://artificialanalysis.ai/models/gpt-6-luna-high); Artificial Analysis Intelligence Index: 30 (medium (index v4.3.2), independent) [aa-model-gpt-6-luna-medium](https://artificialanalysis.ai/models/gpt-6-luna-medium); Artificial Analysis Intelligence Index: 22 (low (index v4.3.2), independent) [aa-model-gpt-6-luna-low](https://artificialanalysis.ai/models/gpt-6-luna-low); Artificial Analysis Coding Agent Index: 41 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents) |
 | Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 76.7 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); AA-LCR v1.1 (long-context reasoning, percent): 83.3 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna) |
 | Prompting guides | [developers.openai.com/api/docs/guides/latest-model](https://developers.openai.com/api/docs/guides/latest-model); [developers.openai.com/api/docs/guides/reasoning](https://developers.openai.com/api/docs/guides/reasoning) |
@@ -152,6 +154,16 @@ about half that model's token price, and it is one of the three models in OpenAI
   classification and structured summaries as Luna's intended uses. Schema limits and refusal handling are
   in the README and the structured-outputs guide [openai-structured-outputs] [codex-models].
 
+**Decisions API [as-of 2026-10-09].** In public beta since 2026-10-06, `/v1/decisions` uses
+`gpt-6-luna` to return `predicate`, `choice` or `score` answers from text and images. It can also
+return a refusal. This is distinct from generating a custom JSON object or requesting a tool call,
+which use Responses. The decision guide says about 10x faster than Responses; that is OpenAI's
+claim, without a workload or independent comparison in the guide. The input rate is $0.10 per Mtok;
+there is no separate cache-read, cache-write or output charge. This does not make input tokens free.
+Long-context and regional multipliers apply.
+L [openai-decisions-oct09]. Details and comparison limits are in
+[decision models](../../practices/decision-models.md).
+
 ### Images, audio, other inputs
 
 - Text and image in, text out. The encoding bug that degraded image understanding in GPT-6 Sol and Luna was
@@ -163,9 +175,11 @@ about half that model's token price, and it is one of the three models in OpenAI
 
 - The GPT-6 guide says to remove `temperature`, `top_p`, `top_logprobs` and `logprobs` when effort is not
   `none` [openai-latest-model].
-- Fast mode costs twice the rate and is unavailable with EU data residency. Rate limits at tier 1 are 500
-  requests and 500,000 tokens a minute; at tier 5, 30,000 and 180 million [openai-model-gpt-6-luna]
-  [openai-fast-mode].
+- **Fast mode [as-of 2026-10-09].** It costs twice the Standard rate and supports EU data residency
+  for GPT-6 Luna, subject to eligibility and endpoint requirements. L [openai-fast-mode-oct09].
+- **Rate limits [as-of 2026-10-09].** The model page now lists Build, Launch and Grow: respectively
+  5,000/10,000/30,000 requests and 2/10/180 million tokens per minute. These model-page limits do
+  not establish a separate Decisions endpoint limit. L [openai-model-luna-oct09].
 
 ### Migrating from the previous generation
 
@@ -267,3 +281,11 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement.
 - [metr-time-horizons] <https://metr.org/time-horizons/> (M)
 - [aws-card-gpt-6-luna] <https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-luna.html> (L)
 - [ms-foundry-models] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L)
+
+Partial correction sources, read 2026-10-09 (L):
+
+- [openai-decisions-oct09] <https://developers.openai.com/api/docs/guides/decisions>.
+- [openai-decisions-ref-oct09] <https://developers.openai.com/api/reference/python/resources/decisions/methods/create>.
+- [openai-model-luna-oct09] <https://developers.openai.com/api/docs/models/gpt-6-luna>.
+
+- [openai-fast-mode-oct09] <https://developers.openai.com/api/docs/guides/fast-mode> (L, read 2026-10-09).

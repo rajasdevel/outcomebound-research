@@ -35,6 +35,7 @@ sources:
   - https://artificialanalysis.ai/models/gpt-5-6-sol
   - https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6
   - https://developers.openai.com/api/docs/guides/tools-multi-agent
+  - https://developers.openai.com/api/docs/guides/ultrafast-mode
 ---
 
 # GPT-6 Sol
@@ -178,9 +179,14 @@ GPT-5.5. The [OpenAI README](README.md) holds the shared GPT-6 guidance.
 
 - The GPT-6 guide says to remove `temperature`, `top_p` and `top_logprobs` (and `logprobs` in Chat
   Completions) when effort is not `none` [openai-latest-model].
-- Fast mode costs twice the standard rate and is unavailable with EU data residency; Ultrafast is listed
-  only for Astra and, in preview, GPT-5.6 Sol. Tier 1 limits are 500 requests and 500,000 tokens a minute; tier 5 is 15,000 and 40
-  million [openai-model-gpt-6-sol] [openai-fast-mode].
+- **Fast mode [as-of 2026-10-09].** It costs twice the Standard rate and supports EU data residency
+  for GPT-6 Sol, subject to eligibility and endpoint requirements. The Astra exclusion remains
+  model-specific. L [openai-fast-mode-oct09] [openai-pricing-oct09].
+- **Ultrafast [as-of 2026-10-09].** The current guide lists GPT-6 Astra and GPT-6.1 Sol as broadly
+  available, and GPT-5.6 Sol in preview; it does not list GPT-6 Sol. L [openai-ultrafast-oct09].
+- **Rate limits [as-of 2026-10-09].** The model page uses Build, Launch and Grow: respectively
+  5,000/10,000/15,000 requests and 1/4/40 million tokens per minute. Actual organization limits can
+  differ. L [openai-model-sol6-oct09].
 
 ### Migrating from the previous generation
 
@@ -300,3 +306,10 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement, A secondary.
 - [vellum-gpt-6-1-sol] <https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained> (A)
 - [aws-card-gpt-6-sol] <https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-sol.html> (L)
 - [ms-foundry-models] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L)
+
+Partial correction sources, read 2026-10-09 (L):
+
+- [openai-fast-mode-oct09] <https://developers.openai.com/api/docs/guides/fast-mode>.
+- [openai-ultrafast-oct09] <https://developers.openai.com/api/docs/guides/ultrafast-mode>.
+- [openai-pricing-oct09] <https://developers.openai.com/api/docs/pricing>.
+- [openai-model-sol6-oct09] <https://developers.openai.com/api/docs/models/gpt-6-sol>.

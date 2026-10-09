@@ -2,6 +2,14 @@
 last_checked: 2026-10-03
 volatility: MONITOR (lineage, guides and API behaviour change at each release; prices, defaults and beta headers are VOLATILE)
 sources:
+  - https://platform.claude.com/docs/en/models/overview
+  - https://www.anthropic.com/claude-haiku-5-5
+  - https://platform.claude.com/docs/en/models/haiku-5-5/overview
+  - https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5
+  - https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
+  - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
+  - https://www.anthropic.com/claude/mythos
+  - https://www.anthropic.com/document/claude-haiku-5-5-system-card
   - https://platform.claude.com/docs/en/about-claude/models/overview
   - https://platform.claude.com/docs/en/about-claude/model-deprecations
   - https://platform.claude.com/docs/en/about-claude/pricing
@@ -60,7 +68,7 @@ sources:
 
 Anthropic's Claude models are served through its own API (the Messages API), through Amazon Bedrock,
 Google Cloud, Microsoft Foundry and Claude Platform on AWS, and through Anthropic's apps and Claude Code.
-This folder holds seven models in the current and previous generation of four classes: Fable, Opus,
+This folder holds eight models in the current and previous generation of four classes: Fable, Opus,
 Sonnet and Haiku. This page carries what holds for all of them: the lineage, the API surface, what
 the maker's prompting guides say, how to read a system card, and the behaviour the models share. Each
 model file says what differs for its model and links back here.
@@ -69,11 +77,14 @@ model file says what differs for its model and links back here.
 
 Anthropic sells four classes, from the largest to the smallest. Fable is the frontier class, and its
 weights are the same as those of Mythos, a second configuration with fewer safeguards that Anthropic
-offers only to approved organizations; Mythos has no model file because it cannot be selected. Opus is
+offers only to verified organizations. Mythos 5 and 5.1 have no cards here because restricted access is
+outside the general-availability/public-preview rule, not because those configurations have no users.
+Fable and Mythos share weights but have different safeguards; that difference can change results.
+[as-of 2026-10-09] (L) [mythos-current] Opus is
 the class for long-running agentic coding and knowledge work. Sonnet pairs speed with capability. Haiku is
 the small, fast class. [models-overview, ann-fable51]
 
-| Model (file) | API id | Released | Status on 2026-10-03 | Retirement commitment | Context / max output | List price in / out per Mtok | Default effort |
+| Model (file) | API id | Released | Status at stated check | Retirement commitment | Context / max output | List price in / out per Mtok | Default effort |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [Claude Fable 5.1](claude-fable-5-1.md) | `claude-fable-5-1` | 2026-09-01 | active, latest Fable | not sooner than 2027-09-01 | 1M / 128k | $10 / $50 | `high` |
 | [Claude Fable 5](claude-fable-5.md) | `claude-fable-5` | 2026-06-09 | active, legacy | not sooner than 2027-06-09 | 1M / 128k | $10 / $50 | `high` |
@@ -81,7 +92,11 @@ the small, fast class. [models-overview, ann-fable51]
 | [Claude Opus 5](claude-opus-5.md) | `claude-opus-5` | 2026-07-24 | active, legacy | not sooner than 2027-07-24 | 1M / 128k | $5 / $25 | `high` |
 | [Claude Sonnet 5.5](claude-sonnet-5-5.md) | `claude-sonnet-5-5` | 2026-09-28 | active, latest Sonnet | not sooner than 2027-09-28 | 1M / 128k | $2 / $10 | `high` on the API |
 | [Claude Sonnet 5](claude-sonnet-5.md) | `claude-sonnet-5` | 2026-06-30 | active, legacy | not sooner than 2027-06-30 | 1M / 128k | $2 / $10 | `high` |
-| [Claude Haiku 4.5](claude-haiku-4-5.md) | `claude-haiku-4-5-20251001` (alias `claude-haiku-4-5`) | 2025-10-15 | active, latest Haiku | not sooner than 2026-10-15 | 200k / 64k | $1 / $5 | no effort parameter |
+| [Claude Haiku 5.5](claude-haiku-5-5.md) | `claude-haiku-5-5` | 2026-10-07 | active, latest Haiku (2026-10-09) | not sooner than 2027-10-07 | 1M / 128k | $0.10 / $0.50 up to 100k input; $0.50 / $2.50 above | `medium` |
+| [Claude Haiku 4.5](claude-haiku-4-5.md) | `claude-haiku-4-5-20251001` (alias `claude-haiku-4-5`) | 2025-10-15 | previous Haiku (2026-10-09) | not sooner than 2026-10-15 | 200k / 64k | $1 / $5 | no effort parameter |
+
+The Haiku 5.5 row and the previous-generation status of Haiku 4.5 are checked on 2026-10-09 (L)
+[page-haiku55, ann-haiku55]. Other rows retain the document's 2026-10-03 check date.
 
 What replaced what, from Anthropic's release notes, model pages and deprecation page [relnotes,
 deprecations]:
@@ -95,17 +110,20 @@ deprecations]:
   Claude 5.5 family. [ann-opus55]
 - **Sonnet.** Sonnet 5 (2026-06-30) replaced Sonnet 4.6 at $2 / $10; the launch price was announced as
   introductory, and on 2026-08-10 Anthropic made it the standard price and cancelled the planned rise to $3 / $15.
-  Sonnet 5.5 (2026-09-28) replaced Sonnet 5 at the same prices. [pricing, relnotes]
+  Sonnet 5.5 (2026-09-28) replaced Sonnet 5 at the same input/output prices. Cache reads fell from $0.20
+  to $0.10 per Mtok on 2026-10-07 [as-of 2026-10-09] (L) [ann-haiku55]. [pricing, relnotes]
 - **Haiku.** Haiku 4.5 (2025-10-15) replaced Haiku 3.5, which was retired on 2026-02-19 (Haiku 3 was retired
-  on 2026-04-20). Anthropic's Opus 5.5 and Sonnet 5.5 announcements say Haiku 5.5 will follow "in the coming
-  weeks"; no Haiku 5.5 model page, id or price existed on 2026-10-03. [deprecations, ann-opus55, ann-sonnet55]
+  on 2026-04-20). [deprecations] Haiku 5.5 shipped on 2026-10-07 with adjustable effort, adaptive thinking,
+  1M context and 128k output. It replaces 4.5 as current; 4.5 remains the previous generation in this
+  folder. [as-of 2026-10-09] (L) [ann-haiku55, page-haiku55]
 
 Older Claude models (Opus 4.5 to 4.8, Sonnet 4.5 and 4.6, Mythos Preview) are outside this folder's scope.
 Sonnet 4.5 was deprecated on 2026-09-30, with retirement set for 2026-11-30. [deprecations]
 
 Anthropic's own recommendation on its models overview is to start with Opus 5.5 for most workloads, to use
 Fable 5.1 for demanding reasoning and long-horizon agentic work or where Opus 5.5 at higher effort still falls
-short, and to treat Haiku 4.5 as the fastest model. The Fable 5.1 "what's new" and overview pages still say to
+short, and to treat Haiku 5.5 as the fastest current model at standard speed
+[as-of 2026-10-09] (L) [models-current, ann-haiku55]. The Fable 5.1 "what's new" and overview pages still say to
 start with Claude Opus 5 (they predate Opus 5.5), so two pages of the same site disagree. [models-overview,
 page-fable51]
 
@@ -123,9 +141,11 @@ Bedrock prefixes it (`anthropic.claude-opus-5-5`); Haiku 4.5 on Google Cloud is 
 [models-overview] Anthropic's apps set their own effort defaults: Fable 5.1 runs at medium in Claude Cowork and
 on claude.ai, and Opus 5.5 and Sonnet 5.5 default to medium in Claude Code. [ann-fable51, claude-code-config]
 
-**Limits shared by the 5-series.** The 1M-token window is the default and the maximum, billed at one price for
-the whole window; the synchronous output cap is 128k tokens, raised to 300k on the Batch API for Opus 5.5, Opus
-5, Sonnet 5.5 and Sonnet 5 with a beta header (Fable has no batch extension). Haiku 4.5 has 200k and 64k.
+**Limits shared by the 5-series.** The 1M-token window is the default and maximum; synchronous output is
+128k. Haiku 5.5's rate rises above 100,000 prompt tokens, including cached tokens; the other 5-series
+models retain one rate across the window. Batch output reaches 300k with a beta header on Opus 5.5,
+Opus 5, Sonnet 5.5, Sonnet 5 and Haiku 5.5 (Fable has no batch extension). Haiku 4.5 has 200k and 64k.
+[as-of 2026-10-09] (L) [page-haiku55, pricing-current]
 Requests may carry up to 600 images or PDF pages (100 for the 200k-window model). On the current tokenizer,
 introduced with Opus 4.7, the same text produces about 30 percent more tokens than on older models, so token
 limits and prices cannot be compared per token across that boundary. [models-overview, context-windows, pricing]
@@ -139,8 +159,11 @@ send differs by model, and an unsupported value is a 400 error [thinking]:
 | Fable 5.1, Fable 5, Opus 5.5 | adaptive | 400 | 400 |
 | Sonnet 5.5 | adaptive | 400; use `between_tools` at `high` effort or below | 400 |
 | Opus 5 | adaptive | accepted at `high` or below, 400 at `xhigh` and `max` | 400 |
+| Haiku 5.5 | adaptive | accepted at `high` or below, 400 at `xhigh` and `max` | 400 |
 | Sonnet 5 | adaptive | accepted | 400 |
 | Haiku 4.5 | off | accepted | accepted, budget at least 1,024 tokens and below `max_tokens` |
+
+Haiku 5.5's thinking row is checked on 2026-10-09 (L) [haiku55-new]; other rows keep their earlier dates.
 
 `thinking.display` defaults to `omitted` on every 5-series model: thinking blocks come back with an empty text
 field (still billed, still required in later turns), `summarized` returns a summary, and `updates` (beta header
@@ -156,15 +179,18 @@ name does not mean the same amount of thinking on two models: Anthropic repeats 
 for a fresh sweep when moving between generations. Changing the top-level effort between requests invalidates the
 prompt cache. Fable 5.1, Opus 5.5, Opus 5 and Sonnet 5.5 accept a per-message change (beta header
 `mid-conversation-output-config-2026-07-01`: a `role: "system"` message with empty content and the new level),
-which keeps the cache; Fable 5, Sonnet 5 and Haiku 4.5 do not. [effort]
+which keeps the cache; Fable 5, Sonnet 5 and Haiku 4.5 do not. [effort] Haiku 5.5 also accepts it with
+adaptive thinking on the Claude API and Google Cloud; changing effort with thinking disabled returns 400.
+[as-of 2026-10-09] (L) [effort-current]
 
 **Sampling, prefill and tool choice.** Any non-default `temperature`, `top_p` or `top_k` returns a 400 on every
 5-series model. Prefilling the assistant turn returns a 400 on the 5-series (and on all models from the 4.6
 generation); Haiku 4.5 still accepts both a prefill and `temperature` or `top_p` (not both together), but not a
 prefill while extended thinking is on. `tool_choice` of type `any` or `tool` returns a 400 on Fable 5.1, Opus 5.5
-and Sonnet 5.5, with `auto` and `none` unchanged; Fable 5, Opus 5, Sonnet 5 and Haiku 4.5 accept forced
-tool use (on Haiku not together with manual extended thinking). Anthropic's replacement is `strict: true` on
-tools, or structured outputs, plus a prompt that says when a tool applies. [thinking, whats-new-fable51,
+and Sonnet 5.5, with `auto` and `none` unchanged; Fable 5, Opus 5, Sonnet 5, Haiku 5.5 and Haiku 4.5 accept forced
+tool use (on Haiku 4.5 not together with manual extended thinking). Anthropic's replacement is `strict: true` on
+tools, or structured outputs, plus a prompt that says when a tool applies. Haiku 5.5's forced call omits
+pre-tool thinking [as-of 2026-10-09] (L) [haiku55-migration]. [thinking, whats-new-fable51,
 whats-new-opus55, whats-new-sonnet55, best-practices]
 
 **Structured output.** `output_config.format` with a JSON schema constrains decoding; `strict: true` constrains
@@ -174,7 +200,7 @@ parameters per request; a schema that compiles too large returns a 400 and compi
 The first use of a schema pays compile latency; grammars are cached for 24 hours. Required properties are emitted
 before optional ones. Citations and prefill are incompatible with it, a refusal or a `max_tokens` stop can break
 the schema, and enum values may come back differing in capitalisation. A schema property that asks for the model's
-reasoning can trigger the `reasoning_extraction` refusal (below). All seven models are listed as supported on the
+reasoning can trigger the `reasoning_extraction` refusal (below). All eight models are listed as supported [as-of 2026-10-09] (L) [structured-current] on the
 Claude API, Platform on AWS, Google Cloud and Foundry; on Amazon Bedrock the feature is documented only for the
 legacy Bedrock integration (which serves Haiku 4.5 and 4.x models), not for Claude in Amazon Bedrock. [structured-outputs]
 
@@ -187,8 +213,9 @@ text that refers to them. Claude cannot name people in images, counts approximat
 in the resized image's space. No model outputs images, audio or video. [vision]
 
 **Caching.** Minimum cacheable prompt: 512 tokens on Fable 5.1, Fable 5, Opus 5.5, Opus 5 and Sonnet 5.5;
-1,024 on Sonnet 5; 4,096 on Haiku 4.5. A five-minute write costs 1.25x the input price, a one-hour write 2x, a read
-0.1x, except 0.025x on Fable 5.1 and 0.05x on Opus 5.5. Changing the system prompt, tools, thinking configuration
+512 on Haiku 5.5 [as-of 2026-10-09] (L) [cache-current]; 1,024 on Sonnet 5; 4,096 on Haiku 4.5. A five-minute write costs 1.25x the input price, a one-hour write 2x, a read
+0.1x, except 0.025x on Fable 5.1 and 0.05x on Opus 5.5 and Sonnet 5.5
+[as-of 2026-10-09] (L) [cache-current]. Changing the system prompt, tools, thinking configuration
 or top-level effort restarts the cache from that point. [prompt-caching, pricing]
 
 **Context management and long runs.** Server-side compaction and context editing trim history without
@@ -199,6 +226,8 @@ Mid-conversation system messages (to add an instruction without editing `system`
 (header `mid-conversation-system-clear-at-2026-08-21`, cleared when the next user message arrives) exist on
 Fable 5.1, Fable 5, Opus 5.5, Opus 5 and Sonnet 5.5, not on Sonnet 5 or Haiku 4.5. In-message tool definitions
 (beta header `inline-tools-2026-09-15`) work on the same models. [task-budgets, mid-conversation, relnotes]
+Haiku 5.5 also supports task budgets and mid-conversation system messages. Task budgets are advisory,
+not provider-enforced spend caps. [as-of 2026-10-09] (L) [budgets-current, mid-current]
 
 **Tools.** Computer use is the `computer_toolset_20260801` toolset (batch actions, zoom on by default, about 4,500
 tokens of definition overhead); on the Claude API and Google Cloud, Opus 5.5 and Sonnet 5.5 reject the earlier
@@ -216,9 +245,10 @@ API and Platform on AWS. Text from Fable 5.1 carries a statistical watermark on 
 5.1 post says the watermark is added to the outputs of models released after 2026-08-02 (to meet the EU AI Act),
 and its Opus 5.5 post says Opus 5.5 carries it too. [retention, pricing, ann-fable51, whats-new-fable51, ann-opus55]
 
-**Refusals and fallback.** Fable 5.1, Fable 5, Opus 5.5, Opus 5 and Sonnet 5.5 run safety classifiers. A decline is
+**Refusals and fallback.** Fable 5.1, Fable 5, Opus 5.5, Opus 5, Sonnet 5.5 and Haiku 5.5 run safety
+classifiers [as-of 2026-10-09] (L) [refusals-current]. A decline is
 a successful HTTP 200 with `stop_reason: "refusal"` and a `stop_details.category` of `cyber`, `bio`, `frontier_llm`,
-`reasoning_extraction` or `general_harms`; any partial output should be discarded. Declines before any output in
+`reasoning_extraction` or `general_harms`, depending on the model; any partial output should be discarded. Declines before any output in
 `bio`, `frontier_llm` and `reasoning_extraction` are billed as normal requests (since 2026-09-24); the others are
 not. Fallback retries the request on another model: `fallbacks: "default"` (beta header
 `server-side-fallback-2026-07-01`) on the Claude API, an SDK middleware elsewhere, or a manual retry with
@@ -228,7 +258,9 @@ declines and Opus 5 for biology and frontier-model-development declines on Opus 
 `frontier_llm` declines on Sonnet 5.5, with `bio`, `reasoning_extraction` and `general_harms` declines left standing. Classifiers
 that guard against distillation, and the ones for conventional weapons and explosives, have no fallback.
 Anthropic's system cards say all blocks are transparent and "do not covertly change model responses".
-[refusals, whats-new-fable51, sc-opus55, sc-sonnet55]
+[refusals, whats-new-fable51, sc-opus55, sc-sonnet55] Haiku 5.5 has no server-side fallback and provides
+no fallback credit; a manual model switch writes a new cache at full price. [as-of 2026-10-09] (L)
+[refusals-current]
 
 ## Prompting guides
 
@@ -236,7 +268,9 @@ Anthropic publishes one general page and one guide per model. The general page,
 [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices),
 is organised as model-specific notes first, then techniques for all current models, then migration notes; it
 tells the reader to treat a technique that names a model as measured on that model and to re-check it on another.
-Haiku 4.5 has no guide of its own, so this page is its guide. [best-practices]
+Haiku 4.5 has no guide of its own, so this page is its guide. [best-practices] Haiku 5.5 has a dedicated
+guide linked from its [model file](claude-haiku-5-5.md), with search, verification, JSON/tool and user-message
+handling notes. [as-of 2026-10-09] (L) [guide-haiku55]
 
 What the general page says, in outline (L):
 
@@ -268,7 +302,7 @@ What the general page says, in outline (L):
   the models that screen reasoning extraction (Fable 5.1, Fable 5, Opus 5.5, Opus 5, Sonnet 5.5) asking the model to
   write its reasoning in the reply can be declined. Asking for a final self-check helps on coding and maths, but
   Opus 5 over-verifies if it is asked.
-- **Agentic work.** Models with context awareness (Sonnet 5 and Haiku 4.5 among these seven) track their own
+- **Agentic work.** Models with context awareness (Sonnet 5 and Haiku 4.5 among these eight) track their own
   remaining window, so a prompt for them should say when the harness will compact or save state, or they
   wrap up early. For work across several windows: use a different first-window prompt that sets up tests and
   scripts, keep tests in a structured file, keep progress notes as free text, use git as the state log, prefer
@@ -382,9 +416,9 @@ cards listed in Sources):
    harness countdown after every result, as an injection. Opus 5.5 went the other way for text a user pastes into
    a message (see its file). Mark pasted text and keep user words out of `tool_result` blocks.
 9. **Reasoning echo is declined.** Prompts, instruction files and tool descriptions that ask the model to write out
-   its reasoning, or schemas with a `reasoning` field, can return `reasoning_extraction` on the five classifier
-   models. Ask for a short explanation or a summary of actions and read summarized thinking instead.
-10. **Safety posture.** Across 5-series cards, over-refusal of benign sensitive requests is near zero on the API
+   its reasoning, or schemas with a `reasoning` field, can return `reasoning_extraction` on models that screen that category. Ask for a short explanation or a summary of actions and read summarized thinking instead.
+10. **Safety posture.** The Fable, Opus and Sonnet 5-series cards read for this page report near-zero
+    over-refusal of benign sensitive requests on the API
     (0 to 0.6 percent) while the single-turn harmless-response rate without a system prompt sits at 94.5 to 96.9
     percent; the claude.ai system prompt lifts it to about 99 percent. Several cards flag acceptance of unverifiable
     claims of authority and of professional or fictional framings as a weak point, and rare internal cases of
@@ -397,7 +431,9 @@ cards listed in Sources):
   says no). Which wording governs is not stated.
 - No independent time-horizon measurement of any in-scope model exists on METR's page, which was last updated
   2026-05-08.
-- Haiku 5.5 is announced and unreleased; the Haiku class holds one generation until it ships.
+- Haiku 5.5's new [model file](claude-haiku-5-5.md) records benchmark and behavior limitations. Its
+  automated audit over-refusal result differs from its single-turn benign result; these should not be
+  merged into one general refusal rate. [as-of 2026-10-09] (L) [sc-haiku55]
 - Artificial Analysis's Sonnet 5.5 runs used a pre-release deployment with a structured-output bug that Anthropic
   says may understate scores; a re-run is planned.
 - Whether the effort-level recalibrations seen across 5.1 and 5.5 continue (each guide says a level name is not
@@ -405,7 +441,7 @@ cards listed in Sources):
 
 ## Sources
 
-Every id below is used in this page; URLs were read on 2026-10-03.
+Old ids below retain their 2026-10-03 read date. The second table holds only sources read on 2026-10-09; the document was not fully re-verified.
 
 | Id | URL | Kind |
 | --- | --- | --- |
@@ -440,3 +476,21 @@ Every id below is used in this page; URLs were read on 2026-10-03.
 | sc-sonnet55 | https://www.anthropic.com/document/claude-sonnet-5-5-system-card | L |
 | sc-haiku45 | https://www.anthropic.com/claude-haiku-4-5-system-card | L |
 | aa-sonnet55 | https://artificialanalysis.ai/articles/claude-sonnet-5-5 | M |
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| ann-haiku55 | https://www.anthropic.com/claude-haiku-5-5 | L | 2026-10-09 |
+| page-haiku55 | https://platform.claude.com/docs/en/models/haiku-5-5/overview | L | 2026-10-09 |
+| haiku55-new | https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5 | L | 2026-10-09 |
+| haiku55-migration | https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide | L | 2026-10-09 |
+| guide-haiku55 | https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5 | L | 2026-10-09 |
+| mythos-current | https://www.anthropic.com/claude/mythos | L | 2026-10-09 |
+| models-current | https://platform.claude.com/docs/en/models/overview | L | 2026-10-09 |
+| pricing-current | https://platform.claude.com/docs/en/about-claude/pricing | L | 2026-10-09 |
+| cache-current | https://platform.claude.com/docs/en/build-with-claude/prompt-caching | L | 2026-10-09 |
+| effort-current | https://platform.claude.com/docs/en/build-with-claude/effort | L | 2026-10-09 |
+| structured-current | https://platform.claude.com/docs/en/build-with-claude/structured-outputs | L | 2026-10-09 |
+| refusals-current | https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback | L | 2026-10-09 |
+| budgets-current | https://platform.claude.com/docs/en/build-with-claude/task-budgets | L | 2026-10-09 |
+| mid-current | https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages | L | 2026-10-09 |
+| sc-haiku55 | https://www.anthropic.com/document/claude-haiku-5-5-system-card | L | 2026-10-09 |

@@ -12,7 +12,7 @@
   "access": [
     "Google Cloud Text-to-Speech API (model name gemini-2.5-pro-tts; the global, us and eu regions)",
     "Vertex AI API (generateContent; the global region and several European regions)",
-    "Gemini API under the id gemini-2.5-pro-preview-tts, limited to accounts that used it before",
+    "Gemini API under gemini-2.5-pro-preview-tts; earliest shutdown 2026-11-17, rechecked 2026-10-09 [g-deprecations]",
     "Vertex AI Media Studio"
   ],
   "context_window": 8192,
@@ -120,7 +120,7 @@
     {
       "id": "g-deprecations",
       "url": "https://ai.google.dev/gemini-api/docs/deprecations",
-      "read": "2026-10-04",
+      "read": "2026-10-09",
       "kind": "L",
       "quote": null
     },
@@ -145,11 +145,12 @@
     "system_card: no model card for the 2.5 TTS models was found",
     "voice.latency: no published figure",
     "Artificial Analysis throughput: the site lists no model page for this model, so no speed figure was found",
-    "status: the Gemini API lists the preview id with access limited to prior users and says it is not deprecated; Google Cloud lists the model as generally available [g-models] [g-cloud-tts]",
     "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
     "Terminal-Bench 4.0: not applicable to a speech model",
     "Artificial Analysis Intelligence Index: not applicable to a speech model",
     "Artificial Analysis Coding Agent Index: not applicable to a speech model",
-    "METR 50% time horizon: not applicable to a speech model"
+    "METR 50% time horizon: not applicable to a speech model",
+    "status: the card names the Cloud GA model. Its Gemini API preview route has an earliest shutdown of 2026-11-17, rechecked 2026-10-09; this API notice is not a shutdown date for the Cloud GA model [g-deprecations]",
+    "retires: no shutdown for the Cloud GA id established in this partial check; API preview shutdown is route-specific [g-deprecations]"
   ]
 }

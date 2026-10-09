@@ -44,8 +44,8 @@
   "pricing_usd_per_mtok": {
     "input": 2.0,
     "output": 10.0,
-    "cached_input": 0.2,
-    "notes": "List price, standard rate (same as Sonnet 5). 5-minute cache write 2.50, 1-hour write 4; cache read 0.1x input. Batch 1/5. Batch output up to 300K with a beta header. US-only inference adds 1.1x. Default effort is high on the API but medium in Claude Code and the Claude apps [claude-code-model-config, announce-sonnet-5-5]."
+    "cached_input": 0.1,
+    "notes": "List price, standard rate (same as Sonnet 5). 5-minute cache write 2.50, 1-hour write 4; cache read 0.05x input (0.10 per Mtok from 2026-10-07; pricing re-read 2026-10-09 [haiku-5-5-announcement]). Batch 1/5. Batch output up to 300K with a beta header. US-only inference adds 1.1x. Default effort is high on the API but medium in Claude Code and the Claude apps [claude-code-model-config, announce-sonnet-5-5]."
   },
   "benchmarks": [
     {
@@ -383,7 +383,7 @@
     {
       "id": "anthropic-pricing",
       "url": "https://platform.claude.com/docs/en/about-claude/pricing",
-      "read": "2026-10-03",
+      "read": "2026-10-09",
       "kind": "L",
       "quote": null
     },
@@ -462,6 +462,13 @@
       "url": "https://www.eesel.ai/de/blog/claude-sonnet-5-5-test",
       "read": "2026-10-03",
       "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "haiku-5-5-announcement",
+      "url": "https://www.anthropic.com/claude-haiku-5-5",
+      "read": "2026-10-09",
+      "kind": "L",
       "quote": null
     }
   ],

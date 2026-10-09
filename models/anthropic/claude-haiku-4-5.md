@@ -1,6 +1,6 @@
 ---
 last_checked: 2026-10-03
-volatility: VOLATILE (retirement floor falls on 2026-10-15; Haiku 5.5 is announced; a model's prices, limits and guidance change at each release)
+volatility: VOLATILE (retirement floor falls on 2026-10-15; Haiku 5.5 has shipped; a model's prices, limits and guidance change at each release)
 sources:
   - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
   - https://platform.claude.com/docs/en/models/haiku-4-5/overview
@@ -21,6 +21,7 @@ sources:
   - https://www.anthropic.com/claude-haiku-4-5-system-card
   - https://www.anthropic.com/claude-opus-5-5
   - https://www.anthropic.com/claude-sonnet-5-5
+  - https://www.anthropic.com/claude-haiku-5-5
   - https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning
   - https://labs.scale.com/leaderboard/swe_bench_pro_public_v2
   - https://www.tbench.ai/leaderboard/terminal-bench/4.0
@@ -32,8 +33,8 @@ sources:
 # Claude Haiku 4.5
 
 Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, alias `claude-haiku-4-5`) is Anthropic's small, fast class model, released on
-2025-10-15 as the successor to Haiku 3.5. It is the only Haiku in this folder: the class's previous generation (Haiku 3.5) was
-retired on 2026-02-19 and Haiku 5.5 is announced but not released. It is a hybrid model with an optional extended-thinking
+2025-10-15 as the successor to Haiku 3.5. It is the previous Haiku generation after [Haiku 5.5](claude-haiku-5-5.md) shipped on 2026-10-07
+[as-of 2026-10-09] (L) [ann-haiku55]. Haiku 3.5 was retired on 2026-02-19. It is a hybrid model with an optional extended-thinking
 mode, a 200k-token window, 64k output and a $1 / $5 list price; Anthropic says it matches the coding performance of Sonnet 4,
 a frontier model five months earlier, at one third of the cost and more than twice the speed. It is the oldest model in this
 folder and the only one that predates the 5-series tokenizer, adaptive thinking and effort control. [pg, ann]
@@ -215,7 +216,7 @@ The Haiku 4.5 card (October 2025, 39 pages) is the oldest card in this folder an
 - **L.** Anthropic's cost study: on a graduate-level science question set Haiku 4.5 answered at about a fifth of Opus 5.5's cost per question with
   63 percent accuracy against 92 percent, and fell much further behind on long coding tasks; Anthropic says it fits high-volume work whose output
   can be checked, not long agentic loops. [optim]
-- **L.** Anthropic's Sonnet 5.5 and Opus 5.5 announcements say Haiku 5.5 will follow in the coming weeks; it had not shipped on 2026-10-03. [ann-s55]
+- **L.** Haiku 5.5 shipped on 2026-10-07 and replaces this model as current. Its adaptive thinking, effort and fixed-sampling API need migration checks [as-of 2026-10-09] [ann-haiku55].
 
 ## Benchmarks
 
@@ -230,10 +231,10 @@ The Haiku 4.5 card (October 2025, 39 pages) is the oldest card in this folder an
 
 ## Open questions
 
-- Whether Haiku 4.5 reaches a retirement notice soon (its floor is 2026-10-15) or stays until Haiku 5.5 ships.
+- Whether Haiku 4.5 receives a retirement notice after Haiku 5.5's release (its earliest stated floor was 2026-10-15); the floor is not a shutdown date [as-of 2026-10-09].
 - Scale's `xhigh` label contradicts the absence of an effort parameter; no source explains it.
 - No independent Terminal-Bench 4.0 or time-horizon figure exists, and no Haiku-specific prompting guidance exists beyond the general page.
-- Whether the released Haiku 5.5 will bring the 5-series effort and thinking model to the Haiku class is not stated.
+- Whether migrating real workloads to Haiku 5.5 retains quality at lower cost; its [model file](claude-haiku-5-5.md) records prompt-length pricing and the breaking API changes [as-of 2026-10-09].
 
 ## Sources
 
@@ -263,3 +264,4 @@ The Haiku 4.5 card (October 2025, 39 pages) is the oldest card in this folder an
 | scale | https://labs.scale.com/leaderboard/swe_bench_pro_public_v2 | M | 2026-10-03 |
 | tb | https://www.tbench.ai/leaderboard/terminal-bench/4.0 | M | 2026-10-03 |
 | metr | https://metr.org/time-horizons/ | M | 2026-10-03 |
+| ann-haiku55 | https://www.anthropic.com/claude-haiku-5-5 | L | 2026-10-09 |

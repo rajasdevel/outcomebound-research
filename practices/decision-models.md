@@ -31,6 +31,10 @@ sources:
   - https://github.com/strands-labs/strands-decider
   - https://community.openai.com/t/devday-2026-announcements-and-developer-resources/1402006
   - https://cookbook.openai.com/examples/using_logprobs
+  - https://developers.openai.com/api/docs/guides/decisions
+  - https://developers.openai.com/api/reference/python/resources/decisions/methods/create
+  - https://developers.openai.com/api/docs/changelog
+  - https://developers.openai.com/api/reference/python/resources/decisions/methods/create.md
 ---
 
 # Decision models (System One models)
@@ -119,12 +123,13 @@ task cut median time 25% (9.450 s to 7.092 s), and the authors say three pairs s
 [chk-ultrafast]. L, M (small).
 
 **DM9. The class became a market in two weeks.** OpenAI announced a Decisions API in limited preview
-at DevDay on 2026-09-29 (its own page could not be read) [chk-openai-forum], a week after a
-practitioner argued that OpenAI could replicate Jev quickly if it could replicate the training
-[chk-arcturus]; Cloudflare released
-open-weight Clef models with a Jev-compatible API on 2026-10-01 [chk-cloudflare-clef]; AWS released
-Strands Decider 2B the same day [chk-strands]; open replicas such as Kev ship under Apache-2.0
-[chk-kev-release]. L.
+at DevDay on 2026-09-29 [chk-openai-forum], a week after a practitioner argued that OpenAI could
+replicate Jev quickly if it could replicate the training [chk-arcturus]. **[as-of 2026-10-09]** The
+API entered public beta on October 6 with `gpt-6-luna`, and its official guide now documents text
+and image input, typed answers and endpoint pricing [chk-openai-decisions-oct09]
+[chk-openai-changelog-oct09]. Cloudflare released open-weight Clef models with a Jev-compatible API
+on 2026-10-01 [chk-cloudflare-clef]; AWS released Strands Decider 2B the same day [chk-strands]; open
+replicas such as Kev ship under Apache-2.0 [chk-kev-release]. L; the practitioner forecast is A.
 
 **DM10. Older tools give the same interface.** Reading the log-probabilities of class labels from a
 generative API gives per-class probabilities for thresholds [chk-oai-logprobs]; rerankers sort
@@ -284,7 +289,7 @@ Read 2026-10-04. Vendor claims are L; every benchmark below is run by the vendor
 | Offer | Maker | Weights | Released | Notes |
 | --- | --- | --- | --- | --- |
 | Jev 1.13 | TypeSafe AI | closed | 2026-09-15, early access | Text only; served by TypeSafe, OpenRouter, Vercel AI Gateway, Pydantic AI Gateway; [file](../models/typesafe/jev-1.13.0.md) [chk-ts-models] |
-| Decisions API | OpenAI | closed | 2026-09-29, limited preview | On a version of GPT-6 Luna; text, and images by second-hand reports [chk-arcturus]; classify, route or choose from predefined answers. Docs and price not read: OpenAI's pages returned 403 or 404 [chk-openai-forum] |
+| Decisions API | OpenAI | closed | 2026-10-06, public beta [as-of 2026-10-09] | `gpt-6-luna`; text and image input; predicate, choice and score; $0.10 per M input with no separate cache-read, cache-write or output charge; input remains billed, plus applicable long-context/regional multipliers [chk-openai-decisions-oct09] [chk-openai-changelog-oct09] |
 | Clef (27B) and Clef-flash (9B) | Cloudflare | open, Apache-2.0 | 2026-10-01 | LoRA and a routing head on Qwen bases; image input; 65,536 tokens; Clef $0.24 per M input on Workers AI; claims full Jev-API compatibility [chk-cloudflare-clef] [chk-cloudflare-model] |
 | Strands Decider 2B | AWS (Strands Labs) | open, Apache-2.0 | 2026-10-01 | LoRA on Qwen3.5-2B-Base; local server binds to localhost with no authentication [chk-strands] |
 | Kev 1.0 (0.8B, 4B, 9B, 27B) | an independent open project | open, Apache-2.0 | 2026-10-01 | LoRA adapters on Qwen3.5 bases and full weights on Qwen3.8-27B; text only, English [chk-kev-release]; llama.cpp merged a `/v1/systemone` server for Kev and other open decision models on 2026-10-02 [chk-llama-cpp] |
@@ -309,6 +314,33 @@ more than twice any earlier launch, and adds that the next test is whether use l
 the request shape in 25 lines; it calls itself a parody and reports no accuracy, latency or
 calibration comparison [chk-nobodywho]. That the interface is easy to copy and the training is not is
 the view of the launch-thread commenters and of [chk-arcturus] (A).
+
+### OpenAI Decisions [as-of 2026-10-09]
+
+The guide and API reference establish the public interface, not calibration or speed on a caller's
+traffic. `POST /v1/decisions` takes a `model`, shared `input` and named `questions`; only
+`gpt-6-luna` is supported. The three types are `predicate` (probability of a condition), `choice`
+(a supplied category and distribution) and `score` (a probability-weighted average of ordered
+level indices). Choice and score also return confidence. An answer can instead have type `refusal`.
+L [chk-openai-decisions-oct09] [chk-openai-decisions-ref-oct09].
+
+The guide requires inline base64 image data and says hosted HTTP(S) URLs and `file_id` inputs are
+unsupported. The Python reference's Markdown representation instead allows public HTTP(S) image
+URLs and caps images at 128 per request. Both exclude file IDs; the reference also excludes other
+message roles, files, audio, tools and item references. This is a documentation conflict. Live URL
+acceptance was not tested and remains UNVERIFIED. L [chk-openai-decisions-oct09]
+[chk-openai-decisions-ref-md-oct09].
+
+General extraction into a custom JSON schema and function calling use Responses rather than this
+endpoint. Independent questions can share one request; questions that depend on an earlier answer
+need another request. L [chk-openai-decisions-oct09].
+
+OpenAI recommends observable question criteria and labelled application examples to set thresholds,
+with false-positive and false-negative costs taken into account. Its roughly 10x speed claim against
+Responses has no workload or independent replication in the guide. The endpoint supports ZDR and
+HIPAA for eligible customers, and US/European residency and processing subject to the documented
+requirements. L [chk-openai-decisions-oct09]. No independent local-calibration or application-outcome
+result was verified here; this remains an evidence gap.
 
 ## 7. Data handling (VOLATILE)
 
@@ -360,16 +392,16 @@ falsified or unscored at its horizon.
 
 - Almost every number here is from a vendor measuring itself or a competitor; there is one
   independent benchmark and one preprint. Small samples throughout (3 pairs, 10 tasks, 100 invoices).
-- OpenAI's Decisions API is known only from a forum summary and the press; its docs, model and price
-  were not read.
+- OpenAI now documents its public Decisions beta [as-of 2026-10-09]. Independent calibration,
+  speed and end-to-end comparisons against other decision APIs were not verified in this update.
 - Whether Jev's separately asked questions are consistent with each other after TypeSafe removed its
   warning.
 - What "calibrated" means across products: TypeSafe, Cloudflare and Kev each fit or report it
   differently.
 - Whether any of this improves an end-to-end product outcome, as opposed to a decision accuracy; no
   study read measures that.
-- Re-check after the next Jev version, when OpenAI's Decisions API publishes documentation, or when a
-  second independent benchmark appears.
+- Re-check after the next Jev version, when OpenAI's Decisions API changes its beta status or
+  interface, or when a second independent benchmark appears.
 
 ## Sources
 
@@ -470,3 +502,10 @@ Repositories, at the commits read
   <https://github.com/anishfn/shapeshift/blob/5e24166dcbde6e794f0bd5b1b4bd395aaee5fc19/src/app/api/intent/route.ts>.
 - [chk-llm-typesafe] simonw/llm-typesafe
   <https://github.com/simonw/llm-typesafe/tree/225932cfde461ee6e38ae2b612040c50c086db8c>.
+
+OpenAI public-beta correction sources, read 2026-10-09 (L):
+
+- [chk-openai-decisions-oct09] <https://developers.openai.com/api/docs/guides/decisions>.
+- [chk-openai-decisions-ref-oct09] <https://developers.openai.com/api/reference/python/resources/decisions/methods/create>.
+- [chk-openai-changelog-oct09] <https://developers.openai.com/api/docs/changelog>, October 6 entry.
+- [chk-openai-decisions-ref-md-oct09] Python reference Markdown representation, <https://developers.openai.com/api/reference/python/resources/decisions/methods/create.md> (L, read 2026-10-09).

@@ -18,7 +18,7 @@ sources:
 
 # Gemini 2.5 Pro TTS
 
-Gemini 2.5 Pro TTS is the speech synthesis model of the Gemini Pro TTS class, and the only model in that class: Google shipped no later Pro TTS. It reads a transcript aloud and takes direction for delivery from a style prompt and from bracket tags in the text, so it is a voice actor model in this library's sense. Google Cloud released it as generally available on 2025-09-30. The Gemini API keeps it under the preview id `gemini-2.5-pro-preview-tts`, with access limited to accounts that used it before. Google names the 3.8 TTS models as its replacements on the deprecations page. Family-wide rules are in the [Google README](README.md).
+Gemini 2.5 Pro TTS is the speech synthesis model of the Gemini Pro TTS class, and the only model in that class: Google shipped no later Pro TTS. It reads a transcript aloud and takes direction for delivery from a style prompt and from bracket tags in the text, so it is a voice actor model in this library's sense. Google Cloud released it as generally available on 2025-09-30. [as-of 2026-10-09] The Gemini API route `gemini-2.5-pro-preview-tts` has an earliest shutdown of 2026-11-17. This notice does not retire the Cloud GA id [L: g-deprecations]. Google names the 3.8 TTS models as its replacements on the deprecations page. Family-wide rules are in the [Google README](README.md).
 
 ## At a glance
 
@@ -33,7 +33,7 @@ Gemini 2.5 Pro TTS is the speech synthesis model of the Gemini Pro TTS class, an
 | Released | 2025-05-20 |
 | Status | ga |
 | Weights | closed |
-| Access | Google Cloud Text-to-Speech API (model name gemini-2.5-pro-tts; the global, us and eu regions); Vertex AI API (generateContent; the global region and several European regions); Gemini API under the id gemini-2.5-pro-preview-tts, limited to accounts that used it before; Vertex AI Media Studio |
+| Access | Google Cloud Text-to-Speech API (model name gemini-2.5-pro-tts; the global, us and eu regions); Vertex AI API (generateContent; the global region and several European regions); Gemini API under gemini-2.5-pro-preview-tts; earliest shutdown 2026-11-17, rechecked 2026-10-09 [g-deprecations]; Vertex AI Media Studio |
 | Context window | 8,192 tokens |
 | Max output | 16,384 tokens |
 | Modalities | input text; output audio |
@@ -54,7 +54,7 @@ Gemini 2.5 Pro TTS is the speech synthesis model of the Gemini Pro TTS class, an
 | System card | unknown |
 | Model page | [cloud.google.com/text-to-speech/docs/gemini-tts](https://cloud.google.com/text-to-speech/docs/gemini-tts) |
 | Card checked | 2026-10-04 |
-| Not found | released: the Gemini API deprecations table gives 2025-05-20 for the preview id; Google Cloud released the model as generally available on 2025-09-30 [g-deprecations] [g-cloud-rn]; system_card: no model card for the 2.5 TTS models was found; voice.latency: no published figure; Artificial Analysis throughput: the site lists no model page for this model, so no speed figure was found; status: the Gemini API lists the preview id with access limited to prior users and says it is not deprecated; Google Cloud lists the model as generally available [g-models] [g-cloud-tts]; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model |
+| Not found | released: the Gemini API deprecations table gives 2025-05-20 for the preview id; Google Cloud released the model as generally available on 2025-09-30 [g-deprecations] [g-cloud-rn]; system_card: no model card for the 2.5 TTS models was found; voice.latency: no published figure; Artificial Analysis throughput: the site lists no model page for this model, so no speed figure was found; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model; status: the card names the Cloud GA model. Its Gemini API preview route has an earliest shutdown of 2026-11-17, rechecked 2026-10-09; this API notice is not a shutdown date for the Cloud GA model [g-deprecations]; retires: no shutdown for the Cloud GA id established in this partial check; API preview shutdown is route-specific [g-deprecations] |
 <!-- card:end -->
 
 ## How to instruct it
@@ -149,7 +149,7 @@ Independent: Artificial Analysis Elo 1033. A vendor paper: Reliability 3.89 [aa-
 ## Open questions
 
 - Whether the Cloud model `gemini-2.5-pro-tts` and the Gemini API id `gemini-2.5-pro-preview-tts` are the same model. The pages do not say.
-- Whether Google will keep the model after the 3.8 release. The Gemini API says it is not deprecated, and the Cloud page lists it as generally available.
+- Whether the Cloud GA model gets a retirement notice. The Gemini API preview route has an earliest shutdown of 2026-11-17; the final day is unspecified [as-of 2026-10-09] [L: g-deprecations].
 - Which tags work on this model.
 
 ## Sources
@@ -161,7 +161,7 @@ Independent: Artificial Analysis Elo 1033. A vendor paper: Reliability 3.89 [aa-
 - [g-model-25-pro-page] https://ai.google.dev/gemini-api/docs/models/gemini-2.5-pro-preview-tts (kind L, read 2026-10-04)
 - [g-models] https://ai.google.dev/gemini-api/docs/models (kind L, read 2026-10-04)
 - [g-pricing] https://ai.google.dev/gemini-api/docs/pricing (kind L, read 2026-10-04)
-- [g-deprecations] https://ai.google.dev/gemini-api/docs/deprecations (kind L, read 2026-10-04)
+- [g-deprecations] https://ai.google.dev/gemini-api/docs/deprecations (kind L, read 2026-10-09)
 - [g-changelog] https://ai.google.dev/gemini-api/docs/changelog (kind L, read 2026-10-04)
 - [g-archive-guide] http://web.archive.org/web/20260909120033/https://ai.google.dev/gemini-api/docs/speech-generation (kind L, read 2026-10-04)
 - [aa-pv] https://artificialanalysis.ai/text-to-speech/leaderboard/provider-voice (kind M, read 2026-10-04)

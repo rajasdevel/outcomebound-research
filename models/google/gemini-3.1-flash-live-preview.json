@@ -6,8 +6,8 @@
   "class": "Gemini Live",
   "generation": "3.1",
   "released": "2026-03-26",
-  "status": "preview",
-  "retires": null,
+  "status": "retiring",
+  "retires": "2026-11-17",
   "weights": "closed",
   "access": [
     "Gemini API (Live API over WebSocket)",
@@ -296,7 +296,7 @@
     {
       "id": "gemini-deprecations",
       "url": "https://ai.google.dev/gemini-api/docs/deprecations",
-      "read": "2026-10-03",
+      "read": "2026-10-09",
       "kind": "L",
       "quote": null
     },
@@ -373,11 +373,11 @@
     "METR 50% time horizon: not applicable to a speech-to-speech model; no run found",
     "pricing_usd_per_mtok.cached_input: Google lists caching as not supported for this model",
     "released: Google's changelog says 2026-03-26 and its model card was published 2026-03-26; Google's deprecations page lists 2026-03-11 and the model page says March 2026; 2026-03-26 kept",
-    "retires: the deprecations page lists no shutdown date and recommends gemini-3.8-live as the replacement",
     "context_window: the model page says 131,072 input tokens and the model card says 128K; 131,072 kept",
     "voice.voices: no count of voices for the Live API found",
     "voice.languages: the model page lists no languages; the count of 99 comes from the Live API capabilities guide, which covers the Live API in general",
     "voice.latency: Google publishes no latency figure; the figures recorded are a measurer's and one practitioner's",
-    "status: Google calls the model a legacy preview and recommends moving to gemini-3.8-live; the Live API tools page read on 2026-10-03 still lists only this model and a 2.5 Live model"
+    "status: Google calls the model a legacy preview and recommends moving to gemini-3.8-live; the Live API tools page read on 2026-10-03 still lists only this model and a 2.5 Live model",
+    "retires: 2026-11-17 is the earliest possible shutdown, not a confirmed final day; date rechecked 2026-10-09 [gemini-deprecations]"
   ]
 }

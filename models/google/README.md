@@ -104,6 +104,14 @@ sources:
   - https://cloud.google.com/text-to-speech/pricing
   - https://cloud.google.com/text-to-speech/docs/release-notes
   - https://cloud.google.com/text-to-speech/docs/chirp3-hd
+  - https://deepmind.google/models/model-cards/gemini-3-5-audio/
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview
+  - https://ai.google.dev/gemini-api/docs/live-api/live-translate
+  - https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe
+  - https://ai.google.dev/gemini-api/docs/transcribe
+  - https://ai.google.dev/gemini-api/docs/live-api/live-transcribe
+  - https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1
+  - https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash
 ---
 
 # Google models
@@ -122,17 +130,33 @@ The library keeps two generations of each class: the current one and the one bef
 | --- | --- | --- | --- |
 | Gemini Flash | [3.8 Flash](gemini-3.8-flash.md), generally available 2026-09-02 | [3.7 Flash](gemini-3.7-flash.md), generally available 2026-08-13 | Both stable. Google says 3.7 Flash stays fully supported, and the deprecations page lists no shutdown date for either [L: gemini-latest-model, gemini-deprecations] |
 | Gemini Flash-Lite | [3.5 Flash-Lite](gemini-3.5-flash-lite.md), generally available 2026-07-21 | [3.1 Flash-Lite](gemini-3.1-flash-lite.md), generally available 2026-05-07 | Both stable. The deprecations page lists 2027-05-07 as the earliest shutdown for 3.1 Flash-Lite and names 3.5 Flash-Lite as its replacement [L: gemini-deprecations] |
-| Gemini Live (voice) | [3.8 Live](gemini-3.8-live.md), generally available on the Gemini API 2026-09-15; with it [3.8 Live Extended Thinking](gemini-3.8-live-extended-thinking.md), a separate id that adds background reasoning | [3.1 Flash Live Preview](gemini-3.1-flash-live-preview.md), released 2026-03-26 | The Live API guides still carry a preview banner. Google calls 3.1 Flash Live a legacy preview and lists no shutdown date for either generation [L: gemini-changelog, gemini-deprecations, gemini-live-capabilities]. Details in the [Live API guide](#live-api-guide) |
-| Gemini Flash TTS (speech synthesis) | [3.8 Flash TTS](gemini-3.8-flash-tts.md), generally available 2026-09-22 | [3.1 Flash TTS Preview](gemini-3.1-flash-tts-preview.md), launched 2026-04-15 | 3.8 is stable. Google calls 3.1 a legacy preview, names 3.8 Flash TTS or 3.8 Flash-Lite TTS as its replacement and lists no shutdown date [L: gemini-changelog, gemini-deprecations] |
+| Gemini Live (voice) | [3.8 Live](gemini-3.8-live.md), generally available on the Gemini API 2026-09-15; with it [3.8 Live Extended Thinking](gemini-3.8-live-extended-thinking.md), a separate id that adds background reasoning | [3.1 Flash Live Preview](gemini-3.1-flash-live-preview.md), released 2026-03-26 | The Live API guides still carry a preview banner. [as-of 2026-10-09] Google lists 2026-11-17 as the earliest shutdown for 3.1 Flash Live Preview, with 3.8 Live as replacement. No shutdown date is listed for 3.8 Live [L: google-deprecations-october]. Details in the [Live API guide](#live-api-guide) |
+| Gemini Flash TTS (speech synthesis) | [3.8 Flash TTS](gemini-3.8-flash-tts.md), generally available 2026-09-22 | [3.1 Flash TTS Preview](gemini-3.1-flash-tts-preview.md), launched 2026-04-15 | [as-of 2026-10-09] 3.8 is stable. The earliest shutdown for 3.1 Flash TTS Preview is 2026-11-17, with either 3.8 TTS model as replacement [L: google-deprecations-october] |
 | Gemini Flash-Lite TTS (speech synthesis) | [3.8 Flash-Lite TTS](gemini-3.8-flash-lite-tts.md), generally available 2026-09-22 | [2.5 Flash-Lite Preview TTS](gemini-2.5-flash-lite-preview-tts.md), a preview served only by Google Cloud | 3.8 is stable. The 2.5 model is a Cloud preview with no announced end [L: gemini-changelog, gemini-tts-cloud] |
-| Gemini Pro TTS (speech synthesis) | [2.5 Pro TTS](gemini-2.5-pro-tts.md), generally available on Google Cloud since 2025-09-30 | none | The Gemini API keeps it as a preview id with access limited to accounts that used it before. Google names the 3.8 TTS models as its replacements and does not deprecate it [L: gemini-tts-cloud, gemini-deprecations, gemini-changelog] |
+| Gemini Pro TTS (speech synthesis) | [2.5 Pro TTS](gemini-2.5-pro-tts.md), generally available on Google Cloud since 2025-09-30 | none | [as-of 2026-10-09] The Gemini API preview id has an earliest shutdown of 2026-11-17; either 3.8 TTS model is its replacement. This date is not a shutdown notice for the Cloud GA id [L: google-deprecations-october] |
 | Gemini Pro | [3.1 Pro (preview)](gemini-3.1-pro-preview.md), first public 2026-02-19 | none in scope (3 Pro Preview was shut down 2026-03-09) | Still preview; no generally available Pro exists [L: gemini-models-page, gemini-deprecations] |
+| Gemini Live Translate (voice translation) | [3.5 Live Translate Preview](gemini-3.5-live-translate-preview.md), available by June 2026 on the API | none found in the official inventory | [as-of 2026-10-09] Public preview, with its own selectable id and audio-to-audio output. It fits voice scope; translation configuration replaces agent instructions [L: google-inventory-october, google-35-translate-model, google-35-translate-guide] |
+| Gemini Transcribe (speech recognition) | [3.5 Transcribe](gemini-3.5-transcribe.md), GA 2026-08-26 | none found in the official inventory | [as-of 2026-10-09] Dedicated file transcription fits the format's transcription scope [L: google-inventory-october, google-releases-october] |
+| Gemini Transcribe Live (speech recognition) | [3.5 Transcribe Live](gemini-3.5-transcribe-live.md), GA 2026-08-26 | none found in the official inventory | [as-of 2026-10-09] A distinct selectable streaming model; same generation number does not make it a reasoning level of file Transcribe [L: google-inventory-october, google-releases-october] |
 | Gemini Argon | [4 Argon](gemini-4-argon.md), announced 2026-09-30 | none | Limited to vetted cyber defenders; absent from the API model list, the pricing page and the changelog [L: gemini-models-page, gemini-changelog, google-gemini-4-argon] |
 | Gemma (open weights) | Gemma 4 in five sizes: [E2B](gemma-4-e2b-it.md), [E4B](gemma-4-e4b-it.md), [12B](gemma-4-12b-it.md), [26B A4B](gemma-4-26b-a4b-it.md), [31B](gemma-4-31b-it.md) | Gemma 3 (class Gemma, generation 3), in five instruction-tuned sizes: [270M](gemma-3-270m-it.md) (2025-08-14), [1B](gemma-3-1b-it.md), [4B](gemma-3-4b-it.md), [12B](gemma-3-12b-it.md) and [27B](gemma-3-27b-it.md) (all 2025-03-10); and Gemma 3n, the on-device models [E2B](gemma-3n-e2b-it.md) and [E4B](gemma-3n-e4b-it.md) (2025-06-26), recorded here as part of generation 3 so that the class holds two generations | Google's release list shows the E2B, E4B, 26B A4B and 31B sizes on 2026-03-31 and the 12B on 2026-06-03. Gemma uses its own chat format and special tokens, not Gemini's [L: gemma-releases, gemma-formatting] |
 
-Models that exist but have no file here: 3.6 Flash (2026-07-21), 3.5 Flash (2026-05-19) and 3 Flash Preview (2025-12-17), all older than the two generations in scope; the 3.8 Flash Cyber variant (id gemini-3.8-flash-cyber), a post-trained version of 3.8 Flash that Google Cloud lists as generally available behind an allowlist, with access through a Google account team or the Fairwind Program; Google's speech models other than Live and the TTS models (3.5 Transcribe, 3.5 Transcribe Live and the preview 3.5 Live Translate), Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, a third generation of the Flash TTS class, and gemini-2.5-flash-preview-tts on the Gemini API), and Google Cloud's Chirp 3: HD voices, which take pace, pause and pronunciation controls and no direction for emotion or style [L: gemini-tts-guide, gemini-tts-cloud, gemini-deprecations, gemini-chirp3], the 2.5 native-audio Live models that the 3.8 generation replaces, and Google's image-generation, video-generation, embedding and robotics models, which are other classes [L: gemini-models-page, google-3-8-flash-blog, gemini-cloud-3-8-flash-cyber].
+Models that exist but have no file here: 3.6 Flash (2026-07-21), 3.5 Flash (2026-05-19) and 3 Flash Preview (2025-12-17), all older than the two generations in scope; the 3.8 Flash Cyber variant (id gemini-3.8-flash-cyber), a post-trained version of 3.8 Flash that Google Cloud lists as generally available behind an allowlist, with access through a Google account team or the Fairwind Program; Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, a third generation of the Flash TTS class, and gemini-2.5-flash-preview-tts on the Gemini API), and Google Cloud's Chirp 3: HD voices, which take pace, pause and pronunciation controls and no direction for emotion or style [L: gemini-tts-guide, gemini-tts-cloud, gemini-deprecations, gemini-chirp3], the 2.5 native-audio Live models that the 3.8 generation replaces, and Google's image-generation, video-generation, embedding and robotics models, which are other classes [L: gemini-models-page, google-3-8-flash-blog, gemini-cloud-3-8-flash-cyber].
 
 Gemini 3.5 Pro was announced in May 2026 with a rollout promised for the following month. It is absent from the API model list, the DeepMind Gemini page and the changelog on 2026-10-03. Press accounts describe an indefinite delay with partner testing and no cancellation notice [A: letsdatascience-3-5-pro, gemini-models-page, gemini-deepmind-page].
+
+### Recent coverage decisions [as-of 2026-10-09]
+
+The current and previous language and voice generations remain the scope. The three dedicated 3.5 speech endpoints above are covered. No previous dedicated Gemini Translate or Transcribe generation was found in Google's official inventory; older general Gemini models with audio understanding and Cloud Chirp are different classes [L: google-inventory-october].
+
+| Selectable model or family | Disposition and checked fact |
+| --- | --- |
+| Nano Banana 2.1 (`gemini-nano-banana-2.1`) | Image generation and editing remains outside scope. GA 2026-10-06; the earlier Nano Banana 2 id (`gemini-3.1-flash-image`) is deprecated, with no shutdown date announced [L: google-releases-october, google-nano-banana-21] |
+| Nano Banana Pro (`gemini-3-pro-image`) | Outside image-generation scope; the models page lists it as stable [L: google-inventory-october] |
+| Nano Banana 2 Lite (`gemini-3.1-flash-lite-image`) | Outside image-generation scope; GA 2026-06-30 [L: google-releases-october] |
+| Omni Flash (`gemini-omni-1.1-flash`) | Video generation and editing remains outside scope. Its model page marks the id stable and the changelog records GA 2026-08-27, while the catalogue still places it under preview. The old `gemini-omni-flash-preview` id has an earliest shutdown of 2026-10-22 [L: google-omni-flash, google-releases-october, google-inventory-october, google-deprecations-october] |
+| Gemini 3.8 Flash Cyber (`gemini-3.8-flash-cyber`) | Full base research is deferred for this specialized post-trained variant. Cloud lists GA behind an allowlist, with access through a Google account team or Fairwind. This is an explicit coverage limit; it does not imply ordinary unrestricted availability or that the model does not exist [L: google-cyber-october] |
+
 
 ### What each model is built on
 
@@ -345,6 +369,13 @@ From the Gemini 3.7 Flash card and FSF report (August 2026), the base for 3.8 Fl
 
 Training and model guardrails, query filters and red teaming for the whole family; updated safeguards against chemical, biological, radiological and nuclear and cyber-offence misuse on 3.6, 3.7 and 3.8 Flash; more permissive cyber mitigations for 3.8 Flash Cyber and for Argon when approved defenders use them; and, for Argon, monitoring of the chain of thought and actions that can stop execution, plus hardened sandboxes for high-risk training and evaluation [L: gemini-3-7-flash-card, google-3-8-flash-blog, gemini-fairwind, gemini-deepmind-page].
 
+### Gemini 3.5 Audio model card
+
+[as-of 2026-10-09] Google's shared August 2026 card covers Live Translate, Transcribe and Transcribe Live. They derive from Gemini 3 Pro; architecture, data and mitigations refer back to that card. The cutoff is January 2025. For frontier safety, Google relies on 3.1 Pro and 3.7 Flash, which reached no Tracked or Critical Capability Level, and reports no meaningful new relevant capability in the 3.5 Audio models. The page describes internal automated and human checks and pre-release safety reviews. It gives no endpoint-specific numerical refusal, injection, sycophancy or reward-hacking results [L: google-35-audio-card].
+
+The individual model files cover their deployment limits and the disagreements between this shared card and the endpoint guides. A shared ancestry or frontier assessment does not prove language-pair accuracy, transcript accuracy or session reliability.
+
+
 ## Family-wide behaviour
 
 ### Thinking and API rules by model
@@ -377,7 +408,7 @@ A May 2026 preprint measured models acting as monitors over coding-agent transcr
 
 ## Live API guide
 
-The Live API is the interface of the Gemini API for voice and video conversations. This section holds what is true for every Gemini Live model. Each model file says what differs: [3.8 Live](gemini-3.8-live.md), [3.8 Live Extended Thinking](gemini-3.8-live-extended-thinking.md) and [3.1 Flash Live Preview](gemini-3.1-flash-live-preview.md). The facts come from the Live pages of the Gemini API and of Gemini Enterprise Agent Platform, read on 2026-10-03. Where a fact is true on one surface only, the text says so. Where Google's pages disagree, the last subsection lists the points.
+The Live API is the interface of the Gemini API for voice and video conversations. This section covers the conversational Gemini Live models; dedicated translation and transcription have separate model files. Each model file says what differs: [3.8 Live](gemini-3.8-live.md), [3.8 Live Extended Thinking](gemini-3.8-live-extended-thinking.md) and [3.1 Flash Live Preview](gemini-3.1-flash-live-preview.md). The facts come from the Live pages of the Gemini API and of Gemini Enterprise Agent Platform, read on 2026-10-03. Where a fact is true on one surface only, the text says so. Where Google's pages disagree, the last subsection lists the points.
 
 ### Models and ids
 
@@ -387,7 +418,7 @@ The Live API is the interface of the Gemini API for voice and video conversation
 | gemini-3.8-live-extended-thinking | Stable on the Gemini API since 2026-09-15. Private preview on Gemini Enterprise | Background reasoning with a level that can be set, and asynchronous tool calls only [L: gemini-changelog, gemini-spec-3-8-live-et, google-cloud-live-avatar-blog] |
 | gemini-3.1-flash-live-preview | Preview. Google calls it a legacy preview and recommends 3.8 Live | A Live model with thinking levels in place of thinking budgets. Synchronous function calls only [L: gemini-spec-3-1-flash-live, gemini-deprecations] |
 
-Google's deprecations page lists no shutdown date for any of these three. Other Live ids exist and have no file here. gemini-2.5-flash-native-audio-preview-12-2025 is a preview of the 2.5 generation, and the deprecations page names 3.8 Live as its replacement. Gemini Enterprise Agent Platform lists gemini-live-2.5-flash-native-audio as generally available. gemini-3.5-live-translate-preview is a preview for real-time speech-to-speech translation in more than 70 languages. gemini-3.5-transcribe-live is a stable live speech-to-text model. Two older ids, gemini-2.0-flash-live-001 and gemini-live-2.5-flash-preview, were shut down on 2025-12-09 [L: gemini-models-page, gemini-deprecations, gemini-cloud-live-overview, gemini-changelog].
+[as-of 2026-10-09] The deprecations page gives 2026-11-17 as the earliest shutdown for 3.1 Flash Live Preview and the 2.5 native-audio preview, with 3.8 Live as replacement. Neither 3.8 Live id has a shutdown date. The separate [Live Translate](gemini-3.5-live-translate-preview.md) and [Transcribe Live](gemini-3.5-transcribe-live.md) models now have files. Their dedicated guides govern their controls and limits: the conversation guidance below does not establish that those features also work on translation or transcription [L: google-deprecations-october, google-35-translate-guide, google-35-transcribe-live-guide].
 
 The capabilities guide and the best-practices page of the Live API carry a banner that says the Live API is in preview. This is in conflict with the status "generally available" of the 3.8 models [L: gemini-live-capabilities, gemini-live-best-practices].
 
@@ -486,11 +517,11 @@ This section holds what is true for the Gemini text-to-speech models. [as-of 202
 | --- | --- | --- |
 | gemini-3.8-flash-tts | Stable since 2026-09-22 | The flagship creative model: fidelity, acting nuance, regional dialects, long-form stability. 130+ languages [L: gemini-changelog, gemini-tts-guide] |
 | gemini-3.8-flash-lite-tts | Stable since 2026-09-22 | The fast, low-cost model for volume, voice agent cascades and read-aloud features. 101 languages [L: gemini-changelog, gemini-tts-guide] |
-| gemini-3.1-flash-tts-preview | Preview, called legacy | Launched 2026-04-15 with audio tags and no voice design. Google names the 3.8 models as replacements and lists no shutdown date [L: gemini-changelog, gemini-deprecations] |
+| gemini-3.1-flash-tts-preview | Preview, called legacy | Launched 2026-04-15 with audio tags and no voice design. [as-of 2026-10-09] Google names the 3.8 models as replacements and gives 2026-11-17 as the earliest shutdown [L: google-deprecations-october] |
 | gemini-2.5-pro-tts | Generally available on Google Cloud since 2025-09-30 | The Pro class: high control for podcasts, audiobooks and support. The Gemini API id gemini-2.5-pro-preview-tts is limited to accounts that used it before [L: gemini-tts-cloud, gemini-changelog] |
 | gemini-2.5-flash-lite-preview-tts | Preview, Google Cloud only | Single-speaker, low-cost, low-latency speech [L: gemini-tts-cloud] |
 
-Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, gemini-2.5-flash-preview-tts on the Gemini API) is a third generation of the Flash TTS class and has no file here. Google limits Gemini API access to the 2.5 ids to accounts that used them before, and says they are not deprecated [L: gemini-changelog, gemini-deprecations].
+Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, gemini-2.5-flash-preview-tts on the Gemini API) is a third generation of the Flash TTS class and has no file here. [as-of 2026-10-09] The Gemini API 2.5 Flash and Pro preview TTS ids have an earliest shutdown of 2026-11-17, with the 3.8 TTS models as replacements. No Cloud route shutdown follows from this API notice [L: google-deprecations-october].
 
 ### Three API routes
 
@@ -547,11 +578,11 @@ Per token on the Gemini API pricing page. 3.8 Flash TTS costs US$0.50 per Mtok o
 - Whether Gemini 3.8 Live Extended Thinking reaches Gemini Enterprise Agent Platform as a generally available model, and when.
 - How strongly a free-text `style` string acts on the 3.8 TTS models, and where it starts to cause voice drift. Google gives no scale.
 - Whether Google will publish a time-to-first-audio figure for the TTS models. It publishes none on 2026-10-04.
-- Whether Gemini 3.1 Flash TTS Preview gets a shutdown date.
+- The exact final shutdown day for the legacy API voice ids; the listed 2026-11-17 date is an earliest possible shutdown [as-of 2026-10-09] [L: google-deprecations-october].
 
 ## Sources
 
-Each id below is used above, with its class, and was read on 2026-10-03, except the ids from gemini-tts-guide on, which were read on 2026-10-04.
+Each id below gives its class. The original sources were read on 2026-10-03, except the TTS sources, read on 2026-10-04. The additions at the end give their own 2026-10-09 read dates; the whole document was not reverified.
 
 - gemini-prompting (L): https://ai.google.dev/gemini-api/docs/prompting-strategies
 - gemini-3-guide (L): https://ai.google.dev/gemini-api/docs/gemini-3
@@ -649,3 +680,17 @@ Each id below is used above, with its class, and was read on 2026-10-03, except 
 - gemini-tts-cloud-pricing (L): https://cloud.google.com/text-to-speech/pricing
 - gemini-tts-cloud-release-notes (L): https://cloud.google.com/text-to-speech/docs/release-notes
 - gemini-chirp3 (L): https://cloud.google.com/text-to-speech/docs/chirp3-hd
+
+- google-inventory-october (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models
+- google-releases-october (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/changelog
+- google-deprecations-october (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/deprecations
+- google-pricing-october (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/pricing
+- google-35-audio-card (L, read 2026-10-09): https://deepmind.google/models/model-cards/gemini-3-5-audio/
+- google-35-translate-model (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models/gemini-3.5-live-translate-preview
+- google-35-translate-guide (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/live-api/live-translate
+- google-35-transcribe-model (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe
+- google-35-transcribe-guide (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/transcribe
+- google-35-transcribe-live-guide (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/live-api/live-transcribe
+- google-nano-banana-21 (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1
+- google-omni-flash (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash
+- google-cyber-october (L, read 2026-10-09): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash-cyber

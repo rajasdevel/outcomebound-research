@@ -1,0 +1,147 @@
+{
+  "id": "gemini-3.5-transcribe-live",
+  "name": "Gemini 3.5 Transcribe Live",
+  "maker": "Google",
+  "family": "Gemini 3.5",
+  "class": "Gemini Transcribe Live",
+  "generation": "3.5",
+  "released": "2026-08-26",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API (Live API over WebSockets or Google GenAI SDK)",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform (distribution listed in the shared model card; Cloud limits not reverified)"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Raw 16-bit mono little-endian PCM at 16 kHz, audio/pcm;rate=16000. Guide recommends 100 ms chunks but also says 1,024 to 2,048 frames, which does not specify one exact duration [transcribe-live-guide]",
+    "output_audio": "None: the model returns text, not generated speech",
+    "voices": "Not applicable: no generated voice",
+    "languages": [
+      "85+ supported languages and locales; the full BCP-47 table is on the model page [transcribe-model]"
+    ],
+    "turn_detection": "Automatic server VAD by default; hybrid audio_stream_end finalization or manual activity_start/activity_end with automatic detection disabled [transcribe-live-guide]",
+    "interruption": "Not a speaking assistant; no generated speech to interrupt",
+    "latency": null,
+    "session_limit": "Up to 10 minutes of continuous streaming per session; no transcription-specific longer-session guarantee found [transcribe-live-guide]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3.5,
+    "output": 21.0,
+    "cached_input": null,
+    "notes": "Gemini API Standard paid plan. Input is audio and output is text, USD per million tokens. Pricing page estimates 25 audio tokens/second and 175 text tokens/minute, about $0.009 per minute combined; actual token use determines the bill. Free tier offered [pricing]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis AA-WER (streaming), as reported by Google, August 2026",
+      "score": 4.0,
+      "setting": "Percent word error rate, lower is better. Google reports an Artificial Analysis result; the current independent streaming page exposes no Gemini row in the text read, so this is not treated as a current independent verification",
+      "harness": "Artificial Analysis streaming transcription, as reproduced in Google model evaluation",
+      "measured_by": "maker",
+      "source": "transcribe-eval",
+      "read": "2026-10-09"
+    }
+  ],
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/live-api/live-transcribe"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-3-5-audio/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe",
+  "sources": [
+    {
+      "id": "models",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "changelog",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deprecations",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pricing",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "audio-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-5-audio/",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "transcribe-model",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "transcribe-live-guide",
+      "url": "https://ai.google.dev/gemini-api/docs/live-api/live-transcribe",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "transcribe-eval",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-3-5-transcribe",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-streaming",
+      "url": "https://artificialanalysis.ai/speech-to-text/streaming",
+      "read": "2026-10-09",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-09",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "Terminal-Bench 4.0: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "Artificial Analysis Intelligence Index: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "Artificial Analysis Coding Agent Index: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "METR 50% time horizon: not applicable to this dedicated speech model; no coding or general reasoning result sought",
+    "context_window: the shared card gives up to 96K tokens; no exact token integer found in endpoint-specific documentation",
+    "max_output: the shared card gives 32K tokens; no exact token integer found in endpoint-specific documentation",
+    "voice.latency: Google describes low latency without a figure; no model-specific latency row could be read on the independent streaming page",
+    "pricing_usd_per_mtok.cached_input: no cache rate published; the model page says caching is not supported for the transcription family",
+    "benchmarks: the maker-reported 4.0% WER is from August 2026; current independent result and harness revision remain unverified",
+    "modalities: the shared model card lists audio and text input, but the live transcription guide specifies audio input",
+    "access: Cloud distribution is in the shared card; interface-specific Cloud quotas and availability remain unverified"
+  ]
+}

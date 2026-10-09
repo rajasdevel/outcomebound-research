@@ -3,6 +3,7 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often; the retention rules and the endpoint split are new in 2026 and still moving)
 kind: cloud platform
 sources:
+  - https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html (read 2026-10-09)
   - https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
   - https://docs.aws.amazon.com/bedrock/latest/userguide/apis.md
   - https://docs.aws.amazon.com/bedrock/latest/userguide/endpoints.md
@@ -92,6 +93,24 @@ Against each maker's own API. The Claude items come from Anthropic's features ov
 - **Retention modes (new in 2026).** A per-Region setting at account or project level: `none` (zero retention; Responses `store` defaults to false), `default` (the model's own policy), `aws_review` (retention up to 30 days inside AWS for the human review some makers require, with nothing sent to the maker) and a legacy `provider_data_share` that AWS says shares nothing today. Claude Fable 5 and 5.1 need `aws_review` or the legacy mode; below that they show as unavailable (Mantle) or return a validation error (runtime). Zero retention for such models is a per-account, per-model request to the AWS account manager, and for Claude, eligibility is managed by Anthropic. Setting `store=false` on Responses does not by itself guarantee zero retention. At launch the settings had no console control and were set by API.
 - **Training use.** The Bedrock FAQ says neither AWS nor the third-party model providers use Bedrock inputs or outputs to train Amazon Nova, Amazon Titan or any third-party model, and that inputs and outputs are not made available to the model providers. The user-guide data-protection pages contain no sentence on training.
 - **Logging.** CloudWatch and CloudTrail; Anthropic recommends keeping activity logs on at least a rolling 30-day basis.
+
+### Spend limits [as-of 2026-10-09]
+
+AWS Settings documents a project-level monthly spend limit on a Paid Plan, managed by project
+owners and available to a limited set of customers. It is not a Bedrock request quota. Up to ten
+projects can have limits. The minimum is the greater of $20 or AWS's conservative spend estimate;
+the limit applies to pre-tax charges and excludes credits. At the limit, AWS pauses the project
+and stops its resources. The page gives no numeric enforcement delay. L,
+[documentation](https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html),
+read 2026-10-09.
+
+The page describes the feature for experimentation, learning and sandbox workloads; production
+use requires accepting a resource pause. Data is preserved at the pause, but AWS permanently
+deletes the project data after 90 days without action. Raising the limit reactivates the project;
+some resources need a manual restart. Optional earlier controls can stop resource creation, pause
+idle resources or pause high-cost active resources before the limit. L, same source and read date.
+Whether this feature is available for a specific account and project is `UNVERIFIED` here.
+The spending-control distinction is in [releasing.md](../practices/releasing.md#10-evidence-after-deployment-and-paid-service-bounds-volatile-as-of-2026-10-09).
 
 ## Notes for agents and harnesses
 

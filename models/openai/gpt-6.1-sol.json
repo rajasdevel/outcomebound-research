@@ -43,7 +43,7 @@
     "input": 2.0,
     "output": 10.0,
     "cached_input": 0.1,
-    "notes": "list price, standard tier, prompts up to 272K input tokens; cached input is 5% of input; cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; Ultrafast not yet offered (the Codex documentation says it comes later)"
+    "notes": "list price, standard tier, prompts up to 272K input tokens; cached input is 5% of input; cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; Ultrafast 6x, available in Responses with separate limits and US/EU/global processing [as-of 2026-10-09] [openai-ultrafast-oct09] [openai-pricing-oct09]; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]"
   },
   "benchmarks": [
     {
@@ -351,6 +351,27 @@
       "url": "https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained",
       "read": "2026-10-03",
       "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "openai-ultrafast-oct09",
+      "url": "https://developers.openai.com/api/docs/guides/ultrafast-mode",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-pricing-oct09",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-fast-mode-oct09",
+      "url": "https://developers.openai.com/api/docs/guides/fast-mode",
+      "read": "2026-10-09",
+      "kind": "L",
       "quote": null
     }
   ],

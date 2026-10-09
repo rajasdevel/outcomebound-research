@@ -6,8 +6,8 @@
   "class": "Gemini Flash TTS",
   "generation": "3.1",
   "released": "2026-04-15",
-  "status": "preview",
-  "retires": null,
+  "status": "retiring",
+  "retires": "2026-11-17",
   "weights": "closed",
   "access": [
     "Gemini API (Interactions API and generateContent; REST and SDKs)",
@@ -134,7 +134,7 @@
     {
       "id": "g-deprecations",
       "url": "https://ai.google.dev/gemini-api/docs/deprecations",
-      "read": "2026-10-04",
+      "read": "2026-10-09",
       "kind": "L",
       "quote": null
     },
@@ -198,13 +198,13 @@
   "checked": "2026-10-04",
   "unknown": [
     "released: the changelog and the launch post give 2026-04-15; the deprecations table lists 2026-02-26 in its release-date column [g-changelog] [g-blog-31] [g-deprecations]",
-    "retires: the deprecations page lists no shutdown date and names 3.8 Flash TTS or 3.8 Flash-Lite TTS as the replacement [g-deprecations]",
     "pricing_usd_per_mtok.cached_input: the model page says caching is not supported",
     "voice.latency: Google publishes no time-to-first-audio figure; only throughput is given, from a measurer",
     "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
     "Terminal-Bench 4.0: not applicable to a speech model",
     "Artificial Analysis Intelligence Index: not applicable to a speech model",
     "Artificial Analysis Coding Agent Index: not applicable to a speech model",
-    "METR 50% time horizon: not applicable to a speech model"
+    "METR 50% time horizon: not applicable to a speech model",
+    "retires: 2026-11-17 is the earliest possible shutdown, not a confirmed final day; date rechecked 2026-10-09 [g-deprecations]"
   ]
 }

@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: STABLE (the audit, the profiles and the studies are measurements) / VOLATILE (§4 tool defaults and versions)
 sources:
+  - https://arxiv.org/html/2609.37315v1 (read 2026-10-09)
   - https://docs.pytest.org/en/stable/how-to/tmp_path.html
   - https://github.com/pytest-dev/pytest/blob/main/src/_pytest/tmpdir.py
   - https://docs.python.org/3/library/tarfile.html
@@ -506,6 +507,15 @@ exists, not what it tests (O).
   module that stopped mypy). How such reviews are run is in
   [`review.md`](review.md).
 
+### 6.1 Tool effects and the test oracle (STABLE) [as-of 2026-10-09]
+
+An audit of agent benchmarks found tools and graders that did not measure their advertised effects
+(M, [preprint](https://arxiv.org/html/2609.37315v1), submitted 2026-09-29; read 2026-10-09).
+A test that trusts a success message can share the tool's wrong assumption about a write. The
+finding supports checking the state change separately from the response when that effect is the
+claim under test (inference). The sample, checker failures and limits are in
+[agent-evals.md](agent-evals.md#102-a-tool-response-can-stand-in-for-an-effect-it-did-not-produce).
+
 ## 7. Fast, quiet feedback
 
 - Sources advise printing only the failing tests and a one-line pass otherwise, and wrapping noisy
@@ -557,6 +567,9 @@ These points are this reference's reading of the findings above. They are not or
   that reach users.
 
 ## Sources
+
+Executable-contract audit, preprint (2026-09-29), <https://arxiv.org/html/2609.37315v1>, read
+2026-10-09 for §6.1.
 
 The (O) claims rest on the maintainers' unpublished observations of September 2026. Documentation and source read 2026-10-01: pytest's
 [`tmp_path` how-to](https://docs.pytest.org/en/stable/how-to/tmp_path.html) and

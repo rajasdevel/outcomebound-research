@@ -36,6 +36,7 @@ sources:
   - https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure
   - https://artificialanalysis.ai/models/
   - https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md
+  - https://developers.openai.com/api/docs/guides/ultrafast-mode
 ---
 
 # GPT-6.1 Sol
@@ -65,7 +66,7 @@ it; the [OpenAI README](README.md#prompting-guides) holds the GPT-6 guidance tha
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: low, medium, high, xhigh, max (default medium) |
-| Price | $2 in / $10 out per Mtok; cached input $0.1; list price, standard tier, prompts up to 272K input tokens; cached input is 5% of input; cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; Ultrafast not yet offered (the Codex documentation says it comes later) |
+| Price | $2 in / $10 out per Mtok; cached input $0.1; list price, standard tier, prompts up to 272K input tokens; cached input is 5% of input; cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; Ultrafast 6x, available in Responses with separate limits and US/EU/global processing [as-of 2026-10-09] [openai-ultrafast-oct09] [openai-pricing-oct09]; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09] |
 | Key benchmarks | Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 56.1 (max, independent) [aa-model-gpt-6-1-sol](https://artificialanalysis.ai/models/gpt-6-1-sol); Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run): 53.0 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Intelligence Index: 52 (max (index v4.3.2), independent) [aa-model-gpt-6-1-sol](https://artificialanalysis.ai/models/gpt-6-1-sol); Artificial Analysis Intelligence Index: 51 (xhigh (index v4.3.2), independent) [aa-model-gpt-6-1-sol-xhigh](https://artificialanalysis.ai/models/gpt-6-1-sol-xhigh); Artificial Analysis Intelligence Index: 50 (high (index v4.3.2), independent) [aa-model-gpt-6-1-sol-high](https://artificialanalysis.ai/models/gpt-6-1-sol-high); Artificial Analysis Intelligence Index: 48 (medium (index v4.3.2), independent) [aa-model-gpt-6-1-sol-medium](https://artificialanalysis.ai/models/gpt-6-1-sol-medium); Artificial Analysis Intelligence Index: 42 (low (index v4.3.2), independent) [aa-model-gpt-6-1-sol-low](https://artificialanalysis.ai/models/gpt-6-1-sol-low); Artificial Analysis Coding Agent Index: 60 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Coding Agent Index: 63 (xhigh, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Coding Agent Index: 60 (high, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Coding Agent Index: 61 (medium, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Coding Agent Index: 57 (low, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents) |
 | Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 54.3 (max, independent) [aa-model-gpt-6-1-sol](https://artificialanalysis.ai/models/gpt-6-1-sol); AA-LCR v1.1 (long-context reasoning, percent): 83.0 (max, independent) [aa-model-gpt-6-1-sol](https://artificialanalysis.ai/models/gpt-6-1-sol); DeepSWE v1.1: 75.2 (a higher reasoning setting not named by Vellum, maker) [vellum-gpt-6-1-sol](https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained); OSWorld 2.0 (offline): 71.4 (max, maker) [vellum-gpt-6-1-sol](https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained) |
 | Prompting guides | [developers.openai.com/api/docs/guides/latest-model](https://developers.openai.com/api/docs/guides/latest-model); [developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md](https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md); [developers.openai.com/api/docs/guides/reasoning](https://developers.openai.com/api/docs/guides/reasoning) |
@@ -197,10 +198,20 @@ it; the [OpenAI README](README.md#prompting-guides) holds the GPT-6 guidance tha
 
 - No `temperature`, `top_p`, `top_logprobs` or `logprobs`, because effort `none` is not offered
   [openai-latest-model].
-- Fast mode costs twice the standard rate and is unavailable with EU data residency; the model page says EU
-  data residency is otherwise available. Ultrafast support is stated to come later [openai-model-gpt-6.1-sol]
-  [openai-fast-mode] [codex-models].
-- Rate limits: tier 1 is 500 requests and 500,000 tokens a minute; tier 5 is 15,000 and 40 million.
+- **Fast mode [as-of 2026-10-09].** It costs twice the Standard rate and supports EU data residency
+  for GPT-6.1 Sol, subject to eligibility and endpoint requirements. L [openai-fast-mode-oct09]
+  [openai-pricing-oct09].
+- **Ultrafast [as-of 2026-10-09].** OpenAI added this tier on 2026-10-08. A Responses request selects
+  `service_tier: ultrafast`; HTTP and WebSockets are supported. OpenAI recommends persistent WebSockets
+  for frequent tool calls. The tier is available to all API users with separate limits and supports
+  US and EU data residency and global processing. Its short-context prices per Mtok are $12 input,
+  $0.60 cache read, $15 cache write and $60 output; above 272,000 input tokens they are $24, $1.20,
+  $30 and $90. These are service-tier prices for the same model. L [openai-ultrafast-oct09]
+  [openai-pricing-oct09] [openai-changelog-oct09].
+- **Rate limits [as-of 2026-10-09].** The model page now uses Build, Launch and Grow: respectively
+  5,000/10,000/15,000 requests and 1/4/40 million standard tokens per minute. Ultrafast has 1/4/40
+  million tokens per minute at those tiers, in its own pool. Actual organization limits can differ.
+  L [openai-model-sol-oct09] [openai-ultrafast-oct09].
 - Bedrock model ID `openai.gpt-6.1-sol` on the mantle endpoint; the global inference profile matches OpenAI's
   price and regional profiles add 10%; Priority and Flex are not offered there [aws-card-gpt-6-1-sol].
 
@@ -295,7 +306,8 @@ OSWorld 2.0 offline 71.4 at max [vellum-gpt-6-1-sol].
 - No independent coding benchmark beyond Artificial Analysis's; Scale, tbench.ai and METR list no 6.1 Sol run.
 - Whether OpenAI's Astra-derived prompts transfer to this model; no per-model measurement exists.
 - How `text.verbosity` behaves on 6.1 Sol, and its image patch budgets; OpenAI's pages are silent.
-- When Ultrafast arrives for this model.
+- Ultrafast throughput and end-to-end latency under a real tool workflow; the service documentation
+  establishes availability, not an independent performance result.
 
 ## Sources
 
@@ -329,3 +341,12 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement, A secondary.
 - [vellum-gpt-6-1-sol] <https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained> (A)
 - [aws-card-gpt-6-1-sol] <https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-1-sol.html> (L)
 - [ms-foundry-models] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L)
+
+Partial correction sources, read 2026-10-09 (L):
+
+- [openai-ultrafast-oct09] <https://developers.openai.com/api/docs/guides/ultrafast-mode>.
+- [openai-pricing-oct09] <https://developers.openai.com/api/docs/pricing>, Ultrafast table.
+- [openai-changelog-oct09] <https://developers.openai.com/api/docs/changelog>, October 8 entry.
+- [openai-model-sol-oct09] <https://developers.openai.com/api/docs/models/gpt-6.1-sol>.
+
+- [openai-fast-mode-oct09] <https://developers.openai.com/api/docs/guides/fast-mode> (L, read 2026-10-09).

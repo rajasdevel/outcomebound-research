@@ -3,6 +3,7 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often; the product was renamed in 2026 and the documentation paths are still moving)
 kind: cloud platform
 sources:
+  - https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps (read 2026-10-09)
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/use-partner-models
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/use-claude
@@ -98,6 +99,24 @@ For Gemini the comparison is with the Gemini API; for partner models, with the m
 - **Prompt logging for abuse monitoring.** For customers under the Google Cloud Platform Terms, prompts flagged by classifiers may be logged for up to 90 days in the project's region, outside customer-managed keys; customers on a Cloud Master Agreement are exempt by default, and others can request an exception. For models designated Advanced AI (all Claude Mythos and Fable models, and Opus 4.7 or later and Sonnet 5 or later when enrolled in Anthropic's cyber verification program), all prompts and responses are logged for up to 30 days, and zero retention may not be possible. Consent to Google's Advanced AI Safety Addendum is needed once per project before such a model can be enabled, and for Claude Fable 5 and Mythos 5 Google says the customer must also enable sharing of this data with Anthropic for abuse monitoring.
 - **Other retention.** In-memory caching of Gemini inputs and outputs has a 24-hour lifetime, is isolated to the project, and can be switched off per project through a `cacheConfig` call. Grounding with Google Search keeps logs for up to 3 days with no off switch; grounding with Google Maps keeps prompts and outputs for 30 days. Request-response logging to BigQuery is off by default (Google's Claude page and Anthropic both recommend at least 30 days of logging for Claude). The Interactions API stores state unless `store` is false (the default is true), and the Deep Research agent keeps session data for 7 days with no off switch. Live API session resumption, off by default, caches for 24 hours.
 - **Compliance.** Google states that Claude on this platform meets FedRAMP High requirements.
+
+### Spend caps [as-of 2026-10-09]
+
+Cloud Billing documents a monthly cap for one project and one eligible service: Gemini API,
+Gemini Enterprise Agent Platform, Cloud Run or Cloud Run functions. Resellers, subscriptions and
+budgets across services or projects are excluded. Cost estimates generally use list prices before
+savings and credits. Enforcement is not instant and overages are billed. It blocks new usage;
+in-flight requests finish and can incur charges. Fixed costs for persistent resources continue.
+Data and resources are not deleted. L,
+[documentation](https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps), updated
+2026-10-07, read 2026-10-09.
+
+Caps reset and blocked services resume at the next monthly period. A manual lift stops further
+enforcement for that period unless the amount is increased; services can take up to one hour to
+return. Moving the project to another billing account deletes the old caps and lifts an enforced
+cap, allowing new charges; the new account needs new caps. L, same source and read date.
+Thus a configured cap is not an exact ceiling on the total bill (inference).
+The spending-control distinction is in [releasing.md](../practices/releasing.md#10-evidence-after-deployment-and-paid-service-bounds-volatile-as-of-2026-10-09).
 
 ## Notes for agents and harnesses
 
