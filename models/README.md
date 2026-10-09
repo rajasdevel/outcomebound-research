@@ -61,11 +61,11 @@ older has no file.
     makers direct delivery.
 - ElevenLabs is the one maker whose speech synthesis and transcription models all have files,
   because the maker sells voice models only.
-- OpenAI's realtime transcription and translation models have files, because OpenAI serves them
-  through its Realtime API next to its realtime models. The standalone speech-to-text models of
-  other makers do not.
+- OpenAI's and Google's dedicated transcription and speech translation models have files. These
+  include batch and live transcription interfaces as well as realtime translation. Standalone
+  speech-to-text models outside these makers and ElevenLabs do not have files.
 - Out of scope: plain read-aloud speech synthesis (the text-to-speech models of other makers that
-  are not voice actor models), the standalone speech-to-text models of other makers, and other speech
+  are not voice actor models), standalone speech-to-text outside the coverage above, and other speech
   models that neither hold a conversation nor take direction for delivery (voice changers, dubbing,
   music, sound effects).
   [../practices/voice-agents.md](../practices/voice-agents.md) names some of them when it describes
@@ -170,7 +170,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | [deepseek/](deepseek/README.md) | The models of DeepSeek |
 | [elevenlabs/](elevenlabs/README.md) | The speech synthesis and transcription models of ElevenLabs |
 | [fishaudio/](fishaudio/README.md) | The S2 voice actor models of Fish Audio |
-| [google/](google/README.md) | The Gemini and Gemma models of Google, with the Gemini Live voice models and the Gemini TTS voice actor models |
+| [google/](google/README.md) | The Gemini and Gemma models of Google, with the Gemini Live, transcription and translation models and the Gemini TTS voice actor models |
 | [hume/](hume/README.md) | The EVI voice models and the Octave 1 voice actor model of Hume AI |
 | [inworld/](inworld/README.md) | The Realtime TTS-2 voice actor model of Inworld |
 | [krafton/](krafton/README.md) | The Raon-SpeechChat voice model of KRAFTON |
@@ -223,6 +223,7 @@ and run `make render`.
 | Qwen3-TTS-12Hz-1.7B-VoiceDesign | Alibaba (Qwen) | Qwen TTS | 3 | ga | 2026-01-22 | voice, no duplex | [alibaba/qwen3-tts-12hz-1.7b-voicedesign.md](alibaba/qwen3-tts-12hz-1.7b-voicedesign.md) |
 | Amazon Nova 2 Sonic | Amazon | Nova Sonic | 2 | ga | 2025-12-02 | full-duplex voice | [amazon/nova-2-sonic.md](amazon/nova-2-sonic.md) |
 | Amazon Nova Sonic | Amazon | Nova Sonic | 1 | retired 2026-09-14 | 2025-04-08 | full-duplex voice | [amazon/nova-sonic.md](amazon/nova-sonic.md) |
+| Claude Haiku 5.5 | Anthropic | Claude Haiku | 5.5 | ga | 2026-10-07 | - | [anthropic/claude-haiku-5-5.md](anthropic/claude-haiku-5-5.md) |
 | Claude Sonnet 5.5 | Anthropic | Claude Sonnet | 5.5 | ga | 2026-09-28 | - | [anthropic/claude-sonnet-5-5.md](anthropic/claude-sonnet-5-5.md) |
 | Claude Opus 5.5 | Anthropic | Claude Opus | 5.5 | ga | 2026-09-22 | - | [anthropic/claude-opus-5-5.md](anthropic/claude-opus-5-5.md) |
 | Claude Fable 5.1 | Anthropic | Claude Fable | 5.1 | ga | 2026-09-01 | - | [anthropic/claude-fable-5-1.md](anthropic/claude-fable-5-1.md) |
@@ -257,21 +258,24 @@ and run `make render`.
 | Fish Audio S2.1 Pro | Fish Audio | Fish Audio S Pro | 2.1 | ga | 2026-06-23 | voice, no duplex | [fishaudio/s2.1-pro.md](fishaudio/s2.1-pro.md) |
 | Fish Audio S2 Pro | Fish Audio | Fish Audio S Pro | 2 | ga | 2026-03-09 | voice, no duplex | [fishaudio/s2-pro.md](fishaudio/s2-pro.md) |
 | Gemini 2.5 Flash-Lite Preview TTS | Google | Gemini Flash-Lite TTS | 2.5 | preview | unknown | voice, no duplex | [google/gemini-2.5-flash-lite-preview-tts.md](google/gemini-2.5-flash-lite-preview-tts.md) |
+| Gemini 3.5 Live Translate Preview | Google | Gemini Live Translate | 3.5 | preview | unknown | voice | [google/gemini-3.5-live-translate-preview.md](google/gemini-3.5-live-translate-preview.md) |
 | Gemini 4 Argon | Google | Gemini Argon | 4 | preview | 2026-09-30 | - | [google/gemini-4-argon.md](google/gemini-4-argon.md) |
 | Gemini 3.8 Flash-Lite TTS | Google | Gemini Flash-Lite TTS | 3.8 | ga | 2026-09-22 | voice, no duplex | [google/gemini-3.8-flash-lite-tts.md](google/gemini-3.8-flash-lite-tts.md) |
 | Gemini 3.8 Flash TTS | Google | Gemini Flash TTS | 3.8 | ga | 2026-09-22 | voice, no duplex | [google/gemini-3.8-flash-tts.md](google/gemini-3.8-flash-tts.md) |
 | Gemini 3.8 Live | Google | Gemini Live | 3.8 | ga | 2026-09-15 | full-duplex voice | [google/gemini-3.8-live.md](google/gemini-3.8-live.md) |
 | Gemini 3.8 Live Extended Thinking | Google | Gemini Live Extended Thinking | 3.8 | ga | 2026-09-15 | full-duplex voice | [google/gemini-3.8-live-extended-thinking.md](google/gemini-3.8-live-extended-thinking.md) |
 | Gemini 3.8 Flash | Google | Gemini Flash | 3.8 | ga | 2026-09-02 | - | [google/gemini-3.8-flash.md](google/gemini-3.8-flash.md) |
+| Gemini 3.5 Transcribe | Google | Gemini Transcribe | 3.5 | ga | 2026-08-26 | voice, no duplex | [google/gemini-3.5-transcribe.md](google/gemini-3.5-transcribe.md) |
+| Gemini 3.5 Transcribe Live | Google | Gemini Transcribe Live | 3.5 | ga | 2026-08-26 | voice, no duplex | [google/gemini-3.5-transcribe-live.md](google/gemini-3.5-transcribe-live.md) |
 | Gemini 3.7 Flash | Google | Gemini Flash | 3.7 | ga | 2026-08-13 | - | [google/gemini-3.7-flash.md](google/gemini-3.7-flash.md) |
 | Gemini 3.5 Flash-Lite | Google | Gemini Flash-Lite | 3.5 | ga | 2026-07-21 | - | [google/gemini-3.5-flash-lite.md](google/gemini-3.5-flash-lite.md) |
 | Gemma 4 12B (instruction-tuned, unified) | Google | Gemma | 4 | ga | 2026-06-03 | - | [google/gemma-4-12b-it.md](google/gemma-4-12b-it.md) |
-| Gemini 3.1 Flash TTS Preview | Google | Gemini Flash TTS | 3.1 | preview | 2026-04-15 | voice, no duplex | [google/gemini-3.1-flash-tts-preview.md](google/gemini-3.1-flash-tts-preview.md) |
+| Gemini 3.1 Flash TTS Preview | Google | Gemini Flash TTS | 3.1 | retiring (retires 2026-11-17) | 2026-04-15 | voice, no duplex | [google/gemini-3.1-flash-tts-preview.md](google/gemini-3.1-flash-tts-preview.md) |
 | Gemma 4 26B A4B (instruction-tuned) | Google | Gemma | 4 | ga | 2026-04-02 | - | [google/gemma-4-26b-a4b-it.md](google/gemma-4-26b-a4b-it.md) |
 | Gemma 4 31B (instruction-tuned) | Google | Gemma | 4 | ga | 2026-04-02 | - | [google/gemma-4-31b-it.md](google/gemma-4-31b-it.md) |
 | Gemma 4 E2B (instruction-tuned) | Google | Gemma | 4 | ga | 2026-04-02 | - | [google/gemma-4-e2b-it.md](google/gemma-4-e2b-it.md) |
 | Gemma 4 E4B (instruction-tuned) | Google | Gemma | 4 | ga | 2026-04-02 | - | [google/gemma-4-e4b-it.md](google/gemma-4-e4b-it.md) |
-| Gemini 3.1 Flash Live Preview | Google | Gemini Live | 3.1 | preview | 2026-03-26 | full-duplex voice | [google/gemini-3.1-flash-live-preview.md](google/gemini-3.1-flash-live-preview.md) |
+| Gemini 3.1 Flash Live Preview | Google | Gemini Live | 3.1 | retiring (retires 2026-11-17) | 2026-03-26 | full-duplex voice | [google/gemini-3.1-flash-live-preview.md](google/gemini-3.1-flash-live-preview.md) |
 | Gemini 3.1 Flash-Lite | Google | Gemini Flash-Lite | 3.1 | ga (retires 2027-05-07) | 2026-03-03 | - | [google/gemini-3.1-flash-lite.md](google/gemini-3.1-flash-lite.md) |
 | Gemini 3.1 Pro (Preview) | Google | Gemini Pro | 3.1 | preview | 2026-02-19 | - | [google/gemini-3.1-pro-preview.md](google/gemini-3.1-pro-preview.md) |
 | Gemma 3 270M (instruction-tuned) | Google | Gemma | 3 | ga | 2025-08-14 | - | [google/gemma-3-270m-it.md](google/gemma-3-270m-it.md) |
@@ -314,6 +318,7 @@ and run `make render`.
 | NVIDIA NemotronLabs VoiceChat 11B | NVIDIA | Nemotron VoiceChat | 1 | ga | 2026-08-03 | full-duplex voice | [other/nemotron-voicechat-11b.md](other/nemotron-voicechat-11b.md) |
 | NVIDIA Nemotron 3 Ultra | NVIDIA | Nemotron Ultra | 3 | ga | 2026-06-04 | - | [other/nemotron-3-ultra.md](other/nemotron-3-ultra.md) |
 | PersonaPlex-7B-v1 | NVIDIA | PersonaPlex | 1 | ga | 2026-01-15 | full-duplex voice | [other/personaplex-7b-v1.md](other/personaplex-7b-v1.md) |
+| Chat Latest | OpenAI | ChatGPT Instant alias | unknown | ga | unknown | - | [openai/chat-latest.md](openai/chat-latest.md) |
 | GPT-6.1 Sol | OpenAI | GPT Sol | 6.1 | ga | 2026-09-29 | - | [openai/gpt-6.1-sol.md](openai/gpt-6.1-sol.md) |
 | GPT-6 Luna | OpenAI | GPT Luna | 6 | ga | 2026-09-22 | - | [openai/gpt-6-luna.md](openai/gpt-6-luna.md) |
 | GPT-6 Sol | OpenAI | GPT Sol | 6 | ga | 2026-09-22 | - | [openai/gpt-6-sol.md](openai/gpt-6-sol.md) |

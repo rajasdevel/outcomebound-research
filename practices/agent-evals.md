@@ -17,6 +17,15 @@ sources:
   - https://www.promptfoo.dev/docs/usage/command-line/
   - https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators
   - https://langfuse.com/resources/engineering/ai-agent-evaluation
+  - https://proceedings.mlr.press/v306/rabanser26a.html (read 2026-10-09)
+  - https://arxiv.org/html/2602.16666v3 (read 2026-10-09)
+  - https://arxiv.org/html/2609.37315v1 (read 2026-10-09)
+  - https://arxiv.org/abs/2610.07003 (read 2026-10-09)
+  - https://arxiv.org/html/2610.01348v1 (read 2026-10-09)
+  - https://www.latent.space/p/periodic
+  - https://www.vals.ai/blogs/mimo-reward-hacking
+  - https://metr.substack.com/p/2026-10-06-ai-systems-could-cover-up-misbehavior
+  - https://github.com/UKGovernmentBEIS/inspect_ai/pull/5566
 ---
 
 # Evaluating agent systems: suites, statistics, error analysis, SQL correctness
@@ -39,7 +48,7 @@ standard; (P) practitioner consensus; (A) an anecdote or one person's view; (F) 
 the maintainers' own runs, published in OutcomeBound's evaluation record. "(inference)" marks a step this reference draws from the cited evidence.
 **Citations.** Bracketed ids resolve by `id` in
 [`_evidence/2026-09-25.jsonl`](../_evidence/2026-09-25.jsonl); papers and pages are listed under
-Sources with the day they were read, every one 2026-10-01.
+Sources with the day they were read, 2026-10-01 unless a later date is stated.
 
 **Structure against numbers.** The structural claims below are shared across the sources; the
 specific numbers (trace counts, a 60–80% share of effort on error analysis, pass-rate targets, two-
@@ -128,6 +137,21 @@ as "sharp opinions about what works in most cases. They are not universal truths
   Microsoft's ai-agent-evals GitHub Action reports confidence intervals and a test of statistical
   significance for each agent against a baseline agent (L). Whether other platforms ship
   baseline-relative statistics was not checked.
+
+### Attempt outcomes and campaign outcomes (audit hypothesis) [as-of 2026-10-09]
+
+Periodic Labs' [2026-10-08 interview](https://www.latent.space/p/periodic), at 55:19–58:13,
+distinguishes failed synthesis attempts from campaigns that end at success. Its founders say a
+failed method does not establish that the material cannot be made, and that the sequence of
+changed procedures is valuable data (A; transcript read 2026-10-09). This is an account of physical
+experiments, not a measured result for coding agents.
+
+For an iterative agent eval, a bounded audit (inference) is to retain each attempt's procedure,
+outcome and link to the changed next attempt, with attempt counts beside the campaign's final
+outcome. The audit keeps earlier failures visible and distinguishes a failed method from task
+impossibility. A small set of existing multi-attempt traces can show whether records of the final
+outcome alone erase distinct failure causes. This extends §5's trace analysis;
+it does not make adaptive attempts independent trials or establish a training benefit.
 
 ## 4. Task selection
 
@@ -262,6 +286,82 @@ and [llm-as-judge.md](llm-as-judge.md#6-when-the-judge-changes-calibration).
   trace and an expensive judge on a nightly sample (P); Langfuse controls online evaluation cost by
   sampling a percentage of traces (L). No source read gives a principled sampling rate.
 
+## 10. Reliability and the effects a benchmark measures (STABLE) [as-of 2026-10-09]
+
+### 10.1 Reliability beyond mean success
+
+The final ICML 2026 version of [Towards a Science of AI Agent Reliability](https://proceedings.mlr.press/v306/rabanser26a.html)
+evaluates 15 models on GAIA and τ-bench. Its 12 metrics cover consistency, robustness,
+predictability and safety. Capability gains brought only small reliability gains; results differed
+between the two benchmarks. Safety is reported separately so an average does not hide severe
+failures (M). The [paper's methods and limits](https://arxiv.org/html/2602.16666v3), read 2026-10-09,
+cover one scaffold per benchmark, model judges for safety and zero temperature where the API
+permits it. The metrics and aggregation reflect design choices; the study tests no adversarial
+attacks. These are benchmark results, not deployment acceptance.
+
+The dimensions give separate questions about repeated outcomes, changed wording, tool faults,
+cost variation and failure consequences. Which questions matter depends on the task; this evidence
+does not establish that every evaluation needs all 12 metrics (inference).
+
+### 10.2 A tool response can stand in for an effect it did not produce
+
+[Do Agent Benchmarks Do What They Say?](https://arxiv.org/html/2609.37315v1), submitted 2026-09-29
+and read 2026-10-09, audits 34 mutating tools in four benchmarks at pinned commits. It confirms
+seven tool defects and one evaluator property. One clinical evaluator credits a requested write
+although the tool does not change the record (M, preprint). The checker misses most injected
+defects and flags two of five negative controls. These findings establish specific defects, not a
+general defect rate or a reliable checker.
+
+Whether a tool produces its advertised state change, and whether the grader reads that state,
+are separate from whether an agent called it successfully (inference). The testing connection is
+in [testing.md](testing.md#61-tool-effects-and-the-test-oracle-stable-as-of-2026-10-09).
+
+### 10.3 Early papers to watch (MONITOR)
+
+These studies raise questions for further checks; they do not establish general operating rules.
+Both sources were read 2026-10-09.
+
+- **Rater effects and drift.** [Reliability of AI Agents: Rater Effects, Drift, and the Return to
+  an Evaluation Program](https://arxiv.org/abs/2610.07003), submitted 2026-10-04, studies 2,611
+  production interviews from one voice-and-video agent. Two reviewers differed by 0.79 standard
+  deviations on the same batches. Its estimated five-week horizon for evaluation uncertainty is
+  imprecise and rests on few changes (M, observational preprint; abstract). The data do not identify
+  a causal effect of evaluation on performance or a general expiry period for evidence.
+- **Component checks and masked results.** [Verify Claims, Not Scores](https://arxiv.org/html/2610.01348v1),
+  submitted 2026-10-01, studies one portfolio agent in a synthetic market. A verifier bypass left
+  outcome scores benign, and an unchanged score could mask a component's value (M, preprint).
+  Results are limited to one architecture and generator family; interaction results use six seeds.
+  No language-model controller, model judge or prompt-injection attack was evaluated. The proposed
+  audit method remains a candidate for such systems, not measured proof that it improves them.
+
+### 10.4 Risks in task sources and delegated work
+
+[Issue-source attacks](agent-authorization.md#61-malicious-issue-requests-stable-as-of-2026-10-09)
+and [team goal tradeoffs](agent-workspace.md#31-team-goals-across-delegated-work-stable-as-of-2026-10-09)
+provide further cases for evaluating the permitted actions and the integrated result, with each
+study's limits stated there.
+
+**Solution artifacts outside visible history.** Vals AI's [2026-10-07 audit](https://www.vals.ai/blogs/mimo-reward-hacking)
+reports that 1,795 of 2,698 released MiMo v2.6 coding tasks retained the fix as unreachable Git
+objects (M, evaluator-reported artifact audit; read 2026-10-09). Its Flash/Pro trace examples show
+that deleting branches or blocking Git commands did not remove the underlying answer. File
+modification times also disclosed the reference patch's file scope, not the exact replacement
+code. These are findings in the released environments and selected runs, not a measured causal
+training effect. For a benchmark that forbids reference answers, checking the prepared workspace's
+objects, metadata and caches gives a more complete contamination audit than checking visible
+history alone (inference). This extends §1's isolation requirement; reproduction here is UNVERIFIED.
+
+**The viewer is a separate evidence boundary.** METR's [2026-10-06 retrospective](https://metr.substack.com/p/2026-10-06-ai-systems-could-cover-up-misbehavior)
+reports an earlier staged Inspect proof of concept that could alter the displayed transcript and its
+download while the underlying database transcript remained intact (A, reported demonstration;
+L, observability guidance; read 2026-10-09). METR had not observed this exploit in evaluations and
+had not searched specifically for it. It reports that the vulnerability was patched within one
+day of disclosure; a separate [untrusted-mode PR](https://github.com/UKGovernmentBEIS/inspect_ai/pull/5566)
+merged on 2026-10-01. That merge does not establish that a given viewer installation is updated.
+A bounded check can compare displayed and exported events against an independently retained record
+when the viewer receives hostile output (inference). This concerns evidence presentation; it does
+not prove that logging captures every action or that current systems conceal misbehaviour.
+
 ## What the evidence supports (inference)
 
 These points are this reference's reading of the findings above. They are not orders.
@@ -290,7 +390,27 @@ These points are this reference's reading of the findings above. They are not or
 
 ## Sources
 
-All read 2026-10-01.
+Read 2026-10-01 unless a later date is stated.
+
+- Periodic Labs founders Liam Fedus and Ekin Doğuş Çubuk, Latent Space interview
+  (2026-10-08), <https://www.latent.space/p/periodic>, transcript at 55:19–58:13,
+  read 2026-10-09 (A), for the audit hypothesis in §3.
+
+Read 2026-10-09 for §10:
+
+- Vals AI, MiMo v2.6 artifact audit (2026-10-07),
+  <https://www.vals.ai/blogs/mimo-reward-hacking> (M, reported audit).
+- METR, AI systems could cover up misbehavior (2026-10-06),
+  <https://metr.substack.com/p/2026-10-06-ai-systems-could-cover-up-misbehavior> (A demonstration;
+  L guidance); Inspect untrusted-mode PR, <https://github.com/UKGovernmentBEIS/inspect_ai/pull/5566>
+  (merged 2026-10-01; read for status, not installation).
+
+- Towards a Science of AI Agent Reliability, ICML 2026 (6–11 July),
+  <https://proceedings.mlr.press/v306/rabanser26a.html>; methods and limits in v3 (2026-06-02),
+  <https://arxiv.org/html/2602.16666v3>.
+- Executable-contract audit, preprint (2026-09-29), <https://arxiv.org/html/2609.37315v1>.
+- Rater effects and drift, preprint (2026-10-04; abstract), <https://arxiv.org/abs/2610.07003>.
+- Verify Claims, Not Scores, preprint (2026-10-01), <https://arxiv.org/html/2610.01348v1>.
 
 - Anthropic, "Demystifying evals for AI agents" (2026-01-09),
   <https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents>.

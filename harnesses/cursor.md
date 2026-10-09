@@ -9,7 +9,11 @@ sources:
   - https://cursor.com/docs/cli/headless
   - https://cursor.com/docs/context/mcp
   - https://cursor.com/docs/cli/reference/permissions
+  - https://prod.cursor.com/docs/reference/permissions (read 2026-10-09)
+  - https://prod.cursor.com/docs/release-notes/sdk (read 2026-10-09)
   - https://cursor.com/changelog/2-2
+  - https://cursor.com/blog/improved-token-efficiency (read 2026-10-09)
+  - https://cursor.com/blog/rollouts-and-security-reviewer (read 2026-10-09)
 ---
 
 # Cursor
@@ -125,6 +129,18 @@ program the harness runs.
 Cursor also runs the hooks in Claude Code's settings files (§4.2), so a repository's
 `.claude/settings.json` is executable configuration for Cursor users too.
 
+### 5.1 Editor permission files [as-of 2026-10-09]
+
+The [permissions reference](https://prod.cursor.com/docs/reference/permissions), read 2026-10-09,
+adds `.cursor/permissions.json` at user and workspace scope, loaded at startup and on changes.
+Their allowlist arrays concatenate. Team Run Mode controls take precedence over these files,
+which take precedence over IDE settings; a file's defined allowlist replaces the corresponding IDE list,
+including an empty list. Permission files require an enabled run mode. Only Auto-review mode
+uses `autoRun` `allow_instructions` and `block_instructions` to steer its classifier; they do not
+enforce a security boundary, and calls covered by block instructions can still be approved. The page describes the controls as
+convenience checks. CLI permissions have separate semantics from this editor configuration. No
+minimum version is given for the current behavior; runtime enforcement was not tested. L.
+
 ## 6. Trust and readers that load nothing
 
 - Project hooks run "in any trusted workspace"; cloud agents run a repository's command hooks
@@ -140,6 +156,15 @@ Cursor also runs the hooks in Claude Code's settings files (§4.2), so a reposit
 - Cursor has been a SpaceX subsidiary since 2026-08-14, and with Grok Build is the only place
   serving Grok 4.7 Fast [grok-trend, grok-g12]. Grok 4.5–4.7 were co-trained with Cursor data
   ([cross-harness.md](cross-harness.md#132-the-documented-direction)).
+- **SDK delegation** [as-of 2026-10-09]. The
+  [SDK release notes](https://prod.cursor.com/docs/release-notes/sdk), read 2026-10-09, add opt-in
+  `local.subagentInherit` in 1.0.34: local TypeScript Task subagents inherit custom read, write and
+  shell executors, workspace reporting, and allowed and excluded tool lists. The unset default
+  retains prior behavior. Version 1.0.35 adds `context.sessionId` to TypeScript custom-tool
+  `execute`, identifying the calling session, including a child's own ID; it can be unset when
+  the runtime has no session ID. The 1.0.27 notes say local tool restrictions are
+  not persisted across resume. These features describe executor routing and attribution, not an
+  OS sandbox or a grant of authority (inference). They were not tested here. L.
 - At-work adoption was 12% in May–July 2026, down from 18% in January, in one vendor-run survey
   ([cross-harness.md](cross-harness.md#12-adoption-monitor)).
 
@@ -155,6 +180,15 @@ Cursor also runs the hooks in Claude Code's settings files (§4.2), so a reposit
   `CURSOR_AGENT` (A, observed 2026-09-23). Match on the most specific set of variables
   ([cross-harness.md](cross-harness.md#11-rendering-in-harness-surfaces)).
 
+## 9. Production harness and rollout reports [as-of 2026-10-09]
+
+Cursor's reports of 2026-09-23 describe changes to context assembly and new deployment monitoring.
+The claims and limits are recorded once in
+[the harness ablation](../practices/writing-for-models.md#97-a-production-harness-ablation-as-of-2026-10-09)
+and [the rollout workflow](../practices/releasing.md#10-evidence-after-deployment-and-paid-service-bounds-volatile-as-of-2026-10-09).
+These are vendor reports (L), read 2026-10-09; they do not establish that the rule-loading and hook
+behavior above changed.
+
 ## Sources
 
 - Rules <https://cursor.com/docs/rules> (the earlier `/docs/context/rules` address returned 404 on
@@ -165,6 +199,8 @@ Cursor also runs the hooks in Claude Code's settings files (§4.2), so a reposit
   <https://cursor.com/docs/cli/headless> (2026-09-29).
 - MCP <https://cursor.com/docs/context/mcp> and permissions
   <https://cursor.com/docs/cli/reference/permissions> (2026-09-27).
+- Editor permissions <https://prod.cursor.com/docs/reference/permissions> and SDK release notes
+  <https://prod.cursor.com/docs/release-notes/sdk> (read 2026-10-09; SDK 1.0.27, 1.0.34 and 1.0.35).
 - 2.2 changelog <https://cursor.com/changelog/2-2> (2026-10-01).
 - Reports: robot-council/cli <https://github.com/robot-council/cli/issues/72>,
   <https://github.com/robot-council/cli/issues/83> (2026-09-29).

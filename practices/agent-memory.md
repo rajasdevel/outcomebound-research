@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: MONITOR (memory research is mostly 2026 preprints and moves fast) / VOLATILE (§1, where each harness keeps memory)
 sources:
+  - https://arxiv.org/html/2609.23570v1 (read 2026-10-09)
   - https://code.claude.com/docs/en/memory
   - https://developers.openai.com/codex/memories
   - https://docs.devin.ai/desktop/cascade/memories
@@ -172,6 +173,20 @@ The only memory every harness and every clone reads is committed files. L.
   writes (`UNVERIFIED`).
 - **"Files beat vector retrieval."** The claim rests on the LoCoMo result above and is not settled. A.
 
+### 6.1 Memory on executable coding work (STABLE) [as-of 2026-10-09]
+
+[VibeMemBench](https://arxiv.org/html/2609.23570v1), submitted 2026-09-20 and read 2026-10-09,
+compares memory on and off with the task, agent, tools, sandbox and budget fixed; executable tests
+score task resolution (M, preprint). It selects 111 targets where injected experience helped one
+reference solver, then transfers frozen experience to five other solvers. Observed gains range
+from zero to 4.5 percentage points, but all five 95% confidence intervals cross zero. Eleven of
+twelve tested memory-system and solver pairs do not exceed the matched memory-off baseline.
+The protocol also reports solver tokens and steps.
+
+A matched coding comparison can measure memory through resolved work as well as recall
+(inference). This study omits GPT and Claude families and does not measure online closed-loop
+memory, latency or total memory-system cost.
+
 ## 7. How labs say to write memory
 
 - **Anthropic, for Fable 5.** The model "performs particularly well when it can record lessons from
@@ -216,12 +231,14 @@ These points are this reference's reading of the findings above. They are not or
 
 - Memory research is mostly 2026 preprints, several by one author; product claims come from the
   vendors.
-- No study compares memory against none on coding-agent outcomes beyond vendor A/B tests; no
-  benchmark scores ordinary memory writes.
+- VibeMemBench tests selected coding tasks (§6.1); its results do not establish general memory
+  benefit. No benchmark here scores ordinary memory writes.
 
 ## Sources
 
 Read 2026-10-01 unless dated otherwise. Ids in brackets resolve in the evidence files.
+
+- VibeMemBench, preprint (2026-09-20), <https://arxiv.org/html/2609.23570v1>, read 2026-10-09 for §6.1.
 
 **Checks defined here:**
 - [chk-claude-memory] Claude Code, memory <https://code.claude.com/docs/en/memory> and context

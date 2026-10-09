@@ -17,6 +17,7 @@ sources:
   - https://claude.dev/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models/
   - https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md
   - https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
+  - https://cursor.com/blog/improved-token-efficiency (read 2026-10-09)
 ---
 
 # Writing for models: instruction files, skills, briefs and tool output
@@ -1967,6 +1968,21 @@ results are kept in [evaluations.md](https://github.com/rajasdevel/outcomebound/
   measurement.
 - Finishing an audit establishes that every sentence has a recorded reason, not that outcomes
   improved. Fewer words establish nothing by themselves.
+
+### 9.7 A production harness ablation [as-of 2026-10-09]
+
+Cursor's report of 2026-09-23 describes production A/B tests that reduced its system prompt by
+about 66% and static tool-description tokens by 60%. The combined harness changes reduced user
+token costs by 7%, with no quality loss reported. Cursor tracked token use, cost, latency,
+tool-call errors and overall agent use. It kept frequent and product-critical tools resident,
+loaded others on demand, removed strong encouragement to use subagents for exploration, and
+limited subagent model changes to those directed by the user or harness. L (vendor report),
+[source](https://cursor.com/blog/improved-token-efficiency), read 2026-10-09.
+
+The report gives no sample size, uncertainty interval or full task-success measure. Its percentages
+describe that harness and traffic, not targets for another prompt. It supports testing whether
+instructions still add value as models change; fewer tokens alone do not establish better outcomes
+(inference). The related cache change is in [prompt-caching.md](prompt-caching.md#7-check-do-not-assume-stable).
 
 ## 10. Observed effects of instructions that generate documents
 

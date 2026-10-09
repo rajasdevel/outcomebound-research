@@ -93,7 +93,7 @@ Audio and text in, text out. The model page lists two endpoints: Transcription (
 ### Sampling and API parameters
 
 - Price: $2.50 per million audio input tokens and $10 per million output tokens [openai-model-gpt-4o-transcribe].
-- Rate limits: tier 1, 500 requests and 10,000 tokens a minute; tier 5, 10,000 requests and 6 million tokens [openai-model-gpt-4o-transcribe].
+- **Rate limits [as-of 2026-10-09].** Build lists 2,000 requests and 100,000 tokens per minute; Grow lists 10,000 requests and 6 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-4o-transcribe#rate-limits), read 2026-10-09).
 - Microsoft Foundry lists the `2025-03-20` snapshot as a preview model [ms-foundry-models].
 
 ### Migrating from the previous generation

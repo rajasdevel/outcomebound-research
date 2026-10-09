@@ -7,6 +7,10 @@ sources:
   - https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/extensions.md
   - https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/usage.md
   - https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/how-pi-works.md
+  - https://earendil.com/posts/pi-1-0/
+  - https://earendil.com/posts/pi-durable/
+  - https://github.com/earendil-works/pi/releases/tag/v1.1.0
+  - https://raw.githubusercontent.com/earendil-works/pi/6fb2e7815167e6b19006fc526d1a5d0f5f998787/packages/durable/README.md
 ---
 
 # Pi
@@ -102,7 +106,30 @@ Usage and how-Pi-works pages, read 2026-10-01. L.
   (as a private GitHub gist, or to an organization's viewer); the page warns it can hold prompts,
   tool output, file contents and credentials.
 
-## 7. Elsewhere
+## 7. Pi 1.0 and Pi Durable (VOLATILE) [as-of 2026-10-09]
+
+Earendil's 2026-10-01 release introduced Pi Durable as a separate experimental framework;
+it does not replace the terminal coding agent. The repository's latest release observed was
+[v1.1.0](https://github.com/earendil-works/pi/releases/tag/v1.1.0), published 2026-10-07.
+That release reports a fix for standalone binaries loading launch-directory `.env` files (L;
+release notes, read 2026-10-09; runtime behaviour UNVERIFIED).
+
+The [Durable README](https://raw.githubusercontent.com/earendil-works/pi/6fb2e7815167e6b19006fc526d1a5d0f5f998787/packages/durable/README.md)
+at commit `6fb2e7815167e6b19006fc526d1a5d0f5f998787`, read 2026-10-09 (L), documents:
+
+- Checkpoints and persisted tool intent. An interrupted tool runs again only when declared
+  `replay: "safe"`; otherwise its stored output accompanies an interruption result.
+- A repeated submission's `requestId` finds the existing submission. This does not establish
+  that an external write happened once (inference).
+- Ordinary conversation abort stops current work but leaves background-owned work alive.
+  Stopping it requires an explicit task abort or the conversation's `{ background: true }`
+  abort option.
+
+The API can change between releases. The launch guide permits only one process to own a storage
+backend at a time. These are documented mechanisms, not a tested production recovery guarantee.
+For the general rule about external effects, see [agent-workspace.md](../practices/agent-workspace.md).
+
+## 8. Elsewhere
 
 - On DeepSWE v1.1, DeepSeek-V4.1-Flash scored 66.2 in Pi, against 74.2 in mini-SWE and 69.8 in
   Claude Code ([cross-harness.md](cross-harness.md#132-the-documented-direction)).
@@ -119,6 +146,12 @@ Usage and how-Pi-works pages, read 2026-10-01. L.
   (2026-09-27, 2026-10-01); extensions
   <https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/extensions.md>
   (2026-09-29); usage, how Pi works and MCP pages under the same `docs/` path (2026-10-01).
+
+- Earendil, Pi 1.0 and Pi Durable (both published 2026-10-01),
+  <https://earendil.com/posts/pi-1-0/> and <https://earendil.com/posts/pi-durable/>;
+  v1.1.0 release notes (2026-10-07),
+  <https://github.com/earendil-works/pi/releases/tag/v1.1.0>; pinned Durable README above.
+  All read 2026-10-09 for §7.
 
 Checks defined here (verdict PASS, read 2026-09-25):
 - [chk-pi] <https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/configuration.md>, read 2026-09-25.

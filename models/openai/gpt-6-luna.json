@@ -14,7 +14,8 @@
     "ChatGPT Work",
     "Codex",
     "Microsoft Foundry",
-    "Amazon Bedrock"
+    "Amazon Bedrock",
+    "OpenAI Decisions API (public beta; text/image typed decisions) [as-of 2026-10-09] [openai-decisions-oct09]"
   ],
   "context_window": 1050000,
   "max_output": 128000,
@@ -44,7 +45,7 @@
     "input": 0.1,
     "output": 0.5,
     "cached_input": 0.01,
-    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast"
+    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]"
   },
   "benchmarks": [
     {
@@ -276,6 +277,20 @@
       "url": "https://metr.org/time-horizons/",
       "read": "2026-10-03",
       "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openai-decisions-oct09",
+      "url": "https://developers.openai.com/api/docs/guides/decisions",
+      "read": "2026-10-09",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-fast-mode-oct09",
+      "url": "https://developers.openai.com/api/docs/guides/fast-mode",
+      "read": "2026-10-09",
+      "kind": "L",
       "quote": null
     }
   ],

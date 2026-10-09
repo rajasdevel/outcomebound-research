@@ -18,6 +18,10 @@ sources:
   - https://junie.jetbrains.com/docs/guidelines-and-memory.html
   - https://docs.openhands.dev/overview/skills
   - https://dev.meta.ai/docs/muse-code/configuration.md
+  - https://www.latent.space/p/stacklok
+  - https://raw.githubusercontent.com/stacklok/mecatl/a4771a7872a63a4a26f14812998af6dbbc3bc188/README.md
+  - https://raw.githubusercontent.com/stacklok/mecatl/a4771a7872a63a4a26f14812998af6dbbc3bc188/user-docs/cloud-native-harness.md
+  - https://github.com/stacklok/mecatl/releases/tag/v0.0.47
 ---
 
 # Other coding harnesses
@@ -28,7 +32,7 @@ lists skills or gates trust, and before relying on a field name.
 What each of the remaining checked harnesses loads, in what order, what it caps and trusts, and the
 facts recorded about its skills, memory, hooks and models: GitHub Copilot and VS Code, Antigravity,
 Grok Build, ZCode, Qwen Code, Kimi Code, DeepSeek Harness, OpenCode, Cline, Mistral Vibe, Windsurf
-(Devin Desktop), Kiro, Junie, OpenHands, GitHub Spec Kit and Muse Code. For anyone placing text
+(Devin Desktop), Kiro, Junie, OpenHands, GitHub Spec Kit, Muse Code and Mecatl. For anyone placing text
 where one of them will load it. The comparison
 across harnesses, the key findings (H1–H12) and the evidence classes are in
 [cross-harness.md](cross-harness.md). Each entry gives its read date; all are lab-guidance (L)
@@ -293,6 +297,33 @@ on checkouts you don't control"; only an index is injected at session start (`ME
 paths of up to 48 other files), and the files are read on demand (configuration page, read
 2026-10-01).
 
+## Mecatl (Stacklok, early) [as-of 2026-10-09]
+
+Read 2026-10-09 (L): [README](https://raw.githubusercontent.com/stacklok/mecatl/a4771a7872a63a4a26f14812998af6dbbc3bc188/README.md)
+and [cloud-native harness guide](https://raw.githubusercontent.com/stacklok/mecatl/a4771a7872a63a4a26f14812998af6dbbc3bc188/user-docs/cloud-native-harness.md),
+at commit `a4771a7872a63a4a26f14812998af6dbbc3bc188`. The latest release observed was
+[v0.0.47](https://github.com/stacklok/mecatl/releases/tag/v0.0.47), published 2026-10-08;
+the pinned documentation snapshot is later than that release.
+
+- **Runtime boundaries.** Clients, the agent loop, tool execution and durable state have separate
+  interfaces. The Kubernetes reference runtime uses Redis-backed state and event logs, session
+  leases for one writer, and a drain path for replacing pods.
+- **Recovery limit.** A replacement worker resumes at the last stored turn boundary. An in-flight
+  operation does not resume; work since the last successful save can be lost.
+- **Authority limit.** `mecated` defaults to unauthenticated, single-user loopback use. The operator
+  is responsible for authentication and transport protection before remote exposure, as the README
+  states. Identity and audit
+  records do not form a complete tenant-isolation boundary; cryptographic delegation remains
+  design work.
+- **Integration limit.** It is not a drop-in runtime for Codex or Claude Code. A dedicated client
+  integration is needed. Proposed identity chains, resource grants and context attestation are
+  future directions, not current guarantees.
+
+The [2026-10-07 interview](https://www.latent.space/p/stacklok) explains the founders' architectural
+motivation (A), not measured reliability. Deployment and instruction-loading behaviour remain
+UNVERIFIED here. General effect-recovery rules are in
+[agent-workspace.md](../practices/agent-workspace.md).
+
 ## Not read
 
 MiMo Code and Tencent CodeBuddy exist; their loaders were not read. Kilo appears only as a
@@ -303,6 +334,10 @@ over global precedence ([cross-harness.md](cross-harness.md#4-precedence-and-aut
 ## Sources
 
 All read 2026-09-25 unless dated.
+
+- Mecatl: pinned README and cloud-native harness guide above; latest release metadata
+  <https://github.com/stacklok/mecatl/releases/tag/v0.0.47>; Stacklok interview
+  <https://www.latent.space/p/stacklok> (published 2026-10-07). Read 2026-10-09 (L docs; A interview).
 
 - GitHub: repository instructions
   <https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions>

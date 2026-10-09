@@ -102,7 +102,7 @@ Input formats: `mp3`, `mp4`, `mpeg`, `mpga`, `m4a`, `wav` and `webm`. In a Realt
 ### Sampling and API parameters
 
 - Endpoints: `v1/audio/transcriptions` and `v1/realtime/transcription_sessions` [openai-model-gpt-transcribe].
-- Rate limits: tier 1, 500 requests and 200,000 tokens a minute; tier 5, 30,000 requests and 150 million tokens [openai-model-gpt-transcribe].
+- **Rate limits [as-of 2026-10-09].** Build lists 5,000 requests and 2 million tokens per minute; Grow lists 30,000 requests and 150 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-transcribe#rate-limits), read 2026-10-09).
 - Data: the audio transcription endpoint keeps no application state, uses no data for training and is eligible for Zero Data Retention; US and EU data residency apply [openai-guide-your-data].
 
 ### Migrating from the previous generation

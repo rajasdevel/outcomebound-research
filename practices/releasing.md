@@ -1,6 +1,6 @@
 ---
 last_checked: 2026-10-01
-volatility: STABLE (packaging specifications and Python's flags, §§1–6) / VOLATILE (§7 GitHub Actions, §8 hosted minutes and self-hosted runners, §9 publishing a repository)
+volatility: STABLE (packaging specifications and Python's flags, §§1–6) / VOLATILE (§7 GitHub Actions, §8 hosted minutes and self-hosted runners, §9 publishing a repository, §10 deployment workflows and spend controls)
 sources:
   - https://packaging.python.org/en/latest/specifications/binary-distribution-format/
   - https://packaging.python.org/en/latest/specifications/version-specifiers/
@@ -18,6 +18,8 @@ sources:
   - https://docs.github.com/en/actions/reference/security/secure-use
   - https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-actions/about-billing-for-github-actions
   - https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility
+  - https://cursor.com/blog/rollouts-and-security-reviewer (read 2026-10-09)
+  - https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/ (read 2026-10-09)
 ---
 
 # Packaging and releasing a command-line tool
@@ -400,6 +402,29 @@ those files gives the new repository a first commit of its own, unrelated to the
 
 **Tags and releases.** "Releases are based on Git tags" (L, "About releases"); a release is created
 from a tag, and pushing a tag alone does not make one (inference from the docs, not stated there).
+
+## 10. Evidence after deployment and paid-service bounds (VOLATILE) [as-of 2026-10-09]
+
+**A documented production workflow.** Cursor's Rollouts announcement of 2026-09-23 describes a
+plan before merge that names intended effects, risks and gaps in instrumentation. After
+deployment, the bot compares signals with the earlier baseline. The configured response can
+notify an author, pause a progressive rollout or prepare a revert pull request for approval.
+L (vendor workflow claim), [source](https://cursor.com/blog/rollouts-and-security-reviewer), read
+2026-10-09. The post supplies no independent measure of detected regressions or false alarms.
+
+This is a method for deployed services, separate from package-build and install checks. A plan can
+name the environment, signals, baseline, observation window and permitted response; where those
+signals cannot establish the intended effect, the result stays unverified (inference).
+
+**A spending-cap opinion.** One practitioner argues, in a post of 2026-10-03, that usage-billed
+services should default to an enforced cutoff, because an alert leaves charges growing while the
+owner is absent. A (one author's opinion),
+[source](https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/), read 2026-10-09.
+The documented AWS and Google mechanisms have different scopes and consequences:
+[AWS project spend limits](../providers/amazon-bedrock.md#spend-limits-as-of-2026-10-09) and
+[Google service spend caps](../providers/google-vertex-ai.md#spend-caps-as-of-2026-10-09).
+Their scope, delay, continuing charges, reset and shutdown effects determine what a cap protects;
+an alert or an agent's token budget alone does not establish a maximum bill (inference).
 
 ## What the evidence supports (inference)
 

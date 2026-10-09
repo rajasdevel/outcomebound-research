@@ -160,6 +160,8 @@ data or hide failures. What must survive compaction is written to files. L, M.
   code, conversation or both; "Summarize from here" and "Summarize up to here" compress one side of
   a chosen message, "like a targeted `/compact`", while the original messages stay in the session
   transcript. Files changed by Bash commands are not tracked [chk-claude-checkpointing]. L.
+- A recent production harness ablation and its limits are in
+  [writing-for-models.md](writing-for-models.md#97-a-production-harness-ablation-as-of-2026-10-09).
 
 ## 5. Compaction (MONITOR)
 

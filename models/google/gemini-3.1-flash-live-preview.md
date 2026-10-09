@@ -25,7 +25,7 @@ sources:
 
 # Gemini 3.1 Flash Live Preview
 
-Gemini 3.1 Flash Live Preview is the previous generation of the Gemini Live class of Google, generation 3.1. It is a speech-to-speech model for the Live API. Google released it on 2026-03-26. Google now calls it a legacy preview and recommends [Gemini 3.8 Live](gemini-3.8-live.md) [L: gemini-changelog, gemini-spec-3-1-flash-live]. Google's deprecations page lists no shutdown date for it [L: gemini-deprecations]. Google's model page gives a migration path from the 2.5 Flash native-audio preview to it [L: gemini-spec-3-1-flash-live].
+Gemini 3.1 Flash Live Preview is the previous generation of the Gemini Live class of Google, generation 3.1. It is a speech-to-speech model for the Live API. Google released it on 2026-03-26. Google now calls it a legacy preview and recommends [Gemini 3.8 Live](gemini-3.8-live.md) [L: gemini-changelog, gemini-spec-3-1-flash-live]. [as-of 2026-10-09] Google's deprecations page gives 2026-11-17 as its earliest possible shutdown, with gemini-3.8-live as replacement [L: gemini-deprecations]. Google's model page gives a migration path from the 2.5 Flash native-audio preview to it [L: gemini-spec-3-1-flash-live].
 
 Evidence tags: L is Google's own text, M is an independent measurement, A is one practitioner's report. Advice that holds for every Gemini Live model is in the [Live API guide in the Google README](README.md#live-api-guide). This file says what differs for 3.1 Flash Live.
 
@@ -40,7 +40,7 @@ Evidence tags: L is Google's own text, M is an independent measurement, A is one
 | Class | Gemini Live |
 | Generation | 3.1 |
 | Released | 2026-03-26 |
-| Status | preview |
+| Status | retiring (retires 2026-11-17) |
 | Weights | closed |
 | Access | Gemini API (Live API over WebSocket); Google AI Studio; Gemini app; Google Antigravity; NotebookLM |
 | Context window | 131,072 tokens |
@@ -63,7 +63,7 @@ Evidence tags: L is Google's own text, M is an independent measurement, A is one
 | System card | [deepmind.google/models/model-cards/gemini-3-1-flash-audio/](https://deepmind.google/models/model-cards/gemini-3-1-flash-audio/) |
 | Model page | [ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-live-preview](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-live-preview) |
 | Card checked | 2026-10-03 |
-| Not found | SWE-Bench Pro: not applicable to a speech-to-speech model; no run found; Terminal-Bench: not applicable to a speech-to-speech model; no run found; Artificial Analysis Intelligence Index: not listed for this model; Artificial Analysis scores speech-to-speech models on its own Speech to Speech Index, recorded in benchmarks; Artificial Analysis Coding Agent Index: not applicable to a speech-to-speech model; not listed; METR 50% time horizon: not applicable to a speech-to-speech model; no run found; pricing_usd_per_mtok.cached_input: Google lists caching as not supported for this model; released: Google's changelog says 2026-03-26 and its model card was published 2026-03-26; Google's deprecations page lists 2026-03-11 and the model page says March 2026; 2026-03-26 kept; retires: the deprecations page lists no shutdown date and recommends gemini-3.8-live as the replacement; context_window: the model page says 131,072 input tokens and the model card says 128K; 131,072 kept; voice.voices: no count of voices for the Live API found; voice.languages: the model page lists no languages; the count of 99 comes from the Live API capabilities guide, which covers the Live API in general; voice.latency: Google publishes no latency figure; the figures recorded are a measurer's and one practitioner's; status: Google calls the model a legacy preview and recommends moving to gemini-3.8-live; the Live API tools page read on 2026-10-03 still lists only this model and a 2.5 Live model |
+| Not found | SWE-Bench Pro: not applicable to a speech-to-speech model; no run found; Terminal-Bench: not applicable to a speech-to-speech model; no run found; Artificial Analysis Intelligence Index: not listed for this model; Artificial Analysis scores speech-to-speech models on its own Speech to Speech Index, recorded in benchmarks; Artificial Analysis Coding Agent Index: not applicable to a speech-to-speech model; not listed; METR 50% time horizon: not applicable to a speech-to-speech model; no run found; pricing_usd_per_mtok.cached_input: Google lists caching as not supported for this model; released: Google's changelog says 2026-03-26 and its model card was published 2026-03-26; Google's deprecations page lists 2026-03-11 and the model page says March 2026; 2026-03-26 kept; context_window: the model page says 131,072 input tokens and the model card says 128K; 131,072 kept; voice.voices: no count of voices for the Live API found; voice.languages: the model page lists no languages; the count of 99 comes from the Live API capabilities guide, which covers the Live API in general; voice.latency: Google publishes no latency figure; the figures recorded are a measurer's and one practitioner's; status: Google calls the model a legacy preview and recommends moving to gemini-3.8-live; the Live API tools page read on 2026-10-03 still lists only this model and a 2.5 Live model; retires: 2026-11-17 is the earliest possible shutdown, not a confirmed final day; date rechecked 2026-10-09 [gemini-deprecations] |
 <!-- card:end -->
 
 ## How to instruct it
@@ -170,11 +170,11 @@ No SWE-Bench Pro, Terminal-Bench, Artificial Analysis Intelligence Index, Coding
 
 ## Sources
 
-Each source id used above, its kind (L Google, M independent measurement, A practitioner) and the day it was read. All were read on 2026-10-03.
+Each source id used above, its kind (L Google, M independent measurement, A practitioner) and the day it was read. The original sources were read on 2026-10-03; the deprecations source was reread on 2026-10-09 for the retirement correction. The whole document was not reverified.
 
 - gemini-changelog (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/changelog
 - gemini-spec-3-1-flash-live (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-live-preview
-- gemini-deprecations (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/deprecations
+- gemini-deprecations (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/deprecations
 - gemini-live-best-practices (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/live-api/best-practices
 - gemini-live-tools (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/live-api/tools
 - aa-speech-to-speech (M, read 2026-10-03): https://artificialanalysis.ai/speech-to-speech

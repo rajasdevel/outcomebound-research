@@ -22,6 +22,9 @@ sources:
 
 Gemini 3.1 Flash TTS Preview is the generation before [Gemini 3.8 Flash TTS](gemini-3.8-flash-tts.md) in the Gemini Flash TTS class. Google launched it on 2026-04-15 as a preview. It directs delivery with a written prompt and with square-bracket audio tags in the transcript, and it is a voice actor model in this library's sense. Google now calls it a legacy preview and tells new work to use a 3.8 model. This file holds the 3.1 method, which the current guide no longer describes. Family-wide rules are in the [Google README](README.md).
 
+
+[as-of 2026-10-09] The Gemini API preview is retiring. The deprecations page gives 2026-11-17 as the earliest shutdown and names either 3.8 TTS model as replacement [L: g-deprecations].
+
 ## At a glance
 
 <!-- card:begin -->
@@ -33,7 +36,7 @@ Gemini 3.1 Flash TTS Preview is the generation before [Gemini 3.8 Flash TTS](gem
 | Class | Gemini Flash TTS |
 | Generation | 3.1 |
 | Released | 2026-04-15 |
-| Status | preview |
+| Status | retiring (retires 2026-11-17) |
 | Weights | closed |
 | Access | Gemini API (Interactions API and generateContent; REST and SDKs); Google AI Studio; Google Cloud Text-to-Speech API (model name gemini-3.1-flash-tts-preview, in the global region; a separate prompt field and a text field); Vertex AI API (generateContent; the global region); Google Vids |
 | Context window | 8,192 tokens |
@@ -56,7 +59,7 @@ Gemini 3.1 Flash TTS Preview is the generation before [Gemini 3.8 Flash TTS](gem
 | System card | [deepmind.google/models/model-cards/gemini-3-1-flash-audio/](https://deepmind.google/models/model-cards/gemini-3-1-flash-audio/) |
 | Model page | [ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-tts-preview](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-tts-preview) |
 | Card checked | 2026-10-04 |
-| Not found | released: the changelog and the launch post give 2026-04-15; the deprecations table lists 2026-02-26 in its release-date column [g-changelog] [g-blog-31] [g-deprecations]; retires: the deprecations page lists no shutdown date and names 3.8 Flash TTS or 3.8 Flash-Lite TTS as the replacement [g-deprecations]; pricing_usd_per_mtok.cached_input: the model page says caching is not supported; voice.latency: Google publishes no time-to-first-audio figure; only throughput is given, from a measurer; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model |
+| Not found | released: the changelog and the launch post give 2026-04-15; the deprecations table lists 2026-02-26 in its release-date column [g-changelog] [g-blog-31] [g-deprecations]; pricing_usd_per_mtok.cached_input: the model page says caching is not supported; voice.latency: Google publishes no time-to-first-audio figure; only throughput is given, from a measurer; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model; retires: 2026-11-17 is the earliest possible shutdown, not a confirmed final day; date rechecked 2026-10-09 [g-deprecations] |
 <!-- card:end -->
 
 ## How to instruct it
@@ -199,7 +202,7 @@ Independent: Artificial Analysis Elo 1208.55 and 29.1 characters a second [aa-g3
 
 ## Open questions
 
-- Whether the preview will have a shutdown date. The deprecations page lists none [g-deprecations].
+- The final shutdown day remains unspecified; 2026-11-17 is the earliest possible day [as-of 2026-10-09] [L: g-deprecations].
 - Whether any fixed set of audio tags exists. The guide lists 16 common ones and says no list is exhaustive.
 - Whether the tag modes on Google's Cloud page hold for the Gemini API route of the same model. The page names no model for each tag.
 
@@ -212,7 +215,7 @@ Independent: Artificial Analysis Elo 1208.55 and 29.1 characters a second [aa-g3
 - [g-cloud-pricing] https://cloud.google.com/text-to-speech/pricing (kind L, read 2026-10-04)
 - [g-pricing] https://ai.google.dev/gemini-api/docs/pricing (kind L, read 2026-10-04)
 - [g-changelog] https://ai.google.dev/gemini-api/docs/changelog (kind L, read 2026-10-04)
-- [g-deprecations] https://ai.google.dev/gemini-api/docs/deprecations (kind L, read 2026-10-04)
+- [g-deprecations] https://ai.google.dev/gemini-api/docs/deprecations (kind L, read 2026-10-09)
 - [g-blog-31] https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-tts (kind L, read 2026-10-04)
 - [g-card-31] https://deepmind.google/models/model-cards/gemini-3-1-flash-audio/ (kind L, read 2026-10-04)
 - [aa-g31] https://artificialanalysis.ai/text-to-speech/models/gemini-3-1-tts (kind M, read 2026-10-04)

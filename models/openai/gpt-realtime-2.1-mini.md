@@ -119,7 +119,7 @@ No structured-output or JSON-mode feature is listed. The pages read describe no 
 ### Sampling and API parameters
 
 - No `temperature` in the GA interface. Sessions last at most 60 minutes [openai-blog-realtime-api] [openai-guide-conversations].
-- Rate limits: tier 1, 200 requests and 40,000 tokens a minute; tier 5, 20,000 requests and 15 million tokens [openai-model-gpt-realtime-2.1-mini].
+- **Rate limits [as-of 2026-10-09].** Build lists 400 requests and 200,000 tokens per minute; Grow lists 20,000 requests and 15 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-2.1-mini#rate-limits), read 2026-10-09).
 
 ### Migrating from the previous generation
 

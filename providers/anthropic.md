@@ -3,6 +3,10 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: first-party lab API
 sources:
+  - https://www.anthropic.com/claude/mythos
+  - https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
+  - https://www.anthropic.com/claude-haiku-5-5
+  - https://platform.claude.com/docs/en/models/haiku-5-5/overview
   - https://platform.claude.com/docs/en/api/overview
   - https://platform.claude.com/docs/en/api/rate-limits
   - https://platform.claude.com/docs/en/api/service-tiers
@@ -32,7 +36,12 @@ Anthropic trains the Claude models and sells them through its own HTTP API, whic
 
 ## Models offered
 
-Only Claude models, in four classes. The overview lists Claude Fable 5.1, Claude Opus 5.5, Claude Sonnet 5.5 and Claude Haiku 4.5 as current, and Fable 5, Opus 5 and Sonnet 5 (and older Opus 4.x and Sonnet 4.6) as legacy. Mythos 5.1, Mythos 5 and Mythos Preview appear on the pricing page as invitation-only (Project Glasswing) and have no model file. [models, price]
+Only Claude models, in four public classes. Haiku 5.5 replaces Haiku 4.5 as current after its 2026-10-07
+release; Fable 5.1, Opus 5.5 and Sonnet 5.5 remain the other current models. [as-of 2026-10-09] (L)
+[haiku-page] Earlier generations remain in the catalogue; the maker README records their lineage.
+Mythos 5 and 5.1 have restricted access through verified organizations, outside this library's
+GA/public-preview card scope. Mythos 5.1 shares Fable 5.1's weights with different safeguards; those
+configurations can differ on blocked tasks. [as-of 2026-10-09] (L) [mythos-access]
 
 | Model file | API id | List price in / out per Mtok |
 | --- | --- | --- |
@@ -42,9 +51,14 @@ Only Claude models, in four classes. The overview lists Claude Fable 5.1, Claude
 | [Claude Opus 5](../models/anthropic/claude-opus-5.md) | `claude-opus-5` | $5 / $25 |
 | [Claude Sonnet 5.5](../models/anthropic/claude-sonnet-5-5.md) | `claude-sonnet-5-5` | $2 / $10 |
 | [Claude Sonnet 5](../models/anthropic/claude-sonnet-5.md) | `claude-sonnet-5` | $2 / $10 |
+| [Claude Haiku 5.5](../models/anthropic/claude-haiku-5-5.md) | `claude-haiku-5-5` | $0.10 / $0.50 up to 100k prompt tokens; $0.50 / $2.50 above |
 | [Claude Haiku 4.5](../models/anthropic/claude-haiku-4-5.md) | `claude-haiku-4-5-20251001`, alias `claude-haiku-4-5` | $1 / $5 |
 
-From the 4.6 generation on, every id is a pinned snapshot with no date suffix; Haiku 4.5 keeps a dated id and a dateless alias that resolves to it. The Models API (`GET /v1/models`) returns `max_input_tokens`, `max_tokens` and a `capabilities` object for each model, so a client can read limits instead of hard-coding them. Anthropic states retirement floors for its own platforms as "not sooner than" a date: Fable 5.1 2027-09-01, Opus 5.5 2027-09-22, Sonnet 5.5 2027-09-28, Haiku 4.5 2026-10-15. Bedrock and Google Cloud set their own dates. The overview recommends starting with Opus 5.5 for most workloads and Fable 5.1 for demanding long-horizon work. The class lineage is in the [maker README](../models/anthropic/README.md). [models]
+The Haiku 5.5 price row is checked on 2026-10-09 (L) [haiku-page]; older price rows keep their earlier
+check date. Its prompt length includes uncached input and cache reads/writes. [as-of 2026-10-09] (L)
+[price-current]
+
+From the 4.6 generation on, every id is a pinned snapshot with no date suffix; Haiku 4.5 keeps a dated id and a dateless alias that resolves to it. The Models API (`GET /v1/models`) returns `max_input_tokens`, `max_tokens` and a `capabilities` object for each model, so a client can read limits instead of hard-coding them. Anthropic states retirement floors for its own platforms as "not sooner than" a date: Fable 5.1 2027-09-01, Opus 5.5 2027-09-22, Sonnet 5.5 2027-09-28, Haiku 4.5 2026-10-15. Haiku 5.5's floor is 2027-10-07 [as-of 2026-10-09] (L) [haiku-page]. Bedrock and Google Cloud set their own dates. The overview recommends starting with Opus 5.5 for most workloads and Fable 5.1 for demanding long-horizon work. The class lineage is in the [maker README](../models/anthropic/README.md). [models]
 
 ## API surface
 
@@ -72,9 +86,14 @@ This is the maker's own API, so parity here means what the same models lose on t
 | Data residency | `inference_geo` parameter | by endpoint chosen | by endpoint chosen | Data Zone deployment |
 | Claude Managed Agents | yes | no | no | no |
 
-Reasoning and effort. The 5-series models think adaptively and take `output_config.effort` with `low`, `medium`, `high`, `xhigh` and `max`; Haiku 4.5 has no effort control and uses manual extended thinking with a token budget. Defaults on the API are `high` for Fable 5.1, Fable 5, Opus 5, Sonnet 5.5 and Sonnet 5, and `medium` for Opus 5.5. Anthropic says effort changes thinking, text and tool-call volume together, and that it steers behaviour rather than enforcing a token count. A per-message effort change that keeps the prompt cache needs a beta header and is limited to Fable 5.1, Opus 5.5, Opus 5 and Sonnet 5.5; changing the top-level value between requests restarts the cache. The thinking settings each model accepts, and the fixed-sampling rules, are in the [maker README](../models/anthropic/README.md). [effort, models]
+Reasoning and effort. The 5-series models think adaptively and take `output_config.effort` with `low`, `medium`, `high`, `xhigh` and `max`; Haiku 4.5 has no effort control and uses manual extended thinking with a token budget. Defaults on the API are `high` for Fable 5.1, Fable 5, Opus 5, Sonnet 5.5 and Sonnet 5, and `medium` for Opus 5.5 and Haiku 5.5 [as-of 2026-10-09] (L) [effort-current]. Anthropic says effort changes thinking, text and tool-call volume together, and that it steers behaviour rather than enforcing a token count. A per-message effort change that keeps the prompt cache needs a beta header and is supported on Fable 5.1, Opus 5.5, Opus 5, Sonnet 5.5 and Haiku 5.5 on the Claude API and
+Google Cloud. Haiku needs adaptive thinking for a changed per-message level. [as-of 2026-10-09] (L)
+[effort-current] Changing the top-level value between requests restarts the cache. The thinking settings each model accepts, and the fixed-sampling rules, are in the [maker README](../models/anthropic/README.md). [effort, models]
 
-Long context. A 1M-token window at one per-token price on every 5-series model, and 200k for Haiku 4.5. Output is 128k on the synchronous API, and up to 300k on the Batch API for Opus 5.5, Opus 5, Sonnet 5.5 and Sonnet 5 with a beta header. [models, price]
+Long context. Every 5-series model has 1M context and 128k synchronous output; Haiku 4.5 has 200k.
+Haiku 5.5 raises prices above 100,000 prompt tokens; the other 5-series models use one rate across the
+window. Batch output reaches 300k with a beta header on Opus 5.5, Opus 5, Sonnet 5.5, Sonnet 5 and
+Haiku 5.5. [as-of 2026-10-09] (L) [haiku-page, price-current]
 
 Vision and documents. Image and PDF input on every current model; no model produces images, audio or video. Other routes vary on URL and Files API sources (table above). [models, feat]
 
@@ -82,7 +101,9 @@ Streaming. Server-sent events on the Messages API; fine-grained streaming of too
 
 ## Pricing
 
-Per token. Accounts are funded by card or, for enterprise, by invoice, and new accounts get a small free credit. Input and output are priced per million tokens by model. A 5-minute cache write costs 1.25 times the input price, a 1-hour write 2 times, and a cache read 0.1 times, except 0.025 times on Fable 5.1 and 0.05 times on Opus 5.5. The Batch API takes 50 percent off input and output. The 1M window carries no long-context surcharge. `inference_geo: "us"` adds a factor of 1.1 to every category on Claude 4.6 and later models. Fast mode (research preview; Opus 5.5, Opus 5 and Opus 4.8; direct API only) costs more per token and cannot be batched. Server tools add their own charges: web search is $10 per 1,000 searches, web fetch has no fee beyond tokens, and code execution is free alongside current web search or fetch and otherwise billed by container time ($0.05 per container-hour after 1,550 free hours a month per organisation, with a 5-minute minimum). Claude Managed Agents adds $0.08 per running session-hour. On Claude Platform on AWS and Foundry, usage is metered hourly to the cloud marketplace in Claude Consumption Units at $0.01 each, with no prepaid balance. Anthropic notes that Claude 4.7 and later models use a tokenizer that yields about 30 percent more tokens for the same text, so a price per token does not compare across that boundary. Per-model prices are on the model files, not repeated here. [price]
+Per token. Accounts are funded by card or, for enterprise, by invoice, and new accounts get a small free credit. Input and output are priced per million tokens by model. A 5-minute cache write costs 1.25 times the input price, a 1-hour write 2 times, and a cache read 0.1 times, except 0.025 times on Fable 5.1 and 0.05 times on Opus 5.5 and Sonnet 5.5. Sonnet 5.5's
+cache reads fell to $0.10 per Mtok on 2026-10-07 [as-of 2026-10-09] (L) [haiku-release]. The Batch API takes 50 percent off input and output. The 1M window carries no long-context surcharge except on Haiku 5.5: prompts over 100,000 tokens
+pay the higher tier for the entire request, including cached input. [as-of 2026-10-09] (L) [price-current] `inference_geo: "us"` adds a factor of 1.1 to every category on Claude 4.6 and later models. Fast mode (research preview; Opus 5.5, Opus 5 and Opus 4.8; direct API only) costs more per token and cannot be batched. Server tools add their own charges: web search is $10 per 1,000 searches, web fetch has no fee beyond tokens, and code execution is free alongside current web search or fetch and otherwise billed by container time ($0.05 per container-hour after 1,550 free hours a month per organisation, with a 5-minute minimum). Claude Managed Agents adds $0.08 per running session-hour. On Claude Platform on AWS and Foundry, usage is metered hourly to the cloud marketplace in Claude Consumption Units at $0.01 each, with no prepaid balance. Anthropic notes that Claude 4.7 and later models use a tokenizer that yields about 30 percent more tokens for the same text, so a price per token does not compare across that boundary. Per-model prices are on the model files, not repeated here. [price]
 
 ## Limits and data
 
@@ -95,10 +116,14 @@ Per token. Accounts are funded by card or, for enterprise, by invoice, and new a
 
 - **Sampling parameters and prefill.** The Opus 5.5 migration guide says a non-default `temperature`, `top_p` or `top_k` returns a 400 on Opus 4.7 and later Opus models, and an assistant prefill returns a 400 on Opus 4.6 and later Opus models; the maker README records the same rules for the other 5-series models. The OpenAI-compatible page still lists `temperature` as accepted from 0 to 1 (values above 1 are capped); it does not say how the two reconcile, and this was not tested. [mig, oai]
 - **Effort mapping.** The 5-series has no token-count knob for thinking. `output_config.effort` is the control, and `max_tokens` is the hard ceiling that thinking tokens also count towards. Anthropic advises a large `max_tokens` at `high` and above, suggesting 64k as a start for `xhigh` and `max` on some models and 128k for agentic coding on Sonnet 5.5. It says a level name does not mean the same amount of thinking on two models and asks for a fresh sweep per model. An OpenAI-style client that sends `reasoning_effort` to the compatibility endpoint changes nothing, because the field is dropped. [effort, oai]
-- **Thinking cannot always be turned off.** Fable 5.1, Fable 5 and Opus 5.5 reject `thinking: disabled` at any effort. Opus 5 accepts it at `high` effort or below and returns a 400 at `xhigh` and `max`. Sonnet 5.5 rejects `disabled` and offers `between_tools` as its lowest setting, valid up to `high` effort. [think, effort]
+- **Thinking cannot always be turned off.** Fable 5.1, Fable 5 and Opus 5.5 reject `thinking: disabled` at any effort. Opus 5 and Haiku 5.5 accept it at `high` effort or below and return a 400 at `xhigh` and `max`
+[as-of 2026-10-09] (L) [effort-current]. Sonnet 5.5 rejects `disabled` and offers `between_tools` as its lowest setting, valid up to `high` effort. [think, effort]
 - **Thinking is hidden by default.** On the 5-series models and Opus 5.5 the `display` setting defaults to `omitted`, so thinking blocks arrive with an empty text field and only an encrypted `signature`; `display: "summarized"` returns a summary, and no setting returns the raw reasoning. Thinking blocks that go back in later turns must be sent unchanged. [think]
 - **Forced tool choice** (`any` or `tool`) returns a 400 on Opus 5.5, including on the token-counting endpoint, and the migration guide points to `auto` with `strict: true` tools or structured outputs instead. The maker README records the same for Fable 5.1 and Sonnet 5.5. [mig]
-- **A refusal is an HTTP 200.** Fable 5.1, Fable 5, Opus 5.5, Opus 5 and Sonnet 5.5 carry safety classifiers; a declined request returns `stop_reason: "refusal"` with `stop_details.category`, so a harness that checks only the status code treats it as success. Server-side fallback (the `fallbacks` parameter) is a beta on the direct API only; the SDK middleware and a manual retry with fallback credit work on every route. [refuse, feat]
+- **A refusal is an HTTP 200.** Fable 5.1, Fable 5, Opus 5.5, Opus 5, Sonnet 5.5 and Haiku 5.5 carry safety classifiers
+[as-of 2026-10-09] (L) [refuse-current]; a declined request returns `stop_reason: "refusal"` with `stop_details.category`, so a harness that checks only the status code treats it as success. Server-side fallback (the `fallbacks` parameter) is a beta on the direct API only; the SDK middleware and manual retry are client-side options on other routes. Haiku 5.5 has no
+server-side fallback and no fallback credit; a model switch writes its new cache at full price.
+[as-of 2026-10-09] (L) [refuse-current] [refuse, feat]
 - **Features differ by route.** Batch, Files, code execution, web fetch, the MCP connector and structured outputs differ by cloud (table above). A harness that moves from the direct API to Bedrock loses the Batch API and structured outputs. [feat, bed]
 - **Caching and throughput.** Cache reads do not count against the input-token limit, so a long shared prefix raises effective throughput. The cache restarts when the system prompt, the tools, the thinking settings or top-level effort change. [rl, effort]
 - **Headers differ by route.** The direct API sends `anthropic-ratelimit-*` headers and `retry-after`; Foundry does not send the Anthropic rate-limit headers. [rl, fdy]
@@ -126,3 +151,15 @@ Per token. Accounts are funded by card or, for enterprise, by invoice, and new a
 | think | https://platform.claude.com/docs/en/build-with-claude/thinking | L | 2026-10-03 |
 | refuse | https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback | L | 2026-10-03 |
 | mig | https://platform.claude.com/docs/en/models/opus-5-5/migration-guide | L | 2026-10-03 |
+
+The sources below were read on 2026-10-09 for the corrected claims. The document was not fully re-verified.
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| haiku-page | https://platform.claude.com/docs/en/models/haiku-5-5/overview | L | 2026-10-09 |
+| haiku-release | https://www.anthropic.com/claude-haiku-5-5 | L | 2026-10-09 |
+| haiku-migration | https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide | L | 2026-10-09 |
+| mythos-access | https://www.anthropic.com/claude/mythos | L | 2026-10-09 |
+| price-current | https://platform.claude.com/docs/en/about-claude/pricing | L | 2026-10-09 |
+| effort-current | https://platform.claude.com/docs/en/build-with-claude/effort | L | 2026-10-09 |
+| refuse-current | https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback | L | 2026-10-09 |

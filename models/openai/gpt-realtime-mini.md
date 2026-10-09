@@ -116,7 +116,7 @@ No structured-output feature is listed [openai-model-gpt-realtime-mini].
 
 ### Sampling and API parameters
 
-- Rate limits: tier 1, 200 requests and 40,000 tokens a minute; tier 5, 20,000 requests and 15 million tokens [openai-model-gpt-realtime-mini].
+- **Rate limits [as-of 2026-10-09].** Build lists 400 requests and 200,000 tokens per minute; Grow lists 20,000 requests and 15 million tokens per minute. The page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-mini#rate-limits), read 2026-10-09).
 - The knowledge cutoff is 2023-10-01 [openai-model-gpt-realtime-mini].
 - Snapshots: `gpt-realtime-mini-2025-12-15` (the default) and `gpt-realtime-mini-2025-10-06`, which shut down on 2026-07-23 [openai-model-gpt-realtime-mini] [openai-deprecations].
 

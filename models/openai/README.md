@@ -98,6 +98,9 @@ sources:
   - https://openai.com/index/introducing-our-next-generation-audio-models/
   - https://github.com/openai/openai-fm
   - https://community.openai.com/t/tts-no-longer-follows-instructions-parameter/1371743
+  - https://developers.openai.com/api/docs/models/chat-latest
+  - https://developers.openai.com/api/docs/guides/decisions
+  - https://developers.openai.com/api/docs/models/gpt-5.6-cyber
 ---
 
 # OpenAI models
@@ -167,11 +170,31 @@ that replaced GPT-5.5 Instant in ChatGPT are newer versions than the July ones t
 ChatGPT Work, and it labels them by release month [openai-56-aug]. A benchmark or system-card number states which version it measured only
 some of the time.
 
-OpenAI's other releases are not general language models in these classes and have no file here: GPT-5.6
-Cyber and the Daybreak tiers (restricted cyber access), GPT-Rosalind (life sciences, approved
-organisations), the image models, and two open-weight classifiers, gpt-oss-safeguard-120b and
-gpt-oss-safeguard-20b (Hugging Face, 2025-09-18) [openai-models-list] [hf-openai-org]. The voice models
-are in the next subsection.
+**Rolling ChatGPT alias [as-of 2026-10-09].** [Chat Latest](chat-latest.md), API id
+`chat-latest`, points to the Instant model in ChatGPT. The October 7 update is an alias snapshot
+update, not a numbered GPT generation. It has a card with `generation: null`; the two-generation
+rule therefore does not imply an invented predecessor. OpenAI recommends GPT-6 models for production
+API use and describes the alias as a way to test chat improvements. L [openai-chat-latest-oct09]
+[openai-changelog-oct09]; scope treatment is this library's decision.
+
+**Specialist and media scope [as-of 2026-10-09].** These are documented discoveries with explicit
+exclusions, rather than missing general-purpose cards:
+
+- `gpt-5.6-cyber` is an alias for purpose-trained cybersecurity models for approved defenders and
+  needs separate approval and provisioning. It stays outside the general-purpose language/voice
+  inventory. L [openai-cyber-oct09]; exclusion is this library's scope decision.
+- GPT-Rosalind (`gpt-rosalind-research`) became generally available through trusted access on
+  2026-09-08 for approved internal life-sciences research. General availability does not make it
+  unrestricted or general-purpose; its specialist coverage remains deferred. L
+  [openai-changelog-oct09]; deferral is this library's scope decision.
+- GPT Image 2.5 Sunburst and Flare (`gpt-image-2.5-sunburst`, `gpt-image-2.5-flare`) shipped on
+  2026-09-08 for image generation and editing. Full image-model research remains deferred because
+  this inventory covers language and voice. L [openai-changelog-oct09]; deferral is this library's
+  scope decision.
+
+The Daybreak access tiers are not separate general-purpose model generations. Two open-weight
+classifiers, gpt-oss-safeguard-120b and gpt-oss-safeguard-20b (Hugging Face, 2025-09-18), also have no
+file here [openai-models-list] [hf-openai-org]. The voice models are in the next subsection.
 
 ### Voice models
 
@@ -211,9 +234,12 @@ Responses API, which keeps reasoning items between calls and takes the newer too
 and GPT-6 Luna call functions only at effort `none` [openai-latest-model]. Every GPT-6 and GPT-5.6 model has a
 1,050,000-token window, at most 922,000 input tokens and 128,000 output tokens, with text and image in and
 text out. Knowledge cutoffs on the model pages: the GPT-5.6 models 2026-02-16, GPT-6 Sol 2026-04-20, GPT-6
-Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18. At rate-limit tier 1 the limits are 500 requests
-and 500,000 tokens a minute; at tier 5 they are 15,000 requests and 40 million tokens for Astra, Sol and
-Terra, and 30,000 requests and 180 million tokens for Luna [openai-model-gpt-6-luna].
+Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18.
+
+**Rate limits [as-of 2026-10-09].** The October 6 change replaced five numbered paid tiers with Build,
+Launch and Grow. Limits differ by model and service tier; the [provider file](../../providers/openai.md#limits-and-data)
+and each model page give the current limits. Actual organization limits can differ. L
+([changelog](https://developers.openai.com/api/docs/changelog), read 2026-10-09).
 
 **Tools in the Responses API**, the same list on every model page: web search, file search, image
 generation, code interpreter, hosted shell, apply patch, skills, computer use, MCP and tool search. The
@@ -266,10 +292,14 @@ and each model supports a subset [openai-reasoning-guide].
 cache rates and one and a half times the output rate. Batch and Flex are half price. Fast mode (called
 priority before 2026-07-30; `service_tier: fast` or `priority`) costs twice the rate and runs up to 2.5
 times faster. Traffic that grows faster than about 50% every 15 minutes once it passes 1 million input
-tokens a minute can be downgraded to standard speed and price. Fast mode is unavailable with EU data
-residency for the GPT-6 models and has no latency guarantee for Astra. Ultrafast costs six times the
+tokens a minute can be downgraded to standard speed and price. **[as-of 2026-10-09]** Fast mode
+supports EU data residency for GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, but not GPT-6 Astra. The guide
+states no Astra latency SLA. L [openai-fast-mode-oct09]. Ultrafast costs six times the
 standard price for Astra ($60 in, $300 out), takes US data residency and global processing only, and is in
-preview for GPT-5.6 Sol; the Codex documentation says it comes later for GPT-6.1 Sol [codex-models].
+preview for GPT-5.6 Sol. **[as-of 2026-10-09]** GPT-6.1 Sol also has Ultrafast since October 8: $12
+input, $0.60 cached input, $15 cache write and $60 output per Mtok for prompts up to 272,000 input
+tokens. It supports US and EU data residency and global processing, with a separate limit pool.
+L [openai-ultrafast-oct09] [openai-pricing-oct09] [openai-changelog-oct09].
 Regional processing adds 10% for models released on or after 2026-03-05.
 
 **Caching** [openai-prompt-caching] [openai-changelog]. From GPT-5.6, cache writes cost 1.25 times the input
@@ -295,6 +325,15 @@ and the GPT-5.6 models, on its runtime and mantle endpoints [aws-card-gpt-6-astr
 needed below quota tiers 5 and 6 for the GPT-6 family, and lists gpt-oss-120b and gpt-oss-20b as previews
 [ms-foundry-models]. The gpt-oss weights are on Hugging Face and need the harmony format (see the gpt-oss
 files) [hf-gpt-oss-120b] [openai-harmony].
+
+### Decisions API [as-of 2026-10-09]
+
+The public beta uses `gpt-6-luna` at `POST /v1/decisions` to judge shared text/image input with
+`predicate`, `choice` and `score` questions. It returns typed answers rather than a generated
+explanation or tool call. OpenAI documents separate input-only pricing and recommends labelled
+application examples to set thresholds. This is an endpoint on an existing model, not a new Luna
+generation. L [openai-decisions-oct09]. See [GPT-6 Luna](gpt-6-luna.md) and
+[decision models](../../practices/decision-models.md).
 
 ### Realtime and voice APIs
 
@@ -379,7 +418,7 @@ With VAD on, the start of user speech cancels the response in progress. The mode
 - **Session and window.** 60 minutes a session. The 2026 models have a 128,000-token window and 32,000 output tokens; earlier ones have 32,000 and 4,096 [openai-guide-conversations] [openai-model-gpt-realtime-2].
 - **Truncation.** When the conversation passes the input limit the server drops the oldest items. A retention ratio such as 0.8 drops more than needed once, so the prompt cache breaks less often. `token_limits.post_instructions` caps input. `truncation: "disabled"` gives an error instead. The API does no summarising [openai-guide-voice-cost] [openai-blog-realtime-api].
 - **Tokens.** User audio is 1 token per 100 ms and assistant audio 1 token per 50 ms. Each response resends the whole conversation, so later turns cost more. Cached audio input costs about 1.25% of the uncached rate on the full models ($0.40 against $32). VAD removes empty audio. Input transcription uses a different model and a different price. There is no charge for bandwidth or connections. OpenAI advises testing with the larger model first and then trying the mini model [openai-guide-voice-cost] [openai-pricing].
-- **Rate limits** are requests and tokens a minute: 200 and 40,000 at tier 1, 20,000 and 15 million at tier 5 for the Realtime models [openai-model-gpt-realtime-2.1].
+- **Rate limits [as-of 2026-10-09].** GPT-Realtime-2.1 lists 400 requests and 200,000 tokens per minute at Build, and 20,000 requests and 15 million tokens per minute at Grow. Its page also lists Launch. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-2.1#rate-limits), read 2026-10-09).
 
 #### GPT-Live API
 
@@ -816,3 +855,14 @@ Kinds: L lab or vendor, M independent measurement, A practitioner account. Every
 - [openai-blog-audio-models-2025] Introducing next-generation audio models in the API, <https://openai.com/index/introducing-our-next-generation-audio-models/> (L)
 - [openai-fm-repo] OpenAI.fm demo source, <https://github.com/openai/openai-fm> (L)
 - [openai-community-tts-instructions] Forum thread, TTS no longer follows instructions parameter, <https://community.openai.com/t/tts-no-longer-follows-instructions-parameter/1371743> (A)
+
+Partial correction sources, read 2026-10-09 (L):
+
+- [openai-chat-latest-oct09] <https://developers.openai.com/api/docs/models/chat-latest>.
+- [openai-cyber-oct09] <https://developers.openai.com/api/docs/models/gpt-5.6-cyber>.
+- [openai-decisions-oct09] <https://developers.openai.com/api/docs/guides/decisions>.
+- [openai-ultrafast-oct09] <https://developers.openai.com/api/docs/guides/ultrafast-mode>.
+- [openai-pricing-oct09] <https://developers.openai.com/api/docs/pricing>.
+- [openai-changelog-oct09] <https://developers.openai.com/api/docs/changelog>, August 7, September 8 and October 6 to 8 entries.
+
+- [openai-fast-mode-oct09] <https://developers.openai.com/api/docs/guides/fast-mode> (L, read 2026-10-09).

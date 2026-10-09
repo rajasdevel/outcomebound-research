@@ -99,7 +99,8 @@ Not applicable.
 
 ### Voice: turn-taking, interruption and speech style
 
-- **No turns.** The session streams continuously from the incoming audio. The guide says to keep appending audio, including silence between phrases. There is no turn detection setting, and `response.create` is not used. Rate limits count minutes of audio per minute: 50 at tier 1 up to 850 at tier 5 [openai-guide-translation] [openai-model-gpt-realtime-translate].
+- **No turns.** The session streams continuously from the incoming audio. The guide says to keep appending audio, including silence between phrases. There is no turn detection setting, and `response.create` is not used. [openai-guide-translation]
+- **Rate limits [as-of 2026-10-09].** Limits count minutes of audio per minute: 200 at Build, 650 at Launch and 850 at Grow. Actual organization limits can differ. L ([model page](https://developers.openai.com/api/docs/models/gpt-realtime-translate#rate-limits), read 2026-10-09).
 - **Transport.** WebRTC for a browser that captures or plays audio. A WebSocket for a server that already holds raw audio, such as Twilio Media Streams or SIP media. The endpoint is `/v1/realtime/translations`, not `/v1/realtime`. A browser session uses a short-lived client secret [openai-guide-translation].
 - **Closing.** OpenAI's guide says to send `session.close` and keep reading until `session.closed`. The service then flushes pending input and emits the remaining translated audio and transcript. Closing the socket at once can drop output that is still draining. `session.close` works for translation sessions only [openai-guide-translation].
 - **Architecture advice.** For one speaker and many listeners (livestreams, lectures, calls), run one session for each target language. For two-way calls, keep each participant's audio on its own track and run one session for each direction. For rooms, sessions equal active speakers times distinct target languages [openai-guide-translation].

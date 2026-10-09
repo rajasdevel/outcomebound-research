@@ -3,6 +3,12 @@ last_checked: 2026-10-01
 volatility: MONITOR (the evidence on what helps and the supply-chain risks change at a model generation) / VOLATILE (§1 listing caps, §6 public sets)
 sources:
   - https://agentskills.io
+  - https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/config/skills/eval-engineering/SKILL.md
+  - https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/config/skills/eval-engineering/references/environment-building.md
+  - https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/config/skills/eval-engineering/references/verifier-design.md
+  - https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/config/skills/eval-engineering/references/calibration.md
+  - https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/config/skills/eval-engineering/scripts/compare_tool_schemas.py
+  - https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/LICENSE
   - https://code.claude.com/docs/en/skills
   - https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices
   - https://claude.dev/blog/lessons-from-building-claude-code-how-we-use-skills/
@@ -23,11 +29,20 @@ sources:
   - https://github.com/bmad-code-org/BMAD-METHOD
   - https://github.com/github/spec-kit
   - https://github.com/addyosmani/agent-skills
+  - https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/post-patch-validation/skills/post-patch-validation/SKILL.md
+  - https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/post-patch-validation/skills/post-patch-validation/scripts/post_patch_validation.py
+  - https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/post-patch-validation/.claude-plugin/plugin.json
+  - https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/property-based-testing/skills/property-based-testing/SKILL.md
+  - https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/property-based-testing/.claude-plugin/plugin.json
+  - https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/LICENSE
+  - https://github.com/vercel-labs/agent-browser/blob/39a74c70d7759d5a6de7a22c04570bb626bbd081/skills/agent-browser/SKILL.md
+  - https://github.com/vercel-labs/agent-browser/blob/39a74c70d7759d5a6de7a22c04570bb626bbd081/cli/src/skills.rs
+  - https://github.com/vercel-labs/agent-browser/blob/39a74c70d7759d5a6de7a22c04570bb626bbd081/LICENSE
 ---
 
 # Agent skills: what works, what they are for, and the public sets compared
 
-Which agent skills help, how to write and vet one, and what three public skill sets offer.
+Which agent skills help, how to write and vet one, and what selected public skill sets offer.
 
 Re-check when a harness changes how it lists or truncates skills, or one of the public sets ships a
 release; in any case by 2026-12-25. Evidence ledger records are as
@@ -36,7 +51,7 @@ verified on 2026-09-25; the figures added since and the public sets were re-read
 This reference answers what the evidence says about agent skills (the `SKILL.md` folders a coding
 harness lists by name and description and loads on demand): which kinds of skill help and which
 harm, how to write the description and the body, what makes a skill a supply-chain risk, which pains
-of people running coding agents a skill can address, what three public skill sets offer for those
+of people running coding agents a skill can address, what selected public skill sets offer for those
 pains (credited by name), and how a skill earns its place. It is for anyone deciding which skills to
 write, sharpen, borrow or cut. Where harnesses find and list skills is in
 [cross-harness.md](../harnesses/cross-harness.md#6-skills-discovery-and-listing) §6; the general practices for model-facing text are in
@@ -75,8 +90,8 @@ write, sharpen, borrow or cut. Where harnesses find and list skills is in
    same batch, on cases where it should and should not fire; until then its benefit is
    `UNVERIFIED`. Lab-guidance and practitioner-consensus [evals-24, other-labs-21, openai-26,
    evals-8].
-9. **The three public sets read here (Matt Pocock's skills, superpowers, Anthropic's public skills)
-   hold ideas worth adapting but none is reusable verbatim** in text meant for several harnesses:
+9. **The three original public sets read here (Matt Pocock's skills, superpowers,
+   Anthropic's public skills) hold ideas worth adapting but none is reusable verbatim** in text meant for several harnesses:
    each names a harness, a vendor's tools, its author, or its reader as "your human partner".
    Anecdote (a reading of the texts; no skill was run).
 
@@ -481,6 +496,73 @@ stood on the day the bullet was added; the pull requests numbered 81 to 83 were 
   contract ordering of schema changes (`fragments/stack/db-migrations.md`) and staged rollout
   practice (`fragments/stack/deploy.md`) rest on general practice that these files did not source.
 
+### Selected mechanisms [as-of 2026-10-09]
+
+These selected mechanisms were read at the source versions below on 2026-10-09 (A, a reading of
+skill text and selected implementation code). **Source inspection: PASS. Skill execution and
+comparative benefit: UNVERIFIED.** No skill, runner or upstream test was run. The dispositions
+below are this review's inference, not a rule for consumers or a claim that an adaptation helps.
+
+- **Security-patch evidence, Trail of Bits `post-patch-validation` 0.2.2.** The
+  [skill](https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/post-patch-validation/skills/post-patch-validation/SKILL.md) and
+  [runner](https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/post-patch-validation/skills/post-patch-validation/scripts/post_patch_validation.py)
+  pin the vulnerable and patched inputs. They distinguish an original exploit, a root-cause
+  variant and a benign control. An exploit or variant check needs a marker immediately before
+  its safety assertion. A nonzero exit alone does not establish reproduction. Results keep supported
+  findings apart from validation gaps. This extends the existing advice in §6 to verify the
+  intended failing assertion and in §5 SP07 to separate failures that predate a change.
+  **Candidate for a bounded trial:** a complete fix, a fix that misses a variant, a broken
+  harness and an ordinary change could test whether the guidance improves attribution without
+  adding work to the ordinary change. The upstream runner requires seven check categories and
+  human review even after supplied checks pass. Its worktree isolation is not a host sandbox,
+  and its marker does not prove that a malicious helper asserted the intended property.
+  Those limits leave automatic acceptance and general use unproved.
+- **Useful properties, Trail of Bits `property-based-testing` 1.2.2.** The
+  [skill](https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/property-based-testing/skills/property-based-testing/SKILL.md)
+  selects a property from the code's algebraic behavior, such as a roundtrip, idempotence or an
+  independent oracle. It routes test design, review and counterexample analysis to separate
+  references. It distinguishes an assertion that restates the implementation from a generator
+  that rejects so many inputs that little or no useful behavior is exercised. The first overlaps
+  the tautology advice already credited in §6; the second and the property selection add specific
+  guidance. **Candidate for a bounded trial:** a seeded defect, a tautological assertion and a
+  heavily filtered generator could test whether the guidance detects the defect and the weak
+  tests, in a fixture that already has a property-testing library. A property can itself be wrong;
+  no-crash assertions and input generation alone do not establish the required behavior. The
+  source treats adding a new library as a separate dependency decision.
+- **Instructions from the installed tool, Vercel `agent-browser` v0.38.2.** The
+  [discovery skill](https://github.com/vercel-labs/agent-browser/blob/39a74c70d7759d5a6de7a22c04570bb626bbd081/skills/agent-browser/SKILL.md) points to `agent-browser skills get core`. The
+  [implementation](https://github.com/vercel-labs/agent-browser/blob/39a74c70d7759d5a6de7a22c04570bb626bbd081/cli/src/skills.rs) reads the detailed skill, references and templates
+  from the local package. This is a concrete way to reduce the stale-skill risk in §2 and use
+  the router pattern in §3. **Deferred pending an observed version mismatch:** a trial could
+  compare two tool versions with different commands and a missing-instructions case. The
+  benefit would be correct guidance for each version and an explicit gap when it is absent.
+  The implementation also accepts `AGENT_BROWSER_SKILLS_DIR`; an override can separate the
+  instruction source from the binary. Matching a package version does not prove that the
+  instructions are correct or trusted. The skill's broad tool preference and `hidden: true`
+  metadata are not evidence of portability.
+
+
+- **Build and audit an evaluation, LangChain `eval-engineering`.** The
+  [skill](https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/config/skills/eval-engineering/SKILL.md), at `16a992f0`, describes a user-reviewed workflow from repository code and optional complete traces
+  to Harbor tasks (L; read 2026-10-09). It reconstructs exercised tool contracts, with explicit
+  live, frozen or simulated dependencies and stated fidelity limits. It distinguishes a reference
+  solution from a real target-harness run, then audits agent state and each verifier criterion
+  separately; infrastructure defects do not become agent scores. It tests verifier boundaries with
+  valid alternatives, realistic errors, shortcuts, collateral changes and corrupt evidence.
+  These add concrete steps to the trace-analysis and isolation advice in
+  [agent-evals.md](agent-evals.md), but do not establish that the skill improves results.
+  Its schema comparator does not resolve external references. Harbor and its environment are
+  dependencies. Skill execution and comparative benefit remain UNVERIFIED.
+
+**Versions and licences.** Trail of Bits commit `82fe8226` has manifests for
+[post-patch-validation 0.2.2](https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/post-patch-validation/.claude-plugin/plugin.json) and
+[property-based-testing 1.2.2](https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/plugins/property-based-testing/.claude-plugin/plugin.json), and its
+[licence](https://github.com/trailofbits/skills/blob/82fe8226252622fa807643bdca1710901198553a/LICENSE) is CC-BY-SA-4.0. `agent-browser` v0.38.2 resolves to commit
+`39a74c70` and carries [Apache-2.0](https://github.com/vercel-labs/agent-browser/blob/39a74c70d7759d5a6de7a22c04570bb626bbd081/LICENSE). All were read on 2026-10-09.
+LangChain commit `16a992f0` carries an [MIT licence](https://github.com/langchain-ai/langchain-skills/blob/16a992f09ab3ccfb642dd4f08d350d833d1990bf/LICENSE); copies or substantial portions must retain its notices.
+This review paraphrases the mechanisms and copies no upstream instruction text or code.
+The licence review identifies the source terms; it does not clear a later copy or adaptation.
+
 ## 7. How a skill earns its place
 
 1. **It addresses a real pain** (§5) that the always-loaded text does not already cover, and does
@@ -501,6 +583,13 @@ Harnesses have begun to ship eval tooling for skills: Claude Code added eval plu
 whether a skill makes things better, at a token cost and imperfectly ([cross-harness.md](../harnesses/cross-harness.md#131-one-practitioners-account-t1t7)
 §13.1 T1).
 
+Harness behavior can also depend on a skill's name and presence at session start: Claude Code's
+conditional pre-commit instructions and `/verify` recipe replacement are described in
+[its harness reference](../harnesses/claude-code.md#31-verification-recipes-and-commit-instructions-as-of-2026-10-09)
+(L, [skills documentation](https://code.claude.com/docs/en/skills), read 2026-10-09)
+[as-of 2026-10-09]. Source inspection establishes those documented rules; a benefit on a project's
+work remains `UNVERIFIED` without a paired evaluation.
+
 ## What the evidence supports (inference)
 
 These points are this reference's reading of the findings above. They are not orders.
@@ -518,8 +607,10 @@ These points are this reference's reading of the findings above. They are not or
 - The measured skill results come from a few benchmarks (SkillsBench, SkillJuror, one retrieval
   study, OctoBench) and one vendor's comparison; none tests one skill across current flagships of
   several families.
-- The public-set comparison is a reading of text on two days (2026-09-29 and 2026-10-01); no skill
-  was run, and the sets change between releases.
+- The full public-set comparison was read on 2026-09-29 and 2026-10-01. Selected credited ideas
+  were read on 2026-10-06 and 2026-10-07, and the three bounded mechanisms above on 2026-10-09.
+  No skill was run, and the sets change between releases. The later readings do not re-verify
+  the earlier comparison or the whole document.
 - The pains are reported, not measured; their order is a judgment.
 - Whether an index keeps beating an on-demand skill as models improve is open (forecast P3).
 
@@ -540,7 +631,8 @@ Read 2026-09-25 unless dated. Evidence ids resolve in
   <https://raw.githubusercontent.com/anthropics/skills/main/skills/skill-creator/SKILL.md>; the new
   rules of context engineering, 2026-07-24
   <https://claude.dev/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models/>;
-  Claude Code skills <https://code.claude.com/docs/en/skills> [chk-claude-skills].
+  Claude Code skills <https://code.claude.com/docs/en/skills> [chk-claude-skills]; verification
+  recipes and conditional commit instructions re-read 2026-10-09.
 - OpenAI: rethinking skills and prompts for GPT-6 Astra, 2026-09-11
   <https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md>; eval skills,
   2026-01-22 <https://developers.openai.com/blog/eval-skills.md>; harness engineering, 2026-02-11
@@ -581,6 +673,11 @@ Read 2026-09-25 unless dated. Evidence ids resolve in
   <https://code.claude.com/docs/en/mcp>; Snyk ToxicSkills, the SkillsBench (v1 and v4),
   SkillJuror, Anatomy to Smells and 138K `SKILL.md` papers, and Vercel's comparison, re-read for the
   figures added that day.
+- Read 2026-10-09, selected mechanisms only: Trail of Bits at `82fe8226252622fa807643bdca1710901198553a`,
+  post-patch-validation 0.2.2 and property-based-testing 1.2.2, the linked skill texts, manifests,
+  post-patch runner and CC-BY-SA-4.0 licence; Vercel agent-browser v0.38.2 at
+  `39a74c70d7759d5a6de7a22c04570bb626bbd081`, the linked discovery skill, skill-serving code and Apache-2.0 licence.
+  The immutable URLs are in the frontmatter and the selected-mechanisms subsection of §6.
 - Testing literature credited in §6: DeMillo, Lipton and Sayward, IEEE Computer, 1978; James Carr,
   "TDD Anti-Patterns", 2006; Google Testing Blog, 2013, 2015 and 2016; Kent Beck, "Test Desiderata",
   2019; Luo, Hariri, Eloussi and Marinov, FSE 2014.
