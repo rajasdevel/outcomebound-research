@@ -45,7 +45,7 @@ sources:
   - https://www.enisa.europa.eu/sites/default/files/2026-09/ENISA%20Technical%20Advisory-AI-assisted-software-development-draft.pdf (read 2026-10-15)
 ---
 
-# Project lifecycles: what should change with a project's situation, and with coding agents
+# Project lifecycles: what the sources tie to a project's situation and to coding agents
 
 Re-check when DORA publishes a new report; METR or another group publishes a controlled study of
 agent-assisted delivery; NIST publishes the final SSDF 1.2; IEC 62304 edition 2 is published; the
@@ -81,7 +81,10 @@ claim that was read only in a secondary source or a search summary, not at its p
 **Citations.** Every URL in this document was read on 2026-10-15, unless the text gives another
 date. Each claim names its source by a link. This document has no ledger records in
 [`_evidence/`](../_evidence/); its sources have not had the independent fact-check that the
-[conventions](../CONVENTIONS.md) describe.
+[conventions](../CONVENTIONS.md) describe. A second reader re-read the key findings LC1 to LC11 and a
+sample of 123 body claims at their sources on 2026-10-15: 4 key findings and 23 body claims were
+corrected, and 3 body claims whose source was not reachable or did not state them are marked
+`UNVERIFIED`.
 
 ## Key findings
 
@@ -104,7 +107,7 @@ expected life of the code. Moderate. (M, L) — §1.
 
 **LC4. Coding agents raise the volume of code; measured delivery gains are small, short-lived or not
 significant, and self-reports overstate them.** In METR's 2025 trial, developers took 19% longer
-with AI and believed they were 20% faster. In 807 repositories that adopted Cursor, velocity rose
+with AI and believed they were 20% faster. In 806 repositories that adopted Cursor, velocity rose
 and did not last, while warnings and complexity rose and stayed. Moderate: several measured
 sources, mostly observational and on open source, some vendor-run. (M) — §2.
 
@@ -114,14 +117,16 @@ batches amplify the effect of AI in DORA's data. Makers and one cloud vendor's o
 state the same. Moderate. (M, L, A) — §2, §4.
 
 **LC6. Standards bodies do not count an AI reviewer as the second party; one platform now lets an
-AI approval count.** SLSA's Source track and OpenSSF Scorecard both say so in words. Since
+AI approval count.** OpenSSF Scorecard says so in words; SLSA's Source track requires two trusted
+persons, whom it defines as humans, and does not name AI reviewers. Since
 1 September 2026, in public preview, GitHub lets a Copilot code review approval count toward
 required approvals when an admin turns it on. (S, L) — §4.
 
 **LC7. In maker practice, the guards on irreversible acts sit in the platform, not in the
 instructions.** Copilot's cloud agent cannot approve or merge its own pull request and pushes to one
 branch; OS-level sandboxing cut Anthropic's permission prompts by 84%. In one reported incident, a
-code freeze that only the agent's instructions enforced did not hold. Moderate. (L, A) — §3.
+code freeze that only the agent's instructions enforced did not hold (`UNVERIFIED`: the report was
+not reachable on 2026-10-15). Moderate. (L; M, vendor; A) — §3.
 
 **LC8. Most supply-chain basics are free on public GitHub repositories; several need a paid plan on
 private ones.** Protected branches, required reviewers and code owners in private repositories need
@@ -140,7 +145,7 @@ guidance is risk-based; IEC 62304 and DO-178C set levels by harm. (S, A) — §7
 **LC11. The sources reward the quality of documents, not their number.** DORA links documentation
 quality to the effect of every technical capability; one controlled study found that context files
 such as `AGENTS.md` usually did not raise agent success and raised cost by over 20%; ADRs in 921
-repositories had mostly small correlations with quality measures. Moderate. (M, A) — §2, §5.
+repositories had mostly small correlations with quality measures. Moderate. (M) — §2, §5.
 
 ## 1. Facts that choose a lifecycle
 
@@ -225,7 +230,8 @@ documentation a project needs. Each fact is listed with what the evidence says a
   freeze that only the agent's instructions enforced; Replit then added automatic separation of
   development and production databases, a plan-only mode and one-click restore. `UNVERIFIED` at
   Replit's own post; read through
-  [eWeek](https://www.eweek.com/news/replit-ai-coding-assistant-failure/) (A).
+  [eWeek](https://www.eweek.com/news/replit-ai-coding-assistant-failure/), which returned 403 to the
+  second reading on 2026-10-15 (A).
 - Anthropic's auto-mode classifier blocks scope escalation, credential hunting, external sends and
   bypassed deploy checks; on 52 real over-eager actions its false-negative rate was 17%, and the
   page calls it "not a drop-in replacement for careful human review on high-stakes infrastructure"
@@ -254,8 +260,8 @@ documentation a project needs. Each fact is listed with what the evidence says a
 **Agent autonomy: attended work against unattended background work.**
 
 - All the major makers ship background agents that work on a branch and open a pull request
-  (Copilot cloud agent with a 59-minute session cap, Codex cloud, Jules, Cursor cloud agents, Claude
-  Code on the web), and run parallel local agents in separate Git worktrees
+  (Copilot cloud agent, Codex cloud, Jules, Cursor cloud agents, Claude Code on the web; a 59-minute
+  session cap for the Copilot cloud agent is `UNVERIFIED`, as the cited GitHub page does not state it), and run parallel local agents in separate Git worktrees
   ([GitHub](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/risks-and-mitigations),
   [Jules](https://jules.google/docs/), [Cursor](https://cursor.com/blog/agent-best-practices),
   [Anthropic](https://code.claude.com/docs/en/best-practices)) (L).
@@ -269,8 +275,7 @@ documentation a project needs. Each fact is listed with what the evidence says a
 **Requirement and priority stability.**
 
 - The 2024 DORA report found that unstable organizational priorities lower productivity and raise
-  burnout, and that strong leaders, good documentation and a user-centred approach do not remove the
-  effect ([DORA 2024](https://dora.dev/research/2024/dora-report/),
+  burnout, and that the effect persists even with strong leaders and high-quality documentation ([DORA 2024](https://dora.dev/research/2024/dora-report/),
   [announcement](https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report))
   (M, survey).
 - The NaPiRE survey covered 228 companies in 10 countries and 21 requirements problems
@@ -315,14 +320,13 @@ one or two generations old. Several measured sources sell tools that the result 
 
 - DORA now uses five delivery metrics: change lead time, deployment frequency and failed deployment
   recovery time (throughput), and change fail rate and deployment rework rate (instability). It
-  states "speed and stability are not tradeoffs", and says to compare the metrics only within one
-  application ([DORA metrics](https://dora.dev/guides/dora-metrics-four-keys/)) (M, survey; L).
+  states "speed and stability are not tradeoffs", and says the metrics are best suited to one
+  application or service at a time ([DORA metrics](https://dora.dev/guides/dora-metrics-four-keys/)) (M, survey; L).
 - In the 2025 report (nearly 5,000 respondents), AI adoption went with higher throughput and product
   performance but still with lower delivery stability; DORA calls AI an amplifier of an
   organization's existing strengths and weaknesses
   ([DORA 2025](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report))
-  (M, survey). About 90% used AI; that figure was read through
-  [InfoQ](https://www.infoq.com/news/2026/03/ai-dora-report/) (secondary).
+  (M, survey). The same announcement says 90% of respondents use AI at work (M, survey).
 - The 2025 AI Capabilities Model names seven capabilities that increase the benefit of AI: a clear
   and communicated AI stance, healthy data ecosystems, AI-accessible internal data, strong version
   control, small batches, a user-centric focus and quality internal platforms. Frequent commits and
@@ -356,7 +360,7 @@ one or two generations old. Several measured sources sell tools that the result 
   segregation of duties ([State of DevOps 2019](https://dora.dev/publications/pdf/state-of-devops-2019.pdf))
   (M, survey; L). DORA's change-approval guidance adds: send high-risk changes to more review instead
   of giving every change the same process, make the normal process fast enough for emergencies, and
-  confirm the approach with the compliance function
+  give the change advisory board a strategic role in coordination and business trade-offs
   ([DORA change approval](https://dora.dev/capabilities/streamlining-change-approval/)) (L).
 - `UNVERIFIED`, secondary only: in the 2024 DORA clusters, medium performers had a lower change fail
   rate than high performers ([Octopus](https://octopus.com/blog/2024-devops-performance-clusters))
@@ -410,22 +414,22 @@ one or two generations old. Several measured sources sell tools that the result 
   date ([METR 2025](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)) (M).
 - METR's update (24 February 2026): 57 developers and more than 800 tasks; estimates of −18% (CI −38%
   to +9%) for returning developers and −4% (CI −15% to +9%) for new ones, where negative means faster
-  with AI. METR calls the data unreliable: developers refused to work without AI, held back 30–50% of
-  tasks and ran agents at the same time ([METR 2026](https://metr.org/blog/2026-02-24-uplift-update/))
+  with AI. METR calls the data unreliable: fewer developers were willing to work without AI, 30–50% of
+  the developers surveyed chose not to submit some tasks, and some ran several agents at the same time ([METR 2026](https://metr.org/blog/2026-02-24-uplift-update/))
   (M, weak by METR's own account).
 - A Google randomized trial (October 2024) of 96 engineers on one enterprise task found AI features
   cut the time by about 21%, with a wide confidence interval
-  ([arXiv 2410.12944](https://arxiv.org/abs/2410.12944)) (M; read in a search result only).
+  ([arXiv 2410.12944](https://arxiv.org/abs/2410.12944)) (M).
 - Echoes of AI (v3, 26 February 2026), 151 participants: in phase 1, AI use went with a 30.7% median
   time cut; in the randomized phase 2, other developers changed the AI-assisted code with no
   significant change in time or quality ([arXiv 2507.00788](https://arxiv.org/abs/2507.00788)) (M).
 
 **Quality, complexity and security of agent-written code.**
 
-- He et al. (v3, 26 January 2026), a difference-in-differences study of 807 repositories that adopted
+- He et al. (v3, 26 January 2026), a difference-in-differences study of 806 repositories that adopted
   Cursor against 1,380 matched ones: velocity rose sharply and did not last; static-analysis warnings
   and complexity rose and stayed up and explain much of the later slow-down. The authors call quality
-  assurance the main bottleneck ([arXiv 2511.04427](https://arxiv.org/abs/2511.04427)) (M,
+  assurance a major bottleneck ([arXiv 2511.04427](https://arxiv.org/abs/2511.04427)) (M,
   observational, open source).
 - GitClear 2026, 623M changes from 2023 to 2026: duplicated blocks up 81%, copy and paste within a
   commit up 41%, two-week churn up 15%, cross-file calls down 35%. `UNVERIFIED`: the page returned
@@ -458,8 +462,8 @@ one or two generations old. Several measured sources sell tools that the result 
   more files and failed CI more often. Reasons for rejection: no reviewer engagement, duplicates,
   unwanted features and agent misalignment ([arXiv 2601.15195](https://arxiv.org/abs/2601.15195))
   (M).
-- 22–29% of 128k GitHub projects show agent traces, likely a lower bound, and agent commits are
-  larger than human ones ([arXiv 2601.18341](https://arxiv.org/abs/2601.18341)) (M).
+- 22–29% of 128k GitHub projects show agent traces (a conservative and a high estimate; the authors
+  place the true rate between them), and agent commits are larger than human ones ([arXiv 2601.18341](https://arxiv.org/abs/2601.18341)) (M).
 - Agarwal et al. (8 July 2026): on GitHub, agent pull requests are reviewed less, discussed less and
   merged faster, but the direction of these trends reverses under other defensible analysis choices.
   Their theory, built from 3,100 practitioner documents, places review as the control point that
@@ -479,9 +483,10 @@ one or two generations old. Several measured sources sell tools that the result 
 
 **Surveys and maker telemetry.**
 
-- Stack Overflow 2025: 84% use or plan to use AI; trust in accuracy fell to about 29–33%; the top
-  frustration is answers that are "almost right"; about 31% use agents. `UNVERIFIED`: read through
-  search results only
+- Stack Overflow 2025, in its results post: 80% of developers use AI tools in their workflows; trust
+  in the accuracy of AI fell from 40% to 29%; the top frustration, cited by 45%, is AI solutions that
+  are "almost right"; 52% say agents have affected how they work. The figures of 84% who use or plan
+  to use AI and about 31% who use agents are `UNVERIFIED` (search results only)
   ([Stack Overflow](https://stackoverflow.blog/2025/07/29/developers-remain-willing-but-reluctant-to-use-ai-the-2025-developer-survey-results-are-here))
   (M, survey).
 - Fast and Spurious (v2, 5 April 2026), 415 practitioners: heavy AI users report faster work, offset
@@ -493,8 +498,8 @@ one or two generations old. Several measured sources sell tools that the result 
   ([Anthropic](https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic)) (M,
   vendor).
 - Anthropic Economic Index (28 April 2025): 79% of Claude Code conversations are automation against
-  49% on Claude.ai; startups are about 33% of Claude Code use and enterprises 13–24% (the page gives
-  both figures) ([Anthropic](https://www.anthropic.com/research/impact-software-development)) (M,
+  49% on Claude.ai; in a preliminary analysis, about 33% of Claude Code conversations served
+  start-up work and 13% enterprise-relevant applications ([Anthropic](https://www.anthropic.com/research/impact-software-development)) (M,
   vendor).
 - Anthropic's 2026 Agentic Coding Trends Report lists eight trends, among them a change in the
   development lifecycle and scaling human oversight. `UNVERIFIED`: the content is behind a form and
@@ -527,7 +532,8 @@ one or two generations old. Several measured sources sell tools that the result 
 - Context files such as `AGENTS.md` usually did not raise coding-agent task success and raised
   inference cost by over 20%, for files written by models and by developers. The agents followed the
   instructions, but repository overviews did not help; the authors say such files help for
-  non-standard practices and recommend only requirements that the agent cannot infer (Gloaguen et
+  non-standard practices, and that files written by people should hold only instructions that the
+  README does not already give (Gloaguen et
   al., ICLR 2026, v3 29 September 2026, [arXiv 2602.11988](https://arxiv.org/abs/2602.11988)) (M).
 
 ## 3. What coding agents change at each stage (MONITOR)
@@ -553,8 +559,8 @@ one or two generations old. Several measured sources sell tools that the result 
   cause Claude to ignore your actual instructions!"
   ([Anthropic](https://code.claude.com/docs/en/best-practices)) (L).
 - Codex joins `AGENTS.md` files from the repository root down to the working directory, and the
-  nearer file wins; content past a size cap (`project_doc_max_bytes`, default 32 KiB) is dropped
-  without a warning. The page leaves format and lint rules to CI
+  nearer file wins; Codex stops adding files once their combined size reaches a cap
+  (`project_doc_max_bytes`, default 32 KiB)
   ([OpenAI](https://learn.chatgpt.com/docs/agent-configuration/agents-md)) (L). OpenAI's
   best-practice guide says to add a rule only after a repeated mistake, keep the file short, put task
   detail in other files, and reference a `code_review.md` for consistent review
@@ -685,8 +691,8 @@ one or two generations old. Several measured sources sell tools that the result 
   ([GitHub changelog](https://github.blog/changelog/2026-09-01-copilot-code-review-can-now-approve-pull-requests))
   (L). [review.md](review.md) §8 covers which AI reviewers can count as an approval.
 - Since 7 August 2026, turning on Code Quality no longer creates a ruleset that requests a Copilot
-  review on every pull request; a team that wants automatic AI review sets the ruleset itself.
-  `UNVERIFIED` at the page; search result only
+  review on every pull request, and the settings it had turned on were turned off; a team that wants
+  automatic AI review sets the ruleset itself
   ([GitHub changelog](https://github.blog/changelog/2026-08-07-github-code-quality-no-longer-adds-copilot-as-a-reviewer))
   (L).
 
@@ -695,8 +701,8 @@ one or two generations old. Several measured sources sell tools that the result 
 - SLSA's Source track: L1 is version control; L2 is continuous, retained history with no force
   pushes; L3 is continuously enforced technical controls on protected branches; L4 needs two trusted
   persons to agree to each change. A trusted person is a human; automation is a separate trusted
-  robot role and never counts toward the two parties
-  ([SLSA source requirements](https://slsa.dev/spec/v1.2/source-requirements)) (S).
+  robot role, which an organization may exempt from the two-party policy. The text does not name AI
+  reviewers ([SLSA source requirements](https://slsa.dev/spec/v1.2/source-requirements)) (S).
 - Scorecard's Code-Review check does not count review by bots, AI and ML bots included, because a
   bot gives no second person who understands the change
   ([Scorecard checks](https://github.com/ossf/scorecard/blob/main/docs/checks.md)) (L).
@@ -715,15 +721,16 @@ one or two generations old. Several measured sources sell tools that the result 
   ([OpenAI](https://learn.chatgpt.com/guides/best-practices)) (L, a claim with no method).
 - Anthropic advises a writer and reviewer split, with a fresh-context subagent that reviews the diff
   against the plan and reports only gaps in correctness or requirements, because a reviewer asked for
-  gaps finds some and this causes over-engineering
+  gaps usually reports some, and chasing every finding leads to over-engineering
   ([Anthropic](https://code.claude.com/docs/en/best-practices)) (L).
 - Jules has a critic that reviews each patch before submission (August 2025). `UNVERIFIED` at the
   page; search result only
   ([Google Developers Blog](https://developers.googleblog.com/en/meet-jules-sharpest-critic-and-most-valuable-ally/))
   (L).
-- GitHub says to review an agent pull request as a teammate's
+- That GitHub says to review an agent pull request as a teammate's is `UNVERIFIED`: the cited page
+  did not state it on 2026-10-15
   ([GitHub](https://docs.github.com/en/copilot/tutorials/coding-agent/get-the-best-results)) (L).
-- Google Cloud's office of the CTO (29 April 2026): review is now the constraint; split agent work
+- Google Cloud's office of the CTO (28 April 2026): review is now the constraint; split agent work
   into chunks a person can review, put people on architecture rather than style, add an AI summary
   and risk note to each pull request, and watch for approval fatigue. "AI eliminated the code
   production bottleneck."
@@ -834,8 +841,7 @@ Evaluations as a CI gate appear in the sources only for products that have model
   [push protection](https://docs.github.com/en/code-security/secret-scanning/introduction/about-push-protection))
   (L).
 - Since 15 August 2025, an Actions policy can require every action to be pinned to a full commit SHA,
-  and an unpinned action then fails the workflow; seen in search results only, detail `UNVERIFIED`
-  at the page
+  and an unpinned action then fails the workflow
   ([GitHub changelog](https://github.blog/changelog/2025-08-15-github-actions-policy-now-supports-blocking-and-sha-pinning-actions/))
   (L). Since 28 October 2025, immutable releases are generally available: tags and assets cannot
   change after publication, and each release gets a signed attestation
@@ -938,7 +944,7 @@ text could not be extracted; only its tables were read.
 - Most products may use self-assessment (module A). Important class I products may self-assess only
   with harmonised standards or a certification scheme; class II and critical products need a third
   party. Free software in classes I and II may self-assess if its technical documentation is public.
-  The Commission issued non-binding guidance on 27 July 2026
+  The Commission published practical guidance on 27 July 2026
   ([Commission summary](https://digital-strategy.ec.europa.eu/en/policies/cra-summary),
   [Commission CRA page](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act), last
   updated 7 September 2026) (S).
@@ -946,8 +952,8 @@ text could not be extracted; only its tables were read.
 **EU AI Act, where it reaches development practice.**
 
 - Article 4 (AI literacy) has applied since 2 February 2025 to providers and deployers of AI systems.
-  As amended by the Digital Omnibus, it asks them to take measures for their staff's AI literacy "to
-  their best extent" and no longer requires a set level
+  As amended by the Digital Omnibus, it asks them to take measures to support the development of
+  their staff's AI literacy, and says it does not require them to guarantee any specific level
   ([Article 4](https://artificialintelligenceact.eu/article/4/), consolidated text on an unofficial
   site) (S, unofficial copy).
 - A deployer is anyone who uses an AI system under its authority, except for personal
@@ -970,10 +976,11 @@ text could not be extracted; only its tables were read.
 
 **SOC 2 and ISO/IEC 27001.**
 
-- SOC 2 is an examination that a CPA performs and reports on; AICPA does not call it a certification,
-  and its guide is titled "Examination of Controls at a Service Organization"
+- AICPA describes SOC as a suite of services that CPAs provide, with assurance reports on a service
+  organization's controls; the cited URL now redirects to that page
   ([AICPA](https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2))
-  (S). CC8.1 is in §4.
+  (S). That AICPA does not call SOC 2 a certification, and the title of its guide, are `UNVERIFIED`
+  at that page. CC8.1 is in §4.
 - ISO/IEC 27001:2022 Annex A has the controls 5.3 (segregation of duties), 8.4 (access to source
   code), 8.25 (secure development life cycle), 8.31 (separation of development, test and production)
   and 8.32 (change management); the current edition and any 2024 amendment are `UNVERIFIED` at
@@ -985,8 +992,8 @@ text could not be extracted; only its tables were read.
 
 **Safety-critical and medical lifecycles.**
 
-- The FDA's final guidance on computer software assurance for production and quality system software
-  (current version February 2026) is risk-based and puts more rigour where risk is higher
+- The FDA's final guidance on computer software assurance for production and quality management
+  system software (current version February 2026) is risk-based and puts more rigour where risk is higher
   ([FDA](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/computer-software-assurance-production-and-quality-management-system-software))
   (S). `UNVERIFIED`, secondary only: it divides functions into "high process risk" and "not high
   process risk".
@@ -1017,8 +1024,9 @@ text could not be extracted; only its tables were read.
 
 **Guidance on AI coding agents in a controlled lifecycle.**
 
-- ENISA's draft Technical Advisory on AI-assisted software development (version 0.4, September 2026;
-  feedback was reported to close on 15 October 2026) maps AI-assisted activities onto lifecycle stages
+- ENISA's draft Technical Advisory on AI-assisted software development (September 2026; the version
+  number 0.4 and a feedback close on 15 October 2026 are `UNVERIFIED`, as the body text could not be
+  extracted) maps AI-assisted activities onto lifecycle stages
   and names governance risks: unclear accountability, uncontrolled autonomy, weak traceability,
   insufficient review capacity and unsupported security claims
   ([ENISA draft](https://www.enisa.europa.eu/sites/default/files/2026-09/ENISA%20Technical%20Advisory-AI-assisted-software-development-draft.pdf))
@@ -1033,19 +1041,19 @@ text could not be extracted; only its tables were read.
 **Claims that a template or a repository setting cannot support.** The sources above show why each
 of these is outside what a template, a workflow file or a repository setting can establish:
 
-1. A SOC 2 status. SOC 2 is a CPA's examination of an organization's controls, not a certification,
-   and a repository has none (AICPA, above).
+1. A SOC 2 status. SOC 2 is a CPA's report on an organization's controls, and a repository has
+   none (AICPA, above).
 2. ISO/IEC 27001 certification or compliance. Certification is of an organization's ISMS, by an
    accredited body (above; read in search summaries).
 3. CRA conformity, CE readiness or meeting Annex I. Conformity is the manufacturer's assessment and
-   declaration, sometimes with a notified body. Delivery "without known exploitable vulnerabilities"
-   is not something a template can know (CRA, above).
+   declaration, sometimes with a notified body. Delivery "without any known exploitable
+   vulnerabilities" is not something a template can know (CRA, above).
 4. SSDF conformance or satisfying the attestation form. The SSDF is risk-based and gives examples,
    not a prescribed method, and an attestation is the producer's own signed statement (§6, above).
 5. A SLSA level as such. Build levels belong to a build platform and Source levels to a source
    control system; GitHub documents its artifact attestations as Build L2 (§6).
-6. That an AI review counts as code review, or that an agent is the second reviewer. SLSA and
-   Scorecard say it does not (§4).
+6. That an AI review counts as code review, or that an agent is the second reviewer. Scorecard says
+   it does not, and SLSA's two-party review counts only trusted persons, who are human (§4).
 7. Segregation of duties with one maintainer, or with an admin token in the agent's reach. Scorecard
    calls required review infeasible with one participant, and admin permissions bypass branch
    protection unless bypassing is disallowed (§1, §4).
