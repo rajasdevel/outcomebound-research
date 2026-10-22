@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this research, please cite it as below. When a decision rests on one claim, cite the commit as well as the path."
 title: "outcomebound-research"
-abstract: "Dated, sourced research about language models, the providers that serve them, the coding harnesses that run them and the practices around them, for anyone who uses these models."
+abstract: "Dated, sourced research about language models, the providers that serve them, the coding harnesses that run them, the software factories built from them and the practices around them, for anyone who uses these models."
 type: dataset
 authors:
   - alias: "rajasdevel"
@@ -12,4 +12,5 @@ keywords:
   - large language models
   - coding agents
   - agent harnesses
+  - software factories
   - research ledger
