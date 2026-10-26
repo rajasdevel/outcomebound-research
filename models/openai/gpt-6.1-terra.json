@@ -1,0 +1,166 @@
+{
+  "id": "gpt-6.1-terra",
+  "name": "GPT-6.1 Terra",
+  "maker": "OpenAI",
+  "family": "GPT-6",
+  "class": "GPT Terra",
+  "generation": "6.1",
+  "released": "2026-10-26",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses, Chat Completions without tools, Batch)",
+    "ChatGPT Work",
+    "Codex",
+    "OpenRouter (catalog listing; account access not tested)"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.0,
+    "output": 5.0,
+    "cached_input": 0.05,
+    "notes": "OpenAI standard price per million tokens through 272K input; 30-minute cache write $1.25 and 12-hour write $2.50; above 272K the full request costs 2x input and cache and 1.5x output; Batch and Flex half price, Fast 2x; regional processing adds 10% where available [model] [caching]"
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 50.3,
+      "setting": "max; launch report does not name harness",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "launch",
+      "read": "2026-10-27"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/latest-model"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+  "sources": [
+    {
+      "id": "model",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "guide",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "caching",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "selection",
+      "url": "https://developers.openai.com/api/docs/guides/model-selection",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "work-codex",
+      "url": "https://learn.chatgpt.com/docs/models",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "system",
+      "url": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "launch",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra/",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-catalog",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-regions",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-models",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openrouter",
+      "url": "https://openrouter.ai/openai/",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-27",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): independent result not verified",
+    "Terminal-Bench 4.0: independent leaderboard result not verified; the maker report does not name the harness",
+    "Artificial Analysis Intelligence Index: independent result not verified",
+    "Artificial Analysis Coding Agent Index: independent result not verified",
+    "METR 50% time horizon: independent result not verified",
+    "Cloud provider availability and pricing: Microsoft Foundry and Amazon Bedrock availability, regions and prices not established by the sources checked; a listing is not proof of account access"
+  ]
+}

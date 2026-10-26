@@ -31,6 +31,8 @@ OpenRouter does not host models itself in the sense of a lab: each model is serv
 
 Catalogue entries carry the fields an integrator needs to select a route: `context_length`, `supported_parameters`, `pricing`, input and output modalities, the top provider's own limits and an optional `expiration_date` for a model being retired. Filters on the models page and the API cover output type (text, image, video, audio, embeddings) and supported parameters. [models]
 
+**GPT-6.1 Terra [as-of 2026-10-27].** OpenRouter's OpenAI catalog lists the model at $1 input and $5 output per million tokens, and a batch listing at $0.50 and $2.50. These are catalog figures; route-specific terms and account access were not tested. L [terra-oct27].
+
 ## API surface
 
 - **Protocols.** The primary surface is OpenAI-compatible: `POST /api/v1/chat/completions` at `https://openrouter.ai/api/v1`, usable with the OpenAI SDK by changing the base URL. A Responses-style endpoint is documented as a drop-in alternative; it is stateless, and a request that sets `store: true` or `previous_response_id` is rejected. OpenRouter also accepts input in the Anthropic Messages format: its Claude Code guide sets `ANTHROPIC_BASE_URL` to `https://openrouter.ai/api` so that Claude Code talks to it in its own protocol, with no local proxy. [quick, resp, cc]
@@ -92,3 +94,7 @@ OpenRouter states that it passes through each provider's price with no markup on
 | resp | https://openrouter.ai/docs/api-reference/responses/overview | L | 2026-10-03 |
 | cc | https://openrouter.ai/docs/guides/coding-agents/claude-code-integration | L | 2026-10-03 |
 | faq | https://openrouter.ai/docs/faq | L | 2026-10-03 |
+
+Partial check, read 2026-10-27 (L):
+
+- [terra-oct27] <https://openrouter.ai/openai/>.

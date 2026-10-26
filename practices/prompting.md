@@ -400,7 +400,7 @@ The pattern: closed APIs reject or ignore sampling controls, and open-weight mak
 | Claude Opus 5 to 5.5 | Thinking cannot be disabled. Forced tool use returns an error. The default effort falls from high to medium. | [cl-effort] [cl-o55] |
 | Claude Opus 4.8 to 5 | Thinking is on by default. Replies, narration and files run longer. | [cl-o5] |
 | GPT-5.6 to GPT-6 | `none` effort maps to `low` on Astra. Tools need the Responses API. Sampling parameters go. Lists and Markdown are the default style. | [oa-latest] |
-| GPT-5.5 to GPT-5.6 | Replies are terser. Cache writes cost 1.25 times input. Persisted reasoning is the default. | [oa-g56] [oa-cache] |
+| GPT-5.5 to GPT-5.6 | Replies are terser. Default 30-minute cache writes cost 1.25 times input; supported Responses requests can select 12-hour writes at 2.5 times input [as-of 2026-10-27] [oa-cache-oct27]. Persisted reasoning is the default. | [oa-g56] [oa-cache] |
 | Gemini general text models: 2.5 to 3.x | `thinking_level` replaces `thinking_budget`. Remove `candidate_count`. Test PDF and video token use. | [g-35] |
 | Gemini Flash text models: 3.5 to 3.6 and later | Sampling parameters are deprecated. A prefilled model turn returns an error. The `minimal` level fails on 3.7 and 3.8 Flash. | [g-latest-arch] [g-latest] |
 | GLM-5.2 to 5.3 | A request to disable thinking fails. Effort accepts only low, high and max. | [GLM-5.3](../models/zai/glm-5.3.md#migrating-from-the-previous-generation) |
@@ -482,3 +482,5 @@ Every source below was read on 2026-10-03 unless another date is given. Kinds: L
 | cur-tok | https://cursor.com/blog/improved-token-efficiency | L |
 | cur-rules | https://cursor.com/docs/rules.md | L |
 | aa-astra | https://artificialanalysis.ai/models/gpt-6-astra, and the pages of the same name that end in -low, -medium and -high | M |
+
+- [oa-cache-oct27] OpenAI, prompt caching, read 2026-10-27 (L): <https://developers.openai.com/api/docs/guides/prompt-caching>.

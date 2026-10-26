@@ -56,12 +56,12 @@ about half that model's token price, and it is one of the three models in OpenAI
 | Released | 2026-09-22 |
 | Status | ga |
 | Weights | closed |
-| Access | OpenAI API (Responses, Chat Completions, Batch); ChatGPT Work; Codex; Microsoft Foundry; Amazon Bedrock; OpenAI Decisions API (public beta; text/image typed decisions) [as-of 2026-10-09] [openai-decisions-oct09] |
+| Access | OpenAI API (Responses, Chat Completions, Batch); ChatGPT Work; Codex; Microsoft Foundry; Amazon Bedrock; OpenAI Decisions API (generally available; typed decisions) [as-of 2026-10-27] [openai-decisions-oct27] |
 | Context window | 1050k tokens |
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: none, low, medium, high, xhigh, max (default medium) |
-| Price | $0.1 in / $0.5 out per Mtok; cached input $0.01; list price, standard tier, prompts up to 272K input tokens; cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09] |
+| Price | $0.1 in / $0.5 out per Mtok; cached input $0.01; list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27] |
 | Key benchmarks | Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 12.6 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run): 15.2 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Intelligence Index: 38 (max (index v4.3.2), independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Artificial Analysis Intelligence Index: 35 (xhigh (index v4.3.2), independent) [aa-model-gpt-6-luna-xhigh](https://artificialanalysis.ai/models/gpt-6-luna-xhigh); Artificial Analysis Intelligence Index: 33 (high (index v4.3.2), independent) [aa-model-gpt-6-luna-high](https://artificialanalysis.ai/models/gpt-6-luna-high); Artificial Analysis Intelligence Index: 30 (medium (index v4.3.2), independent) [aa-model-gpt-6-luna-medium](https://artificialanalysis.ai/models/gpt-6-luna-medium); Artificial Analysis Intelligence Index: 22 (low (index v4.3.2), independent) [aa-model-gpt-6-luna-low](https://artificialanalysis.ai/models/gpt-6-luna-low); Artificial Analysis Coding Agent Index: 41 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents) |
 | Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 76.7 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); AA-LCR v1.1 (long-context reasoning, percent): 83.3 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna) |
 | Prompting guides | [developers.openai.com/api/docs/guides/latest-model](https://developers.openai.com/api/docs/guides/latest-model); [developers.openai.com/api/docs/guides/reasoning](https://developers.openai.com/api/docs/guides/reasoning) |
@@ -154,14 +154,7 @@ about half that model's token price, and it is one of the three models in OpenAI
   classification and structured summaries as Luna's intended uses. Schema limits and refusal handling are
   in the README and the structured-outputs guide [openai-structured-outputs] [codex-models].
 
-**Decisions API [as-of 2026-10-09].** In public beta since 2026-10-06, `/v1/decisions` uses
-`gpt-6-luna` to return `predicate`, `choice` or `score` answers from text and images. It can also
-return a refusal. This is distinct from generating a custom JSON object or requesting a tool call,
-which use Responses. The decision guide says about 10x faster than Responses; that is OpenAI's
-claim, without a workload or independent comparison in the guide. The input rate is $0.10 per Mtok;
-there is no separate cache-read, cache-write or output charge. This does not make input tokens free.
-Long-context and regional multipliers apply.
-L [openai-decisions-oct09]. Details and comparison limits are in
+**Decisions API [as-of 2026-10-27].** Generally available since 2026-10-22, `/v1/decisions` uses `gpt-6-luna` to return `predicate`, `choice` or `score` answers from text, images and JSON; it can refuse. It supports up to 400 questions and caching shared input. OpenAI claims about 10x faster than Responses, without a workload or independent comparison in the guide. Uncached input costs $0.10 per Mtok; cache reads and writes use standard Luna cache rates, and output is not charged. Long-context and regional multipliers apply. L [openai-decisions-oct27] [openai-changelog-oct27]. Details and comparison limits are in
 [decision models](../../practices/decision-models.md).
 
 ### Images, audio, other inputs
@@ -285,6 +278,8 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement.
 Partial correction sources, read 2026-10-09 (L):
 
 - [openai-decisions-oct09] <https://developers.openai.com/api/docs/guides/decisions>.
+- [openai-decisions-oct27] <https://developers.openai.com/api/docs/guides/decisions> (L, read 2026-10-27).
+- [openai-changelog-oct27] <https://developers.openai.com/api/docs/changelog> (L, read 2026-10-27).
 - [openai-decisions-ref-oct09] <https://developers.openai.com/api/reference/python/resources/decisions/methods/create>.
 - [openai-model-luna-oct09] <https://developers.openai.com/api/docs/models/gpt-6-luna>.
 

@@ -40,6 +40,8 @@ Two catalogue categories decide who supports and bills a model (L). Models sold 
 - **Fireworks on Foundry.** Microsoft's Fireworks page (updated 2026-10-02) lists catalogue models with `FW-` ids. Pay-per-token: [Kimi K3](../models/moonshot/kimi-k3.md) (Global Standard), [GLM-5.3](../models/zai/glm-5.3.md), [GLM-5.3-Flash](../models/zai/glm-5.3-flash.md) (Global Standard), [MiniMax M3](../models/minimax/MiniMax-M3.md), [Nemotron 3 Ultra](../models/other/nemotron-3-ultra.md) (NVFP4), [DeepSeek V4 Pro](../models/deepseek/deepseek-v4-pro.md), V4 Flash 0731, [V4.1 Flash](../models/deepseek/deepseek-flash.md) (Global Standard), GLM-5.2 and Nemotron 3.5 Lightning; Kimi K2.6, K2.7 Code and [Inkling](../models/other/inkling.md) had pay-per-token retiring on 2026-09-25 and keep provisioned throughput only. Provisioned throughput only: [Gemma 4 31B](../models/google/gemma-4-31b-it.md) and [26B A4B](../models/google/gemma-4-26b-a4b-it.md), [gpt-oss-120b](../models/openai/gpt-oss-120b.md) and 20b, several Qwen3.5 and Qwen3.6 sizes, MiniMax M2.5, older Kimi, DeepSeek and GLM builds and others. Whether the unversioned "DeepSeek V4 Pro" here is the 0813 build is not stated.
 - **Not found on Microsoft's lists:** Qwen3.8, Gemini models and Gemma 4 sizes other than 31B and 26B A4B.
 
+**GPT-6.1 Terra [as-of 2026-10-27].** Microsoft's sold-by-Azure model and region pages checked here do not list GPT-6.1 Terra. Its deployment availability, regions and Azure pricing remain UNVERIFIED; an absent listing does not establish that a deployment is unavailable. Microsoft's prompt-cache page still documents `30m` as the only TTL for its GPT-5.6-and-later route, unlike the `12h` option on OpenAI's direct Responses API. L [terra-catalog-oct27] [terra-regions-oct27] [cache-oct27].
+
 ## API surface
 
 - **One OpenAI-shaped endpoint for most models.** `https://<resource>.openai.azure.com/openai/v1/` takes the deployment name in the `model` field, with no `api-version` query parameter. Microsoft says the Responses API works with Azure OpenAI models and with sold-by-Azure models that support it (DeepSeek, Llama and Grok are named); a model that does not support it returns 400 and takes Chat Completions instead. A Foundry project endpoint and the `azure-ai-projects` 2.x client wrap the same models. Deployments are aliases: a name, a model and version, a capacity type, a content-filter setting and a rate setting.
@@ -102,3 +104,9 @@ Read 2026-10-03 (class L unless noted):
 - Fireworks on Foundry <https://learn.microsoft.com/en-us/azure/foundry/how-to/fireworks/enable-fireworks-models> (updated 2026-10-02)
 - Anthropic: Claude in Microsoft Foundry <https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry>, the features overview, mid-conversation system messages <https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages> and prompt caching <https://platform.claude.com/docs/en/build-with-claude/prompt-caching>
 - Azure Retail Prices API <https://prices.azure.com/api/retail/prices>, queried for `serviceName eq 'Foundry Models'` in eastus2
+
+Partial checks, read 2026-10-27 (L):
+
+- [terra-catalog-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure>.
+- [terra-regions-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability>.
+- [cache-oct27] <https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/prompt-caching>.

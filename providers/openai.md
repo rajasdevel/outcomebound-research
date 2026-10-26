@@ -31,14 +31,15 @@ OpenAI trains the GPT models and serves them through its own platform at develop
 
 ## Models offered
 
-The catalogue page lists three frontier text and code models as the lead entries: GPT-6 Astra, GPT-6.1 Sol and GPT-6 Luna, each with a 1,050,000-token window (922,000 input at most), 128,000 output tokens and image input. It also lists specialist models (a cybersecurity set and a life-sciences model, GPT-Rosalind), image generation, realtime, transcription and speech models; embeddings and moderation models are linked from the page's navigation. The two open-weight gpt-oss models are not on the catalogue page but have their own model pages. [models, astra, oss120, oss20]
+The GPT-6 guide lists Astra, GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna as current options [as-of 2026-10-27] L [guide-oct27]. Terra has a 1,050,000-token window, 128,000 maximum output tokens and image input [terra-oct27]. The model catalogue also lists specialist models (a cybersecurity set and a life-sciences model, GPT-Rosalind), image generation, realtime, transcription and speech models; embeddings and moderation models are linked from the page's navigation. The two open-weight gpt-oss models are not on the catalogue page but have their own model pages. [models, astra, oss120, oss20]
 
 | Model file | API id | Note |
 | --- | --- | --- |
 | [GPT-6 Astra](../models/openai/gpt-6-astra.md) | `gpt-6-astra` | $10 in, $1 cached, $50 out per Mtok on its page |
 | [GPT-6.1 Sol](../models/openai/gpt-6.1-sol.md) | `gpt-6.1-sol` | listed on the catalogue as near-Astra at lower cost |
-| [GPT-6 Sol](../models/openai/gpt-6-sol.md) | `gpt-6-sol` | has its own page; not among the three lead entries |
-| [GPT-6 Luna](../models/openai/gpt-6-luna.md) | `gpt-6-luna` | the efficient, high-volume model; Decisions beta is also available [as-of 2026-10-09] [decisions-oct09] |
+| [GPT-6.1 Terra](../models/openai/gpt-6.1-terra.md) | `gpt-6.1-terra` | visual reasoning, computer use and writing [as-of 2026-10-27] L [terra-oct27] |
+| [GPT-6 Sol](../models/openai/gpt-6-sol.md) | `gpt-6-sol` | has its own page; not among the current guide's lead entries |
+| [GPT-6 Luna](../models/openai/gpt-6-luna.md) | `gpt-6-luna` | the efficient, high-volume model; Decisions is generally available [as-of 2026-10-27] [decisions-oct27] |
 | [Chat Latest](../models/openai/chat-latest.md) | `chat-latest` | rolling Instant alias; October 7 update has no numbered generation [as-of 2026-10-09] [chat-oct09, changelog-oct09] |
 | GPT-5.6 Sol | `gpt-5.6-sol` | previous generation |
 | [GPT-5.6 Terra](../models/openai/gpt-5.6-terra.md) | `gpt-5.6-terra` | previous generation |
@@ -50,8 +51,8 @@ The lineage, knowledge cutoffs and the effort levels each model accepts are in t
 ## API surface
 
 - **Protocols.** Its own two: Responses (`/v1/responses`) and Chat Completions (`/v1/chat/completions`), plus Batch, Files, embeddings, moderation, image, audio and Realtime endpoints. The Assistants API shut down on 2026-08-26; the replacements are Responses and Conversations. Its entries in the retention table are historical. [as-of 2026-10-09] L [deprecations-oct09, changelog-oct09] The GPT-6 models take Chat Completions, Responses and Batch, and not Realtime, Assistants or fine-tuning. [your-data, astra]
-- **Endpoint limits by model.** In Chat Completions, GPT-6 Astra and GPT-6.1 Sol accept no tools, and GPT-6 Sol and GPT-6 Luna accept tools only with `reasoning_effort: "none"`. Tool calling with reasoning on needs the Responses API. [latest]
-- **Decisions [as-of 2026-10-09].** Public beta at `POST /v1/decisions`, currently only `gpt-6-luna`.
+- **Endpoint limits by model.** In Chat Completions, GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra accept no tools [as-of 2026-10-27] L [guide-oct27], and GPT-6 Sol and GPT-6 Luna accept tools only with `reasoning_effort: "none"`. Tool calling with reasoning on needs the Responses API. [latest]
+- **Decisions [as-of 2026-10-27].** Generally available at `POST /v1/decisions`, currently with `gpt-6-luna`; it supports up to 400 questions and shared-input caching. L [decisions-oct27].
   Shared text/image input is judged through `predicate`, `choice` and `score` questions. It returns
   typed answers, including possible refusals; a generated JSON object or tool request uses Responses
   instead. L [decisions-oct09]. See [decision models](../practices/decision-models.md).
@@ -66,8 +67,8 @@ For a first-party API, parity means differences between endpoints and between Op
 - **Reasoning and effort.** Effort values `low`, `medium`, `high`, `xhigh` and `max` on Astra and 6.1 Sol (no `none`), and the same plus `none` on GPT-6 Sol and Luna. With effort above `none`, `temperature`, `top_p`, `top_logprobs` and `logprobs` must be removed. Summaries are opt-in and the raw reasoning is never returned. The maker README has the persisted-reasoning and `configuration_update` details. [latest]
 - **Tools.** In the Responses API the model page lists web search, file search, image generation, code interpreter, hosted shell, apply patch, skills, computer use, MCP and tool search for Astra. The maker README describes programmatic tool calling, async tool calling and a multi-agent mode; the multi-agent support list does not cover every model. [astra]
 - **Structured output.** `response_format: {type: "json_schema"}` in Chat Completions and `text.format` in Responses constrain output to a schema, and strict mode does the same for function calls. The first request with a new schema pays extra latency, a refusal arrives in a separate `refusal` field instead of schema-shaped text, and the page says some JSON Schema features are unavailable without listing them. Older JSON mode only guarantees valid JSON. [structured]
-- **Caching.** Prompt caching is on the model page's feature list. **[as-of 2026-10-09]** Cached
-  input costs 10 percent of input on most flagship models and 5 percent on GPT-6.1 Sol. The maker
+- **Caching.** Prompt caching is on the model page's feature list. **[as-of 2026-10-27]** Cached
+  input costs 10 percent of input on Astra and Luna and 5 percent on GPT-6.1 Sol and Terra. L [pricing-oct27] The maker
   README records the cache-write, explicit-breakpoint and `ttl` details. L [astra, pricing-oct09]
 - **Batch.** The Batch API covers Responses, Chat Completions, legacy Completions, embeddings, moderation and image generation and edit requests at half price with a 24-hour completion window, up to 50,000 requests and 200 MB per file; output files are deleted 30 days after completion. [batch]
 - **Long context.** 1.05M tokens (922,000 input at most); requests above 272,000 input tokens bill at the long-context rate (see Pricing). [pricing, astra]
@@ -76,13 +77,9 @@ For a first-party API, parity means differences between endpoints and between Op
 
 ## Pricing
 
-Per token with five pricing modes on one pricing page: Standard; Batch and Flex at 50 percent off most models; Fast, which the page says was the renamed Priority processing from 2026-07-30 and which it prices per model (the Astra page gives 2 times the applicable rate); and Ultrafast. **[as-of 2026-10-09]** Ultrafast costs 6 times Standard on both GPT-6 Astra and GPT-6.1 Sol. Sol short-context prices per Mtok are $12 input, $0.60 cached input, $15 cache write and $60 output; long-context prices are $24, $1.20, $30 and $90. L [pricing-oct09, ultrafast-oct09]. On Astra, requests above 272,000 input tokens pay 2 times the input and cached-input rates and 1.5 times the output rate. **[as-of 2026-10-09]** Cached input costs 10 percent of the input rate on most flagship models and 5 percent on GPT-6.1 Sol [pricing-oct09], and cache writes cost extra per model (Astra: $12.50 against $10 input). Regional processing, which the page also calls data residency, adds 10 percent for models released on or after 2026-03-05, and FedRAMP endpoints take the same 10 percent. Tools bill separately: web search $10 per 1,000 calls plus content tokens, file search $0.10 per GB-day (1 GB free) plus $2.50 per 1,000 calls, Hosted Shell and Code Interpreter containers $0.03 to $1.92 per 20-minute equivalent, depending on memory. Eligible container sessions bill per minute with a 5-minute minimum [as-of 2026-10-09] L [pricing-oct09]. The page mentions promotional pricing for GPT-5.6 Sol through 2026-11-21 and lists no general free tier or starter credit. Per-model prices are in the model files. [pricing]
+Per token with five pricing modes on one pricing page: Standard; Batch and Flex at 50 percent off most models; Fast, which the page says was the renamed Priority processing from 2026-07-30 and which it prices per model (the Astra page gives 2 times the applicable rate); and Ultrafast. **[as-of 2026-10-09]** Ultrafast costs 6 times Standard on both GPT-6 Astra and GPT-6.1 Sol. Sol short-context prices per Mtok are $12 input, $0.60 cached input, $15 cache write and $60 output; long-context prices are $24, $1.20, $30 and $90. L [pricing-oct09, ultrafast-oct09]. On Astra, requests above 272,000 input tokens pay 2 times the input and cached-input rates and 1.5 times the output rate. **[as-of 2026-10-27]** Cached input costs 10 percent of input on Astra and Luna and 5 percent on GPT-6.1 Sol and Terra. On supported Responses models, 30-minute writes cost 1.25 times input and 12-hour writes 2.5 times input, as total rates [pricing-oct27, cache-oct27]. Regional processing, which the page also calls data residency, adds 10 percent for models released on or after 2026-03-05, and FedRAMP endpoints take the same 10 percent. Tools bill separately: web search $10 per 1,000 calls plus content tokens, file search $0.10 per GB-day (1 GB free) plus $2.50 per 1,000 calls, Hosted Shell and Code Interpreter containers $0.03 to $1.92 per 20-minute equivalent, depending on memory. Eligible container sessions bill per minute with a 5-minute minimum [as-of 2026-10-09] L [pricing-oct09]. The page mentions promotional pricing for GPT-5.6 Sol through 2026-11-21 and lists no general free tier or starter credit. Per-model prices are in the model files. [pricing]
 
-**Decisions pricing [as-of 2026-10-09].** `/v1/decisions` with GPT-6 Luna costs $0.10 per Mtok of
-input, with no separate cache-read, cache-write or output charge. Input tokens still incur the
-input rate. Long-context input and regional processing
-multipliers apply. This endpoint price does not replace Luna's generative-token pricing.
-L [decisions-oct09].
+**Decisions pricing [as-of 2026-10-27].** `/v1/decisions` with GPT-6 Luna costs $0.10 per Mtok of uncached input. Cache reads and writes use the standard Luna cache rates; output is not charged. Long-context input and regional processing multipliers apply. L [decisions-oct27].
 
 ## Limits and data
 
@@ -95,7 +92,7 @@ L [decisions-oct09].
   limits are 5,000/10,000/15,000 RPM and 1/4/40 million TPM. Ultrafast has a separate pool: Astra
   0.5/1/5 million TPM, Sol 1/4/40 million TPM. Organization limits and response headers are the
   operational source for a caller. L [rate-oct09, changelog-oct09, ultrafast-oct09].
-- **Regions and residency.** Data at rest can be kept in 12 regions (including the US, Europe, Australia, Canada, Japan, India, Singapore, South Korea, the UK and the UAE); regional processing, not only storage, is offered in the US and Europe, and in the UAE for some models only. Non-US regions need an approved abuse-monitoring control. **[as-of 2026-10-09]** Fast mode supports EU data residency on GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, and not on Astra. Ultrafast supports US residency or global processing on Astra, and US/EU residency or global processing on GPT-6.1 Sol. Eligibility and contractual requirements still apply. L [fast-oct09, ultrafast-oct09]
+- **Regions and residency.** Data at rest can be kept in 12 regions (including the US, Europe, Australia, Canada, Japan, India, Singapore, South Korea, the UK and the UAE); regional processing, not only storage, is offered in the US and Europe, and in the UAE for some models only. Non-US regions need an approved abuse-monitoring control. **[as-of 2026-10-27]** Fast mode supports EU data residency on GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna, and not on Astra or GPT-6 Sol L [guide-oct27]. Ultrafast supports US residency or global processing on Astra, and US/EU residency or global processing on GPT-6.1 Sol. Eligibility and contractual requirements still apply. L [fast-oct09, ultrafast-oct09]
 - **Retention and training.** Data sent to the API is not used for training unless the customer opts in. Abuse-monitoring logs are kept 30 days by default on Chat Completions, Responses, Files, Batch and Realtime; Files and Batch outputs also persist until deleted. The retention table still has entries for Assistants logs and state, but that API is retired [as-of 2026-10-09] L [deprecations-oct09, changelog-oct09]. Zero Data Retention and Modified Abuse Monitoring both need prior approval; ZDR also forces `store` to false. [your-data]
 
 ## Notes for agents and harnesses
@@ -137,3 +134,8 @@ Partial correction sources:
 | changelog-oct09 | https://developers.openai.com/api/docs/changelog | L | 2026-10-09 |
 | fast-oct09 | https://developers.openai.com/api/docs/guides/fast-mode | L | 2026-10-09 |
 | deprecations-oct09 | https://developers.openai.com/api/docs/deprecations | L | 2026-10-09 |
+| terra-oct27 | https://developers.openai.com/api/docs/models/gpt-6.1-terra | L | 2026-10-27 |
+| decisions-oct27 | https://developers.openai.com/api/docs/guides/decisions | L | 2026-10-27 |
+| guide-oct27 | https://developers.openai.com/api/docs/guides/latest-model | L | 2026-10-27 |
+| pricing-oct27 | https://developers.openai.com/api/docs/pricing | L | 2026-10-27 |
+| cache-oct27 | https://developers.openai.com/api/docs/guides/prompt-caching | L | 2026-10-27 |

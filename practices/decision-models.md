@@ -124,10 +124,8 @@ task cut median time 25% (9.450 s to 7.092 s), and the authors say three pairs s
 
 **DM9. The class became a market in two weeks.** OpenAI announced a Decisions API in limited preview
 at DevDay on 2026-09-29 [chk-openai-forum], a week after a practitioner argued that OpenAI could
-replicate Jev quickly if it could replicate the training [chk-arcturus]. **[as-of 2026-10-09]** The
-API entered public beta on October 6 with `gpt-6-luna`, and its official guide now documents text
-and image input, typed answers and endpoint pricing [chk-openai-decisions-oct09]
-[chk-openai-changelog-oct09]. Cloudflare released open-weight Clef models with a Jev-compatible API
+replicate Jev quickly if it could replicate the training [chk-arcturus]. The
+API entered public beta on October 6 with `gpt-6-luna`, and became generally available on October 22. Its guide documents text, images and JSON, typed answers and endpoint pricing [as-of 2026-10-27] [chk-openai-decisions-oct27] [chk-openai-changelog-oct27]. Cloudflare released open-weight Clef models with a Jev-compatible API
 on 2026-10-01 [chk-cloudflare-clef]; AWS released Strands Decider 2B the same day [chk-strands]; open
 replicas such as Kev ship under Apache-2.0 [chk-kev-release]. L; the practitioner forecast is A.
 
@@ -289,7 +287,7 @@ Read 2026-10-04. Vendor claims are L; every benchmark below is run by the vendor
 | Offer | Maker | Weights | Released | Notes |
 | --- | --- | --- | --- | --- |
 | Jev 1.13 | TypeSafe AI | closed | 2026-09-15, early access | Text only; served by TypeSafe, OpenRouter, Vercel AI Gateway, Pydantic AI Gateway; [file](../models/typesafe/jev-1.13.0.md) [chk-ts-models] |
-| Decisions API | OpenAI | closed | 2026-10-06, public beta [as-of 2026-10-09] | `gpt-6-luna`; text and image input; predicate, choice and score; $0.10 per M input with no separate cache-read, cache-write or output charge; input remains billed, plus applicable long-context/regional multipliers [chk-openai-decisions-oct09] [chk-openai-changelog-oct09] |
+| Decisions API | OpenAI | closed | 2026-10-22, generally available [as-of 2026-10-27] | `gpt-6-luna`; text, images and JSON; predicate, choice and score; $0.10 per M uncached input, standard Luna cache read and write rates, no output charge; long-context and regional multipliers apply [chk-openai-decisions-oct27] [chk-openai-changelog-oct27] |
 | Clef (27B) and Clef-flash (9B) | Cloudflare | open, Apache-2.0 | 2026-10-01 | LoRA and a routing head on Qwen bases; image input; 65,536 tokens; Clef $0.24 per M input on Workers AI; claims full Jev-API compatibility [chk-cloudflare-clef] [chk-cloudflare-model] |
 | Strands Decider 2B | AWS (Strands Labs) | open, Apache-2.0 | 2026-10-01 | LoRA on Qwen3.5-2B-Base; local server binds to localhost with no authentication [chk-strands] |
 | Kev 1.0 (0.8B, 4B, 9B, 27B) | an independent open project | open, Apache-2.0 | 2026-10-01 | LoRA adapters on Qwen3.5 bases and full weights on Qwen3.8-27B; text only, English [chk-kev-release]; llama.cpp merged a `/v1/systemone` server for Kev and other open decision models on 2026-10-02 [chk-llama-cpp] |
@@ -315,7 +313,7 @@ the request shape in 25 lines; it calls itself a parody and reports no accuracy,
 calibration comparison [chk-nobodywho]. That the interface is easy to copy and the training is not is
 the view of the launch-thread commenters and of [chk-arcturus] (A).
 
-### OpenAI Decisions [as-of 2026-10-09]
+### OpenAI Decisions [as-of 2026-10-27]
 
 The guide and API reference establish the public interface, not calibration or speed on a caller's
 traffic. `POST /v1/decisions` takes a `model`, shared `input` and named `questions`; only
@@ -324,12 +322,7 @@ traffic. `POST /v1/decisions` takes a `model`, shared `input` and named `questio
 level indices). Choice and score also return confidence. An answer can instead have type `refusal`.
 L [chk-openai-decisions-oct09] [chk-openai-decisions-ref-oct09].
 
-The guide requires inline base64 image data and says hosted HTTP(S) URLs and `file_id` inputs are
-unsupported. The Python reference's Markdown representation instead allows public HTTP(S) image
-URLs and caps images at 128 per request. Both exclude file IDs; the reference also excludes other
-message roles, files, audio, tools and item references. This is a documentation conflict. Live URL
-acceptance was not tested and remains UNVERIFIED. L [chk-openai-decisions-oct09]
-[chk-openai-decisions-ref-md-oct09].
+The current guide permits inline image data or public HTTP(S) image URLs, but not `file_id`. It also permits images in question instructions and JSON input. It supports up to 400 questions per request and caching for shared input. Live behavior was not tested. L [chk-openai-decisions-oct27] [chk-openai-changelog-oct27].
 
 General extraction into a custom JSON schema and function calling use Responses rather than this
 endpoint. Independent questions can share one request; questions that depend on an earlier answer
@@ -392,7 +385,7 @@ falsified or unscored at its horizon.
 
 - Almost every number here is from a vendor measuring itself or a competitor; there is one
   independent benchmark and one preprint. Small samples throughout (3 pairs, 10 tasks, 100 invoices).
-- OpenAI now documents its public Decisions beta [as-of 2026-10-09]. Independent calibration,
+- OpenAI documents its generally available Decisions API [as-of 2026-10-27] [chk-openai-decisions-oct27]. Independent calibration,
   speed and end-to-end comparisons against other decision APIs were not verified in this update.
 - Whether Jev's separately asked questions are consistent with each other after TypeSafe removed its
   warning.
@@ -400,8 +393,7 @@ falsified or unscored at its horizon.
   differently.
 - Whether any of this improves an end-to-end product outcome, as opposed to a decision accuracy; no
   study read measures that.
-- Re-check after the next Jev version, when OpenAI's Decisions API changes its beta status or
-  interface, or when a second independent benchmark appears.
+- Re-check after the next Jev version, when OpenAI changes the Decisions interface, or when a second independent benchmark appears.
 
 ## Sources
 
@@ -502,6 +494,11 @@ Repositories, at the commits read
   <https://github.com/anishfn/shapeshift/blob/5e24166dcbde6e794f0bd5b1b4bd395aaee5fc19/src/app/api/intent/route.ts>.
 - [chk-llm-typesafe] simonw/llm-typesafe
   <https://github.com/simonw/llm-typesafe/tree/225932cfde461ee6e38ae2b612040c50c086db8c>.
+
+OpenAI general-availability sources, read 2026-10-27 (L):
+
+- [chk-openai-decisions-oct27] <https://developers.openai.com/api/docs/guides/decisions>.
+- [chk-openai-changelog-oct27] <https://developers.openai.com/api/docs/changelog>.
 
 OpenAI public-beta correction sources, read 2026-10-09 (L):
 
