@@ -1,0 +1,155 @@
+{
+  "id": "jev-1.14.0",
+  "name": "Jev 1.14",
+  "maker": "TypeSafe AI",
+  "family": "Jev",
+  "class": "Jev",
+  "generation": "1.14",
+  "released": "2026-10-14",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "TypeSafe API",
+    "Netlify AI Gateway"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "decision"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.042,
+    "output": 0.0,
+    "cached_input": null,
+    "notes": "TypeSafe charges input tokens only ($42 per billion), the same as for jev-1.13.0; output tokens are free; the long-context option costs the same per token; no cache price, batch price or per-question fee is published"
+  },
+  "benchmarks": [
+    {
+      "name": "TypeSafe internal intelligence measure (chart in the Jev 1.14 release post; higher is better)",
+      "score": 60.0,
+      "setting": "jev-1.14.0; jev-1.13.0 scored 58.9 on the same chart; the chart carries a warning not to trust benchmarks",
+      "harness": "TypeSafe's own unpublished measure, compared only with models the post calls open-weight; the post calls it a best guess likely biased towards its own models",
+      "measured_by": "maker",
+      "source": "ts-jev114-charts",
+      "read": "2026-10-28"
+    },
+    {
+      "name": "TypeSafe internal calibration error (chart in the Jev 1.14 release post; lower is better)",
+      "score": 1.6,
+      "setting": "jev-1.14.0; jev-1.13.0 scored 1.8 on the same chart; units not stated",
+      "harness": "TypeSafe's own unpublished measure, as above",
+      "measured_by": "maker",
+      "source": "ts-jev114-charts",
+      "read": "2026-10-28"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.typesafe.ai/primitives",
+    "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
+    "https://docs.typesafe.ai/images.md",
+    "https://docs.typesafe.ai/primitives/box.md"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.typesafe.ai/models",
+  "sources": [
+    {
+      "id": "ts-models",
+      "url": "https://docs.typesafe.ai/models",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-jev114",
+      "url": "https://typesafe.ai/blog/jev-1-14",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-jev114-charts",
+      "url": "https://typesafe.ai/blog/jev-1-14",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-images",
+      "url": "https://docs.typesafe.ai/images.md",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-box",
+      "url": "https://docs.typesafe.ai/primitives/box.md",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-primitives",
+      "url": "https://docs.typesafe.ai/primitives",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-system-one",
+      "url": "https://docs.typesafe.ai/concepts/system-one",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-llms",
+      "url": "https://docs.typesafe.ai/llms.txt",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "netlify-jev114",
+      "url": "https://netlify.com/changelog/typesafe-jev-1-14-0-ai-gateway",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "classmethod",
+      "url": "https://dev.classmethod.jp/en/articles/devio2026-tokyo-decision-model-report/",
+      "read": "2026-10-27",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-28",
+  "unknown": [
+    "context_window: TypeSafe gives 64k tokens per request and 32k per question by default, and 262k for both with the opt-in long-context header, with no exact token count [ts-models]",
+    "max_output: does not apply; Jev returns typed answers (a choice, a probability, a score or a box), not generated tokens",
+    "benchmarks: no independent score for jev-1.14.0 was found; the JevBench page could not be read on 2026-10-27 because it exceeded the fetch size limit",
+    "SWE-Bench Pro (Scale, public V2): does not apply; Jev cannot write code or text",
+    "Terminal-Bench 4.0: does not apply; Jev cannot run an agent loop that produces commands",
+    "Artificial Analysis Intelligence Index: does not apply; the index measures generative models",
+    "Artificial Analysis Coding Agent Index: does not apply; Jev cannot act as a coding agent",
+    "METR 50% time horizon: does not apply; Jev cannot carry out a multi-step task",
+    "pricing_usd_per_mtok.cached_input: no cache price published",
+    "system_card: TypeSafe publishes no system or model card, and its docs index of 2026-10-27 lists a weakness page for jev-1.13 only [ts-llms]",
+    "access: search results list an OpenRouter page for jev-1.14, but the two OpenRouter addresses tried returned 404 on 2026-10-28, so OpenRouter is not recorded",
+    "modalities: image input is a preview behind the TypeSafe-Danger-Zone-Images header and is not called ready for production [ts-images]; the System One concept page still says text only [ts-system-one]",
+    "status: the release arrived as jev-preview, and the post announced that jev-latest would follow a week later [ts-jev114]; on 2026-10-27 the Models page showed both aliases on jev-1.14.0 and called jev-latest the most recent stable official release [ts-models], but TypeSafe has not said that the early access of the class has ended; recorded as preview"
+  ]
+}

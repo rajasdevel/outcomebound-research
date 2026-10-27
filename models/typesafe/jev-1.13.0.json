@@ -19,7 +19,8 @@
   "max_output": null,
   "modalities": {
     "input": [
-      "text"
+      "text",
+      "image"
     ],
     "output": [
       "decision"
@@ -82,6 +83,24 @@
       "measured_by": "third-party-vendor",
       "source": "kev-release",
       "read": "2026-10-04"
+    },
+    {
+      "name": "TypeSafe internal intelligence measure (chart in the Jev 1.14 release post; higher is better)",
+      "score": 58.9,
+      "setting": "jev-1.13.0; jev-1.14.0 scored 60.0 on the same chart; the chart carries a warning not to trust benchmarks",
+      "harness": "TypeSafe's own unpublished measure, compared only with models the post calls open-weight; the post calls it a best guess likely biased towards its own models",
+      "measured_by": "maker",
+      "source": "ts-jev114-charts",
+      "read": "2026-10-28"
+    },
+    {
+      "name": "TypeSafe internal calibration error (chart in the Jev 1.14 release post; lower is better)",
+      "score": 1.8,
+      "setting": "jev-1.13.0; jev-1.14.0 scored 1.6 on the same chart; units not stated",
+      "harness": "TypeSafe's own unpublished measure, as above",
+      "measured_by": "maker",
+      "source": "ts-jev114-charts",
+      "read": "2026-10-28"
     }
   ],
   "prompting_guides": [
@@ -169,11 +188,47 @@
       "read": "2026-10-04",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "ts-models-oct27",
+      "url": "https://docs.typesafe.ai/models",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-jev114",
+      "url": "https://typesafe.ai/blog/jev-1-14",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-images",
+      "url": "https://docs.typesafe.ai/images.md",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-system-one-oct28",
+      "url": "https://docs.typesafe.ai/concepts/system-one",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "ts-jev114-charts",
+      "url": "https://typesafe.ai/blog/jev-1-14",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-04",
   "unknown": [
-    "context_window: TypeSafe gives '64k tokens per request' (state plus every question) and 32k for state plus the longest question, with no exact token count; OpenRouter and Cloudflare list 32K",
+    "context_window: TypeSafe gives '64k tokens per request' (state plus every question) and 32k for state plus the longest question, with no exact token count; OpenRouter and Cloudflare list 32K; on 2026-10-27 the Models page gave 262k for both limits with the opt-in long-context header [ts-models-oct27]",
+    "modalities: image input (recorded on this card on 2026-10-27) is a preview behind the TypeSafe-Danger-Zone-Images header that TypeSafe does not call ready for production [ts-images] [ts-jev114]; the System One concept page still says text only [ts-system-one-oct28]",
     "max_output: does not apply; Jev returns typed answers (a choice, a probability or a score), not generated tokens",
     "SWE-Bench Pro (Scale, public V2): does not apply; Jev cannot write code or text",
     "Terminal-Bench 4.0: does not apply; Jev cannot run an agent loop that produces commands",
@@ -183,6 +238,6 @@
     "pricing_usd_per_mtok.cached_input: no cache price published",
     "system_card: TypeSafe publishes no system or model card; the nearest documents are the Models page and the jaggedness page",
     "released: 2026-09-15 is the early-access announcement; OpenRouter lists jev-1.13 from 2026-09-18",
-    "status: TypeSafe's announcement calls Jev early access, while its Models page calls jev-1.13.0 'the most recent stable, official release'; recorded as preview"
+    "status: TypeSafe's announcement calls Jev early access; on 2026-10-04 the Models page called jev-1.13.0 the most recent stable official release, and on 2026-10-27 it gave that description to jev-latest, which points to jev-1.14.0 [ts-models-oct27]; no deprecation date is set, and TypeSafe intends to give 60 days' warning [ts-jev114]; recorded as preview"
   ]
 }
