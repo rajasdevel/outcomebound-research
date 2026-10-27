@@ -170,7 +170,7 @@ settings; mapping it to a GPT generation remains UNVERIFIED [chat-oct9]. L.
   separate keys can keep separate cache accounting; on earlier models a stable `prompt_cache_key`
   helps routing, with traffic kept to about 15 requests a minute per key and heavier traffic sharded
   across keys.
-- **Lifetime [as-of 2026-10-27].** For supported GPT-5.6 and later Responses models, `prompt_cache_options.ttl` defaults to `30m`; `12h` is also available, including a breakpoint override. These are minimum lifetimes, not deletion deadlines. Earlier models use `prompt_cache_retention`: `in_memory` or, where supported, `24h`. L [openai-cache-oct27].
+- **Lifetime [as-of 2026-10-27].** For supported GPT-5.6 and later Responses models, `prompt_cache_options.ttl` defaults to `30m`; `12h` is also available, including a breakpoint override. These are minimum lifetimes, not guarantees of a cache hit or deletion deadlines. Upgrading valid 30-minute coverage to 12 hours bills a fresh 12-hour write without credit for the earlier write; a 30-minute read does not restart a 12-hour clock. Earlier models use `prompt_cache_retention`: `in_memory` or, where supported, `24h`. L [openai-cache-oct27].
 - **Price [as-of 2026-10-27].** For supported Responses models from GPT-5.6, a 30-minute write costs 1.25× input and a 12-hour write costs 2.5× input; those are total write rates. GPT-5.5 and earlier have no extra write charge. Reads cost 0.1× on Astra and Luna and 0.05× on GPT-6.1 Sol and Terra. L [openai-cache-oct27] [openai-price-oct27]. Input above 272K tokens bills the whole
   request at long-context rates, which on GPT-6 models double the cache rates too. With a write
   premium, a prefix that changes on every request costs more than no cache (inference from the

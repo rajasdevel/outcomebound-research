@@ -33,6 +33,7 @@ sources:
   - https://artificialanalysis.ai/models/
   - https://developers.openai.com/api/docs/guides/deployment-checklist
   - https://rits.shanghai.nyu.edu/ai/openai-launches-gpt-5-6-family-sol-terra-and-luna-reach-general-availability/
+  - https://developers.openai.com/api/docs/models/gpt-6.1-terra
 ---
 
 # GPT-5.6 Terra
@@ -40,9 +41,7 @@ sources:
 GPT-5.6 Terra (`gpt-5.6-terra`) is the middle model of OpenAI's GPT-5.6 family, released on 2026-07-09 with
 Sol and Luna. OpenAI describes it as strong performance at a lower price and as comparable to the mini-class
 models of earlier GPT-5 generations; it is the replacement OpenAI names for the GPT-5 mini snapshot shutting
-down on 2026-12-11. Its price, $2 in and $12 out per million tokens, followed a 20% cut on 2026-07-30. There is
-no GPT-6 Terra, and OpenAI's GPT-6 guide offers Astra, Sol and Luna only, so GPT-5.6 Terra is the latest
-model of its class. The family guidance (prompting guides, effort migration, programmatic tool calling and the GPT-5.6 system-card findings) is in the
+down on 2026-12-11. Its price, $2 in and $12 out per million tokens, followed a 20% cut on 2026-07-30. OpenAI released GPT-6.1 Terra on 2026-10-26 as the next Terra generation [as-of 2026-10-27] L [terra-oct27]. The family guidance (prompting guides, effort migration, programmatic tool calling and the GPT-5.6 system-card findings) is in the
 [OpenAI README](README.md); this file records what differs for Terra.
 
 ## At a glance
@@ -132,7 +131,7 @@ model of its class. The family guidance (prompting guides, effort migration, pro
   request bills at twice the input and cache rates and 1.5 times the output rate
   [openai-model-gpt-5.6-terra].
 - Artificial Analysis's AA-LCR: 83.0% at max [aa-model-gpt-5-6-terra]. Caching follows the GPT-5.6 rules
-  (explicit mode, 1,024-token minimum, 30-minute lifetime, write at 1.25 times input)
+  (explicit mode, 1,024-token minimum and a default 30-minute minimum lifetime, with a 1.25-times-input write rate; Responses also offers 12 hours [as-of 2026-10-27] [cache-oct27])
   [openai-prompt-caching].
 
 ### Structured output
@@ -235,3 +234,6 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement, A secondary.
 - [metr-time-horizons] <https://metr.org/time-horizons/> (M)
 - [aws-card-gpt-5-6-terra] <https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-56-terra.html> (L)
 - [ms-foundry-models] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L)
+
+- [terra-oct27] <https://developers.openai.com/api/docs/models/gpt-6.1-terra> (L, read 2026-10-27).
+- [cache-oct27] <https://developers.openai.com/api/docs/guides/prompt-caching> (L, read 2026-10-27).

@@ -31,7 +31,7 @@ OpenRouter does not host models itself in the sense of a lab: each model is serv
 
 Catalogue entries carry the fields an integrator needs to select a route: `context_length`, `supported_parameters`, `pricing`, input and output modalities, the top provider's own limits and an optional `expiration_date` for a model being retired. Filters on the models page and the API cover output type (text, image, video, audio, embeddings) and supported parameters. [models]
 
-**GPT-6.1 Terra [as-of 2026-10-27].** OpenRouter's OpenAI catalog lists the model at $1 input and $5 output per million tokens, and a batch listing at $0.50 and $2.50. These are catalog figures; route-specific terms and account access were not tested. L [terra-oct27].
+**GPT-6.1 Terra [as-of 2026-10-27].** OpenRouter's model page lists standard rates of $1 input, $0.05 cache read, $1.25 cache write and $5 output per million tokens. Its batch page lists $0.50, $0.025, $0.625 and $2.50 respectively. The page says Terra is not currently available through EU in-region routing. These are catalog figures; route-specific terms and account access were not tested. L [terra-oct27] [terra-batch-oct27].
 
 ## API surface
 
@@ -97,4 +97,5 @@ OpenRouter states that it passes through each provider's price with no markup on
 
 Partial check, read 2026-10-27 (L):
 
-- [terra-oct27] <https://openrouter.ai/openai/>.
+- [terra-oct27] <https://openrouter.ai/openai/gpt-6.1-terra>.
+- [terra-batch-oct27] <https://openrouter.ai/openai/gpt-6.1-terra:batch>.

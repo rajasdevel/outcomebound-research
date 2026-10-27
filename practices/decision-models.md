@@ -322,7 +322,7 @@ traffic. `POST /v1/decisions` takes a `model`, shared `input` and named `questio
 level indices). Choice and score also return confidence. An answer can instead have type `refusal`.
 L [chk-openai-decisions-oct09] [chk-openai-decisions-ref-oct09].
 
-The current guide permits inline image data or public HTTP(S) image URLs, but not `file_id`. It also permits images in question instructions and JSON input. It supports up to 400 questions per request and caching for shared input. Live behavior was not tested. L [chk-openai-decisions-oct27] [chk-openai-changelog-oct27].
+The current guide permits inline image data or public HTTP(S) image URLs, but not `file_id`. It also permits images in question instructions and JSON input. It supports up to 400 questions per request and caching for shared input. The reusable shared prefix must reach 1,024 tokens; questions, including their images, are outside that prefix. Cache-read and write counts are included in `input_tokens` and must not be added again. Live behavior was not tested. L [chk-openai-decisions-oct27] [chk-openai-changelog-oct27].
 
 General extraction into a custom JSON schema and function calling use Responses rather than this
 endpoint. Independent questions can share one request; questions that depend on an earlier answer

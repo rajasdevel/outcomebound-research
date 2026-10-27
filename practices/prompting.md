@@ -319,7 +319,7 @@ Much of the current guidance is about coding. Most of it repeats the sections ab
 | Maker | Minimum prefix | Read price against input | Notes |
 | --- | --- | --- | --- |
 | Anthropic | 512 tokens on Fable 5.1, Fable 5, Opus 5.5, Opus 5, Sonnet 5.5 and Haiku 5.5. 1,024 on Sonnet 5. | 0.1 times; Fable 5.1: 0.025; Opus 5.5 and Sonnet 5.5: 0.05 | A breakpoint looks back at most 20 blocks [as-of 2026-10-09] [cl-cache-oct9]. |
-| OpenAI | 1,024 tokens from GPT-5.6 | 0.1 times, and 0.05 on GPT-6.1 Sol | Writes cost 1.25 times the input rate [oa-cache]. |
+| OpenAI | 1,024 tokens from GPT-5.6 | 0.1 times on Astra and Luna, 0.05 on GPT-6.1 Sol and Terra | On supported Responses models, 30-minute writes cost 1.25 times the input rate and 12-hour writes cost 2.5 times [as-of 2026-10-27] [oa-cache-oct27]. |
 | xAI | Automatic | See the README | Send a conversation id. Never edit, remove or reorder earlier messages [x-cache]. |
 | Google | 4,096 for implicit caching on 3.1 Pro and 3.5 to 3.8 Flash | One tenth | Put shared content first ([README](../models/google/README.md#long-context-and-retrieval)). |
 

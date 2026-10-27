@@ -101,13 +101,13 @@ sources:
   - https://developers.openai.com/api/docs/models/chat-latest
   - https://developers.openai.com/api/docs/guides/decisions
   - https://developers.openai.com/api/docs/models/gpt-5.6-cyber
+  - https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/
 ---
 
 # OpenAI models
 
 OpenAI sells closed models through its own API, ChatGPT and Codex, and through Amazon Bedrock and
-Microsoft Foundry, and it has published one family of open-weight models. On 2026-10-03 its API lists
-three recommended models (GPT-6 Astra, GPT-6.1 Sol and GPT-6 Luna) and keeps the earlier GPT-6 Sol and
+Microsoft Foundry, and it has published one family of open-weight models. As of 2026-10-27 its GPT-6 guide lists Astra, GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna [openai-guide-oct27] and keeps the earlier GPT-6 Sol and
 the GPT-5.6 trio (Sol, Terra, Luna) available. This page holds what those models share: how they are
 named, the API they use, what OpenAI's prompting guides say, how to read its system cards, and the
 behaviour that holds across them. Each model's own file says what differs for that model. OpenAI also sells voice models (realtime speech-to-speech, full-duplex GPT-Live, translation and transcription), and this page holds their lineage, the Realtime and GPT-Live API guide and the voice prompting guides.
@@ -160,7 +160,7 @@ What OpenAI says replaced what, from its deprecation page [openai-deprecations]:
 Release order, from the API changelog [openai-changelog]: GPT-5.6 Sol, Terra and Luna on 2026-07-09 with a
 new naming scheme; GPT-6 Astra on 2026-09-03; GPT-6 Sol and Luna on 2026-09-22 at about half the per-token
 price of their GPT-5.6 namesakes (Artificial Analysis says the same [aa-sol-luna]); GPT-6.1 Sol on
-2026-09-29. Artificial Analysis's model pages mark GPT-5.6 Sol, GPT-5.6 Luna and GPT-6 Sol as deprecated for
+2026-09-29; GPT-6.1 Terra on 2026-10-26 [as-of 2026-10-27] [openai-changelog-oct27]. Artificial Analysis's model pages mark GPT-5.6 Sol, GPT-5.6 Luna and GPT-6 Sol as deprecated for
 its own benchmarking (pointing to GPT-6 Sol, GPT-6 Luna and GPT-6.1 Sol), which is its label; OpenAI's pages
 show no retirement date for any of them [aa-model-pages] [openai-deprecations].
 
@@ -233,7 +233,7 @@ Responses API, which keeps reasoning items between calls and takes the newer too
 and GPT-6 Luna call functions only at effort `none` [openai-latest-model]. Every GPT-6 and GPT-5.6 model has a
 1,050,000-token window, at most 922,000 input tokens and 128,000 output tokens, with text and image in and
 text out. Knowledge cutoffs on the model pages: the GPT-5.6 models 2026-02-16, GPT-6 Sol 2026-04-20, GPT-6
-Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18.
+Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18, and GPT-6.1 Terra 2026-06-01 [as-of 2026-10-27] [openai-terra-oct27].
 
 **Rate limits [as-of 2026-10-09].** The October 6 change replaced five numbered paid tiers with Build,
 Launch and Grow. Limits differ by model and service tier; the [provider file](../../providers/openai.md#limits-and-data)
@@ -316,11 +316,7 @@ GPT-6 Luna or GPT-6.1 Sol.
 **Agents API.** In public beta since 2026-09-10, with a managed Codex harness, durable sessions, compaction
 and sandboxes; it enables programmatic tool calling by default [openai-changelog] [openai-ptc].
 
-**Availability elsewhere.** Amazon Bedrock lists model cards for Astra, GPT-6 Sol, GPT-6 Luna, GPT-6.1 Sol
-and the GPT-5.6 models, on its runtime and mantle endpoints [aws-card-gpt-6-astra]. Microsoft Foundry lists
-`gpt-6.1-sol`, `gpt-6-astra`, `gpt-6-luna`, `gpt-6-sol` and the three GPT-5.6 models, with quota requests
-needed below quota tiers 5 and 6 for the GPT-6 family, and lists gpt-oss-120b and gpt-oss-20b as previews
-[ms-foundry-models]. The gpt-oss weights are on Hugging Face and need the harmony format (see the gpt-oss
+**Availability elsewhere.** Amazon Bedrock lists model cards for Astra, GPT-6 Sol, GPT-6 Luna, GPT-6.1 Sol and the GPT-5.6 models [aws-card-gpt-6-astra]; AWS announced GPT-6.1 Terra on Bedrock on 2026-10-26 [as-of 2026-10-27] [aws-terra-oct27]. Microsoft Foundry lists GPT-6.1 Terra in addition to its GPT-6 and GPT-5.6 models; quota and regional requirements depend on the deployment [as-of 2026-10-27] [azure-terra-oct27]. Microsoft also lists gpt-oss-120b and gpt-oss-20b as previews [ms-foundry-models]. The gpt-oss weights are on Hugging Face and need the harmony format (see the gpt-oss
 files) [hf-gpt-oss-120b] [openai-harmony].
 
 ### Decisions API [as-of 2026-10-27]
@@ -509,7 +505,7 @@ OpenAI's guides give this order [openai-guide-gpt-5.6] [openai-gpt56-prompting]:
   evaluations run before any prompt edit.
 - The Responses API for reasoning, tools and multi-turn work; a deliberate `reasoning.context` choice (the
   default is now `all_turns`); `prompt_cache_options.ttl` in place of `prompt_cache_retention`, with
-  `cached_tokens` and `cache_write_tokens` tracked, because writes now cost 1.25 times input.
+  `cached_tokens` and `cache_write_tokens` tracked, because 30-minute writes cost 1.25 times input and supported Responses 12-hour writes cost 2.5 times [as-of 2026-10-27] [openai-cache-oct27].
 - `reasoning.mode: pro` on the same model in place of a separate Pro model slug; tools opted into programmatic
   tool calling with `allowed_callers`, and `program` and `program_output` items handled.
 - Obsolete scaffolding and brevity lines removed one group at a time, and only the smallest instruction added
@@ -743,7 +739,6 @@ ChatGPT versions) that apply to Sol, Terra and Luna are kept on this page. Numbe
   organisation and Codex as the agent, and the page does not say whether the host verified them
   [tbench-4-0].
 - Astra's default reasoning effort and `reasoning.context` default are not stated on its model page.
-- Whether a GPT-6 Terra will exist; none is announced.
 - When the GPT-5.6 models retire; the deprecation page names them as replacements and shows no date for them.
 - METR has published no time horizon for a GPT-6 model, and its time-horizon page listed no GPT-5.5 or later
   entry on 2026-10-03 [metr-time-horizons].
@@ -871,3 +866,6 @@ Partial corrections, read 2026-10-27 (L):
 - [openai-guide-oct27] <https://developers.openai.com/api/docs/guides/latest-model>.
 - [openai-cache-oct27] <https://developers.openai.com/api/docs/guides/prompt-caching>.
 - [openai-pricing-oct27] <https://developers.openai.com/api/docs/pricing>.
+
+- [aws-terra-oct27] <https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/> (L, read 2026-10-27).
+- [azure-terra-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L, read 2026-10-27).

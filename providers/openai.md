@@ -72,7 +72,7 @@ For a first-party API, parity means differences between endpoints and between Op
   README records the cache-write, explicit-breakpoint and `ttl` details. L [astra, pricing-oct09]
 - **Batch.** The Batch API covers Responses, Chat Completions, legacy Completions, embeddings, moderation and image generation and edit requests at half price with a 24-hour completion window, up to 50,000 requests and 200 MB per file; output files are deleted 30 days after completion. [batch]
 - **Long context.** 1.05M tokens (922,000 input at most); requests above 272,000 input tokens bill at the long-context rate (see Pricing). [pricing, astra]
-- **Vision.** Image input on the three lead models; image generation as separate models. [models, astra]
+- **Vision.** Image input on the lead models; image generation as separate models. [models, astra]
 - **Streaming.** Listed as supported on the Astra page. [astra]
 
 ## Pricing

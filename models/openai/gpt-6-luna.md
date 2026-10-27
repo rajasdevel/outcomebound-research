@@ -40,7 +40,7 @@ GPT-6 Luna (`gpt-6-luna`) is OpenAI's lowest-priced GPT-6 model, released on 202
 Sol, at $0.10 in and $0.50 out per million tokens. OpenAI calls it the most efficient model for focused,
 high-volume tasks, and its Codex documentation lists extraction, classification, transformation and
 structured summaries as examples. It is the second generation of the Luna class, after GPT-5.6 Luna, at
-about half that model's token price, and it is one of the three models in OpenAI's GPT-6 guide. The
+about half that model's token price, and it is one of the models in OpenAI's GPT-6 guide. The
 [OpenAI README](README.md) holds the shared guidance.
 
 ## At a glance
@@ -75,7 +75,7 @@ about half that model's token price, and it is one of the three models in OpenAI
 
 ### Setting up the prompt
 
-- OpenAI has no guide for Luna alone. The GPT-6 guide includes Luna among its three models and offers its
+- OpenAI has no guide for Luna alone. The GPT-6 guide includes Luna among its models and offers its
   prompts as a start for the family, to be evaluated on the reader's own model; they describe behaviour seen
   with Astra [openai-latest-model]. The GPT-5.6 prompting guide covers GPT-5.6 Luna as a member of its family
   [openai-gpt56-prompting].
@@ -154,7 +154,7 @@ about half that model's token price, and it is one of the three models in OpenAI
   classification and structured summaries as Luna's intended uses. Schema limits and refusal handling are
   in the README and the structured-outputs guide [openai-structured-outputs] [codex-models].
 
-**Decisions API [as-of 2026-10-27].** Generally available since 2026-10-22, `/v1/decisions` uses `gpt-6-luna` to return `predicate`, `choice` or `score` answers from text, images and JSON; it can refuse. It supports up to 400 questions and caching shared input. OpenAI claims about 10x faster than Responses, without a workload or independent comparison in the guide. Uncached input costs $0.10 per Mtok; cache reads and writes use standard Luna cache rates, and output is not charged. Long-context and regional multipliers apply. L [openai-decisions-oct27] [openai-changelog-oct27]. Details and comparison limits are in
+**Decisions API [as-of 2026-10-27].** Generally available since 2026-10-22, `/v1/decisions` uses `gpt-6-luna` to return `predicate`, `choice` or `score` answers from text, images and JSON; it can refuse. It supports up to 400 questions and caching shared input. The shared prefix must have at least 1,024 tokens; questions and their images are excluded. Cache-read and write counts are included in `input_tokens`. OpenAI claims about 10x faster than Responses, without a workload or independent comparison in the guide. Uncached input costs $0.10 per Mtok; cache reads and writes use standard Luna cache rates, and output is not charged. Long-context and regional multipliers apply. L [openai-decisions-oct27] [openai-changelog-oct27]. Details and comparison limits are in
 [decision models](../../practices/decision-models.md).
 
 ### Images, audio, other inputs

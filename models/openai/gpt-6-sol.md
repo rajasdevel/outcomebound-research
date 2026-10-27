@@ -158,7 +158,7 @@ GPT-5.5. The [OpenAI README](README.md) holds the shared GPT-6 guidance.
   [openai-model-gpt-6-sol].
 - Artificial Analysis's AA-LCR long-context reasoning test: 83.7% at max, in line with GPT-5.6 Sol (84.0%)
   [aa-model-gpt-6-sol]. OpenAI gives no placement guidance for this model.
-- Caching: reads at 10% of input and writes at 1.25 times; see the README [openai-prompt-caching].
+- Caching: reads at 10% of input; 30-minute writes cost 1.25 times input and Responses 12-hour writes cost 2.5 times [as-of 2026-10-27]. See the README ([OpenAI caching guide](https://developers.openai.com/api/docs/guides/prompt-caching), read 2026-10-27).
 
 ### Structured output
 

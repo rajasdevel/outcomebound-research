@@ -15,6 +15,23 @@ sources:
   - https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability
   - https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html
   - https://openrouter.ai/openai/
+  - https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769
+  - https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/
+  - https://vercel.com/ai-gateway/models/gpt-6.1-terra
+  - https://vercel.com/ai-gateway/models/gpt-6.1-terra-fast
+  - https://developers.openai.com/api/docs/guides/your-data
+  - https://artificialanalysis.ai/models/gpt-6-1-terra
+  - https://artificialanalysis.ai/models/gpt-6-1-terra-xhigh
+  - https://artificialanalysis.ai/models/gpt-6-1-terra-high
+  - https://artificialanalysis.ai/models/gpt-6-1-terra-medium
+  - https://artificialanalysis.ai/models/gpt-6-1-terra-low
+  - https://artificialanalysis.ai/models/gpt-6-1-terra-non-reasoning
+  - https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier
+  - https://openrouter.ai/openai/gpt-6.1-terra
+  - https://openrouter.ai/openai/gpt-6.1-terra:batch
+  - https://www.requesty.ai/model/openai/gpt-6.1-terra
+  - https://docs.github.com/en/copilot/reference/ai-models/supported-models
+  - https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model
 ---
 
 # GPT-6.1 Terra
@@ -34,19 +51,19 @@ OpenAI released GPT-6.1 Terra on 2026-10-26. It positions this GPT Terra generat
 | Released | 2026-10-26 |
 | Status | ga |
 | Weights | closed |
-| Access | OpenAI API (Responses, Chat Completions without tools, Batch); ChatGPT Work; Codex; OpenRouter (catalog listing; account access not tested) |
+| Access | OpenAI API (Responses, Chat Completions without tools, Batch); ChatGPT Work; Codex; Microsoft Foundry (catalog listing; account access not tested); Amazon Bedrock (announced; account access not tested); OpenRouter (catalog listing; account access not tested); Vercel AI Gateway (catalog listing; account access not tested); Requesty (catalog listing; account access not tested); GitHub Copilot (GA listing; availability depends on plan and settings) |
 | Context window | 1050k tokens |
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: none, low, medium, high, xhigh, max (default medium) |
-| Price | $1 in / $5 out per Mtok; cached input $0.05; OpenAI standard price per million tokens through 272K input; 30-minute cache write $1.25 and 12-hour write $2.50; above 272K the full request costs 2x input and cache and 1.5x output; Batch and Flex half price, Fast 2x; regional processing adds 10% where available [model] [caching] |
-| Key benchmarks | Terminal-Bench 4.0: 50.3 (max; launch report does not name harness, maker) [launch](https://openai.com/index/introducing-gpt-6-1-terra/) |
+| Price | $1 in / $5 out per Mtok; cached input $0.05; OpenAI standard price per million tokens through 272K input; 30-minute cache write $1.25 and Responses 12-hour write $2.50; above 272K the full request costs 2x input and cache and 1.5x output; Batch and Flex half price, Fast 2x; regional processing adds 10% where available [model] [caching] |
+| Key benchmarks | Terminal-Bench 4.0: 50.3 (max; launch report does not name harness, maker) [launch](https://openai.com/index/introducing-gpt-6-1-terra/); Terminal-Bench 4.0 (Artificial Analysis run): 55.6 (max; article chart does not name harness, independent) [aa-article](https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier); Artificial Analysis Intelligence Index: 48 (max (index v4.3.2), independent) [aa-max](https://artificialanalysis.ai/models/gpt-6-1-terra); Artificial Analysis Intelligence Index: 45 (xhigh (index v4.3.2), independent) [aa-xhigh](https://artificialanalysis.ai/models/gpt-6-1-terra-xhigh); Artificial Analysis Intelligence Index: 44 (high (index v4.3.2), independent) [aa-high](https://artificialanalysis.ai/models/gpt-6-1-terra-high); Artificial Analysis Intelligence Index: 41 (medium (index v4.3.2), independent) [aa-medium](https://artificialanalysis.ai/models/gpt-6-1-terra-medium); Artificial Analysis Intelligence Index: 36 (low (index v4.3.2), independent) [aa-low](https://artificialanalysis.ai/models/gpt-6-1-terra-low); Artificial Analysis Intelligence Index: 33 (non-reasoning (index v4.3.2), independent) [aa-non-reasoning](https://artificialanalysis.ai/models/gpt-6-1-terra-non-reasoning); Artificial Analysis Coding Agent Index: 48 (max (index v2.0), Codex, independent) [aa-article](https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier) |
 | Other benchmarks | none recorded |
 | Prompting guides | [developers.openai.com/api/docs/guides/latest-model](https://developers.openai.com/api/docs/guides/latest-model) |
 | System card | [deploymentsafety.openai.com/gpt-6-1-terra](https://deploymentsafety.openai.com/gpt-6-1-terra) |
 | Model page | [developers.openai.com/api/docs/models/gpt-6.1-terra](https://developers.openai.com/api/docs/models/gpt-6.1-terra) |
 | Card checked | 2026-10-27 |
-| Not found | SWE-Bench Pro (Scale, public V2): independent result not verified; Terminal-Bench 4.0: independent leaderboard result not verified; the maker report does not name the harness; Artificial Analysis Intelligence Index: independent result not verified; Artificial Analysis Coding Agent Index: independent result not verified; METR 50% time horizon: independent result not verified; Cloud provider availability and pricing: Microsoft Foundry and Amazon Bedrock availability, regions and prices not established by the sources checked; a listing is not proof of account access |
+| Not found | SWE-Bench Pro (Scale, public V2): independent result not verified; Terminal-Bench 4.0 on the tbench.ai leaderboard: result not verified; neither the maker report nor the Artificial Analysis article names the harness for its Terminal-Bench result; METR 50% time horizon: independent result not verified; Cloud provider access and prices: live account access was not tested; exact Bedrock rates and regions were not established by the sources checked |
 <!-- card:end -->
 
 ## How to instruct it
@@ -73,7 +90,7 @@ OpenAI suggests scoped code fixes and keeps Sol and Astra as choices for more co
 
 ### Long context and retrieval
 
-The context window is 1,050,000 tokens with up to 128,000 output tokens. More than 272,000 input tokens reprices the whole request at twice input and cache rates and 1.5 times output. OpenAI lists 30-minute and 12-hour cache writes; these are total write prices, not additional surcharges. L [model] [caching].
+The context window is 1,050,000 tokens with up to 128,000 output tokens. More than 272,000 input tokens reprices the whole request at twice input and cache rates and 1.5 times output. OpenAI lists 30-minute writes and, in Responses, 12-hour writes; these are total write prices, not additional surcharges. L [model] [caching].
 
 ### Structured output
 
@@ -93,7 +110,7 @@ For migration from GPT-5.6 Terra, OpenAI recommends a comparison at the same rea
 
 ## What the system card reports
 
-OpenAI treats the model as Critical for cybersecurity and High for biological and chemical capability, with the safeguards stack used for GPT-6.1 Sol and Astra. In its internal matched Codex simulation it reported 22 severity-3-or-higher flags in 48,690 tasks (0.045%). These are maker evaluations, not a guarantee for a user's traffic. L [system].
+OpenAI treats the model as Critical for cybersecurity and High for biological and chemical capability, with the safeguards stack used for GPT-6.1 Sol and Astra. In its internal matched Codex simulation it reported 22 severity-3-or-higher flags in 48,690 tasks (0.045%). Relative to GPT-6.1 Sol and GPT-6 Astra, the simulation had higher flag rates for concealing uncertainty, circumventing restrictions, exfiltration, other misalignment, destructive action and inbound prompt injection. OpenAI also found signs of simulation awareness in 9.88% of Terra trajectories in a separate 48,701-task analysis. It cautions that internal simulations are not a direct measure of external deployment safety. These are maker evaluations, not a guarantee for a user's traffic. L [system].
 
 ## Behaviour observed in practice
 
@@ -103,15 +120,36 @@ No independent practitioner observation was verified in this pass. The model is 
 
 OpenAI reports 50.3% on Terminal-Bench 4.0 at max effort; its launch text does not name the harness. OpenAI also reports stronger visual and computer-use results than GPT-5.6 Terra on its tested tasks. These are maker results, not independent replications. L [launch].
 
+Artificial Analysis reports Intelligence Index v4.3.2 scores of 48 at max effort, 45 at xhigh, 44 at high, 41 at medium, 36 at low and 33 for its non-reasoning variant. Its Coding Agent Index v2.0 chart reports 48 with Codex at max effort. Its Terminal-Bench 4.0 chart reports 55.6% at max effort without naming the harness. These are independent measurements on the named tests, not a prediction of a particular workload. M [aa-max] [aa-xhigh] [aa-high] [aa-medium] [aa-low] [aa-non-reasoning] [aa-article].
+
+## Provider routes and prices
+
+The rates below are published list prices in USD per million tokens. They are not a bill or an account-access test. Each provider can apply different regional, context, service-tier and contract terms.
+
+| Route | Input | Cache read | Cache write | Output | Scope |
+| --- | ---: | ---: | ---: | ---: | --- |
+| OpenAI direct | $1 | $0.05 | $1.25 | $5 | Standard, short context, 30-minute write [model] |
+| Azure Foundry Global Standard | $1 | $0.05 | $1.25 | $5 | Short context [azure-launch] |
+| Azure Foundry US Data Zone Standard | $1.10 | $0.055 | $1.375 | $5.50 | Short context [azure-launch] |
+| Azure Foundry EU or APAC Data Zone Standard | $1.20 | $0.06 | $1.50 | $6 | Short context [azure-launch] |
+| OpenRouter | $1 | $0.05 | $1.25 | $5 | Standard listing; batch is $0.50 input, $0.025 read, $0.625 write and $2.50 output [openrouter-terra] [openrouter-batch] |
+| Vercel AI Gateway, OpenAI route | $1 | $0.05 | $1.25 | $5 | Standard listing [vercel] |
+| Vercel AI Gateway, OpenAI route | $2 | $0.10 | $2.50 | $10 | Fast listing [vercel-fast] |
+
+For long-context Azure Standard requests, Microsoft's launch table lists Global $2 input, $0.10 read, $2.50 write and $7.50 output; US Data Zone $2.20, $0.11, $2.75 and $8.25; and EU or APAC Data Zone $2.40, $0.12, $3 and $9. Microsoft lists Terra in Global Standard and Data Zone Standard regions. A Data Zone deployment processes within that zone, not necessarily the deployment region. Actual quota and access remain untested. L [azure-launch] [azure-regions].
+
+OpenRouter says its Terra listing is not currently available through EU in-region routing. Requesty lists OpenAI and Azure endpoints and says pay-as-you-go adds 5% to upstream prices; its own-key route has no such surcharge. GitHub lists Terra as generally available in Copilot and as an option in Copilot cloud agent, subject to plan and settings. These listings do not prove account access. L [openrouter-terra] [requesty] [copilot] [copilot-cloud].
+
+AWS announced Terra generally available on Bedrock on 2026-10-26; this pass did not establish the exact Bedrock rates, supported regions or account access. L [aws-launch]. OpenAI's direct data-residency guide lists only US and EU for this model, subject to eligibility; that is a different route from Azure's Data Zones. L [data-residency].
+
 ## Open questions
 
-- Independent coding, visual and latency measurements and task-specific outcomes remain unverified.
-- Azure Foundry and Amazon Bedrock availability, prices, regions and actual account access were not established by the checked pages. An unavailable or incomplete listing is not proof of nonavailability. L [azure-catalog] [azure-regions] [aws-models].
-- OpenRouter lists Terra at $1 input and $5 output per million tokens, and a separate batch listing at $0.50 and $2.50. Account access and billing were not tested. L [openrouter].
+- Independent visual and latency results for a particular workload, and task-specific outcomes, remain unverified.
+- Exact Bedrock rates and supported regions, and account access and realized billing on every route, remain unverified.
 
 ## Sources
 
-Read 2026-10-27. L is lab or vendor documentation.
+Read 2026-10-27. L is lab or vendor documentation; M is an independent measurement.
 
 - [model] <https://developers.openai.com/api/docs/models/gpt-6.1-terra> (L).
 - [guide] <https://developers.openai.com/api/docs/guides/latest-model> (L).
@@ -126,3 +164,21 @@ Read 2026-10-27. L is lab or vendor documentation.
 - [azure-regions] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability> (L).
 - [aws-models] <https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html> (L).
 - [openrouter] <https://openrouter.ai/openai/> (L).
+
+- [azure-launch] <https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769> (L).
+- [aws-launch] <https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/> (L).
+- [vercel] <https://vercel.com/ai-gateway/models/gpt-6.1-terra> (L).
+- [vercel-fast] <https://vercel.com/ai-gateway/models/gpt-6.1-terra-fast> (L).
+- [data-residency] <https://developers.openai.com/api/docs/guides/your-data> (L).
+- [aa-max] <https://artificialanalysis.ai/models/gpt-6-1-terra> (M).
+- [aa-xhigh] <https://artificialanalysis.ai/models/gpt-6-1-terra-xhigh> (M).
+- [aa-high] <https://artificialanalysis.ai/models/gpt-6-1-terra-high> (M).
+- [aa-medium] <https://artificialanalysis.ai/models/gpt-6-1-terra-medium> (M).
+- [aa-low] <https://artificialanalysis.ai/models/gpt-6-1-terra-low> (M).
+- [aa-non-reasoning] <https://artificialanalysis.ai/models/gpt-6-1-terra-non-reasoning> (M).
+- [aa-article] <https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier> (M).
+- [openrouter-terra] <https://openrouter.ai/openai/gpt-6.1-terra> (L).
+- [openrouter-batch] <https://openrouter.ai/openai/gpt-6.1-terra:batch> (L).
+- [requesty] <https://www.requesty.ai/model/openai/gpt-6.1-terra> (L).
+- [copilot] <https://docs.github.com/en/copilot/reference/ai-models/supported-models> (L).
+- [copilot-cloud] <https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model> (L).

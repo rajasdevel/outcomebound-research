@@ -12,6 +12,7 @@ sources:
   - https://docs.requesty.ai/features/eu-routing
   - https://www.requesty.ai/pricing
   - https://www.requesty.ai/security
+  - https://www.requesty.ai/model/openai/gpt-6.1-terra
 ---
 
 # Requesty
@@ -22,7 +23,9 @@ Requesty is a hosted gateway with a single endpoint in front of several hundred 
 
 ## Models offered
 
-The documentation says 300 or more models; the pricing page says 600 or more from more than 20 providers, and the figures are not reconciled. Models come from providers such as OpenAI, Anthropic, Google (including through Vertex) and DeepSeek, per the examples in the reasoning and caching pages. The catalogue is live in the console; no list was read, so which model files in [../models/](../models/README.md) are available is `UNVERIFIED`. [docs, price, reason]
+The documentation says 300 or more models; the pricing page says 600 or more from more than 20 providers, and the figures are not reconciled. Models come from providers such as OpenAI, Anthropic, Google (including through Vertex) and DeepSeek, per the examples in the reasoning and caching pages. At the 2026-10-03 check no live catalogue was read, so availability of model files in [../models/](../models/README.md) was `UNVERIFIED`. The later partial check below covers Terra only. [docs, price, reason]
+
+**GPT-6.1 Terra [as-of 2026-10-27].** Requesty lists OpenAI and Microsoft Azure AI routes. Its displayed upstream prices include an OpenAI route at $1 input and $5 output per million tokens and Azure routes at $1.20 and $6. The model page says pay-as-you-go adds 5% and using one's own provider keys adds no markup. The listing does not prove access, residency or a realized bill. L [terra-oct27].
 
 ## API surface
 
@@ -72,3 +75,5 @@ The sources disagree. The overview page says there is no token markup and users 
 | eu | https://docs.requesty.ai/features/eu-routing | L | 2026-10-03 |
 | price | https://www.requesty.ai/pricing | L | 2026-10-03 |
 | sec | https://www.requesty.ai/security | L | 2026-10-03 |
+
+- [terra-oct27] <https://www.requesty.ai/model/openai/gpt-6.1-terra> (L, read 2026-10-27).
