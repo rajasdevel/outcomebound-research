@@ -1,0 +1,360 @@
+{
+  "id": "gpt-6.1-terra",
+  "name": "GPT-6.1 Terra",
+  "maker": "OpenAI",
+  "family": "GPT-6",
+  "class": "GPT Terra",
+  "generation": "6.1",
+  "released": "2026-10-26",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses, Chat Completions without tools, Batch)",
+    "ChatGPT Work",
+    "Codex",
+    "Microsoft Foundry (catalog listing; account access not tested)",
+    "Amazon Bedrock (announced; account access not tested)",
+    "OpenRouter (catalog listing; account access not tested)",
+    "Vercel AI Gateway (catalog listing; account access not tested)",
+    "Requesty (catalog listing; account access not tested)",
+    "GitHub Copilot (GA listing; availability depends on plan and settings)"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "medium"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 1.0,
+    "output": 5.0,
+    "cached_input": 0.05,
+    "notes": "OpenAI standard price per million tokens through 272K input; 30-minute cache write $1.25 and Responses 12-hour write $2.50; above 272K the full request costs 2x input and cache and 1.5x output; Batch and Flex half price, Fast 2x; regional processing adds 10% where available [model] [caching]"
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 50.3,
+      "setting": "max; launch report does not name harness",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "launch",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 48,
+      "setting": "max (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-max",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 45,
+      "setting": "xhigh (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-xhigh",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 44,
+      "setting": "high (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-high",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 41,
+      "setting": "medium (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-medium",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 36,
+      "setting": "low (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-low",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 33,
+      "setting": "non-reasoning (index v4.3.2)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-non-reasoning",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 48,
+      "setting": "max (index v2.0)",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-article",
+      "read": "2026-10-27"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis run)",
+      "score": 55.6,
+      "setting": "max; article chart does not name harness",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-article",
+      "read": "2026-10-27"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/latest-model"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+  "sources": [
+    {
+      "id": "model",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "guide",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "caching",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "selection",
+      "url": "https://developers.openai.com/api/docs/guides/model-selection",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "work-codex",
+      "url": "https://learn.chatgpt.com/docs/models",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "system",
+      "url": "https://deploymentsafety.openai.com/gpt-6-1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "launch",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra/",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-catalog",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-regions",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-models",
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openrouter",
+      "url": "https://openrouter.ai/openai/",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "azure-launch",
+      "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aws-launch",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "vercel",
+      "url": "https://vercel.com/ai-gateway/models/gpt-6.1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "vercel-fast",
+      "url": "https://vercel.com/ai-gateway/models/gpt-6.1-terra-fast",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "data-residency",
+      "url": "https://developers.openai.com/api/docs/guides/your-data",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-max",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-terra",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-xhigh",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-terra-xhigh",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-high",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-terra-high",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-medium",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-terra-medium",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-low",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-terra-low",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-non-reasoning",
+      "url": "https://artificialanalysis.ai/models/gpt-6-1-terra-non-reasoning",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-article",
+      "url": "https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier",
+      "read": "2026-10-27",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-terra",
+      "url": "https://openrouter.ai/openai/gpt-6.1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openrouter-batch",
+      "url": "https://openrouter.ai/openai/gpt-6.1-terra:batch",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "requesty",
+      "url": "https://www.requesty.ai/model/openai/gpt-6.1-terra",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "copilot",
+      "url": "https://docs.github.com/en/copilot/reference/ai-models/supported-models",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "copilot-cloud",
+      "url": "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model",
+      "read": "2026-10-27",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-27",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): independent result not verified",
+    "Terminal-Bench 4.0 on the tbench.ai leaderboard: result not verified; neither the maker report nor the Artificial Analysis article names the harness for its Terminal-Bench result",
+    "METR 50% time horizon: independent result not verified",
+    "Cloud provider access and prices: live account access was not tested; exact Bedrock rates and regions were not established by the sources checked"
+  ]
+}

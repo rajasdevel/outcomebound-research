@@ -162,6 +162,7 @@ below: [models/README.md](models/README.md), [models/FORMAT.md](models/FORMAT.md
 | [models/openai/gpt-6-astra.md](models/openai/gpt-6-astra.md) | GPT-6 Astra | How to instruct GPT-6 Astra, what its system card reports, its observed behaviour and its benchmarks | 2026-10-03 | VOLATILE |
 | [models/openai/gpt-6-luna.md](models/openai/gpt-6-luna.md) | GPT-6 Luna | How to instruct GPT-6 Luna, what its system card reports, its observed behaviour and its benchmarks | 2026-10-03 | VOLATILE |
 | [models/openai/gpt-6-sol.md](models/openai/gpt-6-sol.md) | GPT-6 Sol | How to instruct GPT-6 Sol, what its system card reports, its observed behaviour and its benchmarks | 2026-10-03 | VOLATILE |
+| [models/openai/gpt-6.1-terra.md](models/openai/gpt-6.1-terra.md) | GPT-6.1 Terra | How to instruct GPT-6.1 Terra, what its system card reports, its observed behaviour and its benchmarks | 2026-10-27 | VOLATILE |
 | [models/openai/gpt-6.1-sol.md](models/openai/gpt-6.1-sol.md) | GPT-6.1 Sol | How to instruct GPT-6.1 Sol, what its system card reports, its observed behaviour and its benchmarks | 2026-10-03 | VOLATILE |
 | [models/openai/gpt-live-1.md](models/openai/gpt-live-1.md) | GPT-Live 1 | How to instruct GPT-Live 1, what its system card reports, its observed behaviour and its benchmarks | 2026-10-03 | VOLATILE |
 | [models/openai/gpt-live-transcribe.md](models/openai/gpt-live-transcribe.md) | GPT-Live-Transcribe | How to instruct GPT-Live-Transcribe, what its system card reports, its observed behaviour and its benchmarks | 2026-10-03 | VOLATILE |

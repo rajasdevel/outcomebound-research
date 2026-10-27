@@ -33,6 +33,7 @@ sources:
   - https://artificialanalysis.ai/models/
   - https://developers.openai.com/api/docs/guides/deployment-checklist
   - https://rits.shanghai.nyu.edu/ai/openai-launches-gpt-5-6-family-sol-terra-and-luna-reach-general-availability/
+  - https://developers.openai.com/api/docs/models/gpt-6.1-terra
 ---
 
 # GPT-5.6 Terra
@@ -40,9 +41,7 @@ sources:
 GPT-5.6 Terra (`gpt-5.6-terra`) is the middle model of OpenAI's GPT-5.6 family, released on 2026-07-09 with
 Sol and Luna. OpenAI describes it as strong performance at a lower price and as comparable to the mini-class
 models of earlier GPT-5 generations; it is the replacement OpenAI names for the GPT-5 mini snapshot shutting
-down on 2026-12-11. Its price, $2 in and $12 out per million tokens, followed a 20% cut on 2026-07-30. There is
-no GPT-6 Terra, and OpenAI's GPT-6 guide offers Astra, Sol and Luna only, so GPT-5.6 Terra is the latest
-model of its class. The family guidance (prompting guides, effort migration, programmatic tool calling and the GPT-5.6 system-card findings) is in the
+down on 2026-12-11. Its price, $2 in and $12 out per million tokens, followed a 20% cut on 2026-07-30. OpenAI released GPT-6.1 Terra on 2026-10-26 as the next Terra generation [as-of 2026-10-27] L [terra-oct27]. The family guidance (prompting guides, effort migration, programmatic tool calling and the GPT-5.6 system-card findings) is in the
 [OpenAI README](README.md); this file records what differs for Terra.
 
 ## At a glance
@@ -63,7 +62,7 @@ model of its class. The family guidance (prompting guides, effort migration, pro
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: none, low, medium, high, xhigh, max (default medium) |
-| Price | $2 in / $12 out per Mtok; cached input $0.2; list price, standard tier, prompts up to 272K input tokens; cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (4 in, 24 out); Batch and Flex 50%; regional processing +10%; cut 20% on 2026-07-30 (launch price 2.50 and 15, implied by the cut and given by a secondary launch report) |
+| Price | $2 in / $12 out per Mtok; cached input $0.2; list price, standard tier, prompts up to 272K input tokens; 30-minute cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (4 in, 24 out); Batch and Flex 50%; regional processing +10%; cut 20% on 2026-07-30 (launch price 2.50 and 15, implied by the cut and given by a secondary launch report); Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27] |
 | Key benchmarks | SWE-Bench Pro (Scale, public V2): 86.3 (xhigh, Codex, independent) [scale-swe-pro-v2](https://labs.scale.com/leaderboard/swe_bench_pro_public_v2); Terminal-Bench 4.0 (tbench.ai leaderboard): 21.5 (max, Codex, independent) [tbench-4-0](https://www.tbench.ai/leaderboard/terminal-bench/4.0); Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 35.4 (max, independent) [aa-model-gpt-5-6-terra](https://artificialanalysis.ai/models/gpt-5-6-terra); Artificial Analysis Intelligence Index: 42 (max (index v4.3.2), independent) [aa-model-gpt-5-6-terra](https://artificialanalysis.ai/models/gpt-5-6-terra); Artificial Analysis Intelligence Index: 38 (xhigh (index v4.3.2), independent) [aa-model-gpt-5-6-terra-xhigh](https://artificialanalysis.ai/models/gpt-5-6-terra-xhigh); Artificial Analysis Intelligence Index: 34 (high (index v4.3.2), independent) [aa-model-gpt-5-6-terra-high](https://artificialanalysis.ai/models/gpt-5-6-terra-high); Artificial Analysis Intelligence Index: 30 (medium (index v4.3.2), independent) [aa-model-gpt-5-6-terra-medium](https://artificialanalysis.ai/models/gpt-5-6-terra-medium); Artificial Analysis Intelligence Index: 28 (low (index v4.3.2), independent) [aa-model-gpt-5-6-terra-low](https://artificialanalysis.ai/models/gpt-5-6-terra-low) |
 | Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 87.9 (max, independent) [aa-model-gpt-5-6-terra](https://artificialanalysis.ai/models/gpt-5-6-terra); AA-LCR v1.1 (long-context reasoning, percent): 83.0 (max, independent) [aa-model-gpt-5-6-terra](https://artificialanalysis.ai/models/gpt-5-6-terra) |
 | Prompting guides | [developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6); [developers.openai.com/api/docs/guides/latest-model/gpt-5.6](https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6); [developers.openai.com/api/docs/guides/reasoning](https://developers.openai.com/api/docs/guides/reasoning) |
@@ -132,7 +131,7 @@ model of its class. The family guidance (prompting guides, effort migration, pro
   request bills at twice the input and cache rates and 1.5 times the output rate
   [openai-model-gpt-5.6-terra].
 - Artificial Analysis's AA-LCR: 83.0% at max [aa-model-gpt-5-6-terra]. Caching follows the GPT-5.6 rules
-  (explicit mode, 1,024-token minimum, 30-minute lifetime, write at 1.25 times input)
+  (explicit mode, 1,024-token minimum and a default 30-minute minimum lifetime, with a 1.25-times-input write rate; Responses also offers 12 hours [as-of 2026-10-27] [cache-oct27])
   [openai-prompt-caching].
 
 ### Structured output
@@ -235,3 +234,6 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement, A secondary.
 - [metr-time-horizons] <https://metr.org/time-horizons/> (M)
 - [aws-card-gpt-5-6-terra] <https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-56-terra.html> (L)
 - [ms-foundry-models] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L)
+
+- [terra-oct27] <https://developers.openai.com/api/docs/models/gpt-6.1-terra> (L, read 2026-10-27).
+- [cache-oct27] <https://developers.openai.com/api/docs/guides/prompt-caching> (L, read 2026-10-27).

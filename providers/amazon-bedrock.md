@@ -28,6 +28,7 @@ sources:
   - https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock
   - https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
   - https://platform.claude.com/docs/en/build-with-claude/overview
+  - https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/
 ---
 
 # Amazon Bedrock
@@ -40,6 +41,7 @@ AWS's overview page says Bedrock supports more than 100 foundation models. The t
 
 - **Anthropic.** [Claude Fable 5.1](../models/anthropic/claude-fable-5-1.md), [Fable 5](../models/anthropic/claude-fable-5.md), [Opus 5.5](../models/anthropic/claude-opus-5-5.md), [Opus 5](../models/anthropic/claude-opus-5.md), [Sonnet 5.5](../models/anthropic/claude-sonnet-5-5.md), [Sonnet 5](../models/anthropic/claude-sonnet-5.md) and [Haiku 4.5](../models/anthropic/claude-haiku-4-5.md) are on the Messages-API integration (which Anthropic's page scopes to Opus 4.7 and later), with Opus 4.8 and 4.7; older Claude models (Opus 4.6 back to Claude 3 Haiku) stay in the AWS catalogue on the native APIs. Anthropic lists the Mythos models as invitation only; for Opus 5.5, Opus 5 and Sonnet 5.5 it points to the AWS console for the access criteria, and it lists the others as open to all Bedrock customers.
 - **OpenAI.** [GPT-6 Astra](../models/openai/gpt-6-astra.md) (launched on Bedrock 2026-09-08), [GPT-6.1 Sol](../models/openai/gpt-6.1-sol.md), [GPT-6 Sol](../models/openai/gpt-6-sol.md), [GPT-6 Luna](../models/openai/gpt-6-luna.md), GPT-5.6 Sol, [Terra](../models/openai/gpt-5.6-terra.md) and [Luna](../models/openai/gpt-5.6-luna.md), plus GPT-5.5, GPT-5.4, two cyber-focused GPT-5.6 variants (named "Daybreak Red" and "Daybreak Blue" in AWS's list), two gpt-oss-safeguard models and the open-weight [gpt-oss-120b](../models/openai/gpt-oss-120b.md) and [gpt-oss-20b](../models/openai/gpt-oss-20b.md).
+- **GPT-6.1 Terra [as-of 2026-10-27].** AWS announced general availability on Bedrock on 2026-10-26. Exact prices, supported regions and account access were not established in this pass. L [terra-oct27].
 - **xAI.** [Grok 4.7](../models/xai/grok-4.7.md), [Grok 4.6](../models/xai/grok-4.6.md) and Grok 4.3.
 - **Moonshot AI.** [Kimi K3](../models/moonshot/kimi-k3.md) (launched on Bedrock 2026-09-18), with K2.5 and K2 Thinking.
 - **Mistral.** [Mistral Large 3](../models/mistral/mistral-large-3.md), plus Devstral 2, Magistral Small, Ministral and Pixtral.
@@ -133,3 +135,5 @@ Read 2026-10-03; all class L (AWS or Anthropic documentation):
 - Data protection, data retention and abuse detection (URLs in the frontmatter); Bedrock FAQ <https://aws.amazon.com/bedrock/faqs/> for the training-use statement
 - Pricing <https://aws.amazon.com/bedrock/pricing/>; used for its structure and its stated tier and batch percentages, not for per-model rates
 - Claude in Amazon Bedrock <https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock>, Claude Platform on AWS <https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws>, the features overview <https://platform.claude.com/docs/en/build-with-claude/overview> and prompt caching <https://platform.claude.com/docs/en/build-with-claude/prompt-caching>
+
+- [terra-oct27] <https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/> (L, read 2026-10-27).

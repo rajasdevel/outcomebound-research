@@ -53,7 +53,7 @@ back only 20 blocks; parallel requests that share a prefix each miss it until th
 begins; a top-level change of effort or tools restarts the cache, while per-message effort,
 `configuration_update` items and mid-conversation system messages keep it on supported models;
 edited history breaks it.
-From GPT-5.6, OpenAI bills cache writes at 1.25× input, so a prefix that never repeats costs more
+From GPT-5.6, OpenAI bills a 30-minute cache write at 1.25× input, so a prefix that never repeats costs more
 than no cache. L.
 
 ## 1. How it works, and what follows for text (STABLE)
@@ -170,11 +170,8 @@ settings; mapping it to a GPT generation remains UNVERIFIED [chat-oct9]. L.
   separate keys can keep separate cache accounting; on earlier models a stable `prompt_cache_key`
   helps routing, with traffic kept to about 15 requests a minute per key and heavier traffic sharded
   across keys.
-- **Lifetime.** From GPT-5.6, `prompt_cache_options.ttl` of `30m`, the only and default value;
-  earlier models use `prompt_cache_retention`: `in_memory` (typically 5–10 minutes inactive, up to an
-  hour) or `24h` (extended retention, up to 24 hours).
-- **Price.** From GPT-5.6, cache writes cost 1.25× uncached input, where GPT-5.5 and earlier wrote for
-  nothing extra; reads cost 0.1× (0.05× on GPT-6.1 Sol). Input above 272K tokens bills the whole
+- **Lifetime [as-of 2026-10-27].** For supported GPT-5.6 and later Responses models, `prompt_cache_options.ttl` defaults to `30m`; `12h` is also available, including a breakpoint override. These are minimum lifetimes, not guarantees of a cache hit or deletion deadlines. Upgrading valid 30-minute coverage to 12 hours bills a fresh 12-hour write without credit for the earlier write; a 30-minute read does not restart a 12-hour clock. Earlier models use `prompt_cache_retention`: `in_memory` or, where supported, `24h`. L [openai-cache-oct27].
+- **Price [as-of 2026-10-27].** For supported Responses models from GPT-5.6, a 30-minute write costs 1.25× input and a 12-hour write costs 2.5× input; those are total write rates. GPT-5.5 and earlier have no extra write charge. Reads cost 0.1× on Astra and Luna and 0.05× on GPT-6.1 Sol and Terra. L [openai-cache-oct27] [openai-price-oct27]. Input above 272K tokens bills the whole
   request at long-context rates, which on GPT-6 models double the cache rates too. With a write
   premium, a prefix that changes on every request costs more than no cache (inference from the
   prices): prefix stability is a cost requirement, not only an optimization.
@@ -315,6 +312,8 @@ Read 2026-10-01 unless dated otherwise. Ids in brackets resolve below or in the 
   <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5>,
   and the Fable 5 announcement, 2026-06-09 <https://www.anthropic.com/news/claude-fable-5-mythos-5>.
 - [chk-fable-page] Anthropic, Claude Fable (now the Fable 5.1 page) <https://www.anthropic.com/claude/fable>.
+- [openai-cache-oct27] OpenAI, prompt caching, read 2026-10-27, L <https://developers.openai.com/api/docs/guides/prompt-caching>.
+- [openai-price-oct27] OpenAI, pricing, read 2026-10-27, L <https://developers.openai.com/api/docs/pricing>.
 - [chk-openai-caching] OpenAI, prompt caching
   <https://developers.openai.com/api/docs/guides/prompt-caching> and upgrading to GPT-5.6 Sol
   <https://developers.openai.com/api/docs/guides/upgrading-to-gpt-5p6-sol>.

@@ -319,6 +319,7 @@ and run `make render`.
 | NVIDIA Nemotron 3 Ultra | NVIDIA | Nemotron Ultra | 3 | ga | 2026-06-04 | - | [other/nemotron-3-ultra.md](other/nemotron-3-ultra.md) |
 | PersonaPlex-7B-v1 | NVIDIA | PersonaPlex | 1 | ga | 2026-01-15 | full-duplex voice | [other/personaplex-7b-v1.md](other/personaplex-7b-v1.md) |
 | Chat Latest | OpenAI | ChatGPT Instant alias | unknown | ga | unknown | - | [openai/chat-latest.md](openai/chat-latest.md) |
+| GPT-6.1 Terra | OpenAI | GPT Terra | 6.1 | ga | 2026-10-26 | - | [openai/gpt-6.1-terra.md](openai/gpt-6.1-terra.md) |
 | GPT-6.1 Sol | OpenAI | GPT Sol | 6.1 | ga | 2026-09-29 | - | [openai/gpt-6.1-sol.md](openai/gpt-6.1-sol.md) |
 | GPT-6 Luna | OpenAI | GPT Luna | 6 | ga | 2026-09-22 | - | [openai/gpt-6-luna.md](openai/gpt-6-luna.md) |
 | GPT-6 Sol | OpenAI | GPT Sol | 6 | ga | 2026-09-22 | - | [openai/gpt-6-sol.md](openai/gpt-6-sol.md) |
