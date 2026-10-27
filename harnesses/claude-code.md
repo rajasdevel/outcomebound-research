@@ -85,6 +85,14 @@ claim read on a later day than `last_checked` carries its date.
   double-loads, works on older versions, with a `CLAUDE.local.md` present and in sessions that
   cannot read `AGENTS.md`, and the page says it can be removed if it holds nothing else or kept for
   those sessions [harness-loading-coverage-4]. Lab-guidance [as-of 2026-10-01].
+- **Excluding a file.** `claudeMdExcludes` skips instruction files by path or glob, matched
+  against absolute paths; it may sit in any settings layer (user, project, local, managed),
+  arrays merge across layers, and only a managed `CLAUDE.md` cannot be excluded. The memory page
+  shows it in `.claude/settings.local.json` so that the exclusion stays on one machine. Read
+  2026-10-26, code.claude.com/docs/en/memory, section "Exclude specific CLAUDE.md files".
+  Observed the same day under Claude Code 2.1.310: a worktree whose local settings excluded its
+  committed `CLAUDE.md` and that held a `CLAUDE.local.md` loaded the `CLAUDE.local.md` text and
+  not the excluded file.
 - **A symbolic link.** A `CLAUDE.md` that is a symbolic link to `AGENTS.md` gives Claude Code
   `AGENTS.md`'s text with no import, so anything appended to `AGENTS.md` reaches it too; the Edit and
   Write tools refuse to write through the link and point Claude at `AGENTS.md`. It does not survive
