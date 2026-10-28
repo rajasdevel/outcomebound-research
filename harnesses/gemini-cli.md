@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Gemini CLI releases weekly; context loading, hooks and settings keys change between them)
 sources:
+  - https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0 (read 2026-10-28)
   - https://geminicli.com/docs/cli/gemini-md/
   - https://raw.githubusercontent.com/google-gemini/gemini-cli/main/packages/core/src/prompts/snippets.ts
   - https://geminicli.com/docs/reference/configuration
@@ -122,6 +123,10 @@ names a command or program the harness runs.
 - `/memory show` and `/memory reload` inspect and refresh what loaded.
 - Gemini CLI sets `GEMINI_CLI=1` in every command it runs (Gemini CLI's shell-tool documentation, read 2026-09-23).
 - Whether a reply's Mermaid block is drawn is unknown [as-of 2026-09-23].
+
+## 9. Release changes in 0.66.0 [as-of 2026-10-28]
+
+The October 27 release reports that `getSafeGitEnv` disables interactive credential and SSH prompts for the Git subprocess environment it constructs, settings placeholders resolve after environment files load, and single-line `SKILL.md` descriptions have stronger frontmatter parsing. It also changes scheduler tool-call grouping and fixes Windows diff-command quoting. These are vendor-reported fixes; local settings expansion, skill discovery and subprocess behavior were not tested. L, <https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0>, read 2026-10-28.
 
 ## Sources
 

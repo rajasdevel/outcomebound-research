@@ -2,6 +2,9 @@
 last_checked: 2026-10-01
 volatility: MONITOR (standards, measured studies, authorization patterns and engines) / VOLATILE (§2 and §3, Claude Code's and Codex's permission layers; §9, GitHub's review rules and terms)
 sources:
+  - https://code.claude.com/docs/en/plugins/mods/admin (read 2026-10-28)
+  - https://code.claude.com/docs/en/permissions (read 2026-10-28)
+  - https://cursor.com/docs/approval-agents (read 2026-10-28)
   - https://arxiv.org/html/2607.20759v1 (read 2026-10-09)
   - https://code.claude.com/docs/en/permission-modes
   - https://code.claude.com/docs/en/auto-mode-config
@@ -81,7 +84,7 @@ guarantee". M (vendor), O, L.
 **A4. Authority must be recorded where the enforcing layer reads it.** A goal file, a memory, a
 relayed decision or a hook's note does not establish the person's intent to Claude Code's
 classifier; a content-scoped `ask` or `deny` rule in user or managed settings holds even in auto
-mode, for the command spellings it matches. L, O.
+mode, for the command spellings it matches, subject to the privileged-mod conditions in §2.1. L, O [as-of 2026-10-28].
 
 **A5. A grant must be consumed, not only checked.** After an uncertain outcome (a timeout, a lost
 acknowledgement, a restart), agents re-proposed an already-approved action in 39.8% of 10,152
@@ -186,7 +189,7 @@ nothing), and covers that one action unless the person granted it as standing. L
 until the person lifts it, and Claude's own judgment that a condition was met does not lift it.
 Boundaries "are not stored as rules": the classifier re-reads them from the transcript on each
 check, so a boundary "can be lost if context compaction removes the message that stated it"; a
-deny rule is the hard guarantee [deterministic-10]. L. A session that lasts days passes through many
+matching deny rule survives transcript loss [deterministic-10]; privileged mods are a separate path (§2.1) [as-of 2026-10-28]. L. A session that lasts days passes through many
 compactions, so a boundary stated once does not last (inference).
 
 **What the classifier trusts by default.** The working directory and the remotes configured when
@@ -210,8 +213,7 @@ it replaces that section's built-ins. `claude auto-mode defaults` prints the bui
 v2.1.228 and later) drafts `environment` entries from the project and recent sessions and offers
 to remove allow rules auto mode ignores or that auto-approve destructive commands. L.
 
-**A checkpoint the person keeps.** Content-scoped ask rules "are evaluated before the classifier
-and always force a permission prompt, even in auto mode". `"permissions": {"ask": ["Bash(git push
+**A checkpoint the person keeps [as-of 2026-10-28].** Content-scoped ask rules run before the classifier and force a permission prompt in auto mode, subject to §2.1 when mods are installed. `"permissions": {"ask": ["Bash(git push
 *)"]}` matches commands that begin with `git push`; a push written as `git -C <dir> push` or
 `git -c <key>=<value> push` does not match, and a `PreToolUse` hook that reads the whole command
 covers those spellings. L.
@@ -252,6 +254,12 @@ tracker issues the agent had not created, writing into another repository, delet
 worktrees and branches, releasing, and recording an authorization the person had not worded. Reads
 drew false positives: a read-only `sed -n` denied with no reason given, and a re-read of
 a file in another worktree.
+
+### 2.1 Mods are another permission path [as-of 2026-10-28]
+
+Claude Code's current permissions reference makes the built-in guard material to enforcement. With its default protections loaded, `cc-plugin-sec-default@builtin` preserves deny and ask rules, hook blocks and prompts, outside-directory prompts and SDK callbacks. Without it, a mod can override those decisions. Managed settings or a Team/Enterprise session credential load the guard by default; an explicit `prependPlugins` list must retain it. A stored login does not establish an eligible credential when the active session uses an API key or long-lived token. L, [permissions](https://code.claude.com/docs/en/permissions) and [admin](https://code.claude.com/docs/en/plugins/mods/admin), read 2026-10-28.
+
+That guard concerns tool decisions. The mod's own filesystem and process calls retain host permissions outside the Bash sandbox. The [mods guide](../harnesses/claude-code-mods.md#9-trust-consent-and-organisation-control) records the limits. These are documented behaviors, not local security tests. L, same sources.
 
 ## 3. Codex's automatic approval review (VOLATILE) (A3)
 
@@ -298,7 +306,7 @@ a confirmation only the person can give, or an acceptance. Each act taken under 
 its undo, and the end-of-run digest keeps what needs the person apart from what was done on the
 grant. Where the harness offers it, a permission rule enforces the edge whatever files say; in
 Claude Code that is an `ask` or `deny` rule in user or managed settings (§2), which a file, a memory
-or a hook note cannot replace.
+or a hook note cannot replace. The mod guard and host-code limits in §2.1 qualify this tool-layer protection [as-of 2026-10-28].
 
 - **Consume a grant durably.** Agents that replan, retry, delegate or resume after a crash can
   request and execute one approval more than once under fresh token identifiers ("semantic
@@ -651,6 +659,10 @@ pull requests under the maintainer's own account. Each page was read 2026-10-04.
 | The maintainer's account and token | One identity in history; no extra credential to keep | No second party for review or code-owner rules, so they need a bypass; the agent holds admin rights, rulesets included; the account does not show which commits an agent wrote |
 | A machine account or a GitHub App with write access and no admin | The maintainer's approval and code-owner review become a real second party; rulesets stay out of the agent's reach | One more account or App and one more credential to keep safe; the person who owns it stays responsible for it; a sign-off that certifies origin is still a person's act |
 
+### 9.1 Policy changes cannot approve themselves [as-of 2026-10-28]
+
+Cursor's PR Routing and Approval reads the base-branch version when a pull request edits its approval or routing policy. If that version cannot be determined, it requires human review. Its documentation says it does not replace full code review. L, <https://cursor.com/docs/approval-agents>, read 2026-10-28. The general pattern is to evaluate a policy change under the prior trusted policy, rather than let a proposed relaxation authorize itself (inference).
+
 ## What the evidence supports (inference)
 
 These points are this reference's reading of the findings above. They are not orders.
@@ -765,3 +777,9 @@ Read 2026-10-01 unless dated otherwise.
   <https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization>;
   Terms of Service (effective 2026-04-27)
   <https://docs.github.com/en/site-policy/github-terms/github-terms-of-service>.
+
+Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior not tested):
+
+- <https://code.claude.com/docs/en/plugins/mods/admin>, read 2026-10-28.
+- <https://code.claude.com/docs/en/permissions>, read 2026-10-28.
+- <https://cursor.com/docs/approval-agents>, read 2026-10-28.

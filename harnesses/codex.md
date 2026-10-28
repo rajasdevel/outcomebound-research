@@ -2,6 +2,8 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Codex CLI releases weekly; loader, hooks, sandbox and app-server change between them)
 sources:
+  - https://github.com/openai/codex/releases/tag/rust-v0.164.0 (read 2026-10-28)
+  - https://github.com/openai/codex/releases/tag/rust-v0.165.0 (read 2026-10-28)
   - https://learn.chatgpt.com/docs/agent-configuration/agents-md
   - https://github.com/openai/codex/blob/main/codex-rs/core/src/agents_md.rs
   - https://raw.githubusercontent.com/openai/codex/rust-v0.157.0/codex-rs/models-manager/models.json
@@ -308,6 +310,18 @@ lines, so text written for a chat message, such as a multi-line list, does not b
   remedy observed to read well is to show the full brief in the reply first and keep the tool's
   fields to one line each.
 
+## 13. Release changes in 0.164.0 and 0.165.0 [as-of 2026-10-28]
+
+These notes describe the published releases, not a runtime check. L, October 23 and October 27 release notes.
+
+- **Compaction and resume (0.164.0).** Failed compaction no longer leaves partial summaries; background failure has a fallback. Resume finds compressed histories and restores saved thread settings instead of global defaults.
+- **Credentials and configuration (0.164.0).** The notes add masking for supported remote Bash commands and Zsh snapshots, including custom-provider credentials, and enable the Bedrock setup wizard by default. Neither statement establishes masking for every command or output.
+- **Memory and effort (0.165.0).** Memory v2 is on by default for fresh profiles, with external-agent memory import. Supported models can change effort during a conversation. The notes do not establish that an existing profile is migrated automatically or that imported memory is reliable.
+- **Providers and sessions (0.165.0).** A built-in Vertex AI route uses `model_provider = "gcp"`; Terra enters the catalog. Experimental attached thread forks appear in the app-server API, and worktree/session navigation gains grouping and repository filtering.
+- **Permission and interruption fixes (0.165.0).** Fresh TUI sessions honor the server's default approval reviewer when no override is set. Queued agent messages no longer restart work after an interrupt or Plan-mode switch. The notes also close a marketplace URL-validation gap, cancel abandoned remote MCP calls and stop retrying missing models.
+
+Release support does not establish provider account access, installed versions or behavior on another surface.
+
 ## Sources
 
 - `AGENTS.md` <https://learn.chatgpt.com/docs/agent-configuration/agents-md>; loader source
@@ -335,3 +349,8 @@ Evidence ids in brackets resolve in [`../_evidence/2026-09-25.jsonl`](../_eviden
 Own observations (O) are the maintainers' own probes and runs, unpublished, each dated and scoped
 where it appears: the sandbox probes, the read-only review, the isolation runs, the app-server probes
 and an environment check.
+
+Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior not tested):
+
+- <https://github.com/openai/codex/releases/tag/rust-v0.164.0>, read 2026-10-28.
+- <https://github.com/openai/codex/releases/tag/rust-v0.165.0>, read 2026-10-28.
