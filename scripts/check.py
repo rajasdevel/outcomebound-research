@@ -65,7 +65,7 @@ import collect  # noqa: E402
 import layout  # noqa: E402
 import render  # noqa: E402
 
-RESEARCH_DIRS = ("models", "harnesses", "providers", "practices", "applications")
+RESEARCH_DIRS = ("models", "harnesses", "providers", "practices", "factories", "applications")
 VOLATILITY_WINDOWS = {"STABLE": 180, "MONITOR": 30, "VOLATILE": 14}  # days
 MAX_QUOTE_WORDS = 25
 LEDGER_KINDS = {"practice", "finding", "generation", "family-note"}
