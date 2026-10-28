@@ -1,7 +1,7 @@
 # outcomebound-research
 
 **Dated, sourced facts about language and voice models, the providers that serve them, the coding harnesses
-that run them, and the practices around them.**
+that run them, the software factories built from them, and the practices around them.**
 
 You are about to put a model to work, or to judge one. You need to know how its maker says to
 instruct it, what its system card reports, what it costs, where its limits are and how it scored
@@ -27,6 +27,7 @@ On 2026-10-09 the library holds:
 | [providers/](providers/README.md) | 44 providers: 14 first-party lab APIs, 8 cloud platforms, 6 routers and gateways, 10 inference hosts and 6 local runtimes. Each file says what the route offers, how its API behaves, which features it passes through, and how it prices and limits use |
 | [harnesses/](harnesses/) | Six coding harnesses with a file each, one file for the others, [one comparison](harnesses/cross-harness.md) of what they load, cap, compact and run, and two files on extension layers ([claude-code-mods.md](harnesses/claude-code-mods.md), [extension-layers.md](harnesses/extension-layers.md)) |
 | [practices/](practices/) | 24 practice documents, from [prompting](practices/prompting.md) across makers to review, testing, long context, prompt caching, agent memory, [voice agents](practices/voice-agents.md), [voice acting](practices/voice-acting.md) and writing for models |
+| [factories/](factories/README.md) | Software factories: setups in which agents take work from a trigger or a spec to merged code with less human writing, starting or reading of code. Four documents: [what the term means](factories/README.md) and what a factory is made of, [who runs one](factories/operators.md), [the products](factories/platforms.md) that queue, check and merge the work, and [the evidence](factories/evidence.md) for and against |
 | [applications/](applications/README.md) | One application today, built on the base for one use |
 | [_evidence/](_evidence/) | The ledgers: one record for each finding, with its source URL, a verbatim quote of at most 25 words where one was kept, and the fact-check's verdict |
 | [INDEX.md](INDEX.md) | Every research document with its scope, `last_checked` and volatility |

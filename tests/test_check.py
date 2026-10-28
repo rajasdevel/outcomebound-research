@@ -178,6 +178,12 @@ class FrontmatterTest(RepoCase):
         write(self.root, "applications/other.md", "# Other\n")
         self.assertFails("frontmatter", "applications/other.md: no frontmatter")
 
+    def test_a_factories_document_is_a_research_document(self) -> None:
+        write(self.root, "factories/README.md", "# Software factories\n")
+        self.assertFails("frontmatter", "factories/README.md: no frontmatter")
+        write(self.root, "factories/README.md", doc_text(title="Software factories"))
+        self.assertFails("index", "INDEX.md: factories/README.md is not listed")
+
     def test_a_model_file_and_a_maker_readme_need_frontmatter(self) -> None:
         write(self.root, MODEL_PATH, "# Example Model 1\n")
         self.assertFails("frontmatter", f"{MODEL_PATH}: no frontmatter")

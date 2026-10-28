@@ -1,0 +1,193 @@
+{
+  "id": "kimi-k3.1-pro",
+  "name": "Kimi K3.1 Pro",
+  "maker": "Moonshot (Kimi)",
+  "family": "Kimi K3.1",
+  "class": "Kimi K",
+  "generation": "3.1",
+  "released": "2026-10-23",
+  "status": "ga",
+  "retires": null,
+  "weights": null,
+  "access": [
+    "Kimi API: Chat Completions, Responses and Anthropic-compatible Messages",
+    "Kimi apps, Kimi Work and Kimi Code",
+    "Vercel AI Gateway (catalog listing; account access not tested)"
+  ],
+  "context_window": 1048576,
+  "max_output": 1048576,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "high",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2.0,
+    "output": 10.0,
+    "cached_input": 0.2,
+    "notes": "Vercel AI Gateway listing: USD per million tokens, cache write $2 [gateway]. Direct Moonshot numeric prices did not render in the pricing source; these figures establish this gateway route only. Cache retention, taxes and other route terms can change the bill."
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0)",
+      "score": 46,
+      "setting": "reasoning variant; effort not stated on the model page; not comparable with v4.3.2 scores",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa",
+      "read": "2026-10-28"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 65.7,
+      "setting": "max effort, temperature 1.0, top_p 0.95; maker launch result; competitor rows use mixed published sources",
+      "harness": "Claude Code",
+      "measured_by": "maker",
+      "source": "launch",
+      "read": "2026-10-28"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+    "https://platform.kimi.ai/docs/api/models-overview",
+    "https://platform.kimi.ai/docs/guide/use-reasoning-effort",
+    "https://platform.kimi.ai/docs/guide/response_format"
+  ],
+  "system_card": null,
+  "model_page": "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+  "sources": [
+    {
+      "id": "launch",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "quickstart",
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "parameters",
+      "url": "https://platform.kimi.ai/docs/api/models-overview",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "effort",
+      "url": "https://platform.kimi.ai/docs/guide/use-reasoning-effort",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "format",
+      "url": "https://platform.kimi.ai/docs/guide/response_format",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pricing",
+      "url": "https://platform.kimi.ai/docs/pricing/chat",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "models",
+      "url": "https://platform.kimi.ai/docs/models",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gateway-release",
+      "url": "https://vercel.com/changelog/kimi-k3-1-pro-and-kimi-k3-1-pro-highspeed-are-available-now-in-ai-gateway",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gateway",
+      "url": "https://vercel.com/ai-gateway/models/kimi-k3.1-pro",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gateway-highspeed",
+      "url": "https://vercel.com/ai-gateway/models/kimi-k3.1-pro-highspeed",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa",
+      "url": "https://artificialanalysis.ai/models/kimi-k3-1-pro",
+      "read": "2026-10-28",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "swe",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-28",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench",
+      "url": "https://www.tbench.ai/",
+      "read": "2026-10-28",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "coding-index",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-28",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-28",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-28",
+  "unknown": [
+    "weights: not published on the checked date; Moonshot promises full weights by 2026-11-04. The future checkpoint license was not verified; do not infer the K3 license.",
+    "system_card: no separate system card verified. The launch blog reports a training-data-removal experiment on an internal cyber benchmark, not general deployment safety.",
+    "max_output: 1,048,576 is the Vercel route limit, including reasoning; the context is shared by prompt and response. A direct Moonshot output ceiling was not established.",
+    "pricing_usd_per_mtok: numeric values are the Vercel route listing; direct Moonshot prices were not established from its empty rendered pricing table.",
+    "SWE-Bench Pro (Scale, public V2): K3 appears on the Full table, but no K3.1 Pro row was found; do not transfer K3 results.",
+    "Terminal-Bench 4.0 independent leaderboard: table rows did not render; independent result UNVERIFIED.",
+    "Artificial Analysis Coding Agent Index: no K3.1 Pro score was verified from the chart text.",
+    "METR 50% time horizon: no K3.1 Pro result verified; the graph did not render and the page says it is no longer actively updated.",
+    "Artificial Analysis Intelligence Index effort and harness: not stated on the checked model page.",
+    "released: 2026-10-23 is the dated Vercel availability record; the Moonshot launch blog carries no exact launch date."
+  ]
+}

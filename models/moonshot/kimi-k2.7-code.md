@@ -36,6 +36,8 @@ sources:
 
 Kimi K2.7 Code is a coding-focused model that Moonshot AI built on its general K2.6 model: a one-trillion-parameter mixture-of-experts model (32B active per token) with a 256K-token window that reads text, images and video, always thinks, and is released with open weights under a modified MIT licence. It belongs to the class Kimi K Code, generation 2.7, and appeared in June 2026 (the weights were first uploaded on 2026-06-11). It targets long-horizon coding and, according to Moonshot, follows instructions more reliably over long contexts than K2.6 while using about 30% fewer thinking tokens. A faster id, `kimi-k2.7-code-highspeed`, serves the same weights at twice the price. What Moonshot's models share (API, fixed parameters, preserved reasoning, vision rules, safety evidence) is on the [Moonshot page](README.md); this file says what is specific to K2.7 Code.
 
+**Access and retirement [as-of 2026-10-28].** Moonshot says K2-series models will stop being available to new accounts from 2026-10-31. Existing users are unaffected by that cutoff. It plans to retire all K2-series models by the end of December, without an exact retirement day. The card below keeps its October 3 verification date; this notice updates access guidance only. L, <https://platform.kimi.ai/docs/models>, read 2026-10-28.
+
 ## At a glance
 
 <!-- card:begin -->

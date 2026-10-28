@@ -1,7 +1,8 @@
 ---
 last_checked: 2026-10-03
-volatility: VOLATILE (an early-access API that its maker says can change between releases; launched 2026-10-01 in 2.1.287, not yet on the stable channel)
+volatility: VOLATILE (in-process extension API, permission precedence and drawing surfaces change between releases)
 sources:
+  - https://code.claude.com/docs/en/permissions (read 2026-10-28)
   - https://claude.com/blog/claude-code-mods
   - https://claude.dev/blog/getting-started-with-claude-code-mods/
   - https://code.claude.com/docs/en/plugins/mods/overview
@@ -26,8 +27,7 @@ sources:
 
 > **Own results.** Claims marked (O) record observations the maintainers made while this document was written, dated and scoped where they appear. The records are not published ([CONVENTIONS](../CONVENTIONS.md)). All other claims rest on the documentation cited.
 
-Re-check at each Claude Code release that names mods in its changelog, when the stable npm tag
-reaches 2.1.287 or later, before relying on an event or method name, and by 2026-11-02.
+Re-check at each Claude Code release that names mods in its changelog, when its distribution channel changes, before relying on an event or method name, and by 2026-11-02.
 
 What a Claude Code mod is, which events it can observe, rewrite or answer, what it can draw and on
 which surface, how fast it can redraw, how it keeps state, how it extends the engine for other
@@ -36,7 +36,7 @@ plans to put behaviour or interface into Claude Code through a mod. Settings hoo
 and the rest of Claude Code's loading are in [claude-code.md](claude-code.md). The comparison of
 extension layers across harnesses is in [extension-layers.md](extension-layers.md).
 
-All pages were read on 2026-10-03. The maker's documentation was read as raw text. The API
+The original pages were read on 2026-10-03. The surface and guard changes below were re-read on 2026-10-28; this is not a full API re-verification. The maker's documentation was read as raw text. The API
 declarations were also read as Claude Code 2.1.288 writes them for a mod; this document calls
 that file "the 2.1.288 declarations". Evidence classes are as in [CONVENTIONS.md](../CONVENTIONS.md):
 L is the maker's documentation, M is a count or a measured fact, A is one account, O is an own result observed while this document was written.
@@ -56,7 +56,7 @@ L is the maker's documentation, M is a count or a measured fact, A is one accoun
   `$.ui.selection()` and fixed at least six defects in mods and plugin hooks modules (L, changelog,
   overview and admin pages; M, npm registry).
 - **Channel.** On 2026-10-03 the npm tags were `stable: 2.1.285` and `latest: 2.1.288`. A person on
-  the stable channel does not have mods yet (M, npm registry).
+  the stable channel did not have mods at that date. This is a historical tag reading, not the current channel state (M, npm registry).
 - **No plan limit is stated.** The blog says mods are available in the CLI and the desktop app. The
   sources name no plan restriction for mods. The built-in guard (§9) depends on the plan or on
   managed settings, and two built-in mods (`telemetry`, `you-should-know`) depend on analytics being
@@ -159,14 +159,7 @@ steers work:
   any width. A pane opened without a request (from `session.start` or a timer) takes its seat only
   from 144 terminal columns, or 110 after the person has opened that pane once, and waits below
   that (L, interface and reference pages).
-- **Surfaces that show a drawing.** Hooks run on every surface that loads the plugin. Only the
-  terminal and the Code tab of the desktop app show what a mod draws. The VS Code chat panel,
-  `claude -p`, the Agent SDK and cloud sessions run the hooks but show nothing. Under Remote
-  Control, from claude.ai or the mobile app, the drawing shows only in the terminal on the
-  person's machine. In WSL sessions of the desktop app, mods do not run (L, overview page). The
-  2.1.288 declarations already declare element tables for `vscode` and `mobile` in the `Elements`
-  type that `$.ui.resolve(e)` reads (O). Inference:
-  the maker plans those surfaces, and they do not draw today.
+- **Surfaces that show a drawing [as-of 2026-10-28].** The overview now includes the VS Code chat panel from extension 2.1.299, or 2.1.304 where the session does not fetch feature flags. Terminal and Desktop Code-tab drawing remain supported, subject to the element table. Print mode, Agent SDK and cloud sessions run loaded hooks without drawing. Remote Control shows the drawing in the local terminal; Desktop WSL sessions do not run mods. L, overview page, read 2026-10-28. Mobile drawing and ACP dialogs were not verified.
 - **Through ACP (Zed and other ACP clients).** The ACP adapter for Claude,
   `agentclientprotocol/claude-agent-acp` (formerly `zed-industries/claude-code-acp`), version 0.85.1,
   is built on `@anthropic-ai/claude-agent-sdk` 0.3.287. It starts each session with the setting
@@ -223,10 +216,7 @@ steers work:
 - **Settings hooks stay.** The docs now call the older hooks "settings hooks": a shell command, an
   HTTP request or a prompt on a lifecycle event. They are not deprecated, and they run beside mods
   (L, overview and admin pages; hooks page).
-- **Order with `PreToolUse`.** `PreToolUse` hooks from managed settings run before the first mod,
-  and their block is final. If a mod rewrites a call, the managed hooks run again on the new call.
-  Other `PreToolUse` hooks, from settings files and plugins, run after the last mod calls `next`. A
-  mod that answers `tool.call` itself stops them from running (L, events and admin pages).
+- **Order with `PreToolUse` [as-of 2026-10-28].** Managed `PreToolUse` hooks run before the first mod, and recheck a call that a mod rewrites. Other settings and plugin hooks run after the mod chain calls `next`; a mod that answers `tool.call` can prevent them from running. The default built-in guard separately preserves a hook block or prompt at permission checking. Its eligibility and host-code limits are in §9. L, admin and permissions pages, read 2026-10-28.
 - **A mod is a plugin.** The same plugin can carry skills, agents, MCP servers and settings hooks.
   It is installed and shared like any plugin: a marketplace, `/plugin install`, or the maker's
   directory. `disableAllHooks` and `allowManagedModsOnly` stop the mod and leave the plugin's
@@ -244,18 +234,11 @@ steers work:
   `claude -p` or `dontAsk`, where no one can answer. That folder is deleted after `cleanupPeriodDays`
   (L, create and admin pages).
 - **Turning mods off.** A person can disable one plugin in `/plugin`, start one session with
-  `--safe-mode`, or set `disableAllHooks`. None of these stops the built-in mods. The maker can turn
+  `--safe-mode`, or set `disableAllHooks`. The blanket flags and settings leave built-in mods running; some built-ins have their own switch in `/plugin`. The maker can turn
   installed mods off remotely, and no local setting turns them back on (L, overview and
   troubleshoot pages).
-- **The built-in guard.** `sec-default@builtin` loads first on a machine with managed settings, or
-  for a person signed in with a Team or Enterprise plan. Where it loads, it keeps other mods away
-  from managed hooks, managed instructions, the system prompt, settings reads and managed MCP tools,
-  and it makes `deny` rules final (L, admin page). Inference: where it does not load, an installed
-  mod can rewrite system-prompt sections and approve a call that a `deny` rule refuses.
-- **Gaps that remain with the guard.** A mod can still approve a call that an `ask` rule or a
-  non-managed `PreToolUse` hook would stop. In auto mode, a call that a mod approves skips the
-  classifier. Deny rules do not apply to a mod's own `$.fs` and `$.process` calls. Network policy
-  covers `$.http.fetch` but not a program started with `$.process.run` (L, admin page).
+- **The built-in guard [as-of 2026-10-28].** `cc-plugin-sec-default@builtin` loads by default with managed settings, or when the session uses a Team or Enterprise `/login` credential. An API key or long-lived OAuth token does not establish that credential. If `prependPlugins` is configured, its list must retain the guard. With its default configuration, the guard protects deny and ask rules, `PreToolUse` blocks and prompts, outside-directory prompts, and SDK permission callbacks. It also protects managed hooks, instructions, system-prompt sections, settings reads and managed MCP tools from user-installed mods. L, admin and permissions pages, read 2026-10-28.
+- **Limits of that protection [as-of 2026-10-28].** Without the guard, a mod can override those tool decisions. The guard's managed `pluginConfigs` entry can change its protections; the exact options belong to the admin reference. Tool rules do not govern the mod's own filesystem or process methods, and a process it starts is outside the Bash sandbox. A mod approval usually skips the auto-mode classifier. Plan-mode restrictions and tools that require user interaction still apply as the permissions reference states. L, admin and permissions pages, read 2026-10-28.
 - **Organisation settings.** Managed settings offer `allowManagedModsOnly`,
   `allowModsToOverrideDenyRules`, `prependPlugins`, `appendPlugins`, `allowManagedHooksOnly`,
   `disableAllHooks`, `disableSideloadFlags` and the marketplace allowlists. An organisation can also
@@ -288,14 +271,11 @@ steers work:
 
 ## Limits and open questions
 
-- One day's reading, two days after the launch. The issue's 242 comments, its architecture PDF and
+- The original API reading was one day, two days after launch; the dated surface and permission sections were checked again on 2026-10-28. The issue's 242 comments, its architecture PDF and
   its demo videos were not read. No post on X was read (the site returned HTTP 402).
 - Nothing here was run as a mod. The facts marked O are from the declarations that 2.1.288 writes,
   not from a running mod.
-- Open: when `vscode` and `mobile` start to draw; whether a mod's hooks run in an ACP session as
-  inferred in §5, and whether its dialogs (`$.ui.ask`) reach the ACP client; whether the stable channel takes 2.1.287 or later
-  unchanged; whether a versioning promise follows; whether `$.ui.status` and the `statusLine`
-  setting merge.
+- Open: mobile drawing; ACP hook and dialog behavior; current distribution-channel tags; a versioning promise; and whether `$.ui.status` and `statusLine` merge. VS Code drawing is now documented in §5.
 - Re-read this document when any of those changes, and by 2026-11-02.
 
 ## Sources
@@ -327,3 +307,9 @@ steers work:
 - Pluto Security, "Claude Code function hooks security", 2026-09-22
   <https://pluto.security/blog/claude-code-function-hooks-security/> (read 2026-10-03 through a
   summarising fetch).
+
+Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior not tested):
+
+- <https://code.claude.com/docs/en/plugins/mods/overview>, read 2026-10-28.
+- <https://code.claude.com/docs/en/plugins/mods/admin>, read 2026-10-28.
+- <https://code.claude.com/docs/en/permissions>, read 2026-10-28.

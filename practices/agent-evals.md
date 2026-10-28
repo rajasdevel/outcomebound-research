@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: STABLE (suite method, statistics, error analysis, SQL correctness) / VOLATILE (§8 what evaluation tools ship)
 sources:
+  - https://arxiv.org/html/2607.22585v1 (read 2026-10-28)
   - https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
   - https://hamel.dev/blog/posts/evals-faq/
   - https://arxiv.org/abs/2406.12045
@@ -361,6 +362,12 @@ merged on 2026-10-01. That merge does not establish that a given viewer installa
 A bounded check can compare displayed and exported events against an independently retained record
 when the viewer receives hostile output (inference). This concerns evidence presentation; it does
 not prove that logging captures every action or that current systems conceal misbehaviour.
+
+### 10.5 Harness choice and reported token cost [as-of 2026-10-28]
+
+The Scaffold Effect preprint compares Goose, OpenCode and OpenHands-SDK on 50 Terminal-Bench Pro tasks with Qwen3.6 Plus and MiniMax M2.5. It reports roughly 40 times more tokens per solved task for OpenCode than Goose, while paired pass-rate differences span 0–8 percentage points and most are not statistically clear. M, <https://arxiv.org/html/2607.22585v1>, read 2026-10-28.
+
+The limits matter: Goose exposes total tokens without the same input/output breakdown; the other harness totals include prompt, completion and cached tokens. Goose and OpenHands have a 40-turn cap, while OpenCode has the 900-second wall-time limit without that turn cap. Provider defaults may change. These results are neither a universal harness ranking nor proof of 40 times the billed spend. A comparison that keeps model and harness versions, effort, tools, budgets, successful outcomes, latency, cache accounting and actual billing separate is the inference supported here. No replication was run.
 
 ## What the evidence supports (inference)
 

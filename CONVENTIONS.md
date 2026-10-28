@@ -17,7 +17,7 @@ The short form:
 
 ## Two layers
 
-The **neutral base** is `models/`, `providers/`, `harnesses/`, `practices/` and `_evidence/`. It holds
+The **neutral base** is `models/`, `providers/`, `harnesses/`, `practices/`, `factories/` and `_evidence/`. It holds
 facts and advice about the outside world, sourced and dated, for anyone who uses these models for
 any purpose. A base file never uses the vocabulary of one downstream use. It never names a project
 that uses this repository, except to cite that project's public evaluation record as the source of an
@@ -31,7 +31,7 @@ never refers to an application.
 ## Frontmatter
 
 Every research document opens with the block below. A research document is a Markdown file in
-`models/`, `harnesses/`, `providers/`, `practices/` or `applications/`. Four navigation and format
+`models/`, `harnesses/`, `providers/`, `practices/`, `factories/` or `applications/`. Four navigation and format
 pages carry no frontmatter: `models/README.md`, `models/FORMAT.md`, `providers/README.md` and
 `applications/README.md`.
 

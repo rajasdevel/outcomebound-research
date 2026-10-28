@@ -3,6 +3,9 @@ last_checked: 2026-10-03
 volatility: MONITOR (lineage, guides and API behaviour change at each release)
 sources:
   - https://platform.kimi.ai/docs/models
+  - https://www.kimi.ai/blog/kimi-k3-1-pro (read 2026-10-28)
+  - https://platform.kimi.ai/docs/api/models-overview (read 2026-10-28)
+  - https://vercel.com/changelog/kimi-k3-1-pro-and-kimi-k3-1-pro-highspeed-are-available-now-in-ai-gateway (read 2026-10-28)
   - https://platform.kimi.ai/docs/platform-changelog
   - https://platform.kimi.ai/docs/api/overview
   - https://platform.kimi.ai/docs/api/models-overview
@@ -42,7 +45,7 @@ sources:
 
 # Moonshot Kimi models
 
-Moonshot AI is a Chinese laboratory that serves the Kimi models through the Kimi API platform and publishes their weights. On 2026-10-03 three of its models have files here: [Kimi K3](kimi-k3.md), its flagship, [Kimi K2.6](kimi-k2.6.md), the general model of the generation before it, and [Kimi K2.7 Code](kimi-k2.7-code.md), a coding model built on K2.6. This page holds what is true of all three: the lineage, the API they share, the guides Moonshot publishes, what its releases include on safety, and behaviour that does not change between them. Each model file says what differs for that model.
+Moonshot AI trains the Kimi models and serves them through its API platform. Current and previous general generations have files here: [K3.1 Pro](kimi-k3.1-pro.md), its [Highspeed variant](kimi-k3.1-pro-highspeed.md), and [K3](kimi-k3.md). [K2.7 Code](kimi-k2.7-code.md) remains a separate coding class. K2.6 is retained in the lineage below, with no standalone file under the two-generation policy. The K3.1 catalogue and parameter changes were read on 2026-10-28; the older family research keeps its original dates. L [kimi-k31-models] [kimi-k31-parameters].
 
 ## Models and lineage
 
@@ -53,13 +56,14 @@ What Moonshot's changelog, model list, blog and model cards record ([kimi-change
 | 2025-07 | Kimi K2 | Open-weight mixture-of-experts model; a `0905` revision followed in 2025-09. |
 | 2025-11 | K2 Thinking | A reasoning model; the `kimi-k2` ids were retired on 2026-05-25. |
 | 2026-01 | K2.5 | Retired from the API on 2026-08-31, together with the `moonshot-v1` models. |
-| 2026-04-20 | [K2.6](kimi-k2.6.md) | General model with text, image and video input, thinking on by default and switchable, 256K context; 1T total parameters and 32B active. Still served. |
+| 2026-04-20 | K2.6 | General model with text, image and video input, thinking on by default and switchable, 256K context; 1T total parameters and 32B active. Still served. |
 | 2026-06 | K2.7 Code | Coding-focused model built on K2.6; thinking always on; a `kimi-k2.7-code-highspeed` id serves the same weights faster at twice the price. Public weights first appeared on 2026-06-11. |
 | 2026-07-16 | K3 | 2.8T total parameters, 104B active, 1M-token context, native vision; weights published 2026-07-27. On Amazon Bedrock from 2026-09-18. |
+| 2026-10-23 | K3.1 Pro and Highspeed | Post-trained K3 successor, 1M context; API available; weights promised by 2026-11-04. Vercel dates availability to October 23. L [kimi-k31-launch] [kimi-k31-release], read 2026-10-28. |
 
-How the models are classed here:
+How the models are classed here [as-of 2026-10-28]:
 
-- **Kimi K, generation 3.** K3 is the current model. The generation before it is K2.x; its newest general model, [K2.6](kimi-k2.6.md), is still served and has a file. Older K2 ids are retired and out of scope.
+- **Kimi K, generations 3.1 and 3.** K3.1 Pro is current; K3 is the previous general generation. K2.6 is outside the two-generation file scope. L [kimi-k31-models].
 - **Kimi K Code, generation 2.7.** K2.7 Code has no successor: Moonshot has not released a K3 coding variant, and its pages describe K3 itself as the model for long-horizon coding.
 - **Architecture.** K2.6 and K2.7 Code are one-trillion-parameter models with 384 experts, 8 chosen per token, and multi-head latent attention. K3 changes the attention (Kimi Delta Attention, a linear-attention layer, in 69 of 93 layers with gated latent attention in the rest) and uses 896 experts with 16 chosen per token. K3's weights are trained for 4-bit weights with 8-bit activations (MXFP4/MXFP8); K2.7 Code uses 4-bit integer weights [kimi-k3-hf] [kimi-k27-code-hf].
 - **Licences.** K2.7 Code (and K2.6) use a modified MIT licence that adds one condition: a product with more than 100 million monthly users or more than $20 million a month in revenue must show the model's name in its interface. The K3 licence is custom: it allows use, copying, modification and resale, keeps the same name-display condition, and adds a rule for "Model as a Service" businesses (offering third parties meaningful control over inference or fine-tuning) with more than $20 million in revenue over twelve months, which must sign a separate agreement; internal use and use through Moonshot's own products or certified inference partners is exempt. This is a summary, not legal advice [kimi-k3-license].
@@ -123,9 +127,9 @@ Moonshot's own tables disclose some run caveats that are useful to read: for K3'
 
 **Fixed parameters.** `temperature` is fixed at 1.0 (K2.6 uses 0.6 without thinking), `top_p` at 0.95, `n` at 1 and both penalties at 0; sending any other value returns an error, so Moonshot says to leave them out. For self-hosted K3 the report recommends top-p 0.95 for reasoning and knowledge work and 1.0 for coding and agents, which the hosted API cannot do [kimi-model-params] [kimi-k3-report].
 
-**Effort.** Only K3 has `reasoning_effort` (low, high, max; default max). Changing it in the middle of a conversation invalidates the prefix cache [kimi-model-params].
+**Effort [as-of 2026-10-28].** K3 and both K3.1 variants have `reasoning_effort` (low, high, max; default max). Changing it in the middle of a conversation invalidates the prefix cache [kimi-model-params] [kimi-k31-parameters].
 
-**Tool choice.** `required` works on K3 and returns an error on K2.7 Code and K2.6. Forcing one named function is incompatible with thinking and returns 400, so it is unavailable for K3 and K2.7 Code [kimi-tool-choice].
+**Tool choice [as-of 2026-10-28].** `required` works on K3 and both K3.1 variants and returns an error on K2.7 Code and K2.6. Forcing one named function is incompatible with thinking and returns 400, so it is unavailable for K3 and K2.7 Code [kimi-tool-choice]. The K3.1 parameter table confirms `auto`, `none` and `required` [kimi-k31-parameters].
 
 **Multi-step tool use.** For K2.7 Code and K2.6, Moonshot says to keep all reasoning from the current task in the context, set `max_tokens` to at least 16,000, stream, and leave `temperature` alone; for K3 its rule is to return each complete assistant message unchanged [kimi-thinking-models] [kimi-k3-quickstart].
 
@@ -137,13 +141,17 @@ Moonshot's own tables disclose some run caveats that are useful to read: for K3'
 
 **Safeguards as measured by others.** The UK AI Security Institute and CAISI, in a joint preliminary assessment of K3 (2026-07-23), found that its safeguards did not stop it attempting exploit development or offensive cyber operations, and that its cyber capability sat well below the leading US models ([uk-aisi-caisi-k3], with the figures in the [K3 file](kimi-k3.md#what-the-system-card-reports)).
 
+### K3.1 release and K2 access changes [as-of 2026-10-28]
+
+Moonshot applies K3's parameter constraints to both K3.1 variants. The [new model files](kimi-k3.1-pro.md) record the current API details and benchmark limits. The weight release is promised, not completed; its future license was not verified. New accounts lose K2-series access from 2026-10-31; existing accounts are unaffected by that cutoff, and all K2 models are planned for retirement by the end of December. No exact retirement day is given. L [kimi-k31-models] [kimi-k31-parameters] [kimi-k31-launch].
+
 ## Open questions
 
 - Whether Moonshot will publish an alignment, refusal or prompt-injection evaluation for K3; the report has only a cyber section.
 - K2.6's exact release day and how long the API keeps serving it; Moonshot's pages say only April 2026 and now point to K3.
 - K2.7 Code's exact release day; the changelog gives only June 2026.
 - Independent results for K3 on the METR time horizon and Artificial Analysis's coding-agent index, neither of which listed it.
-- Whether a K3 coding variant or a K3 minor release will follow.
+- Whether a distinct K3.1 coding variant will follow; the general K3.1 release is now documented [kimi-k31-launch] [as-of 2026-10-28].
 
 ## Sources
 
@@ -175,3 +183,10 @@ Moonshot's own tables disclose some run caveats that are useful to read: for K3'
 | kimi-k3-report | https://arxiv.org/html/2607.24653 | L | 2026-10-03 |
 | uk-aisi-caisi-k3 | https://www.aisi.gov.uk/blog/preliminary-assessment-of-kimi-k3s-cyber-capabilities | M | 2026-10-03 |
 | aws-bedrock-kimi-k3 | https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-moonshot-ai-kimi-k3.html | L | 2026-10-03 |
+
+Sources added for the sections dated 2026-10-28:
+
+- [kimi-k31-launch] <https://www.kimi.ai/blog/kimi-k3-1-pro> (L), read 2026-10-28.
+- [kimi-k31-models] <https://platform.kimi.ai/docs/models> (L), read 2026-10-28.
+- [kimi-k31-parameters] <https://platform.kimi.ai/docs/api/models-overview> (L), read 2026-10-28.
+- [kimi-k31-release] <https://vercel.com/changelog/kimi-k3-1-pro-and-kimi-k3-1-pro-highspeed-are-available-now-in-ai-gateway> (L), read 2026-10-28.
