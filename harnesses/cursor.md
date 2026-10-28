@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Cursor ships monthly; rules, hooks and third-party loading change between releases)
 sources:
+  - https://cursor.com/docs/approval-agents (read 2026-10-28)
   - https://cursor.com/docs/rules
   - https://cursor.com/help/customization/rules
   - https://cursor.com/docs/hooks
@@ -188,6 +189,10 @@ The claims and limits are recorded once in
 and [the rollout workflow](../practices/releasing.md#10-evidence-after-deployment-and-paid-service-bounds-volatile-as-of-2026-10-09).
 These are vendor reports (L), read 2026-10-09; they do not establish that the rule-loading and hook
 behavior above changed.
+
+## 10. PR Routing and Approval [as-of 2026-10-28]
+
+Cursor documents reviewer assignment from ownership and commit history, plus optional approval of low-risk changes under configured criteria. This does not replace full code review. If a PR edits an approval policy, routing file or routed reviewer policy, the agent uses the base-branch version rather than the proposed relaxation. It requires human review if the prior version cannot be determined. L, <https://cursor.com/docs/approval-agents>, read 2026-10-28. Account availability and policy enforcement were not tested.
 
 ## Sources
 

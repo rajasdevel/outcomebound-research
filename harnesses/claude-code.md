@@ -2,6 +2,10 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Claude Code ships several releases a week; loading, hooks and settings keys change between them)
 sources:
+  - https://code.claude.com/docs/en/plugins/mods/overview (read 2026-10-28)
+  - https://code.claude.com/docs/en/permissions (read 2026-10-28)
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.295 (read 2026-10-28)
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.312 (read 2026-10-28)
   - https://code.claude.com/docs/en/memory
   - https://code.claude.com/docs/en/context-window
   - https://code.claude.com/docs/en/skills
@@ -162,6 +166,10 @@ run an invocable `verify` or `simplify` skill immediately before commits, except
 test changes, if the skill was present at session start and `includeGitInstructions` is enabled.
 Enterprise, personal, project and additional-directory skills, and legacy `.claude/commands`
 files, count; bundled, plugin and claude.ai account skills do not. This is a model instruction, not a deterministic Git gate (inference). L.
+
+### Release changes in 2.1.312 [as-of 2026-10-28]
+
+The October 27 release reports fixes for managed-policy loading after VS Code sign-in, directory-scoped skills after `cd`, partial reads followed by instruction-file overwrites, and resumed history. Effort displays now name the setting actually in force. On Bedrock, Vertex, Foundry and Mantle, unrecognized model names now use the shorter system prompt; `CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT=0` retains the full prompt. Refusal fallback also covers custom names; `CLAUDE_CODE_DISABLE_REFUSAL_FALLBACK=1` disables it. These are vendor reports, not local reproductions. L, release notes.
 
 ## 4. Compaction, checkpoints and long sessions
 
@@ -336,7 +344,7 @@ Source: <https://code.claude.com/docs/en/hooks>, read 2026-09-29 from the page s
 
 ### 7.2 How a hook fails or blocks
 
-- **Only exit 2 blocks by its code.** Exit 1, the usual Unix failure, is a non-blocking error: the
+- **Default failure handling [as-of 2026-10-28].** Without an explicit failure policy, exit 2 is the blocking exit code. Exit 1, the usual Unix failure, is a non-blocking error: the
   action proceeds and the transcript shows a `<hook name> hook error` notice, so a hook that
   enforces a policy exits 2. A script that is missing or not executable exits 127 into the same
   non-blocking bucket ("a mistyped path in `settings.json` leaves the gate silently disabled").
@@ -347,7 +355,7 @@ Source: <https://code.claude.com/docs/en/hooks>, read 2026-09-29 from the page s
   stalled hook to act as a gate"), while a timed-out `PreModelSwitch` hook blocks the switch;
   `WorktreeCreate` fails on any non-zero exit. Lab-guidance, hooks reference read 2026-09-29 and
   2026-10-01.
-- A hook whose command is missing holds nothing (§7.1).
+- **Explicit failure policy.** Version 2.1.295 added `onFailure: block` for command and HTTP hooks that cannot start, time out or exit unexpectedly. The default failures above therefore do not describe a hook with that policy. This is a vendor-reported change from October 8, read 2026-10-28, not a new October 22 release. L, 2.1.295 release notes.
 - What makes any harness's hook unsafe (privileges, trust once, environment, loops, fighting a
   legitimate stop) is in [cross-harness.md](cross-harness.md#92-what-makes-a-hook-unsafe-or-unusable).
 
@@ -370,7 +378,7 @@ Source: <https://code.claude.com/docs/en/hooks>, read 2026-09-29 from the page s
   hooks get 1.5 s, raised to the largest per-hook `timeout` in the settings files up to 60 s. All
   matching handlers run in parallel; a handler defined in several settings files runs once.
   Lab-guidance.
-- **Enforcement.** A `PreToolUse` hook blocks an action whatever the model decides; instruction
+- **Enforcement.** A `PreToolUse` hook blocks independently of the model. Privileged mods can change that outcome under the conditions in [the mods guide](claude-code-mods.md#9-trust-consent-and-organisation-control). Instruction
   files cannot [harness-loading-coverage-9]. Hooks that touch the auto-mode classifier
   (`PermissionDenied`, `classifierContext`) are in
   [agent-authorization.md](../practices/agent-authorization.md#2-claude-codes-permission-layers-volatile-a2-a4).
@@ -420,14 +428,13 @@ section holds what a harness row needs. Permission-modes and sandboxing pages [a
   is available), `auto` (everything, with a background classifier reviewing commands and
   protected-directory writes), `dontAsk` (reads and pre-approved tools; anything that would prompt
   is denied, for locked-down CI) and `bypassPermissions` (everything; for isolated containers and
-  VMs only). Deny rules block in every mode, `bypassPermissions` included. Writes to protected
+  VMs only). Deny rules apply in every permission mode, `bypassPermissions` included, subject to the mod guard conditions below [as-of 2026-10-28]. Writes to protected
   paths are never auto-approved outside `bypassPermissions`.
 - **Auto mode** is the starting mode for interactive terminal and VS Code sessions from v2.1.283,
   on every plan and provider; under `-p` and in the Agent SDK a session starts in `default` where it
   fetches feature flags, and in `auto` (v2.1.285 and later) where it does not, such as on a
   third-party provider or with telemetry off. It returns to prompting after 3 blocks in a row or 20
-  in a session; a boundary stated in conversation can be lost at compaction, so a deny rule is the
-  hard guarantee. The classifier ignores `autoMode` and `defaultMode: "auto"` from project settings.
+  in a session; a boundary stated in conversation can be lost at compaction, so a matching deny rule is more durable than transcript intent; privileged mods remain a separate permission path, described below [as-of 2026-10-28]. The classifier ignores `autoMode` and `defaultMode: "auto"` from project settings.
 - **The sandbox** covers every Bash, PowerShell and Monitor command and its child processes, on
   macOS (the built-in Seatbelt framework), Linux and WSL2 (bubblewrap and socat, with an optional
   seccomp filter; on Ubuntu 24.04 and later an AppArmor profile must let `bwrap` create user
@@ -452,6 +459,12 @@ section holds what a harness row needs. Permission-modes and sandboxing pages [a
   macOS the file is blocked instead. Mask entries, `tlsTerminate` and plaintext injection are
   honored only from user, managed and `--settings` sources, never from a repository's settings
   files.
+
+### Mods and settings-hook scheduling [as-of 2026-10-28]
+
+Mods execute inside Claude Code and can change tool and prompt behavior. They are not covered by the Bash sandbox. The [dedicated mods guide](claude-code-mods.md) records the current surfaces and managed-guard conditions; a permission-mode guarantee alone does not cover mod code. L, mods overview and permissions pages.
+
+Version 2.1.312 limits prompt and agent hooks to 24 concurrent runs per session, including subagents, plus up to 12 overdue runs. A timeout below one second counts as one second. This scheduling change is distinct from command and HTTP hook failure policy. L, 2.1.312 release notes.
 
 ## 10. Session storage, plugins, models and routes
 
@@ -562,3 +575,10 @@ Checks defined here (verdict PASS, read 2026-09-25):
   model instead of always running on Haiku", capped at Opus on the Claude API.
 
 Evidence ids in brackets resolve in [`../_evidence/2026-09-25.jsonl`](../_evidence/2026-09-25.jsonl).
+
+Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior not tested):
+
+- <https://code.claude.com/docs/en/plugins/mods/overview>, read 2026-10-28.
+- <https://code.claude.com/docs/en/permissions>, read 2026-10-28.
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.295>, read 2026-10-28.
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.312>, read 2026-10-28.

@@ -4,6 +4,9 @@ volatility: VOLATILE (a provider's catalogue, prices, limits and feature support
 kind: first-party lab API
 sources:
   - https://platform.kimi.ai/docs/overview
+  - https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart (read 2026-10-28)
+  - https://platform.kimi.ai/docs/models (read 2026-10-28)
+  - https://platform.kimi.ai/docs/api/models-overview (read 2026-10-28)
   - https://platform.kimi.ai/docs/guide/kimi-k3-quickstart
   - https://platform.kimi.ai/docs/pricing/limits
   - https://platform.kimi.ai/docs/pricing/chat
@@ -20,14 +23,16 @@ Moonshot AI trains the Kimi models and sells them through the Kimi Open Platform
 
 ## Models offered
 
-The overview names three: Kimi K3 (the flagship, 1M-token context), Kimi K2.7 Code (256K, built for programming) and Kimi K2.6 (general purpose, 256K). Text, image and video go in; the pages list streaming, tool calling, JSON mode and reasoning modes. [overview]
+**Catalogue [as-of 2026-10-28].** The model list adds K3.1 Pro and Highspeed ahead of K3, K2.7 Code and K2.6. The new API ids are `kimi-k3.1-pro` and `kimi-k3.1-pro-highspeed`. L [k31-models].
 
 | Model file | API id | Note |
 | --- | --- | --- |
+| [Kimi K3.1 Pro](../models/moonshot/kimi-k3.1-pro.md) | `kimi-k3.1-pro` | Current general generation |
+| [Kimi K3.1 Pro Highspeed](../models/moonshot/kimi-k3.1-pro-highspeed.md) | `kimi-k3.1-pro-highspeed` | Faster serving variant; maker equivalence claim |
 | [Kimi K3](../models/moonshot/kimi-k3.md) | `kimi-k3` | 1M context; thinking always on |
 | [Kimi K2.7 Code](../models/moonshot/kimi-k2.7-code.md) | `kimi-k2.7-code` | 256K context |
 
-Kimi K2.6 is on the overview but has no file in the library (two generations per class). The maker README lists a `kimi-k2.7-code-highspeed` id as the same model served faster, and records retirements: the `kimi-k2` series on 2026-05-25 and `kimi-k2.5` and `moonshot-v1` on 2026-08-31, now returning 404. The lineage is in the [maker README](../models/moonshot/README.md). [overview]
+Kimi K2.6 has no standalone file under the two-generation policy. New registrations lose K2 access from 2026-10-31; existing accounts keep access at that cutoff. Moonshot plans all K2 retirement by the end of December, without an exact day. L [k31-models] [as-of 2026-10-28]. The maker README lists a `kimi-k2.7-code-highspeed` id as the same model served faster, and records retirements: the `kimi-k2` series on 2026-05-25 and `kimi-k2.5` and `moonshot-v1` on 2026-08-31, now returning 404. The lineage is in the [maker README](../models/moonshot/README.md). [overview]
 
 ## API surface
 
@@ -60,9 +65,13 @@ Per token, with separate rates for input, output and, on K3, cache writes (5-min
 - **Regions.** One global host (`api.moonshot.ai`); no regional endpoints were found in the pages read. The maker README notes that Amazon Bedrock hosts K3 with cross-Region profiles. [overview]
 - **Retention and training.** The sources disagree. The platform's data-security help page (in Chinese) says API inputs and outputs are not used to train or improve Kimi models and serve only the current request, while the Terms of Service say Moonshot may use Content to provide, maintain, develop and improve the services unless otherwise agreed in writing, and point customers who want training restrictions to enterprise arrangements or separate written agreements. Zero Data Retention is for enterprise customers, by request through sales: content is deleted once the response is returned and is not used for training, and it excludes images and videos from direct file uploads, operational data such as security logs and billing, and third-party models, connectors and plugins; safety review still applies, and abuse can end the ZDR service. [datasecurity, terms, zdr]
 
+### K3.1 route limits [as-of 2026-10-28]
+
+Both K3.1 variants use K3's fixed sampling and `low`/`high`/`max` effort rules. The full assistant message must survive tool continuations. The numeric direct-pricing table did not render; the new model cards identify Vercel route prices explicitly. Account access, billing and live behavior were not tested. L [k31-parameters] [k31-guide]; route sources are in the model cards.
+
 ## Notes for agents and harnesses
 
-- **Sampling is fixed.** A harness that sets `temperature`, `top_p`, `n` or penalties on K3 changes nothing; K3's page says they cannot be modified. [k3]
+- **Sampling is fixed.** K3 and both K3.1 variants reject non-fixed sampling values; the parameter reference says to omit these fields. L [k31-parameters] [as-of 2026-10-28]. [k3]
 - **Effort mapping.** Three levels (`low`, `high`, `max`) and thinking cannot be switched off on K3, so a "no reasoning" setting has no equivalent. [k3]
 - **Training terms conflict.** The Terms of Service and the data-security help page say different things about default use of API content; only the enterprise arrangement is stated to restrict it. [terms, datasecurity]
 - **Rate limits start very low.** Tier 0 allows one concurrent request and 3 requests a minute, so a fresh account cannot run parallel agents until it is recharged. [limits]
@@ -81,3 +90,7 @@ Per token, with separate rates for input, output and, on K3, cache writes (5-min
 | zdr | https://platform.kimi.ai/docs/guide/zero-data-retention | L | 2026-10-03 |
 | terms | https://platform.kimi.ai/docs/agreement/modeluse | L | 2026-10-03 |
 | datasecurity | https://www.kimi.com/help/kimi-api/api-data-security | L | 2026-10-03 |
+
+- [k31-guide] <https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart> (L), read 2026-10-28.
+- [k31-models] <https://platform.kimi.ai/docs/models> (L), read 2026-10-28.
+- [k31-parameters] <https://platform.kimi.ai/docs/api/models-overview> (L), read 2026-10-28.

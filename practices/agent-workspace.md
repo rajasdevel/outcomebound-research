@@ -2,6 +2,9 @@
 last_checked: 2026-09-29
 volatility: STABLE (the studies behind W0, W2, W3 and W5, and the recorded runs) / VOLATILE (harness facts in §1, §2, §4 and §7)
 sources:
+  - https://www.anthropic.com/research/managed-agents (read 2026-10-28)
+  - https://latent.space/p/opus55/ (read 2026-10-28)
+  - https://github.com/openai/codex/releases/tag/rust-v0.164.0 (read 2026-10-28)
   - https://arxiv.org/abs/2604.10290 (read 2026-10-09)
   - https://arxiv.org/html/2604.10290v1 (read 2026-10-09)
   - https://alignment.anthropic.com/2026/ai-organizations/ (read 2026-10-09)
@@ -298,6 +301,12 @@ The tasks deliberately place business and ethics goals in conflict. The study do
 all teams are less safe, or that a particular handoff or constraint format fixes the gap. A
 successful delegated part and an integrated result that meets the whole task's constraints remain
 separate questions (inference).
+
+### 3.2 Durable sessions and replaceable sandboxes [as-of 2026-10-28]
+
+Anthropic's April 8 Managed Agents article separates the harness, execution environments and durable session event log. A failed sandbox is a tool failure; the harness can provision another, and `getEvents()` retrieves prior event slices. The article does not establish automatic recovery of arbitrary files from a failed sandbox. L, <https://www.anthropic.com/research/managed-agents>, read 2026-10-28.
+
+The October 27 Latent Space interview revisits this older design, rather than announcing its release. The practical distinction is between retained event history, files that need separate persistence, and actions whose external effects may already have happened (inference). Codex 0.164.0 separately reports fixes for partial compaction summaries and restored thread settings; those release notes do not prove crash recovery or exactly-once external effects. L, <https://github.com/openai/codex/releases/tag/rust-v0.164.0>, read 2026-10-28.
 
 ## 4. Memory and session history on one machine (W3)
 

@@ -2,6 +2,8 @@
 last_checked: 2026-10-01
 volatility: MONITOR (memory research is mostly 2026 preprints and moves fast) / VOLATILE (§1, where each harness keeps memory)
 sources:
+  - https://github.com/openai/codex/releases/tag/rust-v0.165.0 (read 2026-10-28)
+  - https://platform.claude.com/docs/en/managed-agents/dreams (read 2026-10-28)
   - https://arxiv.org/html/2609.23570v1 (read 2026-10-09)
   - https://code.claude.com/docs/en/memory
   - https://developers.openai.com/codex/memories
@@ -60,7 +62,7 @@ quality of an agent's ordinary memory writes. M, A.
 | Harness | Where | Shared with | Loaded |
 | --- | --- | --- | --- |
 | Claude Code auto memory | `~/.claude/projects/<project>/memory/`, the project derived from the Git repository | The repository's worktrees on that machine; "not shared across machines or cloud environments" | The first 200 lines or 25KB of `MEMORY.md` each session, topic files on demand; not in subagents except forks; re-read from disk after compaction; kept out of the transcript retention sweep [chk-claude-memory, harness-loading-coverage-6] |
-| Codex memories | `~/.codex/memories/`; off by default | One machine | "Treat memories as a helpful recall layer, not as the only source for rules that must always apply"; secrets redacted in generated fields; chats that used outside context can be kept out [chk-codex-memories] |
+| Codex memories | The earlier `~/.codex/memories/` path was documented with memory off by default; 0.165.0 enables memory v2 for fresh profiles (path not re-verified) [as-of 2026-10-28] | One machine | "Treat memories as a helpful recall layer, not as the only source for rules that must always apply"; secrets redacted in generated fields; chats that used outside context can be kept out [chk-codex-memories] |
 | Devin Desktop (Windsurf) Cascade | `~/.codeium/windsurf/memories/`, per workspace | One workspace; "not committed to your repository"; the default Devin Local agent keeps none | When Cascade judges them relevant [chk-devin-memories, harness-loading-coverage-22] |
 | Qwen Code | `~/.qwen/projects/<project>/memory/` | Private by default; an opt-in team memory is tracked in Git | Cleaned daily [harness-loading-coverage-26] |
 | ZCode | Written by the agent; off by default; `AGENTS.md` kept by hand in the repository | One machine | Not documented [glm-f6 detail] |
@@ -94,6 +96,12 @@ The only memory every harness and every clone reads is committed files. L.
   remember, recall, forget, merge and expire, with a provenance field and signing only on its roadmap
   [arXiv 2606.01138]. A W3C AI Agent Memory Interoperability Community Group, created 2026-06-03 with
   28 participants, which does not speak for W3C [chk-w3c-cg]. M (one-author pilots), L.
+
+### 2.1 Import and consolidation are product features, not interoperability guarantees [as-of 2026-10-28]
+
+Codex 0.165.0 enables memory v2 for fresh profiles and adds external-agent memory import. That establishes an import route, not a shared standard or verified preservation of meaning. Existing-profile migration and imported-memory reliability were not tested. L, <https://github.com/openai/codex/releases/tag/rust-v0.165.0>, read 2026-10-28.
+
+Anthropic's Dreams research preview takes an existing store and 1–100 sessions. A model produces a new output store without changing the input store. The output can appear while work runs; failure or cancellation can leave partial output. On completion, the caller can review the store and choose whether to attach it to future sessions. Billing uses the selected model's standard token rates. L, <https://platform.claude.com/docs/en/managed-agents/dreams>, read 2026-10-28. This interface does not establish the correctness of generated memories. Reviewing provenance, contradictions and changed scope before adoption follows from the failure modes below (inference).
 
 ## 3. Poisoning
 
