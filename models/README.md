@@ -363,6 +363,7 @@ and run `make render`.
 | Tencent Hy3 | Tencent | Tencent Hy | 3 | ga | 2026-07-06 | - | [other/hy3.md](other/hy3.md) |
 | Inkling-Small | Thinking Machines Lab | Inkling | unknown | ga | 2026-07-30 | - | [other/inkling-small.md](other/inkling-small.md) |
 | Inkling | Thinking Machines Lab | Inkling | unknown | ga | 2026-07-15 | - | [other/inkling.md](other/inkling.md) |
+| Jev 1.14 | TypeSafe AI | Jev | 1.14 | preview | 2026-10-14 | - | [typesafe/jev-1.14.0.md](typesafe/jev-1.14.0.md) |
 | Jev 1.13 | TypeSafe AI | Jev | 1.13 | preview | 2026-09-15 | - | [typesafe/jev-1.13.0.md](typesafe/jev-1.13.0.md) |
 | MiMo-V2.6-Flash | Xiaomi | MiMo Flash | 2.6 | ga | 2026-09-21 | - | [other/mimo-v2.6-flash.md](other/mimo-v2.6-flash.md) |
 | MiMo-V2.6-Pro | Xiaomi | MiMo Pro | 2.6 | ga | 2026-09-21 | - | [other/mimo-v2.6-pro.md](other/mimo-v2.6-pro.md) |

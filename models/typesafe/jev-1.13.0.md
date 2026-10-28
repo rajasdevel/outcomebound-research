@@ -25,6 +25,8 @@ sources:
   - https://kantahayashiai.github.io/posts/jev-does-not-play-dice/
   - https://github.com/jaredpalmer/kev/blob/84847f0a883d900f7de5b7a57eaa341ca7f9a6b4/docs/releases/kev-1.0.md
   - https://openrouter.ai/typesafe/jev-1.13
+  - https://typesafe.ai/blog/jev-1-14
+  - https://docs.typesafe.ai/images.md
 ---
 
 # Jev 1.13
@@ -35,9 +37,15 @@ answers typed questions with probabilities: Choice (one of the options you suppl
 a scale you describe) and Noul (the probability that a yes/no statement holds) [ts-primitives]. It is
 for fast, cheap classification, routing, ranking and gating inside software, not for chat, code or
 explanation. It replaced no earlier public model; the cookbooks set `jev-1.12`, which TypeSafe does not list or
-describe [ts-extraction]. The category and how to use it are in
+describe [ts-extraction]. **[as-of 2026-10-27]** Jev 1.14 (`jev-1.14.0`) was released on 2026-10-14 as
+`jev-preview`, with `jev-latest` announced to follow a week later; on 2026-10-27 both aliases pointed
+to it, and `jev-1.13.0` was still listed [ts-models-oct27] [ts-jev114]. What changed is in
+[jev-1.14.0.md](jev-1.14.0.md). The category and how to use it are in
 [../../practices/decision-models.md](../../practices/decision-models.md); maker-level facts are in
 [README.md](README.md).
+
+The whole file was last verified on 2026-10-04; claims marked `[as-of 2026-10-27]` were checked
+again on that date.
 
 ## At a glance
 
@@ -55,16 +63,16 @@ describe [ts-extraction]. The category and how to use it are in
 | Access | TypeSafe API; OpenRouter; Vercel AI Gateway; Pydantic AI Gateway |
 | Context window | unknown |
 | Max output | unknown |
-| Modalities | input text; output decision |
+| Modalities | input text, image; output decision |
 | Reasoning control | none |
 | Price | $0.042 in / $0 out per Mtok; TypeSafe charges input tokens only ($42 per billion); output tokens are reported but free; no cache price, free tier, per-question fee or minimum is published; prepaid credits under the customer agreement |
 | Key benchmarks | none recorded |
-| Other benchmarks | JevBench v1.5.6 capability score (1,624 decisions: 904 open, 720 sealed): 80.0 (jev-1.13.0, hosted API; sub-scores Intelligence 72.0, Calibration 88.0, Benchmark Heaven's own runner (the measurer also sells custom evaluations), independent) [jevbench](https://benchmarkheaven.com/jev-models); TypeSafe workflow evals, overview (agreement with reference labels, percent, mean of four workflows): 67.8 (Jev in workflow mode; reference labels are the average of GPT-6 Astra and Claude Fable 5.1 at high thinking, so the score is agreement with two LLMs, not accuracy against people, TypeSafe's own workflows, built by its model-capabilities team, maker) [typesafe-evals](https://evals.typesafe.ai/); Entagl authored decision cases (accuracy, percent, 1,357 scored decisions over 283 cases): 98.5 (jev-1.13.0; hard cases run three times; 13 languages; an unnamed frontier Gemini model at low reasoning effort scored 99.0 on the same cases, Entagl's own cases from its direct-message agent product; no public raw corpus, third-party-vendor) [entagl](https://www.entagl.com/blog/typesafe-jev-benchmark-ai-decision-models); Distil Labs invoice pay-or-hold (accuracy, 100 synthetic invoices): 0.79 (average of three request formulations (0.77, 0.75, 0.84); one run each; the vendor's own fine-tuned Qwen3.5-4B scored 0.98, Distil Labs' published pipeline; Distil sells fine-tuning, so it competes with Jev, third-party-vendor) [distil](https://www.distillabs.ai/blog/jev-or-a-fine-tuned-small-model-we-built-a-pipeline-with-both-to-see-the-real-difference/); Kev project breadth-v1 test, chance-corrected index: 54.0 (queried through Vercel AI Gateway; Kev-27B v2 scored 52.3 on the same split, the Kev project's own frozen suite; the Kev author builds a competing open model, third-party-vendor) [kev-release](https://github.com/jaredpalmer/kev/blob/84847f0a883d900f7de5b7a57eaa341ca7f9a6b4/docs/releases/kev-1.0.md) |
+| Other benchmarks | JevBench v1.5.6 capability score (1,624 decisions: 904 open, 720 sealed): 80.0 (jev-1.13.0, hosted API; sub-scores Intelligence 72.0, Calibration 88.0, Benchmark Heaven's own runner (the measurer also sells custom evaluations), independent) [jevbench](https://benchmarkheaven.com/jev-models); TypeSafe workflow evals, overview (agreement with reference labels, percent, mean of four workflows): 67.8 (Jev in workflow mode; reference labels are the average of GPT-6 Astra and Claude Fable 5.1 at high thinking, so the score is agreement with two LLMs, not accuracy against people, TypeSafe's own workflows, built by its model-capabilities team, maker) [typesafe-evals](https://evals.typesafe.ai/); Entagl authored decision cases (accuracy, percent, 1,357 scored decisions over 283 cases): 98.5 (jev-1.13.0; hard cases run three times; 13 languages; an unnamed frontier Gemini model at low reasoning effort scored 99.0 on the same cases, Entagl's own cases from its direct-message agent product; no public raw corpus, third-party-vendor) [entagl](https://www.entagl.com/blog/typesafe-jev-benchmark-ai-decision-models); Distil Labs invoice pay-or-hold (accuracy, 100 synthetic invoices): 0.79 (average of three request formulations (0.77, 0.75, 0.84); one run each; the vendor's own fine-tuned Qwen3.5-4B scored 0.98, Distil Labs' published pipeline; Distil sells fine-tuning, so it competes with Jev, third-party-vendor) [distil](https://www.distillabs.ai/blog/jev-or-a-fine-tuned-small-model-we-built-a-pipeline-with-both-to-see-the-real-difference/); Kev project breadth-v1 test, chance-corrected index: 54.0 (queried through Vercel AI Gateway; Kev-27B v2 scored 52.3 on the same split, the Kev project's own frozen suite; the Kev author builds a competing open model, third-party-vendor) [kev-release](https://github.com/jaredpalmer/kev/blob/84847f0a883d900f7de5b7a57eaa341ca7f9a6b4/docs/releases/kev-1.0.md); TypeSafe internal intelligence measure (chart in the Jev 1.14 release post; higher is better): 58.9 (jev-1.13.0; jev-1.14.0 scored 60.0 on the same chart; the chart carries a warning not to trust benchmarks, TypeSafe's own unpublished measure, compared only with models the post calls open-weight; the post calls it a best guess likely biased towards its own models, maker) [ts-jev114-charts](https://typesafe.ai/blog/jev-1-14); TypeSafe internal calibration error (chart in the Jev 1.14 release post; lower is better): 1.8 (jev-1.13.0; jev-1.14.0 scored 1.6 on the same chart; units not stated, TypeSafe's own unpublished measure, as above, maker) [ts-jev114-charts](https://typesafe.ai/blog/jev-1-14) |
 | Prompting guides | [docs.typesafe.ai/primitives](https://docs.typesafe.ai/primitives); [docs.typesafe.ai/concepts/how-to-build-with-system-one](https://docs.typesafe.ai/concepts/how-to-build-with-system-one); [docs.typesafe.ai/concepts/state](https://docs.typesafe.ai/concepts/state); [docs.typesafe.ai/model-jaggedness/jev-1.13](https://docs.typesafe.ai/model-jaggedness/jev-1.13) |
 | System card | unknown |
 | Model page | [docs.typesafe.ai/models](https://docs.typesafe.ai/models) |
 | Card checked | 2026-10-04 |
-| Not found | context_window: TypeSafe gives '64k tokens per request' (state plus every question) and 32k for state plus the longest question, with no exact token count; OpenRouter and Cloudflare list 32K; max_output: does not apply; Jev returns typed answers (a choice, a probability or a score), not generated tokens; SWE-Bench Pro (Scale, public V2): does not apply; Jev cannot write code or text; Terminal-Bench 4.0: does not apply; Jev cannot run an agent loop that produces commands; Artificial Analysis Intelligence Index: does not apply; the index measures generative models; Artificial Analysis Coding Agent Index: does not apply; Jev cannot act as a coding agent; METR 50% time horizon: does not apply; Jev cannot carry out a multi-step task; pricing_usd_per_mtok.cached_input: no cache price published; system_card: TypeSafe publishes no system or model card; the nearest documents are the Models page and the jaggedness page; released: 2026-09-15 is the early-access announcement; OpenRouter lists jev-1.13 from 2026-09-18; status: TypeSafe's announcement calls Jev early access, while its Models page calls jev-1.13.0 'the most recent stable, official release'; recorded as preview |
+| Not found | context_window: TypeSafe gives '64k tokens per request' (state plus every question) and 32k for state plus the longest question, with no exact token count; OpenRouter and Cloudflare list 32K; on 2026-10-27 the Models page gave 262k for both limits with the opt-in long-context header [ts-models-oct27]; modalities: image input (recorded on this card on 2026-10-27) is a preview behind the TypeSafe-Danger-Zone-Images header that TypeSafe does not call ready for production [ts-images] [ts-jev114]; the System One concept page still says text only [ts-system-one-oct28]; max_output: does not apply; Jev returns typed answers (a choice, a probability or a score), not generated tokens; SWE-Bench Pro (Scale, public V2): does not apply; Jev cannot write code or text; Terminal-Bench 4.0: does not apply; Jev cannot run an agent loop that produces commands; Artificial Analysis Intelligence Index: does not apply; the index measures generative models; Artificial Analysis Coding Agent Index: does not apply; Jev cannot act as a coding agent; METR 50% time horizon: does not apply; Jev cannot carry out a multi-step task; pricing_usd_per_mtok.cached_input: no cache price published; system_card: TypeSafe publishes no system or model card; the nearest documents are the Models page and the jaggedness page; released: 2026-09-15 is the early-access announcement; OpenRouter lists jev-1.13 from 2026-09-18; status: TypeSafe's announcement calls Jev early access; on 2026-10-04 the Models page called jev-1.13.0 the most recent stable official release, and on 2026-10-27 it gave that description to jev-latest, which points to jev-1.14.0 [ts-models-oct27]; no deprecation date is set, and TypeSafe intends to give 60 days' warning [ts-jev114]; recorded as preview |
 <!-- card:end -->
 
 ## How to instruct it
@@ -137,7 +145,10 @@ Jev cannot write code. The library's coding benchmarks do not apply (see the car
 
 TypeSafe gives 64k tokens per request for the state plus every question, and 32k for the state plus
 the longest question [ts-models]; OpenRouter lists 32K [openrouter-jev]. Long, noisy state costs
-accuracy before it reaches the limit, so filter first [ts-jagged]. For retrieval, TypeSafe's
+accuracy before it reaches the limit, so filter first [ts-jagged]. **[as-of 2026-10-27]** The Models
+page now gives the same 64k per request and 32k per question for 1.13 and 1.14, and 262k for both with
+the header `TypeSafe-Danger-Zone-Long-Context: true`, at the same price per token; TypeSafe says long
+context is slower and less accurate [ts-models-oct27]. For retrieval, TypeSafe's
 cookbooks use one Noul per query and passage pair to rerank, and a Score per passage to decide what
 reaches a generating model [ts-llms].
 
@@ -152,17 +163,22 @@ gives every pick a `none` option.
 
 ### Images, audio, other inputs
 
-Text only: a string, a JSON object or an array of text. No image, audio or video [ts-models].
-English is the main training language; other languages, CJK scripts included, work less well
-[ts-models].
+By default, text only: a string, a JSON object or an array of text [ts-models]. **[as-of 2026-10-27]**
+Images are accepted as a preview: TypeSafe's images page says Jev 1.13 and 1.14 both accept PNG or JPEG
+images when the request sends `TypeSafe-Danger-Zone-Images: true`, and that images are not ready for
+production [ts-images]; the 1.14 release post says `jev-1.13.0` could read images from the start
+[ts-jev114]. TypeSafe's System One concept page still said on 2026-10-28 that Jev accepts text only
+[ts-system-one-oct28], so the pages conflict. No audio or video input is documented. English is the
+main training language; other languages, CJK scripts included, work less well [ts-models].
 
 ### Sampling and API parameters
 
 TypeSafe documents no temperature or sampling parameter. It says all probabilities come out in parallel,
 not token by token [ts-announcement]. The parameters are the model id, the state and the questions.
-The aliases `jev-latest` and `jev-preview` both point to `jev-1.13.0` today. TypeSafe says an alias
-moves when a release ships, so answers can change with no change on the caller's side, and it advises
-pinning the versioned id once thresholds are tuned [ts-models].
+**[as-of 2026-10-27]** The aliases `jev-latest` and `jev-preview` both point to `jev-1.14.0`, not to
+this model; a caller who used an alias was moved to 1.14 when the aliases changed [ts-models-oct27]
+[ts-jev114]. TypeSafe says an alias moves when a release ships, so answers can change with no change
+on the caller's side, and it advises pinning the versioned id once thresholds are tuned [ts-models].
 
 ### Migrating from the previous generation
 
@@ -238,6 +254,10 @@ qualifiers.
 - **Maker.** TypeSafe's four workflow evaluations give Jev 67.8% agreement with labels averaged from
   GPT-6 Astra and Claude Fable 5.1, at about $0.0004 and 0.4 s a case; the post says the workflows were
   built by its own team, so some bias could exist [typesafe-evals] [ts-announcement] (L).
+- **Maker, in the 1.14 post [as-of 2026-10-28].** The release post's charts, marked with a warning not
+  to trust benchmarks, give 1.13 an internal intelligence score of 58.9 against 60.0 for 1.14, and a
+  calibration error of 1.8 against 1.6 (units not stated); the post calls the measure a best guess
+  likely biased towards TypeSafe's models [ts-jev114-charts] (L).
 - **Third parties that sell a competing or adjacent product.** Entagl 98.5% on authored cases against
   99.0% for an unnamed Gemini model at low effort [entagl]; Distil Labs 0.79 on invoice decisions
   [distil]; the Kev project 54.0 on its breadth-v1 index, against 52.3 for its own Kev-27B
@@ -249,8 +269,9 @@ qualifiers.
   list.
 - Whether separately asked questions are now consistent with each other, after TypeSafe removed that
   warning without a reason.
-- How long `jev-1.13.0` will stay served once a newer version ships; no deprecation policy is
-  published.
+- How long `jev-1.13.0` will stay served now that 1.14 has shipped. **[as-of 2026-10-27]** TypeSafe
+  says it intends to give 60 days' warning before formally deprecating it and to publish a
+  deprecation policy first; no date is set [ts-jev114].
 - Whether Jev's probabilities are calibrated on any given user's data; only that user's labels can
   show it (see [../../practices/decision-models.md](../../practices/decision-models.md), section 2).
 
@@ -291,3 +312,10 @@ qualifiers.
 - [kev-release] <https://github.com/jaredpalmer/kev/blob/84847f0a883d900f7de5b7a57eaa341ca7f9a6b4/docs/releases/kev-1.0.md>,
   kind A, read 2026-10-04.
 - [openrouter-jev] <https://openrouter.ai/typesafe/jev-1.13>, kind L, read 2026-10-04.
+- [ts-models-oct27] <https://docs.typesafe.ai/models>, kind L, read 2026-10-27.
+- [ts-jev114] <https://typesafe.ai/blog/jev-1-14>, release post for Jev 1.14 dated 2026-10-14, kind
+  L, read 2026-10-27.
+- [ts-images] <https://docs.typesafe.ai/images.md>, kind L, read 2026-10-27.
+- [ts-system-one-oct28] <https://docs.typesafe.ai/concepts/system-one>, kind L, read 2026-10-28.
+- [ts-jev114-charts] <https://typesafe.ai/blog/jev-1-14>, the chart images in the Jev 1.14 release
+  post, kind L, read 2026-10-28.
