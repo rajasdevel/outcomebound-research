@@ -1,0 +1,66 @@
+{
+  "id": "nemotron-3.5-bolt-e4b-4gb",
+  "name": "NVIDIA Nemotron 3.5 Bolt E4B 4GB",
+  "maker": "NVIDIA",
+  "family": "Nemotron 3.5 Bolt",
+  "class": "Nemotron Bolt E4B",
+  "generation": "3.5",
+  "released": "2026-10-23",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (OpenMDW-1.1)",
+  "access": [
+    "Hugging Face weights; llama.cpp recipe in the maker card",
+    "NVIDIA hosted catalog (availability and account access not tested)"
+  ],
+  "context_window": 65536,
+  "max_output": 65536,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "toggle",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Downloadable weights. No first-party per-token price was established; local serving has hardware and runtime costs."
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB"
+  ],
+  "system_card": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+  "model_page": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+  "sources": [
+    {
+      "id": "model-card",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "read": "2026-10-28",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-28",
+  "unknown": [
+    "pricing_usd_per_mtok: no first-party token rate verified.",
+    "reasoning.default: the card documents chat-template toggles and a runtime budget, but no universal serving default was established.",
+    "SWE-Bench Pro (Scale, public V2): no result verified for this checkpoint.",
+    "Terminal-Bench 4.0: no result verified for this checkpoint.",
+    "Artificial Analysis Intelligence Index: no result verified for this checkpoint.",
+    "Artificial Analysis Coding Agent Index: no result verified for this checkpoint.",
+    "METR 50% time horizon: no result verified for this checkpoint.",
+    "system_card: the linked maker card includes ethical considerations and links to safety, privacy, bias and explainability subcards; those linked subcards were not independently verified in this update.",
+    "access: local inference and hardware memory requirements were not tested; 4GB is the product name, not a verified total RAM requirement.",
+    "benchmarks: no independently verified result for this selectable endpoint or checkpoint in this update."
+  ]
+}

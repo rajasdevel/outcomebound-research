@@ -44,7 +44,7 @@
     "input": 2.0,
     "output": 10.0,
     "cached_input": 0.2,
-    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast"
+    "notes": "list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 2.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27]"
   },
   "benchmarks": [
     {
@@ -316,6 +316,13 @@
       "url": "https://vellum.ai/blog/gpt-6-1-sol-benchmarks-explained",
       "read": "2026-10-03",
       "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "cache-oct27",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "read": "2026-10-27",
+      "kind": "L",
       "quote": null
     }
   ],

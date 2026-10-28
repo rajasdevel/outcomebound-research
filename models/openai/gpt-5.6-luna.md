@@ -60,7 +60,7 @@ remains in the API. The family guidance is in the [OpenAI README](README.md) (pr
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: none, low, medium, high, xhigh, max (default medium) |
-| Price | $0.2 in / $1.2 out per Mtok; cached input $0.02; list price, standard tier, prompts up to 272K input tokens; cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (0.40 in, 2.40 out); Batch and Flex 50%; regional processing +10%; cut 80% on 2026-07-30 (launch price 1 and 6, implied by the cut and given by a secondary launch report) |
+| Price | $0.2 in / $1.2 out per Mtok; cached input $0.02; list price, standard tier, prompts up to 272K input tokens; 30-minute cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (0.40 in, 2.40 out); Batch and Flex 50%; regional processing +10%; cut 80% on 2026-07-30 (launch price 1 and 6, implied by the cut and given by a secondary launch report); Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27] |
 | Key benchmarks | Terminal-Bench 4.0 (tbench.ai leaderboard): 17.3 (max, Codex, independent) [tbench-4-0](https://www.tbench.ai/leaderboard/terminal-bench/4.0); Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 11.6 (max, independent) [aa-model-gpt-5-6-luna](https://artificialanalysis.ai/models/gpt-5-6-luna); Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run): 14.6 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Intelligence Index: 37 (max (index v4.3.2), independent) [aa-model-gpt-5-6-luna](https://artificialanalysis.ai/models/gpt-5-6-luna); Artificial Analysis Intelligence Index: 35 (xhigh (index v4.3.2), independent) [aa-model-gpt-5-6-luna-xhigh](https://artificialanalysis.ai/models/gpt-5-6-luna-xhigh); Artificial Analysis Intelligence Index: 32 (high (index v4.3.2), independent) [aa-model-gpt-5-6-luna-high](https://artificialanalysis.ai/models/gpt-5-6-luna-high); Artificial Analysis Intelligence Index: 25 (medium (index v4.3.2), independent) [aa-model-gpt-5-6-luna-medium](https://artificialanalysis.ai/models/gpt-5-6-luna-medium); Artificial Analysis Intelligence Index: 21 (low (index v4.3.2), independent) [aa-model-gpt-5-6-luna-low](https://artificialanalysis.ai/models/gpt-5-6-luna-low); Artificial Analysis Coding Agent Index: 43 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents) |
 | Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 92.6 (max, independent) [aa-model-gpt-5-6-luna](https://artificialanalysis.ai/models/gpt-5-6-luna); AA-LCR v1.1 (long-context reasoning, percent): 83.7 (max, independent) [aa-model-gpt-5-6-luna](https://artificialanalysis.ai/models/gpt-5-6-luna) |
 | Prompting guides | [developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6](https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6); [developers.openai.com/api/docs/guides/latest-model/gpt-5.6](https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6); [developers.openai.com/api/docs/guides/reasoning](https://developers.openai.com/api/docs/guides/reasoning) |
@@ -130,8 +130,7 @@ remains in the API. The family guidance is in the [OpenAI README](README.md) (pr
 
 - 1,050,000-token window, at most 922,000 input tokens, 128,000 output; above 272,000 input tokens the whole
   request bills at twice the input and cache rates and 1.5 times output [openai-model-gpt-5.6-luna].
-- Artificial Analysis's AA-LCR: 83.7% at max [aa-model-gpt-5-6-luna]. Cache writes cost 1.25 times input
-  [openai-prompt-caching].
+- Artificial Analysis's AA-LCR: 83.7% at max [aa-model-gpt-5-6-luna]. 30-minute cache writes cost 1.25 times input [openai-prompt-caching]; 12-hour Responses writes cost 2.5 times input [as-of 2026-10-27] [cache-oct27].
 
 ### Structured output
 
@@ -234,3 +233,5 @@ Read 2026-10-03. Kinds: L lab or vendor, M independent measurement, A secondary.
 - [metr-time-horizons] <https://metr.org/time-horizons/> (M)
 - [aws-card-gpt-5-6-luna] <https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-56-luna.html> (L)
 - [ms-foundry-models] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L)
+
+- [cache-oct27] <https://developers.openai.com/api/docs/guides/prompt-caching> (L, read 2026-10-27).

@@ -44,7 +44,7 @@
     "input": 2.0,
     "output": 12.0,
     "cached_input": 0.2,
-    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (4 in, 24 out); Batch and Flex 50%; regional processing +10%; cut 20% on 2026-07-30 (launch price 2.50 and 15, implied by the cut and given by a secondary launch report)"
+    "notes": "list price, standard tier, prompts up to 272K input tokens; 30-minute cache write is 1.25x input; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (4 in, 24 out); Batch and Flex 50%; regional processing +10%; cut 20% on 2026-07-30 (launch price 2.50 and 15, implied by the cut and given by a secondary launch report); Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27]"
   },
   "benchmarks": [
     {
@@ -291,6 +291,13 @@
       "url": "https://rits.shanghai.nyu.edu/ai/openai-launches-gpt-5-6-family-sol-terra-and-luna-reach-general-availability/",
       "read": "2026-10-03",
       "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "cache-oct27",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "read": "2026-10-27",
+      "kind": "L",
       "quote": null
     }
   ],

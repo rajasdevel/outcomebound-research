@@ -312,13 +312,16 @@ and run `make render`.
 | Mistral Small 4 | Mistral | Mistral Small | 4 | ga | 2026-03-16 | - | [mistral/mistral-small-2603.md](mistral/mistral-small-2603.md) |
 | Mistral Large 3 | Mistral | Mistral Large | 3 | ga | 2025-12-02 | - | [mistral/mistral-large-3.md](mistral/mistral-large-3.md) |
 | Kimi K2.7 Code | Moonshot (Kimi) | Kimi K Code | 2.7 | ga | unknown | - | [moonshot/kimi-k2.7-code.md](moonshot/kimi-k2.7-code.md) |
+| Kimi K3.1 Pro | Moonshot (Kimi) | Kimi K | 3.1 | ga | 2026-10-23 | - | [moonshot/kimi-k3.1-pro.md](moonshot/kimi-k3.1-pro.md) |
+| Kimi K3.1 Pro Highspeed | Moonshot (Kimi) | Kimi K | 3.1 | ga | 2026-10-23 | - | [moonshot/kimi-k3.1-pro-highspeed.md](moonshot/kimi-k3.1-pro-highspeed.md) |
 | Kimi K3 | Moonshot (Kimi) | Kimi K | 3 | ga | 2026-07-16 | - | [moonshot/kimi-k3.md](moonshot/kimi-k3.md) |
-| Kimi K2.6 | Moonshot (Kimi) | Kimi K | 2.6 | ga | 2026-04-20 | - | [moonshot/kimi-k2.6.md](moonshot/kimi-k2.6.md) |
 | Dia 1.6B (0626) | Nari Labs | Dia | 1 | ga | 2025-06-26 | voice, no duplex | [other/dia-1.6b-0626.md](other/dia-1.6b-0626.md) |
+| NVIDIA Nemotron 3.5 Bolt E4B 4GB | NVIDIA | Nemotron Bolt E4B | 3.5 | ga | 2026-10-23 | - | [other/nemotron-3.5-bolt-e4b-4gb.md](other/nemotron-3.5-bolt-e4b-4gb.md) |
 | NVIDIA NemotronLabs VoiceChat 11B | NVIDIA | Nemotron VoiceChat | 1 | ga | 2026-08-03 | full-duplex voice | [other/nemotron-voicechat-11b.md](other/nemotron-voicechat-11b.md) |
 | NVIDIA Nemotron 3 Ultra | NVIDIA | Nemotron Ultra | 3 | ga | 2026-06-04 | - | [other/nemotron-3-ultra.md](other/nemotron-3-ultra.md) |
 | PersonaPlex-7B-v1 | NVIDIA | PersonaPlex | 1 | ga | 2026-01-15 | full-duplex voice | [other/personaplex-7b-v1.md](other/personaplex-7b-v1.md) |
 | Chat Latest | OpenAI | ChatGPT Instant alias | unknown | ga | unknown | - | [openai/chat-latest.md](openai/chat-latest.md) |
+| GPT-6.1 Terra | OpenAI | GPT Terra | 6.1 | ga | 2026-10-26 | - | [openai/gpt-6.1-terra.md](openai/gpt-6.1-terra.md) |
 | GPT-6.1 Sol | OpenAI | GPT Sol | 6.1 | ga | 2026-09-29 | - | [openai/gpt-6.1-sol.md](openai/gpt-6.1-sol.md) |
 | GPT-6 Luna | OpenAI | GPT Luna | 6 | ga | 2026-09-22 | - | [openai/gpt-6-luna.md](openai/gpt-6-luna.md) |
 | GPT-6 Sol | OpenAI | GPT Sol | 6 | ga | 2026-09-22 | - | [openai/gpt-6-sol.md](openai/gpt-6-sol.md) |

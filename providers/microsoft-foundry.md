@@ -20,6 +20,8 @@ sources:
   - https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages
   - https://platform.claude.com/docs/en/build-with-claude/prompt-caching
   - https://prices.azure.com/api/retail/prices
+  - https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769
+  - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/decisions
 ---
 
 # Microsoft Foundry
@@ -39,6 +41,21 @@ Two catalogue categories decide who supports and bills a model (L). Models sold 
 - **Others.** Cohere (Command A, Command A+ preview, Embed 4, Rerank 4, Parse), Meta (Llama 4 Maverick, Llama 3.3 70B), Microsoft's MAI-Thinking and MAI-Image, Phi and a model router, Black Forest Labs FLUX, and Hugging Face models on managed compute.
 - **Fireworks on Foundry.** Microsoft's Fireworks page (updated 2026-10-02) lists catalogue models with `FW-` ids. Pay-per-token: [Kimi K3](../models/moonshot/kimi-k3.md) (Global Standard), [GLM-5.3](../models/zai/glm-5.3.md), [GLM-5.3-Flash](../models/zai/glm-5.3-flash.md) (Global Standard), [MiniMax M3](../models/minimax/MiniMax-M3.md), [Nemotron 3 Ultra](../models/other/nemotron-3-ultra.md) (NVFP4), [DeepSeek V4 Pro](../models/deepseek/deepseek-v4-pro.md), V4 Flash 0731, [V4.1 Flash](../models/deepseek/deepseek-flash.md) (Global Standard), GLM-5.2 and Nemotron 3.5 Lightning; Kimi K2.6, K2.7 Code and [Inkling](../models/other/inkling.md) had pay-per-token retiring on 2026-09-25 and keep provisioned throughput only. Provisioned throughput only: [Gemma 4 31B](../models/google/gemma-4-31b-it.md) and [26B A4B](../models/google/gemma-4-26b-a4b-it.md), [gpt-oss-120b](../models/openai/gpt-oss-120b.md) and 20b, several Qwen3.5 and Qwen3.6 sizes, MiniMax M2.5, older Kimi, DeepSeek and GLM builds and others. Whether the unversioned "DeepSeek V4 Pro" here is the 0813 build is not stated.
 - **Not found on Microsoft's lists:** Qwen3.8, Gemini models and Gemma 4 sizes other than 31B and 26B A4B.
+
+**GPT-6.1 Terra [as-of 2026-10-27].** Microsoft lists the model in Global Standard and Data Zone Standard deployments. Data Zone inference can run anywhere in the selected US, EU or APAC zone. A catalogue entry does not establish access or quota for a subscription. Microsoft's prompt-cache page documents `30m` as the only minimum TTL for its GPT-5.6-and-later route, unlike the `12h` option on OpenAI's direct Responses API. L [terra-catalog-oct27] [terra-regions-oct27] [cache-oct27].
+
+Microsoft's launch announcement lists these Standard prices in USD per million tokens. Column order is input, cache read, cache write and output. Long and short context are Microsoft's categories. L [terra-price-oct27].
+
+| Deployment | Short context | Long context |
+| --- | --- | --- |
+| Global | $1 / $0.05 / $1.25 / $5 | $2 / $0.10 / $2.50 / $7.50 |
+| US Data Zone | $1.10 / $0.055 / $1.375 / $5.50 | $2.20 / $0.11 / $2.75 / $8.25 |
+| EU Data Zone | $1.20 / $0.06 / $1.50 / $6 | $2.40 / $0.12 / $3 / $9 |
+| APAC Data Zone | $1.20 / $0.06 / $1.50 / $6 | $2.40 / $0.12 / $3 / $9 |
+
+A public Retail Prices API query for SKU text `6.1-terra` returned no entries on 2026-10-27; this does not disprove the launch table or establish a subscription bill. Rates and deployment access can change. L [retail-oct27].
+
+Microsoft also documents the Decisions API with GPT-6 Luna, rolling out in its supported regions except East US 2. It does not establish Terra as a Decisions model. L [decisions-oct27].
 
 ## API surface
 
@@ -102,3 +119,12 @@ Read 2026-10-03 (class L unless noted):
 - Fireworks on Foundry <https://learn.microsoft.com/en-us/azure/foundry/how-to/fireworks/enable-fireworks-models> (updated 2026-10-02)
 - Anthropic: Claude in Microsoft Foundry <https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry>, the features overview, mid-conversation system messages <https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages> and prompt caching <https://platform.claude.com/docs/en/build-with-claude/prompt-caching>
 - Azure Retail Prices API <https://prices.azure.com/api/retail/prices>, queried for `serviceName eq 'Foundry Models'` in eastus2
+
+Partial checks, read 2026-10-27 (L):
+
+- [terra-catalog-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure>.
+- [terra-regions-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability>.
+- [cache-oct27] <https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/prompt-caching>.
+- [terra-price-oct27] <https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769> (L, read 2026-10-27).
+- [retail-oct27] <https://prices.azure.com/api/retail/prices> (L, query read 2026-10-27).
+- [decisions-oct27] <https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/decisions> (L, read 2026-10-27).

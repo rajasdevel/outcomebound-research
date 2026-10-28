@@ -43,7 +43,7 @@
     "input": 10.0,
     "output": 50.0,
     "cached_input": 1.0,
-    "notes": "list price, standard tier, prompts up to 272K input tokens; cache write 12.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (no latency SLA for Astra); Batch and Flex 50%; Ultrafast tier 6x standard (60 input, 300 output; US data residency and global processing only); regional processing +10%"
+    "notes": "list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 12.50; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x (no latency SLA for Astra); Batch and Flex 50%; Ultrafast tier 6x standard (60 input, 300 output; US data residency and global processing only); regional processing +10%; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27]"
   },
   "benchmarks": [
     {
@@ -414,6 +414,13 @@
       "id": "openai-deployment-checklist",
       "url": "https://developers.openai.com/api/docs/guides/deployment-checklist",
       "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cache-oct27",
+      "url": "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "read": "2026-10-27",
       "kind": "L",
       "quote": null
     }

@@ -319,7 +319,7 @@ Much of the current guidance is about coding. Most of it repeats the sections ab
 | Maker | Minimum prefix | Read price against input | Notes |
 | --- | --- | --- | --- |
 | Anthropic | 512 tokens on Fable 5.1, Fable 5, Opus 5.5, Opus 5, Sonnet 5.5 and Haiku 5.5. 1,024 on Sonnet 5. | 0.1 times; Fable 5.1: 0.025; Opus 5.5 and Sonnet 5.5: 0.05 | A breakpoint looks back at most 20 blocks [as-of 2026-10-09] [cl-cache-oct9]. |
-| OpenAI | 1,024 tokens from GPT-5.6 | 0.1 times, and 0.05 on GPT-6.1 Sol | Writes cost 1.25 times the input rate [oa-cache]. |
+| OpenAI | 1,024 tokens from GPT-5.6 | 0.1 times on Astra and Luna, 0.05 on GPT-6.1 Sol and Terra | On supported Responses models, 30-minute writes cost 1.25 times the input rate and 12-hour writes cost 2.5 times [as-of 2026-10-27] [oa-cache-oct27]. |
 | xAI | Automatic | See the README | Send a conversation id. Never edit, remove or reorder earlier messages [x-cache]. |
 | Google | 4,096 for implicit caching on 3.1 Pro and 3.5 to 3.8 Flash | One tenth | Put shared content first ([README](../models/google/README.md#long-context-and-retrieval)). |
 
@@ -400,7 +400,7 @@ The pattern: closed APIs reject or ignore sampling controls, and open-weight mak
 | Claude Opus 5 to 5.5 | Thinking cannot be disabled. Forced tool use returns an error. The default effort falls from high to medium. | [cl-effort] [cl-o55] |
 | Claude Opus 4.8 to 5 | Thinking is on by default. Replies, narration and files run longer. | [cl-o5] |
 | GPT-5.6 to GPT-6 | `none` effort maps to `low` on Astra. Tools need the Responses API. Sampling parameters go. Lists and Markdown are the default style. | [oa-latest] |
-| GPT-5.5 to GPT-5.6 | Replies are terser. Cache writes cost 1.25 times input. Persisted reasoning is the default. | [oa-g56] [oa-cache] |
+| GPT-5.5 to GPT-5.6 | Replies are terser. Default 30-minute cache writes cost 1.25 times input; supported Responses requests can select 12-hour writes at 2.5 times input [as-of 2026-10-27] [oa-cache-oct27]. Persisted reasoning is the default. | [oa-g56] [oa-cache] |
 | Gemini general text models: 2.5 to 3.x | `thinking_level` replaces `thinking_budget`. Remove `candidate_count`. Test PDF and video token use. | [g-35] |
 | Gemini Flash text models: 3.5 to 3.6 and later | Sampling parameters are deprecated. A prefilled model turn returns an error. The `minimal` level fails on 3.7 and 3.8 Flash. | [g-latest-arch] [g-latest] |
 | GLM-5.2 to 5.3 | A request to disable thinking fails. Effort accepts only low, high and max. | [GLM-5.3](../models/zai/glm-5.3.md#migrating-from-the-previous-generation) |
@@ -482,3 +482,5 @@ Every source below was read on 2026-10-03 unless another date is given. Kinds: L
 | cur-tok | https://cursor.com/blog/improved-token-efficiency | L |
 | cur-rules | https://cursor.com/docs/rules.md | L |
 | aa-astra | https://artificialanalysis.ai/models/gpt-6-astra, and the pages of the same name that end in -low, -medium and -high | M |
+
+- [oa-cache-oct27] OpenAI, prompt caching, read 2026-10-27 (L): <https://developers.openai.com/api/docs/guides/prompt-caching>.

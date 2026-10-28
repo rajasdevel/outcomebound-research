@@ -101,13 +101,13 @@ sources:
   - https://developers.openai.com/api/docs/models/chat-latest
   - https://developers.openai.com/api/docs/guides/decisions
   - https://developers.openai.com/api/docs/models/gpt-5.6-cyber
+  - https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/
 ---
 
 # OpenAI models
 
 OpenAI sells closed models through its own API, ChatGPT and Codex, and through Amazon Bedrock and
-Microsoft Foundry, and it has published one family of open-weight models. On 2026-10-03 its API lists
-three recommended models (GPT-6 Astra, GPT-6.1 Sol and GPT-6 Luna) and keeps the earlier GPT-6 Sol and
+Microsoft Foundry, and it has published one family of open-weight models. As of 2026-10-27 its GPT-6 guide lists Astra, GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna [openai-guide-oct27] and keeps the earlier GPT-6 Sol and
 the GPT-5.6 trio (Sol, Terra, Luna) available. This page holds what those models share: how they are
 named, the API they use, what OpenAI's prompting guides say, how to read its system cards, and the
 behaviour that holds across them. Each model's own file says what differs for that model. OpenAI also sells voice models (realtime speech-to-speech, full-duplex GPT-Live, translation and transcription), and this page holds their lineage, the Realtime and GPT-Live API guide and the voice prompting guides.
@@ -119,9 +119,7 @@ OpenAI's class names changed meaning between generations, so read a class togeth
 - **Sol** was the flagship of GPT-5.6. GPT-5.6 Sol has no file here, because its class has three generations (5.6, 6, 6.1) and this library keeps two; its prompting, migration and system-card findings that apply to the whole GPT-5.6 family are on this page. From GPT-6 it is the middle choice: OpenAI's GPT-6 guide describes
   GPT-6.1 Sol as a balance of speed, cost and intelligence, with near-Astra performance at a lower cost
   [openai-latest-model].
-- **Terra** is the middle model of GPT-5.6, comparable to the mini-class models of earlier GPT-5 families
-  [openai-model-gpt-5.6-terra]. No GPT-6 Terra appears on OpenAI's model list, its GPT-6 guide or its
-  changelog on 2026-10-03 [openai-models-list].
+- **Terra** was the middle model of GPT-5.6. GPT-6.1 Terra was released on 2026-10-26 for visual reasoning, computer use and writing. L [openai-terra-oct27] [openai-changelog-oct27].
 - **Luna** is the small, cheap, fast class: nano-class in GPT-5.6 [openai-model-gpt-5.6-luna], and the most
   efficient model for focused, high-volume work in GPT-6 [openai-model-gpt-6-luna].
 - **Astra** begins with GPT-6 and sits above Sol. OpenAI calls it its most capable model, for demanding
@@ -133,6 +131,7 @@ OpenAI's class names changed meaning between generations, so read a class togeth
 | --- | --- | --- | --- | --- | --- |
 | GPT-6 Astra | `gpt-6-astra` | 2026-09-03 | low to max (no none) | $10 / $50 | highest intelligence; first model OpenAI rates Critical for cyber capability |
 | GPT-6.1 Sol | `gpt-6.1-sol` | 2026-09-29 | low to max (no none, no minimal) | $2 / $10 | near-Astra performance at lower cost |
+| GPT-6.1 Terra | `gpt-6.1-terra` | 2026-10-26 | none to max | $1 / $5 | visual reasoning, computer use and writing [openai-terra-oct27] |
 | GPT-6 Sol | `gpt-6-sol` | 2026-09-22 | none to max | $2 / $10 | its model page points to GPT-6.1 Sol as the newer Sol |
 | GPT-6 Luna | `gpt-6-luna` | 2026-09-22 | none to max | $0.10 / $0.50 | fastest and most cost-effective |
 | GPT-5.6 Sol | `gpt-5.6-sol` | 2026-07-09 | none to max | $4 / $20 | flagship of GPT-5.6; the `gpt-5.6` alias routes to it |
@@ -145,7 +144,7 @@ Sources for the table: the model pages [openai-model-gpt-6-astra] [openai-model-
 [openai-model-gpt-5.6-terra] [openai-model-gpt-5.6-luna], the GPT-6 guide [openai-latest-model], the
 GPT-5.6 guide [openai-guide-gpt-5.6] and the Hugging Face card [hf-gpt-oss-120b]. GPT-6.1 Sol and GPT-6 Sol
 differ in more than the number: 6.1 Sol has no `none` effort, no tool calling in Chat Completions, a 5%
-cached-input rate (the others use 10%) and multi-agent delegation in beta [openai-model-gpt-6.1-sol]
+cached-input rate (GPT-6.1 Terra also uses 5% [openai-terra-oct27]) and multi-agent delegation in beta [openai-model-gpt-6.1-sol]
 [openai-prompt-caching] [openai-multi-agent]. The GPT-5.6 Sol price is a promotional one that OpenAI says
 holds at least through 2026-11-21; the 20% input and 33% output cut of 2026-08-21 implies a launch price
 of $5 and $30 [openai-changelog] [openai-pricing].
@@ -161,7 +160,7 @@ What OpenAI says replaced what, from its deprecation page [openai-deprecations]:
 Release order, from the API changelog [openai-changelog]: GPT-5.6 Sol, Terra and Luna on 2026-07-09 with a
 new naming scheme; GPT-6 Astra on 2026-09-03; GPT-6 Sol and Luna on 2026-09-22 at about half the per-token
 price of their GPT-5.6 namesakes (Artificial Analysis says the same [aa-sol-luna]); GPT-6.1 Sol on
-2026-09-29. Artificial Analysis's model pages mark GPT-5.6 Sol, GPT-5.6 Luna and GPT-6 Sol as deprecated for
+2026-09-29; GPT-6.1 Terra on 2026-10-26 [as-of 2026-10-27] [openai-changelog-oct27]. Artificial Analysis's model pages mark GPT-5.6 Sol, GPT-5.6 Luna and GPT-6 Sol as deprecated for
 its own benchmarking (pointing to GPT-6 Sol, GPT-6 Luna and GPT-6.1 Sol), which is its label; OpenAI's pages
 show no retirement date for any of them [aa-model-pages] [openai-deprecations].
 
@@ -230,11 +229,11 @@ Classes in this library: *GPT Realtime* (2.1 and 2), *GPT Realtime Mini* (2.1 an
 requests; the model pages list no support for Realtime, Assistants, fine-tuning, embeddings or media
 endpoints [openai-model-gpt-6-astra]. OpenAI states that reasoning models work better through the
 Responses API, which keeps reasoning items between calls and takes the newer tool features
-[openai-reasoning-guide]. In Chat Completions, GPT-6 Astra and GPT-6.1 Sol take no tools, and GPT-6 Sol
+[openai-reasoning-guide]. In Chat Completions, GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra take no tools [openai-guide-oct27], and GPT-6 Sol
 and GPT-6 Luna call functions only at effort `none` [openai-latest-model]. Every GPT-6 and GPT-5.6 model has a
 1,050,000-token window, at most 922,000 input tokens and 128,000 output tokens, with text and image in and
 text out. Knowledge cutoffs on the model pages: the GPT-5.6 models 2026-02-16, GPT-6 Sol 2026-04-20, GPT-6
-Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18.
+Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18, and GPT-6.1 Terra 2026-06-01 [as-of 2026-10-27] [openai-terra-oct27].
 
 **Rate limits [as-of 2026-10-09].** The October 6 change replaced five numbered paid tiers with Build,
 Launch and Grow. Limits differ by model and service tier; the [provider file](../../providers/openai.md#limits-and-data)
@@ -292,8 +291,8 @@ and each model supports a subset [openai-reasoning-guide].
 cache rates and one and a half times the output rate. Batch and Flex are half price. Fast mode (called
 priority before 2026-07-30; `service_tier: fast` or `priority`) costs twice the rate and runs up to 2.5
 times faster. Traffic that grows faster than about 50% every 15 minutes once it passes 1 million input
-tokens a minute can be downgraded to standard speed and price. **[as-of 2026-10-09]** Fast mode
-supports EU data residency for GPT-6.1 Sol, GPT-6 Sol and GPT-6 Luna, but not GPT-6 Astra. The guide
+tokens a minute can be downgraded to standard speed and price. **[as-of 2026-10-27]** Fast mode
+supports EU data residency for GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna, but not GPT-6 Astra or GPT-6 Sol [openai-guide-oct27]. The guide
 states no Astra latency SLA. L [openai-fast-mode-oct09]. Ultrafast costs six times the
 standard price for Astra ($60 in, $300 out), takes US data residency and global processing only, and is in
 preview for GPT-5.6 Sol. **[as-of 2026-10-09]** GPT-6.1 Sol also has Ultrafast since October 8: $12
@@ -302,12 +301,10 @@ tokens. It supports US and EU data residency and global processing, with a separ
 L [openai-ultrafast-oct09] [openai-pricing-oct09] [openai-changelog-oct09].
 Regional processing adds 10% for models released on or after 2026-03-05.
 
-**Caching** [openai-prompt-caching] [openai-changelog]. From GPT-5.6, cache writes cost 1.25 times the input
-rate and cache reads cost 0.1 times on most models and 0.05 times on GPT-6.1 Sol. Implicit mode places a
+**Caching [as-of 2026-10-27]** [openai-cache-oct27] [openai-pricing-oct27]. For supported Responses models, 30-minute writes cost 1.25 times input and 12-hour writes cost 2.5 times input, as total write rates. Cache reads cost 0.1 times input on Astra and Luna and 0.05 times on GPT-6.1 Sol and Terra. Implicit mode places a
 breakpoint at the end of the latest eligible message; explicit mode lets the developer choose the breakpoints,
 with up to four cache writes a request. The
-minimum cacheable prefix is 1,024 visible tokens, and the only lifetime setting is
-`prompt_cache_options.ttl: 30m`, which replaces `prompt_cache_retention`. `prompt_cache_key` is optional
+minimum cacheable prefix is 1,024 visible tokens. The default lifetime is `30m`; Responses supports `12h` for eligible models and can override it at a breakpoint. `prompt_cache_options.ttl` replaces `prompt_cache_retention` for these models [openai-cache-oct27]. `prompt_cache_key` is optional
 and only separates accounting. A cache diagnostics feature that explains misses has been generally
 available since 2026-09-08.
 
@@ -319,20 +316,16 @@ GPT-6 Luna or GPT-6.1 Sol.
 **Agents API.** In public beta since 2026-09-10, with a managed Codex harness, durable sessions, compaction
 and sandboxes; it enables programmatic tool calling by default [openai-changelog] [openai-ptc].
 
-**Availability elsewhere.** Amazon Bedrock lists model cards for Astra, GPT-6 Sol, GPT-6 Luna, GPT-6.1 Sol
-and the GPT-5.6 models, on its runtime and mantle endpoints [aws-card-gpt-6-astra]. Microsoft Foundry lists
-`gpt-6.1-sol`, `gpt-6-astra`, `gpt-6-luna`, `gpt-6-sol` and the three GPT-5.6 models, with quota requests
-needed below quota tiers 5 and 6 for the GPT-6 family, and lists gpt-oss-120b and gpt-oss-20b as previews
-[ms-foundry-models]. The gpt-oss weights are on Hugging Face and need the harmony format (see the gpt-oss
+**Availability elsewhere.** Amazon Bedrock lists model cards for Astra, GPT-6 Sol, GPT-6 Luna, GPT-6.1 Sol and the GPT-5.6 models [aws-card-gpt-6-astra]; AWS announced GPT-6.1 Terra on Bedrock on 2026-10-26 [as-of 2026-10-27] [aws-terra-oct27]. Microsoft Foundry lists GPT-6.1 Terra in addition to its GPT-6 and GPT-5.6 models; quota and regional requirements depend on the deployment [as-of 2026-10-27] [azure-terra-oct27]. Microsoft also lists gpt-oss-120b and gpt-oss-20b as previews [ms-foundry-models]. The gpt-oss weights are on Hugging Face and need the harmony format (see the gpt-oss
 files) [hf-gpt-oss-120b] [openai-harmony].
 
-### Decisions API [as-of 2026-10-09]
+### Decisions API [as-of 2026-10-27]
 
-The public beta uses `gpt-6-luna` at `POST /v1/decisions` to judge shared text/image input with
+Generally available since 2026-10-22, the API uses `gpt-6-luna` at `POST /v1/decisions` to judge shared text/image input with
 `predicate`, `choice` and `score` questions. It returns typed answers rather than a generated
 explanation or tool call. OpenAI documents separate input-only pricing and recommends labelled
 application examples to set thresholds. This is an endpoint on an existing model, not a new Luna
-generation. L [openai-decisions-oct09]. See [GPT-6 Luna](gpt-6-luna.md) and
+generation. L [openai-changelog-oct27] [openai-decisions-oct09]. See [GPT-6 Luna](gpt-6-luna.md) and
 [decision models](../../practices/decision-models.md).
 
 ### Realtime and voice APIs
@@ -512,7 +505,7 @@ OpenAI's guides give this order [openai-guide-gpt-5.6] [openai-gpt56-prompting]:
   evaluations run before any prompt edit.
 - The Responses API for reasoning, tools and multi-turn work; a deliberate `reasoning.context` choice (the
   default is now `all_turns`); `prompt_cache_options.ttl` in place of `prompt_cache_retention`, with
-  `cached_tokens` and `cache_write_tokens` tracked, because writes now cost 1.25 times input.
+  `cached_tokens` and `cache_write_tokens` tracked, because 30-minute writes cost 1.25 times input and supported Responses 12-hour writes cost 2.5 times [as-of 2026-10-27] [openai-cache-oct27].
 - `reasoning.mode: pro` on the same model in place of a separate Pro model slug; tools opted into programmatic
   tool calling with `allowed_callers`, and `program` and `program_output` items handled.
 - Obsolete scaffolding and brevity lines removed one group at a time, and only the smallest instruction added
@@ -746,7 +739,6 @@ ChatGPT versions) that apply to Sol, Terra and Luna are kept on this page. Numbe
   organisation and Codex as the agent, and the page does not say whether the host verified them
   [tbench-4-0].
 - Astra's default reasoning effort and `reasoning.context` default are not stated on its model page.
-- Whether a GPT-6 Terra will exist; none is announced.
 - When the GPT-5.6 models retire; the deprecation page names them as replacements and shows no date for them.
 - METR has published no time horizon for a GPT-6 model, and its time-horizon page listed no GPT-5.5 or later
   entry on 2026-10-03 [metr-time-horizons].
@@ -866,3 +858,14 @@ Partial correction sources, read 2026-10-09 (L):
 - [openai-changelog-oct09] <https://developers.openai.com/api/docs/changelog>, August 7, September 8 and October 6 to 8 entries.
 
 - [openai-fast-mode-oct09] <https://developers.openai.com/api/docs/guides/fast-mode> (L, read 2026-10-09).
+
+Partial corrections, read 2026-10-27 (L):
+
+- [openai-terra-oct27] <https://developers.openai.com/api/docs/models/gpt-6.1-terra>.
+- [openai-changelog-oct27] <https://developers.openai.com/api/docs/changelog>.
+- [openai-guide-oct27] <https://developers.openai.com/api/docs/guides/latest-model>.
+- [openai-cache-oct27] <https://developers.openai.com/api/docs/guides/prompt-caching>.
+- [openai-pricing-oct27] <https://developers.openai.com/api/docs/pricing>.
+
+- [aws-terra-oct27] <https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/> (L, read 2026-10-27).
+- [azure-terra-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L, read 2026-10-27).
