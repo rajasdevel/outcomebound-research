@@ -22,6 +22,8 @@ sources:
   - https://prices.azure.com/api/retail/prices
   - https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769
   - https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/decisions
+  - https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision (read 2026-10-28)
+  - https://commandline.microsoft.com/microsoft-decision-1-model-foundry/ (read 2026-10-28)
 ---
 
 # Microsoft Foundry
@@ -56,6 +58,8 @@ Microsoft's launch announcement lists these Standard prices in USD per million t
 A public Retail Prices API query for SKU text `6.1-terra` returned no entries on 2026-10-27; this does not disprove the launch table or establish a subscription bill. Rates and deployment access can change. L [retail-oct27].
 
 Microsoft also documents the Decisions API with GPT-6 Luna, rolling out in its supported regions except East US 2. It does not establish Terra as a Decisions model. L [decisions-oct27].
+
+**Microsoft-Decision-1 [as-of 2026-10-28].** Microsoft's own decision model, announced on 2026-10-09, is in the catalogue of models sold by Azure as version 1, with the API type Decision and no preview mark. It takes text only, up to 32K tokens. Foundry serves it at `/providers/microsoft/v1/systemone` on the resource endpoint, with the deployment name as `model`, on Global Standard deployments and, in selected regions, Data Zone Standard; authentication is Microsoft Entra ID or an API key. Microsoft's announcement gives $0.042 per million input tokens with no output charge, and names OpenRouter as a second route. The decision-model study is in [../practices/decision-models.md](../practices/decision-models.md). L [decision1-howto-oct28] [decision1-catalog-oct28] [decision1-post-oct28].
 
 ## API surface
 
@@ -128,3 +132,9 @@ Partial checks, read 2026-10-27 (L):
 - [terra-price-oct27] <https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/gpt-6-1-terra-now-generally-available-in-microsoft-foundry-build-agents-that-see/4567769> (L, read 2026-10-27).
 - [retail-oct27] <https://prices.azure.com/api/retail/prices> (L, query read 2026-10-27).
 - [decisions-oct27] <https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/decisions> (L, read 2026-10-27).
+
+Partial checks, read 2026-10-28 (L):
+
+- [decision1-howto-oct28] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision>, page dated 2026-10-07.
+- [decision1-catalog-oct28] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure>, updated 2026-10-08.
+- [decision1-post-oct28] <https://commandline.microsoft.com/microsoft-decision-1-model-foundry/>, dated 2026-10-09.
