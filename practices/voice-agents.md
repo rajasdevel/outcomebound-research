@@ -42,8 +42,10 @@ prompt or chooses a voice model.
 Each voice model has its own file: [OpenAI](../models/openai/README.md),
 [Google](../models/google/README.md), [Amazon](../models/amazon/README.md),
 [Kyutai](../models/kyutai/README.md) and [ElevenLabs](../models/elevenlabs/README.md). Voice models
-of Alibaba are in [the Alibaba folder](../models/alibaba/README.md). xAI's voice model is in
-[grok-voice-think-fast-2.0.md](../models/xai/grok-voice-think-fast-2.0.md), and its API is in
+of Alibaba are in [the Alibaba folder](../models/alibaba/README.md). [as-of 2026-10-31] xAI's voice
+models are in [grok-voice-3.0.md](../models/xai/grok-voice-3.0.md), the current generation, and
+[grok-voice-think-fast-2.0.md](../models/xai/grok-voice-think-fast-2.0.md), now named Grok Voice 2.0
+and deprecated ([xai/README.md](../models/xai/README.md)), and its API is in
 [../providers/xai.md](../providers/xai.md). General rules for prompts are in
 [prompting.md](prompting.md) and [writing-for-models.md](writing-for-models.md). Rules for judges that
 score conversations are in [llm-as-judge.md](llm-as-judge.md). Text-only agent evaluation is in
@@ -63,8 +65,13 @@ works well. Model names change fast. The names here are the names on the maker p
 in one table. GPT-Live is full duplex, with a separate backend for reasoning and tools. The Realtime
 API is one model that hears, reasons and speaks. The chained pipeline (speech-to-text, agent,
 text-to-speech) gives "control over each speech and text stage" [chk-oai-voice-agents]. Amazon,
-Google, xAI and Alibaba serve single speech-to-speech endpoints. ElevenLabs and Kyutai's Unmute
-serve chains [chk-el-flow, chk-el-prompting, chk-unmute]. L.
+Google, xAI and Alibaba serve single speech-to-speech endpoints. ElevenLabs Agents and Kyutai's Unmute
+serve chains [chk-el-flow, chk-el-prompting, chk-unmute]. [as-of 2026-10-31] Since 2026-10-20
+ElevenLabs also serves Eleven Realtime v1 Mini and Max at one speech-to-speech endpoint
+(`wss://api.elevenlabs.io/v1/convai/realtime`). ElevenLabs says that each uses a cascaded architecture
+of distinct models inside, so it is a chain behind one model id
+(<https://elevenlabs.io/docs/eleven-agents/guides/openai-realtime-compatibility>, read 2026-10-31;
+[elevenlabs/README.md](../models/elevenlabs/README.md)). L.
 
 **VA2. Turn detection is a setting that every maker exposes in a different form.** OpenAI offers
 `server_vad` and `semantic_vad`. Google offers automatic, hybrid and manual activity detection.

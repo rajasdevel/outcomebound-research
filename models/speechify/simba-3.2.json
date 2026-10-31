@@ -10,7 +10,7 @@
   "retires": null,
   "weights": "closed",
   "access": [
-    "Speechify API: POST /v1/audio/speech, POST /v1/audio/stream and a stream with timestamps, model simba-3.2",
+    "Speechify API: POST /v1/audio/speech, POST /v1/audio/stream and a stream with timestamps, model simba-3.2 [as-of 2026-10-31] The WebSocket input stream GET /v1/audio/stream/ws also takes simba-3.2 [sp-ws]",
     "Integrations: LiveKit, Pipecat, Vapi, Deepgram Voice Agent and Puter"
   ],
   "context_window": null,
@@ -25,15 +25,15 @@
   },
   "voice": {
     "duplex": "none",
-    "input_audio": "none: the model takes text or SSML (prosody, break, emphasis, sub and speechify:style)",
-    "output_audio": "23 `output_format` values: PCM at 8, 16, 22.05, 24, 44.1 and 48 kHz, mu-law at 8 kHz, MP3 at 22.05 and 24 kHz (32 to 192 kbps), Ogg at 24 kHz, AAC at 24 kHz, and WAV at 24 and 48 kHz (not on streaming); 24 kHz PCM is the model's native output [sp-formats] [sp-latency]",
+    "input_audio": "none: the model takes text or SSML [as-of 2026-10-31] It applies break, prosody (rate, pitch and volume) and sub, and accepts emphasis and speechify:style emotion tags without applying them; pitch and volume are applied from 2026-10-20 [sp-ssml-1031] [sp-chlog-1020]",
+    "output_audio": "23 `output_format` values: PCM at 8, 16, 22.05, 24, 44.1 and 48 kHz, mu-law at 8 kHz, MP3 at 22.05 and 24 kHz (32 to 160 kbps; [as-of 2026-10-31] the 192 kbps values are delivered at 160 kbps [sp-formats-1031]), Ogg at 24 kHz, AAC at 24 kHz, and WAV at 24 and 48 kHz (not on streaming); 24 kHz PCM is the model's native output [sp-formats] [sp-latency]",
     "voices": "catalogue voices and zero-shot voice cloning from a 10 to 30 second sample with verified consent [sp-models] [sp-clone]",
     "languages": [
       "English"
     ],
     "turn_detection": null,
     "interruption": null,
-    "latency": "First audio byte 56 ms at the median and 102 ms at p90 on the maker's production streaming path in US East, measured on 2026-09-15; the maker also cites two third-party boards at 106 ms and 123 ms to first audio, which this card did not read [sp-latency]",
+    "latency": "First audio byte 56 ms at the median and 102 ms at p90 on the maker's production streaming path in US East, measured on 2026-09-15 [sp-latency]. [as-of 2026-10-31] On 2026-10-09 the maker measured first audible audio from a client in US East at a median of 47 ms over the WebSocket input stream and 64 ms over the HTTP stream, and 145 ms and 153 ms from Zurich; it also cites Coval at 109 ms and Voice Arena at 123 ms to first audio, which this card did not read [sp-latency-1031]",
     "session_limit": "2,000 characters per /v1/audio/speech request and 20,000 per streaming request [sp-limits]"
   },
   "reasoning": {
@@ -45,17 +45,17 @@
     "input": null,
     "output": null,
     "cached_input": null,
-    "notes": "Per character, drawn from a US dollar balance that a monthly plan grants; the page gives one rate per plan and no rate per model. Free US$0 (500K characters a month, then pauses), Starter US$10 (1.9M characters, then US$10 per 1M), Pro US$99 (13.5M, then US$8 per 1M) and Scale US$499 (78M, then US$6 per 1M); Enterprise has volume pricing [sp-pricing]. Artificial Analysis lists US$6.58 per 1M characters for both Simba 3.2 and Simba 3.0 [aa-tts-board]"
+    "notes": "Per character, drawn from a US dollar balance that a monthly plan grants. Free US$0 (500K characters a month, then pauses), Starter US$10 (1.9M characters, then US$10 per 1M), Pro US$99 (13.5M, then US$8 per 1M) and Scale US$499 (78M, then US$6 per 1M); Enterprise has volume pricing [sp-pricing]. [as-of 2026-10-31] The pricing page now gives a rate per model: these rates are those of Simba 3.2 and 3.0, and Simba 3.5 lists at twice them [sp-pricing-1031]. Artificial Analysis lists US$6.58 per 1M characters for both Simba 3.2 and Simba 3.0 [aa-tts-board-1031]"
   },
   "benchmarks": [
     {
       "name": "Artificial Analysis Speech Arena Elo (text-to-speech leaderboard)",
-      "score": 1241.95,
-      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04",
+      "score": 1249.46,
+      "setting": "blind pairwise listener votes; the quality Elo in the leaderboard data of the page, 95% CI 1237.46 to 1261.46, read on 2026-10-31 (1241.95 on 2026-10-04)",
       "harness": "Artificial Analysis Speech Arena",
       "measured_by": "independent",
-      "source": "aa-tts-board",
-      "read": "2026-10-04"
+      "source": "aa-tts-board-1031",
+      "read": "2026-10-31"
     }
   ],
   "prompting_guides": [
@@ -154,6 +154,69 @@
       "id": "aa-tts-board",
       "url": "https://artificialanalysis.ai/text-to-speech",
       "read": "2026-10-04",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "sp-ssml-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/ssml",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-emotion-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/emotion-control",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-chlog-1020",
+      "url": "https://docs.speechify.ai/build/changelog/2026/10/20",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-formats-1031",
+      "url": "https://docs.speechify.ai/build/guides/concepts/audio-formats",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-latency-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/latency",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-ws",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/streaming-text-input",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-models-1031",
+      "url": "https://docs.speechify.ai/build/guides/concepts/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-pricing-1031",
+      "url": "https://speechify.ai/pricing",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board-1031",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-31",
       "kind": "M",
       "quote": null
     }

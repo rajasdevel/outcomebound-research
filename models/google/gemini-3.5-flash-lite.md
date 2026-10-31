@@ -21,6 +21,8 @@ sources:
   - https://ai.google.dev/gemini-api/docs/latest-model
   - https://ai.google.dev/gemini-api/docs/prompting-strategies
   - https://storage.googleapis.com/deepmind-media/gemini/gemini_3-5_flash-lite_model_evaluation.pdf
+  - https://ai.google.dev/gemini-api/docs/changelog (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/computer-use (read 2026-10-31)
 ---
 
 # Gemini 3.5 Flash-Lite
@@ -78,7 +80,7 @@ Family defaults apply. Artificial Analysis rates the model as fairly concise, wi
 
 ### Tools and agents
 
-Function calling follows the family rules in [README.md](README.md#tools-and-agents). The model supports computer use (a preview) and built-in tools, and the Antigravity managed agent lets callers choose 3.5 Flash-Lite as the underlying model to favour speed and cost over reasoning depth [L: gemini-computer-use, gemini-antigravity-agent]. Google's card reports OSWorld-Verified at 74.0 percent (3.1 Flash-Lite 54.3; GPT-5.4 mini 72.1; Claude Haiku 4.5 50.7) and GDPVal-AA v2 at 1140 Elo (3.1 Flash-Lite 642) [L: gemini-3-5-flash-lite-card]. No independent agent benchmark was found: the model has no Terminal-Bench 4.0 row, no SWE-Bench Pro V2 row and no METR measurement.
+Function calling follows the family rules in [README.md](README.md#tools-and-agents). The model supports computer use ([as-of 2026-10-31] generally available on the Gemini API since 2026-10-30) and built-in tools, and the Antigravity managed agent lets callers choose 3.5 Flash-Lite as the underlying model to favour speed and cost over reasoning depth [L: gemini-computer-use, gemini-antigravity-agent, gemini-changelog-october-31, gemini-computer-use-october-31]. Google's card reports OSWorld-Verified at 74.0 percent (3.1 Flash-Lite 54.3; GPT-5.4 mini 72.1; Claude Haiku 4.5 50.7) and GDPVal-AA v2 at 1140 Elo (3.1 Flash-Lite 642) [L: gemini-3-5-flash-lite-card]. No independent agent benchmark was found: the model has no Terminal-Bench 4.0 row, no SWE-Bench Pro V2 row and no METR measurement.
 
 ### Coding
 
@@ -156,3 +158,8 @@ Each source id used above, its kind (M independent measurement, L maker, A pract
 - gemini-3-pro-card (L, read 2026-10-03): https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-3-Pro-Model-Card.pdf
 - gemini-latest-model (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/latest-model
 - gemini-3-5-flash-lite-eval (L, read 2026-10-03): https://storage.googleapis.com/deepmind-media/gemini/gemini_3-5_flash-lite_model_evaluation.pdf
+
+Read 2026-10-31:
+
+- gemini-changelog-october-31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/changelog
+- gemini-computer-use-october-31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/computer-use

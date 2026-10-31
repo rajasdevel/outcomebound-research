@@ -14,11 +14,15 @@ sources:
   - https://x.ai/news/grok-voice-think-fast-2
   - https://x.ai/news/grok-voice-think-fast-1
   - https://artificialanalysis.ai/speech-to-speech
+  - https://docs.x.ai/developers/release-notes (read 2026-10-31)
+  - https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech (read 2026-10-31)
+  - https://docs.x.ai/developers/pricing (read 2026-10-31)
+  - https://docs.x.ai/developers/models/grok-voice-2.0 (read 2026-10-31)
 ---
 
 # Grok Voice Think Fast 2.0
 
-Grok Voice Think Fast 2.0 is SpaceXAI's speech-to-speech model. It takes audio or text and gives back speech and text over a WebSocket Realtime API that follows the shape of the OpenAI Realtime API. The announcement is dated 2026-07-29. The alias `grok-voice-latest` moved to it on 2026-08-05. It replaced Grok Voice Think Fast 1.0 (announced 2026-04-23), which the docs no longer list as a choice. The model reasons while it speaks. Family-wide rules for the maker are in the [xAI README](README.md) [xai-announce-2] [xai-release-notes] [xai-s2s].
+Grok Voice Think Fast 2.0 is SpaceXAI's speech-to-speech model. It takes audio or text and gives back speech and text over a WebSocket Realtime API that follows the shape of the OpenAI Realtime API. The announcement is dated 2026-07-29. The alias `grok-voice-latest` moved to it on 2026-08-05. It replaced Grok Voice Think Fast 1.0 (announced 2026-04-23), which the docs no longer list as a choice. The model reasons while it speaks. [as-of 2026-10-31] On 2026-10-14 xAI released Grok Voice 3.0 (`grok-voice-3.0`, [its file](grok-voice-3.0.md)) at the same price and deprecated this model, which the docs now call Grok Voice 2.0 with the id `grok-voice-2.0`. The alias `grok-voice-latest` now points to `grok-voice-3.0`, so a session that uses the alias already runs on 3.0. xAI says the API is unchanged: 3.0 uses the same endpoint, session parameters and events. To stay on a fixed model, xAI advises pinning a versioned name, and a client pinned to 2.0 is told to move to `grok-voice-3.0`. No end-of-life date is given [xai-release-notes-oct31] [xai-s2s-oct31] [xai-pricing-oct31]. Family-wide rules for the maker are in the [xAI README](README.md) [xai-announce-2] [xai-release-notes] [xai-s2s].
 
 ## At a glance
 
@@ -28,12 +32,12 @@ Grok Voice Think Fast 2.0 is SpaceXAI's speech-to-speech model. It takes audio o
 | --- | --- |
 | Id | `grok-voice-think-fast-2.0` |
 | Maker | SpaceXAI |
-| Class | Grok Voice Think Fast |
+| Class | Grok Voice |
 | Generation | 2.0 |
 | Released | 2026-07-29 |
-| Status | ga |
+| Status | deprecated |
 | Weights | closed |
-| Access | SpaceXAI API (wss://api.x.ai/v1/realtime, alias grok-voice-latest); SpaceXAI SIP phone-call routing; SpaceXAI ephemeral tokens for browser and mobile clients |
+| Access | SpaceXAI API (wss://api.x.ai/v1/realtime; the docs now give the id grok-voice-2.0; deprecated 2026-10-14, and the alias grok-voice-latest now points to grok-voice-3.0) [xai-release-notes-oct31] [xai-s2s-oct31]; SpaceXAI SIP phone-call routing; SpaceXAI ephemeral tokens for browser and mobile clients |
 | Context window | unknown |
 | Max output | unknown |
 | Modalities | input audio, text; output audio, text |
@@ -47,14 +51,14 @@ Grok Voice Think Fast 2.0 is SpaceXAI's speech-to-speech model. It takes audio o
 | Voice latency | xAI: 0.70 seconds to first audio for 2.0 against 1.25 seconds for 1.0 [xai-announce-2]; Artificial Analysis: 0.70 seconds on average on its Big Bench Audio set [aa-s2s] |
 | Session limit | unknown |
 | Reasoning control | effort: none, high (default high) |
-| Price | unknown per Mtok; Not per token. SpaceXAI pricing page (read 2026-10-03): US$0.08 per minute of speech-to-speech (US$4.80 per hour) and US$0.004 per text input. Rate limits are set by concurrent sessions per tier, from 10 at tier 0 to 200 at tier 4, not by tokens [xai-pricing] [xai-rates] |
+| Price | unknown per Mtok; Not per token. SpaceXAI pricing page (read 2026-10-03): US$0.08 per minute of speech-to-speech (US$4.80 per hour) and US$0.004 per text input. Rate limits are set by concurrent sessions per tier, from 10 at tier 0 to 200 at tier 4, not by tokens [xai-pricing] [xai-rates] [as-of 2026-10-31] The pricing page still lists US$0.08 per minute and US$0.004 per text input for grok-voice-2.0, marked deprecated, and the same price for grok-voice-3.0 [xai-pricing-oct31]. |
 | Key benchmarks | none recorded |
 | Other benchmarks | Artificial Analysis Speech Reasoning (Big Bench Audio): 97.2 (model listed as Grok Voice Think Fast 2.0 High; Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard, Artificial Analysis, independent) [aa-s2s](https://artificialanalysis.ai/speech-to-speech); Artificial Analysis Conversational Dynamics (Full Duplex Bench subset): 95.1 (weighted average of pause handling 97.8, turn-taking 90.8, interruption handling 97.0 and backchannel handling 94.9 from Full Duplex Bench v1 and v1.5, Artificial Analysis, independent) [aa-s2s](https://artificialanalysis.ai/speech-to-speech); Artificial Analysis Agentic Performance (tau-Voice): 56.5 (share of replica customer-service scenarios resolved; airline 56.0, retail 49.7, telecom 63.7; only full-duplex models are run, Artificial Analysis, independent) [aa-s2s](https://artificialanalysis.ai/speech-to-speech); Artificial Analysis Speech to Speech: arena preference Elo: 1011 (human participants compare two unnamed voice models on one scenario; the page lists only models with tool calling, Artificial Analysis, independent) [aa-s2s](https://artificialanalysis.ai/speech-to-speech); Artificial Analysis Speech to Speech: task success rate (percent): 94.6 (column labelled Task Success Rate on the page; the page text read does not define it further, Artificial Analysis, independent) [aa-s2s](https://artificialanalysis.ai/speech-to-speech) |
 | Prompting guides | [docs.x.ai/developers/model-capabilities/audio/speech-to-speech/prompting-guide](https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech/prompting-guide); [docs.x.ai/developers/model-capabilities/audio/speech-to-speech](https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech) |
 | System card | unknown |
-| Model page | [docs.x.ai/developers/models/grok-voice-think-fast-2.0](https://docs.x.ai/developers/models/grok-voice-think-fast-2.0) |
+| Model page | [docs.x.ai/developers/models/grok-voice-2.0](https://docs.x.ai/developers/models/grok-voice-2.0) |
 | Card checked | 2026-10-03 |
-| Not found | context_window: not published for the voice model; its page lists no context figure; max_output: not published; voice.duplex: full follows Artificial Analysis, which runs this model on its tau-Voice test for full-duplex models only; xAI's pages describe server VAD with automatic barge-in and do not use the word full-duplex [aa-s2s] [xai-s2s]; voice.session_limit: no maximum session length is stated; session resumption is optional and concurrent sessions are limited per tier [xai-s2s] [xai-rates]; pricing_usd_per_mtok: the unit differs; the price is per minute of audio, not per token; released: xAI's announcement is dated 2026-07-29 and the alias grok-voice-latest moved to this model on 2026-08-05 [xai-announce-2] [xai-release-notes]; system_card: none found for the voice models; modalities: the machine-readable model page lists text to text, which does not match the speech-to-speech guide (audio and text in, audio and text out) [xai-model-page] [xai-s2s]; benchmarks: the announcement quotes an Artificial Analysis index of 82.9; the Artificial Analysis page read on 2026-10-03 shows 81.3 in its table and 82.9 in its embedded data for this model, so the index is not recorded here [xai-announce-2] [aa-s2s]; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found; Terminal-Bench 4.0: not applicable to a speech model; no run found; Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index; Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry; METR 50% time horizon: not applicable to a speech model; no entry |
+| Not found | context_window: not published for the voice model; its page lists no context figure; max_output: not published; voice.duplex: full follows Artificial Analysis, which runs this model on its tau-Voice test for full-duplex models only; xAI's pages describe server VAD with automatic barge-in and do not use the word full-duplex [aa-s2s] [xai-s2s]; voice.session_limit: no maximum session length is stated; session resumption is optional and concurrent sessions are limited per tier [xai-s2s] [xai-rates]; pricing_usd_per_mtok: the unit differs; the price is per minute of audio, not per token; released: xAI's announcement is dated 2026-07-29 and the alias grok-voice-latest moved to this model on 2026-08-05 [xai-announce-2] [xai-release-notes]; system_card: none found for the voice models; modalities: the machine-readable model page lists text to text, which does not match the speech-to-speech guide (audio and text in, audio and text out) [xai-model-page] [xai-s2s]; benchmarks: the announcement quotes an Artificial Analysis index of 82.9; the Artificial Analysis page read on 2026-10-03 shows 81.3 in its table and 82.9 in its embedded data for this model, so the index is not recorded here [xai-announce-2] [aa-s2s]; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found; Terminal-Bench 4.0: not applicable to a speech model; no run found; Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index; Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry; METR 50% time horizon: not applicable to a speech model; no entry; id [as-of 2026-10-31]: the docs now name this model grok-voice-2.0, and the old page for grok-voice-think-fast-2.0 redirects to the models list; whether the API still accepts the grok-voice-think-fast-2.0 id was not verified [xai-model-page-oct31] [xai-release-notes-oct31]; retires: xAI gives no end-of-life date for grok-voice-2.0 [xai-release-notes-oct31]; class [as-of 2026-10-31]: the class was Grok Voice Think Fast; it is now Grok Voice, because the docs name this model Grok Voice 2.0 and its successor Grok Voice 3.0 [xai-s2s-oct31] |
 <!-- card:end -->
 
 ## How to instruct it
@@ -138,6 +142,8 @@ None of the session parameters is a sampling control. xAI documents `instruction
 
 ### Migrating from the previous generation
 
+[as-of 2026-10-31] Moving on to 3.0: in its section on moving from the OpenAI Realtime API, xAI's guide says to shorten the system prompt for `grok-voice-3.0`, because the model is more capable, and to remove prompt workarounds written for GPT models. It gives no separate prompt advice for moving from 2.0 to 3.0. Reasoning stays on by default at `high`, and `none` turns it off [xai-s2s-oct31].
+
 xAI's announcement says 2.0 improves reasoning, transcription accuracy and conversation over 1.0. It reports a time to first audio of 0.70 seconds against 1.25 seconds and about 0.4 times the reasoning tokens. It says reinforcement learning made the model speak in shorter sentences, ask one question at a time and avoid filler [xai-announce-2]. Independent figures agree with the direction. Artificial Analysis measured conversational dynamics at 95.1% for 2.0 and 77.8% for 1.0. Its interruption-handling part moved from 21.5% to 97.0%, and its turn-taking part from 95.0% to 90.8% [aa-s2s]. The docs advise pinning a versioned name in production, because `grok-voice-latest` follows the newest model. The docs also say that prompt fixes needed for GPT models are not needed, and that rules added only to patch the previous model can go [xai-s2s].
 
 The API follows the OpenAI Realtime API. The base URL and key are the main changes. Differences: the transcription event is `conversation.item.input_audio_transcription.updated` and carries the cumulative transcript, `conversation.item.retrieve` is not supported, and `output_audio_buffer` events exist for WebRTC and SIP only. SpaceXAI adds `force_message`, `resumption` and `replace` [xai-s2s].
@@ -166,6 +172,7 @@ Independent: the Artificial Analysis results above. Maker: the announcement clai
 
 - The maximum length of a session, and the size of the context.
 - Whether Grok Voice Think Fast 1.0 is still callable. The docs list only 2.0, and the model page for 1.0 returns not found (read 2026-10-03).
+- [as-of 2026-10-31] Whether the API still accepts the `grok-voice-think-fast-2.0` id, and when `grok-voice-2.0` reaches end of life.
 - Why the machine-readable model page lists text-to-text modalities.
 
 ## Sources
@@ -182,3 +189,10 @@ Independent: the Artificial Analysis results above. Maker: the announcement clai
 - [xai-announce-2] https://x.ai/news/grok-voice-think-fast-2 (kind L, read 2026-10-03)
 - [xai-announce-1] https://x.ai/news/grok-voice-think-fast-1 (kind L, read 2026-10-03)
 - [aa-s2s] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-03)
+
+Read 2026-10-31:
+
+- [xai-release-notes-oct31] https://docs.x.ai/developers/release-notes (kind L, read 2026-10-31)
+- [xai-s2s-oct31] https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech (kind L, read 2026-10-31)
+- [xai-pricing-oct31] https://docs.x.ai/developers/pricing (kind L, read 2026-10-31)
+- [xai-model-page-oct31] https://docs.x.ai/developers/models/grok-voice-2.0 (kind L, read 2026-10-31)

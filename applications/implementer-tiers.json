@@ -374,17 +374,6 @@
       "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier); Artificial Analysis index 23 and Terminal-Bench 4.0 of 0 [aa-cmp-k26-m27]; no Scale row.",
       "notes": []
     },
-    "MiniMax-M3.1-Flash-Preview": {
-      "placements": [
-        {
-          "effort": null,
-          "tier": "spec",
-          "confidence": "low"
-        }
-      ],
-      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier); there is no benchmark, independent run or guide, and it is a six-day-old preview.",
-      "notes": []
-    },
     "MiniMax-M3": {
       "placements": [
         {

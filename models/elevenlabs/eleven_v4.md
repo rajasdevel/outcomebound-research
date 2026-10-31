@@ -28,6 +28,7 @@ sources:
   - https://artificialanalysis.ai/text-to-speech/models/eleven-v4
   - https://artificialanalysis.ai/text-to-speech
   - https://elevenlabs.io/docs/overview/administration/billing
+  - https://elevenlabs.io/docs/changelog/2026/10/26 (read 2026-10-31)
 ---
 
 # Eleven v4
@@ -136,7 +137,7 @@ Eleven v4 is not a conversation model. It has no turn detection and no barge-in.
 
 - `voice_settings`: `stability` (default 0.5), `similarity_boost` (0.75), `use_speaker_boost` (true), `style` (0) and `speed` (1). v4 uses stability and similarity. Whether `style` and `speed` do anything on v4 is not stated [el-api-tts] [el-v4-page].
 - Text to Dialogue `settings`: `stability` (0.5) and `similarity` (0.75) [el-api-ttd].
-- `seed`: an integer from 0 to 4294967295. `language_code`: ISO 639-1, ignored if the model does not support it. `apply_text_normalization`: `auto`, `on` or `off`. `use_pvc_as_ivc`: use the instant version of a professional clone, which can cut latency and add expressiveness. `pronunciation_dictionary_locators`: up to three. `enable_logging=false`: Zero Retention Mode, for Enterprise only [el-api-tts].
+- `seed`: an integer from 0 to 4294967295. `language_code`: ISO 639-1, ignored if the model does not support it. `apply_text_normalization`: `auto`, `on` or `off`. `use_pvc_as_ivc`: use the instant version of a professional clone, which can cut latency and add expressiveness. [as-of 2026-10-31] Text to Speech `voice_settings` and Text to Dialogue `settings` also take `clone_strength` (0 to 1, the maker recommends 0) for a professional clone fine-tuned for v4; on the Text to Dialogue endpoints it decides whether such a clone runs as a professional or an instant clone, and `use_pvc_as_ivc` is deprecated there [el-changelog-1026]. `pronunciation_dictionary_locators`: up to three. `enable_logging=false`: Zero Retention Mode, for Enterprise only [el-api-tts].
 
 ### Migrating from the previous generation
 
@@ -205,3 +206,7 @@ Independent: the Artificial Analysis Speech Arena Elo of 1321.44 (blind pairwise
 - [aa-tts-v4] https://artificialanalysis.ai/text-to-speech/models/eleven-v4 (kind M, read 2026-10-03)
 - [aa-tts-board] https://artificialanalysis.ai/text-to-speech (kind M, read 2026-10-03)
 - [el-billing] https://elevenlabs.io/docs/overview/administration/billing (kind L, read 2026-10-03)
+
+Sources added for the claims dated 2026-10-31:
+
+- [el-changelog-1026] https://elevenlabs.io/docs/changelog/2026/10/26 (kind L, read 2026-10-31)

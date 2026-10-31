@@ -43,15 +43,26 @@ sources:
   - https://kingy.ai/blog/muse-spark-1-3-review-benchmarks-pricing-verdict/
   - https://note.com/ai_driven/n/nca2f4463fc06
   - https://research.meta.ai/static/muse-glimmer-methodology
+  - https://research.meta.ai/blog/muse-wonder (read 2026-10-31)
+  - https://research.meta.ai/static/muse-wonder-model-card (read 2026-10-31)
+  - https://dev.meta.ai/models/muse-wonder (read 2026-10-31)
+  - https://research.meta.ai/blog/muse-spark-open (read 2026-10-31)
+  - https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B (read 2026-10-31)
+  - https://dev.meta.ai/docs/muse-spark-open (read 2026-10-31)
+  - https://dev.meta.ai/docs/muse-code/subscriptions (read 2026-10-31)
+  - https://artificialanalysis.ai/agents/coding-agents/comparisons/muse-code-vs-opencode (read 2026-10-31)
 ---
 
 # Meta models
 
-Meta Superintelligence Labs ships its models under the name Muse. Two lines hold language models that take text
-and images, and both have files here: Muse Spark, a closed model reached through Meta's own API, through Meta AI and
-through the Muse Code terminal agent, and Muse Glimmer, a 30-billion-parameter open-weight model distilled from
-Muse Spark. This page holds what is the same across them and what Meta says once for the family. Each model file
-says what differs and links back here: [Muse Spark 1.3](muse-spark-1.3.md), [Muse Spark 1.2](muse-spark-1.2.md),
+Meta Superintelligence Labs ships its models under the name Muse. [as-of 2026-10-31] Four lines hold language models
+that take text and images, and all four have files here: Muse Wonder, Meta's most capable closed model (on Meta's own
+API and in Muse Code, with a stronger Full variant in Muse Code only); Muse Spark, a closed model reached through Meta's
+own API, through Meta AI and through the Muse Code terminal agent; Muse Spark Open, the open-weight release of Muse
+Spark; and Muse Glimmer, a 30-billion-parameter open-weight model distilled from Muse Spark [meta-api-models]. This
+page holds what is the same across them and what Meta says once for the family. Each model file says what differs and
+links back here: [Muse Wonder](muse-wonder-1.0.md), [Muse Wonder Full](muse-wonder-full-1.0.md),
+[Muse Spark 1.3](muse-spark-1.3.md), [Muse Spark 1.2](muse-spark-1.2.md), [Muse Spark Open](muse-spark-open.md),
 [Muse Glimmer 30B](muse-glimmer-30b.md). Meta's provider page is [../../providers/meta.md](../../providers/meta.md).
 
 ## Models and lineage
@@ -63,13 +74,20 @@ says what differs and links back here: [Muse Spark 1.3](muse-spark-1.3.md), [Mus
 | Muse Spark 1.2 | 2026-08-05 | Coding-focused update, launched with Muse Code (beta); Meta says it scaled up training compute on coding tasks | [meta-1-2-post] |
 | Muse Glimmer 30B | 2026-08-10 | Open weights (Apache-2.0), distilled from Muse Spark, built for local agents on one GPU | [meta-glimmer-post] |
 | Muse Spark 1.3 | 2026-09-02 | Fewer tool calls and tokens on coding work, more asking and confirming behaviour, `max` effort announced | [meta-1-3-post] |
+| Muse Wonder and Muse Wonder Full | 2026-10-12 | A new class above Muse Spark, on larger base models; Muse Wonder (`muse-wonder-1.0`) on the API and in Muse Code as a preview at $4.00 input and $20.00 output per million tokens, with no Contributor mode on the API; Muse Wonder Full only in Muse Code on the two top subscription plans; a model card with risk results the same day | [meta-wonder-post], [meta-wonder-card], [meta-api-pricing-1031] |
+| Muse Spark Open | 2026-10-15 | Open weights of Muse Spark under the Muse Model License: 816B parameters, 42B active, 1M context, text, image, video and audio input; not on Meta's API | [meta-spark-open-post], [meta-spark-open-card] |
 
 - Artificial Analysis counts 1.3 as Meta's fourth release in five months [aa-1-3-article].
-- In scope here: Muse Spark 1.3 (current) and 1.2 (previous), and Muse Glimmer 30B (the class has one generation,
-  which Meta does not number). Muse Spark 1.1 and 1.0 are older than the previous generation and have no file.
+- In scope here [as-of 2026-10-31]: Muse Wonder and Muse Wonder Full (class Muse Wonder, generation 1.0; two distinct
+  models of one generation, because Meta says that `max` effort on Muse Wonder does not select Full), Muse Spark 1.3
+  (current) and 1.2 (previous), Muse Spark Open (its own class, because Meta numbers no version for it and serves it
+  only as weights), and Muse Glimmer 30B (the class has one generation, which Meta does not number). Muse Wonder is a
+  new class, not a new Muse Spark generation: Meta's models page lists it as a separate line and keeps Muse Spark 1.3
+  as the recommended Muse Spark version. Muse Spark 1.1 and 1.0 are older than the previous generation and have no
+  file [meta-api-models].
   Meta's models page still serves 1.2 (called the previous version) and 1.1 (called the original version, since
   the API opened with it) [meta-api-models].
-- Meta's models page lists models outside this class: Muse Image 1.0 (image generation and editing), Muse Voice
+- Meta's models page lists models outside these classes: Muse Image 1.0 (image generation and editing), Muse Voice
   Transcribe 1.0 (speech to text) and SAM 3.1 (segmentation) [meta-api-models]. Muse Video was announced with Muse
   Image on 2026-07-07 [meta-blog-index]. None has a file here.
 - Meta's models page marks 1.3 as the recommended model and calls it tuned for agentic workflows [meta-api-models].
@@ -78,25 +96,29 @@ says what differs and links back here: [Muse Spark 1.3](muse-spark-1.3.md), [Mus
 
 ## API surface
 
-Meta's developer API (the "Meta Model API", at dev.meta.ai) serves the Muse Spark models. It does not serve Muse
-Glimmer; Meta's docs list Glimmer as self-hosted through vLLM, SGLang, llama.cpp and ExecuTorch [meta-api-models].
+Meta's developer API (the "Meta Model API", at dev.meta.ai) serves the Muse Spark models and, from 2026-10-12, Muse
+Wonder (`muse-wonder-1.0`) [as-of 2026-10-31]. It does not serve Muse Glimmer or Muse Spark Open, which Meta's docs
+list as self-hosted or, for Muse Spark Open, also through outside hosted providers; nor Muse Wonder Full, which runs only
+in Muse Code [meta-api-models, meta-spark-open-docs].
 
 - **Three protocols.** The Responses API at `https://api.meta.ai/v1` is the one Meta recommends for agents; Chat
   Completions is OpenAI-compatible; the Messages API at `https://api.meta.ai` is Anthropic-compatible
   [meta-api-coding, meta-api-messages]. OpenRouter lists `temperature`, `top_p`, `top_k`, `repetition_penalty`,
   `tool_choice`, `response_format`, `reasoning` and `reasoning_effort` as accepted parameters for 1.3 [openrouter-1-3].
-- **Model ids.** `muse-spark-1.3`, `muse-spark-1.2`, `muse-spark-1.1`, and a `-contributor` id for 1.3 and 1.2
-  [meta-api-models, meta-api-pricing].
+- **Model ids.** `muse-wonder-1.0`, `muse-spark-1.3`, `muse-spark-1.2`, `muse-spark-1.1`, and a `-contributor` id
+  for Muse Spark 1.3 and 1.2 only [as-of 2026-10-31] [meta-api-models, meta-api-pricing-1031].
 - **Tiers and data.** The standard tier does not use prompts and completions for training and allows 3,000 requests
   and 4,000,000 tokens a minute. The contributor tier is far cheaper and lets Meta train on prompts and completions,
-  with 100 requests and 3,000,000 tokens a minute. Prices are on each model file's card [meta-api-pricing].
+  with 150 requests and 3,000,000 tokens a minute [as-of 2026-10-31]; Muse Wonder has no contributor tier on the API.
+  Prices are on each model file's card [meta-api-pricing-1031].
 - **Limits.** Context is 1,048,576 tokens for every Muse Spark model. Meta's coding-agent page tells agent
   configurations to declare an output limit of 131,072 tokens for 1.3; no API reference page read states a maximum
   output for any version [meta-api-coding]. A request takes up to 50 images; inline files may be 50 MB and
   Files API uploads 1 GiB; a PDF gives text from its first 100 pages and page images from its first 50
   [meta-api-images, meta-api-files].
 - **Reasoning control.** Responses API: `reasoning.effort`. Chat Completions: `reasoning_effort`. Levels are
-  `minimal`, `low`, `medium`, `high`, `xhigh` and, for 1.3 on the standard tier only, `max`, which Meta bills at the
+  `minimal`, `low`, `medium`, `high`, `xhigh` and, for Muse Wonder and for Muse Spark 1.3 on the standard tier only
+  [as-of 2026-10-31], `max`, which Meta bills at the
   same per-token price. `none` is not supported and returns HTTP 400. If the parameter is omitted the model picks
   the level. Reasoning tokens count against the output limit and are billed as output [meta-api-reasoning]. The
   Messages API takes `thinking` plus an optional `output_config.effort`, which passes through only `low`, `medium`,
@@ -180,6 +202,8 @@ Meta calls its safety documents reports. What exists, by model:
 | Muse Spark 1.2 and Muse Code evaluation methodology | how the 1.2 coding and agent benchmarks were run | with the 1.2 post |
 | Muse Spark 1.3 evaluation methodology | how the 1.3 benchmarks were run; it holds no safety numbers | with the 1.3 post |
 | Muse Glimmer model card and methodology report | a safety and preparedness section in the card; benchmark methodology in the report | 2026-08-10 |
+| Muse Wonder model card | both Muse Wonder variants: intended uses, benchmark methods, and risk results (cyber, chemical and biological, loss of control) measured on Muse Wonder Full; an ExploitGym correction added on 2026-10-23; a full safety report announced as coming | 2026-10-12 |
+| Muse Spark Open model card (on Hugging Face) | benchmarks against open-weight models and a summary of safety and preparedness results; a full evaluation report announced as coming | 2026-10-15 |
 
 For Muse Spark 1.2 and 1.3 no evaluation report with safety results was found. The 1.3 post claims stronger
 adversarial robustness and better discretion without numbers [meta-1-3-post]. Meta's September safety post says 1.3 is
@@ -297,9 +321,10 @@ Pro, as Meta ran them):
 - Whether Meta's savings for 1.3 (about 25% fewer tokens and 20% fewer tool calls than 1.2 on its coding work) hold
   outside Meta's tasks. Artificial Analysis measured more input tokens and slightly more output tokens per task on its
   agentic evaluations.
-- When Muse Spark weights will be released. Meta's 1.3 post lists a Muse Spark open-weights release on its roadmap and
-  its 1.2 multimodal post speaks of an upcoming open-weights release; neither gives a date or a version
-  [meta-1-3-post, meta-1-2-multimodal].
+- [as-of 2026-10-31] Which Muse Spark version the Muse Spark Open weights (released 2026-10-15) match; Meta's pages
+  give no version [meta-spark-open-post, meta-spark-open-card].
+- When Meta will publish the full safety reports that the Muse Wonder and Muse Spark Open posts promise
+  [meta-wonder-post, meta-spark-open-post].
 - How often the asking-and-confirming behaviour of 1.3 fires correctly; no rate is published.
 
 ## Sources
@@ -341,3 +366,17 @@ Read on 2026-10-03. Kinds: L lab, M independent measurement, A practitioner or p
 - [openrouter-1-3] OpenRouter listing for Muse Spark 1.3. A. https://openrouter.ai/meta/muse-spark-1.3
 - [kingy-muse-1-3] Kingy AI, hands-on test of Muse Spark 1.3. A. https://kingy.ai/blog/muse-spark-1-3-review-benchmarks-pricing-verdict/
 - [note-muse-1-3] Reading Muse Spark 1.3 from a practical perspective, an analysis of Meta's post without hands-on use. A. https://note.com/ai_driven/n/nca2f4463fc06
+
+Read on 2026-10-31:
+
+- [meta-wonder-post] Muse Wonder launch post, 2026-10-12. L. https://research.meta.ai/blog/muse-wonder
+- [meta-wonder-card] Muse Wonder model card (PDF). L. https://research.meta.ai/static/muse-wonder-model-card
+- [meta-wonder-page] Muse Wonder model page. L. https://dev.meta.ai/models/muse-wonder
+- [meta-spark-open-post] Introducing Muse Spark Open, 2026-10-15. L. https://research.meta.ai/blog/muse-spark-open
+- [meta-spark-open-card] Muse Spark Open model card on Hugging Face. L. https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B
+- [meta-spark-open-docs] Muse Spark Open overview. L. https://dev.meta.ai/docs/muse-spark-open
+- [meta-api-pricing-1031] Pricing and rate limits, read again on 2026-10-31. L. https://dev.meta.ai/docs/pricing-rate-limits
+- [meta-muse-code-subscriptions] Muse Code subscriptions. L. https://dev.meta.ai/docs/muse-code/subscriptions
+- [aa-coding-muse-code] Artificial Analysis, Muse Code coding-agent comparison. M. https://artificialanalysis.ai/agents/coding-agents/comparisons/muse-code-vs-opencode
+
+[meta-api-models] and [meta-api-reasoning] were also read again on 2026-10-31, for the line list, the model ids and the `max` level.

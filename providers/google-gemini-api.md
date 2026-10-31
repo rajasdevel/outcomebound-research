@@ -19,6 +19,16 @@ sources:
   - https://ai.google.dev/gemini-api/docs/live-api/live-translate
   - https://ai.google.dev/gemini-api/docs/live-api/live-transcribe
   - https://ai.google.dev/gemini-api/docs/deprecations
+  - https://ai.google.dev/gemini-api/docs/changelog (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/models (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/deprecations (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/models/gemini-4-argon (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/latest-model (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/pricing (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/computer-use (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/logs-datasets (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/logs-policy (read 2026-10-31)
+  - https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ (read 2026-10-31)
 ---
 
 # Google Gemini API and AI Studio
@@ -29,18 +39,18 @@ Google DeepMind's models are sold to developers through the Gemini API (the Gemi
 
 ## Models offered
 
-On 2026-10-03 the models page lists text and multimodal Gemini models, live audio models, text-to-speech models, a transcription model, image-generation models, a video model (Veo 3.1), a music model, a deep-research agent and an embeddings model. Gemma open-weight models do not appear on that page. Gemini 4 Argon is not on it either. [models]
+On 2026-10-03 the models page lists text and multimodal Gemini models, live audio models, text-to-speech models, a transcription model, image-generation models, a video model (Veo 3.1), a music model, a deep-research agent and an embeddings model. Gemma open-weight models do not appear on that page. [models] [as-of 2026-10-31] Gemini 4 Argon is now on the page as a stable model. Gemini 4 Carbon, announced 2026-10-28 for a subset of cyber defenders, is not on it and has no published API id [models-oct31, carbon].
 
 | Model file | API id | Status on the models page |
 | --- | --- | --- |
 | [Gemini 3.8 Flash](../models/google/gemini-3.8-flash.md) | `gemini-3.8-flash` | stable |
-| [Gemini 3.7 Flash](../models/google/gemini-3.7-flash.md) | `gemini-3.7-flash` | stable |
+| [Gemini 3.7 Flash](../models/google/gemini-3.7-flash.md) | `gemini-3.7-flash` | [as-of 2026-10-31] deprecated 2026-10-08 and no longer on the page; requests are routed to `gemini-3.8-flash` [changelog-oct31, deprecations-oct31] |
 | [Gemini 3.5 Flash-Lite](../models/google/gemini-3.5-flash-lite.md) | `gemini-3.5-flash-lite` | stable |
 | [Gemini 3.1 Flash-Lite](../models/google/gemini-3.1-flash-lite.md) | `gemini-3.1-flash-lite` | stable |
 | [Gemini 3.1 Pro](../models/google/gemini-3.1-pro-preview.md) | `gemini-3.1-pro-preview` | preview |
-| [Gemini 4 Argon](../models/google/gemini-4-argon.md) | none published | not on the page |
+| [Gemini 4 Argon](../models/google/gemini-4-argon.md) | `gemini-4-argon` | [as-of 2026-10-31] stable, GA 2026-10-13; paid tier only [changelog-oct31, argon-oct31] |
 
-The page also lists 3.6 Flash and 3.5 Flash as stable and 3 Flash as a preview; they are older than the two generations the model files cover. The Gemma 4 files ([12B](../models/google/gemma-4-12b-it.md), [31B](../models/google/gemma-4-31b-it.md) and the other sizes) are open weights and are not served through this API according to the models page; the [maker README](../models/google/README.md) covers them. Google marks each id as stable, preview, latest (a moving alias) or experimental; the README gives the notice periods. [models]
+The page also lists 3.6 Flash as stable and 3 Flash as a preview ([as-of 2026-10-31] 3.5 Flash is deprecated since 2026-10-08, and its requests are routed to 3.6 Flash [changelog-oct31]); they are older than the two generations the model files cover. The Gemma 4 files ([12B](../models/google/gemma-4-12b-it.md), [31B](../models/google/gemma-4-31b-it.md) and the other sizes) are open weights and are not served through this API according to the models page; the [maker README](../models/google/README.md) covers them. Google marks each id as stable, preview, latest (a moving alias) or experimental; the README gives the notice periods. [models]
 
 ### Dedicated speech inventory [as-of 2026-10-09]
 
@@ -56,7 +66,7 @@ The API preview ids for 3.1 Flash Live, 3.1 Flash TTS and 2.5 Pro TTS have an ea
 
 ## API surface
 
-- **Protocols.** Two native interfaces, generateContent and the newer Interactions API, which the [maker README](../models/google/README.md) records as storing conversation state on the server by default; the README describes both. Native endpoints sit on `generativelanguage.googleapis.com`. [openai]
+- **Protocols.** Two native interfaces, generateContent and the newer Interactions API, which the [maker README](../models/google/README.md) records as storing conversation state on the server by default; the README describes both. [as-of 2026-10-31] From 2026-10-26, new paid-tier projects also store generateContent requests by default (`store=true`) [changelog-oct31, logs-oct31]. Native endpoints sit on `generativelanguage.googleapis.com`. [openai]
 - **Auth.** A Gemini API key, created in AI Studio. The OpenAI-compatible layer takes the key as the OpenAI `api_key`. [openai]
 - **SDKs.** The Google GenAI SDK is the recommended client: Python `google-genai`, JavaScript and TypeScript `@google/genai`, Go `google.golang.org/genai`, Java `google-genai` and C# `Google.GenAI`. The earlier packages (`google-generativeai` for Python and others) are marked deprecated as of 2025-11-30. [libraries]
 - **OpenAI-compatible endpoint.** Base URL `https://generativelanguage.googleapis.com/v1beta/openai/`. It supports chat completions with streaming, function calling, image, audio and video input, structured outputs, embeddings, a batch interface and image and video generation. Google still labels the compatibility support beta. The page maps `reasoning_effort` per model: on Gemini 3.1 Pro `minimal` and `low` both become the low thinking level, while on 3.1 Flash-Lite and 3 Flash `minimal` stays minimal; `medium` and `high` map to the same names. Its table does not list the 3.5 to 3.8 Flash models. `service_tier` selects the Flex and Priority tiers, and the `extra_body` field carries Gemini-specific settings such as thinking configuration, cached content and safety settings. [openai]
@@ -66,11 +76,11 @@ The API preview ids for 3.1 Flash Live, 3.1 Flash TTS and 2.5 Pro TTS have an ea
 
 This is the maker's own API, so parity means what each interface and route does. Items verified on the pages below; the README holds the Interactions details. [models, thinking, structured, openai]
 
-- **Reasoning and effort.** `thinking_level` replaces numeric budgets. Defaults and levels on 2026-10-03: `gemini-3.8-flash` and `gemini-3.7-flash` default to medium and accept low, medium and high; `gemini-3.6-flash` and `gemini-3.5-flash` default to medium and also accept minimal; `gemini-3.5-flash-lite` defaults to minimal and accepts all four; `gemini-3.1-pro-preview` defaults to high and accepts low, medium and high. Google's migration guide for 3.8 Flash says `thinking_budget` is no longer used and is replaced by `thinking_level`, and that `minimal` returns an error on 3.8 Flash. [thinking, latest] Thought summaries are enabled with `thinking_summaries: "auto"`, thinking tokens bill with output tokens, and a thought block can carry only an opaque signature. In stateless use the full history with signatures goes back each turn. [thinking]
+- **Reasoning and effort.** `thinking_level` replaces numeric budgets. Defaults and levels on 2026-10-03: `gemini-3.8-flash` and `gemini-3.7-flash` default to medium and accept low, medium and high; `gemini-3.6-flash` and `gemini-3.5-flash` default to medium and also accept minimal; `gemini-3.5-flash-lite` defaults to minimal and accepts all four; `gemini-3.1-pro-preview` defaults to high and accepts low, medium and high. [as-of 2026-10-31] `gemini-4-argon` defaults to medium and accepts low, medium and high [argon-oct31, latest-oct31]. Google's migration guide for 3.8 Flash says `thinking_budget` is no longer used and is replaced by `thinking_level`, and that `minimal` returns an error on 3.8 Flash. [thinking, latest] Thought summaries are enabled with `thinking_summaries: "auto"`, thinking tokens bill with output tokens, and a thought block can carry only an opaque signature. In stateless use the full history with signatures goes back each turn. [thinking]
 - **Sampling and prefill.** The changelog marks `temperature`, `top_p` and `top_k` deprecated on 2026-07-21, and the 3.8 Flash migration guide says to strip them from requests; neither page says what error a request that sets them receives. The same guide says to remove prefilled model turns, without naming an error code. It also says `candidate_count` is unsupported from Gemini 3 on. [changelog, latest]
 - **Structured output.** A `response_format` with a JSON MIME type and a schema; Pydantic and Zod are supported in the SDKs. The page lists the supported types (string, number, integer, boolean, object, array, null) and properties such as `enum`, `format`, `required`, `items`, `minItems` and `maxItems`; very large or deeply nested schemas may be rejected. On Gemini 3 models structured output can be combined with search grounding, URL context, code execution, file search and function calling in one request, and streamed chunks are partial JSON. [structured]
-- **Tools.** Hosted search grounding, maps grounding, code execution, URL context, file search and a preview computer-use tool, plus function calling (per the maker README).
-- **Caching.** Context caching; cached input is billed at a tenth of the input price (for example $0.075 against $0.75 on 3.8 Flash), plus an hourly storage fee set per model. [pricing]
+- **Tools.** Hosted search grounding, maps grounding, code execution, URL context, file search and a computer-use tool, plus function calling (per the maker README). [as-of 2026-10-31] Computer use is generally available since 2026-10-30, in the Interactions and GenerateContent APIs. Its supported models are `gemini-4-argon`, `gemini-3.8-flash` (recommended), `gemini-3.5-flash-lite` and `gemini-3-flash-preview` [changelog-oct31, computer-use-oct31].
+- **Caching.** Context caching; cached input is billed at a tenth of the input price (for example $0.075 against $0.75 on 3.8 Flash), plus an hourly storage fee set per model. [pricing] [as-of 2026-10-31] `gemini-4-argon` supports implicit caching only, with a 95 percent discount on cached input [pricing-oct31, latest-oct31].
 - **Batch.** A batch API at half price, with its own limits (below). [pricing, rate]
 - **Long context.** Window sizes are on the model cards. Pro models above 200,000 tokens pay twice the input rate and one and a half times the output rate on the pricing page. [pricing]
 - **Vision, audio, video.** Multimodal input on the lead models, and separate image, video, music, speech and transcription models. [models]
@@ -85,13 +95,13 @@ The full model files distinguish audio-input and text-output prices and capture 
 
 ## Pricing
 
-Per token, with a free tier that exchanges data use for no charge, and a paid tier billed through a Cloud billing account. Four modes: Standard; Batch at 50 percent of the standard rate; Flex at 50 percent; Priority at 1.8 times. Context caching adds a storage fee set per model, for example $0.50 per million tokens per hour on 3.8 Flash (rising to $1.00 on 2027-01-01) and $4.50 on 3.1 Pro preview. Search grounding includes 5,000 free requests a month across Gemini 3.x models, then $14 per 1,000. Pro models charge more above 200,000 prompt tokens (on 3.1 Pro preview, 2 times the input rate and 1.5 times the output rate). Recent models carry introductory prices through 2026-12-31 that double on 2027-01-01. Per-model prices are in the model files. [pricing]
+Per token, with a free tier that exchanges data use for no charge, and a paid tier billed through a Cloud billing account. Four modes: Standard; Batch at 50 percent of the standard rate; Flex at 50 percent; Priority at 1.8 times. Context caching adds a storage fee set per model, for example $0.50 per million tokens per hour on 3.8 Flash (rising to $1.00 on 2027-01-01) and $4.50 on 3.1 Pro preview. Search grounding includes 5,000 free requests a month across Gemini 3.x models, then $14 per 1,000. Pro models charge more above 200,000 prompt tokens (on 3.1 Pro preview, 2 times the input rate and 1.5 times the output rate). Recent models carry introductory prices through 2026-12-31 that double on 2027-01-01. Per-model prices are in the model files. [pricing] [as-of 2026-10-31] `gemini-4-argon` is $2 input and $10 output per million tokens through 2026-11-30, then $4 and $20, and has no free tier. An invite-only Contributor tier gives up to 50 percent off on four models in exchange for data use (see Limits and data) [pricing-oct31, logs-policy-oct31].
 
 ## Limits and data
 
 - **Rate limits.** Counted in requests per minute, input tokens per minute and requests per day, per project and not per key; any one limit trips the error; daily quotas reset at midnight Pacific time. Tiers: Free (an active project), Tier 1 (active billing, $250 spend cap), Tier 2 ($100 spent and 3 days, $2,000 cap), Tier 3 ($1,000 spent and 30 days, $20,000 to $100,000 or more). Tiers 1 to 3 also have rolling 10-minute spend limits of $10, $50 and $200. Batch has 100 concurrent requests, a 2 GB input file and 20 GB storage, plus per-model enqueued-token limits. The exact per-model numbers are shown in AI Studio, not in the documentation. [rate]
 - **Regions.** The regions page lists the countries and territories where the Developer API and AI Studio are offered, without a total, and points users elsewhere to the Gemini API on Google's cloud platform. It also says users must be 18 or over. It gives no regional endpoints or data-residency controls for the Developer API. [regions]
-- **Retention and training.** On the free tier Google may use content to improve its products and humans may review it; on paid services it does not, and processes data under its Data Processing Addendum, keeping data only for a limited time to detect violations of its prohibited-use policy. Search and Maps grounding keep data 30 days. Users in the EEA, UK and Switzerland must use paid services when they make an API client available to others. The terms page describes no zero-data-retention option. [terms]
+- **Retention and training.** On the free tier Google may use content to improve its products and humans may review it; on paid services it does not, and processes data under its Data Processing Addendum, keeping data only for a limited time to detect violations of its prohibited-use policy. Search and Maps grounding keep data 30 days. Users in the EEA, UK and Switzerland must use paid services when they make an API client available to others. The terms page describes no zero-data-retention option. [terms] [as-of 2026-10-31] Request storage is separate from this: the Interactions API stores requests by default, and from 2026-10-26 new paid-tier projects also store generateContent, streamGenerateContent and batchGenerateContent requests by default. Projects created before that date keep their setting, which is off unless it was turned on. A request opts out with `store=false`; a project can turn logging off in the AI Studio Logs and Datasets settings. Stored logs expire after 55 days by default (7, 14, 28 or 55 can be set), and logs saved to a dataset do not expire. The invite-only Contributor tier (4 Argon, 3.1 Pro Preview, 3.8 Flash and 3.5 Flash-Lite) puts a project's data on those models under the unpaid-services terms, so Google can use it to improve its products [changelog-oct31, logs-oct31, logs-policy-oct31].
 
 ## Notes for agents and harnesses
 
@@ -100,7 +110,9 @@ Per token, with a free tier that exchanges data use for no charge, and a paid ti
 - **Mixed effort fields.** The compatibility page says `reasoning_effort` cannot be sent together with `thinking_level` or `thinking_budget`. [openai]
 - **Signatures.** The thinking page calls a thought signature an encrypted form of the model's reasoning state; in stateless use every thought block must be sent back exactly as received, and in stateful use the service manages them. A client that rebuilds history by hand can lose reasoning continuity. [thinking]
 - **Schema limits.** A large or deeply nested schema can be rejected; the page gives no threshold. [structured]
-- **Free versus paid.** A free-tier key sends content to Google for product improvement, and the paid terms say it does not. [terms]
+- **Free versus paid.** A free-tier key sends content to Google for product improvement, and the paid terms say it does not. [terms] [as-of 2026-10-31] A paid project on the Contributor tier also allows that use for the participating models [logs-policy-oct31].
+- **Default storage [as-of 2026-10-31].** On a paid-tier project created on or after 2026-10-26, Google stores each generateContent request unless the request sends `store=false` or logging is turned off for the project, so such a project is not stateless by default [changelog-oct31, logs-oct31].
+- **Routed ids [as-of 2026-10-31].** `gemini-3.7-flash` and `gemini-3.5-flash` still answer, but they run on `gemini-3.8-flash` and `gemini-3.6-flash`, so behaviour and token use are those of the newer model; the pricing page lists only the newer ids [changelog-oct31, deprecations-oct31, pricing-oct31].
 - **Changing shapes.** The Interactions API changed its request and response schema in 2026 (`outputs` became `steps`; announced 2026-05-06, default from 2026-05-26, the old shape removed 2026-06-08). [changelog]
 
 ## Sources
@@ -123,3 +135,13 @@ Per token, with a free tier that exchanges data use for no charge, and a paid ti
 | translate-october | https://ai.google.dev/gemini-api/docs/live-api/live-translate | L | 2026-10-09 |
 | transcribe-live-october | https://ai.google.dev/gemini-api/docs/live-api/live-transcribe | L | 2026-10-09 |
 | transcribe-model-october | https://ai.google.dev/gemini-api/docs/models/gemini-3.5-transcribe | L | 2026-10-09 |
+| changelog-oct31 | https://ai.google.dev/gemini-api/docs/changelog | L | 2026-10-31 |
+| models-oct31 | https://ai.google.dev/gemini-api/docs/models | L | 2026-10-31 |
+| deprecations-oct31 | https://ai.google.dev/gemini-api/docs/deprecations | L | 2026-10-31 |
+| argon-oct31 | https://ai.google.dev/gemini-api/docs/models/gemini-4-argon | L | 2026-10-31 |
+| latest-oct31 | https://ai.google.dev/gemini-api/docs/latest-model | L | 2026-10-31 |
+| pricing-oct31 | https://ai.google.dev/gemini-api/docs/pricing | L | 2026-10-31 |
+| computer-use-oct31 | https://ai.google.dev/gemini-api/docs/computer-use | L | 2026-10-31 |
+| logs-oct31 | https://ai.google.dev/gemini-api/docs/logs-datasets | L | 2026-10-31 |
+| logs-policy-oct31 | https://ai.google.dev/gemini-api/docs/logs-policy | L | 2026-10-31 |
+| carbon | https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ | L | 2026-10-31 |

@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (harnesses change how they load, cap, compact and run hooks monthly; the adoption survey, the interview and the direction are dated and MONITOR)
 sources:
+  - https://kiro.dev/changelog/ (read 2026-10-31)
   - https://agents.md/
   - https://code.claude.com/docs/en/memory
   - https://learn.chatgpt.com/docs/agent-configuration/agents-md
@@ -501,6 +502,10 @@ extension, so a Claude Code extension session inside Cursor also carries `CURSOR
 (A, observed 2026-09-23). Match on the most specific set of variables, read a tie as unknown,
 and draw ASCII where the surface is unknown. Cursor's 2.2 changelog (2025-12-10) says Plan Mode
 supports inline Mermaid diagrams; those are plans, not replies in chat (read 2026-10-01).
+Kiro IDE 1.4.62 (2026-10-28) lists under its fixes that Mermaid diagrams in chat now show in a
+framed block that matches the theme, so arrows stay visible on dark themes, with Ctrl-scroll or
+pinch to zoom. By that note the Kiro IDE chat draws a reply's Mermaid block; this was not observed
+here, and the note does not cover Kiro CLI (L, changelog read 2026-10-31) [as-of 2026-10-31].
 
 ## 12. Adoption (MONITOR)
 
@@ -837,3 +842,7 @@ Checks defined here (verdict PASS, read 2026-09-25 unless dated in the text):
 Own observations (O) are the maintainers' own probes and runs, unpublished: the Codex app-server probes,
 the Codex sandbox probes, a read-only review, isolation runs, an environment check and the Python
 module-shadowing reproductions, each dated and scoped where it appears. The talk's captions were read on 2026-09-29.
+
+Sources for sections dated 2026-10-31 (L, vendor changelog; runtime behavior not tested):
+
+- <https://kiro.dev/changelog/>, Kiro IDE 1.4.62 entry, read 2026-10-31.

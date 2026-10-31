@@ -1,0 +1,240 @@
+{
+  "id": "voxtral-mini-tts-3-0",
+  "name": "Voxtral TTS 3",
+  "maker": "Mistral",
+  "family": "Voxtral 3",
+  "class": "Voxtral TTS",
+  "generation": "3",
+  "released": "2026-10-20",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Mistral API: POST /v1/audio/speech (offline, with optional streamed response) and the WebSocket wss://api.mistral.ai/v1/audio/speech/realtime; API names voxtral-mini-tts-3-0, voxtral-mini-tts-3, voxtral-mini-tts-latest and the -realtime- variants [mistral-tts3-page] [mistral-tts-realtime]",
+    "Mistral AI Studio playground [mistral-tts3-page]",
+    "Mistral Voice Agents SDK, as the speech stage of its pipeline [mistral-voice-agents]"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "audio"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "Text with optional inline tags; optional audio: a ref_audio clip for zero-shot cloning (MP3 or WAV, base64, a few seconds to a few minutes) or conversation_history turns with base64 audio for contextual delivery [mistral-tts-formats] [mistral-tts-generate]",
+    "output_audio": "mp3 (offline default), wav (realtime default), pcm, flac or opus; mono at 24 kHz [mistral-tts-formats] [mistral-tts-realtime]",
+    "voices": "36 Voxtral 3 preset voices (realtime default voice_447), the 30 Voxtral 2 preset IDs (4 speakers, one ID per emotion), zero-shot clones and saved voices, and professional voice cloning from 30 minutes to 3 hours of audio [mistral-tts-voices] [mistral-voices-concept]",
+    "languages": [
+      "35 languages with 50+ regional dialects; preset voices exist in 22 of the listed languages, and the rest need a cloned voice; the language follows the voice and the text, not a request parameter [mistral-tts-languages] [mistral-tts3-page]",
+      "Emotion, pace and disfluency tags work in English and are untested but expected to work in French, German, Spanish, Italian, Portuguese and Hindi [mistral-tts-tags]"
+    ],
+    "turn_detection": "Not applicable; a synthesis model does not listen",
+    "interruption": "Not a conversation model; in a realtime session input_text.flush ends one generation and input_text.end closes the session [mistral-tts-realtime]",
+    "latency": "Mistral: about 90 ms time to first audio with streaming [mistral-tts3-page]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token: US$13 per million input characters on Mistral's API pricing page and model page [mistral-pricing] [mistral-tts3-page]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1223,
+      "setting": "blind listener votes on each provider's own voices; accent and category set to All; rank 15 (range 13 to 19), 95% interval 1209 to 1237, 2,008 samples, 8 voices; listed as Voxtral 3 TTS; the page's per-accent and per-category boards give other values",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.mistral.ai/studio/audio/text-to-speech/emotion-tags",
+    "https://docs.mistral.ai/studio/audio/text-to-speech/generate-speech",
+    "https://docs.mistral.ai/studio/audio/concepts/voices",
+    "https://docs.mistral.ai/studio/audio/text-to-speech/custom-pronunciation"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.mistral.ai/models/voxtral-mini-tts-3-0",
+  "sources": [
+    {
+      "id": "mistral-tts3-page",
+      "url": "https://docs.mistral.ai/models/voxtral-mini-tts-3-0",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-changelog",
+      "url": "https://docs.mistral.ai/getting-started/changelog",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-voxtral3-post",
+      "url": "https://mistral.ai/news/voxtral-3/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-pricing",
+      "url": "https://docs.mistral.ai/inference/pricing",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-overview",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/overview",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-tags",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/emotion-tags",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-style",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/style-instructions",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "Style instructions are not available at launch."
+    },
+    {
+      "id": "mistral-tts-generate",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/generate-speech",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-voices",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/voices",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-cloning",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/voice-cloning",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-pronunciation",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/custom-pronunciation",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-realtime",
+      "url": "https://docs.mistral.ai/studio/audio/text-to-speech/speak-in-realtime",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-voices-concept",
+      "url": "https://docs.mistral.ai/studio/audio/concepts/voices",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-formats",
+      "url": "https://docs.mistral.ai/studio/audio/specs-and-limits/audio-formats",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-languages",
+      "url": "https://docs.mistral.ai/studio/audio/specs-and-limits/languages",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-tts-limits",
+      "url": "https://docs.mistral.ai/studio/audio/specs-and-limits/limits",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-migrate-voxtral2",
+      "url": "https://docs.mistral.ai/studio/audio/migrate-from-voxtral-2",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-models-overview",
+      "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-voice-agents",
+      "url": "https://docs.mistral.ai/studio/audio/voice-agents/overview",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-mistral-models",
+      "url": "https://huggingface.co/api/models?author=mistralai&search=Voxtral",
+      "read": "2026-10-31",
+      "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "weights: no open weights found; the Hugging Face listing of Mistral's Voxtral repositories read on 2026-10-31 shows Voxtral-4B-TTS-2603 and no Voxtral 3 speech model, while the launch post offers self-deployment without naming a licence [hf-mistral-models] [mistral-voxtral3-post]",
+    "context_window: not applicable to a synthesis model; no input-length limit in characters was found in the pages read",
+    "max_output: not published",
+    "voice.session_limit: the realtime page states no maximum session length",
+    "voice.languages: the docs say 35 languages, while the language table lists 38 languages (English as two rows) [mistral-tts-languages]",
+    "voice.voices: the voice library lists 7 UK English and 4 US English Voxtral 3 voices, while the language table counts 6 and 4 [mistral-tts-voices] [mistral-tts-languages]",
+    "pricing_usd_per_mtok: the unit differs; the price is per million input characters, not per token",
+    "prompting_guides: the guides disagree on pace tags; the model page and the limits page give two values (slow, fast), while the tag page lists five (very-slow, slow, moderate, fast, very-fast) [mistral-tts3-page] [mistral-tts-limits] [mistral-tts-tags]",
+    "access: the migration page says voxtral-mini-tts-latest will point to Voxtral 3 within a month of general availability, while the model page already lists the alias [mistral-migrate-voxtral2] [mistral-tts3-page]",
+    "system_card: Mistral publishes no system card or model card for the Voxtral 3 models in the pages read",
+    "benchmarks: the launch post gives only charts of Mistral-run and vendor-run tests (Voice Code Bench by BeSimple AI, internal evaluations judged by gemini-3.8-flash) without per-model figures in its text, so no maker score is recorded; the one independent figure is the Artificial Analysis Speech Arena Elo [mistral-voxtral3-post] [aa-tts-board]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech synthesis model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech synthesis model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists speech synthesis models on its text-to-speech leaderboard, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech synthesis model; no entry",
+    "METR 50% time horizon: not applicable to a speech synthesis model; no entry"
+  ]
+}

@@ -2,6 +2,19 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (each of these harnesses changes its loading between releases; several are previews)
 sources:
+  - https://github.blog/changelog/2026-10-28-github-copilot-in-vs-code-universe-releases (read 2026-10-31)
+  - https://github.blog/changelog/2026-10-28-repository-plugin-defaults-and-enterprise-plugin-controls-generally-available (read 2026-10-31)
+  - https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion (read 2026-10-31)
+  - https://github.com/QwenLM/qwen-code/releases/tag/v0.26.3 (read 2026-10-31)
+  - https://github.com/MoonshotAI/kimi-code/releases/tag/@moonshot-ai/kimi-code@2.4.0 (read 2026-10-31)
+  - https://github.com/MoonshotAI/kimi-code/releases/tag/@moonshot-ai/kimi-code@2.4.1 (read 2026-10-31)
+  - https://github.com/MoonshotAI/kimi-code/pull/4331 (read 2026-10-31)
+  - https://github.com/anomalyco/opencode/releases/tag/v2.2.1 (read 2026-10-31)
+  - https://github.com/anomalyco/opencode/releases/tag/v2.2.3 (read 2026-10-31)
+  - https://github.com/anomalyco/opencode/releases/tag/v2.2.5 (read 2026-10-31)
+  - https://opencode.ai/docs/permissions (read 2026-10-31)
+  - https://github.com/mistralai/mistral-vibe/releases/tag/v3.0.4 (read 2026-10-31)
+  - https://kiro.dev/changelog/ (read 2026-10-31)
   - https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions
   - https://code.visualstudio.com/docs/copilot/customization/custom-instructions
   - https://antigravity.google/docs/rules/
@@ -73,6 +86,27 @@ harness-loading-coverage-30].
 - **Adoption.** 21% at work in May–July 2026, down from 29% a year earlier, in one vendor-run survey
   ([cross-harness.md](cross-harness.md#12-adoption-monitor)).
 - Skills directory not checked.
+- **Release changes of 2026-10-28 [as-of 2026-10-31].** These are GitHub changelog posts (L), read
+  2026-10-31, not a runtime check.
+  - *Repository plugin defaults.* A repository's `.github/copilot/settings.json` can register
+    plugin marketplaces and enable default plugins. The post says: "These are defaults, not
+    enforcement: contributors can turn plugins off unless enterprise policy requires them." Repository
+    defaults and enterprise plugin controls are generally available in VS Code, Copilot CLI and the
+    GitHub Copilot app, and trusted repositories can install the defaults. An enterprise can require
+    or block plugins and approve marketplaces through managed settings; a required plugin is
+    installed and enabled automatically, the user cannot disable it, and managed settings take
+    precedence over repository and personal choices. The posts do not say whether these plugin
+    defaults and controls apply to the cloud agent.
+  - *Default harness.* The Copilot harness, built on the Microsoft Copilot SDK, is now the default
+    for new sessions in the editor and the Agents window. The file list above was read on
+    2026-09-25 and was not re-checked against this harness. The VS Code page already said discovery
+    can differ by harness, so the Agent Customizations editor is the check for what a session
+    loads.
+  - *Copilot Fusion.* Fusion is generally available. It chooses, for each prompt, which models run
+    and how they combine (one model, a cascade that escalates, or a draft-and-critique pair). It uses
+    only the models that the enterprise and organisation model policies enable. The post does not
+    name the models, so the model that reads a session's instructions can change between prompts
+    (inference).
 
 ## Antigravity (Google's consumer harness)
 
@@ -191,6 +225,12 @@ qwen-f16, harness-loading-coverage-26].
 - **Model level.** Qwen3.8's chat template builds the system turn as: the reasoning-effort sentence
   (for xhigh or low; nothing for medium), then the `# Tools` block with strict XML tool-call
   instructions, then the caller's system content, where a harness typically places `AGENTS.md`.
+- **v0.26.3 (2026-10-28) [as-of 2026-10-31].** Release notes (L), not a runtime check. Before
+  auto-compaction, tool results now shrink to the remaining headroom, respecting explicit truncation
+  settings and protected content. A `qwen4` model ID with no upstream catalog entry now gets a
+  1,000,000-token context window by default, as do invite-only `qwen-latest-series-` aliases. A
+  wrong window moves the point at which compaction starts (inference). Daemon-managed channels now
+  honour `approvalMode` even when no webhooks are configured, as standalone startup does.
 
 ## Kimi Code (Moonshot)
 
@@ -206,6 +246,23 @@ Source (`context.ts`, main) read 2026-09-25 [open-weight-harness, open-weight-f3
   `AGENTS.md`, it injects a reminder to read it [open-weight-f8].
 - Skills from `.kimi-code/skills/`, `.agents/skills/` and `~/.agents/skills/`. `/init` generates an
   `AGENTS.md`.
+- **2.4.0 (2026-10-28) and 2.4.1 (2026-10-30) [as-of 2026-10-31].** Release notes (L), not a
+  runtime check; the loader above was not re-read.
+  - *Plan mode.* Plan mode starts only when the person turns it on, and every plan waits for their
+    review. The agent can no longer enter Plan mode by itself, Never Ask no longer approves plans
+    automatically, and `kimi -p` skips `default_plan_mode` and cannot approve the plan of a session
+    that is already in Plan mode (2.4.0).
+  - *Subagents.* A subagent that is stopped, times out or fails now returns the text it had written,
+    marked as incomplete (2.4.0).
+  - *Import skill, not the loader.* The built-in `/import-from-cc-codex` skill no longer imports a
+    standalone `.claude/AGENTS.md`, a project `.codex/AGENTS.md`, `.codex/CLAUDE.md` or loose skill
+    files; they can still be copied by hand (2.4.0). Pull request #4331, merged 2026-10-22, changes
+    that skill's prompt text, its test and a changeset, and no loader code. It states that Kimi does not read a root `CLAUDE.md`, which agrees
+    with the loader claim above.
+  - *Read cap and prompts (2.4.1).* One file read by the agent now returns at most 100,000
+    characters or about 25,000 tokens, whichever comes first, in place of 500,000 characters;
+    `max_chars` under `[read]` in `config.toml` raises both limits. Built-in tool and subagent
+    prompts, and the repeated goal and plan-mode reminders, are shorter.
 
 ## DeepSeek Harness (`dsh`, developer preview, MIT)
 
@@ -235,6 +292,24 @@ Docs dated 2026-09-24 [harness-loading-coverage-28, open-weight-harness].
 - MiniMax Code is built on a harness "based on … OpenCode and Pi"; its loader was not verified.
 - Adoption 7% at work in May–July 2026 in one vendor-run survey; on DeepSWE v1.1 with
   DeepSeek-V4.1-Flash, 65.5.
+- **v2.2.1 to v2.2.5 (2026-10-29 and 2026-10-30) [as-of 2026-10-31].** Release notes (L), not a
+  runtime check.
+  - *Goals and an idle hook (v2.2.1).* `/goal <objective>` keeps a session working until a reviewer
+    confirms the objective is met, with `pause`, `resume` and `clear`. The experimental
+    `experimental.idle` session hook lets a plugin continue work before a session goes idle.
+  - *Managed policy (v2.2.3).* `integration.use` now covers integration accounts only. The new
+    `mcp.use`, `skill.use` and `plugin.use` actions control MCP servers, skills and plugins. Rules with
+    the old `mcp:`, `skill:` and `plugin:` prefixes are converted automatically, but a bare
+    `integration.use` rule no longer applies to MCP servers, skills or plugins, so a policy written
+    that way stops covering them.
+  - *Claude Agent provider (v2.2.3).* A built-in provider uses an installed Claude Code and its
+    `claude auth login` sign-in (`OPENCODE_CLAUDE_PATH` overrides the executable). Whether that
+    route loads `CLAUDE.md` through Claude Code or OpenCode's own rules is `UNVERIFIED`.
+  - *Compaction and tool names (v2.2.5).* `compaction.buffer` accepts a percentage of the model's
+    context window, such as `"20%"`, as well as a token count. The compaction prompt is capped at the
+    model's context window when the model's input limit is larger. A call to a tool named `bash` now runs as `shell` with the same
+    permissions, unless a plugin tool is actually named `bash`. The permissions page, read
+    2026-10-31, still keys shell commands as `bash`.
 
 ## Cline
 
@@ -254,6 +329,21 @@ Apache-2.0; read 2026-09-25 [chk-vibe, chk-mistral-devstral2].
 - Skills in `.agents/skills/` and `.vibe/skills/` (trusted folders), `~/.vibe/skills/`,
   `~/.agents/skills/` and `skill_paths`; configured in `config.toml`. Project skills load only in
   trusted folders.
+- **v3.0.4 (2026-10-30) [as-of 2026-10-31].** Release notes (L), not a runtime check.
+  - *System prompt.* `vibe -p --system-prompt-file PATH` replaces Vibe's own instructions in the
+    system prompt with the file's text. The note does not say whether `AGENTS.md` and skills still
+    load in that run (`UNVERIFIED`). `vibe -c -p` now continues a session of the current folder, not
+    the most recent session anywhere on the machine.
+  - *Hooks.* Hooks in a native Vibe plugin's `ai.mistral.vibe/hooks.toml` now run, with
+    `PLUGIN_ROOT` and `PLUGIN_DATA` set. Hooks imported from other agents' plugins are reported as
+    not supported yet, where before they were ignored silently.
+  - *Tools and skills.* Vibe no longer loads custom Python tools from `~/.vibe/tools/` or
+    `.vibe/tools/`; each file now shows a startup warning, and the `tool_paths` setting is removed.
+    A user skill named `vibe` or `skill-creator` is no longer skipped silently.
+  - *Organisation settings and output caps.* A change to the organisation's settings reaches open
+    sessions at their next turn and removes the tools, connectors, MCP servers or modes it disables.
+    `agent_max_output_tokens` and `compaction_max_output_tokens` cap the output of agent and
+    compaction requests on any provider.
 
 ## Windsurf (Devin Desktop)
 
@@ -267,6 +357,11 @@ Page updated 2026-09-25: `AGENTS.md` is always included and takes no inclusion m
 guidance lives in `.kiro/steering`; "When using custom agents, steering files are not automatically
 included" unless listed in the agent's resources, so a custom agent can run without the project's
 steering [harness-loading-coverage-23]. Project files over global ones.
+
+IDE 1.4.62 (2026-10-28) fixes hook toggles that failed without an error, and adds framed Mermaid
+diagrams that stay readable on dark themes. These are changelog notes (L), read 2026-10-31; on an
+earlier version, a hook that was toggled may not be in the state shown (inference)
+[as-of 2026-10-31].
 
 ## Junie
 
@@ -390,3 +485,20 @@ Checks defined here (verdict PASS, read 2026-09-25):
 - [chk-meta] <https://dev.meta.ai/docs/muse-code/configuration.md>, read 2026-09-25.
 
 Evidence ids in brackets resolve in [`../_evidence/2026-09-25.jsonl`](../_evidence/2026-09-25.jsonl).
+
+Sources for sections dated 2026-10-31 (L, vendor release notes and changelogs; runtime behavior
+not tested):
+
+- <https://github.blog/changelog/2026-10-28-github-copilot-in-vs-code-universe-releases>, read 2026-10-31.
+- <https://github.blog/changelog/2026-10-28-repository-plugin-defaults-and-enterprise-plugin-controls-generally-available>, read 2026-10-31.
+- <https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion>, read 2026-10-31.
+- <https://github.com/QwenLM/qwen-code/releases/tag/v0.26.3>, read 2026-10-31.
+- <https://github.com/MoonshotAI/kimi-code/releases/tag/@moonshot-ai/kimi-code@2.4.0>, read 2026-10-31.
+- <https://github.com/MoonshotAI/kimi-code/releases/tag/@moonshot-ai/kimi-code@2.4.1>, read 2026-10-31.
+- <https://github.com/MoonshotAI/kimi-code/pull/4331>, read 2026-10-31.
+- <https://github.com/anomalyco/opencode/releases/tag/v2.2.1>, read 2026-10-31.
+- <https://github.com/anomalyco/opencode/releases/tag/v2.2.3>, read 2026-10-31.
+- <https://github.com/anomalyco/opencode/releases/tag/v2.2.5>, read 2026-10-31.
+- <https://opencode.ai/docs/permissions>, read 2026-10-31.
+- <https://github.com/mistralai/mistral-vibe/releases/tag/v3.0.4>, read 2026-10-31.
+- <https://kiro.dev/changelog/>, read 2026-10-31.

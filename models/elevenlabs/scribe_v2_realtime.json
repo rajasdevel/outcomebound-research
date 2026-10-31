@@ -34,7 +34,7 @@
     ],
     "turn_detection": "commit_strategy manual (the default; commit at silence or at a turn boundary, with an automatic commit after about 36 seconds of audio) or vad (commit on silence; the docs' example uses vad_silence_threshold_secs 1.5, vad_threshold 0.4, min_speech_duration_ms 100 and min_silence_duration_ms 100) [el-stt-commit]",
     "interruption": "not applicable to a transcription model; in ElevenAgents its signals feed the platform's turn-taking system [el-agents-expressive]",
-    "latency": "About 150 ms for partial transcripts [el-models]; Artificial Analysis streaming run: median 0.134 s to the first partial transcript and 0.141 s to the final transcript after speech ends [aa-stt-stream]",
+    "latency": "[as-of 2026-10-31] About 150 ms median time to committed transcript, from production metrics (the models page was read on 2026-10-03 as giving it for partial transcripts) [el-latency-method]; Artificial Analysis streaming run: median 0.134 s to the first partial transcript and 0.141 s to the final transcript after speech ends [aa-stt-stream]",
     "session_limit": "A maximum session time exists (the error session_time_limit_exceeded) but the pages read give no value; the server closes a connection after 15 seconds without client messages; a single-use client token expires after 15 minutes [el-stt-events] [el-stt-commit] [el-stt-client]"
   },
   "reasoning": {
@@ -193,6 +193,20 @@
       "url": "https://artificialanalysis.ai/speech-to-text/streaming",
       "read": "2026-10-03",
       "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "el-models-1031",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-latency-method",
+      "url": "https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology",
+      "read": "2026-10-31",
+      "kind": "L",
       "quote": null
     }
   ],

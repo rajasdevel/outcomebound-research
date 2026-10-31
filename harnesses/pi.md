@@ -10,6 +10,10 @@ sources:
   - https://earendil.com/posts/pi-1-0/
   - https://earendil.com/posts/pi-durable/
   - https://github.com/earendil-works/pi/releases/tag/v1.1.0
+  - https://github.com/earendil-works/pi/releases/tag/v1.2.0 (read 2026-10-31)
+  - https://github.com/earendil-works/pi/releases/tag/v1.3.0 (read 2026-10-31)
+  - https://github.com/earendil-works/pi/releases/tag/v1.4.0 (read 2026-10-31)
+  - https://earendil.com/posts/pi-durable-on-cloudflare/ (read 2026-10-31)
   - https://raw.githubusercontent.com/earendil-works/pi/6fb2e7815167e6b19006fc526d1a5d0f5f998787/packages/durable/README.md
 ---
 
@@ -137,6 +141,75 @@ For the general rule about external effects, see [agent-workspace.md](../practic
   Pi among others ([others.md](others.md#opencode), [others.md](others.md#zcode-zai)).
 - Whether a reply's Mermaid block is drawn is unknown [as-of 2026-09-23].
 
+## 9. Release changes in 1.2.0, 1.3.0 and 1.4.0 [as-of 2026-10-31]
+
+These notes describe the published releases of 2026-10-12 (1.2.0), 2026-10-15 (1.3.0) and
+2026-10-21 (1.4.0), not a runtime check. L, release notes read 2026-10-31.
+
+- **Context files (1.2.0).** A symlinked `AGENTS.md` in a git worktree that is nested inside its
+  main repository caused no project context file to load. The release says this is fixed.
+- **Skill and extension paths (1.2.0).** Pi did not expand `~` in `!pattern`, `+path` and `-path`
+  entries of the `extensions`, `skills`, `prompts` and `themes` settings, so an entry such as
+  `!~/skills/pdf` matched nothing. The release says this is fixed.
+- **Extension events (1.2.0, breaking).** `before_agent_start` now also fires for a run that an
+  extension starts with `pi.sendMessage(..., { triggerTurn: true })` while Pi is idle. The event is now a union on
+  `messageType`, so a handler that must act only on user prompts must check
+  `event.messageType === "user"`. Such runs also no longer lose the system-prompt sections that
+  `before_agent_start` added after their first tool call.
+- **Non-interactive mode (1.2.0).** When the final response is cut off at the output token limit,
+  print mode (`-p`) now prints the partial text, writes a warning to stderr and exits 1. Before,
+  it exited 0 with no warning.
+- **Compaction (1.2.0, 1.4.0).** Compaction and branch summaries no longer include thinking blocks
+  (1.2.0). Summaries now use the model's output limit instead of a fixed cap, so long reasoning no
+  longer makes them fail, and `compaction.reserveTokens` now controls only when compaction starts
+  (1.4.0). `/compact <instructions>` no longer ignores the instructions when compaction splits a
+  turn (1.4.0).
+- **Sessions (1.3.0, 1.4.0).** A resumed session keeps its active tools, and `--tools +name` or
+  `-name` applies on top of them (1.3.0). After a resume or `/tree` navigation, extension tools
+  are active unless they are registered with `defaultActive: false` (1.4.0). A session no longer
+  breaks after recovery from a response cut off at the output limit (1.4.0). The new
+  `sessionShareDestination` setting selects `auto`, `gist` or `radius` as the target of `/share`
+  (1.3.0); the warning in §6 about what a shared session can hold still applies.
+- **Subagents (1.4.0).** Parallel codemode scripts and in-process subagents now wait up to 60
+  seconds for a free worker instead of failing. `PI_CODEMODE_MAX_WORKERS` raises the limit of two
+  workers.
+- **Tool calls (1.3.0, 1.4.0).** A tool call whose final arguments are malformed JSON now fails
+  validation and shows the model what it sent; before, it ran with only the fields parsed before the
+  error (1.3.0). The `grep` tool now runs `rg --no-config`, so `RIPGREP_CONFIG_PATH` options no
+  longer change its searches (1.4.0).
+- **MCP (1.2.0, 1.4.0).** MCP OAuth sign-in now fails with an issuer mismatch when it cannot check
+  an `iss` parameter, and a call cancelled during an OAuth refresh is no longer sent after the
+  refresh (1.2.0). An `mcp.json` that starts with a UTF-8 BOM no longer fails to parse and skip all
+  its servers (1.4.0).
+- **Model catalog.** With an OpenRouter key, Pi lists only the models that key may use (1.2.0).
+  When several providers offer a `--model` match, Pi now prefers the provider with credentials and
+  otherwise reports the ambiguity (1.3.0). On a model switch, Pi drops thinking blocks from the
+  previous model instead of sending them as plain text (1.3.0). The default Xiaomi model is now
+  `mimo-v2.6-pro`, because `mimo-v2.5-pro` left the catalog, and the default GitHub Copilot model is
+  now `gpt-6.1-sol` (1.4.0).
+
+Release notes do not establish the installed version or the behavior on a given machine.
+
+## 10. Pi Durable on Cloudflare [as-of 2026-10-31]
+
+Earendil's post of 2026-10-16 builds an example chat agent on Pi Durable and Cloudflare Durable
+Objects. L, <https://earendil.com/posts/pi-durable-on-cloudflare/>, read 2026-10-31; nothing was
+tested here. What it shows about sessions and subagents:
+
+- One Pi Durable harness serves one session, and the example maps each session to one Durable
+  Object with SQLite storage. Pi Durable ships memory, JSONL and SQLite storage, accepts another
+  storage backend, and has a conformance suite to test one.
+- A session can hold several conversations and forks. The example stores a receipt with the request
+  id in the same commit that creates a conversation, so a repeated request does not create a
+  duplicate. Messages that arrive while the model or a tool runs wait in a durable inbox and are
+  answered in order.
+- Cloudflare alarms run at least once, so the post makes the alarm handler idempotent. It rebuilds
+  the alarm from the stored tasks each time the object wakes.
+- A subagent is an ordinary conversation that the tool task owns. The example marks its tool
+  replay-safe, so Pi runs it again after an eviction instead of reporting it as interrupted.
+
+This is a worked example. It does not establish that an external effect happens once (see §7).
+
 ## Sources
 
 - Configuration
@@ -157,3 +230,10 @@ Checks defined here (verdict PASS, read 2026-09-25):
 - [chk-pi] <https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/configuration.md>, read 2026-09-25.
 
 Evidence ids in brackets resolve in [`../_evidence/2026-09-25.jsonl`](../_evidence/2026-09-25.jsonl).
+
+Sources for sections dated 2026-10-31 (L, vendor release notes and post; runtime behavior not tested):
+
+- <https://github.com/earendil-works/pi/releases/tag/v1.2.0>, read 2026-10-31 (§9).
+- <https://github.com/earendil-works/pi/releases/tag/v1.3.0>, read 2026-10-31 (§9).
+- <https://github.com/earendil-works/pi/releases/tag/v1.4.0>, read 2026-10-31 (§9).
+- <https://earendil.com/posts/pi-durable-on-cloudflare/>, read 2026-10-31 (§10).

@@ -1,0 +1,196 @@
+{
+  "id": "eleven_realtime_v1_mini",
+  "name": "Eleven Realtime v1 Mini",
+  "maker": "ElevenLabs",
+  "family": "Eleven",
+  "class": "Eleven Realtime Mini",
+  "generation": "1",
+  "released": "2026-10-20",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "ElevenAgents: Voice mode Realtime, conversation_config.realtime_model eleven_realtime_v1_mini (the default Realtime model); rolling out gradually, and a workspace without access gets an error [el-rt-models] [el-changelog-1019]",
+    "ElevenLabs Realtime API, compatible with OpenAI's Realtime API: wss://api.elevenlabs.io/v1/convai/realtime, with a short-lived client secret from POST /v1/convai/realtime/client_secrets; WebSocket only [el-rt-openai] [el-rt-secret] [el-blog-rt]",
+    "Data residency: US, EU, India and Singapore; not under Zero Retention Mode or HIPAA [el-rt-models]"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "half",
+    "input_audio": "Realtime API: audio/pcm (default, 24 kHz), audio/pcmu or audio/pcma, set in audio.input.format; over WebSocket the client captures and plays PCM16 at 24 kHz itself [el-rt-secret] [el-rt-openai]. In ElevenAgents the agent's own audio settings apply [el-rt-models]",
+    "output_audio": "Realtime API: audio/pcm (default), audio/pcmu or audio/pcma, set in audio.output.format [el-rt-secret]",
+    "voices": "any voice of the ElevenLabs library, which the launch post puts at 17,000+; the Realtime API default voice is brian [el-blog-rt] [el-rt-secret]",
+    "languages": [
+      "90+ languages, the Eleven v4 language list; on the Realtime API, audio.input.transcription.language sets the language of transcription, speech and reply (default en) [el-models-1031] [el-rt-secret]"
+    ],
+    "turn_detection": "Realtime API: turn_detection type semantic_vad (default) or server_vad, eagerness low, medium (default) or high, with create_response, threshold, prefix_padding_ms, silence_duration_ms and turn_timeout (default -1) [el-rt-secret]. In ElevenAgents the agent's turn eagerness and timeout settings still apply [el-rt-models]",
+    "interruption": "Yes: interrupt_response defaults to true on the Realtime API; in ElevenAgents the agent's interruption settings still apply [el-rt-secret] [el-rt-models]",
+    "session_limit": "Realtime API: max_duration_seconds defaults to 600, and the server closes the session with code 1000 when it is exceeded [el-rt-secret]; the API reference gives no ceiling, and the changelog entry of 2026-10-19 gives a range of 60 to 7,200 seconds [el-changelog-1019]",
+    "latency": "Artificial Analysis: 0.62 seconds average time to first audio on its Big Bench Audio set [aa-s2s-1031]; the maker's pages give 620 ms [el-rt-page] [el-pricing-api-1031]"
+  },
+  "reasoning": null,
+  "pricing_usd_per_mtok": {
+    "input": 0.2,
+    "output": 6.0,
+    "cached_input": null,
+    "notes": "Token rates are the LLM usage of the model, on top of US$0.08 per minute of connected audio; burst audio above the concurrency limit is US$0.16 per minute; the same rates on every plan, with estimated included minutes from about 14 to about 11,794 by plan. In ElevenAgents the standard per-minute agent rate plus tokens at the model's rates [el-pricing-api-1031] [el-rt-models]. Artificial Analysis lists US$4.80 per hour of input audio [aa-s2s-1031]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech to Speech Index",
+      "score": 64.4,
+      "setting": "weighted average of speech reasoning, agentic performance, arena preference and task success rate",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s-1031",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 75.9,
+      "setting": "1,000 spoken reasoning questions, spoken answer scored",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s-1031",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench)",
+      "score": 95.8,
+      "setting": "backchannel 86.7, interruption 98.0, turn-taking 100 and pause handling 98.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s-1031",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Agentic Performance (tau-Voice)",
+      "score": 46.8,
+      "setting": "pass^1 over 3 trials; airline 45.3, retail 36.5, telecom 58.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s-1031",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Speech Agent Arena Elo (overall)",
+      "score": 980.72,
+      "setting": "blind live conversations; 95% CI 954.12 to 1007.33, 661 appearances, rank 13",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s-arena",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Speech Agent Arena task success rate (percent)",
+      "score": 60.3,
+      "setting": "158 of 262 tool-use tasks completed",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s-arena",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://elevenlabs.io/docs/eleven-agents/customization/realtime-models",
+    "https://elevenlabs.io/docs/eleven-agents/guides/openai-realtime-compatibility",
+    "https://elevenlabs.io/docs/eleven-agents/best-practices/prompting-guide"
+  ],
+  "system_card": null,
+  "model_page": "https://elevenlabs.io/docs/overview/models",
+  "sources": [
+    {
+      "id": "el-models-1031",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-rt-models",
+      "url": "https://elevenlabs.io/docs/eleven-agents/customization/realtime-models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-rt-openai",
+      "url": "https://elevenlabs.io/docs/eleven-agents/guides/openai-realtime-compatibility",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "No. Realtime models use a cascaded architecture: each component is a distinct model, built with ElevenLabs' latest research and optimized to work best together."
+    },
+    {
+      "id": "el-rt-secret",
+      "url": "https://elevenlabs.io/docs/api-reference/conversations/create-client-secret",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-changelog-1019",
+      "url": "https://elevenlabs.io/docs/changelog/2026/10/19",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-blog-rt",
+      "url": "https://elevenlabs.io/blog/realtime",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-rt-page",
+      "url": "https://elevenlabs.io/realtime",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-pricing-api-1031",
+      "url": "https://elevenlabs.io/pricing/api",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s-1031",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s-arena",
+      "url": "https://artificialanalysis.ai/speech-to-speech/arena",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "context_window: not published for this model",
+    "max_output: not published; the Realtime API session field max_response_output_tokens defaults to 4096 [el-rt-secret]",
+    "pricing_usd_per_mtok: no cached-input rate is published; the agent docs name cached input tokens, the pricing page lists only input and output [el-rt-models] [el-pricing-api-1031]",
+    "reasoning: the maker does not say whether Mini reasons; it says Max reasons before it responds [el-rt-models]",
+    "system_card: ElevenLabs publishes no system card or model card; the component models are not public [el-rt-openai]",
+    "released: the launch post is dated 2026-10-20; the weekly changelog entry that announces it is dated 2026-10-19 [el-blog-rt] [el-changelog-1019]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a voice model; no run exists",
+    "Terminal-Bench 4.0: not applicable to a voice model; no run exists",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis rates the model on its Speech to Speech Index instead",
+    "Artificial Analysis Coding Agent Index: not applicable to a voice model",
+    "METR 50% time horizon: not applicable to a voice model; no run exists"
+  ]
+}

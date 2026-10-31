@@ -7,6 +7,11 @@ sources:
   - https://dev.meta.ai/docs/models
   - https://dev.meta.ai/docs/pricing-rate-limits
   - https://letsdatascience.com/news/meta-unveils-muse-spark-11-opens-developer-preview-4e60d164
+  - https://dev.meta.ai/docs/models (read 2026-10-31)
+  - https://dev.meta.ai/docs/pricing-rate-limits (read 2026-10-31)
+  - https://dev.meta.ai/models/muse-wonder (read 2026-10-31)
+  - https://dev.meta.ai/docs/muse-spark-open (read 2026-10-31)
+  - https://dev.meta.ai/docs/muse-code/subscriptions (read 2026-10-31)
 ---
 
 # Meta API
@@ -17,12 +22,15 @@ Meta trains the Muse Spark models and sells them through the Meta Model API: dev
 
 ## Models offered
 
-The models page names Muse Spark (the agentic model, in versions 1.3, 1.2 and 1.1, with 1.3 the latest; input of text, image, video, PDF and, with a qualifier, audio; a 1,048,576-token context), Muse Image (`muse-image-1.0`, generation and editing), Muse Voice Transcribe (`muse-voice-transcribe-1.0`, speech to text in 25 languages) and SAM 3.1 (segmentation returning boxes and masks). A `GET /v1/models` call lists what the key can use. [models, docs]
+[as-of 2026-10-31] The models page names six lines. On the API: Muse Wonder (`muse-wonder-1.0`, Meta's most capable model, a preview, Standard mode only; text, image, video, audio and PDF input; a 1,048,576-token context), Muse Spark (the agentic model, in versions 1.3, 1.2 and 1.1, with 1.3 the latest; input of text, image, video, PDF and, with a qualifier, audio; a 1,048,576-token context), Muse Image (`muse-image-1.0`, generation and editing), Muse Voice Transcribe (`muse-voice-transcribe-1.0`, speech to text in 25 languages) and SAM 3.1 (segmentation returning boxes and masks). Not on the API: Muse Spark Open (open weights, self-hosted or through outside providers), Muse Glimmer (open weights) and Muse Wonder Full (Muse Code subscriptions only). A `GET /v1/models` call lists what the key can use. [models-1031, docs]
 
 | Model file | API id | Note |
 | --- | --- | --- |
+| [Muse Wonder](../models/meta/muse-wonder-1.0.md) | `muse-wonder-1.0` | preview; Standard mode only; no `-contributor` id |
+| [Muse Wonder Full](../models/meta/muse-wonder-full-1.0.md) | none on the API | Muse Code Power Usage and Maximum Usage plans only |
 | [Muse Spark 1.3](../models/meta/muse-spark-1.3.md) | `muse-spark-1.3` | latest; a cheaper `-contributor` id exists |
 | [Muse Spark 1.2](../models/meta/muse-spark-1.2.md) | `muse-spark-1.2` | previous generation |
+| [Muse Spark Open](../models/meta/muse-spark-open.md) | none | open weights (816B, 42B active); self-hosted or through outside providers |
 | [Muse Glimmer 30B](../models/meta/muse-glimmer-30b.md) | none | open weights, self-hosted only |
 
 Muse Spark 1.1 is still listed on the models page and has no file here. The pricing page offers `-contributor` ids for 1.3 and 1.2 only. The [maker README](../models/meta/README.md) has the lineage and records that Meta publishes no retirement date for 1.2 or 1.1. [models, pricing]
@@ -50,21 +58,22 @@ First-party, so the points are what the Meta API itself provides; the field-leve
 
 ## Pricing
 
-Per token, in two tiers that also set data terms. The standard tier lists $1.25 per million input tokens, $0.15 cached and $4.25 output on the page read (these standard figures also appear on model files). The contributor tier is far cheaper, at $0.10 input, $0.002 cached and $0.20 output, in exchange for letting Meta train on prompts and completions. Web search grounding adds $2.50 per 1,000 queries. Other models bill per unit: Muse Image $0.01 per image, Muse Voice Transcribe $0.18 per audio hour, SAM 3.1 $2.50 per 1,000 images or $0.20 per 1,000 video frames. Injected steering tokens are not billed. A press report from the July launch said new accounts received $20 in free credit; the pricing page read does not mention credit. Per-model prices are in the model files. [pricing, launch]
+Per token, in two tiers that also set data terms. [as-of 2026-10-31] Muse Wonder costs $4.00 per million input tokens, $0.20 cached and $20.00 output, in Standard mode only. [pricing-1031] Muse Wonder Full has no per-token price; it comes with the Muse Code Power Usage ($50 a month) and Maximum Usage ($200 a month) plans. [wonder-page] For Muse Spark, the standard tier lists $1.25 per million input tokens, $0.15 cached and $4.25 output on the page read (these standard figures also appear on model files). The contributor tier is far cheaper, at $0.10 input, $0.002 cached and $0.20 output, in exchange for letting Meta train on prompts and completions. Web search grounding adds $2.50 per 1,000 queries. Other models bill per unit: Muse Image $0.01 per image, Muse Voice Transcribe $0.18 per audio hour, SAM 3.1 $2.50 per 1,000 images or $0.20 per 1,000 video frames. Injected steering tokens are not billed. A press report from the July launch said new accounts received $20 in free credit; the pricing page read does not mention credit. Per-model prices are in the model files. [pricing, launch]
 
 ## Limits and data
 
-- **Rate limits.** Per team: the standard tier allows 3,000 requests and 4,000,000 tokens a minute; the contributor tier 100 requests and 3,000,000 tokens a minute. Muse Image has its own 150 requests a minute, background submissions 600 a minute, and Muse Voice Transcribe 128 concurrent streams and 16,000 streams an hour. [pricing]
+- **Rate limits.** [as-of 2026-10-31] Per team and per model: `muse-wonder-1.0` and the standard Muse Spark ids allow 3,000 requests and 4,000,000 tokens a minute; the contributor ids 150 requests and 3,000,000 tokens a minute. Muse Image has its own 150 requests a minute, background submissions 600 a minute, and Muse Voice Transcribe 256 concurrent streams and 16,000 streams an hour. [pricing-1031]
 - **Regions.** A press report on the July launch (not Meta's docs) said the preview was open to U.S. developers; the docs read on 2026-10-03 name no country restriction and call Spark, Image, Voice Transcribe and SAM production-ready, but whether access is still limited by country was not verified. No regional endpoint was found. [launch, docs]
 - **Retention and training.** On the standard tier Meta says prompts and completions are not used to train Meta models. On the contributor tier Meta may use them for training future models. The pages read do not state how long prompts and completions are retained, where they are stored, or whether a zero-retention option exists. [pricing]
 
 ## Notes for agents and harnesses
 
 - **The cheap id changes the data terms.** `-contributor` models allow Meta to train on prompts and completions, so a harness that picks the cheapest id for cost sends private content under training terms; the standard id is the one without that term. [pricing]
-- **Effort mapping.** Seven named levels exist for Muse Spark, `none` is rejected, and `max` is standard-tier only on 1.3, so a setting that works on the standard id can fail on the contributor id. (Maker README.)
+- **Effort mapping.** Seven named levels exist for Muse Spark and Muse Wonder, `none` is rejected, and `max` is available on `muse-wonder-1.0` and on standard-tier 1.3 only [as-of 2026-10-31], so a setting that works on the standard id can fail on the contributor id. `max` on Muse Wonder does not select Muse Wonder Full. (Maker README.)
 - **Messages-format clients.** Disabling thinking returns 400, a named `tool_choice` is rejected and `stop_sequences` return 400, so a client library that sends these by default will not run unchanged. (Maker README.)
-- **Different rate limits per tier.** The contributor tier allows 100 requests a minute against 3,000 on standard, so bulk jobs on the cheap tier hit the request limit first. [pricing]
-- **Local alternative.** Muse Glimmer runs through vLLM, SGLang, llama.cpp or ExecuTorch rather than this API, with the Apache-2.0 weights. [models]
+- **Different rate limits per tier.** The contributor tier allows 150 requests a minute against 3,000 on standard [as-of 2026-10-31], so bulk jobs on the cheap tier hit the request limit first. [pricing-1031]
+- **Muse Code plans change the data terms too.** Muse Code subscriptions default to Contributor mode, which lets Meta train on the content sent; the setting can be turned off. [subscriptions]
+- **Local alternative.** Muse Glimmer runs through vLLM, SGLang, llama.cpp or ExecuTorch rather than this API, with the Apache-2.0 weights. [models] [as-of 2026-10-31] Muse Spark Open (Muse Model License) runs through SGLang, vLLM, TensorRT-LLM, llama.cpp or MLX, or through outside hosts such as Baseten, Fireworks AI, Groq, Modal, Nebius, Together AI and OpenRouter; its BF16 weights need about 2 TB of GPU memory to serve. [spark-open-docs]
 
 ## Sources
 
@@ -74,3 +83,8 @@ Per token, in two tiers that also set data terms. The standard tier lists $1.25 
 | models | https://dev.meta.ai/docs/models | L | 2026-10-03 |
 | pricing | https://dev.meta.ai/docs/pricing-rate-limits | L | 2026-10-03 |
 | launch | https://letsdatascience.com/news/meta-unveils-muse-spark-11-opens-developer-preview-4e60d164 | A | 2026-10-03 |
+| models-1031 | https://dev.meta.ai/docs/models | L | 2026-10-31 |
+| pricing-1031 | https://dev.meta.ai/docs/pricing-rate-limits | L | 2026-10-31 |
+| wonder-page | https://dev.meta.ai/models/muse-wonder | L | 2026-10-31 |
+| spark-open-docs | https://dev.meta.ai/docs/muse-spark-open | L | 2026-10-31 |
+| subscriptions | https://dev.meta.ai/docs/muse-code/subscriptions | L | 2026-10-31 |

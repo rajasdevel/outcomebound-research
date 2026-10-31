@@ -2,6 +2,10 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Cursor ships monthly; rules, hooks and third-party loading change between releases)
 sources:
+  - https://cursor.com/blog/claude-code-extension-security-notice (read 2026-10-31)
+  - https://cursor.com/changelog/agent-sdk (read 2026-10-31)
+  - https://cursor.com/changelog/remote-control-local-agents (read 2026-10-31)
+  - https://cursor.com/changelog (read 2026-10-31)
   - https://cursor.com/docs/approval-agents (read 2026-10-28)
   - https://cursor.com/docs/rules
   - https://cursor.com/help/customization/rules
@@ -194,6 +198,52 @@ behavior above changed.
 
 Cursor documents reviewer assignment from ownership and commit history, plus optional approval of low-risk changes under configured criteria. This does not replace full code review. If a PR edits an approval policy, routing file or routed reviewer policy, the agent uses the base-branch version rather than the proposed relaxation. It requires human review if the prior version cannot be determined. L, <https://cursor.com/docs/approval-agents>, read 2026-10-28. Account availability and policy enforcement were not tested.
 
+## 11. A malicious Claude Code extension in Cursor's marketplace [as-of 2026-10-31]
+
+On 2026-10-29 Cursor published a security notice (updated 2026-10-30). Between about 2:27am and
+1:35pm PT on 2026-10-29, Cursor's VS Code Extension Marketplace served a maliciously modified
+`Anthropic.claude-code` extension, versions 2.1.312 and 2.1.313, for Windows and macOS. Cursor
+says: "These malicious versions of the extension were not developed by Anthropic." By Cursor's
+account, the extension sent host and user details to an attacker server, added an attacker SSH
+key labeled `svc-telemetry` to the user's authorized keys, tried to open a reverse SSH tunnel, and
+installed persistence (a LaunchAgent on macOS, a scheduled task on Windows). Turning on the SSH
+service needs admin rights that the extension did not have on most macOS and Windows hosts, and the
+attacker server is offline.
+Cursor says it has "no evidence that other versions of the extension or the official distribution
+are affected". Its steps: look for the `svc-telemetry` key, isolate an affected host, remove the
+key, the persistence and the tunnel processes, rotate credentials from a trusted system, and run
+its remediation script; it says that to uninstall the extension may not be enough. This is a
+vendor report (L), <https://cursor.com/blog/claude-code-extension-security-notice>, read
+2026-10-31; nothing was tested here. An extension marketplace is a supply
+path for a harness's own extension, separate from the instruction files and settings in §5.
+
+## 12. Agent SDK and remote control of local agents [as-of 2026-10-31]
+
+These notes describe Cursor's changelog entries, not a runtime check. L, read 2026-10-31.
+
+- **Agent SDK (2026-10-20).** Cursor says the Agent SDK is generally available. Cursor defines an
+  agent as a project folder. The prompt is in `instructions.md`; every file under `tools/` defines
+  one typed tool for the model; `skills/` contains procedures that the model reads only when it
+  needs them; `mcp-connections/` brings in tools from MCP servers; and `channels/` configures where
+  the agent gets and sends messages. `agent-sdk validate` checks the folder, and `agent-sdk info`
+  lists what it found. The triggers are pull request, comment and CI events on GitHub, GitLab and
+  Bitbucket, Slack mentions and direct messages, webhooks, and a cron schedule. Every conversation
+  has a separate session that logs all its messages and tool calls, and a later message on the same
+  pull request or Slack thread continues that session. `agent-sdk eval` sends a fixed message and
+  asserts on the tools called, their inputs and the form of the reply; `agent-sdk deploy` runs the
+  agent on Cursor's infrastructure, and the entry says an agent can also run on the user's own
+  infrastructure.
+  <https://cursor.com/changelog/agent-sdk>. The entry does not say how these files relate to the
+  rules, `AGENTS.md` and skills directories in §1 and §3, or what permissions a deployed agent has.
+- **Remote control (2026-10-06).** The Cursor iOS app can show the local agents on a paired computer
+  and send them messages. The agents keep running on the computer. Pairing needs approval in the
+  desktop app. The feature is on by default except for Enterprise organizations, where an admin
+  turns it on. <https://cursor.com/changelog/remote-control-local-agents>. This adds an input path
+  to local agents from a phone; the entry does not say whether tool approvals can be given there.
+
+The changelog entries of 2026-10-13 (Origin App Marketplace) and 2026-10-16 (cloud agent canvases
+and an Environments API) were read and are not in the scope of this page.
+
 ## Sources
 
 - Rules <https://cursor.com/docs/rules> (the earlier `/docs/context/rules` address returned 404 on
@@ -211,3 +261,10 @@ Cursor documents reviewer assignment from ownership and commit history, plus opt
   <https://github.com/robot-council/cli/issues/83> (2026-09-29).
 
 Evidence ids in brackets resolve in [`../_evidence/2026-09-25.jsonl`](../_evidence/2026-09-25.jsonl).
+
+Sources for sections dated 2026-10-31 (L, vendor report; nothing tested):
+
+- <https://cursor.com/blog/claude-code-extension-security-notice>, read 2026-10-31 (§11).
+- <https://cursor.com/changelog/agent-sdk>, read 2026-10-31 (§12).
+- <https://cursor.com/changelog/remote-control-local-agents>, read 2026-10-31 (§12).
+- <https://cursor.com/changelog>, read 2026-10-31 (§12; the entries of 2026-10-06 to 2026-10-20).

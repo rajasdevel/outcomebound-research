@@ -1,0 +1,257 @@
+{
+  "id": "simba-3.5",
+  "name": "Speechify Simba 3.5",
+  "maker": "Speechify",
+  "family": "Speechify Simba",
+  "class": "Speechify Simba",
+  "generation": "3.5",
+  "released": "2026-10-21",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Speechify API on every plan: POST /v1/audio/speech, POST /v1/audio/stream, POST /v1/audio/stream/with-timestamps and the WebSocket input stream GET /v1/audio/stream/ws, model simba-3.5; not the default, so a request must name it [sp-chlog-1018] [sp-models-1031]",
+    "Not on POST /v1/audio/dialogue, which stays on simba-dialogue-1.0 [sp-chlog-1018]"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "none: the model takes text or SSML. It applies break, prosody rate, pitch and volume, and sub alias; it accepts emphasis and speechify:style emotion tags and does not apply them. An optional pronunciations list (IPA or alias, up to 200 entries) works in every language except English [sp-ssml-1031] [sp-chlog-1018] [sp-chlog-1020]",
+    "output_audio": "The 23 `output_format` values of the API: PCM at 8 to 48 kHz, mu-law at 8 kHz, MP3 at 22.05 and 24 kHz (the 192 kbps values are delivered at 160 kbps), Ogg, AAC and WAV at 24 kHz, and WAV at 48 kHz; WAV is not on the streaming routes [sp-formats-1031]",
+    "voices": "every catalogue voice and every zero-shot clone made on a paid plan, with the same voice id in each of the 48 languages; a voice keeps the accent of its source recording, so the maker advises a voice native to the target language [sp-models-1031] [sp-lang-1031]",
+    "languages": [
+      "Arabic",
+      "Belarusian",
+      "Bengali",
+      "Bosnian",
+      "Burmese",
+      "Catalan",
+      "Chinese",
+      "Croatian",
+      "Czech",
+      "Danish",
+      "Dutch",
+      "English",
+      "Finnish",
+      "French",
+      "Georgian",
+      "German",
+      "Greek",
+      "Gujarati",
+      "Hebrew",
+      "Hindi",
+      "Hungarian",
+      "Indonesian",
+      "Italian",
+      "Japanese",
+      "Kazakh",
+      "Korean",
+      "Latin",
+      "Malay",
+      "Marathi",
+      "Norwegian",
+      "Persian",
+      "Polish",
+      "Portuguese",
+      "Romanian",
+      "Russian",
+      "Serbian",
+      "Slovak",
+      "Slovenian",
+      "Spanish",
+      "Swedish",
+      "Tagalog",
+      "Tamil",
+      "Telugu",
+      "Thai",
+      "Turkish",
+      "Ukrainian",
+      "Urdu",
+      "Vietnamese"
+    ],
+    "turn_detection": null,
+    "interruption": null,
+    "latency": "The maker reports 72 ms time to first audio for 95% of streaming requests under production load, for English, as of October 2026 [sp-blog-35]. The maker's latency guide has rows for simba-3.2 only [sp-latency-1031]",
+    "session_limit": "2,000 spoken characters per /v1/audio/speech request (20,000 as sent, markup included) and 20,000 spoken characters per streaming request (32,000 as sent); a WebSocket session ends after 60 seconds idle and stops taking text after 5 minutes [sp-limits-1031] [sp-ws]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, drawn from a plan's US dollar balance. List price US$20 per 1M characters on Starter, US$16 on Pro and US$12 on Scale, twice the rate of Simba 3.2 and 3.0; until 2026-11-21 it bills at US$10, US$8 and US$6. At list price the Free balance buys 250K characters a month and Starter 950K; SSML tags are not billed [sp-chlog-1021] [sp-pricing-1031] [sp-blog-35]"
+  },
+  "benchmarks": [
+    {
+      "name": "Maker blind side-by-side listening preference over Simba 3.2 (English, percent of comparisons)",
+      "score": 63,
+      "setting": "US and UK English listeners, all content, 95% CI 60 to 67%, as of October 2026; the method is in a fact sheet this card did not read",
+      "harness": "Speechify",
+      "measured_by": "maker",
+      "source": "sp-blog-35",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Maker blind listening preference over Simba 3.0 Multilingual (six shared locales, percent of comparisons)",
+      "score": 62,
+      "setting": "native listeners in the six locales both models speak, as of October 2026",
+      "harness": "Speechify",
+      "measured_by": "maker",
+      "source": "sp-blog-35",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Maker time to first audio, p95 (milliseconds)",
+      "score": 72,
+      "setting": "English streaming requests under production load, as of October 2026",
+      "harness": "Speechify",
+      "measured_by": "maker",
+      "source": "sp-blog-35",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.speechify.ai/build/guides/text-to-speech/ssml",
+    "https://docs.speechify.ai/build/guides/text-to-speech/pronunciation",
+    "https://docs.speechify.ai/build/guides/text-to-speech/language-support"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.speechify.ai/build/guides/concepts/models",
+  "sources": [
+    {
+      "id": "sp-models-1031",
+      "url": "https://docs.speechify.ai/build/guides/concepts/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-chlog-1018",
+      "url": "https://docs.speechify.ai/build/changelog/2026/10/18",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "`simba-3.5` speaks 48 languages under one model id, on every plan, up from the six that `simba-3.0` covers."
+    },
+    {
+      "id": "sp-chlog-1020",
+      "url": "https://docs.speechify.ai/build/changelog/2026/10/20",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-chlog-1021",
+      "url": "https://docs.speechify.ai/build/changelog/2026/10/21",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "Until 21 November 2026 it bills at their rates instead: $10, $8 and $6."
+    },
+    {
+      "id": "sp-blog-35",
+      "url": "https://speechify.ai/blog/simba-3-5",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-pricing-1031",
+      "url": "https://speechify.ai/pricing",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-ssml-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/ssml",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-emotion-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/emotion-control",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-pron",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/pronunciation",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-lang-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/language-support",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-formats-1031",
+      "url": "https://docs.speechify.ai/build/guides/concepts/audio-formats",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-limits-1031",
+      "url": "https://docs.speechify.ai/build/guides/concepts/api-limits",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-ws",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/streaming-text-input",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "sp-latency-1031",
+      "url": "https://docs.speechify.ai/build/guides/text-to-speech/latency",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board-1031",
+      "url": "https://artificialanalysis.ai/text-to-speech",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "context_window: not applicable to a synthesis model",
+    "max_output: not published in tokens; the limits are in characters, see voice.session_limit",
+    "pricing_usd_per_mtok: the unit differs (US$ per 1M characters from a plan balance), see notes",
+    "system_card: Speechify publishes no system card or model card in the pages read; the Simba 3.5 fact sheet PDF could not be read as text on 2026-10-31",
+    "voices: the number of catalogue voices is not stated in the pages read",
+    "voice.turn_detection: not applicable; a synthesis model does not listen",
+    "voice.interruption: not applicable; a synthesis model does not take turns",
+    "released: the launch post and the changelog date the launch 2026-10-21; the API offered simba-3.5 on every plan, as the recommended model, from the changelog entry of 2026-10-18 [sp-chlog-1021] [sp-chlog-1018]",
+    "Artificial Analysis Speech Arena Elo: Simba 3.5 is not on the text-to-speech leaderboard on 2026-10-31 [aa-tts-board-1031]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",
+    "Terminal-Bench 4.0: not applicable to a speech model",
+    "Artificial Analysis Intelligence Index: not applicable to a speech model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model",
+    "METR 50% time horizon: not applicable to a speech model"
+  ]
+}

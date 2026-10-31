@@ -12,6 +12,9 @@ sources:
   - https://docs.x.ai/developers/model-capabilities/text/comparison
   - https://docs.x.ai/developers/model-capabilities/text/structured-outputs
   - https://gigazine.net/news/20260707-xai-change-spacexai/
+  - https://docs.x.ai/developers/release-notes (read 2026-10-31)
+  - https://docs.x.ai/developers/advanced-api-usage/custom-moderation-controls (read 2026-10-31)
+  - https://docs.x.ai/developers/pricing (read 2026-10-31)
 ---
 
 # xAI API
@@ -22,7 +25,7 @@ xAI trains the Grok models and serves them through its own API at `https://api.x
 
 ## Models offered
 
-Only Grok models and the company's media models. On 2026-10-03 the models page names Grok 4.7 as its recommendation for code and chat, and lists these text models (context in tokens): `grok-4.7`, `grok-4.6` and `grok-4.5` (500k), `grok-4.3` and the `grok-4.20-0309` models (1M), `grok-build-0.1` (256k) and a multi-agent model (1M). Image models (Grok Imagine image), video models and voice models (speech-to-speech, speech-to-text, text-to-speech) are priced separately on the same page. [models, pricing]
+Only Grok models and the company's media models. On 2026-10-03 the models page names Grok 4.7 as its recommendation for code and chat, and lists these text models (context in tokens): `grok-4.7`, `grok-4.6` and `grok-4.5` (500k), `grok-4.3` and the `grok-4.20-0309` models (1M), `grok-build-0.1` (256k) and a multi-agent model (1M). Image models (Grok Imagine image), video models and voice models (speech-to-speech, speech-to-text, text-to-speech) are priced separately on the same page. [models, pricing] [as-of 2026-10-31] The speech-to-speech rows are `grok-voice-3.0` and `grok-voice-2.0` (marked deprecated), both at $0.08 a minute; `grok-voice-latest` points to 3.0. The two voice model files, [Grok Voice 3.0](../models/xai/grok-voice-3.0.md) and [Grok Voice 2.0](../models/xai/grok-voice-think-fast-2.0.md), and the [maker README](../models/xai/README.md) record the change [pricing-oct31, release-notes-oct31].
 
 | Model file | API id | Note |
 | --- | --- | --- |
@@ -30,6 +33,8 @@ Only Grok models and the company's media models. On 2026-10-03 the models page n
 | [Grok 4.6](../models/xai/grok-4.6.md) | `grok-4.6` | previous generation |
 | [Grok 4.7 Fast](../models/xai/grok-4.7-fast.md) | none on the public API | the model files record it as offered only inside two products; not on the models page |
 | [Grok Build 0.1](../models/xai/grok-build-0.1.md) | `grok-build-0.1` | coding model, 256k context |
+| [Grok Voice 3.0](../models/xai/grok-voice-3.0.md) | `grok-voice-3.0` (alias `grok-voice-latest`) | [as-of 2026-10-31] speech-to-speech, $0.08 a minute; released 2026-10-14 [pricing-oct31, release-notes-oct31] |
+| [Grok Voice 2.0](../models/xai/grok-voice-think-fast-2.0.md) | `grok-voice-2.0` | [as-of 2026-10-31] previous voice generation, deprecated 2026-10-14 [release-notes-oct31] |
 
 Generic names point to the latest stable version, a `-latest` suffix to the newest features and a date suffix to a fixed snapshot. The 4.5, 4.3 and 4.20 models are listed on the page but have no file in the library (two generations per class). [models] The lineage is in the [maker README](../models/xai/README.md).
 
@@ -53,6 +58,7 @@ First-party, so the differences are between the two endpoints and between models
 - **Long context.** 500k on 4.7; prompts above 200k tokens pay higher rates on every token. [grok-4.7, pricing]
 - **Vision.** Image input as jpg, jpeg or png up to 20 MiB, no stated count limit; audio and video are separate models. [models]
 - **Streaming.** The structured-outputs page shows streamed JSON output; the maker README documents a WebSocket mode for Responses. [structured]
+- **Custom moderation [as-of 2026-10-31].** A `guidelines` array on a Chat Completions or Responses request sets `decline` for the `nsfw`, `violence` or `profanity` category; categories left out keep the default behaviour, and the array applies only to the request that carries it. Multi-agent models, deferred completions and some requests that set `stop` or `n` above 1 are rejected with 400 [moderation, release-notes-oct31].
 
 ## Pricing
 
@@ -87,3 +93,6 @@ Per token, with two bands by prompt size (under or at least 200,000 tokens). Gro
 | compare | https://docs.x.ai/developers/model-capabilities/text/comparison | L | 2026-10-03 |
 | structured | https://docs.x.ai/developers/model-capabilities/text/structured-outputs | L | 2026-10-03 |
 | rename | https://gigazine.net/news/20260707-xai-change-spacexai/ | A | 2026-10-03 |
+| release-notes-oct31 | https://docs.x.ai/developers/release-notes | L | 2026-10-31 |
+| moderation | https://docs.x.ai/developers/advanced-api-usage/custom-moderation-controls | L | 2026-10-31 |
+| pricing-oct31 | https://docs.x.ai/developers/pricing | L | 2026-10-31 |

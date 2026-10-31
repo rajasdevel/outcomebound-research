@@ -10,6 +10,9 @@ sources:
   - https://api-docs.deepseek.com/guides/json_mode
   - https://api-docs.deepseek.com/guides/responses_api/
   - https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html
+  - https://api-docs.deepseek.com/quick_start/pricing (read 2026-10-31)
+  - https://api-docs.deepseek.com/updates (read 2026-10-31)
+  - https://api-docs.deepseek.com/guides/search (read 2026-10-31)
 ---
 
 # DeepSeek API
@@ -20,7 +23,7 @@ DeepSeek, a Chinese lab, trains the DeepSeek models and sells them through a pay
 
 ## Models offered
 
-Two ids on the pricing page: `deepseek-flash` (DeepSeek-V4.1-Flash, with vision, tool calls and JSON output) and `deepseek-v4-pro` (DeepSeek-V4-Pro-0813, no vision). Both have a 1M-token context and 384K maximum output. The older names `deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` are still accepted and routed to Flash at Flash prices. [pricing]
+Two ids on the pricing page: `deepseek-flash` (DeepSeek-V4.1-Flash, with vision, tool calls and JSON output; [as-of 2026-10-31] since 2026-10-17 the version is DeepSeek-V4.1-Flash-1017, with the calling method and prices unchanged [pricing-1031, updates-1031]) and `deepseek-v4-pro` (DeepSeek-V4-Pro-0813, no vision). Both have a 1M-token context and 384K maximum output. The older names `deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` are still accepted and routed to Flash at Flash prices. [pricing]
 
 | Model file | API id |
 | --- | --- |
@@ -37,6 +40,7 @@ The maker README records that `deepseek-chat` and `deepseek-reasoner` were annou
 - **Auth.** An API key (on the Anthropic format, set as `ANTHROPIC_API_KEY`). A `user_id` field (letters, digits, `-` and `_`, up to 512 characters) separates end users under one account for content-safety, KV-cache and scheduling isolation. [ratelimit, anthropic]
 - **SDKs.** No DeepSeek SDK was found in the pages read; the OpenAI and Anthropic SDKs are the documented clients. [anthropic, responses]
 - **Model ids.** Plain names without a vendor prefix; the Pro id carries a version. [pricing]
+- **Search and Fetch [as-of 2026-10-31].** Two standalone JSON APIs from 2026-10-17, on the same base URL and bearer key: `POST /v1/tools/search` (web results from DeepSeek's own search engine, 1 to 50 results, query operators such as `site:` and `after:`) and `POST /v1/tools/fetch` (one page as Markdown). Account limits are 100 requests a second for Search and 25 for Fetch, separate from the model concurrency limits, and Fetch also has a per-domain limit. [search, updates-1031]
 
 ## Feature parity
 
@@ -56,6 +60,8 @@ This is the maker's own API; parity here means what each format passes through. 
 
 Per million tokens, with separate rates for input cache hits, cache misses and output, and a second price by time of day: peak is 01:00 to 04:00 and 06:00 to 10:00 UTC on weekdays outside Chinese public holidays, and every other hour is off-peak at half the price. Cache hits cost a small fraction of cache misses on both models. Fees come out of a topped-up or granted balance, granted first. The page lists no per-seat or subscription plan. Per-model prices are in the model files. [pricing]
 
+[as-of 2026-10-31] Search and Fetch are billed per successful request, US$0.75 per 1,000 requests for each API, whatever the number of results. A request is billed only when it returns HTTP 200 with a result; failures, empty results and timeouts are free. When the API is used through DeepSeek Harness, Claude Code or Codex, the server-side tool calls already go to these APIs. They are free until per-request billing starts at 00:00 Beijing time on 2026-11-01 (16:00 UTC on 2026-10-31). [pricing-1031, search]
+
 ## Limits and data
 
 - **Rate limits.** Concurrency, not tokens per minute: 2,500 concurrent requests for `deepseek-flash` and 500 for `deepseek-v4-pro` per account, with HTTP 429 above that. A request counts from submission until the model finishes. A capacity-expansion request is free. While a request waits, the server sends empty lines (non-streaming) or SSE keep-alive comments (streaming); a request that has not started inference after 10 minutes is closed. [ratelimit]
@@ -72,6 +78,7 @@ Per million tokens, with separate rates for input cache hits, cache misses and o
 - **Concurrency is the limit.** Requests above the per-model counts return 429, long waits show as keep-alive traffic and not as errors, and a request that has not started inference after 10 minutes is closed. [ratelimit]
 - **Peak pricing.** Time of day changes price by a factor of two, off-peak being half. [pricing]
 - **Empty JSON.** In JSON mode the page says content may occasionally come back empty. [json]
+- **Server-side search costs from 2026-11-01 [as-of 2026-10-31].** A harness on this endpoint (DeepSeek Harness, Claude Code or Codex) that uses web search or fetch starts to pay per request at 00:00 Beijing time on 2026-11-01, on top of tokens. [pricing-1031, search]
 
 ## Sources
 
@@ -84,3 +91,6 @@ Per million tokens, with separate rates for input cache hits, cache misses and o
 | json | https://api-docs.deepseek.com/guides/json_mode | L | 2026-10-03 |
 | responses | https://api-docs.deepseek.com/guides/responses_api/ | L | 2026-10-03 |
 | privacy | https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html | L | 2026-10-03 |
+| pricing-1031 | https://api-docs.deepseek.com/quick_start/pricing | L | 2026-10-31 |
+| updates-1031 | https://api-docs.deepseek.com/updates | L | 2026-10-31 |
+| search | https://api-docs.deepseek.com/guides/search | L | 2026-10-31 |

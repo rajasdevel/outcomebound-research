@@ -50,11 +50,17 @@ sources:
   - https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech/prompting-guide
   - https://x.ai/news/grok-voice-think-fast-2
   - https://x.ai/news/grok-voice-think-fast-1
+  - https://docs.x.ai/developers/release-notes (read 2026-10-31)
+  - https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech (read 2026-10-31)
+  - https://docs.x.ai/developers/pricing (read 2026-10-31)
+  - https://docs.x.ai/developers/models/grok-voice-3.0 (read 2026-10-31)
+  - https://x.ai/news/grok-voice-3 (read 2026-10-31)
+  - https://artificialanalysis.ai/speech-to-speech (read 2026-10-31)
 ---
 
 # xAI (SpaceXAI) models
 
-SpaceXAI is the trading name that xAI LLC uses for its models and API; xAI's own model cards say the two names are interchangeable [xai-47-card]. The maker's models are the Grok text and multimodal models, the coding model `grok-build-0.1`, and the Grok Build terminal agent that runs them. The API is at `api.x.ai` and the documentation at `docs.x.ai` [xai-docs-models]. The five model files in this folder cover the two newest generations of the Grok class (4.7 and 4.6), the 4.7 Fast serving tier, the coding model, and the speech-to-speech voice model [grok-voice-think-fast-2.0](grok-voice-think-fast-2.0.md). Image and video models, and the speech-to-text and text-to-speech APIs, are outside this library.
+SpaceXAI is the trading name that xAI LLC uses for its models and API; xAI's own model cards say the two names are interchangeable [xai-47-card]. The maker's models are the Grok text and multimodal models, the coding model `grok-build-0.1`, and the Grok Build terminal agent that runs them. The API is at `api.x.ai` and the documentation at `docs.x.ai` [xai-docs-models]. [as-of 2026-10-31] The six model files in this folder cover the two newest generations of the Grok class (4.7 and 4.6), the 4.7 Fast serving tier, the coding model, and two generations of the speech-to-speech Grok Voice class: the current [Grok Voice 3.0](grok-voice-3.0.md) and the previous [grok-voice-think-fast-2.0](grok-voice-think-fast-2.0.md), which the docs now name Grok Voice 2.0 (`grok-voice-2.0`) and mark deprecated [xai-voice-release-notes-oct31] [xai-voice-announce-3]. Image and video models, and the speech-to-text and text-to-speech APIs, are outside this library.
 
 ## Models and lineage
 
@@ -67,11 +73,12 @@ Lineage, from the maker's release notes, release posts and model pages (L):
 | Grok 4.5 | 2026-07 (Cursor's blog dates it 2026-07-08; the x.ai post shows 2026-07-16) | Reasoning cannot be turned off (low, medium, high; default high); context cut from 1M to 500k; $2 in and $6 out. The xAI post says it was trained alongside Cursor; Cursor's page describes continued training on Cursor data [xai-45-news] [xai-docs-models] [cursor-grok-45]. |
 | Grok 4.6 | 2026-08-12 | Adds the `xhigh` effort level. Aimed at long-running agent work. Pretraining cutoff January 2026 [xai-46-news] [xai-46-card]. |
 | Grok 4.7 | 2026-09-21 | Larger base model, longer reinforcement learning on multi-hour tasks, `reasoning.encrypted_content` always returned on the Responses API. Same price and context as 4.6. Pretraining cutoff June 2026 [xai-47-news] [xai-47-card] [xai-docs-47-overview]. |
-| Grok Voice Think Fast 1.0 | 2026-04-23 (announcement) | Speech-to-speech voice model. The release notes list it in April. The docs now list only 2.0 as a choice and the page for 1.0 returns not found, so it has no file [xai-voice-release-notes] [xai-voice-announce-1]. |
-| Grok Voice Think Fast 2.0 | 2026-07-29 (announcement) | The voice model with a file here. Priced per minute. The alias `grok-voice-latest` moved to it on 2026-08-05 [xai-voice-announce-2] [xai-voice-release-notes]. |
+| Grok Voice Think Fast 1.0 | 2026-04-23 (announcement) | Speech-to-speech voice model. The release notes list it in April. The docs now list only 2.0 as a choice and the page for 1.0 returns not found, so it has no file [xai-voice-release-notes] [xai-voice-announce-1]. [as-of 2026-10-31] With 3.0 and 2.0 in the docs, 1.0 is also older than the two generations kept [xai-voice-s2s-oct31]. |
+| Grok Voice Think Fast 2.0 | 2026-07-29 (announcement) | The voice model with a file here. Priced per minute. The alias `grok-voice-latest` moved to it on 2026-08-05 [xai-voice-announce-2] [xai-voice-release-notes]. [as-of 2026-10-31] The docs now give it the id `grok-voice-2.0`; it was deprecated on 2026-10-14, with no end-of-life date [xai-voice-release-notes-oct31] [xai-voice-s2s-oct31]. |
+| Grok Voice 3.0 | 2026-10-14 (release notes) | [as-of 2026-10-31] `grok-voice-3.0`, the current voice model. The alias `grok-voice-latest` now points to it. Same price as 2.0 (US$0.08 per minute); xAI says the endpoint, session parameters and events are unchanged. It has a [file](grok-voice-3.0.md). The announcement of the same day and Artificial Analysis's Speech to Speech page give its figures. The Markdown view of its model page lists text-to-text modalities, while the rendered page shows text and audio and the speech-to-speech guide describes audio in and out [xai-voice-release-notes-oct31] [xai-voice-s2s-oct31] [xai-voice-pricing-oct31] [xai-voice-3-page-oct31] [xai-voice-announce-3] [xai-voice-aa-oct31]. |
 | Grok 4.7 Fast | 2026-09-21 | The same model on faster serving at twice the token price; offered only in Cursor and Grok Build, not on the public API [xai-docs-47-overview]. |
 
-Scope in this library: the Grok class is two generations, 4.7 and 4.6, so Grok 4.5, 4.3 and 4.20 get no file even though the pricing page still lists them [xai-docs-pricing]. `grok-build-0.1` is the only generation of the Grok Build class. Grok 4.7 Fast has its own file because its price, availability and billing differ, although the maker says the model is the same. The multi-agent model `grok-4.20-multi-agent` is a different kind of product (its effort setting chooses how many agents work on a request, not how long one model thinks) and is not covered [grok-f10].
+Scope in this library: the Grok class is two generations, 4.7 and 4.6, so Grok 4.5, 4.3 and 4.20 get no file even though the pricing page still lists them [xai-docs-pricing]. `grok-build-0.1` is the only generation of the Grok Build class. [as-of 2026-10-31] The Grok Voice class holds two generations, 3.0 and 2.0; the 2.0 card now names its class Grok Voice, as the docs name the model Grok Voice 2.0 [xai-voice-s2s-oct31]. Grok 4.7 Fast has its own file because its price, availability and billing differ, although the maker says the model is the same. The multi-agent model `grok-4.20-multi-agent` is a different kind of product (its effort setting chooses how many agents work on a request, not how long one model thinks) and is not covered [grok-f10].
 
 As of 2026-10-03 the models page lists no model newer than `grok-4.7`, and its "which model" section names Grok 4.7 for both code and chat [xai-docs-models]. Grok Build, the agent, uses Grok 4.7 as its default model [xai-47-card].
 
@@ -140,6 +147,7 @@ Grok 4.6 and 4.7 each have a dated PDF model card at `media.x.ai` (the 4.6 card 
 - Whether the Fast tier and the standard tier give identical results is stated by the maker and untested by anyone found.
 - A successor to Grok 4.7 has not been published; reports of one are secondary and undated.
 - Whether Grok Voice Think Fast 1.0 can still be called, and what the maximum length of a voice session is. The docs state neither.
+- [as-of 2026-10-31] When `grok-voice-2.0` reaches end of life; the release notes give no date.
 
 ## Sources
 
@@ -194,3 +202,12 @@ Grok 4.6 and 4.7 each have a dated PDF model card at `media.x.ai` (the 4.6 card 
 - [xai-voice-pricing] <https://docs.x.ai/developers/pricing>, kind L, read 2026-10-03.
 - [xai-voice-rates] <https://docs.x.ai/developers/rate-limits>, kind L, read 2026-10-03.
 - [xai-voice-release-notes] <https://docs.x.ai/developers/release-notes>, kind L, read 2026-10-03.
+
+Sources added for the text tagged `[as-of 2026-10-31]`:
+
+- [xai-voice-release-notes-oct31] <https://docs.x.ai/developers/release-notes>, kind L, read 2026-10-31.
+- [xai-voice-s2s-oct31] <https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech>, kind L, read 2026-10-31.
+- [xai-voice-pricing-oct31] <https://docs.x.ai/developers/pricing>, kind L, read 2026-10-31.
+- [xai-voice-3-page-oct31] <https://docs.x.ai/developers/models/grok-voice-3.0>, kind L, read 2026-10-31.
+- [xai-voice-announce-3] <https://x.ai/news/grok-voice-3>, kind L, read 2026-10-31.
+- [xai-voice-aa-oct31] <https://artificialanalysis.ai/speech-to-speech>, kind M, read 2026-10-31.
