@@ -9,6 +9,7 @@ sources:
   - https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/deep-thinking
   - https://mimo.mi.com/docs/zh-CN/quick-start/usage-guide/text-generation/deep-thinking
   - https://mimo.mi.com/docs/en-US/quick-start/summary/model
+  - https://mimo.mi.com/docs/en-US/quick-start/summary/model (read 2026-10-31)
   - https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output
   - https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/image-understanding
   - https://docs.litellm.ai/blog/mimo_v2_6
@@ -28,8 +29,8 @@ sources:
 
 MiMo-V2.6-Flash is the smaller model of Xiaomi's MiMo-V2.6 pair, released on 2026-09-21 under the MIT licence: a mixture-of-experts model with 309B total and 15B active
 parameters, 1M-token context, native text, image, video and audio input and text output, with thinking on by default. Xiaomi positions it for frequent calls and large-scale
-professional tasks, at about a third of the Pro's input price. It follows the V2.5 generation (MiMo-V2.5 and MiMo-V2.5-Pro), which Xiaomi's API deprecates on
-2026-10-21; Xiaomi's own table compares it with MiMo-V2.5-Pro. The API rules and guides the two models share are in [the
+professional tasks, at about a third of the Pro's input price. It follows the V2.5 generation (MiMo-V2.5 and MiMo-V2.5-Pro), which Xiaomi's API retired on
+2026-10-21 [as-of 2026-10-31] [mimo-docs-models-1031]; Xiaomi's own table compares it with MiMo-V2.5-Pro. The API rules and guides the two models share are in [the
 maker README](README.md) and are not repeated here; the [Pro file](mimo-v2.6-pro.md) holds the fuller account of what the Pro results say.
 
 ## At a glance
@@ -114,7 +115,7 @@ it [mimo-page-flash] [aa-mimo-flash]. Rate limit 100 requests and 10M tokens per
 ### Migrating from the previous generation
 
 Xiaomi's table gives MiMo-V2.5-Pro as the previous reference, not the Flash. On that table the Flash is well above it: DeepSWE v1.1 19.0 to 67.9, Terminal-Bench 4.0 1.5 to 28.8, Terminal-Bench 2.1 65.2 to 87.6,
-Toolathlon-Verified 49.1 to 73.6, CyberGym 40.0 to 95.1 [hf-mimo-pro] [hf-mimo-flash]. The V2.5 models are deprecated on 2026-10-21 and the docs recommend V2.6 [mimo-docs-models] [litellm-mimo].
+Toolathlon-Verified 49.1 to 73.6, CyberGym 40.0 to 95.1 [hf-mimo-pro] [hf-mimo-flash]. Xiaomi's API retired MiMo-V2.5 and MiMo-V2.5-Pro on 2026-10-21; their model ids no longer work, and the docs say to move to V2.6 [as-of 2026-10-31] [mimo-docs-models-1031] [litellm-mimo].
 
 ## What the system card reports
 
@@ -151,6 +152,7 @@ Toolathlon-Verified 73.6, CyberGym 95.1 [hf-mimo-flash].
 - [mimo-docs-thinking] https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/deep-thinking (kind L, read 2026-10-03)
 - [mimo-docs-thinking-zh] https://mimo.mi.com/docs/zh-CN/quick-start/usage-guide/text-generation/deep-thinking (kind L, read 2026-10-03)
 - [mimo-docs-models] https://mimo.mi.com/docs/en-US/quick-start/summary/model (kind L, read 2026-10-03)
+- [mimo-docs-models-1031] https://mimo.mi.com/docs/en-US/quick-start/summary/model (kind L, read 2026-10-31)
 - [mimo-docs-structured] https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output (kind L, read 2026-10-03)
 - [mimo-docs-image] https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/image-understanding (kind L, read 2026-10-03)
 - [litellm-mimo] https://docs.litellm.ai/blog/mimo_v2_6 (kind A, read 2026-10-03)

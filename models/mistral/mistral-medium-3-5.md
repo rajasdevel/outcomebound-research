@@ -30,6 +30,7 @@ sources:
   - https://legal.mistral.ai/ai-governance/models/mistral-medium-3
   - https://docs.mistral.ai/inference/deployment/cloud-deployments/amazon_bedrock
   - https://docs.mistral.ai/models/deployment/cloud-deployments/vertex
+  - https://docs.mistral.ai/models/mistral-medium-3-5-26-04 (read 2026-10-31)
 ---
 
 # Mistral Medium 3.5
@@ -37,7 +38,9 @@ sources:
 Mistral Medium 3.5 is a dense 128-billion-parameter model with open weights under a modified MIT licence, released on
 2026-04-28. It is the Medium class's generation 3.5 and merges instruction following, reasoning and coding into one
 model with a per-request reasoning switch. It replaced Mistral Medium 3.1 and the Magistral models in Le Chat and
-Devstral 2 in the Vibe coding agent. Rules shared by Mistral's models (API parameters, thinking chunks, aliases,
+Devstral 2 in the Vibe coding agent. [as-of 2026-10-31] Mistral deprecated it on 2026-10-31; it retires on 2027-04-30, and Mistral
+names [Mistral Large 4](mistral-large-4.md) as its replacement [mistral-deprecations-2026-10-31, mistral-medium-docs-2026-10-31].
+Rules shared by Mistral's models (API parameters, thinking chunks, aliases,
 serving libraries) are on the [Mistral page](README.md); this file says what is specific to Medium 3.5.
 
 ## At a glance
@@ -51,7 +54,7 @@ serving libraries) are on the [Mistral page](README.md); this file says what is 
 | Class | Mistral Medium |
 | Generation | 3.5 |
 | Released | 2026-04-28 |
-| Status | ga |
+| Status | deprecated (retires 2027-04-30) |
 | Weights | open (modified MIT) |
 | Access | Mistral API (chat completions, conversations, agents; id mistral-medium-3-5); Le Chat (Pro, Team, Enterprise); Mistral Vibe CLI and Vibe remote agents; Azure Foundry (Mistral's docs list Medium 3.5); Hugging Face weights (Mistral-Medium-3.5-128B, with an EAGLE head); NVIDIA build.nvidia.com and NIM; OpenRouter; Ollama; vLLM; SGLang; Transformers; llama.cpp (Unsloth GGUF builds) |
 | Context window | 256k tokens |
@@ -65,7 +68,7 @@ serving libraries) are on the [Mistral page](README.md); this file says what is 
 | System card | [huggingface.co/mistralai/Mistral-Medium-3.5-128B](https://huggingface.co/mistralai/Mistral-Medium-3.5-128B) |
 | Model page | [docs.mistral.ai/models/mistral-medium-3-5-26-04](https://docs.mistral.ai/models/mistral-medium-3-5-26-04) |
 | Card checked | 2026-10-03 |
-| Not found | SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03); METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08); Artificial Analysis Coding Agent Index: no run with this model is listed on Artificial Analysis's coding-agent pages; Terminal-Bench 4.0: the tbench.ai leaderboard rows did not render for the fetcher; the figure on this card is Artificial Analysis's own run, a component of its index; max_output: not published on Mistral's model page, models page or governance hub; reasoning.default: the card names none and high as recommended values but does not say which applies when the parameter is omitted; context_window: Mistral publishes '256k'; Artificial Analysis's model-page summary says 260k and OpenRouter lists 262,144; 256000 is a rounding of Mistral's figure; id: the docs page and changelog give mistral-medium-3-5 (the docs page shows two further aliases that the static page does not name); no live API check (no key); status: the docs page says GA and the governance hub says active; Mistral's 2026-05-22 launch post calls the model public preview; ga used from the docs page; cloud marketplaces: Mistral's Azure page lists Medium 3.5; its Amazon Bedrock and Vertex AI pages do not; released: the changelog and docs page say 2026-04-28; Artificial Analysis and Mistral's AI governance hub say 2026-04-29, OpenRouter 2026-04-30, and the launch post is dated 2026-05-22; system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card, which has usage settings and no safety evaluation; LEXam Hard (legal reasoning) 31.89: an earlier card value that appears neither in the model card text nor in the launch post; removed; SWE-bench Verified, tau3-Telecom: the figures are in Mistral's card and post text; the harness, scaffold and settings behind them are not stated |
+| Not found | SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03); METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08); Artificial Analysis Coding Agent Index: no run with this model is listed on Artificial Analysis's coding-agent pages; Terminal-Bench 4.0: the tbench.ai leaderboard rows did not render for the fetcher; the figure on this card is Artificial Analysis's own run, a component of its index; max_output: not published on Mistral's model page, models page or governance hub; reasoning.default: the card names none and high as recommended values but does not say which applies when the parameter is omitted; context_window: Mistral publishes '256k'; Artificial Analysis's model-page summary says 260k and OpenRouter lists 262,144; 256000 is a rounding of Mistral's figure; id: the docs page and changelog give mistral-medium-3-5 (the docs page shows two further aliases that the static page does not name); no live API check (no key); status: the deprecation table and the docs page, read 2026-10-31, mark the model deprecated from 2026-10-31 with retirement on 2027-04-30 and Mistral Large 4 as the alternative [mistral-deprecations-2026-10-31]; before that, the docs page said GA and the 2026-05-22 launch post said public preview; cloud marketplaces: Mistral's Azure page lists Medium 3.5; its Amazon Bedrock and Vertex AI pages do not; released: the changelog and docs page say 2026-04-28; Artificial Analysis and Mistral's AI governance hub say 2026-04-29, OpenRouter 2026-04-30, and the launch post is dated 2026-05-22; system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card, which has usage settings and no safety evaluation; LEXam Hard (legal reasoning) 31.89: an earlier card value that appears neither in the model card text nor in the launch post; removed; SWE-bench Verified, tau3-Telecom: the figures are in Mistral's card and post text; the harness, scaffold and settings behind them are not stated |
 <!-- card:end -->
 
 ## How to instruct it
@@ -233,7 +236,8 @@ Maker-reported: SWE-Bench Verified 77.6% and tau3-Telecom 91.4 (vendor runs; har
 
 ## Open questions
 
-- Whether the model is generally available or in public preview: the docs page says GA, the launch post says public preview.
+- [as-of 2026-10-31] Whether the API keeps serving the model unchanged until it retires on 2027-04-30. Its status before the
+  deprecation is also unsettled: the docs page said GA and the launch post said public preview.
 - The default `reasoning_effort` when omitted.
 - The scaffold, settings and harness behind Mistral's SWE-Bench Verified and tau3-Telecom figures.
 - Maximum output length, and image limits.
@@ -261,6 +265,8 @@ page](README.md#sources).
 - [mistral-guardrailing-docs] Moderation and guardrailing. L. https://docs.mistral.ai/capabilities/guardrailing/
 - [mistral-lifecycle] Model lifecycle policy. L. https://docs.mistral.ai/inference/model-lifecycle
 - [mistral-deprecations] Deprecated models table. L. https://docs.mistral.ai/getting-started/models/models_overview/
+- [mistral-deprecations-2026-10-31] Deprecated models table, read 2026-10-31. L. https://docs.mistral.ai/getting-started/models/models_overview/
+- [mistral-medium-docs-2026-10-31] Mistral Medium 3.5 model page, which marks it deprecated, read 2026-10-31. L. https://docs.mistral.ai/models/mistral-medium-3-5-26-04
 - [mistral-pricing] Pricing page. L. https://mistral.ai/pricing
 - [aa-medium-3-5] Artificial Analysis, Mistral Medium 3.5. M. https://artificialanalysis.ai/models/mistral-medium-3-5
 - [aa-compare-1-3-max-vs-medium] Artificial Analysis, Muse Spark 1.3 (max) against Medium 3.5. M. https://artificialanalysis.ai/models/comparisons/muse-spark-1-3-vs-mistral-medium-3-5

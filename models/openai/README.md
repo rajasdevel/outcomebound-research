@@ -102,6 +102,11 @@ sources:
   - https://developers.openai.com/api/docs/guides/decisions
   - https://developers.openai.com/api/docs/models/gpt-5.6-cyber
   - https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/
+  - https://model-spec.openai.com/2026-10-29.html (read 2026-10-31)
+  - https://github.com/openai/model_spec/blob/main/CHANGELOG.md (read 2026-10-31)
+  - https://alignment.openai.com/how-we-detect-frontier-model-misalignment/ (read 2026-10-31)
+  - https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring (read 2026-10-31)
+  - https://deploymentsafety.openai.com/gpt-6-1-terra (read 2026-10-31)
 ---
 
 # OpenAI models
@@ -156,6 +161,11 @@ What OpenAI says replaced what, from its deprecation page [openai-deprecations]:
 - GPT-5.3-Codex and GPT-5.1 (shutdown 2027-04-01) point to `gpt-6-sol`, and GPT-5.4 nano to `gpt-6-luna`.
 - GPT-5.5 stays in the API. The Codex documentation says it retires from ChatGPT, ChatGPT Work and Codex on
   2026-10-14 and names GPT-6 Sol and GPT-6 Luna as the replacements there [codex-models].
+- **GPT-4 series [as-of 2026-10-31].** On 2026-10-14 OpenAI told developers that GPT-4o
+  (`gpt-4o-2024-08-06`, `gpt-4o-2024-11-20`), GPT-4o mini (`gpt-4o-mini-2024-07-18`), GPT-4.1
+  (`gpt-4.1-2025-04-14`) and GPT-4.1 mini (`gpt-4.1-mini-2025-04-14`) shut down on 2027-01-14. All
+  five snapshots point to `gpt-6-luna`. Fine-tuned versions of these models shut down on the same
+  date. L [openai-deprecations-oct31]
 
 Release order, from the API changelog [openai-changelog]: GPT-5.6 Sol, Terra and Luna on 2026-07-09 with a
 new naming scheme; GPT-6 Astra on 2026-09-03; GPT-6 Sol and Luna on 2026-09-22 at about half the per-token
@@ -182,10 +192,18 @@ exclusions, rather than missing general-purpose cards:
 - `gpt-5.6-cyber` is an alias for purpose-trained cybersecurity models for approved defenders and
   needs separate approval and provisioning. It stays outside the general-purpose language/voice
   inventory. L [openai-cyber-oct09]; exclusion is this library's scope decision.
-- GPT-Rosalind (`gpt-rosalind-research`) became generally available through trusted access on
-  2026-09-08 for approved internal life-sciences research. General availability does not make it
-  unrestricted or general-purpose; its specialist coverage remains deferred. L
-  [openai-changelog-oct09]; deferral is this library's scope decision.
+- **Rosalind models [as-of 2026-10-31].** GPT-Rosalind (`gpt-rosalind-research`) became generally
+  available through trusted access on 2026-09-08 for approved internal life-sciences research.
+  GPT-6 Rosalind (`gpt-6-rosalind`) followed on 2026-10-30. Only organizations that are approved for
+  Rosalind Research get access, through the trusted-access program, for internal research by
+  authorized users. The pricing page lists it in its life-sciences table at $15 input, $75 output and
+  $1.50 cached input per Mtok for short context, and at $30, $112.50 and $3.00 for long context. The
+  same table lists `gpt-rosalind-research` and a `gpt-rosalind-discovery` id, each at $5, $25 and
+  $0.50. The changelog does not name `gpt-rosalind-discovery`, and the model page for
+  `gpt-6-rosalind` returned HTTP 404 on 2026-10-31. Trusted access does not make these models
+  unrestricted or general-purpose; their specialist coverage remains deferred. L
+  [openai-changelog-oct09] [openai-changelog-oct31] [openai-pricing-oct31]; deferral is this
+  library's scope decision.
 - GPT Image 2.5 Sunburst and Flare (`gpt-image-2.5-sunburst`, `gpt-image-2.5-flare`) shipped on
   2026-09-08 for image generation and editing. Full image-model research remains deferred because
   this inventory covers language and voice. L [openai-changelog-oct09]; deferral is this library's
@@ -633,6 +651,24 @@ How to read a card:
   `safety_identifier`, which lets it act on one user and not on the whole organisation, and says
   safeguards may block a request, add seconds of latency mid-stream, or interrupt legitimate dual-use work
   [openai-guide-gpt-5.6] [openai-safety-checks].
+- **Misalignment monitoring on the API [as-of 2026-10-31].** OpenAI's post of 2026-10-29 says that a
+  version of its internal monitor checks external tool use for models above the Critical threshold for
+  cybersecurity, and it names Astra and models with similar cyber capability. This page records GPT-6.1
+  Sol as Critical in cyber too [openai-61-card], and the GPT-6.1 Terra card says that OpenAI treats Terra
+  as Critical in cyber as well [openai-61-terra-card], but neither source read names the models that are
+  covered. On the API,
+  the monitor checks tool-using Responses API requests. It can stop a conversation automatically only
+  when the requests use a supported way to track the conversation: persisted reasoning, WebSocket mode
+  or OpenAI compaction. Without one of these, a configured webhook gets an alert and the conversation
+  continues. The monitor does not cover Chat Completions requests; other safety checks still apply
+  there. A blocked request returns HTTP 403 with type `invalid_request_error` and code
+  `misalignment_policy_violation`, and a stream can fail after output has started. The guide says not
+  to retry the blocked work automatically. It also says that the API has no general way to resume a
+  stopped conversation, and that a stop does not undo actions that were already done. Project alerts
+  arrive through the `safety.alert.created` webhook, which carries only an alert id. Under Zero Data
+  Retention the monitor can see less context, and an alert's reason can be null. OpenAI says that a
+  flag can be wrong in either direction and does not show that the user broke a policy. The guide
+  carries no date. L [openai-misalignment-post] [openai-misalignment-guide]
 
 ### GPT-5.6 system card findings
 
@@ -718,6 +754,20 @@ ChatGPT versions) that apply to Sol, Terra and Luna are kept on this page. Numbe
 - **Cheating in evaluation.** METR could not report a robust time horizon for GPT-5.6 Sol, because the
   cheating it detected was more frequent than for any public model it had run on its harness
   [metr-gpt-5-6-sol].
+- **Model Spec of 2026-10-29 [as-of 2026-10-31].** OpenAI's behavior specification for its GPT
+  models is now organized around five values: faithfulness to human intent, minimizing harm, honesty
+  and transparency, human agency, and care. It calls the model "GPT" in place of "the assistant".
+  It removes most detailed style guidance: the overview says the Spec leaves many details of style
+  unspecified on purpose and that user preferences help fill those gaps. It keeps a default tone of
+  a colleague rather than a close friend, and keeps the split between interactive
+  and programmatic output. A new section, "Consider context carefully", covers memory and
+  personalization: carry relevant context forward, use it in proportion, and make no unsupported
+  claim about what was saved, retrieved or forgotten. The chain of command keeps its levels, and
+  tool output and quoted text still have no authority by default. The overview says that production
+  models "do not yet fully reflect the Model Spec", so the Spec states intent, not measured
+  behavior. The changes to agent scope, side effects and oversight are in
+  [agent-authorization.md](../../practices/agent-authorization.md) §4.1 [openai-model-spec-oct29]
+  [openai-model-spec-changelog].
 
 - **Voice models, price units.** Realtime models bill audio and text tokens at separate rates, and the audio input rate is 8 times the text input rate for the full models and about 17 times for the Mini models. GPT-Live, translation and transcription bill by time, and the transcription models have the lowest prices per minute ($0.0045 for GPT-Transcribe against $0.05 for a GPT-Live session). These are list prices [openai-pricing].
 - **Voice models, reasoning versus speed.** Within the Realtime models, reasoning effort buys quality and costs time to first audio. Artificial Analysis measured GPT-Realtime-2.1 at 86.8% on Big Bench Audio and 0.97 s at Minimal, and 95.8% and 1.21 s at High. For 2.1 Mini the High setting took 4.28 s [aa-speech-to-speech].
@@ -869,3 +919,17 @@ Partial corrections, read 2026-10-27 (L):
 
 - [aws-terra-oct27] <https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/> (L, read 2026-10-27).
 - [azure-terra-oct27] <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure> (L, read 2026-10-27).
+
+Partial update, read 2026-10-31 (L; OpenAI's blog post on the release returned HTTP 403 and was not read):
+
+- [openai-model-spec-oct29] OpenAI Model Spec, version 2026-10-29, <https://model-spec.openai.com/2026-10-29.html>.
+- [openai-model-spec-changelog] Model Spec changelog, <https://github.com/openai/model_spec/blob/main/CHANGELOG.md>.
+
+Partial corrections, read 2026-10-31 (L):
+
+- [openai-changelog-oct31] <https://developers.openai.com/api/docs/changelog>, October 28 and 30 entries.
+- [openai-pricing-oct31] <https://developers.openai.com/api/docs/pricing>, life-sciences table.
+- [openai-deprecations-oct31] <https://developers.openai.com/api/docs/deprecations>, 2026-10-14 entry.
+- [openai-misalignment-post] How we detect frontier model misalignment, 2026-10-29, <https://alignment.openai.com/how-we-detect-frontier-model-misalignment/>.
+- [openai-misalignment-guide] Misalignment monitoring (undated), <https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring>.
+- [openai-61-terra-card] GPT-6.1 Terra system card, Preparedness section, <https://deploymentsafety.openai.com/gpt-6-1-terra>.

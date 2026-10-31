@@ -2,6 +2,8 @@
 last_checked: 2026-10-19
 volatility: VOLATILE (flags, output fields and exit codes change between releases; Gemini CLI availability changed on 2026-06-18)
 sources:
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.314 (read 2026-10-31)
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
   - https://code.claude.com/docs/en/cli-reference
   - https://learn.chatgpt.com/docs/non-interactive-mode
   - https://cursor.com/docs/cli/headless
@@ -41,7 +43,10 @@ Source: the [CLI reference](https://code.claude.com/docs/en/cli-reference).
 - `--restricted` (version 2.1.248 or later) removes the tools that run commands or code, and
   WebFetch, unless `--tools` names them; confines the file tools to the working directories;
   loads only managed settings and `--settings`; refuses `bypassPermissions`; and refuses to create
-  cloud sessions. The page describes it for an evaluation harness on a shared machine.
+  cloud sessions. The page describes it for an evaluation harness on a shared machine. The
+  confinement had a gap before 2.1.316: a `--restricted` session uploaded files from outside the
+  working directories when a Read allow rule covered them (2.1.316 release notes, L)
+  [as-of 2026-10-31].
 - `--permission-prompts none` (version 2.1.259 or later) denies permission prompts in print mode
   where nobody can answer; the default `host` sends them to the Agent SDK host or to the tool named
   by `--permission-prompt-tool`.
@@ -49,6 +54,13 @@ Source: the [CLI reference](https://code.claude.com/docs/en/cli-reference).
   the run at an estimated spend, which can pass the cap and can differ from the bill.
 - `--no-session-persistence` (print mode only) writes no session to disk.
 - `claude auth status` exits 0 when signed in and 1 when not.
+- **Release changes in 2.1.314 and 2.1.316 [as-of 2026-10-31].** These are release notes (L), not
+  a runtime check. Before 2.1.314, `claude -p` exited 0 with no output when startup failed; it now
+  prints the error and exits 1, so a script that reads only the exit code missed that failure on
+  earlier versions (inference). Before 2.1.314, sandbox protections did not apply to a worktree that
+  `claude -p --resume` or `--continue` entered. From 2.1.316, text output says why auto mode stopped
+  a turn while a background agent was still running. The CLI reference was not re-read for these
+  items.
 
 ## 3. Codex
 
@@ -117,3 +129,10 @@ Source: the [permissions page](https://opencode.ai/docs/permissions).
   flag or code.
 - Not read, so not recorded: how the Cursor CLI treats shell, MCP and web fetch in its `ask` and
   `plan` modes, OpenCode's flags and output format, and every harness's error text.
+
+Sources for sections dated 2026-10-31 (L, vendor release notes; runtime behavior not tested):
+
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.314> (published 2026-10-30), read
+  2026-10-31.
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.316> (published 2026-10-31), read
+  2026-10-31.

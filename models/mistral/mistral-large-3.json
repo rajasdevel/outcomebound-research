@@ -6,8 +6,8 @@
   "class": "Mistral Large",
   "generation": "3",
   "released": "2025-12-02",
-  "status": "ga",
-  "retires": null,
+  "status": "deprecated",
+  "retires": "2027-04-30",
   "weights": "open (Apache-2.0)",
   "access": [
     "Mistral API and AI Studio (id mistral-large-2512)",
@@ -207,6 +207,13 @@
       "read": "2026-10-03",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "mistral-deprecations-2026-10-31",
+      "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
@@ -218,7 +225,6 @@
     "max_output: Mistral's technical documentation gives 256k tokens as the maximum text output, the same as the context window; no separate cap is published",
     "context_window: published as '256k' only",
     "id: Mistral's API id is mistral-large-2512; this card and file keep the slug mistral-large-3 that the repository already uses",
-    "retires: the models page lists no retirement date",
     "maker benchmark scores: Mistral's model card shows charts only; the one text claim is the LMArena rank, which is not a coding-agent measure",
     "system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card; Mistral's AI-Act technical documentation exists but reports no evaluations",
     "reasoning: Mistral's December 2025 post said a reasoning version was coming; none was listed on the models page read on 2026-10-03"

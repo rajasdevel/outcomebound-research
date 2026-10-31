@@ -6,8 +6,8 @@
   "class": "Mistral Medium",
   "generation": "3.5",
   "released": "2026-04-28",
-  "status": "ga",
-  "retires": null,
+  "status": "deprecated",
+  "retires": "2027-04-30",
   "weights": "open (modified MIT)",
   "access": [
     "Mistral API (chat completions, conversations, agents; id mistral-medium-3-5)",
@@ -258,6 +258,13 @@
       "read": "2026-10-03",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "mistral-deprecations-2026-10-31",
+      "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
@@ -270,7 +277,7 @@
     "reasoning.default: the card names none and high as recommended values but does not say which applies when the parameter is omitted",
     "context_window: Mistral publishes '256k'; Artificial Analysis's model-page summary says 260k and OpenRouter lists 262,144; 256000 is a rounding of Mistral's figure",
     "id: the docs page and changelog give mistral-medium-3-5 (the docs page shows two further aliases that the static page does not name); no live API check (no key)",
-    "status: the docs page says GA and the governance hub says active; Mistral's 2026-05-22 launch post calls the model public preview; ga used from the docs page",
+    "status: the deprecation table and the docs page, read 2026-10-31, mark the model deprecated from 2026-10-31 with retirement on 2027-04-30 and Mistral Large 4 as the alternative [mistral-deprecations-2026-10-31]; before that, the docs page said GA and the 2026-05-22 launch post said public preview",
     "cloud marketplaces: Mistral's Azure page lists Medium 3.5; its Amazon Bedrock and Vertex AI pages do not",
     "released: the changelog and docs page say 2026-04-28; Artificial Analysis and Mistral's AI governance hub say 2026-04-29, OpenRouter 2026-04-30, and the launch post is dated 2026-05-22",
     "system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card, which has usage settings and no safety evaluation",

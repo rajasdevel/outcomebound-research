@@ -29,11 +29,12 @@ sources:
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech
   - https://elevenlabs.io/docs/overview/capabilities/voices
   - https://elevenlabs.io/docs/api-reference/text-to-speech/convert
+  - https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (read 2026-10-31)
 ---
 
 # Eleven v4 Turbo
 
-Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the Eleven Realtime class, generation 4, and ElevenLabs released it with v4 on 2026-09-28. It is for agents and interactive voice, where audio must start before the full text exists. It replaced Eleven v3 Conversational as the model the docs name for the most expressive live delivery. ElevenLabs says it built Turbo to work with its agent platform, transcription and turn-taking models as one stack [el-changelog-v4] [el-v4-page] [el-blog-v4-agents]. Family-wide rules are in the [ElevenLabs README](README.md). The text rules for tags, punctuation and pronunciation are in the [Eleven v4 file](eleven_v4.md).
+Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the class this library calls Eleven Expressive Low-Latency (named Eleven Realtime here until 2026-10-31, when ElevenLabs took that name for its [speech-to-speech models](eleven_realtime_v1_mini.md)), generation 4, and ElevenLabs released it with v4 on 2026-09-28. It is for agents and interactive voice, where audio must start before the full text exists. It replaced Eleven v3 Conversational as the model the docs name for the most expressive live delivery. ElevenLabs says it built Turbo to work with its agent platform, transcription and turn-taking models as one stack [el-changelog-v4] [el-v4-page] [el-blog-v4-agents]. Family-wide rules are in the [ElevenLabs README](README.md). The text rules for tags, punctuation and pronunciation are in the [Eleven v4 file](eleven_v4.md).
 
 ## At a glance
 
@@ -43,7 +44,7 @@ Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the Eleve
 | --- | --- |
 | Id | `eleven_v4_turbo` |
 | Maker | ElevenLabs |
-| Class | Eleven Realtime |
+| Class | Eleven Expressive Low-Latency |
 | Generation | 4 |
 | Released | 2026-09-28 |
 | Status | ga |
@@ -59,12 +60,12 @@ Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the Eleve
 | Voice languages | 90+ languages; the models page lists them by ISO 639-3 code [el-models] |
 | Turn detection | none in the model. The Text to Dialogue WebSocket takes new_turn or a change of voice_id as a turn boundary; in ElevenAgents the platform's turn-taking system decides when the agent speaks [el-ws-ttd] [el-agents-flow] |
 | Interruption | Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled for the agent or a tool; on the Text to Dialogue WebSocket the docs describe no cancel message [el-agents-flow] [el-ws-ttd] |
-| Voice latency | Median inference latency about 100 ms, excluding application and network latency [el-models]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog] |
+| Voice latency | [as-of 2026-10-31] About 100 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (read as median inference latency on 2026-10-03) [el-models-1031] [el-latency-method]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog] |
 | Session limit | Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per character, not per token. API list price US$0.04 per 1,000 characters; a promotional price of US$0.011 per 1,000 characters (72% off) runs until 2026-10-12 [el-pricing-api]. In ElevenAgents the platform bills per call minute (US$0.08 per minute on the pricing page) and passes LLM cost through separately [el-pricing-agents] |
 | Key benchmarks | none recorded |
-| Other benchmarks | Maker median inference latency (milliseconds): 100 (median inference latency, excluding application and network latency; maker figure on the models page, ElevenLabs, maker) [el-models](https://elevenlabs.io/docs/overview/models); Maker median time to first speech (milliseconds): 150 (median time from request to audible speech in the maker's launch chart; measured September 2026 over WebSocket streaming with identical scripts and default settings, with network latency measured and removed for all systems; compared with Cartesia Sonic 3.6, xAI TTS, Gemini 3.8 Flash-Lite TTS and OpenAI GPT-4o mini TTS, ElevenLabs, maker) [el-blog-v4](https://elevenlabs.io/blog/eleven-v4) |
+| Other benchmarks | Maker median server-side latency (milliseconds): 100 (WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; read as median inference latency on 2026-10-03, ElevenLabs, maker) [el-latency-method](https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology); Maker median time to first speech (milliseconds): 150 (median time from request to audible speech in the maker's launch chart; measured September 2026 over WebSocket streaming with identical scripts and default settings, with network latency measured and removed for all systems; compared with Cartesia Sonic 3.6, xAI TTS, Gemini 3.8 Flash-Lite TTS and OpenAI GPT-4o mini TTS, ElevenLabs, maker) [el-blog-v4](https://elevenlabs.io/blog/eleven-v4) |
 | Prompting guides | [elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices); [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4); [elevenlabs.io/docs/overview/capabilities/text-to-dialogue](https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue) |
 | System card | unknown |
 | Model page | [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4) |
@@ -115,7 +116,7 @@ Text only. Voice rules for cloning, accent and Voice Design are in the [Eleven v
 
 ### Voice: turn-taking, interruption and speech style
 
-- **Latency.** The docs give a median inference latency of about 100 ms, without application and network time. The launch post gives a median time to first speech of about 150 ms. Its footnote says the maker measured it in September 2026 over WebSocket streaming, with network latency measured and removed for every system compared. A news site relays the maker's chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [el-models] [el-blog-v4] [pr-testingcatalog].
+- **Latency.** The docs give a median latency of about 100 ms, without application and network time. [as-of 2026-10-31] The maker now defines it as median server-side latency on WebSocket streaming requests with warm voices, in figures updated on 2026-10-29; on 2026-10-03 it was read as inference latency [el-latency-method]. The launch post gives a median time to first speech of about 150 ms. Its footnote says the maker measured it in September 2026 over WebSocket streaming, with network latency measured and removed for every system compared. A news site relays the maker's chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [el-models] [el-blog-v4] [pr-testingcatalog].
 - **Streaming in.** The client opens the WebSocket and sends a first message with `voices` (exactly one for Turbo) and credentials. It then sends `inputs` with `text`, `voice_id` and an optional `new_turn`. `voice_settings` and pronunciation dictionaries go in the first message only. A `flush` message ends a turn, `close_socket` finishes the stream, and `keep_alive` resets the 20-second timeout [el-ws-ttd] [el-api-ttd-ws].
 - **Connections.** An open connection holds a dialogue session for its whole life, from a pool of 14 (Free) up to 105 (Scale and Business). If the pool is full, a new connection fails with `too_many_concurrent_requests` [el-models].
 - **Turn-taking in an agent.** The platform decides when the agent speaks. Settings: turn timeout (1 to 30 seconds, default 7), turn eagerness (`patient`, `normal`, `eager`), soft timeout, `speculative_turn` (start the language model during silence, which can raise cost), `spelling_patience` and the `turn_model` choice (`turn_v2` or `turn_v3`, default `turn_v3`). The maker's guide pairs patient eagerness with phone numbers and addresses [el-agents-flow] [el-api-agents].
@@ -132,7 +133,7 @@ First-message `voice_settings` on the WebSocket, with `stability` and `similarit
 
 The previous generation is Eleven v3 Conversational. What changes [el-models] [el-agents-expressive] [el-blog-v4-agents]:
 
-- Median inference latency drops from about 280 ms to about 100 ms, by the maker's figures.
+- Median latency drops from about 280 ms to about 100 ms, by the maker's figures of 2026-10-03. [as-of 2026-10-31] The maker's median server-side figures are now about 165 ms for v3 Conversational and about 100 ms for v4 Turbo [el-models-1031] [el-latency-method].
 - Languages grow from 70+ to 90+.
 - Professional clones: v3 Conversational does not keep them well. A news site says Turbo supports them.
 - The list price stays at US$0.04 per 1,000 characters, with a promotion to 2026-10-12 [el-pricing-api].
@@ -150,7 +151,7 @@ ElevenLabs publishes no system card for Eleven v4 Turbo in the pages read. The p
 
 ## Benchmarks
 
-None independent. Maker figures: a median inference latency of 100 ms and a median time to first speech of 150 ms, the second with network latency removed [el-models] [el-blog-v4].
+None independent. Maker figures: a median latency of 100 ms ([as-of 2026-10-31] median server-side latency, figures updated on 2026-10-29 [el-latency-method]) and a median time to first speech of 150 ms, the second with network latency removed [el-models] [el-blog-v4].
 
 ## Open questions
 
@@ -189,3 +190,8 @@ None independent. Maker figures: a median inference latency of 100 ms and a medi
 - [el-tts-overview] https://elevenlabs.io/docs/overview/capabilities/text-to-speech (kind L, read 2026-10-03)
 - [el-voices] https://elevenlabs.io/docs/overview/capabilities/voices (kind L, read 2026-10-03)
 - [el-api-tts] https://elevenlabs.io/docs/api-reference/text-to-speech/convert (kind L, read 2026-10-03)
+
+Sources added for the claims dated 2026-10-31:
+
+- [el-models-1031] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-31)
+- [el-latency-method] https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (kind L, read 2026-10-31)

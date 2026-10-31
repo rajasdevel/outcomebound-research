@@ -15,6 +15,13 @@ sources:
   - https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data
   - https://docs.mistral.ai/admin/monitor-comply/zero-data-retention
   - https://mistral.ai/pricing
+  - https://docs.mistral.ai/getting-started/models/models_overview/ (read 2026-10-31)
+  - https://docs.mistral.ai/models/mistral-large-4-0 (read 2026-10-31)
+  - https://mistral.ai/news/mistral-large-4-oss/ (read 2026-10-31)
+  - https://docs.mistral.ai/getting-started/changelog (read 2026-10-31)
+  - https://docs.mistral.ai/inference/pricing (read 2026-10-31)
+  - https://docs.mistral.ai/models/voxtral-mini-tts-3-0 (read 2026-10-31)
+  - https://docs.mistral.ai/studio/audio/voice-agents/overview (read 2026-10-31)
 ---
 
 # Mistral API
@@ -25,15 +32,19 @@ Mistral AI, a French company, trains its own models and sells them through its h
 
 ## Models offered
 
-On 2026-10-03 the models overview lists Mistral Medium 3.5 (version 26.04, licence label "Modified MIT"), Mistral Small 4 (26.03, Apache 2.0), Mistral Large 3 (25.12, Apache 2.0), Ministral 3 in 14B, 8B and 3B sizes (Apache 2.0), a third-party open-weight Z.ai GLM 5.3 text model with a 1M window, OCR 4.1 and OCR 3, Voxtral text-to-speech and transcription models, Codestral and Codestral Embed, Mistral Embed, and two safety models (Shieldstral 1.0 and Mistral Moderation 2). The page gives no context sizes for most of them. [models]
+[as-of 2026-10-31] The models overview lists Mistral Large 4 (version 26.10, Mistral Ecosystem Open Weight License, in public preview), Mistral Small 4 (26.03, Apache 2.0), Ministral 3 in 14B, 8B and 3B sizes (Apache 2.0), third-party models (Z.ai GLM 5.3, Z.ai GLM 5.3 Flash and DeepSeek V4.1 Flash 1017, each under MIT), OCR 4.1 and OCR 3, the Voxtral 3 transcription and text-to-speech models and Voxtral Small, Codestral and Codestral Embed, Mistral Embed, two safety models (Shieldstral 1.0 and Mistral Moderation 2) and four Timestral time-series models. Its deprecation table gives Mistral Large 3 (25.12) and Mistral Medium 3.5 (26.04) a deprecation date of 2026-10-31 and a retirement date of 2027-04-30, with Large 4 as the alternative. The page gives no context sizes for most models. [models-1031, large-4]
 
 | Model file | Overview entry |
 | --- | --- |
-| [Mistral Medium 3.5](../models/mistral/mistral-medium-3-5.md) | Medium 3.5, version 26.04, Modified MIT licence label |
-| [Mistral Large 3](../models/mistral/mistral-large-3.md) | Large 3, version 25.12, Apache 2.0 |
+| [Mistral Large 4](../models/mistral/mistral-large-4.md) | Large 4, version 26.10, Mistral Ecosystem Open Weight License; public preview, ids `mistral-large-4` and `mistral-large-4-0` |
+| [Mistral Medium 3.5](../models/mistral/mistral-medium-3-5.md) | Medium 3.5, version 26.04, Modified MIT licence label; deprecated, retires 2027-04-30 |
+| [Mistral Large 3](../models/mistral/mistral-large-3.md) | Large 3, version 25.12, Apache 2.0; deprecated, retires 2027-04-30 |
 | [Mistral Small 4](../models/mistral/mistral-small-2603.md) | Small 4, version 26.03, Apache 2.0 (the file uses the date-style id) |
+| [Voxtral TTS 3](../models/mistral/voxtral-mini-tts-3-0.md) | [as-of 2026-10-31] Voxtral TTS 3, version 3.0, Premier; public preview from 2026-10-20, id `voxtral-mini-tts-3-0`, US$13 per million characters [tts3, pricing-1031] |
 
-Production ids follow `name-major-minor`; `-latest` and `-major` aliases follow the newest generally available model and can change behaviour and price without notice, and Mistral advises pinning a major-minor id (per the maker README). Models that are not in scope (Ministral, Codestral, OCR, Voxtral, embeddings) have no file. The lineage and lifecycle rules are in the [maker README](../models/mistral/README.md).
+Production ids follow `name-major-minor`; `-latest` and `-major` aliases follow the newest generally available model and can change behaviour and price without notice, and Mistral advises pinning a major-minor id (per the maker README). Models that are not in scope (Ministral, Codestral, OCR, the Voxtral speech-to-text models, embeddings) have no file; [as-of 2026-10-31] Voxtral TTS 3 is in scope as a voice actor model. The Voxtral 3 transcription models are priced per minute of input audio: US$0.0035 (Mini Transcribe 3), US$0.004 (Small Transcribe 3) and US$0.008 (Mini Transcribe Realtime 3) [pricing-1031].
+
+[as-of 2026-10-31] **Voice Agents.** On 2026-10-20 the changelog adds Voice Agents, a managed real-time pipeline (capture, transcription, a chat model, speech and playback) driven by the Voice Agents SDK, with browser, custom-audio and telephony interfaces. It is billed per minute of conversation: US$0.04 with Mistral Small 4 and US$0.08 with larger models. It has no model id of its own and no card; the [maker README](../models/mistral/README.md) describes it [changelog-1031, voice-agents, pricing-1031]. The lineage and lifecycle rules are in the [maker README](../models/mistral/README.md).
 
 ## API surface
 
@@ -41,7 +52,7 @@ Production ids follow `name-major-minor`; `-latest` and `-major` aliases follow 
 - **Auth.** An API key, which the SDK examples read from `MISTRAL_API_KEY`. [clients]
 - **SDKs.** Official Python (`pip install mistralai`, client class `Mistral`) and TypeScript SDKs; the docs strongly recommend them over raw HTTP and mention third-party SDKs for other languages. The `server` parameter (`server="eu"`) selects a regional endpoint from SDK v2.70 on. [clients, regional]
 - **Endpoints by region.** Default global host `api.mistral.ai`; regional hosts `api.eu.mistral.ai` and `api.us.mistral.ai`. [regional]
-- **Reasoning control.** `reasoning_effort`; for Small 4 and Medium 3.5 the maker README lists `none` and `high` as the accepted values.
+- **Reasoning control.** `reasoning_effort`; for Small 4 and Medium 3.5 the maker README lists `none` and `high` as the accepted values. [as-of 2026-10-31] For Large 4 the model page lists `low`, `medium` and `high`. [large-4]
 
 ## Feature parity
 
@@ -70,7 +81,7 @@ Per token, with input and output counted separately, plus separate units for OCR
 
 - **Free plan data use.** Content sent on a free key can be used for training by default; a paid account and the Admin-panel opt-out are the controls. [train]
 - **Aliases move.** A `-latest` alias follows each new generally available model, so a harness that stores it can change behaviour and cost between runs; Mistral advises a major-minor id. (Maker README.)
-- **Effort mapping.** The accepted `reasoning_effort` values depend on the model: two values on Small 4 and Medium 3.5, so a three-level scale from another vendor needs a map. (Maker README.)
+- **Effort mapping.** The accepted `reasoning_effort` values depend on the model: two values on Small 4 and Medium 3.5, so a three-level scale from another vendor needs a map. [as-of 2026-10-31] Large 4 lists three levels and no `none`; the launch post says `low` replaces the `none` mode, and what the API does with `none` was not tested. [large-4, large-4-post] (Maker README.)
 - **Regional trade-off.** Choosing the EU or US endpoint removes Agents, Batch, Files and every built-in tool except function calling. [regional]
 - **Spend cap.** A monthly cap can switch the API off until the next month, and the errors that follow are not transient. [limits]
 - **Priority fallback.** With `service_tier: "auto"` the usage object reports which tier served the call. [priority]
@@ -92,3 +103,10 @@ Per token, with input and output counted separately, plus separate units for OCR
 | where | https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data | L | 2026-10-03 |
 | zdr | https://docs.mistral.ai/admin/monitor-comply/zero-data-retention | L | 2026-10-03 |
 | pricing | https://mistral.ai/pricing | L | 2026-10-03 |
+| models-1031 | https://docs.mistral.ai/getting-started/models/models_overview/ | L | 2026-10-31 |
+| large-4 | https://docs.mistral.ai/models/mistral-large-4-0 | L | 2026-10-31 |
+| large-4-post | https://mistral.ai/news/mistral-large-4-oss/ | L | 2026-10-31 |
+| changelog-1031 | https://docs.mistral.ai/getting-started/changelog | L | 2026-10-31 |
+| pricing-1031 | https://docs.mistral.ai/inference/pricing | L | 2026-10-31 |
+| tts3 | https://docs.mistral.ai/models/voxtral-mini-tts-3-0 | L | 2026-10-31 |
+| voice-agents | https://docs.mistral.ai/studio/audio/voice-agents/overview | L | 2026-10-31 |

@@ -34,7 +34,7 @@
     ],
     "turn_detection": "none: a synthesis model. WebSocket input is flushed with flush: true at the end of an agent turn [el-ws-tts]",
     "interruption": "Not handled by the model. The multi-context WebSocket lets a client close one context and open another when a user cuts in, with up to 5 contexts per connection [el-ws-multi]",
-    "latency": "About 75 ms model inference, excluding application and network latency [el-models]; with the WebSocket, time to first byte of 100 to 150 ms in North America, Europe and South East Asia and 150 to 200 ms in South Asia and North East Asia [el-latency-opt]",
+    "latency": "[as-of 2026-10-31] About 100 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (the models page gave about 75 ms on 2026-10-03) [el-models-1031] [el-latency-method]; with the WebSocket, time to first byte of 100 to 150 ms in North America, Europe and South East Asia and 150 to 200 ms in South Asia and North East Asia [el-latency-opt]",
     "session_limit": "40,000 characters per request, about 40 minutes of audio [el-models]; the WebSocket closes after 20 seconds of inactivity unless the client sends a space (inactivity_timeout is configurable); a multi-context socket allows up to 180 seconds [el-ws-tts] [el-ws-multi]"
   },
   "reasoning": {
@@ -68,13 +68,13 @@
       "read": "2026-10-03"
     },
     {
-      "name": "Maker model inference latency (milliseconds)",
-      "score": 75,
-      "setting": "approximate figure, excluding application and network latency",
+      "name": "Maker median server-side latency (milliseconds)",
+      "score": 100,
+      "setting": "WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; the models page gave about 75 ms on 2026-10-03",
       "harness": "ElevenLabs",
       "measured_by": "maker",
-      "source": "el-models",
-      "read": "2026-10-03"
+      "source": "el-latency-method",
+      "read": "2026-10-31"
     }
   ],
   "prompting_guides": [
@@ -174,6 +174,20 @@
       "url": "https://artificialanalysis.ai/text-to-speech",
       "read": "2026-10-03",
       "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "el-models-1031",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-latency-method",
+      "url": "https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology",
+      "read": "2026-10-31",
+      "kind": "L",
       "quote": null
     }
   ],

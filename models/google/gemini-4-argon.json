@@ -5,21 +5,28 @@
   "family": "Gemini 4",
   "class": "Gemini Argon",
   "generation": "4",
-  "released": "2026-09-30",
-  "status": "preview",
+  "released": "2026-10-13",
+  "status": "ga",
   "retires": null,
   "weights": "closed",
   "access": [
-    "Fairwind Program (vetted cyber defenders only), as a managed model on Gemini Enterprise or inside CodeMender",
-    "planned, no date: paid Gemini API customers and Google AI Ultra subscribers"
+    "Gemini API (paid tier only; not on the free tier)",
+    "Google AI Studio",
+    "Gemini Enterprise Agent Platform (GA 2026-10-13; global, us and eu endpoints) [gemini-cloud-release-notes-argon] [gemini-cloud-argon-page]",
+    "Antigravity agent in Gemini Managed Agents (selectable model)",
+    "CodeMender on Agent Platform (preview, selectable model)",
+    "Fairwind Program (vetted cyber defenders), as a managed model on Gemini Enterprise or inside CodeMender",
+    "Gemini app, Google Antigravity and Google AI Mode (named as distribution channels in the model card [gemini-argon-card])"
   ],
-  "context_window": 1000000,
-  "max_output": 1000000,
+  "context_window": 1048576,
+  "max_output": 1048576,
   "modalities": {
     "input": [
       "text",
       "image",
-      "video"
+      "video",
+      "audio",
+      "pdf"
     ],
     "output": [
       "text"
@@ -28,14 +35,18 @@
   "voice": null,
   "reasoning": {
     "control": "effort",
-    "levels": [],
-    "default": null
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "medium"
   },
   "pricing_usd_per_mtok": {
     "input": 2.0,
     "output": 10.0,
     "cached_input": 0.1,
-    "notes": "introductory rate from Google's announcement, no end date given (Artificial Analysis says at least one month); standard rate $4 input, $20 output, $0.20 cached (95% off input). Not billable by the general public yet; Google's pricing page does not list the model."
+    "notes": "introductory rate through 2026-11-30; from 2026-12-01 input 4.00, output 20.00, cached 0.20 [gemini-pricing-argon] [gemini-latest-model-argon]. Batch and Flex are half price; Priority is $3.60 input and $18.00 output through 2026-11-30, then $7.20 and $36.00. Implicit caching only. Not on the free tier. An invite-only Contributor tier ($1 input, $5 output) lets Google use the data [gemini-pricing-argon]."
   },
   "benchmarks": [
     {
@@ -219,9 +230,11 @@
       "read": "2026-10-03"
     }
   ],
-  "prompting_guides": [],
-  "system_card": null,
-  "model_page": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
+  "prompting_guides": [
+    "https://ai.google.dev/gemini-api/docs/latest-model"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-4-argon/",
+  "model_page": "https://ai.google.dev/gemini-api/docs/models/gemini-4-argon",
   "sources": [
     {
       "id": "google-gemini-4-argon",
@@ -306,23 +319,65 @@
       "read": "2026-10-03",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "gemini-spec-argon",
+      "url": "https://ai.google.dev/gemini-api/docs/models/gemini-4-argon",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-latest-model-argon",
+      "url": "https://ai.google.dev/gemini-api/docs/latest-model",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-pricing-argon",
+      "url": "https://ai.google.dev/gemini-api/docs/pricing",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-changelog-argon",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-argon-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-4-argon/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-release-notes-argon",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-argon-page",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
   "unknown": [
-    "api_id: no API model id published; Google's model page and model card URLs return 404 on 2026-10-03",
-    "context_window: Google does not state an input window; 1M is Artificial Analysis's figure",
-    "reasoning.levels and reasoning.default: not published; Artificial Analysis calls \"high\" the highest available level, so the control type is inferred and the other levels are unknown",
-    "modalities: Google's pages show image and long-video understanding; Artificial Analysis's article adds speech input while its model page lists text and image only, so audio is not confirmed",
-    "knowledge cutoff: not published",
-    "access: general API, Google Cloud, Gemini CLI and Antigravity availability not announced",
-    "prompting_guides: none published for Argon",
-    "system_card: none published; the DeepMind model-card page returns 404, and only an evaluation-methodology PDF and a benchmark table on the Gemini page exist",
     "maker benchmark results table: the table in the methodology PDF is an image and was not read; the figures above come from the text table on Google's Gemini page",
     "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22)",
     "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
     "METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08",
-    "status: Google says the model is rolling out to vetted cyber defenders only; preview is this library's label because the schema has no limited-access value",
-    "Long Decode Continuation: reported by Artificial Analysis as a Gemini API feature; not found in the Gemini API docs or changelog read"
+    "max_output: 1,048,576 needs long decode (background execution, or continuation on GenerateContent); the default synchronous limit is 65,536 [gemini-spec-argon] [gemini-latest-model-argon]",
+    "access: the model card names the Gemini app, Google Antigravity and Google AI Mode as channels; which plans, products or tiers inside them offer Argon was not checked on 2026-10-31",
+    "checked: kept at 2026-10-03; on 2026-10-31 the id, status, limits, modalities, effort levels, prices, guide and model card were re-read, and the benchmark entries and other unknown entries keep their 2026-10-03 reading"
   ]
 }

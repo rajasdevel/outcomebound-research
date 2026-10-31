@@ -2,6 +2,11 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Claude Code ships several releases a week; loading, hooks and settings keys change between them)
 sources:
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.314 (read 2026-10-31)
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
+  - https://code.claude.com/docs/en/env-vars (read 2026-10-31)
+  - https://code.claude.com/docs/en/fast-mode (read 2026-10-31)
+  - https://code.claude.com/docs/en/server-managed-settings (read 2026-10-31)
   - https://code.claude.com/docs/en/plugins/mods/overview (read 2026-10-28)
   - https://code.claude.com/docs/en/permissions (read 2026-10-28)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.295 (read 2026-10-28)
@@ -187,6 +192,27 @@ The October 27 release reports fixes for managed-policy loading after VS Code si
   surface and the request fails. `PostCompact` receives the generated `compact_summary` and has no
   decision control. A hook can therefore keep each summary for checking against the files a run
   relies on, but cannot edit it. Lab-guidance (hooks page, read 2026-09-29 and 2026-10-01).
+- **`PreCompact` output cap [as-of 2026-10-31].** Version 2.1.314 cuts the output of each
+  `PreCompact` hook at 10,000 characters. Before this fix, very large output could make compaction
+  fail or repeat. The hooks page, read 2026-10-31, gives a general 10,000-character cap on hook
+  output: the excess goes to a file, and Claude gets the path and a preview. The release note says
+  "cut", so it does not establish which of the two a `PreCompact` hook gets. L, 2.1.314 release
+  notes and hooks page.
+- **Idle compaction [as-of 2026-10-31].** The settings reference, read 2026-10-31, documents the
+  `idleCompaction` key (default `true`, any settings file, v2.1.290 or later). Claude Code
+  summarizes a conversation that is left idle for about an hour, so that the next message sends the
+  summary and not the whole conversation. The page lists these conditions: an interactive terminal,
+  the VS Code chat panel or the desktop Code tab; `autoCompactEnabled` on; the one-hour prompt-cache
+  TTL; feature flags fetched from Anthropic; and a context of at least 200,000 tokens
+  (`CLAUDE_CODE_IDLE_COMPACT_MIN_TOKENS` changes it, with a floor of 100,000). `DISABLE_AUTO_COMPACT`
+  also turns it off. Version 2.1.314 adds idle compaction to VS Code and the desktop Code tab, for a
+  conversation of 200K tokens or more. It also runs it for subscribers with telemetry off, and on
+  Bedrock, Vertex, Foundry and LLM gateways once the one-hour prompt cache is on. On 2026-10-31 the
+  page still named feature-flag fetching as a condition, so the page and the release note disagree
+  for those routes. An idle compaction summarizes path-scoped rules and nested files away, as any
+  compaction does (above), while nobody is at the session (inference). `PreCompact` and
+  `PostCompact` hooks see it under the `auto` matcher (hooks page, read 2026-10-31). L, settings
+  reference and 2.1.314 release notes; not run.
 - **Checkpoints.** Claude Code checkpoints the files before every prompt that starts a turn, keeps
   snapshots for the 100 most recent checkpoints, and lets `/rewind` restore code and conversation or
   summarize part of it ("Summarize from here" compresses from a chosen message on, "Summarize up to
@@ -356,6 +382,9 @@ Source: <https://code.claude.com/docs/en/hooks>, read 2026-09-29 from the page s
   `WorktreeCreate` fails on any non-zero exit. Lab-guidance, hooks reference read 2026-09-29 and
   2026-10-01.
 - **Explicit failure policy.** Version 2.1.295 added `onFailure: block` for command and HTTP hooks that cannot start, time out or exit unexpectedly. The default failures above therefore do not describe a hook with that policy. This is a vendor-reported change from October 8, read 2026-10-28, not a new October 22 release. L, 2.1.295 release notes.
+- **PowerShell hooks and exit 2 [as-of 2026-10-31].** Before 2.1.316, a PowerShell hook did not
+  block on exit code 2 when its command began with a type cast, `param`, `using` or an attribute.
+  On an earlier version such a gate fails open (inference). L, 2.1.316 release notes.
 - What makes any harness's hook unsafe (privileges, trust once, environment, loops, fighting a
   legitimate stop) is in [cross-harness.md](cross-harness.md#92-what-makes-a-hook-unsafe-or-unusable).
 
@@ -466,6 +495,41 @@ Mods execute inside Claude Code and can change tool and prompt behavior. They ar
 
 Version 2.1.312 limits prompt and agent hooks to 24 concurrent runs per session, including subagents, plus up to 12 overdue runs. A timeout below one second counts as one second. This scheduling change is distinct from command and HTTP hook failure policy. L, 2.1.312 release notes.
 
+### Permission, sandbox and hook changes in 2.1.314 and 2.1.316 [as-of 2026-10-31]
+
+These are release notes (L), published 2026-10-30 (2.1.314) and 2026-10-31 (2.1.316), not a
+runtime check. On 2026-10-31 the permissions page and the settings reference did not name the new
+setting below.
+
+- **Writes outside the working directories.** 2.1.314 adds
+  `permissions.blockWritesOutsideWorkingDirectories`. With it, Write, Edit and NotebookEdit refuse a
+  path outside the working directories in every permission mode. The note names only those three
+  tools. It does not establish that a Bash or PowerShell command, an MCP tool or a mod is held to
+  the same limit; the sandbox is the documented layer for commands (above).
+- **Monitor commands and hooks.** Before 2.1.314, hooks that match Bash did not run on shell
+  commands that the Monitor tool starts. Now they run, and they can block or ask, but they cannot
+  approve or rewrite those commands. A hook `if` condition such as `Monitor(tail *)` now matches
+  Monitor's commands as `Bash(tail *)` matches Bash's. A gate that relies on a Bash-matching
+  `PreToolUse` hook therefore did not cover Monitor on earlier versions (inference).
+- **Sandbox after a resumed print run.** Before 2.1.314, sandbox protections did not apply to a
+  worktree that `claude -p --resume` or `--continue` entered.
+- **Settings sources and policy.** Before 2.1.314, a settings file excluded with `--setting-sources`
+  still supplied some settings, such as auto-mode rules and saved permission consents. The same
+  release closes a gap where `forceRemoteSettingsRefresh`, set only in remote managed settings, no
+  longer applied once the stored copy had expired, so a session could start without policy when the
+  server could not be reached. Claude's file tools now ask before they edit the local copy of the
+  organisation's server-managed settings, as they do for settings files.
+- **Server-managed settings without approval (2.1.316).** For Team and Enterprise logins, settings
+  fetched from Anthropic's API now apply without an approval prompt, and a stored copy that does not
+  verify is refused. The server-managed settings page, read 2026-10-31, still describes a security
+  approval dialog for some settings in interactive sessions, so the page and the note disagree.
+- **Auto mode.** In Cowork cloud sessions (2.1.314), a hook's allow of an MCP tool call now counts
+  as no answer, so the classifier or a permission prompt decides. In 2.1.316, a managed
+  `autoMode.allow` list without `"$defaults"` no longer gets the built-in exceptions back from a host
+  app's `--settings`, a first rule added in `/permissions` or `/auto-mode-setup`. Any `autoMode.allow`
+  list without `"$defaults"`, managed or not, also no longer removes the built-in rule on scheduled-task prompts. The classifier itself is in
+  [agent-authorization.md](../practices/agent-authorization.md#2-claude-codes-permission-layers-volatile-a2-a4).
+
 ## 10. Session storage, plugins, models and routes
 
 - **Session storage.** Checkpoint snapshots are kept for the 100 most recent checkpoints and go in
@@ -529,6 +593,43 @@ Version 2.1.312 limits prompt and agent hooks to 24 concurrent runs per session,
   observed 2026-09-23). How to choose a surface from these is in
   [cross-harness.md](cross-harness.md#11-rendering-in-harness-surfaces).
 
+## 12. Release changes in 2.1.314 and 2.1.316 [as-of 2026-10-31]
+
+These are release notes (L), read 2026-10-31, not a runtime check. Permission, sandbox and hook
+items are in §9; compaction items are in §4. On 2026-10-31 the environment-variable and sub-agents
+pages did not name `CLAUDE_CODE_SUBAGENT_EFFORT` or `CLAUDE_CODE_DISABLE_ULTRATHINK`.
+
+- **Instruction loading.** Before 2.1.316, the SDK `register_repo_root` control request did not
+  load the `CLAUDE.md` of a directory outside the working directory when
+  `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` was set. In the VS Code extension (2.1.314),
+  `CLAUDE_CODE_DISABLE_CFC_PROMPT` also stops the extension adding the Claude in Chrome
+  instructions to a session's messages; the browser tools stay available.
+- **Subagents.** 2.1.316 adds `CLAUDE_CODE_SUBAGENT_EFFORT`. It sets the effort of subagents when
+  nothing else names one; without it they inherit the session's effort. A subagent that inherited a
+  parent subagent's model no longer moves to the main model when a background job or a message wakes
+  it.
+- **Print mode.** `claude -p` now exits 1 and prints the error when startup fails (2.1.314); before,
+  it exited 0 with no output. Its text output now says why auto mode stopped a turn while a
+  background agent was still running (2.1.316). Details are in
+  [non-interactive-modes.md](non-interactive-modes.md#2-claude-code).
+- **Trust in CI.** With `CI` set, `claude ultrareview` and `claude remote-control` now refuse an
+  untrusted folder at once, instead of asking the trust question in a CI job that has a terminal
+  (2.1.314).
+- **Models and routes.** Behind an LLM gateway, a model ID spelled with a dot, such as
+  `claude-opus-4.8`, was treated as an older model with the wrong context window, output limit,
+  effort, thinking mode and cost; 2.1.314 fixes this. On Vertex AI and Amazon Bedrock, the aliases
+  `sonnet`, `opus` and `haiku` now switch to an older model when the newest is not available to the
+  account or region (2.1.316); 2.1.314 does the same on Microsoft Foundry when the resource has no
+  deployment of the default model. `/model <id>` now warns when this version does not recognize the
+  model and auto-compact will assume a 200K context window (2.1.316).
+- **Fast mode on Opus 4.8.** 2.1.316 deprecates fast mode for Opus 4.8 as of 2026-10-30 and says it
+  will be removed on 2026-11-30. After removal, a fast-mode request on Opus 4.8 returns an error and
+  does not fall back to standard speed; the note points to Opus 5.5. The fast-mode page, read
+  2026-10-31, still listed Opus 4.8 as a research-preview fast-mode model with no deprecation. Check
+  again after 2026-11-30.
+- **Ultrathink.** 2.1.316 adds `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink`
+  keyword off. In VS Code, `ultrathink` now runs its turn at `xhigh` effort, as in the terminal.
+
 ## Sources
 
 - Memory <https://code.claude.com/docs/en/memory> (2026-09-25, 2026-10-01); context window
@@ -582,3 +683,18 @@ Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior
 - <https://code.claude.com/docs/en/permissions>, read 2026-10-28.
 - <https://github.com/anthropics/claude-code/releases/tag/v2.1.295>, read 2026-10-28.
 - <https://github.com/anthropics/claude-code/releases/tag/v2.1.312>, read 2026-10-28.
+
+Sources for sections dated 2026-10-31 (L, vendor release notes and documentation; runtime behavior
+not tested):
+
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.314> (published 2026-10-30), read
+  2026-10-31.
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.316> (published 2026-10-31), read
+  2026-10-31.
+- <https://code.claude.com/docs/en/settings-reference> (`idleCompaction`), read 2026-10-31.
+- <https://code.claude.com/docs/en/env-vars>, read 2026-10-31.
+- <https://code.claude.com/docs/en/hooks> (output cap, compaction matchers), read 2026-10-31.
+- <https://code.claude.com/docs/en/permissions> and <https://code.claude.com/docs/en/sub-agents>,
+  read 2026-10-31 for the absence of the new keys only.
+- <https://code.claude.com/docs/en/fast-mode>, read 2026-10-31.
+- <https://code.claude.com/docs/en/server-managed-settings>, read 2026-10-31.

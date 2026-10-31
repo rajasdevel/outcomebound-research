@@ -9,11 +9,14 @@ sources:
   - https://docs.qwencloud.com/developer-guides/speech/s2s-models
   - https://docs.qwencloud.com/changelog/models
   - https://artificialanalysis.ai/speech-to-speech
+  - https://docs.qwencloud.com/developer-guides/speech/s2s-models (read 2026-10-31)
+  - https://docs.qwencloud.com/changelog (read 2026-10-31)
+  - https://artificialanalysis.ai/speech-to-speech (read 2026-10-31)
 ---
 
 # Qwen-Audio-3.0-Realtime-Flash
 
-Qwen-Audio-3.0-Realtime-Flash is the Flash tier of generation 3.0 of Alibaba's Qwen Audio realtime line. It takes streaming audio and text and gives back speech and text. Alibaba calls it a full-duplex model that favours speed. QwenCloud's changelog dates it 2026-08-10, with the Plus tier. Alibaba's table names it the choice for cost-sensitive conversation. This file says what differs from [Qwen-Audio-3.1-Realtime-Plus](qwen-audio-3.1-realtime-plus.md), which holds the full guide. Family-wide rules are in the [Alibaba README](README.md) [qwencloud-changelog] [qwencloud-page-audio30flash] [qwencloud-s2s-models].
+Qwen-Audio-3.0-Realtime-Flash is the Flash tier of generation 3.0 of Alibaba's Qwen Audio realtime line. It takes streaming audio and text and gives back speech and text. Alibaba calls it a full-duplex model that favours speed. QwenCloud's changelog dates it 2026-08-10, with the Plus tier. [as-of 2026-10-31] Alibaba's table named it the choice for cost-sensitive conversation; it now names [Qwen-Audio-3.1-Realtime-Flash](qwen-audio-3.1-realtime-flash.md), released 2026-10-27 [qwencloud-s2s-models-1031] [qwencloud-changelog-1031]. This file says what differs from [Qwen-Audio-3.1-Realtime-Plus](qwen-audio-3.1-realtime-plus.md), which holds the full guide. Family-wide rules are in the [Alibaba README](README.md) [qwencloud-changelog] [qwencloud-page-audio30flash] [qwencloud-s2s-models].
 
 ## At a glance
 
@@ -98,7 +101,7 @@ The rate limit is 100K tokens and 60 requests per minute [qwencloud-page-audio30
 
 ### Migrating from the previous generation
 
-This is the first generation of the Qwen Audio realtime line in this library. Alibaba's table points cost-sensitive users of closed-source realtime models to this tier [qwencloud-s2s-models].
+This is the first generation of the Qwen Audio realtime line in this library. [as-of 2026-10-31] Alibaba's table now points cost-sensitive users of closed-source realtime models to the 3.1 Flash tier, not to this one [qwencloud-s2s-models-1031].
 
 ## What the system card reports
 
@@ -123,7 +126,7 @@ Independent: the Artificial Analysis results above [aa-s2s]. Maker: none publish
 ## Open questions
 
 - Why the arena measures and tau-Voice rank the two tiers in opposite order.
-- Whether Alibaba will release a 3.1 Flash tier.
+- [as-of 2026-10-31] How this tier compares with its successor, [Qwen-Audio-3.1-Realtime-Flash](qwen-audio-3.1-realtime-flash.md), on independent tests; Artificial Analysis has no row for 3.1 Flash [aa-s2s-1031].
 
 ## Sources
 
@@ -134,3 +137,6 @@ Independent: the Artificial Analysis results above [aa-s2s]. Maker: none publish
 - [qwencloud-s2s-models] https://docs.qwencloud.com/developer-guides/speech/s2s-models (kind L, read 2026-10-03)
 - [qwencloud-changelog] https://docs.qwencloud.com/changelog/models (kind L, read 2026-10-03)
 - [aa-s2s] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-03)
+- [qwencloud-s2s-models-1031] https://docs.qwencloud.com/developer-guides/speech/s2s-models (kind L, read 2026-10-31)
+- [qwencloud-changelog-1031] https://docs.qwencloud.com/changelog (kind L, read 2026-10-31)
+- [aa-s2s-1031] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-31)

@@ -41,14 +41,34 @@ sources:
   - https://legal.mistral.ai/documents/Mistral%20Large%203%20-%20Technical%20Documentation%20for%20Downstream%20Providers.pdf
   - https://legal.mistral.ai/documents/For%20Dowstream%20Providers%20only%20-%20Technical%20Documentation%20Mistral%20Small%204.pdf
   - https://legal.mistral.ai/ai-governance/models/mistral-medium-3
+  - https://docs.mistral.ai/models/mistral-large-4-0 (read 2026-10-31)
+  - https://mistral.ai/news/mistral-large-4-oss/ (read 2026-10-31)
+  - https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B (read 2026-10-31)
+  - https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE (read 2026-10-31)
+  - https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/raw/main/chat_template.jinja (read 2026-10-31)
+  - https://docs.mistral.ai/getting-started/changelog (read 2026-10-31)
+  - https://docs.mistral.ai/getting-started/models/models_overview/ (read 2026-10-31)
+  - https://docs.mistral.ai/models/mistral-large-3-25-12 (read 2026-10-31)
+  - https://docs.mistral.ai/models/mistral-medium-3-5-26-04 (read 2026-10-31)
+  - https://docs.mistral.ai/models/voxtral-mini-tts-3-0 (read 2026-10-31)
+  - https://docs.mistral.ai/models/voxtral-mini-transcribe-3-0 (read 2026-10-31)
+  - https://docs.mistral.ai/models/voxtral-mini-transcribe-realtime-3-0 (read 2026-10-31)
+  - https://docs.mistral.ai/models/voxtral-small-transcribe-3-0 (read 2026-10-31)
+  - https://mistral.ai/news/voxtral-3/ (read 2026-10-31)
+  - https://docs.mistral.ai/studio/audio/voice-agents/overview (read 2026-10-31)
+  - https://docs.mistral.ai/studio/audio/migrate-from-voxtral-2 (read 2026-10-31)
+  - https://docs.mistral.ai/inference/pricing (read 2026-10-31)
 ---
 
 # Mistral models
 
-Mistral AI, a French lab, publishes both closed (Premier) and open-weight models. Three open-weight general models
-have files here: [Mistral Large 3](mistral-large-3.md), a non-reasoning mixture of experts; [Mistral Small
-4](mistral-small-2603.md), a mixture of experts that merges instruct, reasoning and coding; and [Mistral Medium
-3.5](mistral-medium-3-5.md), a dense model that does the same at a larger size. This page holds what is shared and
+Mistral AI, a French lab, publishes both closed (Premier) and open-weight models. [as-of 2026-10-31] Four open-weight
+general models have files here: [Mistral Large 4](mistral-large-4.md), a mixture of experts of about 1T parameters with
+three effort levels, in public preview; [Mistral Large 3](mistral-large-3.md), a non-reasoning mixture of experts;
+[Mistral Small 4](mistral-small-2603.md), a mixture of experts that merges instruct, reasoning and coding; and [Mistral
+Medium 3.5](mistral-medium-3-5.md), a dense model that does the same at a larger size. Large 3 and Medium 3.5 are
+deprecated from 2026-10-31 [mistral-deprecations-2026-10-31]. [as-of 2026-10-31] One speech model also has a file:
+[Voxtral TTS 3](voxtral-mini-tts-3-0.md), a voice actor model in public preview [mistral-voxtral-tts3]. This page holds what is shared and
 what Mistral says once; each model file says what differs. Mistral's provider page is
 [../../providers/mistral.md](../../providers/mistral.md).
 
@@ -59,9 +79,12 @@ what Mistral says once; each model file says what differs. Mistral's provider pa
 | Mistral Large 3 (v25.12) | 2025-12-02 | `mistral-large-2512` | Apache-2.0 | Large 2.0, whose listed alternative is Large 3; Large 2.1 (retired 2026-05-31) lists Medium 3.5 |
 | Mistral Small 4 (v26.03) | 2026-03-16 | `mistral-small-2603` | Apache-2.0 | Small 3.2 and the Magistral Small line |
 | Mistral Medium 3.5 (v26.04) | 2026-04-28 | `mistral-medium-3-5` | modified MIT | Medium 3.1, Magistral Medium, Devstral 2 |
+| Voxtral TTS 3 (v3.0) | 2026-10-20 (public preview) | `voxtral-mini-tts-3-0` | no public weights found | [as-of 2026-10-31] Voxtral TTS (`voxtral-mini-tts-2603`), deprecated 2026-10-31 [mistral-voxtral-tts3] [mistral-migrate-voxtral2] |
+| Mistral Large 4 (v26.10) | 2026-10-06 (public preview); weights 2026-10-29 | `mistral-large-4` (also `mistral-large-4-0`) | Mistral Ecosystem Open-Weight License (modified MIT) | Large 3 and Medium 3.5 (the deprecation table read on 2026-10-31 names it as the alternative for both) |
 
 Sources: [mistral-models-overview], [mistral-changelog], [mistral-deprecations], [mistral-small-post],
-[mistral-3-post].
+[mistral-3-post]; for the Large 4 row, [mistral-large-4-docs], [mistral-large-4-post], [hf-large-4-commits] and
+[mistral-deprecations-2026-10-31].
 
 - **Merged lines.** Small 4 folds Mistral's instruct, reasoning (Magistral) and Devstral lines into one model, and
   Medium 3.5 does the same for Medium 3.1, Magistral and Devstral 2; Medium 3.5 replaced Devstral 2 in the Vibe coding
@@ -70,12 +93,41 @@ Sources: [mistral-models-overview], [mistral-changelog], [mistral-deprecations],
   Small 3.2 (retired 2026-07-31), Devstral 2 (retired 2026-07-31), Magistral Small and Medium 1.2 (retired 2026-07-31)
   and Large 2.1 (retired 2026-05-31) [mistral-deprecations]. This is why the previous generation of each class has no
   file: Mistral retired it.
-- **Scope.** Large 3, Small 4 and Medium 3.5 are each the current generation of their class. Other current Mistral
-  models have no file: Ministral 3 in 3B, 8B and 14B sizes (v25.12, Apache-2.0, with base, instruct and reasoning
-  variants per Mistral's December post), Codestral (v25.08), the OCR 4.1, Voxtral, embedding and moderation models, and
-  the third-party Z.ai GLM models the platform now hosts [mistral-models-overview, mistral-3-post].
-- **No newer general model.** Mistral's changelog shows no general language model after Medium 3.5 (2026-04-28); its
-  later entries are OCR, Leanstral, Vibe and third-party model changes through 2026-09-29 [mistral-changelog].
+- **Deprecated models [as-of 2026-10-31].** The deprecation table gives Large 3 (`mistral-large-2512`) and Medium 3.5
+  (`mistral-medium-3-5`) a deprecation date of 2026-10-31 and a retirement date of 2027-04-30, with Large 4 as the
+  alternative for both. The same table deprecates Voxtral TTS (`voxtral-mini-tts-2603`), Voxtral Mini Transcribe 2
+  (`voxtral-mini-2602`) and Voxtral Mini Transcribe Realtime (`voxtral-mini-transcribe-realtime-2602`) on the same dates in favour of their Voxtral 3 versions
+  [mistral-deprecations-2026-10-31]. Both deprecated general models keep their files until they retire.
+- **Scope [as-of 2026-10-31].** Large 4 is the current generation of the Large class and Large 3 the one before it, so the
+  class holds two generations. Small 4 and Medium 3.5 are each the current generation of their class. Other current
+  Mistral models have no file: Ministral 3 in 3B, 8B and 14B sizes (v25.12, Apache-2.0, with base, instruct and
+  reasoning variants per Mistral's December post), Codestral (v25.08), the OCR 4.1, embedding, moderation and Timestral
+  models, the Voxtral speech-to-text models ([as-of 2026-10-31] Voxtral TTS 3 is the one Voxtral model with a file), and the third-party models the platform hosts (Z.ai GLM 5.3 and GLM 5.3 Flash, and
+  DeepSeek V4.1 Flash 1017) [mistral-models-overview-2026-10-31, mistral-3-post].
+- **Voxtral 3 [as-of 2026-10-31].** On 2026-10-20 the changelog records the Voxtral 3 audio family, four models in public
+  preview: Voxtral TTS 3 (`voxtral-mini-tts-3-0`), Voxtral Mini Transcribe 3 (`voxtral-mini-transcribe-3-0`), Voxtral
+  Mini Transcribe Realtime 3 (`voxtral-mini-transcribe-realtime-3-0`) and Voxtral Small Transcribe 3
+  (`voxtral-small-transcribe-3-0`) [mistral-changelog-2026-10-31]. Voxtral TTS 3 has a [file](voxtral-mini-tts-3-0.md): it takes 34
+  inline emotion tags, pace tags and disfluency tags, so it meets the voice actor definition; its documented `instruction`
+  field is not available at launch [mistral-voxtral-tts3] [mistral-tts-tags]. The three transcription models have no file:
+  the library's scope covers standalone speech-to-text only for OpenAI, Google and ElevenLabs. Voxtral Mini Transcribe 3
+  (US$0.0035 a minute) and Voxtral Small Transcribe 3 (US$0.004 a minute) transcribe files with diarization and segment
+  timestamps in 50 languages; Voxtral Mini Transcribe Realtime 3 (US$0.008 a minute) transcribes live audio in 45
+  languages and dialects, with end-of-turn detection [mistral-pricing-2026-10-31] [mistral-voxtral3-post]
+  [mistral-tts-languages]. The deprecated Voxtral 2 models (TTS 2603, Mini Transcribe 2 and Mini Transcribe Realtime
+  2602) never had files, so nothing is removed. Voxtral TTS 2603 set the emotion through the choice of voice, not with tags,
+  and did not meet the voice actor definition [mistral-migrate-voxtral2].
+- **Voice Agents [as-of 2026-10-31].** The same changelog entry of 2026-10-20 adds Voice Agents, a managed real-time voice
+  pipeline exposed through the Voice Agents SDK (Python, Node.js and browser TypeScript; telephony over SIP for enterprise
+  customers at launch). Each turn chains transcription with end-of-turn detection, a chat model with server-side and
+  client-side tools, and speech; the user can interrupt the agent. It is a chained pipeline, not a selectable
+  speech-to-speech model, so it has no card. It bills per minute of conversation: US$0.04 with Mistral Small 4 and
+  US$0.08 with larger models [mistral-changelog-2026-10-31] [mistral-voice-agents] [mistral-pricing-2026-10-31].
+- **Newer general model [as-of 2026-10-31].** After Medium 3.5 (2026-04-28), the changelog records Mistral Large 4
+  (`mistral-large-4`) in public preview on 2026-10-06, with open weights described as coming soon and a launch price 50%
+  lower for two weeks. Its latest entry, of 2026-10-22, adds the third-party Z.ai GLM 5.3 Flash. The weights were
+  published on Hugging Face on 2026-10-29; the changelog has no entry for that [mistral-changelog-2026-10-31,
+  hf-large-4-commits, mistral-large-4-post].
 - **Reasoning version of Large 3.** The December 2025 post said one was coming; none is listed on the models page
   [mistral-3-post, mistral-models-overview].
 
@@ -96,7 +148,8 @@ Sources: [mistral-models-overview], [mistral-changelog], [mistral-deprecations],
 - **Reasoning control.** `reasoning_effort`. For Small 4 and Medium 3.5 the accepted values are `none` and `high`. The API
   reference's enum is longer (`none`, `minimal`, `low`, `medium`, `high`, `xhigh`) and is not split by model; the reasoning
   page says the hosted Z.ai GLM 5.3 takes `low`, `high` and `max` [mistral-reasoning-docs, mistral-chat-api,
-  vllm-small-4-recipe].
+  vllm-small-4-recipe]. [as-of 2026-10-31] Large 4 takes `low`, `medium` and `high`, with `high` as the default; its chat
+  template rejects any other value, `none` included [mistral-large-4-docs, hf-large-4-template].
 - **Model ids and aliases.** Production ids follow `name-major-minor` (`mistral-medium-3-5`); `-latest` and `-major` aliases
   point at the newest General Availability model and can change behaviour and price silently, so Mistral advises pinning
   a major-minor id. Older date-style ids exist (`mistral-small-2603`, `mistral-large-2512`) [mistral-lifecycle].
@@ -145,7 +198,10 @@ production, a system prompt that states the use case and how each tool is to be 
 ratios near 1:1 [hf-large-3].
 Small 4 (March 2026) introduced the per-request `none` or `high` switch and temperatures of 0.0 to 0.7 or 0.7
 [hf-small-4]. Medium 3.5 (April 2026) kept the switch, added a top-p of 0.95 for `high`, and recommends `high` for
-complex and agentic work [hf-medium-3-5]. Mistral publishes no coding-agent prompting guide for any of the three.
+complex and agentic work [hf-medium-3-5]. [as-of 2026-10-31] Large 4 (October 2026) moved to three effort levels (`low`,
+`medium` and `high`, default `high`) and to temperature 1.0 with top-p 0.95 at every level. It keeps the advice on a
+clear system prompt and a small tool set [hf-large-4]. Mistral publishes no coding-agent prompting guide for any of the
+four.
 
 **Vibe, Mistral's coding agent.** Vibe reads `~/.vibe/AGENTS.md` and project `AGENTS.md` files from the working directory up to
 the trust root; these instructions override the default system prompt and load only for trusted folders. It discovers
@@ -161,7 +217,9 @@ the earlier Le Chat experience [mistral-changelog].
 
 ## System-card practice
 
-Mistral publishes no system card or safety report for any of these three models. For each release it publishes a launch
+Mistral publishes no system card or safety report for Large 3, Small 4 or Medium 3.5. [as-of 2026-10-31] It publishes none
+for Large 4 either: the launch post gives the maker's cyber-refusal and agent-security figures and says a technical report
+is coming (see the [Large 4 file](mistral-large-4.md#what-the-system-card-reports)) [mistral-large-4-post]. For each release it publishes a launch
 post, a Hugging Face model card (usage settings, serving commands, benchmark charts that are mostly images, a licence)
 and a docs model page (id, price, context, capability list). Under the EU AI Act it also keeps an AI governance hub that
 classes each model as a general-purpose AI model (not one with systemic risk) and, for Large 3 and Small 4, posts
@@ -203,14 +261,18 @@ evidence.
   H200 or one B200 for Small 4, and 16 H200 for standard Large 3 inference with at least eight for FP8
   [mistral-td-small-4, mistral-td-large-3]. Medium 3.5 (128 billion dense) is documented with eight-way tensor
   parallelism in its card and "as few as four GPUs" in the launch post [hf-medium-3-5, mistral-vibe-post].
-- **Context.** All three advertise 256k tokens; Artificial Analysis gives 256k on its comparison pages and 260k in its
+- **Context.** [as-of 2026-10-31] Large 4 advertises 1M tokens [mistral-large-4-docs]. Large 3, Small 4 and Medium 3.5 advertise 256k tokens; Artificial Analysis gives 256k on its comparison pages and 260k in its
   model-page summaries, and OpenRouter 262,144. Small 4 reaches it by YaRN scaling from an 8k base [vllm-small-4-recipe].
   Mistral's technical documentation for Large 3 and Small 4 gives 256k tokens as the maximum size of both text input and
   text output, so no separate output cap is published [mistral-td-large-3, mistral-td-small-4].
-- **Images.** All three take image and text input and return text. Large 3's card asks for aspect ratios close to 1:1 and says it
+- **Images.** All four take image and text input and return text; the Large 4 card says its encoder handles variable sizes and
+  aspect ratios [hf-large-4] [as-of 2026-10-31]. Large 3's card asks for aspect ratios close to 1:1 and says it
   trails vision-first models. The vision page of the docs lists Large 3, Medium 3.1, Small 3.2 and Ministral 3, which predates
   Medium 3.5 and Small 4, so rely on the model pages and cards for those [hf-large-3, mistral-vision-docs].
-- **Licences.** Large 3 and Small 4 are Apache-2.0. Medium 3.5 is a modified MIT licence: free for commercial and
+- **Licences.** [as-of 2026-10-31] Large 4 uses the Mistral Ecosystem Open-Weight License, a modified MIT licence: a
+  licensee whose group operates a Model-as-a-Service business needs a separate commercial licence with Mistral before
+  any commercial use, while internal use and use through Mistral's own products are outside that condition
+  [hf-large-4-license]. Large 3 and Small 4 are Apache-2.0. Medium 3.5 is a modified MIT licence: free for commercial and
   non-commercial use, but its rights do not apply where the user's company (or employer) had global consolidated revenue
   above $20 million in the preceding month; such users can ask Mistral for a commercial licence or use Mistral's hosted
   services. The condition extends to derivatives [mistral-medium-license].
@@ -221,10 +283,11 @@ evidence.
 
 - Whether Mistral will publish a system card or any safety evaluation for these models.
 - Which benchmark numbers Mistral measured for Large 3, whose card has only charts.
-- Whether Medium 3.5 is generally available or in public preview: the docs page says GA and the governance hub lists it as
-  active, while the 2026-05-22 launch post calls it public preview.
+- [as-of 2026-10-31] Medium 3.5 is now deprecated, so its earlier status conflict (GA on the docs page and active on the
+  governance hub, public preview in the 2026-05-22 launch post) no longer changes a choice. For Large 4, whether the API ids serve the improved checkpoint of
+  2026-10-29, and when the model reaches General Availability [mistral-large-4-docs, mistral-large-4-post].
 - The default `reasoning_effort` on the API when the parameter is omitted for Small 4 and Medium 3.5.
-- A maximum output length separate from the context window for any of the three.
+- A maximum output length separate from the context window for any of the models here [as-of 2026-10-31].
 - Whether Large 3 will get its announced reasoning version.
 
 ## Sources
@@ -268,3 +331,22 @@ Read on 2026-10-03. Kinds: L lab, M independent measurement, A practitioner or p
 - [aws-large-3] AWS announcement of Large 3 on Bedrock, 2025-12-02. L. https://aws.amazon.com/about-aws/whats-new/2025/12/mistral-large-3-ministral-3-family-available-amazon-bedrock
 - [aa-compare-large-small] Artificial Analysis, Large 3 against Small 4. M. https://artificialanalysis.ai/models/comparisons/mistral-large-3-vs-mistral-small-4
 - [aa-compare-1-3-max-vs-medium] Artificial Analysis, Muse Spark 1.3 (max) against Medium 3.5. M. https://artificialanalysis.ai/models/comparisons/muse-spark-1-3-vs-mistral-medium-3-5
+
+Sources added for the claims dated 2026-10-31 (all L, read 2026-10-31):
+
+- [mistral-large-4-docs] Mistral Large 4 model page. https://docs.mistral.ai/models/mistral-large-4-0
+- [mistral-large-4-post] Mistral Large 4 (Le Chonk) is now open weight, 2026-10-29. https://mistral.ai/news/mistral-large-4-oss/
+- [hf-large-4] Mistral Large 4 model card. https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B
+- [hf-large-4-commits] Commit history of the Large 4 weights; the first commit, "Initial release", is dated 2026-10-29. https://huggingface.co/api/models/mistralai/Mistral-Large-4-1T-A52B/commits/main
+- [hf-large-4-license] Mistral Ecosystem Open-Weight License. https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE
+- [hf-large-4-template] Large 4 chat template. https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/raw/main/chat_template.jinja
+- [mistral-changelog-2026-10-31] Changelog, latest entry 2026-10-22. https://docs.mistral.ai/getting-started/changelog
+- [mistral-models-overview-2026-10-31] Models overview. https://docs.mistral.ai/getting-started/models/models_overview/
+- [mistral-voxtral-tts3] Voxtral TTS 3 model page. https://docs.mistral.ai/models/voxtral-mini-tts-3-0
+- [mistral-tts-tags] Emotion and pace tags. https://docs.mistral.ai/studio/audio/text-to-speech/emotion-tags
+- [mistral-tts-languages] Audio languages. https://docs.mistral.ai/studio/audio/specs-and-limits/languages
+- [mistral-migrate-voxtral2] Migrate from Voxtral 2. https://docs.mistral.ai/studio/audio/migrate-from-voxtral-2
+- [mistral-voxtral3-post] Voxtral 3 launch post, 2026-10-20. https://mistral.ai/news/voxtral-3/
+- [mistral-voice-agents] Voice agents overview. https://docs.mistral.ai/studio/audio/voice-agents/overview
+- [mistral-pricing-2026-10-31] API pricing, including audio models and voice agents. https://docs.mistral.ai/inference/pricing
+- [mistral-deprecations-2026-10-31] Deprecated and retired models table (a section of the overview); the Large 3 and Medium 3.5 model pages also mark both models deprecated with Large 4 as the replacement. https://docs.mistral.ai/getting-started/models/models_overview/, https://docs.mistral.ai/models/mistral-large-3-25-12 and https://docs.mistral.ai/models/mistral-medium-3-5-26-04

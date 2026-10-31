@@ -1,0 +1,156 @@
+{
+  "id": "qwen-audio-3.1-tts-plus",
+  "name": "Qwen-Audio-3.1-TTS-Plus",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen Audio",
+  "class": "Qwen Audio TTS Plus",
+  "generation": "3.1",
+  "released": "2026-10-21",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud speech synthesis API: WebSocket (DashScope SDKs for Python, Java, Android, iOS and HarmonyOS) and HTTP under the same model name, and AOQ; Singapore and China North 2 (Beijing) regions [qwencloud-tts-models] [qwencloud-tts-guide] [qwencloud-tts-access]"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "none",
+    "input_audio": "None for synthesis: the model takes text, with optional inline emotion and nonverbal tags and optional SSML (enable_ssml); a voice-cloning clip is WAV (16-bit), MP3 or M4A, 10 to 20 seconds advised, at most 60 seconds and 10 MB, at 16 kHz or more [qwencloud-tts-guide] [qwencloud-tts-events] [qwencloud-voice-cloning]",
+    "output_audio": "pcm, wav, mp3 (default) or opus; 8000, 16000, 22050 (default), 24000, 44100 or 48000 Hz; bit_rate 6 to 510 kbps for mp3 and opus; volume 0 to 100 (default 50), rate and pitch 0.5 to 2.0 (default 1.0) [qwencloud-tts-events]",
+    "voices": "4 flagship system voices in the qwen-audio-3.1-tts-plus voice list (longanlingxin_v3.1, xunanchuan_v3.1, longanhuan_v3.1, longanfengyue_v3.1), plus cloned voices and designed voices [qwencloud-tts-voices] [qwencloud-tts-models]",
+    "languages": [
+      "System voices: Chinese (Mandarin) and English, by voice [qwencloud-tts-models]",
+      "Cloned voices: Chinese (Mandarin and 20 dialects, set by instruction), English, Japanese, Korean, Russian, French, German, Portuguese, Thai, Indonesian, Vietnamese, Spanish, Italian, Malaysian, Filipino and Arabic [qwencloud-tts-models]"
+    ],
+    "turn_detection": "Not applicable; a synthesis model does not listen",
+    "interruption": "Not a conversation model; finish-task with directive cancel stops the running synthesis, and the connection can then start a new task [qwencloud-tts-guide] [qwencloud-tts-events]",
+    "latency": null,
+    "session_limit": "20,000 characters per continue-task message and 200,000 characters per task; the gap between messages must not exceed 23 seconds; a connection closes 60 seconds after a task ends if no new task starts [qwencloud-tts-events] [qwencloud-tts-guide]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Per character, not per token. QwenCloud price list, international deployment: US$0.30 per 10,000 input characters, output not charged; free quota 10,000 characters. Mainland China: US$0.20 per 10,000 characters. Model page rate limit 180 requests per minute [qwencloud-prices] [qwencloud-page-tts31plus]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech Arena Elo (provider voice leaderboard)",
+      "score": 1305,
+      "setting": "blind listener votes on each provider's own voices; accent and category set to All; rank 3 (range 3 to 4), 95% interval 1290 to 1320, 2,281 samples, 8 voices; the page data gives 1305.4; the page's per-accent and per-category boards give other values",
+      "harness": "Artificial Analysis Speech Arena",
+      "measured_by": "independent",
+      "source": "aa-tts-board",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/realtime-streaming",
+    "https://docs.qwencloud.com/developer-guides/speech/tts-models"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen-audio-3.1-tts-plus",
+  "sources": [
+    {
+      "id": "qwencloud-page-tts31plus",
+      "url": "https://www.qwencloud.com/models/qwen-audio-3.1-tts-plus",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-tts-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/tts-models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-tts-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/realtime-streaming",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-tts-events",
+      "url": "https://docs.qwencloud.com/api-reference/speech-synthesis/qwen-audio-tts/client-events",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-tts-voices",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/voice-list/qwen-audio-tts",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-voice-cloning",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/voice-cloning",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-prices",
+      "url": "https://docs.qwencloud.com/developer-guides/getting-started/model-prices",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-tts-access",
+      "url": "https://docs.qwencloud.com/api-reference/speech-synthesis/qwen-audio-tts/model-access",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-tts-board",
+      "url": "https://artificialanalysis.ai/text-to-speech/leaderboard",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "released: QwenCloud's changelog dates the model 2026-10-21 [qwencloud-changelog]; Artificial Analysis's leaderboard data gives 2026-09-24 (shown as Sept 2026), perhaps an earlier arena entry [aa-tts-board]",
+    "status: no page read calls the model a preview; ga follows the changelog and the model page",
+    "weights: closed; the pages read name no open-weight release of the hosted Qwen-Audio TTS models",
+    "context_window: not applicable to a synthesis model; the input limit is in characters (see voice.session_limit)",
+    "max_output: not published; no output-length cap was found in the pages read",
+    "voice.latency: Alibaba publishes no latency figure in the pages read",
+    "system_card: none published",
+    "benchmarks: no maker score; the one independent result recorded is the main board of the Artificial Analysis leaderboard page [aa-tts-board]",
+    "pricing_usd_per_mtok: the unit differs; the price is per 10,000 input characters, not per token",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech synthesis model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech synthesis model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists speech synthesis models on its text-to-speech leaderboard, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech synthesis model; no entry",
+    "METR 50% time horizon: not applicable to a speech synthesis model; no entry"
+  ]
+}

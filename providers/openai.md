@@ -21,6 +21,7 @@ sources:
   - https://developers.openai.com/api/docs/models/gpt-6.1-sol
   - https://developers.openai.com/api/docs/guides/fast-mode
   - https://developers.openai.com/api/docs/deprecations
+  - https://developers.openai.com/api/docs/guides/chatgpt-api-credits (read 2026-10-31)
 ---
 
 # OpenAI API
@@ -78,6 +79,8 @@ For a first-party API, parity means differences between endpoints and between Op
 ## Pricing
 
 Per token with five pricing modes on one pricing page: Standard; Batch and Flex at 50 percent off most models; Fast, which the page says was the renamed Priority processing from 2026-07-30 and which it prices per model (the Astra page gives 2 times the applicable rate); and Ultrafast. **[as-of 2026-10-09]** Ultrafast costs 6 times Standard on both GPT-6 Astra and GPT-6.1 Sol. Sol short-context prices per Mtok are $12 input, $0.60 cached input, $15 cache write and $60 output; long-context prices are $24, $1.20, $30 and $90. L [pricing-oct09, ultrafast-oct09]. On Astra, requests above 272,000 input tokens pay 2 times the input and cached-input rates and 1.5 times the output rate. **[as-of 2026-10-27]** Cached input costs 10 percent of input on Astra and Luna and 5 percent on GPT-6.1 Sol and Terra. On supported Responses models, 30-minute writes cost 1.25 times input and 12-hour writes 2.5 times input, as total rates [pricing-oct27, cache-oct27]. Regional processing, which the page also calls data residency, adds 10 percent for models released on or after 2026-03-05, and FedRAMP endpoints take the same 10 percent. Tools bill separately: web search $10 per 1,000 calls plus content tokens, file search $0.10 per GB-day (1 GB free) plus $2.50 per 1,000 calls, Hosted Shell and Code Interpreter containers $0.03 to $1.92 per 20-minute equivalent, depending on memory. Eligible container sessions bill per minute with a 5-minute minimum [as-of 2026-10-09] L [pricing-oct09]. The page mentions promotional pricing for GPT-5.6 Sol through 2026-11-21 and lists no general free tier or starter credit. Per-model prices are in the model files. [pricing]
+
+**API credits for ChatGPT subscribers [as-of 2026-10-31].** From 2026-10-28, an owner of an eligible, paid ChatGPT Pro or Business subscription can link it to an API organization that the same person owns and claim monthly API credits. The amounts are $100, $200 or $500 for the three Pro tiers, and $20 per paid Business Standard seat or $100 per paid Business Premium seat, with a pooled cap of $500 for each Business workspace each month. Unused credits expire at the end of the billing cycle. The credits do not cover Codex use through API keys. When no free or purchased credit remains, requests fail with HTTP 429 and code `credit_balance_exhausted`. This is a subscription benefit, not a free API tier. L [changelog-oct31, credits-oct31]
 
 **Decisions pricing [as-of 2026-10-27].** `/v1/decisions` with GPT-6 Luna costs $0.10 per Mtok of uncached input. Cache reads and writes use the standard Luna cache rates; output is not charged. Long-context input and regional processing multipliers apply. L [decisions-oct27].
 
@@ -139,3 +142,5 @@ Partial correction sources:
 | guide-oct27 | https://developers.openai.com/api/docs/guides/latest-model | L | 2026-10-27 |
 | pricing-oct27 | https://developers.openai.com/api/docs/pricing | L | 2026-10-27 |
 | cache-oct27 | https://developers.openai.com/api/docs/guides/prompt-caching | L | 2026-10-27 |
+| changelog-oct31 | https://developers.openai.com/api/docs/changelog | L | 2026-10-31 |
+| credits-oct31 | https://developers.openai.com/api/docs/guides/chatgpt-api-credits | L | 2026-10-31 |

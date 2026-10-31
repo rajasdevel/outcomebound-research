@@ -2,6 +2,8 @@
 last_checked: 2026-10-19
 volatility: VOLATILE (cloud surfaces are in preview or change monthly; limits, defaults and file names move between releases)
 sources:
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.314 (read 2026-10-31)
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
   - https://code.claude.com/docs/en/claude-code-on-the-web
   - https://code.claude.com/docs/en/cloud-environments
   - https://learn.chatgpt.com/docs/environments/cloud-environment
@@ -67,6 +69,21 @@ a paraphrase of both.
 - **Follow-up from a script.** `claude -p "<message>" --cloud <session-id>` queues a message into
   a running cloud session and exits without waiting; `--output-format json` returns
   `{ok, session_id, url}`.
+- **Release changes in 2.1.314 and 2.1.316 [as-of 2026-10-31].** These are release notes (L), not
+  a runtime check.
+  - *Setup script failure.* From 2.1.314, cloud sessions started from the web, desktop and mobile
+    apps start even when the setup script exits with an error, instead of failing to start. The
+    cloud-environments page, read 2026-10-31, still says a non-zero exit makes the session fail to
+    start and advises `|| true` on non-critical commands. Page and note disagree, and the note does
+    not cover `claude --cloud` or routines, so a setup step that must hold needs its own check in
+    the session, such as a `SessionStart` hook (inference).
+  - *Plugins in scheduled tasks.* Scheduled-task runs in Anthropic's cloud now load the plugins
+    enabled on the person's claude.ai account (2.1.314). Their skills, hooks and MCP servers can
+    therefore reach such a run (inference; the note names plugins only).
+  - *Network secrets and auto mode (2.1.316).* Enterprise members can now add and delete network
+    secrets on their own cloud environments, not only view them. Cloud sessions and cloud scheduled
+    tasks are now marked as failed when auto mode stopped a turn because the server returned no
+    safety verdict.
 
 ## 2. Codex (cloud tasks)
 
@@ -129,3 +146,12 @@ Source: the [setup page](https://cursor.com/docs/cloud-agent/setup).
   value.
 - Not read, so not recorded: Google Jules, the Codex and Copilot skills and hooks behaviour in the
   cloud, the Copilot firewall, how any cloud interface renders diagrams or links.
+
+Sources for sections dated 2026-10-31 (L, vendor release notes and documentation; runtime behavior
+not tested):
+
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.314> (published 2026-10-30), read
+  2026-10-31.
+- <https://github.com/anthropics/claude-code/releases/tag/v2.1.316> (published 2026-10-31), read
+  2026-10-31.
+- <https://code.claude.com/docs/en/cloud-environments> (setup script exit rule), read 2026-10-31.

@@ -16,11 +16,12 @@ sources:
   - https://elevenlabs.io/docs/changelog/2026/6/8
   - https://artificialanalysis.ai/speech-to-text/streaming
   - https://elevenlabs.io/pricing/api
+  - https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (read 2026-10-31)
 ---
 
 # Scribe v2 Realtime
 
-Scribe v2 Realtime is the streaming transcription model of the Scribe Realtime class, generation 2. It takes audio over a WebSocket and returns partial and committed transcripts about 150 ms behind speech, in 90+ languages. ElevenLabs launched it on 2025-11-11 (launch post; the changelog entry is dated 2025-11-12), before the batch Scribe v2 [el-blog-scribe2rt]. It is the default speech recognition of ElevenAgents, and its live signals feed the turn-taking system of expressive mode [el-changelog-scribe-rt] [el-models] [el-api-agents] [el-agents-expressive]. Family-wide rules are in the [ElevenLabs README](README.md). Batch-only features are in the [Scribe v2 file](scribe_v2.md).
+Scribe v2 Realtime is the streaming transcription model of the Scribe Realtime class, generation 2. It takes audio over a WebSocket and returns partial and committed transcripts, [as-of 2026-10-31] with a median time to committed transcript of about 150 ms [el-latency-method], in 90+ languages. ElevenLabs launched it on 2025-11-11 (launch post; the changelog entry is dated 2025-11-12), before the batch Scribe v2 [el-blog-scribe2rt]. It is the default speech recognition of ElevenAgents, and its live signals feed the turn-taking system of expressive mode [el-changelog-scribe-rt] [el-models] [el-api-agents] [el-agents-expressive]. Family-wide rules are in the [ElevenLabs README](README.md). Batch-only features are in the [Scribe v2 file](scribe_v2.md).
 
 ## At a glance
 
@@ -46,7 +47,7 @@ Scribe v2 Realtime is the streaming transcription model of the Scribe Realtime c
 | Voice languages | 90+ languages with automatic language recognition, and a change of language during a session [el-models] [el-blog-scribe2rt] |
 | Turn detection | commit_strategy manual (the default; commit at silence or at a turn boundary, with an automatic commit after about 36 seconds of audio) or vad (commit on silence; the docs' example uses vad_silence_threshold_secs 1.5, vad_threshold 0.4, min_speech_duration_ms 100 and min_silence_duration_ms 100) [el-stt-commit] |
 | Interruption | not applicable to a transcription model; in ElevenAgents its signals feed the platform's turn-taking system [el-agents-expressive] |
-| Voice latency | About 150 ms for partial transcripts [el-models]; Artificial Analysis streaming run: median 0.134 s to the first partial transcript and 0.141 s to the final transcript after speech ends [aa-stt-stream] |
+| Voice latency | [as-of 2026-10-31] About 150 ms median time to committed transcript, from production metrics (the models page was read on 2026-10-03 as giving it for partial transcripts) [el-latency-method]; Artificial Analysis streaming run: median 0.134 s to the first partial transcript and 0.141 s to the final transcript after speech ends [aa-stt-stream] |
 | Session limit | A maximum session time exists (the error session_time_limit_exceeded) but the pages read give no value; the server closes a connection after 15 seconds without client messages; a single-use client token expires after 15 minutes [el-stt-events] [el-stt-commit] [el-stt-client] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per hour of audio, not per token: US$0.39 per hour [el-pricing-api]. Artificial Analysis lists US$6.5 per 1,000 minutes, which equals the list rate [aa-stt-stream] |
@@ -128,7 +129,7 @@ ElevenLabs publishes no system card for Scribe v2 Realtime in the pages read. Th
 
 ## Benchmarks
 
-Independent: the Artificial Analysis streaming word error rate and latency figures above [aa-stt-stream]. Maker: 150 ms latency and the accuracy claims above [el-models] [el-blog-scribe2rt].
+Independent: the Artificial Analysis streaming word error rate and latency figures above [aa-stt-stream]. Maker: 150 ms latency, [as-of 2026-10-31] defined on 2026-10-29 as the median time to committed transcript [el-latency-method], and the accuracy claims above [el-models] [el-blog-scribe2rt].
 
 ## Open questions
 
@@ -153,3 +154,8 @@ Independent: the Artificial Analysis streaming word error rate and latency figur
 - [el-changelog-0608] https://elevenlabs.io/docs/changelog/2026/6/8 (kind L, read 2026-10-03)
 - [aa-stt-stream] https://artificialanalysis.ai/speech-to-text/streaming (kind M, read 2026-10-03)
 - [el-pricing-api] https://elevenlabs.io/pricing/api (kind L, read 2026-10-03)
+
+Sources added for the claims dated 2026-10-31:
+
+- [el-models-1031] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-31)
+- [el-latency-method] https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (kind L, read 2026-10-31)

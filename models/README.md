@@ -59,8 +59,9 @@ older has no file.
     The section on speech style in its file holds the directing guidance and says that turn-taking
     does not apply. [../practices/voice-acting.md](../practices/voice-acting.md) compares how the
     makers direct delivery.
-- ElevenLabs is the one maker whose speech synthesis and transcription models all have files,
-  because the maker sells voice models only.
+- [as-of 2026-10-31] ElevenLabs is the one maker whose speech synthesis, transcription and Eleven
+  Realtime speech-to-speech models all have files, because the maker sells voice models only
+  ([elevenlabs/README.md](elevenlabs/README.md)).
 - OpenAI's and Google's dedicated transcription and speech translation models have files. These
   include batch and live transcription interfaces as well as realtime translation. Standalone
   speech-to-text models outside these makers and ElevenLabs do not have files.
@@ -83,7 +84,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | --- | --- | --- |
 | Alibaba | Qwen-Audio ASR, Fun-ASR | Speech-to-text |
 | Alibaba | Qwen Livetranslate (3, 3.5 and 3.8) | Interpretation products |
-| Alibaba | Qwen-Audio TTS (hosted, such as Qwen-Audio-3.0-TTS-Plus), Qwen3-TTS-Instruct-Flash, Qwen3-TTS-VD and Qwen3-TTS-VC (hosted), the hosted CosyVoice v3 and v3.5 models, Fun-AudioGen-VD (hosted voice design for CosyVoice) | Hosted speech synthesis. Qwen3-TTS-Instruct-Flash takes an `instructions` field, but these hosted models were read only for the API facts in the Alibaba README, and no page says whether a hosted model is the open weights; a candidate |
+| Alibaba | Qwen-Audio 3.0 TTS Plus and Flash, Qwen-Audio-3.1-TTS-Next (`qwen-audio-3.1-tts-next`), Qwen3-TTS-Instruct-Flash, Qwen3-TTS-VD and Qwen3-TTS-VC (hosted), the hosted CosyVoice v3 and v3.5 models, Fun-AudioGen-VD (hosted voice design for CosyVoice) | [as-of 2026-10-31] The hosted Qwen-Audio TTS line takes a free-text instruction and inline tags. Its current generation, 3.1 Plus and Flash, has files; the 3.0 models are the previous generation, are still sold and were not read in depth; a candidate. Qwen-Audio-3.1-TTS-Next makes speech, sound effects and music from one prompt, so it is a different kind of model; a candidate ([alibaba/README.md](alibaba/README.md)). The other hosted models are speech synthesis that was read only for the API facts in the Alibaba README. Qwen3-TTS-Instruct-Flash takes an `instructions` field, and no page says whether a hosted model is the open weights; a candidate |
 | Alibaba | Qwen3-TTS-12Hz 0.6B CustomVoice, the 0.6B and 1.7B Base models, CosyVoice 1.0 | No instruction control in Alibaba's model table, or older than two generations |
 | Amazon | Amazon Polly (generative, neural, standard and long-form engines), Amazon Transcribe | Not Nova models. Polly's generative engine infers emotion from the text, and its documentation shows no instruction, tag or style input; Transcribe is speech-to-text |
 | Bilibili | IndexTTS 1.0 and 1.5 | Older than two generations; the README names no emotion input |
@@ -102,8 +103,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | ElevenLabs | `eleven_multilingual_sts_v2`, `eleven_english_sts_v2` | Voice changers; they convert a recording and do not hold a conversation |
 | ElevenLabs | `turn_v2`, `turn_v3` (agent turn-taking settings) | Only the setting names are published; no description, no price |
 | ElevenLabs | Multilingual v1, Monolingual v1, Scribe v1 | Removal date passed or set; removal not confirmed with a key |
-| Fish Audio | S1, S1 mini (OpenAudio S1 mini), `drama-3-preview` | S1 and S1 mini take parenthesis cues and are older than the two generations of their class (S2.1 Pro and S2 Pro have files in `fishaudio/`); `drama-3-preview` appears only in the OpenAPI schema |
-| Google | Gemini 3.5 Transcribe and Transcribe Live | Speech-to-text only |
+| Fish Audio | S1, S1 mini (OpenAudio S1 mini), Drama 3 (`drama-3`, formerly `drama-3-preview`) | S1 and S1 mini take parenthesis cues and are older than the two generations of their class (S2.1 Pro and S2 Pro have files in `fishaudio/`); Drama 3 (`drama-3`) has no file yet: its weights are on Hugging Face, and the OpenAPI schema now lists `drama-3` in place of `drama-3-preview` [as-of 2026-10-31] ([fishaudio/README.md](fishaudio/README.md)) |
 | Google | Gemini 3.5 Live Translate (preview) | Speech-to-speech translation; a candidate if translation models count as voice models |
 | Google | Gemini 2.5 Flash native audio preview | Older generation of the Live class |
 | Google | Gemini 2.5 Flash TTS (`gemini-2.5-flash-tts`, `gemini-2.5-flash-preview-tts`) | A third generation of the Flash TTS class (3.8, 3.1, then 2.5) |
@@ -122,7 +122,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | Microsoft | MAI-Voice-2.1, MAI-Voice-2.1-Flash, MAI-Voice-2, MAI-Voice-2-Flash, Azure neural voices with SSML speaking styles, Azure OpenAI voices, Dragon HD Flash voices, the Voice Live API, MAI-Voice-1 | Fixed per-voice style presets in SSML (MAI-Voice and the Azure neural voices; the MAI-Voice-2 launch post claims emotion tags that the documentation read does not show), a conversation product that uses these voices, or older than two generations (MAI-Voice-1); Dragon HD and Dragon HD Omni take inline style and sound tags and have files |
 | Microsoft | VibeVoice 1.5B, 7B and Realtime | No delivery direction documented |
 | MiniMax | Speech 2.6 HD and Turbo, Speech-02, Speech-01 | An `emotion` request field only, with no inline tags (2.6), or older |
-| Mistral | Voxtral speech-to-text models, Voxtral TTS (hosted) and Voxtral-4B-TTS-2603 (open weights, CC BY-NC) | Speech-to-text; the TTS model has 20 preset voices and adaptation from a reference clip, with no instruction or tags |
+| Mistral | The Voxtral 3 transcription models (Mini Transcribe 3, Mini Transcribe Realtime 3, Small Transcribe 3), the deprecated Voxtral 2 models (Voxtral TTS `voxtral-mini-tts-2603`, Mini Transcribe 2, Mini Transcribe Realtime 2602), Voxtral-4B-TTS-2603 (open weights, CC BY-NC), Voice Agents | [as-of 2026-10-31] Speech-to-text (the transcription models); Voxtral TTS 2603 set the emotion through the choice of a preset voice or a reference clip, with no instruction or tags; Voice Agents is a chained pipeline, not a model that a person can select. Voxtral TTS 3 takes inline tags and has a [file](mistral/voxtral-mini-tts-3-0.md) ([mistral/README.md](mistral/README.md)) |
 | Murf | Falcon 2, Gen2 | Per-voice style presets chosen by name; no tags or instructions |
 | Nari Labs | Dia2 (1B and 2B), the first Dia-1.6B revision | Dia2 documents speaker tags only, no non-verbal or delivery tags; the first revision is superseded by Dia-1.6B (0626), which has a file |
 | nineninesix | KaniTTS2 | Real-time speech; the card names emotion only as a fine-tuning use; no direction |
@@ -147,7 +147,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | Suno | Bark (MIT) | Bracket cues for non-speech sounds such as laughs meet the definition. No file was written, because the weights were last changed in October 2023 and the maker calls it a research and demo model; the same decision about age; a candidate |
 | Typecast | `ssfm-v30`, `ssfm-v21` | Request-level emotion presets and a context-based Smart Emotion; no inline tags, no instructions, no SSML |
 | VUI Labs | Luna-TTS | A research page and an arXiv report (2608.11593) describe emotion and non-verbal control, and the maker sells an Expressive TTS model, but the API docs host did not connect on 2026-10-04 and no public page says how to direct delivery; no open weights were found; revisit |
-| xAI | Grok Voice Think Fast 1.0, Grok Voice Fast 1.0 | The docs list only 2.0; no xAI page for the earlier models was found |
+| xAI | Grok Voice Think Fast 1.0, Grok Voice Fast 1.0 | [as-of 2026-10-31] Older than the two generations kept (Grok Voice 3.0 and 2.0 have files); the docs page for 1.0 returns not found ([xai/README.md](xai/README.md)) |
 | xAI | Grok text to speech (`/v1/tts`) | Inline tags and paired style tags meet the definition ([../practices/voice-acting.md](../practices/voice-acting.md) describes them); no card was written; a candidate |
 | Xiaomi | MiMo-Audio-7B-Instruct | A general audio language model; its card claims instruct-TTS results but gives no syntax; not read in depth |
 | Xiaomi | MiMo-V2.5-TTS, MiMo-V2.5-TTS-VoiceDesign, MiMo-V2.5-TTS-VoiceClone (hosted) | Instructions, free-form inline tags and screenplay-style input meet the definition ([../practices/voice-acting.md](../practices/voice-acting.md)); Artificial Analysis lists MiMo-V2.5-TTS, and BreezeBlue's direction benchmark scores it 3.76 of 5; the maker pages were not read in depth; a candidate |
@@ -160,7 +160,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 
 | Folder | Holds |
 | --- | --- |
-| [alibaba/](alibaba/README.md) | The Qwen models of Alibaba, with the Qwen Omni and Qwen-Audio realtime voice models and the open Qwen3-TTS and CosyVoice voice actor models |
+| [alibaba/](alibaba/README.md) | The Qwen models of Alibaba, with the Qwen Omni and Qwen-Audio realtime voice models, the hosted Qwen-Audio 3.1 TTS voice actor models [as-of 2026-10-31] and the open Qwen3-TTS and CosyVoice voice actor models |
 | [amazon/](amazon/README.md) | The Nova Sonic voice models of Amazon |
 | [anthropic/](anthropic/README.md) | The Claude models of Anthropic |
 | [boson/](boson/README.md) | The Higgs Realtime voice model and the Higgs TTS 3 voice actor model of Boson AI |
@@ -168,7 +168,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | [cartesia/](cartesia/README.md) | The Sonic voice actor models of Cartesia |
 | [cursor/](cursor/README.md) | The own models of Cursor |
 | [deepseek/](deepseek/README.md) | The models of DeepSeek |
-| [elevenlabs/](elevenlabs/README.md) | The speech synthesis and transcription models of ElevenLabs |
+| [elevenlabs/](elevenlabs/README.md) | The speech synthesis and transcription models of ElevenLabs, with the Eleven Realtime speech-to-speech models [as-of 2026-10-31] |
 | [fishaudio/](fishaudio/README.md) | The S2 voice actor models of Fish Audio |
 | [google/](google/README.md) | The Gemini and Gemma models of Google, with the Gemini Live, transcription and translation models and the Gemini TTS voice actor models |
 | [hume/](hume/README.md) | The EVI voice models and the Octave 1 voice actor model of Hume AI |
@@ -178,13 +178,13 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | [meta/](meta/README.md) | The Muse models of Meta |
 | [microsoft/](microsoft/README.md) | The Dragon HD voice actor models of Microsoft |
 | [minimax/](minimax/README.md) | The models of MiniMax, with the Speech 2.8 voice actor models |
-| [mistral/](mistral/README.md) | The models of Mistral |
+| [mistral/](mistral/README.md) | The models of Mistral, with the Voxtral TTS 3 voice actor model [as-of 2026-10-31] |
 | [moonshot/](moonshot/README.md) | The Kimi models of Moonshot |
 | [openai/](openai/README.md) | The GPT and gpt-oss models of OpenAI, with its realtime, GPT-Live, translation and transcription voice models and the GPT-4o mini TTS voice actor model |
 | [other/](other/README.md) | Models of makers that have a few models in scope, including the NVIDIA voice models and the open-weight voice actor models of eleven makers |
 | [resemble-ai/](resemble-ai/README.md) | The Chatterbox-Turbo, Chatterbox-Nano and Dramabox voice actor models of Resemble AI |
 | [soniox/](soniox/README.md) | The TTS Real-Time v2 voice actor model of Soniox |
-| [speechify/](speechify/README.md) | The Simba voice actor models of Speechify |
+| [speechify/](speechify/README.md) | [as-of 2026-10-31] The Simba 3.5 and 3.2 speech synthesis models of Speechify. They accept emotion and emphasis tags and do not apply them |
 | [stepfun/](stepfun/README.md) | The StepAudio realtime voice models of StepFun, with the open Step-Audio-EditX voice actor model |
 | [typesafe/](typesafe/README.md) | The Jev models of TypeSafe AI |
 | [xai/](xai/README.md) | The Grok models of xAI (the cards name the maker SpaceXAI), with Grok Voice |
@@ -200,6 +200,9 @@ and run `make render`.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | CosyVoice2-0.5B | Alibaba (FunAudioLLM) | CosyVoice | 2 | ga | unknown | voice, no duplex | [alibaba/cosyvoice2-0.5b.md](alibaba/cosyvoice2-0.5b.md) |
 | Fun-CosyVoice3-0.5B-2512 | Alibaba (FunAudioLLM) | CosyVoice | 3 | ga | 2025-12-11 | voice, no duplex | [alibaba/fun-cosyvoice3-0.5b-2512.md](alibaba/fun-cosyvoice3-0.5b-2512.md) |
+| Qwen-Audio-3.1-Realtime-Flash | Alibaba (Qwen) | Qwen Audio Realtime Flash | 3.1 | ga | 2026-10-27 | full-duplex voice | [alibaba/qwen-audio-3.1-realtime-flash.md](alibaba/qwen-audio-3.1-realtime-flash.md) |
+| Qwen-Audio-3.1-TTS-Plus | Alibaba (Qwen) | Qwen Audio TTS Plus | 3.1 | ga | 2026-10-21 | voice, no duplex | [alibaba/qwen-audio-3.1-tts-plus.md](alibaba/qwen-audio-3.1-tts-plus.md) |
+| Qwen-Audio-3.1-TTS-Flash | Alibaba (Qwen) | Qwen Audio TTS Flash | 3.1 | ga | 2026-10-12 | voice, no duplex | [alibaba/qwen-audio-3.1-tts-flash.md](alibaba/qwen-audio-3.1-tts-flash.md) |
 | Qwen3.8-Omni-Flash-Realtime | Alibaba (Qwen) | Qwen Omni Realtime | 3.8 | ga | 2026-09-21 | full-duplex voice | [alibaba/qwen3.8-omni-flash-realtime.md](alibaba/qwen3.8-omni-flash-realtime.md) |
 | Qwen-Audio-3.1-Realtime-Plus | Alibaba (Qwen) | Qwen Audio Realtime | 3.1 | ga | 2026-09-20 | full-duplex voice | [alibaba/qwen-audio-3.1-realtime-plus.md](alibaba/qwen-audio-3.1-realtime-plus.md) |
 | Qwen3.8-Omni-Flash | Alibaba (Qwen) | Qwen Omni | 3.8 | ga | 2026-09-18 | - | [alibaba/qwen3.8-omni-flash.md](alibaba/qwen3.8-omni-flash.md) |
@@ -245,10 +248,12 @@ and run `make render`.
 | DeepSeek V4.1-Flash | DeepSeek | DeepSeek Flash | 4.1 | ga | 2026-09-10 | - | [deepseek/deepseek-flash.md](deepseek/deepseek-flash.md) |
 | DeepSeek V4-Pro (0813) | DeepSeek | DeepSeek Pro | 4 | ga | 2026-08-13 | - | [deepseek/deepseek-v4-pro.md](deepseek/deepseek-v4-pro.md) |
 | DeepSeek V4-Flash (0731) | DeepSeek | DeepSeek Flash | 4 | retired 2026-09-10 | 2026-07-31 | - | [deepseek/deepseek-v4-flash.md](deepseek/deepseek-v4-flash.md) |
+| Eleven Realtime v1 Max | ElevenLabs | Eleven Realtime Max | 1 | preview | 2026-10-20 | half-duplex voice | [elevenlabs/eleven_realtime_v1_max.md](elevenlabs/eleven_realtime_v1_max.md) |
+| Eleven Realtime v1 Mini | ElevenLabs | Eleven Realtime Mini | 1 | preview | 2026-10-20 | half-duplex voice | [elevenlabs/eleven_realtime_v1_mini.md](elevenlabs/eleven_realtime_v1_mini.md) |
 | Eleven v4 | ElevenLabs | Eleven Expressive | 4 | ga | 2026-09-28 | voice, no duplex | [elevenlabs/eleven_v4.md](elevenlabs/eleven_v4.md) |
-| Eleven v4 Turbo | ElevenLabs | Eleven Realtime | 4 | ga | 2026-09-28 | voice, no duplex | [elevenlabs/eleven_v4_turbo.md](elevenlabs/eleven_v4_turbo.md) |
+| Eleven v4 Turbo | ElevenLabs | Eleven Expressive Low-Latency | 4 | ga | 2026-09-28 | voice, no duplex | [elevenlabs/eleven_v4_turbo.md](elevenlabs/eleven_v4_turbo.md) |
 | Scribe v2 Medical | ElevenLabs | Scribe Medical | 2 | ga | 2026-09-11 | voice, no duplex | [elevenlabs/scribe_v2_medical.md](elevenlabs/scribe_v2_medical.md) |
-| Eleven v3 Conversational | ElevenLabs | Eleven Realtime | 3 | ga | 2026-02-09 | voice, no duplex | [elevenlabs/eleven_v3_conversational.md](elevenlabs/eleven_v3_conversational.md) |
+| Eleven v3 Conversational | ElevenLabs | Eleven Expressive Low-Latency | 3 | ga | 2026-02-09 | voice, no duplex | [elevenlabs/eleven_v3_conversational.md](elevenlabs/eleven_v3_conversational.md) |
 | Scribe v2 | ElevenLabs | Scribe | 2 | ga | 2026-01-09 | voice, no duplex | [elevenlabs/scribe_v2.md](elevenlabs/scribe_v2.md) |
 | Scribe v2 Realtime | ElevenLabs | Scribe Realtime | 2 | ga | 2025-11-11 | voice, no duplex | [elevenlabs/scribe_v2_realtime.md](elevenlabs/scribe_v2_realtime.md) |
 | Eleven v3 | ElevenLabs | Eleven Expressive | 3 | ga | 2025-06-03 | voice, no duplex | [elevenlabs/eleven_v3.md](elevenlabs/eleven_v3.md) |
@@ -259,7 +264,7 @@ and run `make render`.
 | Fish Audio S2 Pro | Fish Audio | Fish Audio S Pro | 2 | ga | 2026-03-09 | voice, no duplex | [fishaudio/s2-pro.md](fishaudio/s2-pro.md) |
 | Gemini 2.5 Flash-Lite Preview TTS | Google | Gemini Flash-Lite TTS | 2.5 | preview | unknown | voice, no duplex | [google/gemini-2.5-flash-lite-preview-tts.md](google/gemini-2.5-flash-lite-preview-tts.md) |
 | Gemini 3.5 Live Translate Preview | Google | Gemini Live Translate | 3.5 | preview | unknown | voice | [google/gemini-3.5-live-translate-preview.md](google/gemini-3.5-live-translate-preview.md) |
-| Gemini 4 Argon | Google | Gemini Argon | 4 | preview | 2026-09-30 | - | [google/gemini-4-argon.md](google/gemini-4-argon.md) |
+| Gemini 4 Argon | Google | Gemini Argon | 4 | ga | 2026-10-13 | - | [google/gemini-4-argon.md](google/gemini-4-argon.md) |
 | Gemini 3.8 Flash-Lite TTS | Google | Gemini Flash-Lite TTS | 3.8 | ga | 2026-09-22 | voice, no duplex | [google/gemini-3.8-flash-lite-tts.md](google/gemini-3.8-flash-lite-tts.md) |
 | Gemini 3.8 Flash TTS | Google | Gemini Flash TTS | 3.8 | ga | 2026-09-22 | voice, no duplex | [google/gemini-3.8-flash-tts.md](google/gemini-3.8-flash-tts.md) |
 | Gemini 3.8 Live | Google | Gemini Live | 3.8 | ga | 2026-09-15 | full-duplex voice | [google/gemini-3.8-live.md](google/gemini-3.8-live.md) |
@@ -267,7 +272,7 @@ and run `make render`.
 | Gemini 3.8 Flash | Google | Gemini Flash | 3.8 | ga | 2026-09-02 | - | [google/gemini-3.8-flash.md](google/gemini-3.8-flash.md) |
 | Gemini 3.5 Transcribe | Google | Gemini Transcribe | 3.5 | ga | 2026-08-26 | voice, no duplex | [google/gemini-3.5-transcribe.md](google/gemini-3.5-transcribe.md) |
 | Gemini 3.5 Transcribe Live | Google | Gemini Transcribe Live | 3.5 | ga | 2026-08-26 | voice, no duplex | [google/gemini-3.5-transcribe-live.md](google/gemini-3.5-transcribe-live.md) |
-| Gemini 3.7 Flash | Google | Gemini Flash | 3.7 | ga | 2026-08-13 | - | [google/gemini-3.7-flash.md](google/gemini-3.7-flash.md) |
+| Gemini 3.7 Flash | Google | Gemini Flash | 3.7 | retiring (retires 2027-01-28) | 2026-08-13 | - | [google/gemini-3.7-flash.md](google/gemini-3.7-flash.md) |
 | Gemini 3.5 Flash-Lite | Google | Gemini Flash-Lite | 3.5 | ga | 2026-07-21 | - | [google/gemini-3.5-flash-lite.md](google/gemini-3.5-flash-lite.md) |
 | Gemma 4 12B (instruction-tuned, unified) | Google | Gemma | 4 | ga | 2026-06-03 | - | [google/gemma-4-12b-it.md](google/gemma-4-12b-it.md) |
 | Gemini 3.1 Flash TTS Preview | Google | Gemini Flash TTS | 3.1 | retiring (retires 2026-11-17) | 2026-04-15 | voice, no duplex | [google/gemini-3.1-flash-tts-preview.md](google/gemini-3.1-flash-tts-preview.md) |
@@ -298,19 +303,24 @@ and run `make render`.
 | Moshi (Moshiko and Moshika) | Kyutai | Moshi | unknown | ga | unknown | full-duplex voice | [kyutai/moshi.md](kyutai/moshi.md) |
 | MoshiRAG | Kyutai | Moshi | unknown | ga | unknown | full-duplex voice | [kyutai/moshirag.md](kyutai/moshirag.md) |
 | Maya1 | Maya Research | Maya | 1 | ga | 2025-10-18 | voice, no duplex | [other/maya1.md](other/maya1.md) |
+| Muse Spark Open | Meta | Muse Spark Open | unknown | ga | 2026-10-15 | - | [meta/muse-spark-open.md](meta/muse-spark-open.md) |
+| Muse Wonder | Meta | Muse Wonder | 1.0 | preview | 2026-10-12 | - | [meta/muse-wonder-1.0.md](meta/muse-wonder-1.0.md) |
+| Muse Wonder Full | Meta | Muse Wonder | 1.0 | preview | 2026-10-12 | - | [meta/muse-wonder-full-1.0.md](meta/muse-wonder-full-1.0.md) |
 | Muse Spark 1.3 | Meta | Muse Spark | 1.3 | ga | 2026-09-02 | - | [meta/muse-spark-1.3.md](meta/muse-spark-1.3.md) |
 | Muse Glimmer 30B | Meta | Muse Glimmer | unknown | ga | 2026-08-10 | - | [meta/muse-glimmer-30b.md](meta/muse-glimmer-30b.md) |
 | Muse Spark 1.2 | Meta | Muse Spark | 1.2 | ga | 2026-08-05 | - | [meta/muse-spark-1.2.md](meta/muse-spark-1.2.md) |
 | Dragon HD | Microsoft | Dragon HD | unknown | ga | unknown | voice, no duplex | [microsoft/dragon-hd.md](microsoft/dragon-hd.md) |
 | Dragon HD Omni | Microsoft | Dragon HD Omni | unknown | preview | unknown | voice, no duplex | [microsoft/dragon-hd-omni.md](microsoft/dragon-hd-omni.md) |
-| MiniMax M3.1 Flash Preview | MiniMax | MiniMax M Flash | 3.1 | preview | 2026-09-27 | - | [minimax/MiniMax-M3.1-Flash-Preview.md](minimax/MiniMax-M3.1-Flash-Preview.md) |
+| MiniMax M3.1 Flash | MiniMax | MiniMax M Flash | 3.1 | ga | 2026-10-19 | - | [minimax/MiniMax-M3.1-Flash.md](minimax/MiniMax-M3.1-Flash.md) |
 | MiniMax M3 | MiniMax | MiniMax M | 3 | ga | 2026-06-01 | - | [minimax/MiniMax-M3.md](minimax/MiniMax-M3.md) |
-| MiniMax M2.7 | MiniMax | MiniMax M | 2.7 | ga | 2026-03-18 | - | [minimax/MiniMax-M2.7.md](minimax/MiniMax-M2.7.md) |
+| MiniMax M2.7 | MiniMax | MiniMax M | 2.7 | retiring (retires 2026-11-18) | 2026-03-18 | - | [minimax/MiniMax-M2.7.md](minimax/MiniMax-M2.7.md) |
 | MiniMax Speech 2.8 HD | MiniMax | MiniMax Speech HD | 2.8 | ga | 2026-01-23 | voice, no duplex | [minimax/speech-2.8-hd.md](minimax/speech-2.8-hd.md) |
 | MiniMax Speech 2.8 Turbo | MiniMax | MiniMax Speech Turbo | 2.8 | ga | 2026-01-23 | voice, no duplex | [minimax/speech-2.8-turbo.md](minimax/speech-2.8-turbo.md) |
-| Mistral Medium 3.5 | Mistral | Mistral Medium | 3.5 | ga | 2026-04-28 | - | [mistral/mistral-medium-3-5.md](mistral/mistral-medium-3-5.md) |
+| Voxtral TTS 3 | Mistral | Voxtral TTS | 3 | preview | 2026-10-20 | voice, no duplex | [mistral/voxtral-mini-tts-3-0.md](mistral/voxtral-mini-tts-3-0.md) |
+| Mistral Large 4 | Mistral | Mistral Large | 4 | preview | 2026-10-06 | - | [mistral/mistral-large-4.md](mistral/mistral-large-4.md) |
+| Mistral Medium 3.5 | Mistral | Mistral Medium | 3.5 | deprecated (retires 2027-04-30) | 2026-04-28 | - | [mistral/mistral-medium-3-5.md](mistral/mistral-medium-3-5.md) |
 | Mistral Small 4 | Mistral | Mistral Small | 4 | ga | 2026-03-16 | - | [mistral/mistral-small-2603.md](mistral/mistral-small-2603.md) |
-| Mistral Large 3 | Mistral | Mistral Large | 3 | ga | 2025-12-02 | - | [mistral/mistral-large-3.md](mistral/mistral-large-3.md) |
+| Mistral Large 3 | Mistral | Mistral Large | 3 | deprecated (retires 2027-04-30) | 2025-12-02 | - | [mistral/mistral-large-3.md](mistral/mistral-large-3.md) |
 | Kimi K2.7 Code | Moonshot (Kimi) | Kimi K Code | 2.7 | ga | unknown | - | [moonshot/kimi-k2.7-code.md](moonshot/kimi-k2.7-code.md) |
 | Kimi K3.1 Pro | Moonshot (Kimi) | Kimi K | 3.1 | ga | 2026-10-23 | - | [moonshot/kimi-k3.1-pro.md](moonshot/kimi-k3.1-pro.md) |
 | Kimi K3.1 Pro Highspeed | Moonshot (Kimi) | Kimi K | 3.1 | ga | 2026-10-23 | - | [moonshot/kimi-k3.1-pro-highspeed.md](moonshot/kimi-k3.1-pro-highspeed.md) |
@@ -343,19 +353,21 @@ and run `make render`.
 | GPT-4o Transcribe | OpenAI | GPT Transcribe | 1 | deprecated (retires 2027-02-26) | 2025-03-20 | voice, no duplex | [openai/gpt-4o-transcribe.md](openai/gpt-4o-transcribe.md) |
 | VoxCPM2 | OpenBMB | VoxCPM | 2 | ga | 2026-04-03 | voice, no duplex | [other/voxcpm2.md](other/voxcpm2.md) |
 | MOSS-VoiceGenerator | OpenMOSS (MOSI.AI) | MOSS-VoiceGenerator | unknown | ga | 2026-02-08 | voice, no duplex | [other/moss-voicegenerator.md](other/moss-voicegenerator.md) |
+| Reflection Beam 1.0 (501B-A23B) | Reflection | Beam | 1.0 | ga | 2026-10-16 | - | [other/Beam-1.0-501B-A23B.md](other/Beam-1.0-501B-A23B.md) |
 | Dramabox | Resemble AI | Dramabox | 1 | ga | 2026-04-17 | voice, no duplex | [resemble-ai/dramabox.md](resemble-ai/dramabox.md) |
 | Chatterbox-Nano | Resemble AI | Chatterbox Turbo | 1 | ga | 2026-04-14 | voice, no duplex | [resemble-ai/chatterbox-nano.md](resemble-ai/chatterbox-nano.md) |
 | Chatterbox-Turbo | Resemble AI | Chatterbox Turbo | 1 | ga | 2025-12-02 | voice, no duplex | [resemble-ai/chatterbox-turbo.md](resemble-ai/chatterbox-turbo.md) |
 | Soniox TTS Real-Time v2 | Soniox | Soniox TTS Real-Time | 2 | ga | 2026-08-11 | voice, no duplex | [soniox/tts-rt-v2.md](soniox/tts-rt-v2.md) |
 | SoulX-Podcast-1.7B | Soul AI Lab | SoulX-Podcast | unknown | ga | 2025-10-27 | voice, no duplex | [other/soulx-podcast-1.7b.md](other/soulx-podcast-1.7b.md) |
 | SoulX-Podcast-1.7B-dialect | Soul AI Lab | SoulX-Podcast | unknown | ga | 2025-10-27 | voice, no duplex | [other/soulx-podcast-1.7b-dialect.md](other/soulx-podcast-1.7b-dialect.md) |
+| Grok Voice 3.0 | SpaceXAI | Grok Voice | 3.0 | ga | 2026-10-14 | full-duplex voice | [xai/grok-voice-3.0.md](xai/grok-voice-3.0.md) |
 | Grok 4.7 | SpaceXAI | Grok | 4.7 | ga | 2026-09-21 | - | [xai/grok-4.7.md](xai/grok-4.7.md) |
 | Grok 4.7 Fast | SpaceXAI | Grok Fast | 4.7 | ga | 2026-09-21 | - | [xai/grok-4.7-fast.md](xai/grok-4.7-fast.md) |
 | Grok 4.6 | SpaceXAI | Grok | 4.6 | ga | 2026-08-12 | - | [xai/grok-4.6.md](xai/grok-4.6.md) |
-| Grok Voice Think Fast 2.0 | SpaceXAI | Grok Voice Think Fast | 2.0 | ga | 2026-07-29 | full-duplex voice | [xai/grok-voice-think-fast-2.0.md](xai/grok-voice-think-fast-2.0.md) |
+| Grok Voice Think Fast 2.0 | SpaceXAI | Grok Voice | 2.0 | deprecated | 2026-07-29 | full-duplex voice | [xai/grok-voice-think-fast-2.0.md](xai/grok-voice-think-fast-2.0.md) |
 | Grok Build 0.1 | SpaceXAI | Grok Build | 0.1 | preview | 2026-05-29 | - | [xai/grok-build-0.1.md](xai/grok-build-0.1.md) |
+| Speechify Simba 3.5 | Speechify | Speechify Simba | 3.5 | ga | 2026-10-21 | voice, no duplex | [speechify/simba-3.5.md](speechify/simba-3.5.md) |
 | Speechify Simba 3.2 | Speechify | Speechify Simba | 3.2 | ga | 2026-07-08 | voice, no duplex | [speechify/simba-3.2.md](speechify/simba-3.2.md) |
-| Speechify Simba 3.0 | Speechify | Speechify Simba | 3.0 | ga | 2026-05-09 | voice, no duplex | [speechify/simba-3.0.md](speechify/simba-3.0.md) |
 | StepAudio 3 Realtime (preview) | StepFun | StepAudio Realtime | 3 | preview | 2026-09-15 | full-duplex voice | [stepfun/stepaudio-3-realtime-preview.md](stepfun/stepaudio-3-realtime-preview.md) |
 | StepAudio 2.5 Realtime | StepFun | StepAudio Realtime | 2.5 | ga | 2026-05-24 | half-duplex voice | [stepfun/stepaudio-2.5-realtime.md](stepfun/stepaudio-2.5-realtime.md) |
 | Step-Audio-EditX | StepFun | Step-Audio EditX | unknown | ga | 2025-11-12 | voice, no duplex | [stepfun/step-audio-editx.md](stepfun/step-audio-editx.md) |

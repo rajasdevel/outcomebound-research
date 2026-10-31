@@ -9,6 +9,11 @@ sources:
   - https://fish.audio/blog/s2-1-pro-free-api/
   - https://huggingface.co/fishaudio/s2-pro
   - https://artificialanalysis.ai/text-to-speech
+  - https://huggingface.co/fishaudio/drama-3 (read 2026-10-31)
+  - https://huggingface.co/fishaudio/drama-3/blob/main/LICENSE (read 2026-10-31)
+  - https://huggingface.co/api/models/fishaudio/drama-3/commits/main (read 2026-10-31)
+  - https://docs.fish.audio/features/text-to-speech/drama-3 (read 2026-10-31)
+  - https://docs.fish.audio/api-reference/openapi.json (read 2026-10-31)
 ---
 
 # Fish Audio
@@ -24,7 +29,7 @@ Fish Audio sells a text-to-speech API, a speech-to-text API (`transcribe-1-pro` 
 
 - `s2.1-pro-free` is the same model as `s2.1-pro` at no cost for development. It has no latency or data-processing guarantees [fish-models].
 - S1 (`s1`) uses parenthesis cues, a fixed list of 64+ expressions and no multi-speaker mode. It stays available for existing integrations and has no file here [fish-models].
-- `drama-3-preview` appears in the OpenAPI schema as a preview model that supports multi-speaker dialogue. No model page was found, so it has no file [fish-openapi].
+- **Drama 3 [as-of 2026-10-31].** `drama-3` is now a hosted model with its own docs page, and the OpenAPI schema lists it in the `model` header values; `drama-3-preview` no longer appears there. Drama 3 takes plain-language directions in square brackets, paired word tags such as `<whisper>` and `<emphasis>`, phoneme tags and speaker tags. It costs US$50 per million UTF-8 bytes, with a launch price of US$10 until 2026-11-12 17:00 UTC [fish-drama3-docs] [fish-openapi-1031]. Its weights are on Hugging Face as `fishaudio/drama-3`: a mixture of experts with 35B parameters and 3B active per token, and speaker tags for up to 16 characters in one text. Hugging Face shows the repository created on 2026-10-01; its commit history starts on 2026-10-13, and the weights were uploaded again on 2026-10-29. The card metadata names the `fish-audio-research-license`, but the LICENSE file is the Fish Audio Community License 1.0 (2026-10-13). That licence allows research and non-commercial use, allows commercial use while annual revenue is below US$500,000, and requires a separate licence for a hosted speech service [hf-drama3] [hf-drama3-commits] [hf-drama3-license]. It has no file yet.
 
 ## API surface
 
@@ -47,7 +52,7 @@ Fish Audio publishes a model card and an arXiv report for the open S2 Pro model.
 
 ## Open questions
 
-- The text limit per request, and what `drama-3-preview` is.
+- The text limit per request. [as-of 2026-10-31] Which licence governs the Drama 3 weights when the card metadata and the LICENSE file differ.
 
 ## Sources
 
@@ -58,5 +63,10 @@ Fish Audio publishes a model card and an arXiv report for the open S2 Pro model.
 - [fish-pricing] https://docs.fish.audio/developer-guide/models-pricing/pricing-and-rate-limits (kind L, read 2026-10-04)
 - [fish-voice-design] https://docs.fish.audio/features/voice-design (kind L, read 2026-10-04)
 - [fish-blog-s21] https://fish.audio/blog/s2-1-pro-free-api/ (kind L, read 2026-10-04)
+- [fish-drama3-docs] https://docs.fish.audio/features/text-to-speech/drama-3 (kind L, read 2026-10-31)
+- [fish-openapi-1031] https://docs.fish.audio/api-reference/openapi.json (kind L, read 2026-10-31)
+- [hf-drama3] https://huggingface.co/fishaudio/drama-3 (kind L, read 2026-10-31)
+- [hf-drama3-commits] https://huggingface.co/api/models/fishaudio/drama-3/commits/main (kind L, read 2026-10-31)
+- [hf-drama3-license] https://huggingface.co/fishaudio/drama-3/blob/main/LICENSE (kind L, read 2026-10-31)
 - [fish-hf-s2] https://huggingface.co/fishaudio/s2-pro (kind L, read 2026-10-04)
 - [aa-tts-board] https://artificialanalysis.ai/text-to-speech (kind M, read 2026-10-04)

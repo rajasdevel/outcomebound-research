@@ -27,11 +27,15 @@ sources:
   - https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_model_evaluation.pdf
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-8-flash
+  - https://ai.google.dev/gemini-api/docs/changelog (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/deprecations (read 2026-10-31)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/computer-use (read 2026-10-31)
 ---
 
 # Gemini 3.7 Flash
 
-Gemini 3.7 Flash is the previous generation of Google's Flash class (generation 3.7), generally available since 2026-08-13. It is built on Gemini 3.6 Flash, with changes to its reasoning core and support for agentic video understanding, and Google positioned it for coding, agentic workflows and enterprise work. Gemini 3.8 Flash replaced it as the recommended Flash model on 2026-09-02, but Google says 3.7 Flash remains fully supported and lists no shutdown date [L: gemini-3-7-flash-card, gemini-latest-model, gemini-deprecations].
+Gemini 3.7 Flash is the previous generation of Google's Flash class (generation 3.7), generally available since 2026-08-13. It is built on Gemini 3.6 Flash, with changes to its reasoning core and support for agentic video understanding, and Google positioned it for coding, agentic workflows and enterprise work. Gemini 3.8 Flash replaced it as the recommended Flash model on 2026-09-02 [L: gemini-3-7-flash-card, gemini-latest-model]. [as-of 2026-10-31] On the Gemini API, Google deprecated 3.7 Flash on 2026-10-08: it can no longer be selected in Google AI Studio, and API requests to `gemini-3.7-flash` are routed automatically to `gemini-3.8-flash`. The deprecations page says the endpoint does not shut down [L: gemini-changelog-3-7-deprecation, gemini-deprecations-3-7]. A request that names this id on the Gemini API therefore runs on 3.8 Flash, and the guidance in this file then does not describe the model that answers. On Gemini Enterprise Agent Platform the model is still GA, with a retirement date of 2027-01-28 and 3.8 Flash as the upgrade [L: gemini-cloud-3-7-flash-retirement].
 
 Evidence tags: L is Google's own text, M is an independent measurement, A is one practitioner's or outlet's account. Family-wide guidance lives in [the Google README](README.md); this file says what is specific to 3.7 Flash. Its model card and frontier-safety report are the base for 3.8 Flash's safety material, so the system-card section here is the fullest.
 
@@ -46,21 +50,21 @@ Evidence tags: L is Google's own text, M is an independent measurement, A is one
 | Class | Gemini Flash |
 | Generation | 3.7 |
 | Released | 2026-08-13 |
-| Status | ga |
+| Status | retiring (retires 2027-01-28) |
 | Weights | closed |
-| Access | Gemini API; Google AI Studio; Gemini Enterprise Agent Platform; Gemini Enterprise app; Google Antigravity; Android Studio; Gemini app (Spark agent, Google AI Pro and Ultra subscribers) |
+| Access | Gemini API (deprecated 2026-10-08; requests to the id are routed to gemini-3.8-flash; no longer selectable in Google AI Studio) [gemini-changelog-3-7-deprecation] [gemini-deprecations-3-7]; Gemini Enterprise Agent Platform (GA; retirement date 2027-01-28) [gemini-cloud-3-7-flash-retirement]; Gemini Enterprise app; Google Antigravity; Android Studio; Gemini app (Spark agent, Google AI Pro and Ultra subscribers) |
 | Context window | 1,048,576 tokens |
 | Max output | 65,536 tokens |
 | Modalities | input text, image, video, audio, pdf; output text |
 | Reasoning control | effort: low, medium, high (default medium) |
-| Price | $0.75 in / $3.75 out per Mtok; cached input $0.075; introductory rate through 2026-12-31; from 2027-01-01 input 1.50, output 7.50, cached 0.15 (same as 3.8 Flash). |
+| Price | $0.75 in / $3.75 out per Mtok; cached input $0.075; introductory rate through 2026-12-31; from 2027-01-01 input 1.50, output 7.50, cached 0.15 (same as 3.8 Flash). [as-of 2026-10-31] The Gemini API pricing page no longer lists 3.7 Flash; the API routes the id to 3.8 Flash. |
 | Key benchmarks | Terminal-Bench 4.0: 11.2 (high; +/-2.4 (95% CI); rank 27 of 27 rows; Google's 3.8 Flash model card shows the same 11.2, mini-SWE-agent, independent) [tbench-4-leaderboard](https://www.tbench.ai/leaderboard/terminal-bench/4.0); Terminal-Bench 2.1: 85.8 (self-computed by Google; effort not stated, Terminus 2, maker) [gemini-3-7-flash-eval](https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_model_evaluation.pdf); Terminal-Bench 2.1: 85.1 (not stated; from the Google Cloud developer guide, which differs from the model card, maker) [gemini-cloud-guide-3-7](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-7-flash); Terminal-Bench 2.1: 81.6 (not stated; the 3.7 Flash column of the Google Cloud 3.8 Flash developer guide, maker) [gemini-cloud-guide-3-8](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-8-flash); Terminal-Bench 3.0: 14.9 (self-computed by Google; highest-scoring thinking level, mini-swe-agent (LiteLLM 1.96), maker) [gemini-3-7-flash-eval](https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_model_evaluation.pdf); Artificial Analysis Intelligence Index: 39 (high; index v4.3.2, independent) [aa-gemini-3-7-flash](https://artificialanalysis.ai/models/gemini-3-7-flash); Artificial Analysis Intelligence Index: 56 (effort not stated; an earlier index version than v4.3.2, as printed on Google's model card, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/) |
 | Other benchmarks | DeepSWE v1.1: 65 (medium; +/-3; Datacurve leaderboard updated 2026-09-22 (integer shown), mini-swe-agent, independent) [deepswe-leaderboard](https://deepswe.datacurve.ai/); DeepSWE v1.1: 65.3 (high; self-computed by Google, mini-swe-agent (LiteLLM 1.96), maker) [gemini-3-7-flash-eval](https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_model_evaluation.pdf); DeepSWE v1.1: 63.7 (not stated; from the Google Cloud developer guide, maker) [gemini-cloud-guide-3-7](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-7-flash); FrontierCode 1.1 Main: 43.6 (production code quality score; taken from the official leaderboard per Google's methodology, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); GDPVal-AA v2: 1525 (Elo; taken from the Artificial Analysis leaderboard per Google's methodology, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); AutomationBench: 30.4 (private set; taken from the official leaderboard per Google's methodology, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); OSWorld-2.0: 47.9 (partial score; best of 3 runs, single attempt each; self-computed, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); GDM-MRCR v2 (8-needle): 97.0 (128k average; self-computed, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); CharXiv Reasoning: 84.5 (no tools, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); LVBench: 85.4 (1,024 frames; no tools; self-computed, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/); HLE-Verified: 53.6 (full 1,811-item verified set; self-computed, maker) [gemini-3-7-flash-card](https://deepmind.google/models/model-cards/gemini-3-7-flash/) |
 | Prompting guides | [ai.google.dev/gemini-api/docs/prompting-strategies](https://ai.google.dev/gemini-api/docs/prompting-strategies); [ai.google.dev/gemini-api/docs/latest-model](https://ai.google.dev/gemini-api/docs/latest-model); [ai.google.dev/gemini-api/docs/whats-new-gemini-3.5](https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5); [ai.google.dev/gemini-api/docs/function-calling](https://ai.google.dev/gemini-api/docs/function-calling) |
 | System card | [deepmind.google/models/model-cards/gemini-3-7-flash/](https://deepmind.google/models/model-cards/gemini-3-7-flash/) |
 | Model page | [ai.google.dev/gemini-api/docs/models/gemini-3.7-flash](https://ai.google.dev/gemini-api/docs/models/gemini-3.7-flash) |
 | Card checked | 2026-10-03 |
-| Not found | knowledge cutoff on the API model page: not published there; the 3.7 Flash model card says March 2026 (some domains January 2025); SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22); Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages; METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08; maker benchmark settings: the methodology PDF names harnesses (Terminus 2, mini-swe-agent) but not the effort for Terminal-Bench 2.1, OSWorld-2.0 or the multimodal tests; the Cloud guide figures have no settings |
+| Not found | knowledge cutoff on the API model page: not published there; the 3.7 Flash model card says March 2026 (some domains January 2025); SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22); Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages; METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08; maker benchmark settings: the methodology PDF names harnesses (Terminus 2, mini-swe-agent) but not the effort for Terminal-Bench 2.1, OSWorld-2.0 or the multimodal tests; the Cloud guide figures have no settings; access [as-of 2026-10-31]: whether the Gemini app, Antigravity and Android Studio still offer 3.7 Flash was not re-checked |
 <!-- card:end -->
 
 ## How to instruct it
@@ -81,7 +85,7 @@ The family defaults apply: direct answers unless a longer or more conversational
 
 ### Tools and agents
 
-The function-calling rules in [README.md](README.md#tools-and-agents) apply, including matching ids and names on function responses and the update-function workaround for required text before a tool call [L: gemini-f14, gemini-f15]. Computer use is a preview on this model; Google's page names it "Previous stable model" for the tool, with the 3.8 Flash page as the recommendation [L: gemini-computer-use]. Google's card gives OSWorld-2.0 at 47.9 percent and Agent's Last Exam at 26.3 percent, and AutomationBench (a private set) at 30.4 percent [L: gemini-3-7-flash-card]. Google's description of agent behaviour (adapting to roadblocks, asking for clarification) has no independent measurement behind it in the sources read.
+The function-calling rules in [README.md](README.md#tools-and-agents) apply, including matching ids and names on function responses and the update-function workaround for required text before a tool call [L: gemini-f14, gemini-f15]. [as-of 2026-10-31] Computer use became generally available on the Gemini API on 2026-10-30, and Google's list of supported models no longer names 3.7 Flash; it names 3.8 Flash as the recommended model [L: gemini-changelog-3-7-deprecation, gemini-computer-use-october]. Google's card gives OSWorld-2.0 at 47.9 percent and Agent's Last Exam at 26.3 percent, and AutomationBench (a private set) at 30.4 percent [L: gemini-3-7-flash-card]. Google's description of agent behaviour (adapting to roadblocks, asking for clarification) has no independent measurement behind it in the sources read.
 
 Independent: 11.2 percent (plus or minus 2.4) on Terminal-Bench 4.0 at high effort with mini-SWE-agent, the lowest of the 27 rows [M: tbench-4-leaderboard].
 
@@ -151,7 +155,7 @@ No SWE-Bench Pro V2 row, no Coding Agent Index value and no METR time horizon wa
 ## Open questions
 
 - Why the Cloud guides' numbers differ from the card, and which effort Google used for its Terminal-Bench 2.1 run.
-- Whether 3.7 Flash will be retired and when; Google lists no shutdown date.
+- [as-of 2026-10-31] Whether the Gemini API keeps routing `gemini-3.7-flash` to 3.8 Flash after Agent Platform retires the model on 2027-01-28.
 - How the clarifying behaviour Google describes (the launch post says the model clarifies intent when needed) shows up in agent runs; no measurement was found.
 
 ## Sources
@@ -183,3 +187,10 @@ Each source id used above, its kind (M independent measurement, L maker, A pract
 - gemini-3-7-flash-eval (L, read 2026-10-03): https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_model_evaluation.pdf
 - gemini-cloud-3-7-flash (L, read 2026-10-03): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash
 - gemini-cloud-guide-3-8 (L, read 2026-10-03): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-3-8-flash
+
+Read 2026-10-31:
+
+- gemini-changelog-3-7-deprecation (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/changelog
+- gemini-deprecations-3-7 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/deprecations
+- gemini-cloud-3-7-flash-retirement (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash
+- gemini-computer-use-october (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/computer-use

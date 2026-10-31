@@ -24,11 +24,12 @@ sources:
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech
   - https://elevenlabs.io/docs/overview/capabilities/voices
   - https://elevenlabs.io/docs/api-reference/text-to-speech/convert
+  - https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (read 2026-10-31)
 ---
 
 # Eleven v3 Conversational
 
-Eleven v3 Conversational is the low-latency version of Eleven v3. It belongs to the Eleven Realtime class, generation 3. ElevenLabs built it for live, back-and-forth dialogue in ElevenAgents. The changelog added it to agent configuration in the entry of 2026-02-09, and expressive mode is on by default when it is selected. The docs now call it the previous generation, and Eleven v4 Turbo took its place [el-models] [el-changelog-v3conv] [el-agents-expressive]. Family-wide rules are in the [ElevenLabs README](README.md).
+Eleven v3 Conversational is the low-latency version of Eleven v3. It belongs to the class this library calls Eleven Expressive Low-Latency (named Eleven Realtime here until 2026-10-31, when ElevenLabs took that name for its [speech-to-speech models](eleven_realtime_v1_mini.md)), generation 3. ElevenLabs built it for live, back-and-forth dialogue in ElevenAgents. The changelog added it to agent configuration in the entry of 2026-02-09, and expressive mode is on by default when it is selected. The docs now call it the previous generation, and Eleven v4 Turbo took its place [el-models] [el-changelog-v3conv] [el-agents-expressive]. Family-wide rules are in the [ElevenLabs README](README.md).
 
 ## At a glance
 
@@ -38,7 +39,7 @@ Eleven v3 Conversational is the low-latency version of Eleven v3. It belongs to 
 | --- | --- |
 | Id | `eleven_v3_conversational` |
 | Maker | ElevenLabs |
-| Class | Eleven Realtime |
+| Class | Eleven Expressive Low-Latency |
 | Generation | 3 |
 | Released | 2026-02-09 |
 | Status | ga |
@@ -54,12 +55,12 @@ Eleven v3 Conversational is the low-latency version of Eleven v3. It belongs to 
 | Voice languages | 70+ languages, up from about 32 on the Flash models [el-agents-expressive] |
 | Turn detection | none in the model. In ElevenAgents the turn-taking system uses signals from Scribe v2 Realtime, including prosody, to time the agent's reply [el-agents-expressive] |
 | Interruption | Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled; the docs describe no cancel message for the Text to Dialogue WebSocket [el-agents-flow] [el-ws-ttd] |
-| Voice latency | About 280 ms, excluding application and network latency [el-models]; Artificial Analysis reports a median of 65.5 characters generated per second (throughput, not latency) [aa-tts-board] |
+| Voice latency | [as-of 2026-10-31] About 165 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (the models page gave about 280 ms on 2026-10-03) [el-models-1031] [el-latency-method]; Artificial Analysis reports a median of 65.5 characters generated per second (throughput, not latency) [aa-tts-board] |
 | Session limit | Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session [el-ws-ttd]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per character, not per token. API list price US$0.04 per 1,000 characters [el-pricing-api]. In ElevenAgents the page says it costs the same as other agent speech models, from US$0.08 per call minute, with LLM cost separate [el-agents-expressive] [el-pricing-agents]. Artificial Analysis lists US$50 per 1M characters, which does not match the list price [aa-tts-board] |
 | Key benchmarks | none recorded |
-| Other benchmarks | Artificial Analysis Speech Arena Elo (provider voice leaderboard): 1199.99 (blind pairwise listener votes on ElevenLabs's own voices; Artificial Analysis lists the model as v3 Conversational; the model page gives 1199.99 and the leaderboard table read the same day gives 1202.99, Artificial Analysis Speech Arena, independent) [aa-tts-v3conv](https://artificialanalysis.ai/text-to-speech/models/mitty); Artificial Analysis text-to-speech median characters per second: 65.5 (median generation speed; read from the leaderboard data on the Artificial Analysis text-to-speech page, Artificial Analysis, independent) [aa-tts-board](https://artificialanalysis.ai/text-to-speech); Maker inference latency (milliseconds): 280 (approximate figure on the models page, excluding application and network latency, ElevenLabs, maker) [el-models](https://elevenlabs.io/docs/overview/models) |
+| Other benchmarks | Artificial Analysis Speech Arena Elo (provider voice leaderboard): 1199.99 (blind pairwise listener votes on ElevenLabs's own voices; Artificial Analysis lists the model as v3 Conversational; the model page gives 1199.99 and the leaderboard table read the same day gives 1202.99, Artificial Analysis Speech Arena, independent) [aa-tts-v3conv](https://artificialanalysis.ai/text-to-speech/models/mitty); Artificial Analysis text-to-speech median characters per second: 65.5 (median generation speed; read from the leaderboard data on the Artificial Analysis text-to-speech page, Artificial Analysis, independent) [aa-tts-board](https://artificialanalysis.ai/text-to-speech); Maker median server-side latency (milliseconds): 165 (WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; about 280 ms on the models page on 2026-10-03, ElevenLabs, maker) [el-latency-method](https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology) |
 | Prompting guides | [elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices); [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4); [elevenlabs.io/docs/overview/capabilities/text-to-dialogue](https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue) |
 | System card | unknown |
 | Model page | [elevenlabs.io/docs/overview/models](https://elevenlabs.io/docs/overview/models) |
@@ -114,7 +115,7 @@ Text only. The docs give 70+ languages, up from about 32 on the Flash models, wi
 
 ### Voice: turn-taking, interruption and speech style
 
-- **Latency.** About 280 ms, without application and network time [el-models].
+- **Latency [as-of 2026-10-31].** About 165 ms median server-side latency on warm-voice WebSocket requests, without application and network time, in figures updated on 2026-10-29; the page gave about 280 ms on 2026-10-03 [el-models-1031] [el-latency-method].
 - **Turn-taking.** The new turn-taking system of expressive mode uses live signals from Scribe v2 Realtime, such as emotional cues and speech patterns. Its example: "yeah" can be a full answer or a lead-in, and prosody helps tell which. Turn eagerness tunes it: `patient` for emotionally sensitive talk, `eager` for fast talk [el-agents-expressive] [el-agents-flow].
 - **Other turn settings.** Turn timeout (1 to 30 seconds, default 7), soft timeout filler, `speculative_turn`, `spelling_patience` and `turn_model` (`turn_v2` or `turn_v3`) [el-agents-flow] [el-api-agents].
 - **Interruption.** Users can interrupt by default. Tools can block interruptions during execution or for the whole turn. The `skip_turn` tool lets the agent stay silent on request [el-agents-tool-int] [el-agents-skip].
@@ -130,7 +131,7 @@ Agent TTS fields: `model_id`, `voice_id`, `expressive_mode`, `suggested_audio_ta
 No earlier model in this class has a file here. The agent TTS models before it were Flash and Multilingual v2. Against Flash [el-agents-expressive] [el-models]:
 
 - Higher emotional range and 70+ languages, against about 32. The page says it is more context-aware.
-- Higher latency: about 280 ms against about 75 ms on the maker's figures.
+- Higher latency: [as-of 2026-10-31] about 165 ms against about 100 ms (Flash v2.5) and about 135 ms (Flash v2), all median server-side figures of the maker [el-models-1031] [el-latency-method].
 - Expressive mode is on by default.
 - Professional clones lose their character.
 - The same agent price per minute.
@@ -148,7 +149,7 @@ ElevenLabs publishes no system card for Eleven v3 Conversational in the pages re
 
 ## Benchmarks
 
-Independent: Artificial Analysis Speech Arena Elo of 1199.99 and a median of 65.5 characters a second [aa-tts-v3conv] [aa-tts-board]. Maker: about 280 ms latency [el-models].
+Independent: Artificial Analysis Speech Arena Elo of 1199.99 and a median of 65.5 characters a second [aa-tts-v3conv] [aa-tts-board]. Maker: [as-of 2026-10-31] about 165 ms latency (about 280 ms on 2026-10-03) [el-models-1031].
 
 ## Open questions
 
@@ -181,3 +182,8 @@ Independent: Artificial Analysis Speech Arena Elo of 1199.99 and a median of 65.
 - [el-tts-overview] https://elevenlabs.io/docs/overview/capabilities/text-to-speech (kind L, read 2026-10-03)
 - [el-voices] https://elevenlabs.io/docs/overview/capabilities/voices (kind L, read 2026-10-03)
 - [el-api-tts] https://elevenlabs.io/docs/api-reference/text-to-speech/convert (kind L, read 2026-10-03)
+
+Sources added for the claims dated 2026-10-31:
+
+- [el-models-1031] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-31)
+- [el-latency-method] https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (kind L, read 2026-10-31)

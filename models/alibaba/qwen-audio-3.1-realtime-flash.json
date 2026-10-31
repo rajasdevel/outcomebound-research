@@ -1,0 +1,135 @@
+{
+  "id": "qwen-audio-3.1-realtime-flash",
+  "name": "Qwen-Audio-3.1-Realtime-Flash",
+  "maker": "Alibaba (Qwen)",
+  "family": "Qwen Audio",
+  "class": "Qwen Audio Realtime Flash",
+  "generation": "3.1",
+  "released": "2026-10-27",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "QwenCloud realtime API (WebSocket; AOQ and WebRTC also listed); Singapore and China North 2 (Beijing) regions, each with an API key of that region; the examples use the Singapore endpoint [qwencloud-audio-guide] [qwencloud-page-audio31flash]"
+  ],
+  "context_window": 262144,
+  "max_output": 16384,
+  "modalities": {
+    "input": [
+      "text",
+      "audio"
+    ],
+    "output": [
+      "text",
+      "audio"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "PCM 16-bit mono at 16 kHz [qwencloud-audio-guide]",
+    "output_audio": "PCM 16-bit mono at 24 kHz; session.speech_rate 0.5 to 2.0 (default 1.0) [qwencloud-audio-guide] [qwencloud-audio-events]",
+    "voices": "Default longanqian_v3.1, plus the union of the qwen-audio-3.1-tts-plus and qwen-audio-3.1-tts-flash system voice lists, and cloned voices made with target_model set to this model (voice cloning for the realtime models is offered only in China North 2 (Beijing)); the voice can be set only in the first session.update [qwencloud-audio-guide] [qwencloud-audio-events] [qwencloud-voice-cloning]",
+    "languages": [
+      "Conversation: German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Chinese, Thai, Vietnamese and Arabic, with 21 Chinese varieties [qwencloud-audio-guide]",
+      "session.input_audio_transcription.language sets the source language and session.output_audio.language the target language of the speech (a best effort, not a guarantee; the text language does not change) [qwencloud-audio-events]"
+    ],
+    "turn_detection": "server_vad (default; threshold -1.0 to 1.0, default 0.5; silence_duration_ms 200 to 6000, default 800, 400 to 800 advised), smart_turn, smart_turn_v2 (recommended; better at bystanders and unrelated interjections), or null for push-to-talk; the mode can be set only before the first audio is sent [qwencloud-audio-events] [qwencloud-audio-ws]",
+    "interruption": "In server_vad and smart_turn modes new user speech cancels the running response; the client should clear its playback buffer on input_audio_buffer.speech_started; in the smart_turn modes fillers such as uh or hmm neither start a turn nor interrupt playback; speaker enhancement takes up to 5 reference recordings [qwencloud-audio-guide] [qwencloud-audio-events]",
+    "latency": null,
+    "session_limit": "Not stated for this API; the model keeps at most 50 audio turns or 300 seconds of audio (max_history_turns 1 to 50, default 20) [qwencloud-audio-guide] [qwencloud-audio-events]"
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.93,
+    "output": 1.87,
+    "cached_input": null,
+    "notes": "QwenCloud model page, per million tokens: audio input US$0.93 (the input field); text input US$0.23; text output US$0.7; text and audio output US$1.87 (the output field; output text is then not charged). The same rates as the 3.0 Flash page read on 2026-10-03. Rate limit 100,000 tokens and 60 requests per minute [qwencloud-page-audio31flash]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime",
+    "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/websocket-api",
+    "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events"
+  ],
+  "system_card": null,
+  "model_page": "https://www.qwencloud.com/models/qwen-audio-3.1-realtime-flash",
+  "sources": [
+    {
+      "id": "qwencloud-page-audio31flash",
+      "url": "https://www.qwencloud.com/models/qwen-audio-3.1-realtime-flash",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-changelog",
+      "url": "https://docs.qwencloud.com/changelog",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-guide",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-ws",
+      "url": "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/websocket-api",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-events",
+      "url": "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "qwen-audio-3.1-realtime-flash supports enabling tools and enable_search together."
+    },
+    {
+      "id": "qwencloud-s2s-models",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/s2s-models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-voice-cloning",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/voice-cloning",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "released: QwenCloud's changelog dates the model 2026-10-27 [qwencloud-changelog]",
+    "status: no page read calls the model a preview; ga follows the changelog entry and the model page, which carry no preview label",
+    "weights: closed; no open-weight release of any Qwen-Audio realtime model is named in the pages read",
+    "max_output: the model page gives 16K, read here as 16,384 tokens as for 3.1 Plus; it also lists thinking limits (983K input, 131K output) and a 262K maximum reasoning figure, although Alibaba says the Qwen-Audio realtime models do not support thinking mode [qwencloud-page-audio31flash] [qwencloud-s2s-models]",
+    "voice.latency: Alibaba publishes no figure, and Artificial Analysis has no row for this model (read 2026-10-31) [aa-s2s]",
+    "benchmarks: no maker score and no independent run; Artificial Analysis's Speech to Speech page read on 2026-10-31 lists only the 3.0 Plus and 3.0 Flash tiers of the line [aa-s2s]",
+    "voice.session_limit: no maximum session length is stated; only history limits are",
+    "pricing_usd_per_mtok.cached_input: the model page lists context cache among generic features but gives no cached price",
+    "system_card: none published",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index, and has no row for this model",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

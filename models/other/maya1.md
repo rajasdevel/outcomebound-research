@@ -6,6 +6,7 @@ sources:
   - https://huggingface.co/api/models/maya-research/maya1
   - https://huggingface.co/maya-research/maya1/raw/main/emotions.txt
   - https://www.mayaresearch.ai
+  - https://huggingface.co/maya-research/maya2-native (read 2026-10-31)
   - https://artificialanalysis.ai/text-to-speech/models/maya-1
 ---
 
@@ -115,7 +116,7 @@ The card's example uses `temperature` 0.4, `top_p` 0.9, `repetition_penalty` 1.1
 
 ### Migrating from the previous generation
 
-Maya Research's earlier open model, Veena (2025-06-24), is a Hindi and English voice model that the company calls its first. The pages read give it no tags or description control, so it has no file. Maya 2 Native, Global and Flash are hosted models. The company's site lists three hosted models and two open ones, Maya1 and Veena, and no Maya 2 weights were found on Hugging Face [maya-site].
+Maya Research's earlier open model, Veena (2025-06-24), is a Hindi and English voice model that the company calls its first. The pages read give it no tags or description control, so it has no file. Maya 2 Native, Global and Flash are hosted models. The company's site lists three hosted models and two open ones, Maya1 and Veena [maya-site]. [as-of 2026-10-31] Maya 2 Native now also has open weights under Apache-2.0 on Hugging Face (repository created 2026-10-26), <https://huggingface.co/maya-research/maya2-native>, read 2026-10-31; see [README.md](README.md).
 
 ## What the system card reports
 
@@ -134,7 +135,7 @@ Independent: Artificial Analysis Elo 1046.47 (page headline; 1048.58 in the page
 
 - The full tag list: the card says 20 or more and the repository file lists 17.
 - Cloning support.
-- Whether the maker will open its hosted Maya 2 models.
+- Whether the maker will open its other hosted Maya 2 models, Global and Flash; Maya 2 Native has open weights (Hugging Face repository created 2026-10-26) [as-of 2026-10-31].
 
 ## Sources
 

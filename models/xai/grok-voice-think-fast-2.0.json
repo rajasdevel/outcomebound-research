@@ -3,14 +3,14 @@
   "name": "Grok Voice Think Fast 2.0",
   "maker": "SpaceXAI",
   "family": "Grok Voice",
-  "class": "Grok Voice Think Fast",
+  "class": "Grok Voice",
   "generation": "2.0",
   "released": "2026-07-29",
-  "status": "ga",
+  "status": "deprecated",
   "retires": null,
   "weights": "closed",
   "access": [
-    "SpaceXAI API (wss://api.x.ai/v1/realtime, alias grok-voice-latest)",
+    "SpaceXAI API (wss://api.x.ai/v1/realtime; the docs now give the id grok-voice-2.0; deprecated 2026-10-14, and the alias grok-voice-latest now points to grok-voice-3.0) [xai-release-notes-oct31] [xai-s2s-oct31]",
     "SpaceXAI SIP phone-call routing",
     "SpaceXAI ephemeral tokens for browser and mobile clients"
   ],
@@ -51,7 +51,7 @@
     "input": null,
     "output": null,
     "cached_input": null,
-    "notes": "Not per token. SpaceXAI pricing page (read 2026-10-03): US$0.08 per minute of speech-to-speech (US$4.80 per hour) and US$0.004 per text input. Rate limits are set by concurrent sessions per tier, from 10 at tier 0 to 200 at tier 4, not by tokens [xai-pricing] [xai-rates]"
+    "notes": "Not per token. SpaceXAI pricing page (read 2026-10-03): US$0.08 per minute of speech-to-speech (US$4.80 per hour) and US$0.004 per text input. Rate limits are set by concurrent sessions per tier, from 10 at tier 0 to 200 at tier 4, not by tokens [xai-pricing] [xai-rates] [as-of 2026-10-31] The pricing page still lists US$0.08 per minute and US$0.004 per text input for grok-voice-2.0, marked deprecated, and the same price for grok-voice-3.0 [xai-pricing-oct31]."
   },
   "benchmarks": [
     {
@@ -105,7 +105,7 @@
     "https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech"
   ],
   "system_card": null,
-  "model_page": "https://docs.x.ai/developers/models/grok-voice-think-fast-2.0",
+  "model_page": "https://docs.x.ai/developers/models/grok-voice-2.0",
   "sources": [
     {
       "id": "xai-s2s",
@@ -190,6 +190,34 @@
       "read": "2026-10-03",
       "kind": "M",
       "quote": null
+    },
+    {
+      "id": "xai-release-notes-oct31",
+      "url": "https://docs.x.ai/developers/release-notes",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-s2s-oct31",
+      "url": "https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-pricing-oct31",
+      "url": "https://docs.x.ai/developers/pricing",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-model-page-oct31",
+      "url": "https://docs.x.ai/developers/models/grok-voice-2.0",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
@@ -207,6 +235,9 @@
     "Terminal-Bench 4.0: not applicable to a speech model; no run found",
     "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
     "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
-    "METR 50% time horizon: not applicable to a speech model; no entry"
+    "METR 50% time horizon: not applicable to a speech model; no entry",
+    "id [as-of 2026-10-31]: the docs now name this model grok-voice-2.0, and the old page for grok-voice-think-fast-2.0 redirects to the models list; whether the API still accepts the grok-voice-think-fast-2.0 id was not verified [xai-model-page-oct31] [xai-release-notes-oct31]",
+    "retires: xAI gives no end-of-life date for grok-voice-2.0 [xai-release-notes-oct31]",
+    "class [as-of 2026-10-31]: the class was Grok Voice Think Fast; it is now Grok Voice, because the docs name this model Grok Voice 2.0 and its successor Grok Voice 3.0 [xai-s2s-oct31]"
   ]
 }
