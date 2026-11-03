@@ -9,6 +9,10 @@ sources:
   - https://www.alibabacloud.com/help/en/model-studio/privacy-notice
   - https://docs.qwencloud.com/developer-guides/getting-started/first-api-call
   - https://docs.qwencloud.com/developer-guides/getting-started/pricing
+  - https://docs.qwencloud.com/changelog (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/getting-started/model-prices (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/tts-models (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/realtime-streaming (read 2026-10-31)
 ---
 
 # Alibaba Cloud Model Studio
@@ -33,8 +37,12 @@ The Model Studio models page (updated 2026-09-28) lists flagship text models `qw
 | [DeepSeek V4 Pro](../models/deepseek/deepseek-v4-pro.md) | `deepseek-v4-pro-0813` |
 | [DeepSeek Flash](../models/deepseek/deepseek-flash.md) | `deepseek-v4.1-flash` |
 | [Kimi K3](../models/moonshot/kimi-k3.md) | `kimi-k3` |
+| [Qwen-Audio-3.1-Realtime-Flash](../models/alibaba/qwen-audio-3.1-realtime-flash.md) | `qwen-audio-3.1-realtime-flash` on QwenCloud's realtime API; [as-of 2026-10-31] added 2026-10-27 [changelog-1031] |
+| [Qwen-Audio-3.1-TTS-Plus](../models/alibaba/qwen-audio-3.1-tts-plus.md), [Qwen-Audio-3.1-TTS-Flash](../models/alibaba/qwen-audio-3.1-tts-flash.md) | `qwen-audio-3.1-tts-plus` and `qwen-audio-3.1-tts-flash` on QwenCloud's speech synthesis API, Singapore and China North 2 (Beijing); [as-of 2026-10-31] added 2026-10-21 and 2026-10-12 [changelog-1031, tts-1031, tts-rt-1031] |
 
 The maker README records that a bare id is an alias and a dated id a snapshot, and that the bare `qwen3.8-max` moved to the 0902 snapshot on 2026-09-05; the Model Studio page, updated 2026-09-28, shows only the bare name and says nothing about aliases. The lineage is in the [maker README](../models/alibaba/README.md). [models]
+
+[as-of 2026-10-31] QwenCloud's changelog adds deployment scopes to served models: `qwen3.8-flash` in US (Virginia) on 2026-10-03 and in the EU scope in Germany (Frankfurt) and the Hong Kong (China) scope on 2026-10-27; `qwen3.8-max` and `qwen3.7-flash` in US (Virginia) on 2026-10-08; and `glm-5.3` in US (Virginia) on 2026-10-26. The 2026-10-12 to 2026-10-27 entries also add the Qwen-Audio 3.1 TTS models, the audio-generation model `qwen-audio-3.1-tts-next` and the realtime model above [changelog-1031]. Speech synthesis bills differently by model: `qwen-audio-3.1-tts-flash` by input and output tokens, the other Qwen-Audio TTS models by input characters [prices-1031].
 
 ## API surface
 
@@ -89,3 +97,7 @@ Per million tokens with input and output priced separately, and tiered pricing t
 | privacy | https://www.alibabacloud.com/help/en/model-studio/privacy-notice | L | 2026-10-03 |
 | first-call | https://docs.qwencloud.com/developer-guides/getting-started/first-api-call | L | 2026-10-03 |
 | pricing | https://docs.qwencloud.com/developer-guides/getting-started/pricing | L | 2026-10-03 |
+| changelog-1031 | https://docs.qwencloud.com/changelog | L | 2026-10-31 |
+| prices-1031 | https://docs.qwencloud.com/developer-guides/getting-started/model-prices | L | 2026-10-31 |
+| tts-1031 | https://docs.qwencloud.com/developer-guides/speech/tts-models | L | 2026-10-31 |
+| tts-rt-1031 | https://docs.qwencloud.com/developer-guides/speech/realtime-streaming | L | 2026-10-31 |

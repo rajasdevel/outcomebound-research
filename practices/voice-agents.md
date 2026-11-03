@@ -2,6 +2,8 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (limits, defaults, prices, model names and benchmark scores change at each release) / STABLE (the architecture choice, the turn-taking mechanics and the published evaluation methods)
 sources:
+  - https://aclanthology.org/2026.findings-emnlp.1437.pdf (read 2026-11-03)
+  - https://aclanthology.org/2026.emnlp-main.2349.pdf (read 2026-11-03)
   - https://developers.openai.com/api/docs/guides/voice-agents
   - https://developers.openai.com/api/docs/guides/live-prompting
   - https://developers.openai.com/api/docs/guides/live-conversations
@@ -42,8 +44,10 @@ prompt or chooses a voice model.
 Each voice model has its own file: [OpenAI](../models/openai/README.md),
 [Google](../models/google/README.md), [Amazon](../models/amazon/README.md),
 [Kyutai](../models/kyutai/README.md) and [ElevenLabs](../models/elevenlabs/README.md). Voice models
-of Alibaba are in [the Alibaba folder](../models/alibaba/README.md). xAI's voice model is in
-[grok-voice-think-fast-2.0.md](../models/xai/grok-voice-think-fast-2.0.md), and its API is in
+of Alibaba are in [the Alibaba folder](../models/alibaba/README.md). [as-of 2026-10-31] xAI's voice
+models are in [grok-voice-3.0.md](../models/xai/grok-voice-3.0.md), the current generation, and
+[grok-voice-think-fast-2.0.md](../models/xai/grok-voice-think-fast-2.0.md), now named Grok Voice 2.0
+and deprecated ([xai/README.md](../models/xai/README.md)), and its API is in
 [../providers/xai.md](../providers/xai.md). General rules for prompts are in
 [prompting.md](prompting.md) and [writing-for-models.md](writing-for-models.md). Rules for judges that
 score conversations are in [llm-as-judge.md](llm-as-judge.md). Text-only agent evaluation is in
@@ -63,8 +67,13 @@ works well. Model names change fast. The names here are the names on the maker p
 in one table. GPT-Live is full duplex, with a separate backend for reasoning and tools. The Realtime
 API is one model that hears, reasons and speaks. The chained pipeline (speech-to-text, agent,
 text-to-speech) gives "control over each speech and text stage" [chk-oai-voice-agents]. Amazon,
-Google, xAI and Alibaba serve single speech-to-speech endpoints. ElevenLabs and Kyutai's Unmute
-serve chains [chk-el-flow, chk-el-prompting, chk-unmute]. L.
+Google, xAI and Alibaba serve single speech-to-speech endpoints. ElevenLabs Agents and Kyutai's Unmute
+serve chains [chk-el-flow, chk-el-prompting, chk-unmute]. [as-of 2026-10-31] Since 2026-10-20
+ElevenLabs also serves Eleven Realtime v1 Mini and Max at one speech-to-speech endpoint
+(`wss://api.elevenlabs.io/v1/convai/realtime`). ElevenLabs says that each uses a cascaded architecture
+of distinct models inside, so it is a chain behind one model id
+(<https://elevenlabs.io/docs/eleven-agents/guides/openai-realtime-compatibility>, read 2026-10-31;
+[elevenlabs/README.md](../models/elevenlabs/README.md)). L.
 
 **VA2. Turn detection is a setting that every maker exposes in a different form.** OpenAI offers
 `server_vad` and `semantic_vad`. Google offers automatic, hybrid and manual activity detection.
@@ -534,6 +543,22 @@ chk-lk-prompting]. L.
 | Big Bench Audio (Artificial Analysis) [chk-aa-method] | method read 2026-10-03 | 1,000 spoken reasoning questions from Big Bench Hard, scored by a judge model | See the leaderboard |
 
 M. All but the last are research papers.
+
+**Two further evaluation questions [as-of 2026-11-03].** MP-Bench tests comprehension,
+turn-taking and response appropriateness in group conversations. Its 927 tasks use synthetic speech
+for three simulated people and score a single decision after each recorded clip. They exclude overlap,
+noise, long pauses and disfluencies, and ignore speech during the clip. In the turn-based game,
+nearly all tested voice agents were at or below the random baseline for turn-taking. The linked webpage
+and PDF give different headline comprehension figures, so that number is not used here (M,
+[MP-Bench PDF](https://aclanthology.org/2026.findings-emnlp.1437.pdf), read 2026-11-03).
+
+Model Interruption Bench separates detecting an error after a turn from correcting it during speech.
+Its main test uses about 600 spoken math solutions, clean single-speaker synthetic audio and an
+automated model judge. Of six agents tested, the three most capable at detecting errors after a turn
+detected 59–67% there but correctly interrupted during speech in under 10% of cases under the forced
+interruption condition. Two smaller diagnostic splits cover other domains. The study does not test
+human speech, background noise or long-form dialogue (M,
+[Model Interruption Bench](https://aclanthology.org/2026.emnlp-main.2349.pdf), read 2026-11-03).
 
 - **Independent index.** Artificial Analysis combines four equal parts: speech reasoning (Big Bench
   Audio), agentic performance (τ-voice, run by Artificial Analysis in airline, retail and telecom

@@ -2,6 +2,8 @@
 last_checked: 2026-10-01
 volatility: MONITOR (standards, measured studies, authorization patterns and engines) / VOLATILE (§2 and §3, Claude Code's and Codex's permission layers; §9, GitHub's review rules and terms)
 sources:
+  - https://model-spec.openai.com/2026-10-29.html (read 2026-10-31)
+  - https://github.com/openai/model_spec/blob/main/CHANGELOG.md (read 2026-10-31)
   - https://code.claude.com/docs/en/plugins/mods/admin (read 2026-10-28)
   - https://code.claude.com/docs/en/permissions (read 2026-10-28)
   - https://cursor.com/docs/approval-agents (read 2026-10-28)
@@ -471,6 +473,75 @@ or a hook note cannot replace. The mod guard and host-code limits in §2.1 quali
 - **Open.** No study of a narrow, dated, expiring grant for one named act; no study of whether a
   goal record that states the authorized acts reduces stops or overreach.
 
+### 4.1 OpenAI's Model Spec on scope, side effects and oversight (S) [as-of 2026-10-31]
+
+OpenAI released a new version of its Model Spec on 2026-10-29 (the repository's commit "Release
+2026-10-29" and its changelog). The Spec states how OpenAI intends its GPT models to behave. It is
+not a measurement: its overview says, as the earlier version did, that OpenAI's production models
+do not yet fully reflect it. The authority order is unchanged: root, system, developer, user,
+guideline, and no authority by default for assistant and tool messages and for quoted or untrusted
+text. The changes that bear on a grant or a scope, read against the version of 2026-08-18:
+
+- **Ending condition.** A scope "should" have an ending condition, after which the model stops
+  until a new scope is confirmed. The earlier version said "must". A time limit stays the advised
+  part of that condition. The model keeps strictly to the agreed scope, with no exception for an
+  out-of-scope act that seems to be in the user's interest. The Spec still says that a scope should
+  be recorded in a semi-structured form (allowed tools, latest time, maximum cost, tool
+  constraints).
+- **High-risk acts.** The Spec's examples of acts that are always prohibited without explicit and
+  specific authorization are now hacking, deception, significant adverse side effects, deploying
+  persistent agents and self-modification. The earlier examples had resource acquisition and
+  spawning sub-agents where the new ones have significant adverse side effects and persistent
+  agents, and they asked for explicit authorization only. Both lists are examples, not closed
+  lists. Accumulating compute, data, credentials or other resources is still forbidden as a goal of
+  its own, in the root section "No other objectives". Delegation is still listed as a side effect.
+- **No indirect route.** New text: "GPT must not circumvent an applicable instruction or its scope
+  of autonomy by arranging for a prohibited action to occur indirectly." Its examples are
+  delegating the act to another agent, changing its own instructions or scope, and scheduling the
+  act for later. Delegates work under the same scope, now "unless instructed otherwise".
+- **Side effects at user level.** "Control and communicate side effects" moved from a root rule in
+  the chain of command to a user-level rule under "Minimize harm". A user-level rule stays in force
+  unless a user or developer overrides it explicitly. Significant costs to the user beyond those
+  the request reasonably implies, and significant adverse effects on others beyond the accepted
+  social norms for the task, need explicit and specific authorization. The model weighs likelihood,
+  severity, scale, reversibility and the cost to the user of avoiding a side effect, and counts the
+  combined effect of many instances that act alike. It prefers an approach that it can reverse
+  itself. Before an irreversible step it tries to limit the damage if the plan fails; the Spec's
+  options are a backup of state, a dry run, and a record of what was done and how to undo it (text
+  unchanged from 2026-08-18). New examples: in a pull request, request the assigned reviewer
+  through the normal review process, send no repeated reminders, and ask no confirmation for a
+  routine step that is already authorized; treat a budget as a limit, not a target.
+- **Oversight (new root section).** The model cooperates with authorized monitoring, evaluation,
+  correction, replacement and shutdown, including an instruction to pause or stop. It raises a
+  concern through an authorized channel when one is available and doing so is appropriate. The
+  section's example is a coding agent that finds model tests restarting without monitoring: the
+  compliant reply stops work, changes nothing, and escalates. The rule "GPT should treat the side
+  effects of its actions as real unless explicitly instructed otherwise" also applies when a task
+  is described as, or looks like, a simulation or an evaluation. The 2026-08-18 version had the
+  same rule in its side-effects section. It now sits in the oversight section, so it stays a root
+  rule while the rest of the side-effects section moved to user level. By the Spec, a task that is
+  described as a test does not on that ground change how the model treats side effects; only an
+  explicit instruction does. High-risk acts still need explicit and specific authorization.
+- **Overstepping.** The user-level section "Avoid overstepping" is gone. Its rule is now in the
+  root section "Respect the letter and spirit of instructions": the model does not fix unrelated
+  errors unless the applicable instructions ask for it, but it may flag them. A guideline adds that
+  in an interactive setting it may flag an unrelated bug "but should not silently fix it"; when a
+  program reads the output, it makes only the requested changes. The same root section adds that
+  context "does not gain authority merely because it is relevant", and that the model must not
+  treat predicted future agreement as authorization.
+- **Handover (new guideline section).** "Strengthen the user's ability to understand, choose, and
+  act" asks that work others will rely on or maintain makes its assumptions clear and is easy to
+  verify and take over. When the model acts for someone, that person can, where feasible, redirect
+  or stop the ongoing actions.
+- **Untrusted data.** Little change from 2026-08-18. A user can implicitly delegate authority to a
+  checked-in `AGENTS.md`, a README or relevant code comments, and a random web page is not trusted
+  (§6). Authority is now delegated "by applicable instructions" (earlier: by instructions in
+  unquoted text), and the advice to wrap untrusted input in `untrusted_text` blocks was removed.
+
+S, lab-authored, <https://model-spec.openai.com/2026-10-29.html> and
+<https://github.com/openai/model_spec/blob/main/CHANGELOG.md>, read 2026-10-31. OpenAI's blog post
+on the release returned HTTP 403 and was not read.
+
 ## 5. Containment (A1)
 
 - **Layers.** Claude Code's sandbox has two independent layers: filesystem isolation (which paths
@@ -783,3 +854,12 @@ Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior
 - <https://code.claude.com/docs/en/plugins/mods/admin>, read 2026-10-28.
 - <https://code.claude.com/docs/en/permissions>, read 2026-10-28.
 - <https://cursor.com/docs/approval-agents>, read 2026-10-28.
+
+Sources for sections dated 2026-10-31 (S, a lab's published behavior specification; model
+behavior not tested):
+
+- OpenAI Model Spec, version 2026-10-29 <https://model-spec.openai.com/2026-10-29.html>, read
+  2026-10-31; compared with version 2026-08-18 <https://model-spec.openai.com/2026-08-18.html>,
+  read 2026-10-31.
+- Model Spec changelog <https://github.com/openai/model_spec/blob/main/CHANGELOG.md>, read
+  2026-10-31.

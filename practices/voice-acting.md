@@ -98,9 +98,14 @@ names a feature, this page says what the maker documents. It does not say that t
 Model names change fast. The names here are the names on the maker pages on 2026-10-04.
 
 **What this page leaves out.** A model that offers only a choice of voices is not a voice actor
-model. A model that offers only SSML rate and pitch is not one either. Mistral's Voxtral TTS is an
-example of a third kind: it takes a reference clip and copies its delivery, with no tags and no
-instruction field [vd-mistral]. Amazon Polly is an example of the SSML kind: its generative voices take
+model. A model that offers only SSML rate and pitch is not one either. Mistral's first Voxtral TTS
+(`voxtral-mini-tts-2603`) is an example of a third kind: it takes a reference clip and copies its
+delivery, with no tags and no instruction field [vd-mistral]. [as-of 2026-10-31] Its successor,
+Voxtral TTS 3 (`voxtral-mini-tts-3-0`), takes inline emotion and pace tags such as `[emotion=calm]`,
+so it is a voice actor model, and Mistral has deprecated the first model
+(<https://docs.mistral.ai/studio/audio/text-to-speech/emotion-tags>, read 2026-10-31;
+<https://docs.mistral.ai/studio/audio/migrate-from-voxtral-2>, read 2026-10-31;
+[the Voxtral TTS 3 file](../models/mistral/voxtral-mini-tts-3-0.md)). Amazon Polly is an example of the SSML kind: its generative voices take
 SSML for pauses, prosody, pronunciation and language, and its only style element (a newscaster style)
 is for some neural voices only [vd-polly].
 
@@ -188,8 +193,8 @@ vd-xai-tts, vd-ms-ssml, vd-higgs, vd-chatterbox, vd-cart-vse, vd-mistral]. L.
   [vd-ms-ssml]. Cartesia lists 58 emotion values, such as angry, sad and scared, and ranges of 0.6 to 1.5 for speed
   and 0.5 to 2.0 for volume. It marks emotion control as beta in one page and as highly experimental when
   emotion changes within one generation [vd-cart-vse, vd-cart-ssml]. L.
-- **Reference audio.** Mistral says its model follows the intonation, rhythm and emotion of the voice
-  clip, so it needs no emotion tags. The clip can be as short as 2 to 3 seconds [vd-mistral]. ElevenLabs
+- **Reference audio.** Mistral says its first Voxtral TTS model (`voxtral-mini-tts-2603`) follows the
+  intonation, rhythm and emotion of the voice clip, so it needs no emotion tags. The clip can be as short as 2 to 3 seconds [vd-mistral]. ElevenLabs
   says that a delivery that exists in the training data of a voice is easier to reproduce, and that the
   pace of a voice depends on the audio that made it [vd-el-bp]. L.
 - **SSML in the newer ElevenLabs models.** The v4 page says SSML is no longer supported and that the
@@ -434,10 +439,11 @@ L, as of 2026-10-04.
 ## 9. Latency against expressiveness (MONITOR)
 
 - **Separate models for separate jobs.** The ElevenLabs changelog points `eleven_v4` at content
-  creation and longer audio, and `eleven_v4_turbo` at agents and interactive use. The models page lists
-  v4 Turbo at a median inference latency of about 100 ms, v3 Conversational (the realtime version of v3)
-  at about 280 ms, and Flash v2.5 at about 75 ms. It lists no latency for v4 or v3. Flash v2.5 does not
-  normalise numbers by default [vd-el-models, vd-el-changelog-v4]. L.
+  creation and longer audio, and `eleven_v4_turbo` at agents and interactive use. [as-of 2026-10-31]
+  ElevenLabs' latency methodology page, updated 2026-10-29, gives about 100 ms for v4 Turbo and for
+  Flash v2.5, and about 165 ms for v3 Conversational (the low-latency version of v3). It lists no
+  latency for v4 or v3 (<https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology>, read
+  2026-10-31). Flash v2.5 does not normalise numbers by default [vd-el-models, vd-el-changelog-v4]. L.
 - **Speed can remove the control.** Inworld says `inworld-tts-2-flash` ignores instruction tags, and the
   non-verbal tags still work. Its docs list 100 ms time to first byte for TTS-2 and 20 ms for the Flash
   model [vd-inw-steer, vd-inw-models]. Google offers Flash-Lite TTS for volume and cost. Its
@@ -451,8 +457,11 @@ L, as of 2026-10-04.
   directed by tags and rules in the system prompt, with a turn-taking system that uses signals from its
   realtime transcription model, including emotional cues. It says a tag affects about the next
   4 to 5 words, and the mode does not keep the identity of a professional clone [vd-el-expr]. L.
-- **What the maker figures cover.** The ElevenLabs figures are inference time and leave out the network
-  [vd-el-models]. Hume's two pages differ: its launch post says under 200 ms for Octave 2, and its docs
+- **What the maker figures cover.** [as-of 2026-10-31] The ElevenLabs figures are medians of
+  server-side latency from production traffic: the time from when ElevenLabs receives a request to when
+  it sends the first audio, on WebSocket streaming requests with warm voices. They leave out the network
+  round trip, upstream steps in the application (such as the wait for a language model) and player
+  buffering (<https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology>, read 2026-10-31). Hume's two pages differ: its launch post says under 200 ms for Octave 2, and its docs
   table says about 100 ms for Octave 2 and about 200 ms for Octave 1 [vd-hume-o2, vd-hume-ov]. Latency
   for a whole voice-agent turn is in [voice-agents.md](voice-agents.md). L.
 

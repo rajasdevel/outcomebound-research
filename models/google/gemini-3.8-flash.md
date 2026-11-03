@@ -28,11 +28,14 @@ sources:
   - https://storage.googleapis.com/deepmind-media/gemini/gemini_3-8_flash_model_evaluation.pdf
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash
   - https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_fsf_report.pdf
+  - https://ai.google.dev/gemini-api/docs/changelog (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/computer-use (read 2026-10-31)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash (read 2026-10-31)
 ---
 
 # Gemini 3.8 Flash
 
-Gemini 3.8 Flash is Google's current Flash-class model (generation 3.8), generally available since 2026-09-02. It is built on Gemini 3.7 Flash and is aimed at long software-engineering tasks, autonomous agents and enterprise workflows; it is the default model of Google's Antigravity managed agent. It succeeds 3.7 Flash as the Flash model Google recommends, and Google says 3.7 Flash stays fully supported for efficiency-first work [L: gemini-latest-model, gemini-3-8-flash-card, google-3-8-flash-blog].
+Gemini 3.8 Flash is Google's current Flash-class model (generation 3.8), generally available since 2026-09-02. It is built on Gemini 3.7 Flash and is aimed at long software-engineering tasks, autonomous agents and enterprise workflows; it is the default model of Google's Antigravity managed agent. It succeeds 3.7 Flash as the Flash model Google recommends [L: gemini-latest-model, gemini-3-8-flash-card, google-3-8-flash-blog]. [as-of 2026-10-31] On the Gemini API, 3.7 Flash is deprecated since 2026-10-08, and requests to `gemini-3.7-flash` now run on 3.8 Flash [L: gemini-changelog-october-31].
 
 Evidence tags: L is Google's own text, M is an independent measurement, A is one practitioner's or outlet's account. Family-wide guidance lives in [the Google README](README.md); this file says what is specific to 3.8 Flash.
 
@@ -94,7 +97,7 @@ The family defaults apply (direct answers; ask for conversation or detail). Arti
 
 Function calling follows the family rules in [README.md](README.md#tools-and-agents): every function response carries the call id and name; multimodal results go inside the response; extra instructions go at the end of the response text after a blank line; the 3.8 migration list also warns that required text before a tool call can produce Malformed_Function_Call, and gives the dedicated update-function workaround [L: gemini-latest-model, gemini-f14].
 
-Computer use: Google names 3.8 Flash as the recommended model for the computer-use tool (a preview) [L: gemini-computer-use]. Google's card gives OSWorld-2.0 at 59.0 percent (partial score, batch tool enabled), against 50.6 percent for 3.7 Flash [L: gemini-3-8-flash-card].
+Computer use: [as-of 2026-10-31] the computer-use tool is generally available on the Gemini API since 2026-10-30, in the Interactions and GenerateContent APIs, and Google names 3.8 Flash as the recommended model for it [L: gemini-changelog-october-31, gemini-computer-use-october-31]. The Agent Platform model page lists computer use as supported for 3.8 Flash, with no preview mark; no Agent Platform GA notice for the tool was found [L: gemini-cloud-3-8-flash-october-31]. Google's card gives OSWorld-2.0 at 59.0 percent (partial score, batch tool enabled), against 50.6 percent for 3.7 Flash [L: gemini-3-8-flash-card].
 
 Agents: 3.8 Flash is the default model of the Antigravity managed agent, whose id antigravity-preview-09-2026 replaced the 05-2026 id that shuts down on 2026-10-05; the underlying model can be changed in the agent configuration, and a token budget can be set [L: gemini-changelog, gemini-antigravity-agent]. Google describes the model as reducing failed loops in multi-step planning; no independent measurement of loops or failed runs for 3.8 Flash was found [L: gemini-latest-model].
 
@@ -201,3 +204,9 @@ Each source id used above, its kind (M independent measurement, L maker, A pract
 - gemini-3-8-flash-eval (L, read 2026-10-03): https://storage.googleapis.com/deepmind-media/gemini/gemini_3-8_flash_model_evaluation.pdf
 - gemini-cloud-3-8-flash (L, read 2026-10-03): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash
 - gemini-3-7-flash-fsf (L, read 2026-10-03): https://storage.googleapis.com/deepmind-media/gemini/gemini_3-7_flash_fsf_report.pdf
+
+Read 2026-10-31:
+
+- gemini-changelog-october-31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/changelog
+- gemini-computer-use-october-31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/computer-use
+- gemini-cloud-3-8-flash-october-31 (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash

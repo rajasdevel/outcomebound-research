@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: MONITOR (memory research is mostly 2026 preprints and moves fast) / VOLATILE (§1, where each harness keeps memory)
 sources:
+  - https://arxiv.org/html/2610.14431 (read 2026-11-03)
   - https://github.com/openai/codex/releases/tag/rust-v0.165.0 (read 2026-10-28)
   - https://platform.claude.com/docs/en/managed-agents/dreams (read 2026-10-28)
   - https://arxiv.org/html/2609.23570v1 (read 2026-10-09)
@@ -104,6 +105,13 @@ Codex 0.165.0 enables memory v2 for fresh profiles and adds external-agent memor
 Anthropic's Dreams research preview takes an existing store and 1–100 sessions. A model produces a new output store without changing the input store. The output can appear while work runs; failure or cancellation can leave partial output. On completion, the caller can review the store and choose whether to attach it to future sessions. Billing uses the selected model's standard token rates. L, <https://platform.claude.com/docs/en/managed-agents/dreams>, read 2026-10-28. This interface does not establish the correctness of generated memories. Reviewing provenance, contradictions and changed scope before adoption follows from the failure modes below (inference).
 
 ## 3. Poisoning
+
+**Memory formation [as-of 2026-11-03].** MemForm tests controlled changes to five interfaces:
+memory content, evidence, scope, selection and consolidation order. Across six models and two response
+formats, changes to which experiences are retained or their consolidation order changed downstream
+behavior in the evaluated setups. Tested defenses gave uneven, incomplete protection. The benchmark
+measures controlled susceptibility, not deployed attack success or attack cost; its implementations
+share a policy-based memory protocol. M, preprint, <https://arxiv.org/html/2610.14431>, read 2026-11-03.
 
 - **Defenses fall short.** On MPBench (3,240 attack cases, 2,997 benign), "no defense achieves both
   high TPR and low FPR simultaneously": the best, PromptArmor, detected 67.67% at 1.00% false

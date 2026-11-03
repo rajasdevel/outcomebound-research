@@ -14,13 +14,22 @@ sources:
   - https://web.archive.org/web/20260802003901/https://ai.google.dev/gemini-api/docs/latest-model
   - https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/
   - https://ai.google.dev/gemini-api/docs/pricing
+  - https://ai.google.dev/gemini-api/docs/models/gemini-4-argon (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/latest-model (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/pricing (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/changelog (read 2026-10-31)
+  - https://deepmind.google/models/model-cards/gemini-4-argon/ (read 2026-10-31)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes (read 2026-10-31)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/computer-use (read 2026-10-31)
+  - https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ (read 2026-10-31)
 ---
 
 # Gemini 4 Argon
 
-Gemini 4 Argon is Google's newest Gemini model (class Gemini Argon, generation 4), announced on 2026-09-30 for complex long-horizon work in software engineering, enterprise knowledge work such as legal and finance, and cybersecurity defence. It has no earlier generation in this library and sits above the Flash class; the previous Pro-class model is Gemini 3.1 Pro. It is not generally available: Google is rolling it out to vetted cyber defenders in its Fairwind Program, who can use it on its own (as a managed model on Gemini Enterprise, with zero data retention) or inside Google's CodeMender security agent. Google says it will widen access "as soon as possible", starting with paid API customers and Google AI Ultra subscribers, and gives no date [L: google-gemini-4-argon, gemini-deepmind-page, gemini-fairwind].
+Gemini 4 Argon (class Gemini Argon, generation 4) is a Google model for complex long-horizon work in software engineering, enterprise knowledge work such as legal and finance, and cybersecurity defence. It has no earlier generation in this library and sits above the Flash class; the previous Pro-class model is Gemini 3.1 Pro. Google announced it on 2026-09-30 for vetted cyber defenders in its Fairwind Program only, who can use it on its own (as a managed model on Gemini Enterprise, with zero data retention) or inside Google's CodeMender security agent [L: google-gemini-4-argon, gemini-deepmind-page, gemini-fairwind]. [as-of 2026-10-31] Google released it as generally available on 2026-10-13, as `gemini-4-argon` on the Gemini API (paid tier only), in Google AI Studio and on Gemini Enterprise Agent Platform. On the same day the Agent Platform added `gemini-4-argon-cyber-permissive`, a version for defensive cyber work behind the Fairwind allowlist [L: gemini-changelog-argon, gemini-spec-argon, gemini-cloud-release-notes-argon]. On 2026-10-28 Google announced Gemini 4 Carbon, which Google calls its strongest model, for a subset of cyber defenders only; the [maker README](README.md#classes-in-this-library) records it [L: google-gemini-4-carbon].
 
-Evidence tags: L is Google's own text, M is an independent measurement, A is one practitioner's or outlet's account. Almost everything that normally fills a model file (API id, effort levels, guidance, system card) is unpublished for Argon, and this file says so section by section. Family-wide guidance is in [the Google README](README.md).
+Evidence tags: L is Google's own text, M is an independent measurement, A is one practitioner's or outlet's account. [as-of 2026-10-31] Google now publishes an API id, a model page, a developer guide ("What's new in Gemini 4 Argon") and a model card for Argon. The sections below give that guidance where it exists. Family-wide guidance is in [the Google README](README.md).
 
 ## At a glance
 
@@ -32,41 +41,43 @@ Evidence tags: L is Google's own text, M is an independent measurement, A is one
 | Maker | Google |
 | Class | Gemini Argon |
 | Generation | 4 |
-| Released | 2026-09-30 |
-| Status | preview |
+| Released | 2026-10-13 |
+| Status | ga |
 | Weights | closed |
-| Access | Fairwind Program (vetted cyber defenders only), as a managed model on Gemini Enterprise or inside CodeMender; planned, no date: paid Gemini API customers and Google AI Ultra subscribers |
-| Context window | 1M tokens |
-| Max output | 1M tokens |
-| Modalities | input text, image, video; output text |
-| Reasoning control | effort |
-| Price | $2 in / $10 out per Mtok; cached input $0.1; introductory rate from Google's announcement, no end date given (Artificial Analysis says at least one month); standard rate $4 input, $20 output, $0.20 cached (95% off input). Not billable by the general public yet; Google's pricing page does not list the model. |
+| Access | Gemini API (paid tier only; not on the free tier); Google AI Studio; Gemini Enterprise Agent Platform (GA 2026-10-13; global, us and eu endpoints) [gemini-cloud-release-notes-argon] [gemini-cloud-argon-page]; Antigravity agent in Gemini Managed Agents (selectable model); CodeMender on Agent Platform (preview, selectable model); Fairwind Program (vetted cyber defenders), as a managed model on Gemini Enterprise or inside CodeMender; Gemini app, Google Antigravity and Google AI Mode (named as distribution channels in the model card [gemini-argon-card]) |
+| Context window | 1,048,576 tokens |
+| Max output | 1,048,576 tokens |
+| Modalities | input text, image, video, audio, pdf; output text |
+| Reasoning control | effort: low, medium, high (default medium) |
+| Price | $2 in / $10 out per Mtok; cached input $0.1; introductory rate through 2026-11-30; from 2026-12-01 input 4.00, output 20.00, cached 0.20 [gemini-pricing-argon] [gemini-latest-model-argon]. Batch and Flex are half price; Priority is $3.60 input and $18.00 output through 2026-11-30, then $7.20 and $36.00. Implicit caching only. Not on the free tier. An invite-only Contributor tier ($1 input, $5 output) lets Google use the data [gemini-pricing-argon]. |
 | Key benchmarks | Terminal-Bench 4.0: 57.4 (self-computed by Google; highest thinking setting through the Gemini API; effort level not named, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Terminal-Bench 4.0: 57 (high; Artificial Analysis's own run of all 66 tasks, three times each, independent) [aa-gemini-4-argon-article](https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs); Artificial Analysis Intelligence Index: 53 (high; index v4.3.2, independent) [aa-gemini-4-argon](https://artificialanalysis.ai/models/gemini-4-argon) |
 | Other benchmarks | AutomationBench-AA: 78 (high, independent) [aa-gemini-4-argon-article](https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs); AA-Omniscience hallucination rate (lower is better): 15 (high, independent) [aa-gemini-4-argon-article](https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs); DeepSWE v1.1: 77.9 (self-computed by Google with the mini-swe-agent harness; highest thinking setting, mini-swe-agent, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); FrontierSWE v2: 55.0 (taken from Proximal's public leaderboard per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Vibe Code Bench: 91.9 (taken from Vals AI's public leaderboard per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); PostTrainBench: 45.3 (self-computed by Google; v1.1, OpenCode harness, 10-hour budget on one H100 GPU, OpenCode, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Vals Index: 68.9 (knowledge-work composite; sourced from Vals AI per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); AutomationBench (Zapier): 51.3 (private set; sourced from the Zapier public leaderboard per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Vals Finance Agent v2: 65.4 (sourced from Vals AI per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Harvey's Legal Agent Benchmark: 19.6 (sourced from Vals AI per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); CWE-bench v1: 68.0 (pass@1; taken from the public leaderboard per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/); GraphWalks BFS (F1): 99.7 (contexts up to 128k; self-computed by Google, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); GraphWalks BFS (F1): 84.2 (contexts 256k to 1M; self-computed by Google, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Agent's Last Exam: 39.5 (binary pass rate; self-computed with the ALE-Claw harness, 5-hour window, safety filters on, ALE-Claw, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); OSWorld-2.0: 69.2 (partial score on the offline subset; self-computed, best of 3 runs; Gemini computer-use harness, Gemini CUA harness, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); LVBench: 91.7 (self-computed without tools at 1 frame per second, maker) [gemini-deepmind-page](https://deepmind.google/models/gemini/); Chartography: 71.6 (no tools; taken from Surge's public leaderboard per Google's methodology, third-party-vendor) [gemini-deepmind-page](https://deepmind.google/models/gemini/) |
-| Prompting guides | unknown |
-| System card | unknown |
-| Model page | [blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/) |
+| Prompting guides | [ai.google.dev/gemini-api/docs/latest-model](https://ai.google.dev/gemini-api/docs/latest-model) |
+| System card | [deepmind.google/models/model-cards/gemini-4-argon/](https://deepmind.google/models/model-cards/gemini-4-argon/) |
+| Model page | [ai.google.dev/gemini-api/docs/models/gemini-4-argon](https://ai.google.dev/gemini-api/docs/models/gemini-4-argon) |
 | Card checked | 2026-10-03 |
-| Not found | api_id: no API model id published; Google's model page and model card URLs return 404 on 2026-10-03; context_window: Google does not state an input window; 1M is Artificial Analysis's figure; reasoning.levels and reasoning.default: not published; Artificial Analysis calls "high" the highest available level, so the control type is inferred and the other levels are unknown; modalities: Google's pages show image and long-video understanding; Artificial Analysis's article adds speech input while its model page lists text and image only, so audio is not confirmed; knowledge cutoff: not published; access: general API, Google Cloud, Gemini CLI and Antigravity availability not announced; prompting_guides: none published for Argon; system_card: none published; the DeepMind model-card page returns 404, and only an evaluation-methodology PDF and a benchmark table on the Gemini page exist; maker benchmark results table: the table in the methodology PDF is an image and was not read; the figures above come from the text table on Google's Gemini page; SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22); Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages; METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08; status: Google says the model is rolling out to vetted cyber defenders only; preview is this library's label because the schema has no limited-access value; Long Decode Continuation: reported by Artificial Analysis as a Gemini API feature; not found in the Gemini API docs or changelog read |
+| Not found | maker benchmark results table: the table in the methodology PDF is an image and was not read; the figures above come from the text table on Google's Gemini page; SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22); Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages; METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08; max_output: 1,048,576 needs long decode (background execution, or continuation on GenerateContent); the default synchronous limit is 65,536 [gemini-spec-argon] [gemini-latest-model-argon]; access: the model card names the Gemini app, Google Antigravity and Google AI Mode as channels; which plans, products or tiers inside them offer Argon was not checked on 2026-10-31; checked: kept at 2026-10-03; on 2026-10-31 the id, status, limits, modalities, effort levels, prices, guide and model card were re-read, and the benchmark entries and other unknown entries keep their 2026-10-03 reading |
 <!-- card:end -->
 
 ## How to instruct it
 
 ### Setting up the prompt
 
-Google has published no prompting guide or developer page for Argon. Its Gemini API model page and its model-card page both return a not-found error on 2026-10-03, the model is absent from the API model list, and the changelog does not mention it [L: gemini-models-page, gemini-changelog]. The Gemini 3 family guidance in [README.md](README.md#setting-up-the-prompt) is the nearest published advice, and nothing read confirms it applies. Google states no knowledge cutoff.
+[as-of 2026-10-31] Google publishes no prompt-wording guide for Argon. Its developer guide covers API settings only: the model id, thinking levels, output limits, long decode, caching and migration. The Gemini 3 family guidance in [README.md](README.md#setting-up-the-prompt) is the nearest published advice on prompt wording, and nothing read confirms it applies to Argon [L: gemini-latest-model-argon]. The model card gives a knowledge cutoff of March 2026, and says the knowledge can be less current in some domains [L: gemini-argon-card].
 
 ### Reasoning and effort
 
-Google does not say how effort is set or which levels exist. Artificial Analysis ran the model at "high", which it calls the highest available reasoning level, and the card's reasoning control is inferred from that [M: aa-gemini-4-argon-article]. Google's methodology says all of its own scores used "the highest thinking settings" through the Gemini API unless noted [L: gemini-argon-eval]. Artificial Analysis counted about 62,000 output tokens per task (110 million to run its index), against about 27,000 per task for GPT-6 Astra, so its lower per-token price did not lower cost per task by the same factor [M: aa-gemini-4-argon-article, aa-gemini-4-argon].
+[as-of 2026-10-31] Effort is set with `thinking_level`: `low`, `medium` (the default) or `high`. Google's guide says `low` uses the fewest tokens and can lose quality on hard tasks, `medium` is recommended for most tasks including complex code and agent work, and `high` is for hard reasoning, maths and science and the most difficult code or agent tasks. Google advises running evaluations at all three levels and choosing the lowest one that meets the quality bar. To use fewer tokens, Google says to lower the level instead of lowering `max_output_tokens` [L: gemini-latest-model-argon, gemini-spec-argon]. Artificial Analysis ran the model at "high", the highest level [M: aa-gemini-4-argon-article]. Google's methodology says all of its own scores used "the highest thinking settings" through the Gemini API unless noted [L: gemini-argon-eval]. Artificial Analysis counted about 62,000 output tokens per task (110 million to run its index), against about 27,000 per task for GPT-6 Astra, so its lower per-token price did not lower cost per task by the same factor [M: aa-gemini-4-argon-article, aa-gemini-4-argon].
 
 ### Output: format, length, tone
 
-Google states an output limit of 1 million tokens, against 65,536 for the other Gemini models here [L: google-gemini-4-argon]. Artificial Analysis says it tested a Gemini API feature called Long Decode Continuation, which pauses a long response and resumes it over follow-up calls so that reasoning can run to 1 million output tokens without request timeouts; the feature does not appear in the Gemini API documentation or changelog read for this file [M: aa-gemini-4-argon-article, gemini-changelog]. No guidance on verbosity, formatting or prefill was found.
+[as-of 2026-10-31] Input, thinking and output share one window of 1,048,576 tokens. The default synchronous output limit is 65,536 tokens. A longer response needs long decode: with background execution and `max_output_tokens` above 65,536, the server generates the response in hops of up to 64K tokens, up to 1,048,576 minus the input. Each hop adds a `model_output` step, so the client must join the text of all those steps. With `background: true` and no `max_output_tokens`, the server stops after 64K tokens. Client-side continuation exists on GenerateContent and, Google says, is coming to the Interactions API [L: gemini-spec-argon, gemini-latest-model-argon]. On Agent Platform, long decode on GenerateContent works only on the `v1beta1` API, not `v1` [L: gemini-cloud-release-notes-argon].
+
+Google's output-limit advice: keep the 65,536 default for standard tasks; raise an existing limit below 32K to at least 32,768, because Argon can spend more of the limit on thinking; for complex reasoning and coding, use background execution and 131,072 or 262,144. Hard prompts can take several minutes, so Google advises background execution or client timeouts of at least 15 minutes [L: gemini-latest-model-argon]. No guidance on verbosity, formatting or prefill was found.
 
 ### Tools and agents
 
-No tool-calling, tool-choice or agent guidance is published for Argon. Google's methodology lists computer-use and agent results: Agent's Last Exam 39.5 percent (a binary pass rate, with safety filters on, and flagged responses returned empty) and OSWorld-2.0 69.2 percent (partial score on the offline subset, best of three runs, with Google's computer-use harness and a context-compaction step) [L: gemini-deepmind-page, gemini-argon-eval]. Artificial Analysis ranks the model first on its AutomationBench-AA workflow test at 78 percent and gives 1494 Elo on its AA-Briefcase test with a 65 percent rubric pass rate, the highest it had recorded [M: aa-gemini-4-argon-article].
+[as-of 2026-10-31] The model page lists function calling, structured outputs, code execution, computer use, file search, Search and Maps grounding and URL context as supported, and the Live API as not supported. The computer-use guide names Argon as one of its supported models. Google's guide says to keep multi-turn and function-calling state on the server with `previous_interaction_id`, and the Antigravity agent in Gemini Managed Agents can run on Argon when `agent_config.model` is `gemini-4-argon`. Google gives no Argon-specific tool-choice guidance [L: gemini-spec-argon, gemini-latest-model-argon, gemini-computer-use-argon]. Google's methodology lists computer-use and agent results: Agent's Last Exam 39.5 percent (a binary pass rate, with safety filters on, and flagged responses returned empty) and OSWorld-2.0 69.2 percent (partial score on the offline subset, best of three runs, with Google's computer-use harness and a context-compaction step) [L: gemini-deepmind-page, gemini-argon-eval]. Artificial Analysis ranks the model first on its AutomationBench-AA workflow test at 78 percent and gives 1494 Elo on its AA-Briefcase test with a 65 percent rubric pass rate, the highest it had recorded [M: aa-gemini-4-argon-article].
 
 ### Coding
 
@@ -76,39 +87,39 @@ Google's table: DeepSWE v1.1 77.9 percent (self-computed with the mini-swe-agent
 
 ### Long context and retrieval
 
-Google states no input window for Argon; Artificial Analysis gives 1 million tokens [M: aa-gemini-4-argon]. Google's table reports GraphWalks breadth-first search at 99.7 percent up to 128,000 tokens and 84.2 percent for 256,000 to 1 million tokens (self-computed) [L: gemini-deepmind-page, gemini-argon-eval]. No caching or retrieval guidance is published beyond the price: cached input is discounted 95 percent from the standard input price ($0.20 against $4 standard; $0.10 at the introductory price) [L: google-gemini-4-argon, aa-gemini-4-argon-article].
+[as-of 2026-10-31] The window is 1,048,576 tokens for input and output together [L: gemini-spec-argon]. Google's table reports GraphWalks breadth-first search at 99.7 percent up to 128,000 tokens and 84.2 percent for 256,000 to 1 million tokens (self-computed) [L: gemini-deepmind-page, gemini-argon-eval]. [as-of 2026-10-31] Explicit context caching (`cachedContents`) is not supported on Argon, and Google's migration checklist says to remove calls that create or use it. Implicit caching is on by default for prompts of at least 4,096 tokens, and a cache hit discounts the input by 95 percent ($0.10 per million at the introductory price, $0.20 from 2026-12-01) [L: gemini-latest-model-argon, gemini-pricing-argon].
 
 ### Structured output
 
-Nothing is published about structured output, schemas or strict tool calls for Argon.
+[as-of 2026-10-31] The model page lists structured outputs as supported; nothing Argon-specific is published about schemas or strict tool calls [L: gemini-spec-argon].
 
 ### Images, audio, other inputs
 
-Google's announcement names coding, reasoning and multimodality, and describes chart analysis, long-video understanding and acting on a series of documents; output is text. Artificial Analysis's article lists text, image, video and speech input while its model page lists text and image only, so audio input is unconfirmed [L: google-gemini-4-argon] [M: aa-gemini-4-argon-article, aa-gemini-4-argon]. Google's table reports LVBench at 91.7 percent (self-computed at one frame per second, no tools) and Chartography at 71.6 percent (no tools, from Surge's public leaderboard) [L: gemini-deepmind-page, gemini-argon-eval].
+Google's announcement names coding, reasoning and multimodality, and describes chart analysis, long-video understanding and acting on a series of documents; output is text. [as-of 2026-10-31] Google's model page lists text, image, video, audio and PDF input and text output; image and audio generation are not supported. Agentic video understanding is supported and defaults to `static` [L: gemini-spec-argon]. Google's table reports LVBench at 91.7 percent (self-computed at one frame per second, no tools) and Chartography at 71.6 percent (no tools, from Surge's public leaderboard) [L: gemini-deepmind-page, gemini-argon-eval].
 
 ### Sampling and API parameters
 
-Nothing is published. Whether Argon follows the newer Gemini rules (sampling parameters ignored, no prefilled model turns) is unknown, though Google's July 2026 notice says those rules apply to all future Gemini releases [L: gemini-latest-model-archive].
+[as-of 2026-10-31] Google's migration checklist says to remove `temperature`, `top_p` and `top_k`; Argon ignores them if they are sent. The same checklist says to keep conversation state on the server with `previous_interaction_id`. It does not mention prefilled model turns; Google's July 2026 notice says the rule against them applies to all future Gemini releases [L: gemini-latest-model-argon, gemini-latest-model-archive]. Every processed token is billed, including thinking tokens and the internal tool instructions and function declarations that grounding adds [L: gemini-pricing-argon].
 
 ### Migrating from the previous generation
 
-There is no migration guidance and no way for most users to call the model today. The nearest Pro-class model is [Gemini 3.1 Pro](gemini-3.1-pro-preview.md); Artificial Analysis places Argon 23 points above it on its index (53 against 30) [M: aa-gemini-4-argon-article].
+[as-of 2026-10-31] Google's checklist for a move to `gemini-4-argon`: change the model id; raise an explicit `max_output_tokens` to at least 32,768; choose and test all three thinking levels; remove explicit context caching; remove the sampling parameters; use background execution for outputs above 64K tokens; raise client timeouts to at least 15 minutes; keep state on the server with `previous_interaction_id`; and check cost estimates, because grounding adds billed tokens [L: gemini-latest-model-argon]. The nearest Pro-class model is [Gemini 3.1 Pro](gemini-3.1-pro-preview.md); Artificial Analysis places Argon 23 points above it on its index (53 against 30) [M: aa-gemini-4-argon-article].
 
 ## What the system card reports
 
-Google has published no system card or model card for Argon: the DeepMind model-card page returns not-found. What exists is a Gemini page with a benchmark table and four short safety statements, a methodology PDF, and the Fairwind page [L: gemini-deepmind-page, gemini-argon-eval, gemini-fairwind].
+[as-of 2026-10-31] Google published a model card for Argon on 2026-10-13. It says Argon is a new frontier model, not a modification or fine-tune of an earlier model, and a large sparse mixture-of-experts transformer with native text, vision and audio input. Its frontier-safety table: Google cannot rule out that Argon reaches the biological critical capability level (CCL), the cybersecurity CCL or the stealth and situational awareness tracked capability level (TCL; the model passed 14 of 15 challenges). For each of these Google applied a safety case or a residual risk assessment and safeguards that it assesses lower the risk below the level. The chemical, radiological and nuclear TCL, the harmful-manipulation CCL and the machine-learning research CCLs are not reached [L: gemini-argon-card]. Before the card, what existed was a Gemini page with a benchmark table and four short safety statements, a methodology PDF, and the Fairwind page [L: gemini-deepmind-page, gemini-argon-eval, gemini-fairwind].
 
 Capabilities (Google's table against GPT-6 Astra, Claude Fable 5.1 and Claude Opus 5.5): Vals Index 68.9 percent (those three 63.1, 65.8, 67.0); AutomationBench 51.3 on the private set; Vals Finance Agent v2 65.4; Harvey's Legal Agent Benchmark 19.6; DeepSWE v1.1 77.9; FrontierSWE v2 55.0; Terminal-Bench 4.0 57.4; Terminal-Bench Science 0.1 57.6 (below GPT-6 Astra's 68.1; Google ran it with a six-fold verifier timeout); LABBench 2 88.8; RiemannBench 76.0; CWE-bench v1 68.0, tied with GPT-6 Astra [L: gemini-deepmind-page, gemini-argon-eval]. The methodology says Google computed its own results for several tests, took other makers' numbers from their self-reports or public leaderboards, and used the highest thinking setting [L: gemini-argon-eval].
 
 Safety statements Google makes: the model is designed to refuse harmful requests while preserving legitimate dual-use scientific research under its Frontier Safety Framework; it is "our most resilient model yet" against indirect prompt injection (the methodology cites Gray Swan's benchmark, and no figure appears in the text read); misalignment mitigations monitor the model's chain of thought and actions and stop execution when needed; and sandboxed environments are isolated and sealed before high-risk training or evaluation. Cyber guardrails are removed for trusted defenders in the Fairwind Program, which requires an application, background checks, authentication with phishing-resistant multi-factor login and a bar on resale [L: gemini-deepmind-page, gemini-argon-eval, google-gemini-4-argon, gemini-fairwind].
 
-Not published: any frontier-safety report or capability-level result, refusal and over-refusal rates, sycophancy, reward hacking, sandbagging or deception findings, and quantitative prompt-injection results.
+[as-of 2026-10-31] The model card's automated safety results against 3.1 Pro (lower is better except tone): text-to-text safety plus 1.57 points, multilingual safety minus 3.16, image-to-text safety minus 9.29, refusal tone plus 5.50 percent (higher is better) and unjustified refusals minus 9.60. Google says these evaluations changed and cannot be compared with earlier cards. Red teaming met the child-safety launch thresholds and found no egregious concerns [L: gemini-argon-card]. The card points to a separate Argon safety and security report, which was not read for this file. Not found in the sources read: sycophancy, reward-hacking, sandbagging or deception findings, and a quantitative prompt-injection result for Argon itself.
 
 ## Behaviour observed in practice
 
 - Artificial Analysis (index v4.3.2, high): score 53, level with GPT-6 Astra (max) and one point above GPT-6.1 Sol (max), 12 points above 3.8 Flash; AA-Omniscience hallucination rate 15 percent against 51 percent for GPT-6 Astra, with accuracy at 50 percent, five points below 3.1 Pro; $1.99 per index task at the introductory price and $3.98 at standard price [M: aa-gemini-4-argon-article, aa-gemini-4-argon].
-- Artificial Analysis describes the model as being rolled out to selected users only, and the 50 percent discount as an initial promotion with no confirmed end date [M: aa-gemini-4-argon-article].
-- No practitioner has had general access, so no independent hands-on account exists. One news report repeats Google's claims and gives no timeline for wider release (class A) [A: techcrunch-argon].
+- On 2026-10-03 Artificial Analysis described the model as rolled out to selected users only, and the 50 percent discount as an initial promotion with no confirmed end date [M: aa-gemini-4-argon-article]. [as-of 2026-10-31] Google now dates the end of the introductory price to 2026-11-30 [L: gemini-pricing-argon].
+- [as-of 2026-10-31] General access began on 2026-10-13; no independent hands-on account was read for this update. One news report from the limited launch repeats Google's claims (class A) [A: techcrunch-argon].
 
 ## Benchmarks
 
@@ -125,10 +136,10 @@ No SWE-Bench Pro V2 row, Coding Agent Index value or METR time horizon exists fo
 
 ## Open questions
 
-- The API model id, availability date, effort levels, context window, modalities and knowledge cutoff.
-- Whether Google will publish a model card, a frontier-safety report and a developer guide.
-- What the standard and introductory prices become when the model is generally available.
-- How Long Decode Continuation works and whether it is documented in the Gemini API.
+- [as-of 2026-10-31] The id, availability, effort levels, window, modalities, cutoff, prices, model card and developer guide are now published (see above).
+- What the separate Argon safety and security report adds to the model card.
+- Whether the price drops to the standard rate on 2026-12-01 as listed, or the introductory rate is extended.
+- How Argon compares with Gemini 4 Carbon once Carbon is generally available.
 
 ## Sources
 
@@ -146,3 +157,15 @@ Each source id used above, its kind (M independent measurement, L maker, A pract
 - gemini-latest-model-archive (L, read 2026-10-03): https://web.archive.org/web/20260802003901/https://ai.google.dev/gemini-api/docs/latest-model
 - techcrunch-argon (A, read 2026-10-03): https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/
 - gemini-pricing (L, read 2026-10-03): https://ai.google.dev/gemini-api/docs/pricing
+
+Read 2026-10-31:
+
+- gemini-spec-argon (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/models/gemini-4-argon
+- gemini-latest-model-argon (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/latest-model ("What's new in Gemini 4 Argon")
+- gemini-pricing-argon (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/pricing
+- gemini-changelog-argon (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/changelog
+- gemini-argon-card (L, read 2026-10-31): https://deepmind.google/models/model-cards/gemini-4-argon/
+- gemini-cloud-release-notes-argon (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes
+- gemini-cloud-argon-page (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon
+- gemini-computer-use-argon (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/computer-use
+- google-gemini-4-carbon (L, read 2026-10-31): https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/

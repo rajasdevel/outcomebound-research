@@ -6,8 +6,8 @@
   "class": "MiniMax M",
   "generation": "2.7",
   "released": "2026-03-18",
-  "status": "ga",
-  "retires": null,
+  "status": "retiring",
+  "retires": "2026-11-18",
   "weights": "open (MiniMax non-commercial licence: personal, non-profit and research use free; any commercial use needs prior written authorization and a 'Built with MiniMax M2.7' notice)",
   "access": [
     "MiniMax API platform (Anthropic-compatible, OpenAI Chat Completions endpoints; pay as you go; also the faster MiniMax-M2.7-highspeed id)",
@@ -434,6 +434,13 @@
       "read": "2026-10-03",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "minimax-model-list",
+      "url": "https://platform.minimax.io/docs/faq/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "November 18, 2026: These models will be retired."
     }
   ],
   "checked": "2026-10-03",
@@ -444,7 +451,7 @@
     "METR 50% time horizon: no MiniMax model on METR's time-horizons page (page source searched 2026-10-03)",
     "Terminal-Bench 4.0 on the official tbench.ai leaderboard: no MiniMax row in the board data read on 2026-10-03; the value is from Artificial Analysis",
     "reasoning default: thinking is always on and cannot be disabled (a disable request is accepted and ignored); no levels or default are documented",
-    "status: Artificial Analysis marks the model deprecated; MiniMax's own pages still list and price it and show no deprecation or retirement date, so 'ga' is used",
+    "status: [as-of 2026-10-31] MiniMax's model list says the M2.5 and M2.7 families closed to new users on 2026-10-19 and retire on 2026-11-18, and that plan requests to them go to M3.1 Flash from 2026-10-19; the same page's table already lists M2.7 and M2.7-highspeed as retired, and the pricing and rate-limit pages no longer list them [minimax-model-list]",
     "prompting_guides: MiniMax publishes no prompting guide for M2.7; the earlier cited best-practices page returns 404 and no replacement was found; the entries listed are the agent post, the tool-calling guide and the caching page",
     "Maker rows: the harness, thinking mode and timeouts behind MiniMax's news-page numbers are not stated",
     "system_card: MiniMax publishes no system card or safety report for M2.7",

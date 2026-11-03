@@ -10,7 +10,7 @@
   "retires": null,
   "weights": "closed",
   "access": [
-    "QwenCloud realtime API (WebSocket; AOQ and WebRTC also listed), Singapore-region API key"
+    "QwenCloud realtime API (WebSocket; AOQ and WebRTC also listed); [as-of 2026-10-31] Singapore and China North 2 (Beijing) regions, each with an API key of that region (the guide read on 2026-10-03 named a Singapore-region key only) [qwencloud-audio-guide-1031]"
   ],
   "context_window": 262144,
   "max_output": 16384,
@@ -28,10 +28,10 @@
     "duplex": "full",
     "input_audio": "PCM 16-bit mono at 16 kHz (pcm is the only format); about 100 ms per chunk (3,200 bytes) is advised [qwencloud-audio-events] [qwencloud-audio-guide]",
     "output_audio": "PCM 16-bit mono at 24 kHz (pcm is the only format) [qwencloud-audio-events] [qwencloud-audio-guide]",
-    "voices": "13 system voices (default longanqian_v3.1; eight are new in 3.1) and cloned voices made with the voice-cloning API; the voice can be set only in the first session.update [qwencloud-audio-guide]",
+    "voices": "[as-of 2026-10-31] Default longanqian_v3.1, plus the union of the qwen-audio-3.1-tts-plus and qwen-audio-3.1-tts-flash system voice lists (the guide read on 2026-10-03 listed 13 system voices), and cloned voices made with the voice-cloning API, which offers cloning for the realtime models only in China North 2 (Beijing); the voice can be set only in the first session.update [qwencloud-audio-guide-1031] [qwencloud-audio-guide] [qwencloud-voice-cloning-1031]",
     "languages": [
-      "Conversation: German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian and Chinese, with 21 Chinese varieties (Mandarin, Cantonese and regional speech)",
-      "session.input_audio_transcription.language takes 30 source-language codes and session.output_audio.language a target-language code for the speech (a best effort, not a guarantee)"
+      "[as-of 2026-10-31] Conversation: German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Chinese, Thai, Vietnamese and Arabic, with 21 Chinese varieties (Mandarin, Cantonese and regional speech) [qwencloud-audio-guide-1031]",
+      "[as-of 2026-10-31] session.input_audio_transcription.language takes 14 source-language codes (the page read on 2026-10-03 listed 30) and session.output_audio.language 14 target-language codes for the speech (a best effort, not a guarantee) [qwencloud-audio-events-1031]"
     ],
     "turn_detection": "server_vad (default; threshold -1.0 to 1.0, default 0.5; silence_duration_ms 200 to 6000, default 800, 400 to 800 advised), smart_turn (acoustic and semantic; fillers such as uh or hmm do not start a turn), or null for push-to-talk; the mode can be set only before the first audio is sent [qwencloud-audio-ws] [qwencloud-audio-events]",
     "interruption": "In server_vad and smart_turn modes new user speech cancels the running response (response.done with status cancelled); the client should clear its playback buffer on input_audio_buffer.speech_started; in smart_turn mode fillers and non-semantic sounds neither start a turn nor interrupt playback; optional speaker enhancement locks onto up to 5 reference voices [qwencloud-audio-guide] [qwencloud-audio-ws]",
@@ -119,6 +119,27 @@
       "url": "https://artificialanalysis.ai/speech-to-speech",
       "read": "2026-10-03",
       "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-guide-1031",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-audio-events-1031",
+      "url": "https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "qwencloud-voice-cloning-1031",
+      "url": "https://docs.qwencloud.com/developer-guides/speech/voice-cloning",
+      "read": "2026-10-31",
+      "kind": "L",
       "quote": null
     }
   ],

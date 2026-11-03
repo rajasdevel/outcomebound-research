@@ -45,7 +45,7 @@
     "input": 4.0,
     "output": 20.0,
     "cached_input": 0.2,
-    "notes": "List price, standard rate (20% below Opus 5). 5-minute cache write 5, 1-hour write 8; cache read is 0.05x input. Batch 2/10. Fast mode (research preview, Claude API only) 8/40 for up to 2.5x output speed [fast-mode]. Batch output up to 300K with a beta header. US-only inference adds 1.1x."
+    "notes": "List price, standard rate (20% below Opus 5). 5-minute cache write 5, 1-hour write 8; cache read is 0.05x input. Batch 2/10. Fast mode 8/40 for up to 2.5x output speed; out of research preview with no beta header since 2026-10-15; it runs on the Claude API, Claude Models on Google Cloud (Anthropic managed) and Foundry hosted on Azure [fast-mode-oct31]. Batch output up to 300K with a beta header. US-only inference adds 1.1x."
   },
   "benchmarks": [
     {
@@ -450,6 +450,13 @@
       "id": "fast-mode",
       "url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
       "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "fast-mode-oct31",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+      "read": "2026-10-31",
       "kind": "L",
       "quote": null
     },

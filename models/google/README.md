@@ -112,6 +112,19 @@ sources:
   - https://ai.google.dev/gemini-api/docs/live-api/live-transcribe
   - https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1
   - https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash
+  - https://ai.google.dev/gemini-api/docs/changelog (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/deprecations (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/models (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/pricing (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/computer-use (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/latest-model (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/models/gemini-4-argon (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/logs-datasets (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/logs-policy (read 2026-10-31)
+  - https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.8 (read 2026-10-31)
+  - https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ (read 2026-10-31)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes (read 2026-10-31)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash (read 2026-10-31)
 ---
 
 # Google models
@@ -124,11 +137,11 @@ Evidence classes in this folder: L is Google's own documentation or announcement
 
 ### Classes in this library
 
-The library keeps two generations of each class: the current one and the one before it. Google numbers Gemini generations 3, 3.1, 3.5, 3.6, 3.7 and 3.8 inside the Gemini 3 family, and 4 for Argon.
+The library keeps two generations of each class: the current one and the one before it. Google numbers Gemini generations 3, 3.1, 3.5, 3.6, 3.7 and 3.8 inside the Gemini 3 family, and 4 for Argon and ([as-of 2026-10-31]) for Carbon.
 
 | Class | Current generation | Previous generation | Status on 2026-10-03 |
 | --- | --- | --- | --- |
-| Gemini Flash | [3.8 Flash](gemini-3.8-flash.md), generally available 2026-09-02 | [3.7 Flash](gemini-3.7-flash.md), generally available 2026-08-13 | Both stable. Google says 3.7 Flash stays fully supported, and the deprecations page lists no shutdown date for either [L: gemini-latest-model, gemini-deprecations] |
+| Gemini Flash | [3.8 Flash](gemini-3.8-flash.md), generally available 2026-09-02 | [3.7 Flash](gemini-3.7-flash.md), generally available 2026-08-13 | [as-of 2026-10-31] 3.8 is stable. On the Gemini API, 3.7 Flash is deprecated since 2026-10-08: AI Studio no longer offers it, and requests to `gemini-3.7-flash` are routed to `gemini-3.8-flash`; the endpoint does not shut down. Agent Platform still lists 3.7 Flash as GA, with retirement on 2027-01-28 [L: google-changelog-oct31, google-deprecations-oct31, google-cloud-3-7-oct31] |
 | Gemini Flash-Lite | [3.5 Flash-Lite](gemini-3.5-flash-lite.md), generally available 2026-07-21 | [3.1 Flash-Lite](gemini-3.1-flash-lite.md), generally available 2026-05-07 | Both stable. The deprecations page lists 2027-05-07 as the earliest shutdown for 3.1 Flash-Lite and names 3.5 Flash-Lite as its replacement [L: gemini-deprecations] |
 | Gemini Live (voice) | [3.8 Live](gemini-3.8-live.md), generally available on the Gemini API 2026-09-15; with it [3.8 Live Extended Thinking](gemini-3.8-live-extended-thinking.md), a separate id that adds background reasoning | [3.1 Flash Live Preview](gemini-3.1-flash-live-preview.md), released 2026-03-26 | The Live API guides still carry a preview banner. [as-of 2026-10-09] Google lists 2026-11-17 as the earliest shutdown for 3.1 Flash Live Preview, with 3.8 Live as replacement. No shutdown date is listed for 3.8 Live [L: google-deprecations-october]. Details in the [Live API guide](#live-api-guide) |
 | Gemini Flash TTS (speech synthesis) | [3.8 Flash TTS](gemini-3.8-flash-tts.md), generally available 2026-09-22 | [3.1 Flash TTS Preview](gemini-3.1-flash-tts-preview.md), launched 2026-04-15 | [as-of 2026-10-09] 3.8 is stable. The earliest shutdown for 3.1 Flash TTS Preview is 2026-11-17, with either 3.8 TTS model as replacement [L: google-deprecations-october] |
@@ -138,10 +151,11 @@ The library keeps two generations of each class: the current one and the one bef
 | Gemini Live Translate (voice translation) | [3.5 Live Translate Preview](gemini-3.5-live-translate-preview.md), available by June 2026 on the API | none found in the official inventory | [as-of 2026-10-09] Public preview, with its own selectable id and audio-to-audio output. It fits voice scope; translation configuration replaces agent instructions [L: google-inventory-october, google-35-translate-model, google-35-translate-guide] |
 | Gemini Transcribe (speech recognition) | [3.5 Transcribe](gemini-3.5-transcribe.md), GA 2026-08-26 | none found in the official inventory | [as-of 2026-10-09] Dedicated file transcription fits the format's transcription scope [L: google-inventory-october, google-releases-october] |
 | Gemini Transcribe Live (speech recognition) | [3.5 Transcribe Live](gemini-3.5-transcribe-live.md), GA 2026-08-26 | none found in the official inventory | [as-of 2026-10-09] A distinct selectable streaming model; same generation number does not make it a reasoning level of file Transcribe [L: google-inventory-october, google-releases-october] |
-| Gemini Argon | [4 Argon](gemini-4-argon.md), announced 2026-09-30 | none | Limited to vetted cyber defenders; absent from the API model list, the pricing page and the changelog [L: gemini-models-page, gemini-changelog, google-gemini-4-argon] |
+| Gemini Argon | [4 Argon](gemini-4-argon.md), announced 2026-09-30, generally available 2026-10-13 | none | [as-of 2026-10-31] Stable as `gemini-4-argon` on the Gemini API (paid tier only) and GA on Agent Platform. Introductory price $2 input and $10 output per million tokens through 2026-11-30, then $4 and $20. Agent Platform also offers `gemini-4-argon-cyber-permissive`, a defensive-cyber version, behind the Fairwind allowlist [L: google-changelog-oct31, google-argon-spec-oct31, google-latest-model-oct31, google-cloud-release-notes-oct31] |
+| Gemini Carbon | none: Gemini 4 Carbon, announced 2026-10-28 | none | [as-of 2026-10-31] Restricted. Google offers it to a subset of cyber defenders, and says access will widen through the Fairwind Program. No API id is published, the API model page returns not-found, and the models, pricing and changelog pages do not name it, so it has no card or file. The announcement gives an introductory price equal to Argon's ($2 input, $10 output, then $4 and $20). Maker-reported figures in the announcement: Artificial Analysis Intelligence Index v5.0 59 (ranked first), SEC-bench Pro 88.2 percent, ExploitGym 54.8 percent, CWE-bench 71.0 percent and a 0.0 percent attack success rate on Gray Swan's indirect prompt-injection benchmark (Argon 0.7). Google says it ran the external security benchmarks without guardrails [L: google-gemini-4-carbon, google-inventory-oct31] |
 | Gemma (open weights) | Gemma 4 in five sizes: [E2B](gemma-4-e2b-it.md), [E4B](gemma-4-e4b-it.md), [12B](gemma-4-12b-it.md), [26B A4B](gemma-4-26b-a4b-it.md), [31B](gemma-4-31b-it.md) | Gemma 3 (class Gemma, generation 3), in five instruction-tuned sizes: [270M](gemma-3-270m-it.md) (2025-08-14), [1B](gemma-3-1b-it.md), [4B](gemma-3-4b-it.md), [12B](gemma-3-12b-it.md) and [27B](gemma-3-27b-it.md) (all 2025-03-10); and Gemma 3n, the on-device models [E2B](gemma-3n-e2b-it.md) and [E4B](gemma-3n-e4b-it.md) (2025-06-26), recorded here as part of generation 3 so that the class holds two generations | Google's release list shows the E2B, E4B, 26B A4B and 31B sizes on 2026-03-31 and the 12B on 2026-06-03. Gemma uses its own chat format and special tokens, not Gemini's [L: gemma-releases, gemma-formatting] |
 
-Models that exist but have no file here: 3.6 Flash (2026-07-21), 3.5 Flash (2026-05-19) and 3 Flash Preview (2025-12-17), all older than the two generations in scope; the 3.8 Flash Cyber variant (id gemini-3.8-flash-cyber), a post-trained version of 3.8 Flash that Google Cloud lists as generally available behind an allowlist, with access through a Google account team or the Fairwind Program; Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, a third generation of the Flash TTS class, and gemini-2.5-flash-preview-tts on the Gemini API), and Google Cloud's Chirp 3: HD voices, which take pace, pause and pronunciation controls and no direction for emotion or style [L: gemini-tts-guide, gemini-tts-cloud, gemini-deprecations, gemini-chirp3], the 2.5 native-audio Live models that the 3.8 generation replaces, and Google's image-generation, video-generation, embedding and robotics models, which are other classes [L: gemini-models-page, google-3-8-flash-blog, gemini-cloud-3-8-flash-cyber].
+Models that exist but have no file here: 3.6 Flash (2026-07-21), 3.5 Flash (2026-05-19) and 3 Flash Preview (2025-12-17), all older than the two generations in scope ([as-of 2026-10-31] 3.5 Flash is deprecated on the Gemini API since 2026-10-08, and its requests are routed to 3.6 Flash [L: google-changelog-oct31, google-deprecations-oct31]); Gemini 4 Carbon, which is restricted (see the table); the 3.8 Flash Cyber variant (id gemini-3.8-flash-cyber), a post-trained version of 3.8 Flash that Google Cloud lists as generally available behind an allowlist, with access through a Google account team or the Fairwind Program; Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, a third generation of the Flash TTS class, and gemini-2.5-flash-preview-tts on the Gemini API), and Google Cloud's Chirp 3: HD voices, which take pace, pause and pronunciation controls and no direction for emotion or style [L: gemini-tts-guide, gemini-tts-cloud, gemini-deprecations, gemini-chirp3], the 2.5 native-audio Live models that the 3.8 generation replaces, and Google's image-generation, video-generation, embedding and robotics models, which are other classes [L: gemini-models-page, google-3-8-flash-blog, gemini-cloud-3-8-flash-cyber].
 
 Gemini 3.5 Pro was announced in May 2026 with a rollout promised for the following month. It is absent from the API model list, the DeepMind Gemini page and the changelog on 2026-10-03. Press accounts describe an indefinite delay with partner testing and no cancellation notice [A: letsdatascience-3-5-pro, gemini-models-page, gemini-deepmind-page].
 
@@ -186,7 +200,12 @@ Google's model cards name a base model for each release and defer to that model'
 | 2026-08-13 | 3.7 Flash | The minimal level is not accepted on Flash from this release [L: gemini-spec-3-7-flash] |
 | 2026-09-01 | Agentic video understanding | Released for 3.7 and 3.6 Flash and 3.5 Flash-Lite; the video guide now lists 3.8 Flash as well [L: gemini-changelog, gemini-video-understanding] |
 | 2026-09-02 | 3.8 Flash | Designed to spend more tokens on long, multi-step work, with effort as the stated control [L: gemini-latest-model] |
-| 2026-09-30 | 4 Argon | Limited access; no API model id or developer page published [L: google-gemini-4-argon, gemini-models-page] |
+| 2026-09-30 | 4 Argon | Limited access at announcement; no API model id or developer page then [L: google-gemini-4-argon, gemini-models-page] |
+| 2026-10-08 | 3.7 Flash and 3.5 Flash deprecated on the Gemini API | Requests to the old ids are routed to 3.8 Flash and 3.6 Flash, so a request that names an old id runs on the newer model [L: google-changelog-oct31] |
+| 2026-10-13 | 4 Argon generally available | `gemini-4-argon`: one 1,048,576-token window for input and output, long decode past 64K output tokens, thinking levels low, medium (default) and high, explicit caching not supported, sampling parameters ignored [L: google-changelog-oct31, google-latest-model-oct31, google-argon-spec-oct31] |
+| 2026-10-26 | Generate Content storage on by default | New paid-tier projects store Generate Content requests by default (`store=true`), as the Interactions API does [L: google-changelog-oct31, google-logs-oct31] |
+| 2026-10-28 | Gemini 4 Carbon announced | Restricted to a subset of cyber defenders; no API id [L: google-gemini-4-carbon] |
+| 2026-10-30 | Computer use generally available | GA on the Interactions and GenerateContent APIs [L: google-changelog-oct31] |
 
 ### Product names that moved
 
@@ -198,7 +217,7 @@ Google's command-line coding agent Gemini CLI was succeeded by Antigravity CLI o
 
 The Gemini API has two ways to call a model. The Interactions API is the one the current documentation examples use; the generateContent interface "remains fully supported" [L: gemini-interactions-api]. Differences that matter:
 
-- State. The Interactions API stores each interaction by default and chains turns with previous_interaction_id; the server then keeps the history, the thought blocks and their signatures. Setting store to false stores nothing and rules out previous_interaction_id and background execution. Paid projects keep interactions 55 days (configurable to 7, 14, 28 or 55); free projects keep them 1 day [L: gemini-interactions-api].
+- State. The Interactions API stores each interaction by default and chains turns with previous_interaction_id; the server then keeps the history, the thought blocks and their signatures. Setting store to false stores nothing and rules out previous_interaction_id and background execution. Paid projects keep interactions 55 days (configurable to 7, 14, 28 or 55); free projects keep them 1 day [L: gemini-interactions-api]. [as-of 2026-10-31] From 2026-10-26, generateContent, streamGenerateContent and batchGenerateContent also store requests by default (`store=true`) for paid-tier projects created on or after that date. Older projects keep their setting, which is off unless it was turned on in AI Studio. A request can opt out with `store=false`, or a project can turn off Generate Content logging in the AI Studio Logs and Datasets settings. Stored logs expire after 55 days by default (7, 14, 28 or 55 can be set), except logs saved to a dataset, which do not expire. Log storage is offered only on the paid tier [L: google-changelog-oct31, google-logs-oct31].
 - Output shape. A response is a list of steps (thought, model output, function call, function result, built-in tool calls) rather than a candidate list. Google changed this schema in 2026: outputs became steps and response_format replaced older output settings, with the new schema the default from 2026-05-26 and the old one removed on 2026-06-08 [L: gemini-changelog].
 - Caching. Only implicit caching works in the Interactions API; explicit cache objects need generateContent [L: gemini-caching].
 - Signatures. In generateContent a signature is metadata that can sit on any part, and the full unmodified history, signatures included, must be sent back for reasoning to carry over; the SDKs do this. In the Interactions API signatures sit only on thought steps and built-in tool steps [L: gemini-thinking, gemini-f15].
@@ -208,11 +227,11 @@ The Gemini API has two ways to call a model. The Interactions API is the one the
 
 Google names four version patterns. Stable is a fixed model for production. Preview may be used in production, has billing on and tighter limits, and gets at least two weeks notice before deprecation. Latest is an alias that moves to each new release of a variant, with two weeks notice by email for breaking changes. Experimental is not for production [L: gemini-models-page]. A shutdown date on the deprecations page is the earliest possible date, and Google says it will give notice before the exact date [L: gemini-deprecations].
 
-Ids in this library: gemini-3.8-flash, gemini-3.7-flash, gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3.1-pro-preview and gemini-3.1-pro-preview-customtools. Google limits access to the 2.5 models to accounts that used them before and tells new projects to use 3.5 Flash-Lite or 3.8 Flash [L: gemini-models-page].
+Ids in this library: [as-of 2026-10-31] gemini-4-argon, gemini-3.8-flash, gemini-3.7-flash (routed to gemini-3.8-flash on the Gemini API since 2026-10-08), gemini-3.5-flash-lite, gemini-3.1-flash-lite, gemini-3.1-pro-preview and gemini-3.1-pro-preview-customtools [L: google-inventory-oct31, google-changelog-oct31]. Google limits access to the 2.5 models to accounts that used them before and tells new projects to use 3.5 Flash-Lite or 3.8 Flash [L: gemini-models-page].
 
 ### Consumption options and price structure
 
-For the models checked, a text model is sold four ways: standard, batch and flex (batch and flex both at half the standard price), and priority (1.8 times standard for 3.8 Flash and 3.7 Flash; for 3.1 Pro $3.60 input and $21.60 output per million tokens). Cached input is billed at one tenth of the input price, plus an hourly storage charge per million cached tokens ($0.50 for Flash before 2027, $1.00 for Flash-Lite, $4.50 for 3.1 Pro). Search grounding and Maps grounding include 5,000 free requests a month shared across Gemini 3.x, then $14 per 1,000. The free plan lets Google use the data to improve its products; the paid plan does not [L: gemini-pricing]. Per-model prices are in each model file's card block. 3.6, 3.7 and 3.8 Flash have introductory prices through 2026-12-31 that double on 2027-01-01.
+For the models checked, a text model is sold four ways: standard, batch and flex (batch and flex both at half the standard price), and priority (1.8 times standard for 3.8 Flash and 3.7 Flash; for 3.1 Pro $3.60 input and $21.60 output per million tokens). Cached input is billed at one tenth of the input price, plus an hourly storage charge per million cached tokens ($0.50 for Flash before 2027, $1.00 for Flash-Lite, $4.50 for 3.1 Pro). Search grounding and Maps grounding include 5,000 free requests a month shared across Gemini 3.x, then $14 per 1,000. The free plan lets Google use the data to improve its products; the paid plan does not [L: gemini-pricing]. [as-of 2026-10-31] An exception is the Contributor tier, an invite-only private preview for 4 Argon, 3.1 Pro Preview, 3.8 Flash and 3.5 Flash-Lite. It gives up to 50 percent off token prices, and in exchange the project's data on those models is handled under the terms for unpaid services, so Google can use it to improve its products [L: google-pricing-oct31, google-logs-policy-oct31]. 4 Argon has no free tier, and its introductory price ends on 2026-11-30, earlier than the Flash prices [L: google-pricing-oct31]. Per-model prices are in each model file's card block. 3.6, 3.7 and 3.8 Flash have introductory prices through 2026-12-31 that double on 2027-01-01.
 
 ### Google Cloud
 
@@ -224,14 +243,14 @@ The Gemini API also accepts OpenAI chat-completions requests at a /v1beta/openai
 
 ### Tools Google hosts
 
-Search grounding, Maps grounding, code execution, URL context, file search and computer use run as built-in tools, and Gemini 3 models can combine them with custom function calling in one request. Computer use is a preview on 3.8 Flash (the model Google recommends for it), 3.7 Flash, 3.5 Flash-Lite, 3.5 Flash and 3 Flash Preview; it is not offered on 3.1 Pro or 3.1 Flash-Lite [L: gemini-computer-use, gemini-spec-3-1-flash-lite, gemini-spec-3-1-pro].
+Search grounding, Maps grounding, code execution, URL context, file search and computer use run as built-in tools, and Gemini 3 models can combine them with custom function calling in one request. [as-of 2026-10-31] Computer use is generally available on the Gemini API since 2026-10-30, in both the Interactions and GenerateContent APIs. Google's list of supported models is 4 Argon, 3.8 Flash (the model Google recommends for it), 3.5 Flash-Lite and 3 Flash Preview. The list no longer names 3.7 Flash or 3.5 Flash, whose ids are now routed to newer models. It is not offered on 3.1 Pro or 3.1 Flash-Lite [L: google-changelog-oct31, google-computer-use-oct31, gemini-spec-3-1-flash-lite, gemini-spec-3-1-pro]. Whether the tool is GA on Agent Platform is not confirmed in the sources read.
 
 ## Prompting guides
 
 ### The guides
 
 - Prompt design strategies, updated 2026-09-17: the general guide, with a Gemini 3 section [L: gemini-prompting].
-- What is new in Gemini 3.8 Flash (the "latest model" page), updated 2026-09-23: model behaviour, effort levels and a migration checklist [L: gemini-latest-model].
+- What is new in Gemini 3.8 Flash (the "latest model" page), updated 2026-09-23: model behaviour, effort levels and a migration checklist [L: gemini-latest-model]. [as-of 2026-10-31] The "latest model" page now holds "What's new in Gemini 4 Argon": thinking levels, long decode, output limits, caching and a migration checklist. The 3.8 Flash guide has its own page; its title was confirmed and its content was not read again [L: google-latest-model-oct31, google-3-8-guide-oct31].
 - What is new in Gemini 3.5 Flash, updated 2026-09-23: the fullest list of rules for 3.x requests, covering sampling, effort, function responses, multimodal responses, inline instructions and tool-call reduction [L: gemini-f15].
 - The Gemini 3 developer guide, marked deprecated on its own page but still online (updated 2026-09-23): media resolution, thought signatures and migration from 2.5 [L: gemini-3-guide].
 - The thinking, function-calling, structured-output, long-context, media-resolution and multimodal-file guides, cited below [L: gemini-thinking, gemini-f14, gemini-structured-output, gemini-long-context, gemini-media-resolution, gemini-files-prompting].
@@ -279,7 +298,7 @@ Too many tool calls: Google's first remedy is a lower thinking level, because hi
 
 Agentic system-instruction template: the prompt guide gives a long template that Google says researchers evaluated on benchmarks where an agent must follow a rulebook and talk to a user. It has nine parts. They are dependencies and constraints (with an order for resolving conflicts); risk assessment (reads are low risk, and prefer calling a tool with what is known over asking, unless a later step needs the missing value); abductive reasoning (look past the obvious cause and keep unlikely hypotheses); outcome evaluation; information sources; precision and grounding (quote the policy relied on); completeness; persistence (retry transient errors up to a stated limit and change approach on other errors); and not acting until the reasoning is done [L: gemini-prompting]. The guide lists the behaviours a prompt can set: logical decomposition, problem diagnosis, information exhaustiveness, adaptability, persistence and recovery, risk assessment, when to ask or assume, verbosity next to tool calls, and precision [L: gemini-prompting].
 
-Computer use: the tool returns a UI action with an intent field and a safety decision, on a normalised 0 to 1000 grid that the client scales; the client runs the action and sends back a new screenshot. Google calls it a preview, recommends a sandboxed machine and close supervision, advises against critical or sensitive tasks, and offers an opt-in screenshot scan for hidden instructions [L: gemini-computer-use].
+Computer use: the tool returns a UI action with an intent field and a safety decision, on a normalised 0 to 1000 grid that the client scales; the client runs the action and sends back a new screenshot. [as-of 2026-10-31] The tool is GA (see Tools Google hosts). Google still recommends a sandboxed machine and close supervision for important tasks, advises against tasks with critical decisions, sensitive data or errors that cannot be corrected, and offers an opt-in screenshot scan for hidden instructions [L: google-computer-use-oct31].
 
 ### Coding
 
@@ -287,7 +306,7 @@ Google's coding-specific guidance is thin. The 3.8 Flash page names long-horizon
 
 ### Long context and retrieval
 
-Every Gemini model in this library except Argon accepts 1,048,576 input tokens and returns up to 65,536. Google advises supplying documents first and putting the question or instruction at the end, bridged by a phrase such as "Based on the information above" [L: gemini-prompting, gemini-long-context]. Google's long-context page says single-fact retrieval can reach about 99 percent, that accuracy drops when several facts must be found, and that tokens that are not needed are best left out [L: gemini-long-context]. Implicit caching is on by default for 2.5 and newer models; to raise the hit rate, put large shared content at the start of the prompt and send similar prefixes close together in time. The stated minimum is 4,096 tokens for 3.1 Pro and for 3.5 to 3.8 Flash; the page does not list the two Flash-Lite models [L: gemini-caching]. Cache hits show in the usage field for cached tokens.
+Every Gemini text model in this library accepts 1,048,576 input tokens and returns up to 65,536 in one synchronous response. [as-of 2026-10-31] On 4 Argon the 1,048,576 tokens are one window for input and output together, and long decode with background execution lets one response go past 64K tokens [L: google-argon-spec-oct31, google-latest-model-oct31]. Google advises supplying documents first and putting the question or instruction at the end, bridged by a phrase such as "Based on the information above" [L: gemini-prompting, gemini-long-context]. Google's long-context page says single-fact retrieval can reach about 99 percent, that accuracy drops when several facts must be found, and that tokens that are not needed are best left out [L: gemini-long-context]. Implicit caching is on by default for 2.5 and newer models; to raise the hit rate, put large shared content at the start of the prompt and send similar prefixes close together in time. The stated minimum is 4,096 tokens for 3.1 Pro and for 3.5 to 3.8 Flash; the page does not list the two Flash-Lite models [L: gemini-caching]. Cache hits show in the usage field for cached tokens.
 
 ### Structured output
 
@@ -382,13 +401,14 @@ The individual model files cover their deployment limits and the disagreements b
 
 | Model | Levels accepted | Default | Sampling parameters | Computer use | Agentic video (Gemini API) |
 | --- | --- | --- | --- | --- | --- |
-| 3.8 Flash | low, medium, high | medium | ignored | preview | yes |
-| 3.7 Flash | low, medium, high | medium | ignored | preview | yes |
-| 3.5 Flash-Lite | minimal, low, medium, high | minimal | ignored | preview | yes |
+| 4 Argon [as-of 2026-10-31] | low, medium, high | medium | ignored | GA | yes |
+| 3.8 Flash | low, medium, high | medium | ignored | GA [as-of 2026-10-31] | yes |
+| 3.7 Flash | low, medium, high | medium | ignored | not listed [as-of 2026-10-31]; the Gemini API routes the id to 3.8 Flash | yes |
+| 3.5 Flash-Lite | minimal, low, medium, high | minimal | ignored | GA [as-of 2026-10-31] | yes |
 | 3.1 Flash-Lite | minimal, low, medium, high | minimal | adjustable on Cloud | no | no |
 | 3.1 Pro | low, medium, high | high | adjustable on Cloud | no | no |
 
-Sources for the table: [L: gemini-thinking, gemini-spec-3-8-flash, gemini-spec-3-7-flash, gemini-spec-3-5-flash-lite, gemini-spec-3-1-flash-lite, gemini-spec-3-1-pro, gemini-cloud-guide-3-8, gemini-cloud-3-1-pro, gemini-video-understanding]. Requesting minimal on 3.7 or 3.8 Flash returns an error. 3.5 Flash-Lite defaults to minimal, and Google says to use medium or high when it works as an autonomous subagent that writes code, runs commands or calls external APIs, because minimal can end tool use early [L: gemini-cloud-3-5-lite].
+Sources for the table: [L: google-argon-spec-oct31, google-latest-model-oct31, google-computer-use-oct31, gemini-thinking, gemini-spec-3-8-flash, gemini-spec-3-7-flash, gemini-spec-3-5-flash-lite, gemini-spec-3-1-flash-lite, gemini-spec-3-1-pro, gemini-cloud-guide-3-8, gemini-cloud-3-1-pro, gemini-video-understanding]. Requesting minimal on 3.7 or 3.8 Flash returns an error. 3.5 Flash-Lite defaults to minimal, and Google says to use medium or high when it works as an autonomous subagent that writes code, runs commands or calls external APIs, because minimal can end tool use early [L: gemini-cloud-3-5-lite].
 
 ### Token use and cost
 
@@ -566,7 +586,7 @@ Per token on the Gemini API pricing page. 3.8 Flash TTS costs US$0.50 per Mtok o
 ## Open questions
 
 - Whether Google will ship a generally available Pro model: 3.1 Pro has been in preview since February 2026 and 3.5 Pro has no release date.
-- How Argon will be offered through the API, with what model id, effort levels and guidance.
+- [as-of 2026-10-31] When Gemini 4 Carbon reaches the API, with what model id, limits and guidance. Argon's id, effort levels and guide are now published.
 - Whether the knowledge cutoff for 3.5 to 3.8 Flash is January 2025, March 2026 or domain-dependent in a way users can predict.
 - Why Google's own benchmark numbers for one model differ between pages.
 - Whether future Gemini generations will reject the sampling parameters with an error, as Google's July 2026 notice says they will.
@@ -694,3 +714,19 @@ Each id below gives its class. The original sources were read on 2026-10-03, exc
 - google-nano-banana-21 (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1
 - google-omni-flash (L, read 2026-10-09): https://ai.google.dev/gemini-api/docs/models/gemini-omni-flash
 - google-cyber-october (L, read 2026-10-09): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash-cyber
+
+Read 2026-10-31 (these sections carry `[as-of 2026-10-31]`; the whole document was not reverified):
+
+- google-changelog-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/changelog
+- google-deprecations-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/deprecations
+- google-inventory-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/models
+- google-pricing-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/pricing
+- google-computer-use-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/computer-use
+- google-latest-model-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/latest-model
+- google-argon-spec-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/models/gemini-4-argon
+- google-logs-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/logs-datasets
+- google-logs-policy-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/logs-policy
+- google-3-8-guide-oct31 (L, read 2026-10-31): https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.8
+- google-gemini-4-carbon (L, read 2026-10-31): https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/
+- google-cloud-release-notes-oct31 (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes
+- google-cloud-3-7-oct31 (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash

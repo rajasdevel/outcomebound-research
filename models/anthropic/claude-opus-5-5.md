@@ -30,6 +30,7 @@ sources:
   - https://metr.org/blog/2026-09-22-claude-opus-5-5/
   - https://platform.claude.com/docs/en/build-with-claude/context-windows
   - https://platform.claude.com/docs/en/build-with-claude/fast-mode
+  - https://platform.claude.com/docs/en/api/migration-2026-10-21 (read 2026-10-31)
 ---
 
 # Claude Opus 5.5
@@ -59,7 +60,7 @@ percent faster than Opus 5. [pg, ann]
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: low, medium, high, xhigh, max (default medium) |
-| Price | $4 in / $20 out per Mtok; cached input $0.2; List price, standard rate (20% below Opus 5). 5-minute cache write 5, 1-hour write 8; cache read is 0.05x input. Batch 2/10. Fast mode (research preview, Claude API only) 8/40 for up to 2.5x output speed [fast-mode]. Batch output up to 300K with a beta header. US-only inference adds 1.1x. |
+| Price | $4 in / $20 out per Mtok; cached input $0.2; List price, standard rate (20% below Opus 5). 5-minute cache write 5, 1-hour write 8; cache read is 0.05x input. Batch 2/10. Fast mode 8/40 for up to 2.5x output speed; out of research preview with no beta header since 2026-10-15; it runs on the Claude API, Claude Models on Google Cloud (Anthropic managed) and Foundry hosted on Azure [fast-mode-oct31]. Batch output up to 300K with a beta header. US-only inference adds 1.1x. |
 | Key benchmarks | SWE-Bench Pro (Anthropic 478-problem subset, near-saturated): 95.3 (high, maker) [anthropic-optimizing-cost](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence); SWE-Bench Pro (Anthropic 478-problem subset, near-saturated): 92.8 (medium (default), maker) [anthropic-optimizing-cost](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence); SWE-Bench Pro (Anthropic 478-problem subset, near-saturated): 87.4 (low, maker) [anthropic-optimizing-cost](https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence); Terminal-Bench 4.0: 66.4 (xhigh, Claude Code (bare mode), production safeguards on (fallback in 2.5 percent of requests, 10 percent of trials); five trials per task, maker) [system-card-opus-5-5](https://www.anthropic.com/claude-opus-5-5-system-card); Terminal-Bench 4.0: 59.6 (max, default fallback, mini-swe-agent (Artificial Analysis), independent) [aa-article-opus-5-5](https://artificialanalysis.ai/articles/claude-opus-5-5); Terminal-Bench 4.0: 59.6 (xhigh, default fallback, mini-swe-agent (Artificial Analysis), independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Terminal-Bench 4.0: 56.6 (high, default fallback, mini-swe-agent (Artificial Analysis), independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Terminal-Bench 4.0: 52.5 (medium, default fallback, mini-swe-agent (Artificial Analysis), independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Terminal-Bench 4.0: 31.3 (low, default fallback, mini-swe-agent (Artificial Analysis), independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Terminal-Bench 4.0: 64.8 (max, Claude Code (bare mode), production safeguards on, maker) [system-card-opus-5-5](https://www.anthropic.com/claude-opus-5-5-system-card); Terminal-Bench-Science 0.1: 58.7 (max, Claude Code (bare mode), production safeguards on (fallback in 3.9 percent of requests, 5 percent of trials); 10 trials per task, maker) [system-card-opus-5-5](https://www.anthropic.com/claude-opus-5-5-system-card); Terminal-Bench 4.0: 63.1 (max (24 of 198 attempts fell back; Artificial Analysis coding-agent run), Claude Code, independent) [aa-coding-agent-index](https://artificialanalysis.ai/agents/coding); Artificial Analysis Intelligence Index (v4.3.2): 57.6 (max, default fallback (AA shows 58), Artificial Analysis, independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Artificial Analysis Intelligence Index (v4.3.2): 56.0 (xhigh, default fallback, Artificial Analysis, independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Artificial Analysis Intelligence Index (v4.3.2): 53.6 (high, default fallback, Artificial Analysis, independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Artificial Analysis Intelligence Index (v4.3.2): 51.2 (medium, default fallback, Artificial Analysis, independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5); Artificial Analysis Intelligence Index (v4.3.2): 42.3 (low, default fallback, Artificial Analysis, independent) [aa-model-opus-5-5](https://artificialanalysis.ai/models/claude-opus-5-5) |
 | Other benchmarks | FrontierCode v1.1 (Main): 54.4 (max (the announcement's stated default for its Opus 5.5 table), Claude Code (run by Cognition), maker) [announce-opus-5-5](https://www.anthropic.com/claude-opus-5-5); FrontierCode v1.1 (Main): 54.6 (medium (default effort), Claude Code (run by Cognition), maker) [announce-opus-5-5](https://www.anthropic.com/claude-opus-5-5); CursorBench 4.0: 57.8 (max (the announcement's stated default for its Opus 5.5 table), Cursor's production agent harness (run by Cursor), maker) [announce-opus-5-5](https://www.anthropic.com/claude-opus-5-5); CursorBench 4.0: 52.5 (medium (default effort), Cursor's production agent harness (run by Cursor), maker) [announce-opus-5-5](https://www.anthropic.com/claude-opus-5-5); GDPval-AA v2.1 (Elo): 1846 (max; Artificial Analysis article value (its model page data now shows 1867.05), Artificial Analysis, independent) [aa-article-opus-5-5](https://artificialanalysis.ai/articles/claude-opus-5-5); SWE-bench Pro (Anthropic's own run, not the Scale leaderboard): 89.9 (max, adaptive thinking, five trials, maker) [system-card-opus-5-5](https://www.anthropic.com/claude-opus-5-5-system-card); DeepSWE v1.1: 74.2 (max, five trials, maker) [system-card-opus-5-5](https://www.anthropic.com/claude-opus-5-5-system-card); FrontierSWE v2 (mean score, as a percentage): 62.3 (max; run by Proximal in its agent harness, independent) [system-card-opus-5-5](https://www.anthropic.com/claude-opus-5-5-system-card); DeepSWE v1.1 (Artificial Analysis coding-agent component): 68.4 (max, Claude Code, independent) [aa-coding-agent-index](https://artificialanalysis.ai/agents/coding); SWE-Atlas-QnA (Artificial Analysis coding-agent component): 66.4 (max (52 of 372 attempts fell back), Claude Code, independent) [aa-coding-agent-index](https://artificialanalysis.ai/agents/coding) |
 | Prompting guides | [platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5); [platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices) |
@@ -171,7 +172,10 @@ is a set of differences from Opus 5 and says Opus 5 prompts should perform well 
   they still hold for 5.5 is not stated. [g, g-o5]
 - **Supported.** Per-message effort, mid-conversation system messages, task budgets, prompt caching (512-token minimum),
   batch, Files API, PDF, vision, server and client tools, compact on demand and inline tool definitions (both beta), fast
-  mode (research preview, Claude API only, $8 / $40 per million tokens, up to 2.5 times the output speed). Computer use needs
+  mode ($8 / $40 per million tokens, up to 2.5 times the output speed). **[as-of 2026-10-31]** Fast mode left research
+  preview on 2026-10-15 and needs no beta header. It runs on the Claude API, Claude Models on Google Cloud (Anthropic
+  managed) and Microsoft Foundry for deployments hosted on Azure, and the Start, Build and Scale tiers have a default
+  fast-mode rate limit. L [fast-oct31, relnotes-oct31] Computer use needs
   `computer_toolset_20260801` on the Claude API and Google Cloud (`computer_20251124` returns a 400; Bedrock still accepts
   it). [wn, price, fast]
 
@@ -216,7 +220,8 @@ is a set of differences from Opus 5 and says Opus 5 prompts should perform well 
 
 ### Sampling and API parameters
 
-- Non-default `temperature`, `top_p`, `top_k`: 400. `thinking` disabled or manual: 400. Prefill: 400. `tool_choice` `any` or
+- Non-default `temperature`, `top_p`, `top_k`: 400. **[as-of 2026-10-31]** In API version `2026-10-21`, which the new
+  major SDKs send, the three parameters return a 400 at any value, the default included. L [mig-oct21] `thinking` disabled or manual: 400. Prefill: 400. `tool_choice` `any` or
   `tool`: 400. Thinking blocks are bound to the model and the conversation: read by Opus 5.5 from Opus 5 and earlier Opus,
   Sonnet and Haiku and, on the Claude API and Google Cloud, from Sonnet 5.5, never from Fable or Mythos; read by Fable 5.1
   and Mythos 5.1 from Opus 5.5 on the Claude API, and by no other model; a replay after the system prompt, tools or an earlier message changed returns a 400 for accounts created
@@ -225,7 +230,7 @@ is a set of differences from Opus 5 and says Opus 5 prompts should perform well 
   new relative to Opus 5), cybersecurity, a narrow set of frontier-model-development capabilities, and reasoning
   extraction. Opus 5.5 is not on Anthropic's Covered Models list, so the 30-day retention rule that binds Fable models does not apply
   to it. [g, README]
-- Price: $4 in / $20 out; cache write 5m $5, 1h $8; read $0.20; batch $2 / $10; US-only inference 1.1x; fast mode $8 / $40. [price]
+- Price: $4 in / $20 out; cache write 5m $5, 1h $8; read $0.20; batch $2 / $10; US-only inference 1.1x; fast mode $8 / $40 (out of research preview since 2026-10-15 [as-of 2026-10-31]). [price, fast-oct31]
 
 ### Migrating from the previous generation
 
@@ -370,3 +375,11 @@ without production safeguards unless stated. [sc]
 | metr-report | https://metr.org/blog/2026-09-22-claude-opus-5-5/ | M | 2026-10-03 |
 | ctx | https://platform.claude.com/docs/en/build-with-claude/context-windows | L | 2026-10-03 |
 | fast | https://platform.claude.com/docs/en/build-with-claude/fast-mode | L | 2026-10-03 |
+
+Read on 2026-10-31 for the corrected claims; the document was not fully re-verified.
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| fast-oct31 | https://platform.claude.com/docs/en/build-with-claude/fast-mode | L | 2026-10-31 |
+| relnotes-oct31 | https://platform.claude.com/docs/en/release-notes/overview | L | 2026-10-31 |
+| mig-oct21 | https://platform.claude.com/docs/en/api/migration-2026-10-21 | L | 2026-10-31 |

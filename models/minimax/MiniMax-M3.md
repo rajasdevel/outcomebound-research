@@ -185,7 +185,9 @@ minimax-m3-blog, aa-minimax-m3]
 
 ### Sampling and API parameters
 
-Temperature 0 to 2, recommended 1.0; top_p default 0.95; `top_k` and `stop_sequences` ignored on the Anthropic endpoint;
+[as-of 2026-10-31] `temperature` and `top_p` are not supported on MiniMax's API: any value has no effect, and M3 always
+uses 1 and 0.95 (a `top_p` sent must be within (0, 1]), per the API references read again on 2026-10-31; `top_k` and
+`stop_sequences` ignored on the Anthropic endpoint;
 penalties and `logit_bias` ignored on the OpenAI endpoint; `n` is 1; `service_tier: priority` costs 1.5 times. MiniMax's video
 evaluations used temperature 1.0 and top_p 0.95. [minimax-anthropic-api, minimax-openai-api, minimax-m3-blog]
 

@@ -59,17 +59,24 @@ sources:
   - https://elevenlabs.io/docs/eleven-agents/customization/voice
   - https://elevenlabs.io/docs/eleven-agents/customization/llm/custom-llm
   - https://elevenlabs.io/docs/eleven-agents/customization/llm/llm-cascading
+  - https://elevenlabs.io/docs/eleven-agents/customization/realtime-models (read 2026-10-31)
+  - https://elevenlabs.io/docs/eleven-agents/guides/openai-realtime-compatibility (read 2026-10-31)
+  - https://elevenlabs.io/docs/api-reference/conversations/create-client-secret (read 2026-10-31)
+  - https://elevenlabs.io/docs/changelog/2026/10/19 (read 2026-10-31)
+  - https://elevenlabs.io/docs/changelog/2026/10/26 (read 2026-10-31)
+  - https://elevenlabs.io/blog/realtime (read 2026-10-31)
+  - https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (read 2026-10-31)
 ---
 
 # ElevenLabs
 
 first-party lab API
 
-ElevenLabs trains speech synthesis models (Eleven) and transcription models (Scribe). It sells them through its own API at `api.elevenlabs.io`, through a web app (ElevenCreative) and through a hosted agent platform (ElevenAgents). It does not train language models. The agent platform routes calls to language models of other makers and passes their cost through. This file covers the ElevenLabs API and platform as one route. Everything here was read on 2026-10-03 [el-agents-overview] [el-agents-llm].
+ElevenLabs trains speech synthesis models (Eleven) and transcription models (Scribe). It sells them through its own API at `api.elevenlabs.io`, through a web app (ElevenCreative) and through a hosted agent platform (ElevenAgents). [as-of 2026-10-31] The pages read do not say whether ElevenLabs trains the language model inside its Eleven Realtime models; it says only that each component uses its latest research and that the specifics are not public [el-rt-openai]. In Custom mode, the agent platform routes calls to language models of other makers and passes their cost through. This file covers the ElevenLabs API and platform as one route. Everything here was read on 2026-10-03 [el-agents-overview] [el-agents-llm].
 
 ## Models offered
 
-The ten ElevenLabs models in this library, by class. The [maker README](../models/elevenlabs/README.md) holds the lineage.
+The ElevenLabs models in this library ([as-of 2026-10-31] twelve), by class. The [maker README](../models/elevenlabs/README.md) holds the lineage.
 
 | Model file | API id | Note |
 | --- | --- | --- |
@@ -77,12 +84,14 @@ The ten ElevenLabs models in this library, by class. The [maker README](../model
 | [Eleven v4 Turbo](../models/elevenlabs/eleven_v4_turbo.md) | `eleven_v4_turbo` | Low-latency variant. Text to Dialogue WebSocket and ElevenAgents [el-models] |
 | [Eleven v3](../models/elevenlabs/eleven_v3.md) | `eleven_v3` | Previous expressive generation. Not an agent speech model in the agent API enum [el-api-agents] |
 | [Eleven v3 Conversational](../models/elevenlabs/eleven_v3_conversational.md) | `eleven_v3_conversational` | Low-latency v3, for agents and the Text to Dialogue WebSocket [el-agents-expressive] |
-| [Eleven Flash v2.5](../models/elevenlabs/eleven_flash_v2_5.md) | `eleven_flash_v2_5` | 32 languages, about 75 ms [el-models] |
+| [Eleven Flash v2.5](../models/elevenlabs/eleven_flash_v2_5.md) | `eleven_flash_v2_5` | 32 languages, [as-of 2026-10-31] about 100 ms median server-side latency [el-latency-method] |
 | [Eleven Flash v2](../models/elevenlabs/eleven_flash_v2.md) | `eleven_flash_v2` | English only; the default agent speech model [el-api-agents] |
 | [Eleven Multilingual v2](../models/elevenlabs/eleven_multilingual_v2.md) | `eleven_multilingual_v2` | 29 languages; the default model of the Text to Speech endpoint [el-api-tts] |
 | [Scribe v2](../models/elevenlabs/scribe_v2.md) | `scribe_v2` | Batch transcription [el-models] |
 | [Scribe v2 Realtime](../models/elevenlabs/scribe_v2_realtime.md) | `scribe_v2_realtime` | Streaming transcription [el-models] |
 | [Scribe v2 Medical](../models/elevenlabs/scribe_v2_medical.md) | `scribe_v2_medical` | Batch transcription for clinical audio [el-models] |
+| [Eleven Realtime v1 Mini](../models/elevenlabs/eleven_realtime_v1_mini.md) | `eleven_realtime_v1_mini` | [as-of 2026-10-31] Speech-to-speech voice agent; ElevenAgents Realtime mode and the Realtime API [el-rt-models] [el-rt-openai] |
+| [Eleven Realtime v1 Max](../models/elevenlabs/eleven_realtime_v1_max.md) | `eleven_realtime_v1_max` | [as-of 2026-10-31] Speech-to-speech voice agent that reasons first, for tool-heavy tasks; ElevenAgents Realtime mode and the Realtime API [el-rt-models] [el-rt-openai] |
 
 Other models on the platform have no file here. They are the deprecated `eleven_turbo_v2_5` and `eleven_turbo_v2`, and the voice changer models `eleven_multilingual_sts_v2` and `eleven_english_sts_v2`. They also include the voice design models `eleven_ttv_v3` and `eleven_multilingual_ttv_v2`, and `eleven_text_to_sound_v2`. The music models are `music_v2_5`, `music_v2` and the outclassed `music_v1`. The deprecated `scribe_v1` also has no file. So do dubbing, voice isolation, and the image and video models, many of which come from other makers [el-models] [el-pricing-api].
 
@@ -90,10 +99,10 @@ Other models on the platform have no file here. They are the deprecated `eleven_
 
 ## API surface
 
-- **Protocol.** Its own REST and WebSocket API. No OpenAI-compatible speech endpoint was found in the pages read. Model ids are lower-case snake case, such as `eleven_v4`, `eleven_flash_v2_5` and `scribe_v2` [el-api-tts] [el-models].
+- **Protocol.** Its own REST and WebSocket API. [as-of 2026-10-31] One exception: the Realtime API at `wss://api.elevenlabs.io/v1/convai/realtime` speaks OpenAI's Realtime wire protocol for the two Eleven Realtime models, so OpenAI's Realtime SDK connects to it with a client secret from `POST /v1/convai/realtime/client_secrets`. It is WebSocket only, with no WebRTC [el-rt-openai] [el-rt-secret] [el-blog-rt]. Model ids are lower-case snake case, such as `eleven_v4`, `eleven_flash_v2_5` and `scribe_v2` [el-api-tts] [el-models].
 - **Base hosts.** `api.elevenlabs.io` (global routing), `api.us.elevenlabs.io` (USA only), and for Enterprise isolated environments `api.eu.residency.elevenlabs.io`, `api.in.residency.elevenlabs.io` and `api.sg.residency.elevenlabs.io`. The WebSocket hosts follow the same names with `wss` [el-api-tts] [el-residency].
 - **Auth.** An API key in `xi-api-key`. A key can carry endpoint scopes, a credit quota and an IP allowlist. User keys can expire between 15 minutes and 30 days. A single-use token (valid 15 minutes) serves a browser. The security guide advises service accounts for each environment and resource-level permissions in the customer's own backend for cloned voices [el-api-auth] [el-security] [el-stt-client].
-- **Endpoints.** Text to Speech (HTTP, stream, WebSocket, multi-context WebSocket), Text to Dialogue (HTTP, stream, WebSocket), Speech to Text (batch with webhooks, realtime WebSocket), the agent platform (configuration API and a conversation WebSocket), Speech Engine, voices, pronunciation dictionaries, and others [el-llms] [el-ws-compare].
+- **Endpoints.** Text to Speech (HTTP, stream, WebSocket, multi-context WebSocket), Text to Dialogue (HTTP, stream, WebSocket), Speech to Text (batch with webhooks, realtime WebSocket), the agent platform (configuration API and a conversation WebSocket), Speech Engine, voices, pronunciation dictionaries, and others [el-llms] [el-ws-compare]. [as-of 2026-10-31] Also the Realtime API (above) and, for enterprise workspaces, a Realtime Translation WebSocket [el-changelog-1019]. Voice Changer is now `POST /v1/voice-changer/{voice_id}` and its `/stream` path; the `/v1/speech-to-speech/{voice_id}` paths still answer but are deprecated and removed from the API reference [el-changelog-1026].
 - **SDKs and tools.** Python and JavaScript clients, browser and React packages, React Native, Swift and Kotlin agent SDKs, a CLI, a hosted MCP server and an agent skill for coding assistants. The docs can be fetched as Markdown by adding `.md` to a page URL [el-changelog-v4] [el-agents-overview] [el-llms] [el-quickstart].
 
 ## Feature parity
@@ -108,6 +117,8 @@ For a first-party API, parity means differences between endpoints and between it
 | Text to Dialogue WebSocket | Models whose id starts with `eleven_v3` or `eleven_v4`. The API reference says v3 models only, with `eleven_v3_conversational` as the default [el-ws-ttd] [el-api-ttd-ws] |
 | ElevenAgents speech model | `eleven_flash_v2`, `eleven_flash_v2_5`, `eleven_multilingual_v2`, `eleven_v3_conversational`, `eleven_v4`, `eleven_v4_turbo` and the deprecated Turbo ids [el-api-agents] |
 | Speech to Text | `scribe_v2`, `scribe_v2_medical` (batch); `scribe_v2_realtime` (WebSocket) [el-api-stt] [el-api-stt-rt] |
+| Realtime API (OpenAI-compatible WebSocket) | [as-of 2026-10-31] `eleven_realtime_v1_mini` (default) and `eleven_realtime_v1_max` [el-rt-secret] |
+| ElevenAgents Realtime voice mode | [as-of 2026-10-31] The same two models, set with `conversation_config.realtime_model`. Not with a custom LLM, Amazon Bedrock or Speech Engine. Mini is not offered under Zero Retention Mode or HIPAA; Max is not offered in the India and Singapore residency environments [el-rt-models] |
 
 - **Streaming.** HTTP streaming when the text is ready. WebSockets when a language model feeds the speech model. A WebSocket counts toward concurrency only while it generates, but a Text to Dialogue WebSocket holds a session while open [el-audio-streaming] [el-models].
 - **Barge-in.** The multi-context WebSocket (up to five contexts) closes one stream and opens another. No cancel message is described for the Text to Dialogue WebSocket [el-ws-multi] [el-ws-ttd].
@@ -125,6 +136,7 @@ ElevenLabs bills per unit of media, not per token, and the card of each model ho
 - **Credits.** The website draws credits. Credits were once called characters. The cost per character varies by model, plan and API or website use. Up to two months of unused credits roll over [el-billing].
 - **Plans.** Free, Starter, Creator, Pro, Scale and Business, at US$0, 6, 22, 99, 299 and 990 a month, plus Enterprise (custom). Starter and Creator have first-month discounts. A plan sets included credits, included agent minutes, concurrency, custom voice slots and audio quality. Pay As You Go lets a self-serve account prepay a balance [el-pricing-api] [el-pricing-agents] [el-payg].
 - **Promotions.** Until 2026-10-12, v4 and v4 Turbo are 72% off on the API price, and Creator plans and above include three times the credits. Starter has a first-month price until 2026-10-18 [el-pricing-api] [el-pricing-agents].
+- **Eleven Realtime [as-of 2026-10-31].** US$0.08 per minute of connected audio plus language model tokens: Mini US$0.20 input and US$6.00 output per 1M tokens, Max US$1.80 and US$9.00. Burst audio above the concurrency limit is US$0.16 per minute. The cards give the details [el-pricing-api-1031] [el-rt-models].
 - **Agents.** Included minutes by plan, then US$0.08 for each additional minute and US$0.003 for each text message. Burst calls (up to three times the concurrency limit, or 300) cost twice the rate and get lower priority. Silence of more than 10 seconds in a voice call is billed at 5% of the rate. Language model cost is passed through, and telephony adds no ElevenLabs fee. A startup grant gives 12 months free [el-pricing-agents] [el-agents-burst] [el-agents-cost] [el-agents-opt] [el-agents-llm].
 - **Rights.** Paid plans carry commercial rights to generated audio. On the free plan, use is non-commercial with attribution [el-tts-overview] [el-billing].
 - **Third-party prices.** Artificial Analysis lists some ElevenLabs models at a higher price per million characters than the pricing page [aa-tts-board].
@@ -143,12 +155,13 @@ ElevenLabs bills per unit of media, not per token, and the card of each model ho
 ## Notes for agents and harnesses
 
 - **Defaults differ.** The default model differs by endpoint: Multilingual v2 on Text to Speech, `eleven_v3` on Text to Dialogue, `eleven_flash_v2` for a new agent, and `eleven_v3` in the CLI (version 1.2.0) [el-api-tts] [el-api-ttd] [el-api-agents] [el-changelog-0907].
+- **Clone settings [as-of 2026-10-31].** On the Text to Dialogue endpoints, `use_pvc_as_ivc` is deprecated: `clone_strength` (0 to 1) now decides whether a v4 professional clone runs as a professional or an instant clone [el-changelog-1026].
 - **WebSocket and model.** The Text to Speech WebSocket rejects v3 and v4. The Text to Dialogue WebSocket needs a v3 or v4 id. One voice for `eleven_v4_turbo` and `eleven_v3_conversational`, up to 10 for `eleven_v4` [el-ws-compare] [el-api-ttd-ws].
 - **Idle timeouts.** 20 seconds on the speech WebSockets (a space keeps the Text to Speech one open, `keep_alive` the dialogue one), 15 seconds on the realtime transcription socket [el-ws-tts] [el-ws-ttd] [el-stt-commit].
 - **Text is spoken as written.** Older models read narrative cues aloud. v3 and v4 can read a tag as a sound effect. Small fast models misread numbers. The guides advise normalising text before it reaches the model, or setting the agent's `text_normalisation_type` [el-tts-practices] [el-agents-prompting].
 - **Prompts steer behaviour, settings steer timing.** The agent guide says the system prompt controls conversation style and not turn-taking or the languages an agent speaks. Those are platform settings [el-agents-prompting].
 - **Tool arguments.** Spoken forms of emails and numbers enter the context. The agent guide gives the exact format in each tool parameter description [el-agents-prompting].
-- **Latency figures.** The ~75 ms and ~100 ms figures leave out network and application time. The `x-region` header names the serving cluster, and `api.us.elevenlabs.io` keeps traffic in the USA [el-latency-opt] [el-latency-concept].
+- **Latency figures.** [as-of 2026-10-31] The ~100 ms (Flash v2.5, v4 Turbo), ~135 ms (Flash v2) and ~165 ms (v3 Conversational) figures are median server-side latency, updated on 2026-10-29; on 2026-10-03 the models page gave ~75 ms for Flash. They leave out network and application time [el-latency-method]. The `x-region` header names the serving cluster, and `api.us.elevenlabs.io` keeps traffic in the USA [el-latency-opt] [el-latency-concept].
 - **Docs disagree.** See the README for normalisation, file limits, language and voice counts, and the Text to Dialogue WebSocket reference. A claim is only as good as its page and date [el-api-ttd-ws] [el-ws-ttd].
 - **Voice ids expire.** Default voices end on 2026-12-31. Voice Library voices do not work through the API on the free plan. Voices with live moderation cannot run in agents [el-voices] [el-agents-voice].
 - **Language model ids.** Agent configuration uses its own ids for language models, such as `gpt-6-sol`, `glm-52`, `deepseek-v41-flash`, `claude-opus-5` and `claude-opus-5-5` [el-changelog-v4].
@@ -216,3 +229,16 @@ ElevenLabs bills per unit of media, not per token, and the card of each model ho
 | el-agents-voice | https://elevenlabs.io/docs/eleven-agents/customization/voice | L | 2026-10-03 |
 | el-agents-custom-llm | https://elevenlabs.io/docs/eleven-agents/customization/llm/custom-llm | L | 2026-10-03 |
 | el-agents-cascade | https://elevenlabs.io/docs/eleven-agents/customization/llm/llm-cascading | L | 2026-10-03 |
+
+Sources added for the claims dated 2026-10-31:
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| el-rt-models | https://elevenlabs.io/docs/eleven-agents/customization/realtime-models | L | 2026-10-31 |
+| el-rt-openai | https://elevenlabs.io/docs/eleven-agents/guides/openai-realtime-compatibility | L | 2026-10-31 |
+| el-rt-secret | https://elevenlabs.io/docs/api-reference/conversations/create-client-secret | L | 2026-10-31 |
+| el-changelog-1019 | https://elevenlabs.io/docs/changelog/2026/10/19 | L | 2026-10-31 |
+| el-changelog-1026 | https://elevenlabs.io/docs/changelog/2026/10/26 | L | 2026-10-31 |
+| el-blog-rt | https://elevenlabs.io/blog/realtime | L | 2026-10-31 |
+| el-latency-method | https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology | L | 2026-10-31 |
+| el-pricing-api-1031 | https://elevenlabs.io/pricing/api | L | 2026-10-31 |

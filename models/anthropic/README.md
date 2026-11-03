@@ -62,6 +62,8 @@ sources:
   - https://www.tbench.ai/leaderboard/terminal-bench/4.0
   - https://artificialanalysis.ai/agents/coding
   - https://metr.org/time-horizons/
+  - https://platform.claude.com/docs/en/build-with-claude/fast-mode (read 2026-10-31)
+  - https://platform.claude.com/docs/en/api/migration-2026-10-21 (read 2026-10-31)
 ---
 
 # Anthropic models
@@ -184,7 +186,11 @@ adaptive thinking on the Claude API and Google Cloud; changing effort with think
 [as-of 2026-10-09] (L) [effort-current]
 
 **Sampling, prefill and tool choice.** Any non-default `temperature`, `top_p` or `top_k` returns a 400 on every
-5-series model. Prefilling the assistant turn returns a 400 on the 5-series (and on all models from the 4.6
+5-series model. **[as-of 2026-10-31]** That is the rule of API version `2023-06-01`. In API version
+`2026-10-21`, which the new major SDKs send by default, any value of the three parameters returns a 400, also
+the default value, and also on Haiku 4.5; the SDKs no longer have the parameters. A request without them samples
+at the defaults, a temperature of 1.0. On Bedrock, `2026-10-21` works only for Claude 4.7 and later models, so
+Haiku 4.5 stays on the older version there. L [migration-oct21] Prefilling the assistant turn returns a 400 on the 5-series (and on all models from the 4.6
 generation); Haiku 4.5 still accepts both a prefill and `temperature` or `top_p` (not both together), but not a
 prefill while extended thinking is on. `tool_choice` of type `any` or `tool` returns a 400 on Fable 5.1, Opus 5.5
 and Sonnet 5.5, with `auto` and `none` unchanged; Fable 5, Opus 5, Sonnet 5, Haiku 5.5 and Haiku 4.5 accept forced
@@ -231,8 +237,11 @@ not provider-enforced spend caps. [as-of 2026-10-09] (L) [budgets-current, mid-c
 
 **Tools.** Computer use is the `computer_toolset_20260801` toolset (batch actions, zoom on by default, about 4,500
 tokens of definition overhead); on the Claude API and Google Cloud, Opus 5.5 and Sonnet 5.5 reject the earlier
-`computer_20251124` tool (Bedrock still accepts it). A browser use toolset exists beside it. Fast mode (research
-preview, Claude API only) exists for Opus 5.5 and Opus 5 at higher prices. Server-side web search costs $10 per 1,000
+`computer_20251124` tool (Bedrock still accepts it). A browser use toolset exists beside it. Fast mode exists for Opus 5.5 and Opus 5 at higher prices.
+**[as-of 2026-10-31]** On Opus 5.5 it is out of research preview since 2026-10-15, needs no beta header and
+runs on the Claude API, Claude Models on Google Cloud (Anthropic managed) and Microsoft Foundry (hosted on
+Azure). On Opus 5 it stays a research preview on the Claude API only, behind the `fast-mode-2026-02-01` header.
+Fast mode on Opus 4.8 (outside this folder) is removed on 2026-11-30. L [fast-oct31, relnotes-oct31] Server-side web search costs $10 per 1,000
 searches; web fetch has no fee beyond tokens; code execution is free when it accompanies the 2026-02-09 versions
 of web search or web fetch. [whats-new-opus55, pricing, relnotes]
 
@@ -494,3 +503,11 @@ Old ids below retain their 2026-10-03 read date. The second table holds only sou
 | budgets-current | https://platform.claude.com/docs/en/build-with-claude/task-budgets | L | 2026-10-09 |
 | mid-current | https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages | L | 2026-10-09 |
 | sc-haiku55 | https://www.anthropic.com/document/claude-haiku-5-5-system-card | L | 2026-10-09 |
+
+The table below holds only sources read on 2026-10-31 for the corrected claims; the document was not fully re-verified.
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| relnotes-oct31 | https://platform.claude.com/docs/en/release-notes/overview | L | 2026-10-31 |
+| fast-oct31 | https://platform.claude.com/docs/en/build-with-claude/fast-mode | L | 2026-10-31 |
+| migration-oct21 | https://platform.claude.com/docs/en/api/migration-2026-10-21 | L | 2026-10-31 |

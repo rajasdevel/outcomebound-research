@@ -3,6 +3,10 @@ last_checked: 2026-09-25
 volatility: VOLATILE (Gemini CLI releases weekly; context loading, hooks and settings keys change between them)
 sources:
   - https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0 (read 2026-10-28)
+  - https://github.com/google-gemini/gemini-cli/releases/tag/v0.67.0-preview.0 (read 2026-10-31)
+  - https://github.com/google-gemini/gemini-cli/pull/29833 (read 2026-10-31)
+  - https://github.com/google-gemini/gemini-cli/pull/29858 (read 2026-10-31)
+  - https://github.com/google-gemini/gemini-cli/pull/29899 (read 2026-10-31)
   - https://geminicli.com/docs/cli/gemini-md/
   - https://raw.githubusercontent.com/google-gemini/gemini-cli/main/packages/core/src/prompts/snippets.ts
   - https://geminicli.com/docs/reference/configuration
@@ -128,6 +132,42 @@ names a command or program the harness runs.
 
 The October 27 release reports that `getSafeGitEnv` disables interactive credential and SSH prompts for the Git subprocess environment it constructs, settings placeholders resolve after environment files load, and single-line `SKILL.md` descriptions have stronger frontmatter parsing. It also changes scheduler tool-call grouping and fixes Windows diff-command quoting. These are vendor-reported fixes; local settings expansion, skill discovery and subprocess behavior were not tested. L, <https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0>, read 2026-10-28.
 
+## 10. Preview release 0.67.0-preview.0 [as-of 2026-10-31]
+
+`v0.67.0-preview.0`, published 2026-10-27, is a preview release, not a stable one; the stable
+release of the same day is 0.66.0 (§9). These notes describe the release notes and the pull
+requests they link, not a runtime check. L, read 2026-10-31.
+
+- **Context files.** In IDE mode, an open `GEMINI.md` and the IDE and Gemini settings files
+  (`.vscode/settings.json`, VS Code user settings, `.gemini/settings.json`) are no longer sent as
+  the active open file. The pull request says such files leaked editor-extension rules into
+  responses (#29848).
+- **Subagents.** With the workspace set to the home directory, the project and user agent folders
+  are the same `~/.gemini/agents`. Gemini CLI loaded each agent twice and warned about duplicate
+  names; it now loads them once (#29847).
+- **Permissions.** Flags and paths that occur only in the output of the agent's own shell commands
+  no longer count as untrusted input, and an approval now covers the same flags and root commands
+  for the rest of the session. High-risk value flags, URLs, executable scripts and paths outside the
+  workspace are still checked against shell output too, and the output of `curl`, `wget`, `gh` and
+  `ssh` still counts as external. Flags from `web_fetch`, `web_search`, MCP or remote retrieval
+  output still ask for confirmation (#29833). In ACP mode, permission requests now name the MCP server and
+  tool (#29910).
+- **Sandbox.** IDE integration now works when Gemini CLI runs in a container sandbox (Docker,
+  Podman or gVisor `runsc`). The host launcher relays the IDE session into the container over
+  `exec` standard input and output, and the pull request says the IDE's bearer token does not enter
+  the sandbox (#29858).
+- **Hooks.** `gemini hooks migrate --from-claude` now converts Claude Code hook timeouts from
+  seconds to milliseconds. Before, a migrated 30-second timeout became 30 milliseconds (#29899).
+- **Non-interactive mode.** Headless runs now bind `SIGINT` and `SIGTERM` to cancellation without a
+  TTY, and stop tool execution after cancellation. Before, a run in CI or a container could still
+  run delayed shell tool calls after a signal (#29849).
+- **Settings.** The migration of deprecated settings keeps `${VAR}` placeholders (#29867).
+- **Model catalog.** A new `gemini models` command and a `--list-models` flag list the available
+  models, with `-o json` for a machine-readable list with context limits (#29880).
+
+A preview can change before the stable 0.67.0 release. The installed version and runtime behavior
+were not checked.
+
 ## Sources
 
 - `GEMINI.md` <https://geminicli.com/docs/cli/gemini-md/> (page updated 2026-06-18, read
@@ -142,3 +182,16 @@ The October 27 release reports that `getSafeGitEnv` disables interactive credent
   (2026-09-29); issue <https://github.com/google-gemini/gemini-cli/issues/20426> (2026-09-29).
 
 Evidence ids in brackets resolve in [`../_evidence/2026-09-25.jsonl`](../_evidence/2026-09-25.jsonl).
+
+Sources for sections dated 2026-10-31 (L, vendor release notes and pull requests; runtime behavior not tested):
+
+- <https://github.com/google-gemini/gemini-cli/releases/tag/v0.67.0-preview.0>, read 2026-10-31 (§10).
+- Pull requests <https://github.com/google-gemini/gemini-cli/pull/29833>,
+  <https://github.com/google-gemini/gemini-cli/pull/29847>,
+  <https://github.com/google-gemini/gemini-cli/pull/29848>,
+  <https://github.com/google-gemini/gemini-cli/pull/29849>,
+  <https://github.com/google-gemini/gemini-cli/pull/29858>,
+  <https://github.com/google-gemini/gemini-cli/pull/29880>,
+  <https://github.com/google-gemini/gemini-cli/pull/29899> and
+  <https://github.com/google-gemini/gemini-cli/pull/29910>, read 2026-10-31 (§10). Pull request
+  29867 is cited from its title in the release notes only.

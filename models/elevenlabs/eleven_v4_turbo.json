@@ -3,7 +3,7 @@
   "name": "Eleven v4 Turbo",
   "maker": "ElevenLabs",
   "family": "Eleven",
-  "class": "Eleven Realtime",
+  "class": "Eleven Expressive Low-Latency",
   "generation": "4",
   "released": "2026-09-28",
   "status": "ga",
@@ -34,7 +34,7 @@
     ],
     "turn_detection": "none in the model. The Text to Dialogue WebSocket takes new_turn or a change of voice_id as a turn boundary; in ElevenAgents the platform's turn-taking system decides when the agent speaks [el-ws-ttd] [el-agents-flow]",
     "interruption": "Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled for the agent or a tool; on the Text to Dialogue WebSocket the docs describe no cancel message [el-agents-flow] [el-ws-ttd]",
-    "latency": "Median inference latency about 100 ms, excluding application and network latency [el-models]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog]",
+    "latency": "[as-of 2026-10-31] About 100 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (read as median inference latency on 2026-10-03) [el-models-1031] [el-latency-method]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog]",
     "session_limit": "Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow]"
   },
   "reasoning": {
@@ -50,13 +50,13 @@
   },
   "benchmarks": [
     {
-      "name": "Maker median inference latency (milliseconds)",
+      "name": "Maker median server-side latency (milliseconds)",
       "score": 100,
-      "setting": "median inference latency, excluding application and network latency; maker figure on the models page",
+      "setting": "WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; read as median inference latency on 2026-10-03",
       "harness": "ElevenLabs",
       "measured_by": "maker",
-      "source": "el-models",
-      "read": "2026-10-03"
+      "source": "el-latency-method",
+      "read": "2026-10-31"
     },
     {
       "name": "Maker median time to first speech (milliseconds)",
@@ -186,6 +186,20 @@
       "url": "https://testingcatalog.com/elevenlabs-launches-eleven-v4-and-v4-turbo-voice-models",
       "read": "2026-10-03",
       "kind": "A",
+      "quote": null
+    },
+    {
+      "id": "el-models-1031",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-latency-method",
+      "url": "https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology",
+      "read": "2026-10-31",
+      "kind": "L",
       "quote": null
     }
   ],

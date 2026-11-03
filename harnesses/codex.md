@@ -2,6 +2,23 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Codex CLI releases weekly; loader, hooks, sandbox and app-server change between them)
 sources:
+  - https://github.com/openai/codex/releases/tag/rust-v0.166.0 (read 2026-10-31)
+  - https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/models-manager/models.json (read 2026-10-31)
+  - https://github.com/openai/codex/pull/56553 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57181 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57198 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57203 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57204 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57227 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57240 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57242 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57262 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57279 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57286 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57441 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57451 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57500 (read 2026-10-31)
+  - https://github.com/openai/codex/pull/57839 (read 2026-10-31)
   - https://github.com/openai/codex/releases/tag/rust-v0.164.0 (read 2026-10-28)
   - https://github.com/openai/codex/releases/tag/rust-v0.165.0 (read 2026-10-28)
   - https://learn.chatgpt.com/docs/agent-configuration/agents-md
@@ -72,6 +89,12 @@ harness-loading-coverage-19]. A claim read on a later day carries its date.
   bundled system skills.
 - Name, description and path are listed, capped at 2% of the context window or 8,000 characters,
   with descriptions shortened when there are many [openai-14, openai-f21].
+- **Catalog flags [as-of 2026-10-31].** 0.166.0 adds two skill-catalog feature flags, both off by
+  default according to their pull requests. `omit_skill_descriptions` (#57500) leaves descriptions
+  out of the model-visible catalog and keeps names and locators; with it on, the model cannot choose
+  a skill by its description. `skill_catalog_deltas` (#57262) appends only new and changed skills
+  and shares one metadata budget across turns and resume; removals do not refund the budget, and the
+  catalog is rebuilt after compaction. L, pull requests listed in the 0.166.0 changelog; not run.
 - A skill installed in `.agents/skills` for Codex is installed for Amp, Cursor, Kimi Code, Mistral
   Vibe, Antigravity and Gemini CLI too
   ([cross-harness.md](cross-harness.md#6-skills-discovery-and-listing)).
@@ -145,8 +168,13 @@ record, named), `UNVERIFIED`.
 - "`timeout` is measured in seconds and defaults to `600`." "Multiple matching command hooks for the
   same event are launched concurrently."
 - `systemMessage` is "Surfaced as a warning in the UI or event stream". Hooks run in the session's
-  working directory, which the input's `cwd` names; no project-root environment variable is
-  documented.
+  working directory; no project-root environment variable is documented. From 0.166.0 the input's
+  `cwd` of a `PreToolUse`, `PermissionRequest` or `PostToolUse` hook on a local command names the
+  directory where that command runs (its resolved `workdir`), not the session's directory. The hook
+  process itself stays in the session's directory, and a remote command still reports the host
+  directory. A hook that reads `cwd` as the project root is therefore wrong for a command run
+  elsewhere (inference). L, pull requests #57198 and #57203, merged 2026-10-26 and listed in the
+  0.166.0 changelog; the hooks page was not re-read [as-of 2026-10-31].
 - **Output limit.** Codex limits each model-visible hook-output message to roughly 2,500 tokens;
   past it, the full text is saved under `<temp_dir>/hook_outputs/<session_id>/<uuid>.txt` and the
   model receives a head-and-tail preview with that path ("spilling"). A handler's
@@ -322,6 +350,44 @@ These notes describe the published releases, not a runtime check. L, October 23 
 
 Release support does not establish provider account access, installed versions or behavior on another surface.
 
+## 14. Release changes in 0.166.0 [as-of 2026-10-31]
+
+These are release notes (L) for the 2026-10-29 release, and the descriptions of the pull requests
+it lists, read 2026-10-31. They are not a runtime check. Feature-flag defaults come from the pull
+requests, not from a run.
+
+- **Resume and fork.** Resuming or forking a thread keeps the approval and permission settings the
+  thread had accepted (#57227). The pull request says Codex prefers the source thread's settings
+  snapshots over stale turn contexts and does not restore raw permission grants from history when
+  no owner can be found. Reasoning-token accounting now survives resume and fork, so retained
+  reasoning is not counted twice and does not start automatic compaction too early (#57839). Older
+  records without the new field keep the old accounting.
+- **Unloaded threads.** `codex queue --resume` resumes an unloaded thread after it queues a message.
+  The default `thread_unload_delay_secs` fell from 1800 to 60 seconds (#57242): an app-server thread
+  with no subscribers and no activity can unload after one minute.
+- **Hooks.** The hook input's `cwd` change is in §7.1. `hooks/list` takes a `threadId` and then
+  returns the thread's current hooks, including hooks that its execution environments supply, some
+  of which can block a turn (#56553). A listing by working directory alone omitted them.
+- **Untrusted context.** Untrusted additional context can carry an optional `name` (#57181). Behind
+  the `untrusted_as_tool_output` flag, off by default (#57204), Codex renders untrusted context as
+  named `function_call_output` items in the `agent` namespace before the user's input, while
+  application context stays in developer messages (#57279).
+- **Automatic review of agent calls.** Behind `guardian_native_multi_agent_history`, off by default
+  (#57441), Multi-Agent V2 calls to `spawn_agent`, `send_message`, `followup_task` and
+  `interrupt_agent` need Guardian review (#57451). The review itself is in
+  [agent-authorization.md §3](../practices/agent-authorization.md#3-codexs-automatic-approval-review-volatile-a3).
+- **Managed requirements.** `requirements.toml` accepts `[network_proxy]`, with
+  `[experimental_network]` kept as an alias; one layer may not hold both (#57286). The pull request
+  tells policy publishers to keep using `[experimental_network]` until every client and validation
+  layer supports the new name.
+- **Memory.** Memory baseline files are limited to 10 MiB, and oversized working files are skipped
+  (#57240).
+- **Model catalog.** The notes add GPT-6.1 Terra to the bundled, Vertex AI and Amazon Bedrock
+  catalogs. The bundled `models.json` already held `gpt-6.1-terra` at `rust-v0.165.0`, and its entry
+  is the same at `rust-v0.166.0`: context window 500,000 (maximum 872,000), default reasoning `low`,
+  tool mode `code_mode_only`. The new part is therefore the Vertex AI and Bedrock routes. The notes
+  do not establish account access on either route.
+
 ## Sources
 
 - `AGENTS.md` <https://learn.chatgpt.com/docs/agent-configuration/agents-md>; loader source
@@ -354,3 +420,27 @@ Sources for sections dated 2026-10-28 (L, vendor documentation; runtime behavior
 
 - <https://github.com/openai/codex/releases/tag/rust-v0.164.0>, read 2026-10-28.
 - <https://github.com/openai/codex/releases/tag/rust-v0.165.0>, read 2026-10-28.
+
+Sources for sections dated 2026-10-31 (L, vendor release notes, pull requests and catalog source;
+runtime behavior not tested):
+
+- <https://github.com/openai/codex/releases/tag/rust-v0.166.0> (published 2026-10-29), read
+  2026-10-31.
+- `models.json` at `rust-v0.166.0`
+  <https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/models-manager/models.json>,
+  compared with the same file at `rust-v0.165.0`, read 2026-10-31.
+- <https://github.com/openai/codex/pull/56553>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57181>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57198>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57203>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57204>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57227>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57240>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57242>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57262>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57279>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57286>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57441>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57451>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57500>, read 2026-10-31.
+- <https://github.com/openai/codex/pull/57839>, read 2026-10-31.

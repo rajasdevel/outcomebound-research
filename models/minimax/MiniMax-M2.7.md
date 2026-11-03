@@ -27,6 +27,7 @@ sources:
   - https://openrouter.ai/api/v1/models
   - https://huggingface.co/MiniMaxAI/MiniMax-M2.7
   - https://github.com/MiniMax-AI/MiniMax-M2.7/blob/main/docs/tool_calling_guide.md
+  - https://platform.minimax.io/docs/faq/models (read 2026-10-31)
 ---
 
 # MiniMax M2.7
@@ -49,7 +50,7 @@ in the [MiniMax README](README.md); this file says what is specific to M2.7.
 | Class | MiniMax M |
 | Generation | 2.7 |
 | Released | 2026-03-18 |
-| Status | ga |
+| Status | retiring (retires 2026-11-18) |
 | Weights | open (MiniMax non-commercial licence: personal, non-profit and research use free; any commercial use needs prior written authorization and a 'Built with MiniMax M2.7' notice) |
 | Access | MiniMax API platform (Anthropic-compatible, OpenAI Chat Completions endpoints; pay as you go; also the faster MiniMax-M2.7-highspeed id); Token Plan subscription (closed to new purchases; existing subscribers keep it); OpenRouter; NVIDIA NIM endpoint; Hugging Face weights (self-hosted: SGLang, vLLM, Transformers) |
 | Context window | 204,800 tokens |
@@ -63,7 +64,7 @@ in the [MiniMax README](README.md); this file says what is specific to M2.7.
 | System card | unknown |
 | Model page | [www.minimax.io/news/minimax-m27-en](https://www.minimax.io/news/minimax-m27-en) |
 | Card checked | 2026-10-03 |
-| Not found | max_output: 204800 is the max_completion_tokens maximum for M2.x in MiniMax's OpenAI-compatible reference, equal to the context window, with 65536 recommended; OpenRouter lists 176947; SWE-Bench Pro (Scale, public V2): no MiniMax row on Scale's leaderboard page (page source searched 2026-10-03); Artificial Analysis Coding Agent Index: no MiniMax entry among the 31 agent-and-model rows on the page (page data read 2026-10-03); METR 50% time horizon: no MiniMax model on METR's time-horizons page (page source searched 2026-10-03); Terminal-Bench 4.0 on the official tbench.ai leaderboard: no MiniMax row in the board data read on 2026-10-03; the value is from Artificial Analysis; reasoning default: thinking is always on and cannot be disabled (a disable request is accepted and ignored); no levels or default are documented; status: Artificial Analysis marks the model deprecated; MiniMax's own pages still list and price it and show no deprecation or retirement date, so 'ga' is used; prompting_guides: MiniMax publishes no prompting guide for M2.7; the earlier cited best-practices page returns 404 and no replacement was found; the entries listed are the agent post, the tool-calling guide and the caching page; Maker rows: the harness, thinking mode and timeouts behind MiniMax's news-page numbers are not stated; system_card: MiniMax publishes no system card or safety report for M2.7; safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found |
+| Not found | max_output: 204800 is the max_completion_tokens maximum for M2.x in MiniMax's OpenAI-compatible reference, equal to the context window, with 65536 recommended; OpenRouter lists 176947; SWE-Bench Pro (Scale, public V2): no MiniMax row on Scale's leaderboard page (page source searched 2026-10-03); Artificial Analysis Coding Agent Index: no MiniMax entry among the 31 agent-and-model rows on the page (page data read 2026-10-03); METR 50% time horizon: no MiniMax model on METR's time-horizons page (page source searched 2026-10-03); Terminal-Bench 4.0 on the official tbench.ai leaderboard: no MiniMax row in the board data read on 2026-10-03; the value is from Artificial Analysis; reasoning default: thinking is always on and cannot be disabled (a disable request is accepted and ignored); no levels or default are documented; status: [as-of 2026-10-31] MiniMax's model list says the M2.5 and M2.7 families closed to new users on 2026-10-19 and retire on 2026-11-18, and that plan requests to them go to M3.1 Flash from 2026-10-19; the same page's table already lists M2.7 and M2.7-highspeed as retired, and the pricing and rate-limit pages no longer list them [minimax-model-list]; prompting_guides: MiniMax publishes no prompting guide for M2.7; the earlier cited best-practices page returns 404 and no replacement was found; the entries listed are the agent post, the tool-calling guide and the caching page; Maker rows: the harness, thinking mode and timeouts behind MiniMax's news-page numbers are not stated; system_card: MiniMax publishes no system card or safety report for M2.7; safety evaluations: no published refusal, over-refusal, sycophancy, prompt-injection or classifier results found |
 <!-- card:end -->
 
 ## How to instruct it
@@ -177,8 +178,11 @@ minimax-m27-license]
 
 - **Independent run (M, Artificial Analysis).** Intelligence Index 22.8; AA-Omniscience hallucination rate 35.6% (accuracy 26.8%);
   IFBench 75.7; GPQA Diamond 87.4; Humanity's Last Exam 29.6; SciCode 50.1; GDPval-AA 1013. [aa-minimax-m2-7]
-- **Status (M).** Artificial Analysis marks the model deprecated, points to M3 as its replacement and keeps benchmarking speed only
-  for the default 10,000-input-token workload; MiniMax still lists and prices it. [aa-minimax-m2-7, minimax-pricing]
+- **Status (M, L).** Artificial Analysis marks the model deprecated, points to M3 as its replacement and keeps benchmarking speed only
+  for the default 10,000-input-token workload. [as-of 2026-10-31] MiniMax retires the M2.5 and M2.7 families: closed to new
+  users on 2026-10-19, retired on 2026-11-18, after which API requests fail; M Plan and Token Plan requests to them go to
+  M3.1 Flash from 2026-10-19 under the old names. MiniMax no longer prices or rate-limits M2.7 on its pages. [aa-minimax-m2-7,
+  minimax-model-list]
 - **Release gap.** Weights followed the API by three weeks (2026-03-18 to 2026-04-09). [minimax-m27-hf-readme]
 - **Earlier models' instruction following (M).** OctoBench measured M2 and M2.1, not M2.7; see the README. [octobench]
 
@@ -198,7 +202,7 @@ minimax-m27-hf-readme, aa-minimax-m2-7]
 
 - Which harness and thinking settings produced MiniMax's coding numbers.
 - Instruction following over long sessions for M2.7: OctoBench has not run it.
-- Whether MiniMax will retire M2.7 now that Artificial Analysis marks it deprecated.
+- [as-of 2026-10-31] Whether MiniMax keeps its M2.7 self-hosting guide after the API retirement on 2026-11-18.
 - What oversight applied to the model's self-modification loop.
 
 ## Sources
@@ -232,3 +236,4 @@ Every source id used above, with its URL, kind and the date it was read (2026-10
 - [minimax-m27-hf-readme] https://huggingface.co/MiniMaxAI/MiniMax-M2.7 (L, read 2026-10-03)
 - [minimax-m27-tool-guide] https://github.com/MiniMax-AI/MiniMax-M2.7/blob/main/docs/tool_calling_guide.md (L, read 2026-10-03)
 - [minimax-m3-hf-readme] https://huggingface.co/MiniMaxAI/MiniMax-M3 (L, read 2026-10-03)
+- [minimax-model-list] https://platform.minimax.io/docs/faq/models (L, read 2026-10-31)

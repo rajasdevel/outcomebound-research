@@ -1,0 +1,248 @@
+{
+  "id": "mistral-large-4",
+  "name": "Mistral Large 4",
+  "maker": "Mistral",
+  "family": "Mistral 4",
+  "class": "Mistral Large",
+  "generation": "4",
+  "released": "2026-10-06",
+  "status": "preview",
+  "retires": null,
+  "weights": "open (Mistral Ecosystem Open-Weight License, a modified MIT licence)",
+  "access": [
+    "Mistral API and Mistral Studio (ids mistral-large-4 and mistral-large-4-0; public preview)",
+    "Hugging Face weights (Mistral-Large-4-1T-A52B in FP8, published 2026-10-29; Mistral-Large-4-1T-A52B-NVFP4 for Blackwell GPUs)",
+    "Mistral Vibe (select mistral-large-4)",
+    "Microsoft Foundry (per Mistral's launch post)",
+    "OpenRouter (per Mistral's launch post)",
+    "NVIDIA-hosted endpoints and a NIM container (per Mistral's launch post)",
+    "vLLM, SGLang, Transformers and llama.cpp GGUF files (per the model card)"
+  ],
+  "context_window": 1000000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 0.7,
+    "output": 2.1,
+    "cached_input": 0.07,
+    "notes": "List price on Mistral's model page and in the 2026-10-29 launch post; Artificial Analysis shows the same input and output prices. The changelog entry of 2026-10-06 gave a launch price 50% lower for two weeks. Batch requests are 50% cheaper per Mistral's pricing page (maker README)"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0)",
+      "score": 26,
+      "setting": "high effort; the open-weight release of 2026-10-29, which Artificial Analysis lists apart from the deprecated preview; not comparable with v4.3.2 scores",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-large-4",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (v2.0)",
+      "score": 48.3,
+      "setting": "high effort; components FrontierCode v1.1 44.5, Terminal-Bench 4.0 41.4, SWE-Atlas-QnA 58.9, each the mean of three attempts per task; mean cost US$1.26 per task; read from the leaderboard's chart data",
+      "harness": "Mistral Vibe",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (v2.0)",
+      "score": 35.4,
+      "setting": "medium effort; components FrontierCode v1.1 35.3, Terminal-Bench 4.0 26.3, SWE-Atlas-QnA 44.6; mean cost US$0.78 per task; read from the leaderboard's chart data",
+      "harness": "Mistral Vibe",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (component of the Artificial Analysis Intelligence Index v5.0)",
+      "score": 24.7,
+      "setting": "high effort; resolved-task percentage in Artificial Analysis's own agent setup, not the Coding Agent Index run; read from the page's embedded data",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-large-4",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "FrontierCode 2.0 (Cognition, private)",
+      "score": 19.7,
+      "setting": "reported in Mistral's launch post; effort and who ran the evaluation are not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "mistral-large-4-post",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "BrowseComp",
+      "score": 84.5,
+      "setting": "reported in Mistral's launch post; effort and harness are not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "mistral-large-4-post",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "FinWorkBench (Finch)",
+      "score": 73.3,
+      "setting": "reported in Mistral's launch post; effort and harness are not stated",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "mistral-large-4-post",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+    "https://docs.mistral.ai/models/mistral-large-4-0",
+    "https://docs.mistral.ai/capabilities/completion/prompting_capabilities/"
+  ],
+  "system_card": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+  "model_page": "https://docs.mistral.ai/models/mistral-large-4-0",
+  "sources": [
+    {
+      "id": "mistral-large-4-docs",
+      "url": "https://docs.mistral.ai/models/mistral-large-4-0",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "Mistral Large 4 supports low, medium, and high reasoning effort."
+    },
+    {
+      "id": "mistral-large-4-post",
+      "url": "https://mistral.ai/news/mistral-large-4-oss/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "Starting today, Mistral Large 4 is priced at $0.70 input / M, $0.07 cached input / M, and $2.10 output / M tokens."
+    },
+    {
+      "id": "hf-large-4",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "49 billion active parameters per token (52 billion including embeddings and output layers)"
+    },
+    {
+      "id": "hf-large-4-license",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "must enter into a separate commercial license with Mistral before using the Model or its derivative works for any commercial purpose"
+    },
+    {
+      "id": "hf-large-4-commits",
+      "url": "https://huggingface.co/api/models/mistralai/Mistral-Large-4-1T-A52B/commits/main",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-large-4-template",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/raw/main/chat_template.jinja",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-large-4-config",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/raw/main/generation_config.json",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-large-4-nvfp4",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B-NVFP4",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-changelog",
+      "url": "https://docs.mistral.ai/getting-started/changelog",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "Launch pricing: 50% off for 2 weeks."
+    },
+    {
+      "id": "mistral-models-overview",
+      "url": "https://docs.mistral.ai/getting-started/models/models_overview/",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "mistral-prompting-docs",
+      "url": "https://docs.mistral.ai/capabilities/completion/prompting_capabilities/",
+      "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-large-4",
+      "url": "https://artificialanalysis.ai/models/mistral-large-4",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "max_output: no output cap separate from the context window is published on the model page or the model card",
+    "context_window: published as '1M'; the checkpoint's generation config allows 1,048,576 positions, and the API limit as an exact number is not stated",
+    "SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-31)",
+    "METR 50% time horizon: no entry for this model on METR's time-horizons page (read 2026-10-31)",
+    "Terminal-Bench 4.0: no row for this model on the tbench.ai leaderboard (read 2026-10-31); the figures on this card are Artificial Analysis's runs",
+    "system_card: Mistral publishes no system card; the card field holds the Hugging Face model card, and the launch post says a technical report is coming",
+    "status: the docs page and the changelog say public preview; the launch post of 2026-10-29 calls the open-weight model an improved Mistral Large 4 and gives no new status",
+    "released: 2026-10-06 is the public-preview date on the docs page and in the changelog; the weights were published on 2026-10-29",
+    "API checkpoint: the docs page still shows version 26.10 and the date 2026-10-06; whether the API id now serves the improved checkpoint of 2026-10-29 is not stated",
+    "parameters: the model card gives about 1T total and 49B active (52B with embeddings and output layers); the docs page gives 1.05T total and 52B active",
+    "retires: the models page lists no retirement date"
+  ]
+}

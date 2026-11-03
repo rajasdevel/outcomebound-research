@@ -31,11 +31,12 @@ sources:
   - https://raxxo.shop/blogs/lab/eleven-v4-vs-v4-turbo-vs-v3-which-to-use
   - https://elevenlabs.io/docs/changelog/2025/9/8
   - https://elevenlabs.io/docs/overview/capabilities/voices
+  - https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (read 2026-10-31)
 ---
 
 # Eleven Flash v2.5
 
-Eleven Flash v2.5 is the fast, low-cost speech synthesis model of the Eleven Flash class, generation 2.5. ElevenLabs released it on 2024-12-18 together with Flash v2 (launch post; the changelog entry is dated 2024-12-19) [el-blog-flash]. It speaks 32 languages with a model inference time of about 75 ms, and it takes up to 40,000 characters in a request. It replaced Turbo v2.5, which the docs now call deprecated. The maker names it for agents, games and bulk speech [el-changelog-flash] [el-models]. Family-wide rules are in the [ElevenLabs README](README.md).
+Eleven Flash v2.5 is the fast, low-cost speech synthesis model of the Eleven Flash class, generation 2.5. ElevenLabs released it on 2024-12-18 together with Flash v2 (launch post; the changelog entry is dated 2024-12-19) [el-blog-flash]. It speaks 32 languages with [as-of 2026-10-31] a median server-side latency of about 100 ms (about 75 ms on the models page on 2026-10-03) [el-latency-method], and it takes up to 40,000 characters in a request. It replaced Turbo v2.5, which the docs now call deprecated. The maker names it for agents, games and bulk speech [el-changelog-flash] [el-models]. Family-wide rules are in the [ElevenLabs README](README.md).
 
 ## At a glance
 
@@ -61,12 +62,12 @@ Eleven Flash v2.5 is the fast, low-cost speech synthesis model of the Eleven Fla
 | Voice languages | 32 languages: the 29 of Multilingual v2 plus Hungarian, Norwegian and Vietnamese [el-models] |
 | Turn detection | none: a synthesis model. WebSocket input is flushed with flush: true at the end of an agent turn [el-ws-tts] |
 | Interruption | Not handled by the model. The multi-context WebSocket lets a client close one context and open another when a user cuts in, with up to 5 contexts per connection [el-ws-multi] |
-| Voice latency | About 75 ms model inference, excluding application and network latency [el-models]; with the WebSocket, time to first byte of 100 to 150 ms in North America, Europe and South East Asia and 150 to 200 ms in South Asia and North East Asia [el-latency-opt] |
+| Voice latency | [as-of 2026-10-31] About 100 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (the models page gave about 75 ms on 2026-10-03) [el-models-1031] [el-latency-method]; with the WebSocket, time to first byte of 100 to 150 ms in North America, Europe and South East Asia and 150 to 200 ms in South Asia and North East Asia [el-latency-opt] |
 | Session limit | 40,000 characters per request, about 40 minutes of audio [el-models]; the WebSocket closes after 20 seconds of inactivity unless the client sends a space (inactivity_timeout is configurable); a multi-context socket allows up to 180 seconds [el-ws-tts] [el-ws-multi] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per character, not per token. API list price US$0.04 per 1,000 characters, shared with Flash v2 and the deprecated Turbo models on the pricing page [el-pricing-api]; the launch post says 1 credit per 2 characters [el-blog-flash]. Artificial Analysis lists US$50 per 1M characters, which does not match the list price [aa-tts-board] |
 | Key benchmarks | none recorded |
-| Other benchmarks | Artificial Analysis Speech Arena Elo (provider voice leaderboard): 1076.29 (blind pairwise listener votes on ElevenLabs's own voices; the model page gives 1076.29 and the leaderboard table read the same day gives 1078.14, Artificial Analysis Speech Arena, independent) [aa-tts-flash25](https://artificialanalysis.ai/text-to-speech/models/flash-v2-5); Artificial Analysis text-to-speech median characters per second: 488.1 (median generation speed; read from the leaderboard data on the Artificial Analysis text-to-speech page, Artificial Analysis, independent) [aa-tts-board](https://artificialanalysis.ai/text-to-speech); Maker model inference latency (milliseconds): 75 (approximate figure, excluding application and network latency, ElevenLabs, maker) [el-models](https://elevenlabs.io/docs/overview/models) |
+| Other benchmarks | Artificial Analysis Speech Arena Elo (provider voice leaderboard): 1076.29 (blind pairwise listener votes on ElevenLabs's own voices; the model page gives 1076.29 and the leaderboard table read the same day gives 1078.14, Artificial Analysis Speech Arena, independent) [aa-tts-flash25](https://artificialanalysis.ai/text-to-speech/models/flash-v2-5); Artificial Analysis text-to-speech median characters per second: 488.1 (median generation speed; read from the leaderboard data on the Artificial Analysis text-to-speech page, Artificial Analysis, independent) [aa-tts-board](https://artificialanalysis.ai/text-to-speech); Maker median server-side latency (milliseconds): 100 (WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; the models page gave about 75 ms on 2026-10-03, ElevenLabs, maker) [el-latency-method](https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology) |
 | Prompting guides | [elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices); [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4); [elevenlabs.io/docs/overview/capabilities/text-to-dialogue](https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue) |
 | System card | unknown |
 | Model page | [elevenlabs.io/docs/overview/models](https://elevenlabs.io/docs/overview/models) |
@@ -118,7 +119,7 @@ Text only. Voice types affect speed: default voices, designed voices and instant
 
 ### Voice: turn-taking, interruption and speech style
 
-- **Latency.** About 75 ms of model inference, without network and application time. With the WebSocket, time to first byte is 100 to 150 ms in North America, Europe and South East Asia, and 150 to 200 ms in South Asia and North East Asia. The `x-region` header names the serving cluster [el-models] [el-latency-opt].
+- **Latency [as-of 2026-10-31].** About 100 ms median server-side latency on warm-voice WebSocket requests, without network and application time, in figures updated on 2026-10-29; the models page gave about 75 ms on 2026-10-03 [el-latency-method]. With the WebSocket, time to first byte is 100 to 150 ms in North America, Europe and South East Asia, and 150 to 200 ms in South Asia and North East Asia. The `x-region` header names the serving cluster [el-models] [el-latency-opt].
 - **Streaming in.** The WebSocket buffers text until it reaches a threshold. `auto_mode` starts speech by itself. With `chunk_length_schedule` set (the guide's example is 120, 160, 250, 290 characters), the model waits for that much text, so short input can stall. The guide advises `flush: true` with the last text of a turn. Closing the socket flushes the rest [el-ws-tts] [el-latency-opt].
 - **Keeping the socket open.** It closes after 20 seconds without input. A single space keeps it open. An empty string closes it [el-ws-tts].
 - **Barge-in.** The multi-context WebSocket gives up to five contexts on one connection. On an interruption, the guide closes the current context and opens a new one. A context times out after 20 seconds (a socket setting allows up to 180). An empty text message resets the clock. The `is_final_audio_for_turn` marker is emitted after every buffered byte of a turn, for MP3 and Opus too [el-ws-multi] [el-changelog-0921].
@@ -151,7 +152,7 @@ ElevenLabs publishes no system card for Eleven Flash v2.5 in the pages read. The
 
 ## Benchmarks
 
-Independent: Artificial Analysis Speech Arena Elo of 1076.29 and a median of 488.1 characters a second [aa-tts-flash25] [aa-tts-board]. Maker: about 75 ms inference latency [el-models].
+Independent: Artificial Analysis Speech Arena Elo of 1076.29 and a median of 488.1 characters a second [aa-tts-flash25] [aa-tts-board]. Maker: [as-of 2026-10-31] about 100 ms median server-side latency (about 75 ms on 2026-10-03) [el-latency-method].
 
 ## Open questions
 
@@ -190,3 +191,8 @@ Independent: Artificial Analysis Speech Arena Elo of 1076.29 and a median of 488
 - [pr-raxxo] https://raxxo.shop/blogs/lab/eleven-v4-vs-v4-turbo-vs-v3-which-to-use (kind A, read 2026-10-03)
 - [el-changelog-0908] https://elevenlabs.io/docs/changelog/2025/9/8 (kind L, read 2026-10-03)
 - [el-voices] https://elevenlabs.io/docs/overview/capabilities/voices (kind L, read 2026-10-03)
+
+Sources added for the claims dated 2026-10-31:
+
+- [el-models-1031] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-31)
+- [el-latency-method] https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (kind L, read 2026-10-31)

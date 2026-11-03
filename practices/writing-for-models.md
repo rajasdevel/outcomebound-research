@@ -18,6 +18,7 @@ sources:
   - https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra.md
   - https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
   - https://cursor.com/blog/improved-token-efficiency (read 2026-10-09)
+  - https://model-spec.openai.com/2026-10-29.html (read 2026-10-31)
 ---
 
 # Writing for models: instruction files, skills, briefs and tool output
@@ -908,8 +909,12 @@ delegate's brief.
     low-effort small executors stop noticing they are stuck [capability-tier-readers-12] (M).
   - Helpers may never load the instruction file, so the brief must carry the bounds
     [capability-tier-readers-13, harness-loading-coverage-23] (L).
-  - The Model Spec requires each scope to have an ending condition, and delegates to work under the
-    same scope [openai-18] (S).
+  - The Model Spec of 2026-08-18 requires each scope to have an ending condition, and delegates to
+    work under the same scope [openai-18] (S). The version of 2026-10-29 changes "must" to "should"
+    for the ending condition, lets an instruction exempt a delegate from the shared scope, and forbids reaching a
+    prohibited act indirectly: by delegating it, by changing its own instructions or scope, or by
+    scheduling it for later (<https://model-spec.openai.com/2026-10-29.html>, read 2026-10-31; details in
+    [agent-authorization.md](agent-authorization.md) §4.1) (S) [as-of 2026-10-31].
   - Exposing a confirmation policy cut misaligned outcomes from 18.8% to 8.0% for GPT-5.6 Sol
     [openai-f13] (M, lab); this supports stating a policy, not its form ([cross-family.md](../models/cross-family.md#3-trends-r1r16) R11).
 - **OutcomeBound's result (O).** A skill listed "a merge to the default branch" among the acts that
@@ -2137,7 +2142,8 @@ defending against indirect prompt injection, 2025-07-29
 
 **Standards.** OWASP Top 10 for Agentic Applications, 2025-12-09
 <https://genai.owasp.org/download/52117/?tmstv=1765059207>; OpenAI Model Spec, 2026-08-18
-<https://model-spec.openai.com/2026-08-18.html>; `AGENTS.md` (last commit 2026-09-10)
+<https://model-spec.openai.com/2026-08-18.html>, and its successor of 2026-10-29
+<https://model-spec.openai.com/2026-10-29.html> (read 2026-10-31); `AGENTS.md` (last commit 2026-09-10)
 <https://agents.md/>; Agent Skills: best practices (2026-04-19)
 <https://agentskills.io/skill-creation/best-practices>, evaluating skills (2026-03-13)
 <https://agentskills.io/skill-creation/evaluating-skills>, using scripts (2026-02-27)

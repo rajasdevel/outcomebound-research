@@ -3,7 +3,7 @@
   "name": "Eleven v3 Conversational",
   "maker": "ElevenLabs",
   "family": "Eleven",
-  "class": "Eleven Realtime",
+  "class": "Eleven Expressive Low-Latency",
   "generation": "3",
   "released": "2026-02-09",
   "status": "ga",
@@ -33,7 +33,7 @@
     ],
     "turn_detection": "none in the model. In ElevenAgents the turn-taking system uses signals from Scribe v2 Realtime, including prosody, to time the agent's reply [el-agents-expressive]",
     "interruption": "Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled; the docs describe no cancel message for the Text to Dialogue WebSocket [el-agents-flow] [el-ws-ttd]",
-    "latency": "About 280 ms, excluding application and network latency [el-models]; Artificial Analysis reports a median of 65.5 characters generated per second (throughput, not latency) [aa-tts-board]",
+    "latency": "[as-of 2026-10-31] About 165 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (the models page gave about 280 ms on 2026-10-03) [el-models-1031] [el-latency-method]; Artificial Analysis reports a median of 65.5 characters generated per second (throughput, not latency) [aa-tts-board]",
     "session_limit": "Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session [el-ws-ttd]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow]"
   },
   "reasoning": {
@@ -67,13 +67,13 @@
       "read": "2026-10-03"
     },
     {
-      "name": "Maker inference latency (milliseconds)",
-      "score": 280,
-      "setting": "approximate figure on the models page, excluding application and network latency",
+      "name": "Maker median server-side latency (milliseconds)",
+      "score": 165,
+      "setting": "WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; about 280 ms on the models page on 2026-10-03",
       "harness": "ElevenLabs",
       "measured_by": "maker",
-      "source": "el-models",
-      "read": "2026-10-03"
+      "source": "el-latency-method",
+      "read": "2026-10-31"
     }
   ],
   "prompting_guides": [
@@ -180,6 +180,20 @@
       "url": "https://artificialanalysis.ai/text-to-speech",
       "read": "2026-10-03",
       "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "el-models-1031",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-latency-method",
+      "url": "https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology",
+      "read": "2026-10-31",
+      "kind": "L",
       "quote": null
     }
   ],

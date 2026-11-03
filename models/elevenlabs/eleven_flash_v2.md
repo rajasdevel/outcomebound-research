@@ -23,11 +23,12 @@ sources:
   - https://elevenlabs.io/blog/meet-flash
   - https://elevenlabs.io/pricing/api
   - https://elevenlabs.io/docs/overview/capabilities/voices
+  - https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (read 2026-10-31)
 ---
 
 # Eleven Flash v2
 
-Eleven Flash v2 is the English-only build of Flash. It belongs to the Eleven Flash class, generation 2, and ElevenLabs released it on 2024-12-18 with Flash v2.5 (launch post; the changelog entry is dated 2024-12-19) [el-blog-flash]. It has a model inference time of about 75 ms and takes up to 30,000 characters in a request. It is the default speech model of a new ElevenLabs agent. It replaced Turbo v2 [el-changelog-flash] [el-models] [el-api-agents] [el-agents-lang]. Family-wide rules are in the [ElevenLabs README](README.md). This file says what differs from [Eleven Flash v2.5](eleven_flash_v2_5.md).
+Eleven Flash v2 is the English-only build of Flash. It belongs to the Eleven Flash class, generation 2, and ElevenLabs released it on 2024-12-18 with Flash v2.5 (launch post; the changelog entry is dated 2024-12-19) [el-blog-flash]. It has [as-of 2026-10-31] a median server-side latency of about 135 ms (about 75 ms on the models page on 2026-10-03) [el-latency-method] and takes up to 30,000 characters in a request. It is the default speech model of a new ElevenLabs agent. It replaced Turbo v2 [el-changelog-flash] [el-models] [el-api-agents] [el-agents-lang]. Family-wide rules are in the [ElevenLabs README](README.md). This file says what differs from [Eleven Flash v2.5](eleven_flash_v2_5.md).
 
 ## At a glance
 
@@ -53,12 +54,12 @@ Eleven Flash v2 is the English-only build of Flash. It belongs to the Eleven Fla
 | Voice languages | English only [el-models] |
 | Turn detection | none: a synthesis model. WebSocket input is flushed with flush: true at the end of an agent turn [el-ws-tts] |
 | Interruption | Not handled by the model. The multi-context WebSocket lets a client close one context and open another when a user cuts in, with up to 5 contexts per connection [el-ws-multi] |
-| Voice latency | About 75 ms model inference, excluding application and network latency [el-models]; the WebSocket time-to-first-byte figures the docs give for Flash models are 100 to 200 ms by region [el-latency-opt] |
+| Voice latency | [as-of 2026-10-31] About 135 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (the models page gave about 75 ms on 2026-10-03) [el-models-1031] [el-latency-method]; the WebSocket time-to-first-byte figures the docs give for Flash models are 100 to 200 ms by region [el-latency-opt] |
 | Session limit | 30,000 characters per request, about 30 minutes of audio [el-models]; the WebSocket closes after 20 seconds of inactivity unless the client sends a space; a multi-context socket allows up to 180 seconds [el-ws-tts] [el-ws-multi] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per character, not per token. API list price US$0.04 per 1,000 characters, shared with Flash v2.5 and the deprecated Turbo models on the pricing page [el-pricing-api]; the launch post says 1 credit per 2 characters [el-blog-flash] |
 | Key benchmarks | none recorded |
-| Other benchmarks | Maker model inference latency (milliseconds): 75 (approximate figure, excluding application and network latency, ElevenLabs, maker) [el-models](https://elevenlabs.io/docs/overview/models) |
+| Other benchmarks | Maker median server-side latency (milliseconds): 135 (WebSocket streaming requests with warm voices, excluding application and network latency; figures updated 2026-10-29; the models page gave about 75 ms on 2026-10-03, ElevenLabs, maker) [el-latency-method](https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology) |
 | Prompting guides | [elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices); [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4); [elevenlabs.io/docs/overview/capabilities/text-to-dialogue](https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue) |
 | System card | unknown |
 | Model page | [elevenlabs.io/docs/overview/models](https://elevenlabs.io/docs/overview/models) |
@@ -112,7 +113,7 @@ Text only, in English. The multilingual advice does not apply [el-models].
 
 Behaviour on the WebSocket, with `auto_mode`, `chunk_length_schedule`, `flush`, the 20-second timeout and multi-context barge-in, is the same as for [Eleven Flash v2.5](eleven_flash_v2_5.md) [el-ws-tts] [el-ws-multi].
 
-- **Latency.** About 75 ms of model inference, without network and application time. The WebSocket time-to-first-byte figures the docs give for Flash models are 100 to 200 ms by region [el-models] [el-latency-opt].
+- **Latency [as-of 2026-10-31].** About 135 ms median server-side latency on warm-voice WebSocket requests, without network and application time, in figures updated on 2026-10-29; the models page gave about 75 ms on 2026-10-03 [el-latency-method]. The WebSocket time-to-first-byte figures the docs give for Flash models are 100 to 200 ms by region [el-models] [el-latency-opt].
 - **Agents.** Turn timeout, eagerness, soft timeout and interruption settings belong to the platform. See the README [el-agents-flow].
 
 ### Sampling and API parameters
@@ -135,11 +136,11 @@ ElevenLabs publishes no system card for Eleven Flash v2 in the pages read. The p
 
 ## Behaviour observed in practice
 
-No independent measurement was found. Artificial Analysis lists no entry for Flash v2 on its text-to-speech pages (read 2026-10-03) [aa-tts-board]. The maker gives about 75 ms of model inference and no other figure [el-models].
+No independent measurement was found. Artificial Analysis lists no entry for Flash v2 on its text-to-speech pages (read 2026-10-03) [aa-tts-board]. The maker gives [as-of 2026-10-31] about 135 ms median server-side latency and no other figure [el-latency-method].
 
 ## Benchmarks
 
-None independent. Maker: about 75 ms inference latency, without network and application time [el-models].
+None independent. Maker: [as-of 2026-10-31] about 135 ms median server-side latency, without network and application time (about 75 ms on 2026-10-03) [el-latency-method].
 
 ## Open questions
 
@@ -170,3 +171,8 @@ None independent. Maker: about 75 ms inference latency, without network and appl
 - [el-blog-flash] https://elevenlabs.io/blog/meet-flash (kind L, read 2026-10-03)
 - [el-pricing-api] https://elevenlabs.io/pricing/api (kind L, read 2026-10-03)
 - [el-voices] https://elevenlabs.io/docs/overview/capabilities/voices (kind L, read 2026-10-03)
+
+Sources added for the claims dated 2026-10-31:
+
+- [el-models-1031] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-31)
+- [el-latency-method] https://elevenlabs.io/docs/eleven-api/concepts/latency-methodology (kind L, read 2026-10-31)

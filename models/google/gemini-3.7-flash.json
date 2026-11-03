@@ -6,13 +6,12 @@
   "class": "Gemini Flash",
   "generation": "3.7",
   "released": "2026-08-13",
-  "status": "ga",
-  "retires": null,
+  "status": "retiring",
+  "retires": "2027-01-28",
   "weights": "closed",
   "access": [
-    "Gemini API",
-    "Google AI Studio",
-    "Gemini Enterprise Agent Platform",
+    "Gemini API (deprecated 2026-10-08; requests to the id are routed to gemini-3.8-flash; no longer selectable in Google AI Studio) [gemini-changelog-3-7-deprecation] [gemini-deprecations-3-7]",
+    "Gemini Enterprise Agent Platform (GA; retirement date 2027-01-28) [gemini-cloud-3-7-flash-retirement]",
     "Gemini Enterprise app",
     "Google Antigravity",
     "Android Studio",
@@ -46,7 +45,7 @@
     "input": 0.75,
     "output": 3.75,
     "cached_input": 0.075,
-    "notes": "introductory rate through 2026-12-31; from 2027-01-01 input 1.50, output 7.50, cached 0.15 (same as 3.8 Flash)."
+    "notes": "introductory rate through 2026-12-31; from 2027-01-01 input 1.50, output 7.50, cached 0.15 (same as 3.8 Flash). [as-of 2026-10-31] The Gemini API pricing page no longer lists 3.7 Flash; the API routes the id to 3.8 Flash."
   },
   "benchmarks": [
     {
@@ -395,6 +394,27 @@
       "read": "2026-10-03",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "gemini-changelog-3-7-deprecation",
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-deprecations-3-7",
+      "url": "https://ai.google.dev/gemini-api/docs/deprecations",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gemini-cloud-3-7-flash-retirement",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
@@ -403,6 +423,7 @@
     "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22)",
     "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
     "METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08",
-    "maker benchmark settings: the methodology PDF names harnesses (Terminus 2, mini-swe-agent) but not the effort for Terminal-Bench 2.1, OSWorld-2.0 or the multimodal tests; the Cloud guide figures have no settings"
+    "maker benchmark settings: the methodology PDF names harnesses (Terminus 2, mini-swe-agent) but not the effort for Terminal-Bench 2.1, OSWorld-2.0 or the multimodal tests; the Cloud guide figures have no settings",
+    "access [as-of 2026-10-31]: whether the Gemini app, Antigravity and Android Studio still offer 3.7 Flash was not re-checked"
   ]
 }

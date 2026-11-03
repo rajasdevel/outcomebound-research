@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: STABLE (suite method, statistics, error analysis, SQL correctness) / VOLATILE (§8 what evaluation tools ship)
 sources:
+  - https://aclanthology.org/2026.emnlp-main.2035.pdf (read 2026-11-03)
   - https://arxiv.org/html/2607.22585v1 (read 2026-10-28)
   - https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
   - https://hamel.dev/blog/posts/evals-faq/
@@ -87,6 +88,14 @@ as "sharp opinions about what works in most cases. They are not universal truths
   transcripts and grades from many trials" (L, Anthropic).
 
 ## 2. Outcome and trajectory
+
+**An answer can omit an injected action [as-of 2026-11-03].** A study of indirect prompt injection
+on AgentDojo with four target models separates successful attacks that appear in the final response
+from those that do not. A normal-looking final response therefore does not establish that no injected
+action occurred in those trials. The study measures benchmark trajectories, not deployment prevalence
+or the effect of disclosure as a defense (M, [paper](https://aclanthology.org/2026.emnlp-main.2035.pdf),
+read 2026-11-03). Checking the action trace, the resulting state and what the user sees answers separate
+questions (inference).
 
 - **The outcome is the gate; the path is diagnostic.** "It's often better to grade what the agent
   produced, not the path it took", so valid routes the designer did not anticipate are not

@@ -10,6 +10,9 @@ sources:
   - https://docs.qwencloud.com/changelog/models
   - https://docs.qwencloud.com/api-reference/realtime-api/overview
   - https://artificialanalysis.ai/speech-to-speech
+  - https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime (read 2026-10-31)
+  - https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/voice-cloning (read 2026-10-31)
 ---
 
 # Qwen-Audio-3.1-Realtime-Plus
@@ -29,15 +32,15 @@ Qwen-Audio-3.1-Realtime-Plus is Alibaba's realtime speech model of the Qwen Audi
 | Released | 2026-09-20 |
 | Status | ga |
 | Weights | closed |
-| Access | QwenCloud realtime API (WebSocket; AOQ and WebRTC also listed), Singapore-region API key |
+| Access | QwenCloud realtime API (WebSocket; AOQ and WebRTC also listed); [as-of 2026-10-31] Singapore and China North 2 (Beijing) regions, each with an API key of that region (the guide read on 2026-10-03 named a Singapore-region key only) [qwencloud-audio-guide-1031] |
 | Context window | 262,144 tokens |
 | Max output | 16,384 tokens |
 | Modalities | input text, audio; output text, audio |
 | Voice duplex | full |
 | Voice input audio | PCM 16-bit mono at 16 kHz (pcm is the only format); about 100 ms per chunk (3,200 bytes) is advised [qwencloud-audio-events] [qwencloud-audio-guide] |
 | Voice output audio | PCM 16-bit mono at 24 kHz (pcm is the only format) [qwencloud-audio-events] [qwencloud-audio-guide] |
-| Voices | 13 system voices (default longanqian_v3.1; eight are new in 3.1) and cloned voices made with the voice-cloning API; the voice can be set only in the first session.update [qwencloud-audio-guide] |
-| Voice languages | Conversation: German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian and Chinese, with 21 Chinese varieties (Mandarin, Cantonese and regional speech), session.input_audio_transcription.language takes 30 source-language codes and session.output_audio.language a target-language code for the speech (a best effort, not a guarantee) |
+| Voices | [as-of 2026-10-31] Default longanqian_v3.1, plus the union of the qwen-audio-3.1-tts-plus and qwen-audio-3.1-tts-flash system voice lists (the guide read on 2026-10-03 listed 13 system voices), and cloned voices made with the voice-cloning API, which offers cloning for the realtime models only in China North 2 (Beijing); the voice can be set only in the first session.update [qwencloud-audio-guide-1031] [qwencloud-audio-guide] [qwencloud-voice-cloning-1031] |
+| Voice languages | [as-of 2026-10-31] Conversation: German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Chinese, Thai, Vietnamese and Arabic, with 21 Chinese varieties (Mandarin, Cantonese and regional speech) [qwencloud-audio-guide-1031], [as-of 2026-10-31] session.input_audio_transcription.language takes 14 source-language codes (the page read on 2026-10-03 listed 30) and session.output_audio.language 14 target-language codes for the speech (a best effort, not a guarantee) [qwencloud-audio-events-1031] |
 | Turn detection | server_vad (default; threshold -1.0 to 1.0, default 0.5; silence_duration_ms 200 to 6000, default 800, 400 to 800 advised), smart_turn (acoustic and semantic; fillers such as uh or hmm do not start a turn), or null for push-to-talk; the mode can be set only before the first audio is sent [qwencloud-audio-ws] [qwencloud-audio-events] |
 | Interruption | In server_vad and smart_turn modes new user speech cancels the running response (response.done with status cancelled); the client should clear its playback buffer on input_audio_buffer.speech_started; in smart_turn mode fillers and non-semantic sounds neither start a turn nor interrupt playback; optional speaker enhancement locks onto up to 5 reference voices [qwencloud-audio-guide] [qwencloud-audio-ws] |
 | Voice latency | No figure from Alibaba; Artificial Analysis has no row for this model (read 2026-10-03); its row for the 3.0 Plus model shows 1.54 seconds to first audio [aa-s2s] |
@@ -94,7 +97,7 @@ The model page lists structured outputs as a feature. The guide gives no rules f
 
 ### Images, audio, other inputs
 
-Input is PCM, 16-bit, mono, 16 kHz. Output is PCM, 24 kHz. The guide advises about 100 ms of audio per chunk (3,200 bytes) [qwencloud-audio-guide]. The model takes no image or video input. Conversation languages are German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian and Chinese, plus 21 Chinese varieties. `session.input_audio_transcription.language` takes one of 30 source-language codes [qwencloud-audio-guide] [qwencloud-audio-events]. The guide says these models need a Singapore-region API key [qwencloud-audio-guide].
+Input is PCM, 16-bit, mono, 16 kHz. Output is PCM, 24 kHz. The guide advises about 100 ms of audio per chunk (3,200 bytes) [qwencloud-audio-guide]. The model takes no image or video input. [as-of 2026-10-31] Conversation languages are German, English, Spanish, French, Indonesian, Italian, Japanese, Korean, Portuguese, Russian, Chinese, Thai, Vietnamese and Arabic, plus 21 Chinese varieties [qwencloud-audio-guide-1031]. [as-of 2026-10-31] `session.input_audio_transcription.language` takes one of 14 source-language codes; the page read on 2026-10-03 listed 30 [qwencloud-audio-events-1031]. The guide now lists two regions for the 3.1 and 3.0 realtime models, Singapore and China North 2 (Beijing), each with an API key of that region; the guide read on 2026-10-03 named a Singapore-region key only [qwencloud-audio-guide-1031].
 
 ### Voice: turn-taking, interruption and speech style
 
@@ -108,7 +111,7 @@ Input is PCM, 16-bit, mono, 16 kHz. Output is PCM, 24 kHz. The guide advises abo
 
 **Interruption.** In `server_vad` and `smart_turn` modes, new user speech cancels the running response. The server sends `response.done` with status `cancelled`. When `input_audio_buffer.speech_started` arrives, clear the local playback buffer at once. Otherwise old audio overlaps with the new reply. Alibaba lists the same rule under fault tolerance and under latency [qwencloud-audio-guide] [qwencloud-audio-ws].
 
-**Voice.** The default voice is `longanqian_v3.1`. 3.1 keeps the five voices of 3.0 and adds eight. Cloned voices work after you create one with `target_model` set to this model. The voice can be set in the first `session.update` only. Later changes are ignored [qwencloud-audio-guide] [qwencloud-audio-events].
+**Voice.** The default voice is `longanqian_v3.1`. [as-of 2026-10-31] The 3.1 realtime models take the union of the system voices of the [3.1 TTS Plus](qwen-audio-3.1-tts-plus.md) and [3.1 TTS Flash](qwen-audio-3.1-tts-flash.md) models; the guide read on 2026-10-03 listed 13 [qwencloud-audio-guide-1031]. Cloned voices work after you create one with `target_model` set to this model. [as-of 2026-10-31] Voice cloning for the realtime models is offered only in China North 2 (Beijing) [qwencloud-voice-cloning-1031]. The voice can be set in the first `session.update` only. Later changes are ignored [qwencloud-audio-guide] [qwencloud-audio-events].
 
 **Latency and delivery.** The guide advises to start playback when the first `response.audio.delta` arrives. It says not to wait for `response.done`. Alibaba recommends AOQ for mobile clients that need stable latency, weak-network resilience and built-in echo cancellation. A raw WebSocket has no echo cancellation [qwencloud-audio-guide] [qwencloud-rt-overview].
 
@@ -120,7 +123,7 @@ The rate limit is 100K tokens and 60 requests per minute [qwencloud-page-audio31
 
 ### Migrating from the previous generation
 
-The WebSocket event protocol is unchanged from 3.0. To move, change the `model` value in the URL and choose a voice from the 3.1 list. The context grows from 65K to 262K tokens, the output limit from 8K to 16K, and the voice list from 5 to 13. The 3.1 model adds the two language parameters and a safer refusal behaviour that Alibaba describes in words only [qwencloud-audio-guide] [qwencloud-page-audio31] [qwencloud-page-audio30plus].
+The WebSocket event protocol is unchanged from 3.0. To move, change the `model` value in the URL and choose a voice from the 3.1 list. The context grows from 65K to 262K tokens and the output limit from 8K to 16K. [as-of 2026-10-31] The voice list grows from 5 system voices to the union of the 3.1 TTS voice lists, and the conversation languages from 11 to 14 [qwencloud-audio-guide-1031]. The 3.1 model adds the two language parameters and a safer refusal behaviour that Alibaba describes in words only [qwencloud-audio-guide] [qwencloud-page-audio31] [qwencloud-page-audio30plus].
 
 ## What the system card reports
 
@@ -151,3 +154,6 @@ None for this model. Alibaba's pages give no scores, and Artificial Analysis lis
 - [qwencloud-rt-overview] https://docs.qwencloud.com/api-reference/realtime-api/overview (kind L, read 2026-10-03)
 - [aa-s2s] https://artificialanalysis.ai/speech-to-speech (kind M, read 2026-10-03)
 - [qwencloud-page-audio30plus] https://www.qwencloud.com/models/qwen-audio-3.0-realtime-plus (kind L, read 2026-10-03)
+- [qwencloud-audio-guide-1031] https://docs.qwencloud.com/developer-guides/speech/qwen-audio-realtime (kind L, read 2026-10-31)
+- [qwencloud-audio-events-1031] https://docs.qwencloud.com/api-reference/qwen-audio-realtime/client-events (kind L, read 2026-10-31)
+- [qwencloud-voice-cloning-1031] https://docs.qwencloud.com/developer-guides/speech/voice-cloning (kind L, read 2026-10-31)

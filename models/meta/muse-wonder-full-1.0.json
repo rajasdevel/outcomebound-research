@@ -1,0 +1,247 @@
+{
+  "id": "muse-wonder-full-1.0",
+  "name": "Muse Wonder Full",
+  "maker": "Meta",
+  "family": "Muse Wonder",
+  "class": "Muse Wonder",
+  "generation": "1.0",
+  "released": "2026-10-12",
+  "status": "preview",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Muse Code only, with a Power Usage (50 dollars a month) or Maximum Usage (200 dollars a month) subscription, in Standard or Contributor mode",
+    "No Meta Model API access and no pay-as-you-go",
+    "Not available in South Korea"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "minimal",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "No per-token price: the model is sold only inside Muse Code subscriptions. Meta's model page lists Power Usage at 50 dollars a month (20 times the usage of Everyday Usage) and Maximum Usage at 200 dollars a month (80 times); subscriptions default to Contributor mode, which gives more usage in exchange for training use of content [meta-wonder-page, meta-muse-code-subscriptions]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0)",
+      "score": 50,
+      "setting": "max; 110M output tokens to run the index; no public API, so no speed or price",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-wonder-full",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Terminal-Bench 4.0 (component of the Artificial Analysis Intelligence Index v5.0)",
+      "score": 57.1,
+      "setting": "max; share of tasks resolved",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-wonder-full",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (v2.0)",
+      "score": 59,
+      "setting": "max; FrontierCode v1.1 49%, Terminal-Bench 4.0 59%, SWE-Atlas-QnA-AA 69%; 34.9 minutes and 14.5M tokens per task; no pay-per-token cost",
+      "harness": "Muse Code",
+      "measured_by": "independent",
+      "source": "aa-coding-muse-code",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 79.0,
+      "setting": "max; score from Meta's table; Meta's model card names Datacurve's third-party run as the source; pass@1",
+      "harness": "not stated for this row",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "SWE-Marathon",
+      "score": 57.5,
+      "setting": "xhigh, not max; score from Meta's table; Meta's model card names Abundant AI as the source; pass@1",
+      "harness": "not stated for this row",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "OSWorld V2.1",
+      "score": 78.4,
+      "setting": "max; mean per-task partial reward; strict binary completion 39.4",
+      "harness": "Meta's common internal framework",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "ProgramBench",
+      "score": 59.0,
+      "setting": "max; share of rollouts that pass at least 95% of hidden tests",
+      "harness": "mini-swe-agent",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "MemoryBench (Meta internal)",
+      "score": 85.5,
+      "setting": "max",
+      "harness": "Meta internal",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Personal Superintelligence Index (Meta internal composite of seven evaluations)",
+      "score": 59.1,
+      "setting": "max",
+      "harness": "Meta internal",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v4.3, as relayed in Meta's table)",
+      "score": 56,
+      "setting": "max; Meta's model card names Artificial Analysis as the source; not comparable with the v5.0 figure",
+      "harness": "Artificial Analysis",
+      "measured_by": "maker",
+      "source": "meta-wonder-page",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://dev.meta.ai/docs/muse-code/configuration.md",
+    "https://dev.meta.ai/docs/reasoning"
+  ],
+  "system_card": "https://research.meta.ai/static/muse-wonder-model-card",
+  "model_page": "https://dev.meta.ai/models/muse-wonder",
+  "sources": [
+    {
+      "id": "meta-wonder-post",
+      "url": "https://research.meta.ai/blog/muse-wonder",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-wonder-card",
+      "url": "https://research.meta.ai/static/muse-wonder-model-card",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-wonder-page",
+      "url": "https://dev.meta.ai/models/muse-wonder",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-api-models",
+      "url": "https://dev.meta.ai/docs/models",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "Muse Wonder Full, the higher-capability variant, is available only in Muse Code with a subscription"
+    },
+    {
+      "id": "meta-api-reasoning",
+      "url": "https://dev.meta.ai/docs/reasoning",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-muse-code-config",
+      "url": "https://dev.meta.ai/docs/muse-code/configuration.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "meta-muse-code-subscriptions",
+      "url": "https://dev.meta.ai/docs/muse-code/subscriptions",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-wonder-full",
+      "url": "https://artificialanalysis.ai/models/muse-wonder-full",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-muse-code",
+      "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/muse-code-vs-opencode",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-leaderboard",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "context_window: Meta's model page and model card say 1M without an exact count; Artificial Analysis lists 1,000,000; the 1,048,576 in Meta's docs is stated for muse-wonder-1.0",
+    "max_output: no limit published",
+    "modalities: Meta's model card lists text, image, video and audio input; no page read says whether Muse Code passes PDF input to this variant",
+    "reasoning.default: high is Muse Code's harness default, the only surface that serves this model; Muse Code also offers an ultra setting that maps to the highest level the provider supports, and the Meta provider does not accept the none level",
+    "pricing_usd_per_mtok: input, output and cached_input are not published because the model is sold only in Muse Code subscriptions",
+    "SWE-Bench Pro (Scale, public V2): no Muse Wonder Full row on Scale's leaderboard (page data read 2026-10-31); the Muse Wonder rows there are for muse-wonder-1.0",
+    "METR 50% time horizon: no entry on METR's time-horizons page (last updated 2026-09-08)",
+    "Terminal-Bench 4.0: the figure on this card is Artificial Analysis's own run; the tbench.ai 4.0 board data has no Muse Wonder Full row",
+    "status: Meta's models page calls Muse Wonder a preview in the section that covers both variants",
+    "retires: no retirement date published",
+    "parameter count and architecture: Meta says only that the Muse Wonder models build on larger, stronger base models than Muse Spark 1.3"
+  ]
+}

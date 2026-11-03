@@ -30,6 +30,10 @@ sources:
   - https://artificialanalysis.ai/models/deepseek-v4-pro
   - https://github.com/anomalyco/opencode/issues/24122
   - https://forum.cursor.com/t/deepseek-v4-pro-error-report/159983
+  - https://api-docs.deepseek.com/updates (read 2026-10-31)
+  - https://api-docs.deepseek.com/quick_start/pricing (read 2026-10-31)
+  - https://api-docs.deepseek.com/guides/search (read 2026-10-31)
+  - https://docs.mistral.ai/getting-started/models/models_overview/ (read 2026-10-31)
 ---
 
 # DeepSeek models
@@ -49,11 +53,12 @@ What the change log and the news posts record, oldest first ([deepseek-changelog
 | 2026-08-13 | V4-Pro-0813 (general availability) | Replaced the Preview under the same API id. Three effort levels (low, high, max) for both V4 models. Peak and off-peak pricing from 2026-08-16 16:00 UTC. |
 | 2026-08-21 | V4-Flash-Vision-Exp | Experimental vision variant of V4-Flash. |
 | 2026-09-10 | V4.1-Flash | A 552B-parameter backbone that uses 8B parameters per token while reading a prompt and 16B while writing; reads images. Replaced V4-Flash and V4-Flash-Vision-Exp, which DeepSeek calls retired. Lower prices. |
+| 2026-10-17 | V4.1-Flash-1017 [as-of 2026-10-31] | An upgrade of V4.1-Flash, served under the same `deepseek-flash` id and also in DeepSeek's web and app; DeepSeek says the API calling method and the prices did not change. DeepSeek's own figures include Terminal-Bench 4.0 42.3 in Claude Code, against 31.2 at the 2026-09-10 release, and it says task runtime and output length fell. The same entry opened DeepSeek's search engine as the Search and Fetch APIs ([deepseek-changelog-1031]). |
 
 How the models are classed here:
 
 - **DeepSeek Pro, generation 4.** V4-Pro (0813) is the only model of the class. The 2026-09-10 news post says DeepSeek is phasing V4-Pro out and routing its requests to V4.1-Flash at Flash prices from 2026-09-14 until a V4.1-Pro launches. The change log entry of the same date says that, because of user demand, V4-Pro stays available after 2026-09-14 at unchanged billing, and the pricing page read on 2026-10-03 still lists `deepseek-v4-pro` as DeepSeek-V4-Pro-0813 at its own prices. The statements disagree; this library follows the pricing page and the change log and marks the point as open. No V4.1-Pro has been announced with a date, a size or a price.
-- **DeepSeek Flash, generation 4.1.** V4.1-Flash is the current model. The generation before it, V4-Flash (generation 4), is retired from the API; its weights remain on Hugging Face as V4-Flash-0731 and stay in scope for local use, so [it has a file](deepseek-v4-flash.md).
+- **DeepSeek Flash, generation 4.1.** V4.1-Flash is the current model; [as-of 2026-10-31] since 2026-10-17 the pricing page names its version DeepSeek-V4.1-Flash-1017 ([deepseek-pricing-1031]). This is a revision of generation 4.1, not a new generation. The generation before it, V4-Flash (generation 4), is retired from the API; its weights remain on Hugging Face as V4-Flash-0731 and stay in scope for local use, so [it has a file](deepseek-v4-flash.md).
 - Both current models are mixture-of-experts models with a 1M-token window. Parameter counts come from DeepSeek's posts and reports: 1.6T total and 49B active for V4-Pro (Hugging Face counts about 1.65T in the 0813 repository's weight files), and a 552B backbone plus 196B conditional-memory parameters for V4.1-Flash (Hugging Face counts 763B in the repository's weight files; the model card does not break that total down).
 - Older lines (V3.x, R1) are out of scope.
 
@@ -64,7 +69,7 @@ One API serves both models. This section is from DeepSeek's documentation read o
 **Endpoints and ids**
 
 - Chat Completions at `https://api.deepseek.com`; the OpenAI Responses format at the same base URL (stateless, built for Codex); the Anthropic Messages format at `https://api.deepseek.com/anthropic`. Beta features (strict tool schemas, assistant-prefix completion, fill-in-the-middle) need the base URL `https://api.deepseek.com/beta`.
-- Ids: `deepseek-flash` (V4.1-Flash) and `deepseek-v4-pro` (V4-Pro-0813). The retired names `deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` are still accepted and are served by V4.1-Flash at Flash prices. `deepseek-chat` and `deepseek-reasoner` were announced for retirement after 2026-07-24 15:59 UTC and are not on the pricing page.
+- Ids: `deepseek-flash` (V4.1-Flash; [as-of 2026-10-31] version DeepSeek-V4.1-Flash-1017 from 2026-10-17) and `deepseek-v4-pro` (V4-Pro-0813). The retired names `deepseek-v4-flash` and `deepseek-v4-flash-vision-exp` are still accepted and are served by V4.1-Flash at Flash prices. `deepseek-chat` and `deepseek-reasoner` were announced for retirement after 2026-07-24 15:59 UTC and are not on the pricing page.
 - On the Anthropic endpoint, model names that start with `claude-opus` map to `deepseek-v4-pro` (billed at Pro prices), names that start with `claude-sonnet` or `claude-haiku` map to `deepseek-flash`, and any other unknown name also falls back to `deepseek-flash`.
 
 **Limits and defaults**
@@ -88,6 +93,7 @@ One API serves both models. This section is from DeepSeek's documentation read o
 **Other surfaces**
 
 - JSON output, strict tool schemas and prefix completion are described in the model files. The Files API and a fill-in-the-middle endpoint (non-thinking mode only) also exist.
+- [as-of 2026-10-31] Search and Fetch APIs (from 2026-10-17): `POST https://api.deepseek.com/v1/tools/search` returns structured web results from DeepSeek's own search engine, and `POST https://api.deepseek.com/v1/tools/fetch` returns one page as Markdown. Both use the same bearer key, cost US$0.75 per 1,000 successful requests each, and have account limits of 100 and 25 requests a second. Only a request that returns HTTP 200 with a result is billed. Through DeepSeek Harness, Claude Code or Codex, the server-side tool calls already use these APIs; they are free until per-request billing starts at 00:00 Beijing time on 2026-11-01 ([deepseek-pricing-1031], [deepseek-search-guide]).
 - Integration pages exist for Claude Code, Codex and others. DeepSeek's Claude Code page sets `CLAUDE_CODE_EFFORT_LEVEL` to max, an auto-compact window of 786,432 tokens and the 1M-context suffix on the main model, and sends the sonnet, opus and main slots to V4.1-Flash. Its Codex page offers a script that writes a model catalogue for V4.1-Flash or V4-Pro. The V4.1 post names WorkBuddy (with CodeBuddy) and OpenCode as official partners ([deepseek-claude-code], [deepseek-codex]).
 - Weights and self-hosting: no Jinja chat template is shipped. A Python reference encoder in each repository's `encoding` folder and the `deepseek-recipe` library turn OpenAI-style messages into the model's prompt format; vLLM and SGLang are listed as runtimes. DeepSeek recommends temperature 1.0, top-p 0.95 for agents and 1.0 otherwise, and a large output limit (see the model files).
 
@@ -149,7 +155,7 @@ Reading DeepSeek's tables: some rows are internal sets marked with a dagger (DSB
 - Whether the maker will publish a system card or a safety evaluation; nothing in the V4 or V4.1 documents indicates one.
 - Whether 1M means 1,000,000 or 1,048,576 tokens. The output limit of 384K is exactly 393,216, which suggests binary units, but the window is never given as an exact number.
 - No independent run of either model on SWE-Bench Pro (Scale) or the METR time horizon was found, and Artificial Analysis's coding-agent index showed no DeepSeek entry.
-- Which cloud marketplaces serve these models; none was confirmed on DeepSeek's own pages.
+- Which cloud marketplaces serve these models; none was confirmed on DeepSeek's own pages. [as-of 2026-10-31] Mistral's models overview lists DeepSeek V4.1 Flash 1017 as a third-party model on its platform ([mistral-models-overview-1031]).
 
 ## Sources
 
@@ -183,3 +189,7 @@ Reading DeepSeek's tables: some rows are internal sets marked with a dagger (DSB
 | aa-pro | https://artificialanalysis.ai/models/deepseek-v4-pro | M | 2026-10-03 |
 | opencode-issue | https://github.com/anomalyco/opencode/issues/24122 | A | 2026-10-03 |
 | cursor-forum | https://forum.cursor.com/t/deepseek-v4-pro-error-report/159983 | A | 2026-10-03 |
+| deepseek-changelog-1031 | https://api-docs.deepseek.com/updates | L | 2026-10-31 |
+| deepseek-pricing-1031 | https://api-docs.deepseek.com/quick_start/pricing | L | 2026-10-31 |
+| deepseek-search-guide | https://api-docs.deepseek.com/guides/search | L | 2026-10-31 |
+| mistral-models-overview-1031 | https://docs.mistral.ai/getting-started/models/models_overview/ | L | 2026-10-31 |

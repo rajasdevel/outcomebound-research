@@ -2,6 +2,10 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (harnesses change how they load, cap, compact and run hooks monthly; the adoption survey, the interview and the direction are dated and MONITOR)
 sources:
+  - https://developers.openai.com/api/docs/guides/agents-api/overview (read 2026-11-03)
+  - https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals (read 2026-11-03)
+  - https://developers.openai.com/api/docs/guides/agents/guardrails-approvals (read 2026-11-03)
+  - https://kiro.dev/changelog/ (read 2026-10-31)
   - https://agents.md/
   - https://code.claude.com/docs/en/memory
   - https://learn.chatgpt.com/docs/agent-configuration/agents-md
@@ -501,6 +505,10 @@ extension, so a Claude Code extension session inside Cursor also carries `CURSOR
 (A, observed 2026-09-23). Match on the most specific set of variables, read a tie as unknown,
 and draw ASCII where the surface is unknown. Cursor's 2.2 changelog (2025-12-10) says Plan Mode
 supports inline Mermaid diagrams; those are plans, not replies in chat (read 2026-10-01).
+Kiro IDE 1.4.62 (2026-10-28) lists under its fixes that Mermaid diagrams in chat now show in a
+framed block that matches the theme, so arrows stay visible on dark themes, with Ctrl-scroll or
+pinch to zoom. By that note the Kiro IDE chat draws a reply's Mermaid block; this was not observed
+here, and the note does not cover Kiro CLI (L, changelog read 2026-10-31) [as-of 2026-10-31].
 
 ## 12. Adoption (MONITOR)
 
@@ -675,6 +683,17 @@ speaker turns are inferred. Read a prediction as a direction to re-check, not a 
   `gen_ai.completion` are listed as "Removed, no replacement at this time" in the main conventions'
   registry, and message content is carried in opt-in `gen_ai.input.messages` and
   `gen_ai.output.messages`, so pin the conventions' version (read 2026-10-01). L.
+- **OpenAI Agents API [as-of 2026-11-03].** This is separate from the Agents SDK above. OpenAI
+  manages the Codex harness, its sessions, orchestration, compaction and recovery; the application
+  chooses its tools and execution environment. The session's `review: "auto_review"` reviews
+  supported approval requests from the main agent and subagents. The default is `"none"`, which
+  does not route those actions to the application for manual approval. Browser origin access and
+  sign-in still need the application's handlers; review does not replace network restrictions.
+  OpenAI says Responses API and Agents SDK applications do not inherit Codex Auto-review. L,
+  [overview](https://developers.openai.com/api/docs/guides/agents-api/overview),
+  [automatic review](https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals)
+  and [SDK guardrails](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals),
+  read 2026-11-03. Availability and runtime behavior were not tested.
 - **Harness-level forecasts** are in [cross-family.md](../models/cross-family.md#8-forecasts) §8: C5 (Claude Code
   and Gemini CLI read `AGENTS.md` alongside their own file by default), O1 (Astra's cross-context
   notes become the Codex default), O2 and C10 (per-model tuning stays in harness base
@@ -837,3 +856,7 @@ Checks defined here (verdict PASS, read 2026-09-25 unless dated in the text):
 Own observations (O) are the maintainers' own probes and runs, unpublished: the Codex app-server probes,
 the Codex sandbox probes, a read-only review, isolation runs, an environment check and the Python
 module-shadowing reproductions, each dated and scoped where it appears. The talk's captions were read on 2026-09-29.
+
+Sources for sections dated 2026-10-31 (L, vendor changelog; runtime behavior not tested):
+
+- <https://kiro.dev/changelog/>, Kiro IDE 1.4.62 entry, read 2026-10-31.

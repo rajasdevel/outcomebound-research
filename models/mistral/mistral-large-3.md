@@ -26,14 +26,18 @@ sources:
   - https://docs.mistral.ai/inference/deployment/cloud-deployments/amazon_bedrock
   - https://legal.mistral.ai/ai-governance/models/mistral-large-3
   - https://legal.mistral.ai/documents/Mistral%20Large%203%20-%20Technical%20Documentation%20for%20Downstream%20Providers.pdf
+  - https://docs.mistral.ai/getting-started/models/models_overview/ (read 2026-10-31)
+  - https://docs.mistral.ai/models/mistral-large-3-25-12 (read 2026-10-31)
 ---
 
 # Mistral Large 3
 
 Mistral Large 3 is an open-weight mixture-of-experts model (Apache-2.0) with 675 billion parameters, 41 billion of them
 active per token, released on 2025-12-02. It is the Large class's generation 3 and is a general-purpose instruct model
-with image input, not a reasoning model. It is the oldest of the three Mistral models here and the only one without a
-reasoning switch. Rules shared by Mistral's models are on the [Mistral page](README.md); this
+with image input, not a reasoning model. [as-of 2026-10-31] It is the oldest Mistral model here and the only one without a
+reasoning switch. Mistral deprecated it on 2026-10-31; it retires on 2027-04-30, and Mistral names
+[Mistral Large 4](mistral-large-4.md), the next generation of the class, as its replacement [mistral-deprecations-2026-10-31,
+mistral-large-docs-2026-10-31]. Rules shared by Mistral's models are on the [Mistral page](README.md); this
 file says what is specific to Large 3.
 
 ## At a glance
@@ -47,7 +51,7 @@ file says what is specific to Large 3.
 | Class | Mistral Large |
 | Generation | 3 |
 | Released | 2025-12-02 |
-| Status | ga |
+| Status | deprecated (retires 2027-04-30) |
 | Weights | open (Apache-2.0) |
 | Access | Mistral API and AI Studio (id mistral-large-2512); Amazon Bedrock (listed on Mistral's Bedrock page); Azure Foundry (Mistral's docs list Large 3 25.12); Hugging Face weights (Mistral-Large-3-675B-Instruct-2512; also Base, BF16, NVFP4 and Eagle repositories); IBM watsonx (per Mistral's launch post); Modal; OpenRouter; Fireworks; Together AI; Unsloth; vLLM |
 | Context window | 256k tokens |
@@ -61,7 +65,7 @@ file says what is specific to Large 3.
 | System card | [huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512](https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512) |
 | Model page | [docs.mistral.ai/models/mistral-large-3-25-12](https://docs.mistral.ai/models/mistral-large-3-25-12) |
 | Card checked | 2026-10-03 |
-| Not found | SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03); METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08); Artificial Analysis Coding Agent Index: no run with this model is listed on Artificial Analysis's coding-agent pages; Terminal-Bench 4.0: the tbench.ai leaderboard rows did not render for the fetcher; the figure on this card is Artificial Analysis's own run, a component of its index; max_output: Mistral's technical documentation gives 256k tokens as the maximum text output, the same as the context window; no separate cap is published; context_window: published as '256k' only; id: Mistral's API id is mistral-large-2512; this card and file keep the slug mistral-large-3 that the repository already uses; retires: the models page lists no retirement date; maker benchmark scores: Mistral's model card shows charts only; the one text claim is the LMArena rank, which is not a coding-agent measure; system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card; Mistral's AI-Act technical documentation exists but reports no evaluations; reasoning: Mistral's December 2025 post said a reasoning version was coming; none was listed on the models page read on 2026-10-03 |
+| Not found | SWE-Bench Pro (Scale, public V2): no row for this model on Scale's leaderboard (read 2026-10-03); METR 50% time horizon: no entry for this model on METR's time-horizons page (latest update shown 2026-05-08); Artificial Analysis Coding Agent Index: no run with this model is listed on Artificial Analysis's coding-agent pages; Terminal-Bench 4.0: the tbench.ai leaderboard rows did not render for the fetcher; the figure on this card is Artificial Analysis's own run, a component of its index; max_output: Mistral's technical documentation gives 256k tokens as the maximum text output, the same as the context window; no separate cap is published; context_window: published as '256k' only; id: Mistral's API id is mistral-large-2512; this card and file keep the slug mistral-large-3 that the repository already uses; maker benchmark scores: Mistral's model card shows charts only; the one text claim is the LMArena rank, which is not a coding-agent measure; system_card: Mistral publishes no system card or safety report for this model; the card field holds the Hugging Face model card; Mistral's AI-Act technical documentation exists but reports no evaluations; reasoning: Mistral's December 2025 post said a reasoning version was coming; none was listed on the models page read on 2026-10-03 |
 <!-- card:end -->
 
 ## How to instruct it
@@ -204,6 +208,8 @@ Maker-reported: an LMArena rank at launch, as above; the card's benchmark charts
 - Whether the "8 images" in the technical documentation is a per-request limit on Mistral's API.
 - Whether the card's vLLM requirement of 1.12.0 or later is as intended.
 - Whether Mistral will publish a system card.
+- [as-of 2026-10-31] Whether `mistral-large-latest`, which the Large 3 page still lists, moves to Large 4 before Large 3
+  retires [mistral-large-docs-2026-10-31].
 
 ## Sources
 
@@ -223,6 +229,8 @@ Read on 2026-10-03; kinds L lab, M independent measurement. Mistral-wide sources
 - [mistral-vision-docs] Vision. L. https://docs.mistral.ai/capabilities/vision/
 - [mistral-guardrailing-docs] Moderation and guardrailing. L. https://docs.mistral.ai/capabilities/guardrailing/
 - [mistral-pricing] Pricing page. L. https://mistral.ai/pricing
+- [mistral-deprecations-2026-10-31] Deprecated models table, read 2026-10-31. L. https://docs.mistral.ai/getting-started/models/models_overview/
+- [mistral-large-docs-2026-10-31] Mistral Large 3 model page, which marks it deprecated, read 2026-10-31. L. https://docs.mistral.ai/models/mistral-large-3-25-12
 - [mistral-td-large-3] Mistral Large 3 technical documentation for downstream providers, 2025-12-02. L. https://legal.mistral.ai/documents/Mistral%20Large%203%20-%20Technical%20Documentation%20for%20Downstream%20Providers.pdf
 - [aa-large-3] Artificial Analysis, Mistral Large 3. M. https://artificialanalysis.ai/models/mistral-large-3
 - [aa-compare-large-small] Artificial Analysis, Large 3 against Small 4. M. https://artificialanalysis.ai/models/comparisons/mistral-large-3-vs-mistral-small-4

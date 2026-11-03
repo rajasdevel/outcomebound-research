@@ -1,0 +1,185 @@
+{
+  "id": "grok-voice-3.0",
+  "name": "Grok Voice 3.0",
+  "maker": "SpaceXAI",
+  "family": "Grok Voice",
+  "class": "Grok Voice",
+  "generation": "3.0",
+  "released": "2026-10-14",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "SpaceXAI API (wss://api.x.ai/v1/realtime?model=grok-voice-3.0; the alias grok-voice-latest points to it) [xai-s2s] [xai-release-notes]",
+    "SpaceXAI SIP phone-call routing [xai-s2s]",
+    "SpaceXAI ephemeral tokens for browser and mobile clients [xai-s2s]"
+  ],
+  "context_window": null,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "audio/pcm (8000, 16000, 22050, 24000, 32000, 44100 or 48000 Hz; default 24000), audio/pcmu and audio/pcma (8000 Hz) or audio/opus (24000 Hz); sent as base64 JSON or as raw binary WebSocket frames [xai-s2s]",
+    "output_audio": "The same codecs and rates as the input, set separately; 24 kHz PCM both ways is advised to avoid resampling; Opus is 24 kHz mono; audio.output.speed 0.7 to 1.5 (default 1.0) [xai-s2s]",
+    "voices": "The built-in voice roster shared with the text-to-speech API (default eve), and custom voices cloned from a short reference clip [xai-s2s]",
+    "languages": [
+      "20 listed language variants: English, Arabic (Egypt, Saudi Arabia, United Arab Emirates), Bengali, Simplified Chinese, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese (Brazil, Portugal), Russian, Spanish (Mexico, Spain), Turkish and Vietnamese; the model detects the input language and answers in it, and other languages work with varying accuracy [xai-s2s]"
+    ],
+    "turn_detection": "turn_detection.type server_vad detects the end of the user turn; null selects manual turns, where the client sends input_audio_buffer.commit and clear; idle_timeout_ms (default null) makes the server re-engage a silent user after that many milliseconds, again until the user speaks [xai-s2s]",
+    "interruption": "With server_vad, barge-in is automatic (xAI's best practices say to enable it for natural barge-in); a force_message item with interruptible false drops caller audio until its playback ends [xai-s2s]",
+    "latency": "Artificial Analysis: 0.81 seconds average time to first audio [aa-s2s]; xAI's announcement says under one second [xai-announce-3]",
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "none",
+      "high"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Not per token. SpaceXAI pricing page: US$0.08 per minute of speech-to-speech (US$4.80 per hour) and US$0.004 per text input, the same as Grok Voice 2.0. Limits are concurrent sessions per tier: 10 at tier 0, 20, 50, 100 and 200 at tier 4 [xai-pricing] [xai-rates] [xai-announce-3]"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Speech to Speech Index",
+      "score": 86.9,
+      "setting": "Artificial Analysis Speech to Speech page; a weighted average of speech reasoning, agentic performance, arena preference and task success rate; second on the page read, behind Phonic 1 (High) at 87.1 (the maker's claim of first place cites data of 2026-10-13)",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Speech Reasoning (Big Bench Audio)",
+      "score": 98.5,
+      "setting": "Artificial Analysis Speech to Speech page; 1,000 spoken questions adapted from Big Bench Hard",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Conversational Dynamics (Full Duplex Bench subset)",
+      "score": 97.0,
+      "setting": "weighted average of pause handling 98.5, turn-taking 100, interruption handling 96.5 and backchannel handling 92.9 from Full Duplex Bench v1 and v1.5",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Agentic Performance (tau-Voice)",
+      "score": 71.6,
+      "setting": "share of replica customer-service scenarios resolved over 3 trials; airline 69.3, retail 66.1, telecom 79.5; only full-duplex models are run",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-s2s",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "EVA-Bench accuracy (ServiceNow, percent)",
+      "score": 74.0,
+      "setting": "the maker's announcement reports this figure; not read at the benchmark's own page",
+      "harness": "EVA-Bench",
+      "measured_by": "maker",
+      "source": "xai-announce-3",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech/prompting-guide",
+    "https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech"
+  ],
+  "system_card": null,
+  "model_page": "https://docs.x.ai/developers/models/grok-voice-3.0",
+  "sources": [
+    {
+      "id": "xai-model-page",
+      "url": "https://docs.x.ai/developers/models/grok-voice-3.0",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-release-notes",
+      "url": "https://docs.x.ai/developers/release-notes",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "grok-voice-latest now points to grok-voice-3.0, so sessions that use the alias are upgraded automatically. The API is unchanged."
+    },
+    {
+      "id": "xai-s2s",
+      "url": "https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-s2s-prompting",
+      "url": "https://docs.x.ai/developers/model-capabilities/audio/speech-to-speech/prompting-guide",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-pricing",
+      "url": "https://docs.x.ai/developers/pricing",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-rates",
+      "url": "https://docs.x.ai/developers/rate-limits",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-announce-3",
+      "url": "https://x.ai/news/grok-voice-3",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-s2s",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "context_window: not published for the voice model; its page lists no context figure",
+    "max_output: not published",
+    "voice.duplex: full follows Artificial Analysis, which runs this model on its tau-Voice test for full-duplex models only; xAI's pages describe server VAD with automatic barge-in and do not use the word full-duplex [aa-s2s] [xai-s2s]",
+    "voice.session_limit: no maximum session length is stated; with resumption on, cached history is dropped after 30 minutes of inactivity, and concurrent sessions are limited per tier [xai-s2s] [xai-rates]",
+    "voice.voices: the Markdown view of the text-to-speech page read on 2026-10-31 gives no count of built-in voices",
+    "pricing_usd_per_mtok: the unit differs; the price is per minute of audio, not per token",
+    "modalities: the Markdown view of the model page lists text to text, while the rendered page and its embedded model data list text and audio in and out, as does the speech-to-speech guide [xai-model-page] [xai-s2s]",
+    "released: the release notes date the model 2026-10-14, the day of the announcement [xai-release-notes] [xai-announce-3]",
+    "system_card: none found for the voice models",
+    "benchmarks: Artificial Analysis arena preference Elo and task success rate are not recorded; the page read holds several Elo figures for this model on different boards, and the announcement cites 1070 Elo and 94.8% task success from data dated 2026-10-13 [aa-s2s] [xai-announce-3]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to a speech model; no run found",
+    "Terminal-Bench 4.0: not applicable to a speech model; no run found",
+    "Artificial Analysis Intelligence Index: not applicable; Artificial Analysis lists voice models on its Speech to Speech page, not in this index",
+    "Artificial Analysis Coding Agent Index: not applicable to a speech model; no entry",
+    "METR 50% time horizon: not applicable to a speech model; no entry"
+  ]
+}

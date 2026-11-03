@@ -9,6 +9,7 @@ sources:
   - https://mimo.mi.com/docs/zh-CN/quick-start/usage-guide/text-generation/deep-thinking
   - https://mimo.mi.com/docs/zh-CN/quick-start/summary/first-api-call
   - https://mimo.mi.com/docs/en-US/quick-start/summary/model
+  - https://mimo.mi.com/docs/en-US/quick-start/summary/model (read 2026-10-31)
   - https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output
   - https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/image-understanding
   - https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/audio-understanding
@@ -31,7 +32,7 @@ sources:
 
 MiMo-V2.6-Pro is the flagship of Xiaomi's MiMo-V2.6 pair, released on 2026-09-21 under the MIT licence. It is a 1.02T-parameter mixture-of-experts model with
 42B active parameters, a 1M-token context, native text, image, video and audio input and text output, and thinking on by default. Xiaomi positions it for complex
-projects, long-horizon tasks, high-stakes work, cybersecurity and research. It replaces MiMo-V2.5-Pro, which Xiaomi's API retires on 2026-10-21. The API rules, parameter
+projects, long-horizon tasks, high-stakes work, cybersecurity and research. It replaces MiMo-V2.5-Pro, which Xiaomi's API retired on 2026-10-21 [as-of 2026-10-31] [mimo-docs-models-1031]. The API rules, parameter
 limits and guides shared by the pair are in [the maker README](README.md); this file gives what applies to the Pro.
 
 ## At a glance
@@ -137,8 +138,8 @@ examples pass it as the client's API key [mimo-docs-first-call]. Rate limit 100 
 ### Migrating from the previous generation
 
 From MiMo-V2.5-Pro on Xiaomi's own table [hf-mimo-pro]: DeepSWE v1.1 19.0 to 71.9, Terminal-Bench 4.0 1.5 to 34.9, Terminal-Bench 2.1 65.2 to 89.9, AutomationBench 16.0 to 53.1, Toolathlon-Verified 49.1 to 76.9, GDPval-AA 1,107 to 1,673,
-JobBench 25.0 to 62.0, CyberGym 40.0 to 94.0. Both models think by default and use `thinking.type`. V2.5 models are deprecated on Xiaomi's API at 10:00 Beijing time on 2026-10-21 and the docs recommend moving to V2.6
-[mimo-docs-models] [litellm-mimo]. The faster `mimo-v2.6-pro-ultraspeed` id also exists (about ten times the Pro price for twenty times its output speed per a relay) and has no card here [datanorth-mimo].
+JobBench 25.0 to 62.0, CyberGym 40.0 to 94.0. Both models think by default and use `thinking.type`. Xiaomi's API retired MiMo-V2.5 and MiMo-V2.5-Pro at 10:00 Beijing time on 2026-10-21; their model ids no longer work, and the docs say to move to V2.6
+[as-of 2026-10-31] [mimo-docs-models-1031] [litellm-mimo]. The faster `mimo-v2.6-pro-ultraspeed` id also exists (about ten times the Pro price for twenty times its output speed per a relay) and has no card here [datanorth-mimo].
 
 ## What the system card reports
 
@@ -183,6 +184,7 @@ Terminal-Bench 4.0 34.9, Terminal-Bench 2.1 89.9, OSWorld-Verified 82.0, JobBenc
 - [mimo-docs-thinking-zh] https://mimo.mi.com/docs/zh-CN/quick-start/usage-guide/text-generation/deep-thinking (kind L, read 2026-10-03)
 - [mimo-docs-first-call] https://mimo.mi.com/docs/zh-CN/quick-start/summary/first-api-call (kind L, read 2026-10-03)
 - [mimo-docs-models] https://mimo.mi.com/docs/en-US/quick-start/summary/model (kind L, read 2026-10-03)
+- [mimo-docs-models-1031] https://mimo.mi.com/docs/en-US/quick-start/summary/model (kind L, read 2026-10-31)
 - [mimo-docs-structured] https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/structured-output (kind L, read 2026-10-03)
 - [mimo-docs-image] https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/image-understanding (kind L, read 2026-10-03)
 - [mimo-docs-audio] https://mimo.mi.com/docs/en-US/quick-start/usage-guide/multimodal-understanding/audio-understanding (kind L, read 2026-10-03)

@@ -15,11 +15,13 @@ sources:
   - https://speechify.ai/blog/simba-3-2-and-the-models-endpoint
   - https://docs.speechify.ai/build/changelog/2026/7/8
   - https://artificialanalysis.ai/text-to-speech
+  - https://docs.speechify.ai/build/changelog/2026/10/20 (read 2026-10-31)
+  - https://docs.speechify.ai/build/guides/text-to-speech/streaming-text-input (read 2026-10-31)
 ---
 
 # Speechify Simba 3.2
 
-Speechify Simba 3.2 is the current generation of the Speechify Simba speech synthesis class, English only. It takes a style tag with 13 emotions inside SSML, together with prosody and pause tags. Speechify recommends it for English. It is a tag-directed model with a fixed emotion list. Family-wide rules are in the [Speechify README](README.md).
+Speechify Simba 3.2 is an English-only model of the Speechify Simba speech synthesis class. [as-of 2026-10-31] It is now the generation before [Simba 3.5](simba-3.5.md), which the API recommends from 2026-10-18; 3.2 stays available and is not deprecated. It is directed by SSML prosody, pause and substitution tags. It accepts an emotion style tag and does not apply it [sp-models-1031] [sp-ssml-1031]. Family-wide rules are in the [Speechify README](README.md).
 
 ## At a glance
 
@@ -34,23 +36,23 @@ Speechify Simba 3.2 is the current generation of the Speechify Simba speech synt
 | Released | 2026-07-08 |
 | Status | ga |
 | Weights | closed |
-| Access | Speechify API: POST /v1/audio/speech, POST /v1/audio/stream and a stream with timestamps, model simba-3.2; Integrations: LiveKit, Pipecat, Vapi, Deepgram Voice Agent and Puter |
+| Access | Speechify API: POST /v1/audio/speech, POST /v1/audio/stream and a stream with timestamps, model simba-3.2 [as-of 2026-10-31] The WebSocket input stream GET /v1/audio/stream/ws also takes simba-3.2 [sp-ws]; Integrations: LiveKit, Pipecat, Vapi, Deepgram Voice Agent and Puter |
 | Context window | unknown |
 | Max output | unknown |
 | Modalities | input text; output audio |
 | Voice duplex | none |
-| Voice input audio | none: the model takes text or SSML (prosody, break, emphasis, sub and speechify:style) |
-| Voice output audio | 23 `output_format` values: PCM at 8, 16, 22.05, 24, 44.1 and 48 kHz, mu-law at 8 kHz, MP3 at 22.05 and 24 kHz (32 to 192 kbps), Ogg at 24 kHz, AAC at 24 kHz, and WAV at 24 and 48 kHz (not on streaming); 24 kHz PCM is the model's native output [sp-formats] [sp-latency] |
+| Voice input audio | none: the model takes text or SSML [as-of 2026-10-31] It applies break, prosody (rate, pitch and volume) and sub, and accepts emphasis and speechify:style emotion tags without applying them; pitch and volume are applied from 2026-10-20 [sp-ssml-1031] [sp-chlog-1020] |
+| Voice output audio | 23 `output_format` values: PCM at 8, 16, 22.05, 24, 44.1 and 48 kHz, mu-law at 8 kHz, MP3 at 22.05 and 24 kHz (32 to 160 kbps; [as-of 2026-10-31] the 192 kbps values are delivered at 160 kbps [sp-formats-1031]), Ogg at 24 kHz, AAC at 24 kHz, and WAV at 24 and 48 kHz (not on streaming); 24 kHz PCM is the model's native output [sp-formats] [sp-latency] |
 | Voices | catalogue voices and zero-shot voice cloning from a 10 to 30 second sample with verified consent [sp-models] [sp-clone] |
 | Voice languages | English |
 | Turn detection | unknown |
 | Interruption | unknown |
-| Voice latency | First audio byte 56 ms at the median and 102 ms at p90 on the maker's production streaming path in US East, measured on 2026-09-15; the maker also cites two third-party boards at 106 ms and 123 ms to first audio, which this card did not read [sp-latency] |
+| Voice latency | First audio byte 56 ms at the median and 102 ms at p90 on the maker's production streaming path in US East, measured on 2026-09-15 [sp-latency]. [as-of 2026-10-31] On 2026-10-09 the maker measured first audible audio from a client in US East at a median of 47 ms over the WebSocket input stream and 64 ms over the HTTP stream, and 145 ms and 153 ms from Zurich; it also cites Coval at 109 ms and Voice Arena at 123 ms to first audio, which this card did not read [sp-latency-1031] |
 | Session limit | 2,000 characters per /v1/audio/speech request and 20,000 per streaming request [sp-limits] |
 | Reasoning control | none |
-| Price | unknown per Mtok; Per character, drawn from a US dollar balance that a monthly plan grants; the page gives one rate per plan and no rate per model. Free US$0 (500K characters a month, then pauses), Starter US$10 (1.9M characters, then US$10 per 1M), Pro US$99 (13.5M, then US$8 per 1M) and Scale US$499 (78M, then US$6 per 1M); Enterprise has volume pricing [sp-pricing]. Artificial Analysis lists US$6.58 per 1M characters for both Simba 3.2 and Simba 3.0 [aa-tts-board] |
+| Price | unknown per Mtok; Per character, drawn from a US dollar balance that a monthly plan grants. Free US$0 (500K characters a month, then pauses), Starter US$10 (1.9M characters, then US$10 per 1M), Pro US$99 (13.5M, then US$8 per 1M) and Scale US$499 (78M, then US$6 per 1M); Enterprise has volume pricing [sp-pricing]. [as-of 2026-10-31] The pricing page now gives a rate per model: these rates are those of Simba 3.2 and 3.0, and Simba 3.5 lists at twice them [sp-pricing-1031]. Artificial Analysis lists US$6.58 per 1M characters for both Simba 3.2 and Simba 3.0 [aa-tts-board-1031] |
 | Key benchmarks | none recorded |
-| Other benchmarks | Artificial Analysis Speech Arena Elo (text-to-speech leaderboard): 1241.95 (blind pairwise listener votes; the quality Elo in the leaderboard data of the page, read on 2026-10-04, Artificial Analysis Speech Arena, independent) [aa-tts-board](https://artificialanalysis.ai/text-to-speech) |
+| Other benchmarks | Artificial Analysis Speech Arena Elo (text-to-speech leaderboard): 1249.46 (blind pairwise listener votes; the quality Elo in the leaderboard data of the page, 95% CI 1237.46 to 1261.46, read on 2026-10-31 (1241.95 on 2026-10-04), Artificial Analysis Speech Arena, independent) [aa-tts-board-1031](https://artificialanalysis.ai/text-to-speech) |
 | Prompting guides | [docs.speechify.ai/build/guides/text-to-speech/emotion-control](https://docs.speechify.ai/build/guides/text-to-speech/emotion-control); [docs.speechify.ai/build/guides/text-to-speech/ssml](https://docs.speechify.ai/build/guides/text-to-speech/ssml); [docs.speechify.ai/build/guides/text-to-speech/latency](https://docs.speechify.ai/build/guides/text-to-speech/latency) |
 | System card | unknown |
 | Model page | [docs.speechify.ai/build/guides/concepts/models](https://docs.speechify.ai/build/guides/concepts/models) |
@@ -63,8 +65,8 @@ Speechify Simba 3.2 is the current generation of the Speechify Simba speech synt
 ### Setting up the prompt
 
 - **No system prompt.** The input is `input` (text or SSML), `voice_id`, `model` and format fields. The request shape is not the ElevenLabs or OpenAI one: the key is a Bearer token, the text is `input`, the model is `model` and there is no `voice_settings` object [sp-index].
-- **Model id.** Speechify recommends `simba-3.2` for English and sets `simba-3.0` as the default when `model` is absent [sp-models].
-- **Controls.** The `speechify:style` emotion tag and the SSML prosody, break and emphasis tags. Details are in the voice section [sp-ssml].
+- **Model id [as-of 2026-10-31].** The API recommends `simba-3.5` and keeps `simba-3.0` as the default when `model` is absent. `simba-3.2` serves English only; a non-English voice returns `400` [sp-models-1031].
+- **Controls [as-of 2026-10-31].** SSML `break`, `prosody` (rate, pitch and volume) and `sub`. The `speechify:style` emotion tag and `emphasis` are accepted and not applied. Details are in the voice section [sp-ssml-1031].
 
 ### Reasoning and effort
 
@@ -102,19 +104,16 @@ Simba is not a conversation model. It has no turn detection and no barge-in. A c
 
 **How to direct delivery.**
 
-- **Emotion tag.** Wrap text in `<speechify:style emotion="...">` inside `<speak>`. The API detects SSML in the `input` field by itself. Thirteen values: angry, cheerful, sad, terrified, relaxed, fearful, surprised, calm, assertive, energetic, warm, direct and bright [sp-emotion] [sp-ssml].
-- **Advice from the maker.** The words must match the emotion, because an angry sentence works with `angry` and not with `cheerful`. Short sentences give stronger emotion. Punctuation helps: an exclamation mark for anger or excitement, a question mark for uncertainty, an ellipsis for hesitation or sadness. Emotion tags can sit beside `prosody` and `break` tags [sp-emotion].
-- **Mixed emotions.** The maker's example puts a cheerful span, a 500 ms break and a calm span in one document [sp-emotion].
-- **Illustration, written for this library and not taken from the maker.** `<speak><speechify:style emotion="warm">You made it.</speechify:style><break time="400ms"/><speechify:style emotion="direct">Sit down.</speechify:style></speak>`. This shows the syntax; it is not a sample from the guide. It was not run against the model.
-- **Prosody.** `prosody` takes `pitch` (x-low to x-high, or -83% to +100%), `rate` (x-slow to x-fast, or -50% to +9900%) and `volume` (silent to x-loud, a dB value, or -100% to +900%) [sp-ssml].
-- **Emphasis and pauses.** `emphasis` has `reduced`, `moderate` and `strong`. `break` takes a strength (none to x-strong, 0 to 1250 ms) or a time up to 10 seconds. A document can insert at most 30 seconds of silence in total; further pauses are dropped without an error [sp-ssml].
-- **Coverage and limits.** The models page lists full support for SSML and emotion control on both Simba 3.2 and Simba 3.0. The pages give no figure for how strongly an emotion tag acts. No natural-language instruction field exists in the pages read [sp-emotion] [sp-models].
+- **Emotion tag [as-of 2026-10-31].** The maker's SSML and emotion pages now say that Simba 3.5, 3.2 and 3.0 accept `<speechify:style emotion="...">` and `<emphasis>`, return `200`, and speak the text without the change. Only the retired Simba 1.6 models apply the 13 emotion values. An earlier reading of the models page, on 2026-10-04, listed full emotion support for 3.2; the current page does not [sp-ssml-1031] [sp-emotion-1031] [sp-models-1031].
+- **What steers delivery.** The words and punctuation, the choice of voice, `break`, `prosody` and `sub`. The pages read describe no natural-language instruction field.
+- **Prosody.** `prosody` takes `pitch` (x-low to x-high, or -83% to +100%), `rate` (x-slow to x-fast, or -50% to +9900%) and `volume` (silent to x-loud, a dB value, or -100% to +900%) [sp-ssml]. [as-of 2026-10-31] Pitch and volume are applied from the changelog entry of 2026-10-20; before that the model accepted them without applying them. Percent volume is relative to the voice, so `volume="100%"` doubles the gain. A `prosody` around part of a sentence is synthesized on its own, so the intonation can break there [sp-chlog-1020] [sp-ssml-1031].
+- **Pauses.** `break` takes a strength (none to x-strong, 0 to 1250 ms) or a time up to 10 seconds. A document can insert at most 30 seconds of silence in total; further pauses are dropped without an error [sp-ssml].
 
 **Voice choice and cloning.** The catalogue and clones are the other levers. A clone comes from 10 to 30 seconds of audio, and the cloned voice captures accent, style and tone. A consent step runs first: the speaker reads a single-use phrase aloud, and Speechify verifies the recording. No voice design from a description is documented [sp-clone].
 
 **Multi-speaker dialogue and long-form consistency.** The pages read describe no multi-speaker request. Each request uses one voice. Long text goes to the streaming endpoint (20,000 characters). The speech marks endpoint returns word timing [sp-limits] [sp-index].
 
-**Pronunciation and text normalisation.** SSML `sub` replaces text with an alias. The pages read describe no phoneme tag and no normalisation switch [sp-ssml].
+**Pronunciation and text normalisation.** SSML `sub` replaces text with an alias. The pages read describe no phoneme tag and no normalisation switch [sp-ssml]. [as-of 2026-10-31] The `pronunciations` request list (IPA or alias) works on Simba 3.5 only; `GET /v1/audio/models` lists no pronunciation language for `simba-3.2` [sp-models-1031].
 
 **Turn-taking.** Not applicable to a synthesis model.
 
@@ -137,17 +136,17 @@ Speechify publishes no system card in the pages read. The API screens input unde
 
 ## Behaviour observed in practice
 
-- **Rank (M).** Artificial Analysis gives a quality Elo of 1241.95 for Simba 3.2 and 1124.54 for Simba 3.0 [aa-tts-board].
-- **Latency (L, with third-party figures quoted by the maker).** 56 ms p50 first byte on the maker's path. The maker quotes 106 ms and 123 ms to first audio from two outside boards [sp-latency].
+- **Rank (M) [as-of 2026-10-31].** Artificial Analysis gives a quality Elo of 1249.46 for Simba 3.2 (95% CI 1237.46 to 1261.46) and 1116.65 for Simba 3.0; on 2026-10-04 it gave 1241.95 and 1124.54. It does not list Simba 3.5 [aa-tts-board-1031].
+- **Latency (L, with third-party figures quoted by the maker).** 56 ms p50 first byte on the maker's path [sp-latency]. [as-of 2026-10-31] The maker now quotes Coval at a 109 ms median and Voice Arena at 123 ms p50 to first audio, and its own 9 October run at 47 ms over the WebSocket input stream and 64 ms over HTTP from US East [sp-latency-1031].
 - No practitioner report was read.
 
 ## Benchmarks
 
-Independent: Artificial Analysis quality Elo 1241.95 [aa-tts-board]. Maker: first byte 56 ms at p50 and 102 ms at p90 on 2026-09-15 [sp-latency].
+Independent: Artificial Analysis quality Elo 1249.46 on 2026-10-31 (1241.95 on 2026-10-04) [aa-tts-board-1031]. Maker: first byte 56 ms at p50 and 102 ms at p90 on 2026-09-15 [sp-latency].
 
 ## Open questions
 
-- How strongly each emotion tag acts, measured by anyone other than the maker.
+- [as-of 2026-10-31] Whether Speechify will make a current model apply emotion styles again; the pages read give no plan.
 
 ## Sources
 
@@ -164,3 +163,15 @@ Independent: Artificial Analysis quality Elo 1241.95 [aa-tts-board]. Maker: firs
 - [sp-blog-32] https://speechify.ai/blog/simba-3-2-and-the-models-endpoint (kind L, read 2026-10-04)
 - [sp-chlog-32] https://docs.speechify.ai/build/changelog/2026/7/8 (kind L, read 2026-10-04)
 - [aa-tts-board] https://artificialanalysis.ai/text-to-speech (kind M, read 2026-10-04)
+
+Sources added for the claims dated 2026-10-31:
+
+- [sp-models-1031] https://docs.speechify.ai/build/guides/concepts/models (kind L, read 2026-10-31)
+- [sp-ssml-1031] https://docs.speechify.ai/build/guides/text-to-speech/ssml (kind L, read 2026-10-31)
+- [sp-emotion-1031] https://docs.speechify.ai/build/guides/text-to-speech/emotion-control (kind L, read 2026-10-31)
+- [sp-chlog-1020] https://docs.speechify.ai/build/changelog/2026/10/20 (kind L, read 2026-10-31)
+- [sp-formats-1031] https://docs.speechify.ai/build/guides/concepts/audio-formats (kind L, read 2026-10-31)
+- [sp-latency-1031] https://docs.speechify.ai/build/guides/text-to-speech/latency (kind L, read 2026-10-31)
+- [sp-ws] https://docs.speechify.ai/build/guides/text-to-speech/streaming-text-input (kind L, read 2026-10-31)
+- [sp-pricing-1031] https://speechify.ai/pricing (kind L, read 2026-10-31)
+- [aa-tts-board-1031] https://artificialanalysis.ai/text-to-speech (kind M, read 2026-10-31)

@@ -1,0 +1,410 @@
+{
+  "id": "Beam-1.0-501B-A23B",
+  "name": "Reflection Beam 1.0 (501B-A23B)",
+  "maker": "Reflection",
+  "family": "Beam",
+  "class": "Beam",
+  "generation": "1.0",
+  "released": "2026-10-16",
+  "status": "ga",
+  "retires": null,
+  "weights": "open (Apache-2.0)",
+  "access": [
+    "Hugging Face weights (reflection/Beam-1.0-501B-A23B in BF16; FP8 and NVFP4 in separate repositories; DFlash2 drafter for speculative decoding)",
+    "Reflection API (public beta; OpenAI-compatible Chat Completions at api.reflection.ai/openai/v1)",
+    "Mirror CLI (Reflection's coding agent)",
+    "SGLang, vLLM, TokenSpeed and Transformers",
+    "Amazon SageMaker AI and Google Cloud Model Garden (the developer docs list Microsoft Foundry and Oracle as coming soon; the availability post lists both at launch)",
+    "OpenRouter (five providers listed)",
+    "other inference providers named by Reflection, including Baseten, Cloudflare, CoreWeave, Databricks, Fireworks AI, Modal, Nebius, Ollama, Together AI and Vercel"
+  ],
+  "context_window": 1048576,
+  "max_output": 131072,
+  "modalities": {
+    "input": [
+      "text"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "max"
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "Reflection publishes no per-token list price; its availability post calls its own API a public beta that is free to start. OpenRouter (a reseller, class A) lists five providers at 0.25 to 0.40 input, 1.00 to 1.20 output and 0.04 to 0.05 cache read per million tokens (Nebius has the lowest input price, 0.25, with 1.00 output and 0.05 cache read); Artificial Analysis uses 0.40 input and 1.20 output. Self-hosting has no per-token price"
+  },
+  "benchmarks": [
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0)",
+      "score": 18,
+      "setting": "reasoning model; effort not stated on the page; 17.73 in the page data; 54M output tokens for the index against a median of 99M; not comparable with v4.3.2 scores",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 3.0,
+      "setting": "Artificial Analysis's run, a component of its Intelligence Index v5.0 (0.0303 in the page data); the model card's evaluation file relays it as pass@1 averaged over three repeats",
+      "harness": "mini-SWE-agent (per the model card's evaluation file)",
+      "measured_by": "independent",
+      "source": "aa-tb4",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (v2.0)",
+      "score": 20.5,
+      "setting": "components FrontierCode v1.1 Main 20.3, SWE-Atlas-QnA 37.6 and Terminal-Bench v4 3.5; the last of 34 agent and model runs in the page data",
+      "harness": "Mirror",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "SWE Bench Pro v2-Hard (Reflection's run)",
+      "score": 76.5,
+      "setting": "BF16; temperature 0.7, top_p 0.99; FP8 78.4 and NVFP4 78.6; Scale says it co-developed SWE-Bench Pro V2 with Reflection; not Scale's leaderboard",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "SWE Bench Pro v1 (Reflection's run)",
+      "score": 66.1,
+      "setting": "BF16; temperature 0.7, top_p 0.99; FP8 65.9 and NVFP4 65.6",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Terminal-Bench 2.1",
+      "score": 80.1,
+      "setting": "Reflection's run; BF16; temperature 0.7, top_p 0.99; FP8 78.9 and NVFP4 78.4",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "DeepSWE v1.1",
+      "score": 43.3,
+      "setting": "Reflection's run; BF16; FP8 43.0 and NVFP4 42.7",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "SWE-bench Verified",
+      "score": 81.6,
+      "setting": "Reflection's run; BF16; FP8 80.2 and NVFP4 80.7",
+      "harness": "not stated on the card; the evaluation guide's example uses Mirror with a bash-only setup",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "SWE-bench Multilingual",
+      "score": 78.3,
+      "setting": "Reflection's run; BF16; FP8 78.1 and NVFP4 77.5",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "SWE Atlas Codebase QnA",
+      "score": 31.8,
+      "setting": "Reflection's run; BF16; FP8 32.2 and NVFP4 31.4",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "MCP Atlas",
+      "score": 80.8,
+      "setting": "Reflection's run; BF16; FP8 81.5 and NVFP4 80.5",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "tau3-Banking",
+      "score": 36.1,
+      "setting": "Reflection's run; BF16; FP8 36.8 and NVFP4 35.4",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "BrowseComp (with context management)",
+      "score": 76.8,
+      "setting": "Reflection's run; BF16; FP8 76.7 and NVFP4 75.6",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "GPQA Diamond",
+      "score": 90.6,
+      "setting": "Reflection's run; BF16; FP8 90.3 and NVFP4 89.3",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "Humanity's Last Exam (no tools)",
+      "score": 36.0,
+      "setting": "Reflection's run; BF16; with tools 51.1",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "AA-LCR",
+      "score": 78.2,
+      "setting": "Reflection's run of Artificial Analysis's evaluation; BF16",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    },
+    {
+      "name": "IFBench",
+      "score": 79.6,
+      "setting": "Reflection's run; BF16",
+      "harness": "not stated",
+      "measured_by": "maker",
+      "source": "hf-beam",
+      "read": "2026-10-31"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.reflection.ai/text-generation.md",
+    "https://developers.reflection.ai/reasoning.md",
+    "https://developers.reflection.ai/tool-calling.md",
+    "https://developers.reflection.ai/harmony-format.md",
+    "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/EVALUATION.md"
+  ],
+  "system_card": "https://reflection.ai/beam-safety-report",
+  "model_page": "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+  "sources": [
+    {
+      "id": "hf-beam",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/README.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-beam-api",
+      "url": "https://huggingface.co/api/models/reflection/Beam-1.0-501B-A23B/commits/main",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-beam-eval",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/EVALUATION.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-beam-tb4",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/.eval_results/terminal-bench-4.0.yaml",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-beam-config",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/config.json",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "hf-beam-genconf",
+      "url": "https://huggingface.co/reflection/Beam-1.0-501B-A23B/raw/main/generation_config.json",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "reflection-available",
+      "url": "https://reflection.ai/blog/beam-is-available",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "reflection-beam",
+      "url": "https://reflection.ai/blog/introducing-beam",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "beam-safety",
+      "url": "https://reflection.ai/beam-safety-report",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-models",
+      "url": "https://developers.reflection.ai/models.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-reasoning",
+      "url": "https://developers.reflection.ai/reasoning.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": "`Beam-1.0-501B-A23B` always reasons."
+    },
+    {
+      "id": "rd-text",
+      "url": "https://developers.reflection.ai/text-generation.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-compat",
+      "url": "https://developers.reflection.ai/openai-compatibility.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-tools",
+      "url": "https://developers.reflection.ai/tool-calling.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-structured",
+      "url": "https://developers.reflection.ai/structured-outputs.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-rate-limits",
+      "url": "https://developers.reflection.ai/rate-limits.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-harmony",
+      "url": "https://developers.reflection.ai/harmony-format.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-weights",
+      "url": "https://developers.reflection.ai/serving-weights.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-providers",
+      "url": "https://developers.reflection.ai/third-party-providers.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "rd-agents",
+      "url": "https://developers.reflection.ai/coding-agents-quickstart.md",
+      "read": "2026-10-31",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-beam",
+      "url": "https://artificialanalysis.ai/models/reflection-beam",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-tb4",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-10-31",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "openrouter-beam",
+      "url": "https://openrouter.ai/api/v1/models/reflection/beam-1.0-501b-a23b/endpoints",
+      "read": "2026-10-31",
+      "kind": "A",
+      "quote": null
+    }
+  ],
+  "checked": "2026-10-31",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no Beam row found on Scale's leaderboard page read 2026-10-31; Reflection's own SWE Bench Pro v1 and v2-Hard figures are maker runs, and Scale says it co-developed V2 with Reflection",
+    "METR 50% time horizon: no Beam entry; METR's page says it is no longer actively updated (last updated 2026-09-08)",
+    "pricing_usd_per_mtok: input, output and cached_input: Reflection publishes no list price (read 2026-10-31); the reseller range is in the notes",
+    "max_output: 131,072 is the Reflection API's figure (128K in its model table); the default output budget is 32,768 and a plan's per-request limit can be lower",
+    "reasoning.default: the API documentation shows max as the example default and says the default can differ between organizations; the self-hosted chat template defaults to effort 512, its max",
+    "released: 2026-10-16 is the open-weight and public-beta date and Artificial Analysis's release date; Reflection announced Beam on 2026-10-05 with waitlist access, and its model list gives 2026-10-05 as the created date",
+    "status: the weights are released under Apache-2.0; Reflection's own API is still a public beta",
+    "Terminal-Bench 4.0: no row was read on the tbench.ai leaderboard; the score is Artificial Analysis's run",
+    "system_card: the Beam Safety Technical Report is a web page; the model card still lists a technical report as coming",
+    "generation: Reflection numbers the release 1.0; no earlier Beam generation exists"
+  ]
+}

@@ -2,6 +2,8 @@
 last_checked: 2026-09-29
 volatility: STABLE (the studies behind W0, W2, W3 and W5, and the recorded runs) / VOLATILE (harness facts in §1, §2, §4 and §7)
 sources:
+  - https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/long-running-agent-resilience (read 2026-11-03)
+  - https://arxiv.org/html/2609.29095 (read 2026-11-03)
   - https://www.anthropic.com/research/managed-agents (read 2026-10-28)
   - https://latent.space/p/opus55/ (read 2026-10-28)
   - https://github.com/openai/codex/releases/tag/rust-v0.164.0 (read 2026-10-28)
@@ -452,6 +454,18 @@ last.
   of a tool call is the case to test (P, workflow-engine documentation [as-of 2026-08-19]). The measured
   case for it is in [agent-authorization.md](agent-authorization.md) §4: after a timeout or a lost acknowledgement,
   agents re-proposed an already-approved action in 46–58% of trajectories.
+- **Recovery and ambiguous writes [as-of 2026-11-03].** Microsoft distinguishes background execution,
+  process-loss recovery and stream replay. Its preview re-enters a handler from the beginning; it does
+  not restore its call stack or every intermediate state. The application must preserve progress and
+  prevent duplicate effects. Microsoft does not recommend this preview for production workloads
+  (L, [Microsoft](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/long-running-agent-resilience),
+  read 2026-11-03). In the LIMBO preprint, a write can commit after an inconclusive read, so verification
+  alone cannot guarantee one effect without a known bound on in-flight time. In its four-model pooled,
+  faulted E2/E2k comparison, giving every non-idempotent write an accepted idempotency key reduced
+  duplicate effects from 28% to 4%; remaining failures included absent or changed keys. That comparison
+  is part of a study of 25,930 episodes, nine models and three production harnesses in a controlled
+  sandbox, not deployed systems (M,
+  [LIMBO](https://arxiv.org/html/2609.29095), read 2026-11-03).
 - Costly loops are bounded, for example one or two CI rounds before handing back [deterministic-18] (A,
   Stripe: over 1,300 merged pull requests a week with no human-written code, each reviewed by a
   person; rule files scoped to subdirectories rather than global, so rules do not fill the window; a

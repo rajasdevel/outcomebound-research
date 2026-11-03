@@ -94,6 +94,15 @@ sources:
   - https://www.alibabacloud.com/help/en/model-studio/qwen-tts-voice-design
   - https://github.com/FunAudioLLM/CosyVoice
   - https://huggingface.co/FunAudioLLM/Fun-CosyVoice3-0.5B-2512
+  - https://docs.qwencloud.com/changelog (read 2026-10-31)
+  - https://www.qwencloud.com/models/qwen-audio-3.1-realtime-flash (read 2026-10-31)
+  - https://www.qwencloud.com/models/qwen-audio-3.1-tts-flash (read 2026-10-31)
+  - https://www.qwencloud.com/models/qwen-audio-3.1-tts-plus (read 2026-10-31)
+  - https://www.qwencloud.com/models/qwen-audio-3.1-tts-next (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/tts-models (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/realtime-streaming (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/audio-generation (read 2026-10-31)
+  - https://docs.qwencloud.com/developer-guides/speech/s2s-models (read 2026-10-31)
 ---
 
 # Alibaba Qwen models
@@ -101,8 +110,9 @@ sources:
 Qwen is Alibaba's model line. Some models are served only through Alibaba's API (the Max, Plus, hosted Flash
 and Omni models) and some are published as open weights (the open 2.4T, 27B and 35B-A3B models, Flash-Next
 and Coder-Next). Alibaba runs the hosted service as QwenCloud, the international edition of Alibaba
-Cloud Model Studio. This file holds what is true across the nineteen Qwen models in this library; each
-model file says only what differs for its model. Everything here was read on 2026-10-03.
+Cloud Model Studio. This file holds what is true across the Qwen models in this library ([as-of 2026-10-31] 26 model files with the
+CosyVoice models); each model file says only what differs for its model. Everything here was read on 2026-10-03, except
+the text tagged [as-of 2026-10-31].
 
 ## Models and lineage
 
@@ -122,7 +132,10 @@ model file says only what differs for its model. Everything here was read on 202
 | Qwen Omni Realtime | 3.5 | [Qwen3.5-Omni-Plus-Realtime](qwen3.5-omni-plus-realtime.md) | closed, hosted; the Plus tier; the Flash tier's realtime endpoint is covered in the Qwen3.5-Omni-Flash file [qwencloud-page-35plus-rt] |
 | Qwen Audio Realtime | 3.1 | [Qwen-Audio-3.1-Realtime-Plus](qwen-audio-3.1-realtime-plus.md) | closed, hosted; audio and text in, speech and text out; full-duplex per Alibaba; 2026-09-20 [qwencloud-page-audio31] |
 | Qwen Audio Realtime | 3.0 | [Qwen-Audio-3.0-Realtime-Plus](qwen-audio-3.0-realtime-plus.md) | closed, hosted; 2026-08-10 [qwencloud-page-audio30plus] |
+| Qwen Audio Realtime Flash | 3.1 | [Qwen-Audio-3.1-Realtime-Flash](qwen-audio-3.1-realtime-flash.md) | [as-of 2026-10-31] closed, hosted; the lower-cost tier, 2026-10-27; 262K context; the one Qwen-Audio realtime model on which tools and web search run together [qwencloud-changelog-1031] [qwencloud-page-audio31flash] |
 | Qwen Audio Realtime Flash | 3.0 | [Qwen-Audio-3.0-Realtime-Flash](qwen-audio-3.0-realtime-flash.md) | closed, hosted; the lower-cost tier, same date [qwencloud-page-audio30flash] |
+| Qwen Audio TTS Plus | 3.1 | [Qwen-Audio-3.1-TTS-Plus](qwen-audio-3.1-tts-plus.md) | [as-of 2026-10-31] closed, hosted speech synthesis, 2026-10-21; free-text `instruction` and inline emotion and nonverbal tags; a voice actor model [qwencloud-changelog-1031] [qwencloud-tts-guide-1031] |
+| Qwen Audio TTS Flash | 3.1 | [Qwen-Audio-3.1-TTS-Flash](qwen-audio-3.1-tts-flash.md) | [as-of 2026-10-31] closed, hosted speech synthesis, 2026-10-12; the low-latency tier, with the same direction controls; a voice actor model [qwencloud-changelog-1031] [qwencloud-tts-guide-1031] |
 | Qwen Coder | 3 | [Qwen3-Coder-Next](qwen3-coder-next.md) | open weights; QwenCloud says its hosted endpoint retires on 2026-10-10 [qwencloud-page-coder] |
 | Qwen open weights | 3.8 | [Qwen3.8-2.4T-A95B](qwen3.8-2.4t-a95b.md), [Qwen3.8-27B](qwen3.8-27b.md) | the open 2.4T mixture-of-experts model and the open dense 27B model [hf-qwen3-8-2-4t] [hf-qwen3-8-27b] |
 | Qwen open weights | 3.6 | [Qwen3.6-27B](qwen3.6-27b.md), [Qwen3.6-35B-A3B](qwen3.6-35b-a3b.md) | the open dense 27B model and the open 35B mixture-of-experts model with 3B active parameters [hf-qwen3-6-27b] [hf-qwen3-6-35b-a3b] |
@@ -139,7 +152,7 @@ the replacement for retiring omni models [qwencloud-omni-models] [qwencloud-old-
 of 2026-10-10 retire Qwen3.6-Max-Preview, older Qwen3-Max, Qwen3-VL, Qwen3-Omni-Flash and Qwen3-Coder-Plus models and others;
 none of the previous-generation models above is on them [qwencloud-mainline-notice] [qwencloud-snapshot-notice] [qwencloud-old-models-notice].
 
-**Open-weight speech synthesis.** Alibaba's Qwen team released the Qwen3-TTS series on 2026-01-22. Only two of its five models take an instruction: the 1.7B VoiceDesign model and the 1.7B CustomVoice model. The 0.6B CustomVoice model and the two Base (cloning) models take none, so they have no file [qwen3tts-gh]. The hosted Qwen-Audio TTS models (such as Qwen-Audio-3.0-TTS-Plus) and the hosted Qwen3-TTS-Instruct-Flash, -VD and -VC models are closed, hosted speech models. They were read only for the API facts below, so they have no file. CosyVoice 1.0 (2024) is older than two generations and has no file [ali-doc-tts].
+**Open-weight speech synthesis.** Alibaba's Qwen team released the Qwen3-TTS series on 2026-01-22. Only two of its five models take an instruction: the 1.7B VoiceDesign model and the 1.7B CustomVoice model. The 0.6B CustomVoice model and the two Base (cloning) models take none, so they have no file [qwen3tts-gh]. [as-of 2026-10-31] The hosted Qwen-Audio TTS line takes a free-text `instruction` and inline emotion and nonverbal tags on its 3.1 and 3.0 models, so it meets the voice actor definition. Its current generation, 3.1 (Plus and Flash), has files. The 3.0 Plus and Flash models, the previous generation, are still sold and have no file yet; they were not read in depth. Qwen-Audio-3.1-TTS-Next (`qwen-audio-3.1-tts-next`, 2026-10-22) is an audio-generation model: one prompt makes speech, sound effects, ambient sound and music together, in Chinese and English, with up to three reference clips. Its prompt can direct delivery (whisper, surprise, pauses), but it is a different kind of model from the TTS line and has no file; a candidate [qwencloud-tts-models-1031] [qwencloud-tts-guide-1031] [qwencloud-audiogen-1031] [qwencloud-page-tts31next]. The hosted Qwen3-TTS-Instruct-Flash, -VD and -VC models are closed, hosted speech models. They were read only for the API facts below, so they have no file. CosyVoice 1.0 (2024) is older than two generations and has no file [ali-doc-tts].
 
 **How the line got here** (dates are those on the sources named):
 
@@ -189,7 +202,7 @@ affiliates pass US$50 million in revenue in any twelve months [hf-max-license]. 
 for any Model as a Service or AI Work Assistant business with no revenue threshold in the text read
 [hf-flash-next-license]. Internal use is carved out in both.
 
-**The realtime and voice line.** Alibaba sells speech-to-speech models as two families, both read on 2026-10-03 from QwenCloud's pages. The Omni realtime models (`qwen3.5-omni-plus-realtime` and `qwen3.5-omni-flash-realtime`, 2026-03; `qwen3.8-omni-flash-realtime`, 2026-09-21) take audio, images and video. The Qwen-Audio realtime models (`qwen-audio-3.0-realtime-plus` and `-flash`, 2026-08-10; `qwen-audio-3.1-realtime-plus`, 2026-09-20) take audio and text, and Alibaba names them for voice assistants and customer service. The older `qwen3-omni-flash-realtime` and Alibaba's live-translation models (`qwen3.8-livetranslate-flash-realtime` and earlier) have no file: the first is older than two generations, and the translation models are built for interpretation, not conversation. Qwen-Audio ASR and TTS models, CosyVoice and Fun-ASR synthesise or transcribe speech and have no file either [qwencloud-changelog] [qwencloud-s2s-models].
+**The realtime and voice line.** Alibaba sells speech-to-speech models as two families, both read on 2026-10-03 from QwenCloud's pages. The Omni realtime models (`qwen3.5-omni-plus-realtime` and `qwen3.5-omni-flash-realtime`, 2026-03; `qwen3.8-omni-flash-realtime`, 2026-09-21) take audio, images and video. The Qwen-Audio realtime models (`qwen-audio-3.0-realtime-plus` and `-flash`, 2026-08-10; `qwen-audio-3.1-realtime-plus`, 2026-09-20; [as-of 2026-10-31] `qwen-audio-3.1-realtime-flash`, 2026-10-27 [qwencloud-changelog-1031]) take audio and text, and Alibaba names them for voice assistants and customer service. The older `qwen3-omni-flash-realtime` and Alibaba's live-translation models (`qwen3.8-livetranslate-flash-realtime` and earlier) have no file: the first is older than two generations, and the translation models are built for interpretation, not conversation. Qwen-Audio ASR models, the hosted CosyVoice models and Fun-ASR synthesise or transcribe speech and have no file either [qwencloud-changelog] [qwencloud-s2s-models]. [as-of 2026-10-31] The hosted Qwen-Audio TTS models are the exception described above.
 
 ## API surface
 
@@ -200,7 +213,7 @@ example, Model Studio's thinking page names `reasoning_effort` only for Omni-Fla
 documents it for Max, Max-0902, Flash, the open 2.4T and 27B and Omni-Flash [aliyun-thinking] [qwencloud-api-chat].
 Model pages list the regions Beijing, Singapore, Hong Kong, Frankfurt, Tokyo and Virginia for Max, Flash and
 Omni-Flash, and say built-in web search for Max and Flash works only in the Beijing and Singapore regions
-[aliyun-max] [aliyun-flash] [aliyun-omni]. Model Studio prices Max and Flash lower outside Singapore (Max US$1.65
+[aliyun-max] [aliyun-flash] [aliyun-omni]. [as-of 2026-10-31] QwenCloud's changelog records new deployment scopes: `qwen3.8-flash` in US (Virginia) on 2026-10-03, and in the EU scope in Germany (Frankfurt) and the Hong Kong (China) scope on 2026-10-27; `qwen3.8-max` and `qwen3.7-flash` in US (Virginia) on 2026-10-08; and the hosted third-party `glm-5.3` in US (Virginia) on 2026-10-26 [qwencloud-changelog-1031]. Model Studio prices Max and Flash lower outside Singapore (Max US$1.65
 input and US$4.951 output there, against US$2 and US$6 in Singapore and on QwenCloud) [aliyun-max] [aliyun-flash].
 
 **Protocols and keys.** The OpenAI-compatible Chat Completions endpoint is
@@ -398,7 +411,7 @@ temperature of the open cards to 1.0 (the hosted Flash and Omni-Flash default to
 
 **Realtime models.** The Omni realtime guide says nothing about speech-prompt wording beyond one hotel-agent example. The Qwen-Audio guide gives the fullest advice: a clear role, a natural tone that does not cut content, use of all constraints, plain text with no emoji or Markdown, short replies to greetings, one follow-up question per turn, and persona prompts. Each model file says what applies [qwencloud-audio-guide] [qwencloud-rt-guide].
 
-**Speech synthesis.** The Alibaba Cloud voice design page gives rules for writing a voice description: specific words, several dimensions (gender, age, pitch, speed, emotion, voice character, use case), objective wording, no named person, and no repeated synonyms. The limit is 2,048 characters for Qwen-TTS and 500 for CosyVoice, in Chinese or English only. Each voice design for Qwen-TTS costs US$0.2 on the hosted service [ali-doc-vd]. The hosted Qwen3-TTS-Instruct-Flash models take an `instructions` field of up to 1,600 tokens [ali-doc-tts]. The open Qwen3-TTS README gives code examples and no writing guide [qwen3tts-gh]. The CosyVoice code lists its 26 supported instruction strings and its inline tags [cosy-common].
+**Speech synthesis.** The Alibaba Cloud voice design page gives rules for writing a voice description: specific words, several dimensions (gender, age, pitch, speed, emotion, voice character, use case), objective wording, no named person, and no repeated synonyms. The limit is 2,048 characters for Qwen-TTS and 500 for CosyVoice, in Chinese or English only. Each voice design for Qwen-TTS costs US$0.2 on the hosted service [ali-doc-vd]. The hosted Qwen3-TTS-Instruct-Flash models take an `instructions` field of up to 1,600 tokens [ali-doc-tts]. The open Qwen3-TTS README gives code examples and no writing guide [qwen3tts-gh]. The CosyVoice code lists its 26 supported instruction strings and its inline tags [cosy-common]. [as-of 2026-10-31] For the hosted Qwen-Audio TTS models, QwenCloud's real-time synthesis guide is the directing guide: name the language and the effect in `instruction`, in the language of the text, and use its fixed lists of 23 control tags and 7 nonverbal tags in the text. The [3.1 TTS Flash file](qwen-audio-3.1-tts-flash.md) gives the detail [qwencloud-tts-guide-1031].
 
 ## System-card practice
 
@@ -591,3 +604,12 @@ others, and cover fewer models.
 - [ali-doc-vd] https://www.alibabacloud.com/help/en/model-studio/qwen-tts-voice-design (kind L, read 2026-10-04)
 - [cosy-gh] https://github.com/FunAudioLLM/CosyVoice (kind L, read 2026-10-04)
 - [cosy-common] https://raw.githubusercontent.com/FunAudioLLM/CosyVoice/main/cosyvoice/utils/common.py (kind L, read 2026-10-04)
+
+Sources added for the text tagged [as-of 2026-10-31] (all L, read 2026-10-31):
+
+- [qwencloud-changelog-1031] https://docs.qwencloud.com/changelog (model releases; entries from 2026-10-02 to 2026-10-27)
+- [qwencloud-page-audio31flash] https://www.qwencloud.com/models/qwen-audio-3.1-realtime-flash
+- [qwencloud-page-tts31next] https://www.qwencloud.com/models/qwen-audio-3.1-tts-next
+- [qwencloud-tts-models-1031] https://docs.qwencloud.com/developer-guides/speech/tts-models
+- [qwencloud-tts-guide-1031] https://docs.qwencloud.com/developer-guides/speech/realtime-streaming
+- [qwencloud-audiogen-1031] https://docs.qwencloud.com/developer-guides/speech/audio-generation
