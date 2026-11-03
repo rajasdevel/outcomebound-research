@@ -29,6 +29,7 @@ sources:
   - https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
   - https://platform.claude.com/docs/en/build-with-claude/overview
   - https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/
+  - https://developers.openai.com/api/docs/guides/agents-api/bedrock-managed-agents (read 2026-11-03)
 ---
 
 # Amazon Bedrock
@@ -51,6 +52,8 @@ AWS's overview page says Bedrock supports more than 100 foundation models. The t
 - **Not in the catalogue page on this date:** Gemini models, DeepSeek V4, MiniMax M3, Kimi K2.7 Code, GLM 5.2 and later, and Meta's Muse models.
 
 Claude Platform on AWS is a different route. Anthropic operates it on AWS infrastructure and bills through AWS Marketplace, and it exposes the Claude API unchanged. On Bedrock, AWS operates the inference. Workspaces on Claude Platform on AWS created before 2026-09-18 may run outside AWS (Anthropic's page, L).
+
+**Bedrock Managed Agents [as-of 2026-11-03].** OpenAI describes this as an AWS adaptation of its Agents API: the agent harness and model inference run in Bedrock, and AgentCore Runtime or self-hosted compute runs commands and tools. It uses a Bedrock service endpoint and AWS IAM with SigV4. By contrast, a self-hosted sandbox on the OpenAI Agents API changes where commands and tools run, while the harness and inference remain on OpenAI. Shared concepts do not establish API or feature parity; supported models, Regions, prices and account access need separate checks. L [managed-agents-nov03].
 
 ## API surface
 
@@ -137,3 +140,4 @@ Read 2026-10-03; all class L (AWS or Anthropic documentation):
 - Claude in Amazon Bedrock <https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock>, Claude Platform on AWS <https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws>, the features overview <https://platform.claude.com/docs/en/build-with-claude/overview> and prompt caching <https://platform.claude.com/docs/en/build-with-claude/prompt-caching>
 
 - [terra-oct27] <https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/> (L, read 2026-10-27).
+- [managed-agents-nov03] <https://developers.openai.com/api/docs/guides/agents-api/bedrock-managed-agents> (L, read 2026-11-03).

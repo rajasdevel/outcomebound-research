@@ -46,7 +46,7 @@
     "input": 2.0,
     "output": 6.0,
     "cached_input": 0.5,
-    "notes": "list price for prompts under 200k tokens; a request that reaches 200k tokens is billed at the higher rate for all its tokens (4.0 / 12.0 / 1.0 at 200k and above); no Batch API; the US regional endpoint costs 10% more; Cursor's Fast tier is $4 / $1 / $12 (twice the price)"
+    "notes": "list price for prompts under 200k tokens; a request that reaches 200k tokens is billed at the higher rate for all its tokens (4.0 / 12.0 / 1.0 at 200k and above); Batch API supported with a 20% token discount [as-of 2026-11-03]; the US regional endpoint costs 10% more; Cursor's Fast tier is $4 / $1 / $12 (twice the price)"
   },
   "benchmarks": [
     {
@@ -427,6 +427,20 @@
       "id": "xai-docs-pricing",
       "url": "https://docs.x.ai/developers/pricing",
       "read": "2026-10-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-batch-20261103",
+      "url": "https://docs.x.ai/developers/pricing",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "xai-model-batch-20261103",
+      "url": "https://docs.x.ai/developers/models/grok-4.6",
+      "read": "2026-11-03",
       "kind": "L",
       "quote": null
     }

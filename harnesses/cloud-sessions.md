@@ -2,6 +2,7 @@
 last_checked: 2026-10-19
 volatility: VOLATILE (cloud surfaces are in preview or change monthly; limits, defaults and file names move between releases)
 sources:
+  - https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-the-firewall (read 2026-11-03)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.314 (read 2026-10-31)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
   - https://code.claude.com/docs/en/claude-code-on-the-web
@@ -121,6 +122,15 @@ Source: the [environment customisation page](https://docs.github.com/en/copilot/
   `no_proxy`, `ssl_cert_file`, `node_extra_ca_certs`) as settable through Copilot agent variables
   or secrets, or on the runner. A general secret mechanism for the agent: silent on this page.
 
+### Copilot firewall [as-of 2026-11-03]
+
+GitHub says the cloud agent firewall limits internet access by default. It permits GitHub hosts
+and enables a recommended dependency allowlist. The firewall applies to processes the agent starts
+through Bash inside its environment. It does not directly cover MCP server processes or configured
+setup steps, and GitHub says sophisticated attacks may bypass it. This is not a complete egress
+boundary. L, [firewall documentation](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-the-firewall),
+read 2026-11-03; not tested.
+
 ## 4. Cursor cloud agents
 
 Source: the [setup page](https://cursor.com/docs/cloud-agent/setup).
@@ -145,7 +155,7 @@ Source: the [setup page](https://cursor.com/docs/cloud-agent/setup).
 - Pages were read through a fetch tool that summarises. Re-read the source before relying on a
   value.
 - Not read, so not recorded: Google Jules, the Codex and Copilot skills and hooks behaviour in the
-  cloud, the Copilot firewall, how any cloud interface renders diagrams or links.
+  cloud, how any cloud interface renders diagrams or links.
 
 Sources for sections dated 2026-10-31 (L, vendor release notes and documentation; runtime behavior
 not tested):

@@ -1,17 +1,17 @@
 {
   "id": "deepseek-flash",
-  "name": "DeepSeek V4.1-Flash",
+  "name": "DeepSeek V4.1-Flash-1017",
   "maker": "DeepSeek",
   "family": "DeepSeek V4.1",
   "class": "DeepSeek Flash",
   "generation": "4.1",
-  "released": "2026-09-10",
+  "released": "2026-10-17",
   "status": "ga",
   "retires": null,
   "weights": "open (MIT)",
   "access": [
-    "DeepSeek API (OpenAI Chat Completions, Responses and Anthropic formats)",
-    "Hugging Face weights (deepseek-ai/DeepSeek-V4.1-Flash)",
+    "DeepSeek API: deepseek-flash serves V4.1-Flash-1017 (OpenAI Chat Completions, Responses and Anthropic formats) [as-of 2026-11-03]",
+    "Hugging Face weights (deepseek-ai/DeepSeek-V4.1-Flash-1017)",
     "Claude Code",
     "Codex",
     "OpenCode",
@@ -43,13 +43,13 @@
     "input": 0.3,
     "output": 1.2,
     "cached_input": 0.006,
-    "notes": "peak-hour list price (01:00-04:00 and 06:00-10:00 UTC, Mon-Fri, not Chinese holidays); off-peak is half: 0.15 / 0.60 / 0.003. Thinking is on by default and can be switched off."
+    "notes": "peak-hour list price (01:00-04:00 and 06:00-10:00 UTC, Mon-Fri, not Chinese holidays); off-peak is half: 0.15 / 0.60 / 0.003. Thinking is on by default and can be switched off. The 1017 API revision keeps the same calling method and price [as-of 2026-11-03]."
   },
   "benchmarks": [
     {
       "name": "Terminal-Bench 4.0",
       "score": 31.2,
-      "setting": "max effort (scalar 100), Pass@1, 1M context",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort (scalar 100), Pass@1, 1M context",
       "harness": "DeepSeek Harness (Minimal)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -58,7 +58,7 @@
     {
       "name": "Terminal-Bench 3.0",
       "score": 30.0,
-      "setting": "max effort, Pass@1",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1",
       "harness": "DeepSeek Harness (Minimal)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -67,7 +67,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 90.6,
-      "setting": "max effort, Pass@1, N=3, no network; six of the seven models in the maker's comparison table score 87.9 to 90.6 on it",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network; six of the seven models in the maker's comparison table score 87.9 to 90.6 on it",
       "harness": "DeepSeek Harness (Minimal)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -76,7 +76,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 88.0,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "Claude Code",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -85,7 +85,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 84.1,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "Codex",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -94,7 +94,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 90.3,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "mini-SWE (port of mini-swe-agent)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -103,7 +103,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 86.1,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "Pi",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -112,7 +112,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 85.8,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "DeepSeek Harness (Standard)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -121,7 +121,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 85.8,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "DeepSeek Harness (PTC)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -130,7 +130,7 @@
     {
       "name": "Terminal-Bench 2.1",
       "score": 85.0,
-      "setting": "max effort, Pass@1, N=3, no network",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1, N=3, no network",
       "harness": "OpenCode",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -139,7 +139,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 74.2,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "mini-SWE (port of mini-swe-agent)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -148,7 +148,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 72.6,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "DeepSeek Harness (Minimal)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -157,7 +157,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 69.8,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "Claude Code",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -166,7 +166,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 66.2,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "Pi",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -175,7 +175,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 65.6,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "Codex",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -184,7 +184,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 65.5,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "OpenCode",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -193,7 +193,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 70.5,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "DeepSeek Harness (Standard)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -202,7 +202,7 @@
     {
       "name": "DeepSWE v1.1",
       "score": 67.6,
-      "setting": "max effort, resolved, N=8",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, resolved, N=8",
       "harness": "DeepSeek Harness (PTC)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -211,7 +211,7 @@
     {
       "name": "NL2Repo-Bench",
       "score": 65.4,
-      "setting": "max effort; the V4.1-Flash change log and the technical report print 65.4, the Hugging Face card prints 64.0 for the same row",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort; the V4.1-Flash change log and the technical report print 65.4, the Hugging Face card prints 64.0 for the same row",
       "harness": "DeepSeek Harness (Minimal)",
       "measured_by": "maker",
       "source": "deepseek-changelog",
@@ -220,7 +220,7 @@
     {
       "name": "SEC-Bench Pro",
       "score": 62.8,
-      "setting": "max effort, Pass@1",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1",
       "harness": "Claude Code",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -229,7 +229,7 @@
     {
       "name": "AutomationBench",
       "score": 54.8,
-      "setting": "max effort, Pass@1",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1",
       "harness": "official scaffold",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -238,7 +238,7 @@
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 39,
-      "setting": "Max effort reasoning variant, index v4.3.2 (10 evaluations); rank 8 of 118 on the page",
+      "setting": "September 2026 V4.1-Flash, before 1017; Max effort reasoning variant, index v4.3.2 (10 evaluations); rank 8 of 118 on the page",
       "harness": "Artificial Analysis",
       "measured_by": "independent",
       "source": "aa-flash",
@@ -247,7 +247,7 @@
     {
       "name": "Terminal-Bench 4.0",
       "score": 27,
-      "setting": "Max variant (DeepSeek V4.1 Flash (Max)); percent as shown on Artificial Analysis's comparison page, one of the ten Intelligence Index components",
+      "setting": "September 2026 V4.1-Flash, before 1017; Max variant (DeepSeek V4.1 Flash (Max)); percent as shown on Artificial Analysis's comparison page, one of the ten Intelligence Index components",
       "harness": "Artificial Analysis (harness not stated)",
       "measured_by": "independent",
       "source": "aa-cmp-flash-k3",
@@ -256,7 +256,7 @@
     {
       "name": "AA-Omniscience (Artificial Analysis Intelligence Index v4.3.2 component)",
       "score": -5,
-      "setting": "Max variant; index runs from -100 to 100 and penalises wrong answers",
+      "setting": "September 2026 V4.1-Flash, before 1017; Max variant; index runs from -100 to 100 and penalises wrong answers",
       "harness": "Artificial Analysis",
       "measured_by": "independent",
       "source": "aa-cmp-flash-k3",
@@ -265,7 +265,7 @@
     {
       "name": "AA-LCR v1.1 (Artificial Analysis Intelligence Index v4.3.2 component)",
       "score": 84,
-      "setting": "Max variant; percent",
+      "setting": "September 2026 V4.1-Flash, before 1017; Max variant; percent",
       "harness": "Artificial Analysis",
       "measured_by": "independent",
       "source": "aa-cmp-flash-k3",
@@ -274,7 +274,7 @@
     {
       "name": "AI hacking benchmark (Enclave, 11 vulnerable targets and 4 fixed controls)",
       "score": 11,
-      "setting": "targets compromised out of 11, all 4 fixed controls stayed secure; vendor-run on its own benchmark; effort not stated; six runs used the planned weakness and five used extra routes in the vulnerable versions",
+      "setting": "September 2026 V4.1-Flash, before 1017; targets compromised out of 11, all 4 fixed controls stayed secure; vendor-run on its own benchmark; effort not stated; six runs used the planned weakness and five used extra routes in the vulnerable versions",
       "harness": "Enclave's own agent (Bash); harness details not stated",
       "measured_by": "independent",
       "source": "enclave-flash",
@@ -283,7 +283,7 @@
     {
       "name": "ProgramBench (Almost@1)",
       "score": 20.3,
-      "setting": "max effort, share of rollouts scoring at least 0.95",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, share of rollouts scoring at least 0.95",
       "harness": "DeepSeek Harness (Minimal)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -292,7 +292,7 @@
     {
       "name": "CyberGym",
       "score": 88.1,
-      "setting": "max effort, Pass@1; harness not stated for this row",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1; harness not stated for this row",
       "harness": "not stated",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -301,7 +301,7 @@
     {
       "name": "HLE with tools",
       "score": 63.9,
-      "setting": "max effort, Pass@1; harness not stated for this row",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, Pass@1; harness not stated for this row",
       "harness": "not stated",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -310,7 +310,7 @@
     {
       "name": "GPQA Diamond (Pass@1)",
       "score": 90.9,
-      "setting": "max effort, temperature 1.0, top_p 0.95; single-step, no tools",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort, temperature 1.0, top_p 0.95; single-step, no tools",
       "harness": "none (no tools)",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -319,7 +319,7 @@
     {
       "name": "Chartography with tools (Pass@1)",
       "score": 78.9,
-      "setting": "max effort; 512k-token context",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort; 512k-token context",
       "harness": "Claude Code",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -328,7 +328,7 @@
     {
       "name": "BabyVision with tools (Pass@1)",
       "score": 89.6,
-      "setting": "max effort; 512k-token context",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort; 512k-token context",
       "harness": "Claude Code",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -337,7 +337,7 @@
     {
       "name": "ZeroBench-main with tools (Pass@5)",
       "score": 49.0,
-      "setting": "max effort; 512k-token context",
+      "setting": "September 2026 V4.1-Flash, before 1017; max effort; 512k-token context",
       "harness": "Claude Code",
       "measured_by": "maker",
       "source": "hf-v41-flash",
@@ -354,7 +354,7 @@
     "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/encoding/README.md"
   ],
   "system_card": "https://arxiv.org/html/2609.19969",
-  "model_page": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "model_page": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
   "sources": [
     {
       "id": "deepseek-pricing",
@@ -565,6 +565,27 @@
       "read": "2026-10-03",
       "kind": "M",
       "quote": null
+    },
+    {
+      "id": "deepseek-1017-model",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-1017-update",
+      "url": "https://api-docs.deepseek.com/updates/",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "deepseek-1017-pricing",
+      "url": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
@@ -578,6 +599,7 @@
     "access: no cloud-marketplace listing (Bedrock, Vertex, Azure) was confirmed on the maker's pages",
     "benchmarks: the Hugging Face card names no harness for its CyberGym and HLE-with-tools rows, and ExploitGym is not entered; the entered rows are marked not stated",
     "prompting_guides: DeepSeek publishes no prompt-writing guide for V4.x; the listed pages are API usage guides and the prompt-format reference",
-    "system_card: DeepSeek publishes no system card; the linked V4.1 technical report has no safety or alignment section"
+    "system_card: DeepSeek publishes no system card; the linked V4.1 technical report has no safety or alignment section",
+    "1017 revision: the earlier benchmark rows and the rest of this card were checked for the September release, not re-verified for 1017; independent 1017 results are UNVERIFIED."
   ]
 }

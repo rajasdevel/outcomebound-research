@@ -2,6 +2,7 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (most of these layers are experimental, in preview or a new major; event names and UI APIs change between releases)
 sources:
+  - https://github.com/anomalyco/opencode/releases/tag/v2.2.0 (read 2026-11-03)
   - https://agent-plugins.org
   - https://agent-plugins.org/compatible-clients
   - https://agent-plugins.org/plugin-authors/client-extensions
@@ -308,6 +309,11 @@ comparison are listed.
   same URL, 2026-10-03).
 - "Changes affect only the outgoing model call, not persisted history or configuration." (L, same
   URL, 2026-10-03).
+- **Session instruction entries [as-of 2026-11-03].** OpenCode 2.2.0 lets plugins put, list and
+  remove keyed entries with `ctx.session.instructions.entry`. The release notes say a change enters
+  at the next step and survives compaction and reverts without starting another model turn. They do
+  not establish persistence across restart. L, [2.2.0 release notes](https://github.com/anomalyco/opencode/releases/tag/v2.2.0),
+  published 2026-10-27, read 2026-11-03; not tested.
 - Tool hooks `execute.before` (inspect or replace input) and `execute.after`; permission hook
   `evaluate` can change `allow`/`ask` to any effect, but a configured deny is final (L, same URL,
   2026-10-03).

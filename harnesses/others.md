@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (each of these harnesses changes its loading between releases; several are previews)
 sources:
+  - https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings (read 2026-11-03)
   - https://github.blog/changelog/2026-10-28-github-copilot-in-vs-code-universe-releases (read 2026-10-31)
   - https://github.blog/changelog/2026-10-28-repository-plugin-defaults-and-enterprise-plugin-controls-generally-available (read 2026-10-31)
   - https://github.blog/changelog/2026-10-28-route-and-orchestrate-models-with-github-copilot-fusion (read 2026-10-31)
@@ -107,6 +108,16 @@ harness-loading-coverage-30].
     only the models that the enterprise and organisation model policies enable. The post does not
     name the models, so the model that reads a session's instructions can change between prompts
     (inference).
+
+### Copilot local sandbox [as-of 2026-11-03]
+
+The Copilot app's local sandbox is off by default unless enterprise settings require it. The app
+and CLI keep separate settings. In the app, enabling it for a repository affects new local
+sessions, not a session already running. The displayed policy is the requested configuration; an
+enterprise policy can make the effective policy stricter, and the summary does not confirm that
+the sandbox is running. L, [local sandbox settings](https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings),
+read 2026-11-03; not tested. Copilot's cloud firewall has separate limits in
+[cloud-sessions.md](cloud-sessions.md#copilot-firewall-as-of-2026-11-03).
 
 ## Antigravity (Google's consumer harness)
 

@@ -107,6 +107,8 @@ sources:
   - https://alignment.openai.com/how-we-detect-frontier-model-misalignment/ (read 2026-10-31)
   - https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring (read 2026-10-31)
   - https://deploymentsafety.openai.com/gpt-6-1-terra (read 2026-10-31)
+  - https://developers.openai.com/api/docs/guides/agents-api/bedrock-managed-agents (read 2026-11-03)
+  - https://developers.openai.com/api/docs/guides/tools-connectors-mcp (read 2026-11-03)
 ---
 
 # OpenAI models
@@ -204,6 +206,7 @@ exclusions, rather than missing general-purpose cards:
   unrestricted or general-purpose; their specialist coverage remains deferred. L
   [openai-changelog-oct09] [openai-changelog-oct31] [openai-pricing-oct31]; deferral is this
   library's scope decision.
+- **Legal configuration [as-of 2026-11-03].** OpenAI pricing lists `gpt-6-astra-law` as a legal model configuration at $10 input, $1 cached input and $50 output per million tokens; the promotional price lasts at least through 2026-12-31. The listing does not establish its release date, access, API compatibility or whether it is a separate model. L [openai-pricing-nov03].
 - GPT Image 2.5 Sunburst and Flare (`gpt-image-2.5-sunburst`, `gpt-image-2.5-flare`) shipped on
   2026-09-08 for image generation and editing. Full image-model research remains deferred because
   this inventory covers language and voice. L [openai-changelog-oct09]; deferral is this library's
@@ -333,6 +336,10 @@ GPT-6 Luna or GPT-6.1 Sol.
 
 **Agents API.** In public beta since 2026-09-10, with a managed Codex harness, durable sessions, compaction
 and sandboxes; it enables programmatic tool calling by default [openai-changelog] [openai-ptc].
+
+**Managed Agents on Bedrock [as-of 2026-11-03].** OpenAI describes an AWS adaptation in which the harness and model inference run in Bedrock; commands and tools run in AgentCore Runtime or self-hosted compute. A self-hosted sandbox for the OpenAI Agents API leaves its harness and inference at OpenAI. API parity, regions, price and account access require separate checks. L [openai-bedrock-agents-nov03].
+
+**Responses MCP [as-of 2026-11-03].** OpenAI says `connector_id` is deprecated for models released after 2026-09-01, while existing models retain support. Responses requests can use `server_url` for a remote MCP server or `tunnel_id` for a private server through Secure MCP Tunnel. L [openai-mcp-nov03].
 
 **Availability elsewhere.** Amazon Bedrock lists model cards for Astra, GPT-6 Sol, GPT-6 Luna, GPT-6.1 Sol and the GPT-5.6 models [aws-card-gpt-6-astra]; AWS announced GPT-6.1 Terra on Bedrock on 2026-10-26 [as-of 2026-10-27] [aws-terra-oct27]. Microsoft Foundry lists GPT-6.1 Terra in addition to its GPT-6 and GPT-5.6 models; quota and regional requirements depend on the deployment [as-of 2026-10-27] [azure-terra-oct27]. Microsoft also lists gpt-oss-120b and gpt-oss-20b as previews [ms-foundry-models]. The gpt-oss weights are on Hugging Face and need the harmony format (see the gpt-oss
 files) [hf-gpt-oss-120b] [openai-harmony].
@@ -659,8 +666,8 @@ How to read a card:
   covered. On the API,
   the monitor checks tool-using Responses API requests. It can stop a conversation automatically only
   when the requests use a supported way to track the conversation: persisted reasoning, WebSocket mode
-  or OpenAI compaction. Without one of these, a configured webhook gets an alert and the conversation
-  continues. The monitor does not cover Chat Completions requests; other safety checks still apply
+  or OpenAI compaction. Without one of these, configured webhooks can receive alerts, but the system does not
+  automatically stop the conversation [as-of 2026-11-03] L [openai-misalignment-nov03]. The monitor does not cover Chat Completions requests; other safety checks still apply
   there. A blocked request returns HTTP 403 with type `invalid_request_error` and code
   `misalignment_policy_violation`, and a stream can fail after output has started. The guide says not
   to retry the blocked work automatically. It also says that the API has no general way to resume a
@@ -933,3 +940,10 @@ Partial corrections, read 2026-10-31 (L):
 - [openai-misalignment-post] How we detect frontier model misalignment, 2026-10-29, <https://alignment.openai.com/how-we-detect-frontier-model-misalignment/>.
 - [openai-misalignment-guide] Misalignment monitoring (undated), <https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring>.
 - [openai-61-terra-card] GPT-6.1 Terra system card, Preparedness section, <https://deploymentsafety.openai.com/gpt-6-1-terra>.
+
+Partial update, read 2026-11-03 (L):
+
+- [openai-pricing-nov03] <https://developers.openai.com/api/docs/pricing>, legal configurations.
+- [openai-bedrock-agents-nov03] <https://developers.openai.com/api/docs/guides/agents-api/bedrock-managed-agents>.
+- [openai-mcp-nov03] <https://developers.openai.com/api/docs/guides/tools-connectors-mcp>.
+- [openai-misalignment-nov03] <https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring>.

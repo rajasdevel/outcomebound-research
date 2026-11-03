@@ -49,7 +49,7 @@ First-party. Details from the K3 page unless noted. [k3]
 - **Tools.** Custom tools, dynamic tool loading and `tool_choice: "required"` on K3. Official tools come from a Formula `/tools` endpoint whose definitions go into the `tools` field, and the K3 page says web search is being updated and is not recommended for near-term production use; the maker README adds a web-search API launched in September 2026. [k3]
 - **Structured output.** JSON Schema with strict mode on K3; JSON mode generally. [k3, overview]
 - **Caching.** Automatic context caching on K3 with a 5-minute or 1-hour lifetime, charged as separate writes, hits and misses; K2 models use a simpler hit and miss rate. [pricing, k3]
-- **Batch.** A Batch API exists (maker README); the pricing page names no batch discount. [pricing]
+- **Batch [as-of 2026-11-03].** Batch costs 60 percent of standard model prices for `kimi-k3.1-pro`, `kimi-k3`, `kimi-k2.7-code` and `kimi-k2.6`. K3 and K3.1 Pro also incur cache-write charges; K2 models do not support cache writes. Cache hits are best effort, not guaranteed. The page does not list the Highspeed variant. L, <https://platform.kimi.ai/docs/pricing/batch>, read 2026-11-03.
 - **Long context.** 1,048,576 tokens on K3; `max_completion_tokens` defaults to 131,072 and can reach 1,048,576. [k3]
 - **Vision.** Base64 images and video uploads; no public URLs. [k3]
 - **Streaming.** Supported. [overview]
@@ -57,7 +57,7 @@ First-party. Details from the K3 page unless noted. [k3]
 
 ## Pricing
 
-Per token, with separate rates for input, output and, on K3, cache writes (5-minute or 1-hour), cache hits and cache misses. The pricing page names no batch discount, long-context surcharge, free-credit tier or tool price, and says file extraction and storage are temporarily free while extracted content still counts as tokens. Access starts with a $1 minimum top-up, and a $5 cumulative recharge brings a $5 voucher. Per-model prices are in the model files. [pricing, limits, k3]
+Per token, with separate rates for input, output and, on K3, cache writes (5-minute or 1-hour), cache hits and cache misses. The pricing page read on 2026-10-03 names no long-context surcharge, free-credit tier or tool price, and says file extraction and storage are temporarily free while extracted content still counts as tokens. Access starts with a $1 minimum top-up, and a $5 cumulative recharge brings a $5 voucher. Per-model prices are in the model files. [pricing, limits, k3]
 
 ## Limits and data
 

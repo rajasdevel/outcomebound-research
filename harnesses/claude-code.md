@@ -8,7 +8,7 @@ sources:
   - https://code.claude.com/docs/en/fast-mode (read 2026-10-31)
   - https://code.claude.com/docs/en/server-managed-settings (read 2026-10-31)
   - https://code.claude.com/docs/en/plugins/mods/overview (read 2026-10-28)
-  - https://code.claude.com/docs/en/permissions (read 2026-10-28)
+  - https://code.claude.com/docs/en/permissions (read 2026-10-28 and 2026-11-03)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.295 (read 2026-10-28)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.312 (read 2026-10-28)
   - https://code.claude.com/docs/en/memory
@@ -209,7 +209,9 @@ The October 27 release reports fixes for managed-policy loading after VS Code si
   conversation of 200K tokens or more. It also runs it for subscribers with telemetry off, and on
   Bedrock, Vertex, Foundry and LLM gateways once the one-hour prompt cache is on. On 2026-10-31 the
   page still named feature-flag fetching as a condition, so the page and the release note disagree
-  for those routes. An idle compaction summarizes path-scoped rules and nested files away, as any
+  for those routes. [as-of 2026-11-03] The current settings reference says unavailable feature
+  flags prevent idle compaction only before 2.1.314; it no longer states that conflict. An idle
+  compaction summarizes path-scoped rules and nested files away, as any
   compaction does (above), while nobody is at the session (inference). `PreCompact` and
   `PostCompact` hooks see it under the `auto` matcher (hooks page, read 2026-10-31). L, settings
   reference and 2.1.314 release notes; not run.
@@ -488,6 +490,17 @@ section holds what a harness row needs. Permission-modes and sandboxing pages [a
   macOS the file is blocked instead. Mask entries, `tlsTerminate` and plaintext injection are
   honored only from user, managed and `--settings` sources, never from a repository's settings
   files.
+
+### File permission rules [as-of 2026-11-03]
+
+Claude Code accepts path-qualified `Write`, `NotebookEdit`, `Glob` and legacy `MultiEdit` rules,
+but the rules do not match file access. Use `Edit(path)` for file edits and `Read(path)` for reads;
+an unqualified tool name can match every use of that tool. A `Read` deny also blocks Edit and
+Write on that path in the versions the documentation names, but not NotebookEdit. Add an `Edit`
+deny where no file tool may change the path. These rules do not cover arbitrary subprocesses that
+open files indirectly, or commands that read without naming the file, such as recursive grep.
+L, [permissions reference](https://code.claude.com/docs/en/permissions), read 2026-11-03; not
+runtime-tested. A file-tool rule is not an operating-system sandbox (inference).
 
 ### Mods and settings-hook scheduling [as-of 2026-10-28]
 

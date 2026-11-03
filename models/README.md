@@ -245,7 +245,7 @@ and run `make render`.
 | Cartesia Sonic 3.6 | Cartesia | Cartesia Sonic | 3.6 | ga | 2026-08-27 | voice, no duplex | [cartesia/sonic-3.6.md](cartesia/sonic-3.6.md) |
 | Cartesia Sonic 3.5 | Cartesia | Cartesia Sonic | 3.5 | ga | 2026-05-04 | voice, no duplex | [cartesia/sonic-3.5.md](cartesia/sonic-3.5.md) |
 | Composer 2.5 | Cursor | Cursor Composer | 2.5 | ga | 2026-05-18 | - | [cursor/composer-2.5.md](cursor/composer-2.5.md) |
-| DeepSeek V4.1-Flash | DeepSeek | DeepSeek Flash | 4.1 | ga | 2026-09-10 | - | [deepseek/deepseek-flash.md](deepseek/deepseek-flash.md) |
+| DeepSeek V4.1-Flash-1017 | DeepSeek | DeepSeek Flash | 4.1 | ga | 2026-10-17 | - | [deepseek/deepseek-flash.md](deepseek/deepseek-flash.md) |
 | DeepSeek V4-Pro (0813) | DeepSeek | DeepSeek Pro | 4 | ga | 2026-08-13 | - | [deepseek/deepseek-v4-pro.md](deepseek/deepseek-v4-pro.md) |
 | DeepSeek V4-Flash (0731) | DeepSeek | DeepSeek Flash | 4 | retired 2026-09-10 | 2026-07-31 | - | [deepseek/deepseek-v4-flash.md](deepseek/deepseek-v4-flash.md) |
 | Eleven Realtime v1 Max | ElevenLabs | Eleven Realtime Max | 1 | preview | 2026-10-20 | half-duplex voice | [elevenlabs/eleven_realtime_v1_max.md](elevenlabs/eleven_realtime_v1_max.md) |

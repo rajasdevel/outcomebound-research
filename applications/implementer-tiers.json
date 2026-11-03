@@ -193,7 +193,7 @@
           "confidence": "low"
         }
       ],
-      "basis": "Inferred: no independent agentic row exists (Scale's SWE-Bench Pro V2 table has no DeepSeek model, read 2026-10-03), so the default rule gives spec. The maker's numbers (DeepSWE v1.1 74.2, Terminal-Bench 4.0 31.2) are strong but vendor-run, harness-dependent [scale-swe-pro-v2]. Promote only after an independent run.",
+      "basis": "Inferred: no independent agentic row exists (Scale's SWE-Bench Pro V2 table has no DeepSeek model, read 2026-10-03), so the default rule gives spec. The maker's numbers (DeepSWE v1.1 74.2, Terminal-Bench 4.0 31.2) are strong but vendor-run, harness-dependent [scale-swe-pro-v2]. Promote only after an independent run. This evidence concerns the September 2026 revision, not the 1017 revision now served by the API; the placement is retained pending revision-specific independent evidence. L, https://api-docs.deepseek.com/updates/, read 2026-11-03.",
       "notes": []
     },
     "deepseek-v4-pro": {
@@ -272,7 +272,7 @@
           "confidence": "low"
         }
       ],
-      "basis": "Inferred from the default rule (a model with no placement of its own takes the spec tier): restricted access, no Scale row, no METR horizon, no guide, and the maker figures are secondhand. Evidence that it may earn a higher tier once open: AA Intelligence Index 53 equals GPT-6 Astra's, and AA's Terminal-Bench 4.0 57 sits near the 59 its article gives for Astra, while Google's own table puts it last of four on Terminal-Bench 4.0 [aa-gemini-4-argon-article, dev-community-argon].",
+      "basis": "Inferred from the default rule: a model with no placement of its own takes the spec tier. Historical evidence read 2026-10-03: Artificial Analysis Intelligence Index 53 equalled GPT-6 Astra, and its Terminal-Bench 4.0 result of 57 was near the 59 its article gave Astra; Google’s table placed Argon last of four on that benchmark [aa-gemini-4-argon-article, dev-community-argon]. Google made Argon available on Google Cloud on 2026-10-13; this does not itself establish a higher placement. L, https://cloud.google.com/blog/products/ai-machine-learning/gemini-4-argon-available-on-google-cloud, read 2026-11-03.",
       "notes": []
     },
     "gemma-4-12b-it": {

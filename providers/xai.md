@@ -54,7 +54,7 @@ First-party, so the differences are between the two endpoints and between models
 - **Tools.** Chat Completions offers function calling only. Server-side tools run only on Responses: the comparison page names search, code execution and MCP, and the pricing page bills web search, X search, code execution, attachment search and collections search. [compare, pricing]
 - **Structured output.** `response_format` of type `json_schema` (or `json_object`), or tool arguments that are always validated against their schema. The schema subset accepts the JSON types, enums, non-circular `$ref` and `$defs`, `anyOf` and `oneOf`, and enforced formats (`date`, `time`, `date-time`, `email`, `uuid`, `ipv4`, `ipv6`, `uri`); `minLength` and `maxLength` up to 2,048, `minItems` and `maxItems` up to 256 and `minProperties` and `maxProperties` up to 64 are guaranteed; `not` and `if/then/else` are best effort. [structured]
 - **Caching.** Automatic; on the pricing page cached input costs 25 percent of the input rate on Grok 4.7 and 4.6, 20 percent on Grok Build 0.1 and 16 percent on the 4.3 and 4.20 models. [pricing]
-- **Batch.** A 20 percent discount, limited on the pricing page to `grok-4.3` and the 4.20 models; the Grok 4.7 page says Batch is unavailable. [pricing, grok-4.7]
+- **Batch [as-of 2026-11-03].** Grok 4.7 and 4.6 support Batch; the pricing page lists a 20 percent token discount for them, 4.5, 4.3 and the listed 4.20 models. Grok Build 0.1 does not support Batch. L, <https://docs.x.ai/developers/pricing>, <https://docs.x.ai/developers/models/grok-4.7>, <https://docs.x.ai/developers/models/grok-4.6>, <https://docs.x.ai/developers/models/grok-build-0.1>, read 2026-11-03.
 - **Long context.** 500k on 4.7; prompts above 200k tokens pay higher rates on every token. [grok-4.7, pricing]
 - **Vision.** Image input as jpg, jpeg or png up to 20 MiB, no stated count limit; audio and video are separate models. [models]
 - **Streaming.** The structured-outputs page shows streamed JSON output; the maker README documents a WebSocket mode for Responses. [structured]
@@ -76,7 +76,7 @@ Per token, with two bands by prompt size (under or at least 200,000 tokens). Gro
 - **Effort mapping.** `high` is the default and Grok 4.5 and later cannot turn reasoning off, so a harness that sends a "no reasoning" setting to these models has no equivalent. A request for `xhigh` on a model that lacks it is treated as `high` on 4.5 (maker README). [grok-4.7]
 - **Parameters that error.** `presence_penalty`, `frequency_penalty` and `stop` on reasoning models (maker README); a client library that sends them by default fails.
 - **Regional endpoint limits.** On the US endpoint only two text models are served, and Files, Collections, server tools and media models fall outside the US processing guarantee. [regions]
-- **Cost and limits.** The 200,000-token prompt threshold reprices every token; Batch is not offered for the current Grok. [pricing, grok-4.7]
+- **Cost and limits.** The 200,000-token prompt threshold reprices every token. [pricing, grok-4.7] Batch support and discounts are listed above.
 - **Attribution.** `safety_identifier` carries a hash of an end-user id (the page says never an email, phone number or display name), so a policy violation is attributed to that user rather than to the whole API key. [security]
 - **Name drift.** Docs paths, the company name and some product names changed in 2026, so links from older write-ups may 404. [models]
 

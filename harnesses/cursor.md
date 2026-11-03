@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Cursor ships monthly; rules, hooks and third-party loading change between releases)
 sources:
+  - https://cursor.com/docs/agent/security/run-modes (read 2026-11-03)
   - https://cursor.com/blog/claude-code-extension-security-notice (read 2026-10-31)
   - https://cursor.com/changelog/agent-sdk (read 2026-10-31)
   - https://cursor.com/changelog/remote-control-local-agents (read 2026-10-31)
@@ -145,6 +146,15 @@ uses `autoRun` `allow_instructions` and `block_instructions` to steer its classi
 enforce a security boundary, and calls covered by block instructions can still be approved. The page describes the controls as
 convenience checks. CLI permissions have separate semantics from this editor configuration. No
 minimum version is given for the current behavior; runtime enforcement was not tested. L.
+
+### 5.2 Local read access [as-of 2026-11-03]
+
+Cursor 3.23 adds a Workspace read mode for local agents. Reads outside the workspace need
+approval unless a path is on the read allowlist; searches stay within that boundary. On macOS
+and Linux, sandboxed commands can read the workspace, allowlisted paths and the system paths
+needed by common tools. System mode, which allows outside reads without approval, remains the
+default. Run Everything ignores the read control. Cloud agents do not use these local run modes.
+L, [Run Modes](https://cursor.com/docs/agent/security/run-modes), read 2026-11-03; not tested.
 
 ## 6. Trust and readers that load nothing
 
