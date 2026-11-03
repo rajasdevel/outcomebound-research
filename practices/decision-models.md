@@ -55,6 +55,9 @@ sources:
   - https://arxiv.org/abs/2610.17205
   - https://builder.aws.com/content/3KRx3G8JMf1G06ZFu2dDEdE2DLw/benchmarking-strands-decider-llm-classifiers-and-bedrock-routing-for-model-routing
   - https://vincentvandeth.nl/blog/openai-decisions-api-explained-jev-haiku
+  - https://commandline.microsoft.com/microsoft-decision-1-model-foundry/ (read 2026-10-28)
+  - https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision (read 2026-10-28)
+  - https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure (read 2026-10-28)
   - https://dev.classmethod.jp/en/articles/devio2026-tokyo-decision-model-report/
 ---
 
@@ -169,7 +172,10 @@ on 2026-10-01 [chk-cloudflare-clef]; AWS released Strands Decider 2B the same da
 replicas such as Kev ship under Apache-2.0 [chk-kev-release]. **[as-of 2026-10-27]** TypeSafe released
 Jev 1.14 on 2026-10-14 [chk-ts-jev114]. Perplexity launched a Decisions API in October 2026 and shipped
 three model versions that month [chk-pplx-changelog]. No typed decision API from Anthropic, Google or
-Microsoft was found on 2026-10-27 [chk-aisdk-decisions]. L; the practitioner forecast is A.
+Microsoft was found on 2026-10-27 [chk-aisdk-decisions]. **[as-of 2026-10-28]** That search missed
+one: Microsoft had announced Microsoft-Decision-1 on 2026-10-09, in Foundry and through OpenRouter,
+with Jev's three question types on a `/v1/systemone` path [chk-msft-decision1-post]
+[chk-msft-decision1-howto]. L; the practitioner forecast is A.
 
 **DM10. Older tools give the same interface.** Reading the log-probabilities of class labels from a
 generative API gives per-class probabilities for thresholds [chk-oai-logprobs]; rerankers sort
@@ -435,6 +441,7 @@ Vendor claims are L; every benchmark below is run by the vendor named unless mar
 | Clef (27B) and Clef-flash (9B) | Cloudflare | open, Apache-2.0 | 2026-10-01 | LoRA and a routing head on Qwen bases; image input; 65,536 tokens; Clef $0.24 per M input on Workers AI; claims full Jev-API compatibility [chk-cloudflare-clef] [chk-cloudflare-model]; the Workers AI page showed no newer version or changelog [as-of 2026-10-27] [chk-cloudflare-model-oct27] |
 | Strands Decider 2B | AWS (Strands Labs) | open, Apache-2.0 | 2026-10-01 | LoRA on Qwen3.5-2B-Base; local server binds to localhost with no authentication [chk-strands]. [as-of 2026-10-27] A v1 set adds a 2B Qwen3.5 reference model and Gemma 4 E2B, E4B, 12B and 26B-A4B variants; the repository reports accuracy 0.779 and ECE 0.072 for the 2B v1 on its own 231-task JevBench run, and documents no hosted Bedrock API [chk-strands-oct27] |
 | Kev 1.0 (0.8B, 4B, 9B, 27B) | an independent open project | open, Apache-2.0 | 2026-10-01 | LoRA adapters on Qwen3.5 bases and full weights on Qwen3.8-27B; text only, English [chk-kev-release]; llama.cpp merged a `/v1/systemone` server for Kev and other open decision models on 2026-10-02 [chk-llama-cpp]; no release after Kev 1.0 (2026-10-01) [as-of 2026-10-28] [chk-kev-releases]; the repository's code kept changing, with fixes to the fine-tuning scripts and tests on 2026-10-22 [chk-kev-commit] |
+| Microsoft-Decision-1 [as-of 2026-10-28] | Microsoft | closed | 2026-10-09 | Post-trained from Qwen3.5-9B; text only, inputs up to 32K tokens; yes/no (`noul`), choice and score questions about a `state` of text or JSON; Foundry serves it at `/providers/microsoft/v1/systemone` on the resource endpoint, with the deployment name as `model`, on Global Standard and, in selected regions, Data Zone Standard deployments; the catalogue lists it with no preview mark; also on OpenRouter; $0.042 per M input, free output; Microsoft names search relevance and ranking among its uses; its benchmark, latency and robustness figures are Microsoft's own, and its how-to page says that wording and option order change scores [chk-msft-decision1-post] [chk-msft-decision1-howto] [chk-msft-foundry-catalog] |
 
 The Kev project's own index puts Kev-27B at 52.3 against Jev's 54.0 and its MMLU-Pro at 0.675
 against Jev's 0.840; its release notes give date arithmetic as weakest below 27B [chk-kev-release]
@@ -452,7 +459,8 @@ comparisons [chk-ts-jev114-charts] [chk-ts-jev114] (L, a competitor's measuremen
 but Jev). A comparison of the vendor pages found no independent
 replication of Cloudflare's or AWS's tables by 2026-10-03 [chk-digital-applied]. No decision-model
 product from Anthropic or Google was found in searches on 2026-10-04. **[as-of 2026-10-27]** Searches
-on 2026-10-27 found none from Anthropic, Google or Microsoft either. The Vercel AI SDK lists native
+on 2026-10-27 found none from Anthropic, Google or Microsoft either; **[as-of 2026-10-28]** they
+missed Microsoft-Decision-1, released on 2026-10-09 (table above). The Vercel AI SDK lists native
 decisions for TypeSafe, OpenAI and Perplexity, and emulates them for Anthropic and Google with
 structured output: there the yes/no probability is an estimate the model is prompted to give, and
 Choice and Score answers carry no distribution [chk-aisdk-decisions]. L. The JevBench page could not
@@ -580,7 +588,7 @@ forecast is scored as held, falsified or unscored only at its horizon.
 
 | Forecast | Reading | Why |
 | --- | --- | --- |
-| 1. Three large providers | At risk | Of the five named, only OpenAI offers a generally available typed decision API; none was found from Anthropic, Google or Microsoft, and AWS's decider is an open model with no hosted API documented [chk-openai-changelog-oct27] [chk-aisdk-decisions] [chk-strands-oct27] |
+| 1. Three large providers | At risk | Of the five named, OpenAI offers a generally available typed decision API, and Microsoft offers Microsoft-Decision-1 in Foundry, which its catalogue lists with no preview mark [as-of 2026-10-28] [chk-msft-foundry-catalog]; none was found from Anthropic or Google, and AWS's decider is an open model with no hosted API documented [chk-openai-changelog-oct27] [chk-aisdk-decisions] [chk-strands-oct27] |
 | 2. Versions faster than quarterly | Cadence holding; support open | Jev 1.14 shipped a month after 1.13, and Perplexity shipped three versions in October and routes old ids to the newest [chk-ts-jev114] [chk-pplx-changelog]. TypeSafe's 60 and 30 days are intended warning before deprecation, not a support lifetime, so the six-month support part stays open until its policy is published |
 | 3. Open model under 10B matches Jev | No reading | JevBench could not be read; the sub-10B figures found are vendor-run on other task sets [chk-strands-oct27] |
 | 4. Generative model within 2x of Jev's latency | No reading | The one independent latency comparison (DM8, §5) found GPT-6 Luna with token probabilities still slower than Jev; OpenAI Decisions' median in §5 is one practitioner's beta test |
@@ -623,8 +631,8 @@ forecast is scored as held, falsified or unscored only at its horizon.
 - Whether TypeSafe's image input, now a preview behind a header, leaves preview, and which of its two
   pages (images, or the System One concept page) it will correct [as-of 2026-10-27].
 - Re-check after the next Jev version or TypeSafe's deprecation policy, when OpenAI changes the
-  Decisions interface, when Anthropic, Google or Microsoft ships a decision API, or when JevBench can
-  be read again.
+  Decisions interface, when Anthropic or Google ships a decision API, when Microsoft-Decision-1
+  changes version or base model [as-of 2026-10-28], or when JevBench can be read again.
 
 ## Sources
 
@@ -793,3 +801,13 @@ OpenAI public-beta correction sources, read 2026-10-09 (L):
 - [chk-openai-decisions-ref-oct09] <https://developers.openai.com/api/reference/python/resources/decisions/methods/create>.
 - [chk-openai-changelog-oct09] <https://developers.openai.com/api/docs/changelog>, October 6 entry.
 - [chk-openai-decisions-ref-md-oct09] Python reference Markdown representation, <https://developers.openai.com/api/reference/python/resources/decisions/methods/create.md> (L, read 2026-10-09).
+
+Microsoft sources, read 2026-10-28 (L):
+
+- [chk-msft-decision1-post] Microsoft, announcement of Microsoft-Decision-1, dated 2026-10-09
+  <https://commandline.microsoft.com/microsoft-decision-1-model-foundry/>.
+- [chk-msft-decision1-howto] Microsoft Learn, Deploy and use Microsoft-Decision-1 in Microsoft
+  Foundry, page dated 2026-10-07
+  <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-microsoft-decision>.
+- [chk-msft-foundry-catalog] Microsoft Learn, Foundry Models sold by Azure, updated 2026-10-08
+  <https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure>.
