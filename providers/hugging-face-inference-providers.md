@@ -1,5 +1,5 @@
 ---
-last_checked: 2026-10-03
+last_checked: 2026-11-03
 volatility: VOLATILE (the partner list, credits and per-provider support change often)
 kind: router or gateway
 sources:
@@ -7,60 +7,66 @@ sources:
   - https://huggingface.co/docs/inference-providers/pricing
   - https://huggingface.co/docs/inference-providers/tasks/chat-completion
   - https://huggingface.co/docs/inference-providers/security
+  - https://huggingface.co/docs/inference-providers/guides/responses-api
+  - https://huggingface.co/docs/inference-providers/integrations/claude-code
 ---
 
 # Hugging Face Inference Providers
 
 router or gateway
 
-Inference Providers is a feature of the Hugging Face Hub that routes a request for a Hub model to one of several partner inference companies behind a single Hugging Face token and a single bill. It is a router rather than a host: the models run at the partners (Baseten, Cerebras, DeepInfra, Fireworks, Groq, Together and others) or at Hugging Face's own `hf-inference` service, which was called the serverless Inference API before this feature existed and now concentrates on CPU models such as embedding, ranking and classification. The kind is listed as a router or gateway, although the partner list itself contains the hosts described in the neighbouring files. [index, price]
+Inference Providers is a Hugging Face Hub feature that routes requests to partner inference services through one Hugging Face token. Hugging Face can bill routed requests; a custom provider key lets the provider bill directly. The service also includes `hf-inference`, previously called the serverless Inference API, which the pricing page says focused mainly on CPU inference as of July 2025. [index, price]
 
 ## Models offered
 
-Models on the Hub that at least one partner serves, found with `hf models ls --warm` or the models page filtered by inference provider, and listed with per-provider price, context length, latency and throughput by `GET https://router.huggingface.co/v1/models`. The index page's partner table on 2026-10-03 listed chat-completion (language) support for Baseten, Cerebras, Cohere, DeepInfra, Featherless AI, Fireworks, Groq, HF Inference, Novita, Nscale, OVHcloud AI Endpoints, Public AI, Scaleway, Together and Z.ai, with vision-language chat for most of them, and image, video and speech partners (Fal AI, Replicate, WaveSpeedAI) besides. [SambaNova](sambanova.md) and Nebius ([Token Factory](nebius-token-factory.md)), both described in this folder, are not in that table. Examples on the pages are openai/gpt-oss-120b ([model file](../models/openai/gpt-oss-120b.md)), `zai-org/GLM-5.3` ([model file](../models/zai/glm-5.3.md)) and GLM-5.3-Flash, `deepseek-ai/DeepSeek-V4.1-Flash`, `Qwen/Qwen3.8-27B` ([model file](../models/alibaba/qwen3.8-27b.md)) and `XiaomiMiMo/MiMo-V2.6-Pro-RL` (served by Novita); which in-scope model files are served on a given day changes. The pricing page gives the catalogue as more than 200 models. Every model shown is a Hub model; no closed-lab model (Claude, GPT, Gemini) appears. [index, chat, price]
+The index lists partners for language, vision-language, image, video and speech tasks. Its chat-completion table includes Baseten, Cerebras, Cohere, DeepInfra, Featherless AI, Fireworks, Groq, HF Inference, Novita, Nscale, OVHcloud AI Endpoints, Public AI, Scaleway, Together and Z.ai. The set of served models changes; `openai/gpt-oss-120b` is an example in the index. The pricing page describes more than 200 models. [index, price]
+
+The index says `hf models ls --warm` lists models served by at least one provider, and `--json` gives machine-readable output. It says `GET https://router.huggingface.co/v1/models` lists models with per-provider pricing, context length, latency and throughput when available. These commands and live availability were not tested. [index]
 
 ## API surface
 
-- **Protocols.** An OpenAI-compatible chat completions endpoint at `https://router.huggingface.co/v1` (chat only; the docs say other tasks such as image generation, embeddings and speech need the Hugging Face clients), and the `huggingface_hub` (Python) and `@huggingface/inference` (JavaScript) `InferenceClient` classes, which format the request for the chosen provider. The proxy passes each partner's own request format, so the exact HTTP request can differ between providers when called without the clients. No Anthropic-compatible endpoint is documented on the pages read, though the index lists setup guides for coding agents (OpenCode, Pi, Codex, Claude Code and Hermes Agent). [index]
-- **Auth.** A Hugging Face fine-grained access token with the permission to call Inference Providers, as a bearer token (`HF_TOKEN`). [index]
-- **SDKs.** The two Hugging Face clients, or the OpenAI SDK with the base URL changed. [index]
-- **Model ids.** The Hub id, `org/model`, with an optional suffix: `:fastest` (the default; highest throughput in tokens per second), `:cheapest` (lowest price per output token), `:preferred` (the provider order set in the account settings), or a provider name such as `openai/gpt-oss-120b:groq`. In the clients, `provider="auto"` is the default and a named provider forces one. [index]
+- **Protocols.** The router has an OpenAI-compatible Chat Completions API at `https://router.huggingface.co/v1`. Its Responses API is beta and documents event streaming, structured outputs and remote MCP tools. The index describes Chat Completions as chat-only and points to the Hugging Face clients for other tasks such as embeddings, image generation and speech. The Responses guide separately documents image input. Full parity and Responses state storage are `UNVERIFIED`. [index, responses]
+- **Claude Code.** The integration guide sets `ANTHROPIC_BASE_URL` to `https://router.huggingface.co` and uses a Hugging Face token, or configures the agent with the `hf-claude` extension. Anthropic API feature parity is `UNVERIFIED`. [claude-code]
+- **Clients and auth.** The Python `huggingface_hub` and JavaScript `@huggingface/inference` clients format requests for the selected provider. The OpenAI SDK can use the router as its base URL. The documentation calls for a fine-grained Hugging Face token with Inference Providers permission. [index]
+- **Model ids.** A Hub id such as `openai/gpt-oss-120b` can have a suffix: `:fastest` chooses the highest throughput, `:cheapest` the lowest output-token price, and `:preferred` the first available provider in the account's preferred order. A provider suffix such as `:groq` selects that provider. In the clients, `provider="auto"` selects the fastest available provider by default, and a named provider selects that provider. [index]
 
 ## Feature parity
 
-Parity depends on the partner behind the request, which the router chooses unless told, so every feature below is "as the selected partner supports it". The router's chat schema lists these request fields: `messages` (text and image parts), `tools` (functions only), `tool_choice` (`auto`, `none`, `required` or a named function), `response_format` (`text`, `json_object` or `json_schema` with `strict`), `reasoning_effort`, `stream` with `stream_options.include_usage`, `logprobs`, `seed`, `stop`, the usual sampling fields, and a `tool_prompt` (text placed before the tool list). The page says the API supports grammars, constraints and tools. [chat]
+The chat schema lists text and image message parts, function tools, `tool_choice`, JSON response formats with `strict`, `reasoning_effort`, streaming, usage, log probabilities, seed and sampling fields. The schema describes strict JSON schema adherence, but enforcement for each model and provider was not tested. [chat]
 
-- **Reasoning and effort.** `reasoning_effort` with common values `none`, `minimal`, `low`, `medium`, `high` and `xhigh`; the schema says support and defaults depend on provider and model. How it maps to each partner's own control is not described, so see the partner files ([together-ai.md](together-ai.md), [fireworks-ai.md](fireworks-ai.md), [groq.md](groq.md), [cerebras.md](cerebras.md), [deepinfra.md](deepinfra.md), [baseten.md](baseten.md)). [chat]
-- **Tools and structured output.** Present in the schema; whether a given partner enforces strict schemas or honours `tool_choice: required` varies, as the partner files show (for example Groq's strict mode excludes streaming and tools). [chat]
-- **Prompt caching and batch.** Not part of the router's documented interface; whatever caching a partner does applies behind the router. `UNVERIFIED` for pass-through of cache controls.
-- **Failover.** With automatic selection, a request is rerouted when the primary provider is flagged unavailable by Hugging Face's validation system. [index]
-- **Vision, streaming, long context.** Vision-language chat is supported through image parts for models and partners that offer it; streaming is supported; context is per partner and model. [index, chat]
+- **Reasoning.** The schema lists `none`, `minimal`, `low`, `medium`, `high` and `xhigh` as common `reasoning_effort` values. Support and defaults depend on the model and provider; the mapping to each provider's own controls is `UNVERIFIED`. [chat]
+- **Tools and structured output.** Function tools, `tool_choice` including `required`, and JSON schema are in the chat schema. Support and enforcement for a selected route are `UNVERIFIED`. [chat]
+- **Prompt caching and batch.** These were not documented in the router pages read. Provider caching and pass-through controls are `UNVERIFIED`.
+- **Failover.** With `provider="auto"`, the index says the service selects an alternative when its validation system flags the primary provider unavailable. [index]
+- **Vision, streaming and context.** The chat schema permits image input and streaming; model and provider support can differ. The model listing can show per-provider context lengths. [chat, index]
 
 ## Pricing
 
-Hugging Face states it passes provider rates through with no markup. Every account receives monthly credits that apply to routed requests: $0.10 for free users (marked as subject to change), $2.00 for PRO and $2.00 per seat for Team and Enterprise (shared among members, and usable on other Hugging Face compute such as Inference Endpoints, Spaces hardware and Jobs for the paid plans), after which usage is pay-as-you-go from purchased credits. Two billing modes exist: routed by Hugging Face (billed to your account, credits apply, no partner account needed) or a custom provider key set in the account settings (the partner bills the customer directly and credits do not apply). Team and Enterprise organisations can bill an organisation (or, for Enterprise, a resource group) with the `X-HF-Bill-To` header or the `bill_to` client option, and their administrators can set spending limits and disable particular providers. `hf-inference` is billed by compute time multiplied by the hardware's price per second. [price]
+Hugging Face says routed usage has no markup over provider rates. Free users have no included monthly credits and must buy credits or upgrade to use Inference Providers. PRO users receive $2 monthly; Team and Enterprise organisations receive $2 per seat monthly, shared among members. These credits also apply to other Hugging Face compute such as Inference Endpoints, Spaces hardware and Jobs. Additional usage is pay-as-you-go from purchased credits. [price]
+
+Routed billing uses the Hugging Face account and eligible credits; a custom provider key makes the provider bill directly and credits do not apply. Team and Enterprise users can bill an organisation using `X-HF-Bill-To` or the client `bill_to` option. Enterprise users can attribute costs to a resource group if their token is a member. Organisation administrators can set a spending limit and disable providers. `hf-inference` is billed by compute time multiplied by the underlying hardware price per second. [price]
 
 ## Limits and data
 
-- **Rate limits.** The pages read give no rate-limit numbers for Inference Providers. A search result of an older Inference API page gives 1,000 requests a day for signed-up users and 20,000 for PRO and Enterprise, which predates this feature's credit model and is not relied on. Limits at the partner also apply. `UNVERIFIED`.
-- **Retention and training.** Hugging Face says it does not store the request body or response when routing, keeps logs for up to 30 days for debugging with no user data or tokens in them, and does not store user data for training. It directs you to each provider's data policies, which differ. [security]
-- **Security.** The Hub is SOC 2 Type 2 certified; external providers are responsible for their own security; routing uses TLS. [security]
-- **Regions.** Not stated on the pages read; a partner's region follows that partner's service. [security]
+- **Rate limits.** The pages read give no Inference Providers rate-limit numbers; current limits are `UNVERIFIED`.
+- **Retention and training.** Hugging Face says it does not store the request body or response when routing, keeps debug logs for up to 30 days without user data or tokens, and does not store user data for training. It directs readers to each provider's data policies. [security]
+- **Security.** Hugging Face says the Hub is SOC 2 Type 2 certified, external providers are responsible for their own security, and routing uses TLS. [security]
+- **Regions.** The pages read do not establish inference regions; these are `UNVERIFIED`.
 
 ## Notes for agents and harnesses
 
-- **The default route is the fastest provider, not a fixed one.** The same model id can be served by different partners over time, with different quantisation, context length and feature support; a provider suffix (`:groq`) or a named `provider` fixes the route. [index]
-- **Model discovery.** `GET /v1/models` on the router shows per-provider price, context, latency and throughput; `hf models ls --warm --json` lists served models for scripts. [index]
-- **The OpenAI endpoint is chat only.** Embeddings, images and speech go through the Hugging Face clients. [index]
-- **Strictness is a partner property.** Whether `strict: true` or `tool_choice: required` is enforced depends on the partner that serves the request. [chat]
-- **Billing mode changes the contract party.** With a custom key the partner bills directly; with routed billing Hugging Face bills, and the partner still processes the request under its own policy. [price, security]
-- **Free credits are small.** A free account's monthly credit is $0.10, so sustained use needs purchased credits. [price]
+- **The default route can change.** The fastest available provider is selected by default; a provider suffix or named `provider` selects a specific provider. Feature support and context can vary by route. [index, chat]
+- **API formats differ.** Chat Completions is for chat; the Responses API is beta. Claude Code can use the router with its documented base URL. The index points other tasks to the Hugging Face clients. [index, responses, claude-code]
+- **Billing depends on the key.** A custom provider key is billed by the provider; Hugging Face billing applies eligible credits to routed requests. Provider data policies still apply. [price, security]
+- **Free accounts have no included credit.** A free user must buy credits or upgrade to use Inference Providers. [price]
 
 ## Sources
 
 | Id | URL | Kind | Read |
 | --- | --- | --- | --- |
-| index | https://huggingface.co/docs/inference-providers/index | L | 2026-10-03 |
-| price | https://huggingface.co/docs/inference-providers/pricing | L | 2026-10-03 |
-| chat | https://huggingface.co/docs/inference-providers/tasks/chat-completion | L | 2026-10-03 |
-| security | https://huggingface.co/docs/inference-providers/security | L | 2026-10-03 |
+| index | https://huggingface.co/docs/inference-providers/index | L | 2026-11-03 |
+| price | https://huggingface.co/docs/inference-providers/pricing | L | 2026-11-03 |
+| chat | https://huggingface.co/docs/inference-providers/tasks/chat-completion | L | 2026-11-03 |
+| security | https://huggingface.co/docs/inference-providers/security | L | 2026-11-03 |
+| responses | https://huggingface.co/docs/inference-providers/guides/responses-api | L | 2026-11-03 |
+| claude-code | https://huggingface.co/docs/inference-providers/integrations/claude-code | L | 2026-11-03 |

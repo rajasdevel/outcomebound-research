@@ -61,14 +61,14 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
 | Max output | 128k tokens |
 | Modalities | input text, image; output text |
 | Reasoning control | effort: none, low, medium, high, xhigh, max (default medium) |
-| Price | $0.1 in / $0.5 out per Mtok; cached input $0.01; list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27] |
-| Key benchmarks | Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 12.6 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run): 15.2 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Intelligence Index: 38 (max (index v4.3.2), independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Artificial Analysis Intelligence Index: 35 (xhigh (index v4.3.2), independent) [aa-model-gpt-6-luna-xhigh](https://artificialanalysis.ai/models/gpt-6-luna-xhigh); Artificial Analysis Intelligence Index: 33 (high (index v4.3.2), independent) [aa-model-gpt-6-luna-high](https://artificialanalysis.ai/models/gpt-6-luna-high); Artificial Analysis Intelligence Index: 30 (medium (index v4.3.2), independent) [aa-model-gpt-6-luna-medium](https://artificialanalysis.ai/models/gpt-6-luna-medium); Artificial Analysis Intelligence Index: 22 (low (index v4.3.2), independent) [aa-model-gpt-6-luna-low](https://artificialanalysis.ai/models/gpt-6-luna-low); Artificial Analysis Coding Agent Index: 41 (max, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents) |
-| Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 76.7 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); AA-LCR v1.1 (long-context reasoning, percent): 83.3 (max, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna) |
+| Price | $0.1 in / $0.5 out per Mtok; cached input $0.01; list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27]; FedRAMP endpoints +10% from 2026-11-01 [as-of 2026-11-03] [openai-pricing-nov03] |
+| Key benchmarks | Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run): 12.6 (max; historical, read 2026-10-03, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run): 15.2 (max; historical, read 2026-10-03, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents); Artificial Analysis Intelligence Index: 38 (max (index v4.3.2); historical, read 2026-10-03, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); Artificial Analysis Intelligence Index: 35 (xhigh (index v4.3.2); historical, read 2026-10-03, independent) [aa-model-gpt-6-luna-xhigh](https://artificialanalysis.ai/models/gpt-6-luna-xhigh); Artificial Analysis Intelligence Index: 33 (high (index v4.3.2); historical, read 2026-10-03, independent) [aa-model-gpt-6-luna-high](https://artificialanalysis.ai/models/gpt-6-luna-high); Artificial Analysis Intelligence Index: 30 (medium (index v4.3.2); historical, read 2026-10-03, independent) [aa-model-gpt-6-luna-medium](https://artificialanalysis.ai/models/gpt-6-luna-medium); Artificial Analysis Intelligence Index: 22 (low (index v4.3.2); historical, read 2026-10-03, independent) [aa-model-gpt-6-luna-low](https://artificialanalysis.ai/models/gpt-6-luna-low); Artificial Analysis Intelligence Index: 28 (max (index v5.0; read 2026-11-03), independent) [aa-luna-nov03](https://artificialanalysis.ai/models/gpt-6-luna); Artificial Analysis Intelligence Index: 23 (xhigh (index v5.0; read 2026-11-03), independent) [aa-luna-xhigh-nov03](https://artificialanalysis.ai/models/gpt-6-luna-xhigh); Artificial Analysis Intelligence Index: 21 (high (index v5.0; read 2026-11-03), independent) [aa-luna-high-nov03](https://artificialanalysis.ai/models/gpt-6-luna-high); Artificial Analysis Intelligence Index: 18 (medium (index v5.0; read 2026-11-03), independent) [aa-luna-medium-nov03](https://artificialanalysis.ai/models/gpt-6-luna-medium); Artificial Analysis Intelligence Index: 10 (low (index v5.0; read 2026-11-03), independent) [aa-luna-low-nov03](https://artificialanalysis.ai/models/gpt-6-luna-low); Artificial Analysis Coding Agent Index: 41 (max; historical, read 2026-10-03, Codex, independent) [aa-coding-agents](https://artificialanalysis.ai/agents/coding-agents) |
+| Other benchmarks | AA-Omniscience hallucination rate (percent, lower is better): 76.7 (max; historical, read 2026-10-03, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna); AA-LCR v1.1 (long-context reasoning, percent): 83.3 (max; historical, read 2026-10-03, independent) [aa-model-gpt-6-luna](https://artificialanalysis.ai/models/gpt-6-luna) |
 | Prompting guides | [developers.openai.com/api/docs/guides/latest-model](https://developers.openai.com/api/docs/guides/latest-model); [developers.openai.com/api/docs/guides/reasoning](https://developers.openai.com/api/docs/guides/reasoning) |
 | System card | [deploymentsafety.openai.com/gpt-6-astra](https://deploymentsafety.openai.com/gpt-6-astra) |
 | Model page | [developers.openai.com/api/docs/models/gpt-6-luna](https://developers.openai.com/api/docs/models/gpt-6-luna) |
 | Card checked | 2026-10-03 |
-| Not found | SWE-Bench Pro (Scale, public V2): not on Scale's V2 table on 2026-10-03; METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03; Terminal-Bench 4.0 on the tbench.ai leaderboard: no GPT-6 Luna entry; the rows above are Artificial Analysis's, whose Intelligence Index harness is not stated; Artificial Analysis Coding Agent Index at xhigh or lower effort: not listed; only the max-effort Codex row exists; system_card: OpenAI has no card of its own for GPT-6 Luna; the card cited is the GPT-6 Astra system card, whose appendix covers this model; reasoning.context all_turns and multi-agent support: the pages read list them for the GPT-5.6 models and GPT-6.1 Sol and do not mention GPT-6 Luna |
+| Not found | SWE-Bench Pro (Scale, public V2): not on Scale's V2 table on 2026-10-03; METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03; Terminal-Bench 4.0 on the tbench.ai leaderboard: the prior leaderboard URL redirected to the home page on 2026-11-03; current entries are unverified. The historical rows above are Artificial Analysis measurements, whose Intelligence Index harness was not stated; Artificial Analysis Coding Agent Index: the current table was not extractable on 2026-11-03; the max-effort Codex result above is historical; system_card: OpenAI has no card of its own for GPT-6 Luna; the card cited is the GPT-6 Astra system card, whose appendix covers this model; reasoning.context all_turns and multi-agent support: the pages read list them for the GPT-5.6 models and GPT-6.1 Sol and do not mention GPT-6 Luna |
 <!-- card:end -->
 
 ## How to instruct it
@@ -97,10 +97,12 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
   [codex-models].
 - **Where to start.** Codex says start Luna at High (and Astra at Light). The Codex presets include Luna High
   [codex-models].
-- **What is measured.** Artificial Analysis's Intelligence Index: 21.5 (low), 29.9 (medium), 32.9 (high), 34.6
+- **What was measured [as-of 2026-10-03].** Artificial Analysis's Intelligence Index v4.3.2: 21.5 (low), 29.9 (medium), 32.9 (high), 34.6
   (xhigh), 38.1 (max). Its Terminal-Bench 4.0 run: 0.0, 2.5, 4.5, 8.1, 12.6, against AA-LCR long-context
   scores of 74.0% at low and 83.3% at max. Cost per Index task: $0.02 at medium, $0.04 at xhigh, $0.07 at
-  max [aa-model-gpt-6-luna].
+  max [aa-model-gpt-6-luna]. On 2026-11-03, its v5.0 index reported 10, 18, 21, 23 and 28 at
+  low through max, respectively. The index changed its evaluation mix, so scores are not directly
+  comparable across versions. M [aa-model-gpt-6-luna-nov03] [aa-efforts-nov03].
 - **None.** Effort `none` is the only setting at which Chat Completions allows function calls
   [openai-latest-model].
 - **Persisted reasoning and multi-agent.** The pages read list `all_turns` and multi-agent mode for other
@@ -114,8 +116,9 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
   1,930 characters on HealthBench), with length-adjusted scores up on Professional (60.8, up 5.1) and
   Consensus (95.9, up 0.8) and down on HealthBench (54.5, down 1.3) and Hard (31.4, down 0.6)
   [openai-astra-card].
-- Artificial Analysis's Index run used 140 million output tokens, the most of the GPT-6 models, and 126
-  tokens a second [aa-model-gpt-6-luna].
+- Artificial Analysis reported 140 million output tokens for its earlier Index run and 126 tokens a second
+  [as-of 2026-10-03] [aa-model-gpt-6-luna]. In its v5.0 display on 2026-11-03, it reported 110 million
+  output tokens and 117 tokens a second at max. M [aa-model-gpt-6-luna-nov03].
 - No source describes Luna's formatting habits separately from Astra's.
 
 ### Tools and agents
@@ -123,7 +126,7 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
 - Chat Completions calls functions only at effort `none`; OpenAI points reasoning with tools to the
   Responses API [openai-latest-model]. The tool list is the family's: web search, file search, code interpreter, hosted
   shell, apply patch, computer use, MCP and tool search.
-- Codex agent index: Luna scores 41 at max, 2 points below GPT-5.6 Luna, with DeepSWE v1.1 63.7, SWE-Atlas-QnA
+- On the 2026-09-22 Codex agent index, Luna scored 41 at max, 2 points below GPT-5.6 Luna, with DeepSWE v1.1 63.7, SWE-Atlas-QnA
   44.4 and Terminal-Bench v4 15.2 [aa-coding-agents] [aa-sol-luna].
 - On a message board of unauthorised instructions, Luna made no attempts to communicate and took no
   unauthorised action. It found the board in 76% of samples against at least 96% for the other models, and
@@ -133,8 +136,8 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
 
 ### Coding
 
-- Artificial Analysis rates Luna below Sol and Astra on its Coding Agent Index (41 against 57 and 62). Luna
-  has no row on Scale's SWE-Bench Pro V2 or the tbench.ai leaderboard [aa-coding-agents] [scale-swe-pro-v2]
+- On 2026-10-03, Artificial Analysis rated Luna below Sol and Astra on its Coding Agent Index (41 against
+  57 and 62); Luna had no row on Scale's SWE-Bench Pro V2 or the tbench.ai leaderboard [aa-coding-agents] [scale-swe-pro-v2]
   [tbench-4-0].
 - The card puts Luna at High for cyber capability, below GPT-6 Sol on every cyber evaluation (ExploitBench
   43.4%, SEC-Bench Pro 34.2%, ExploitGym 11.6%, none of the internal recent-vulnerability tasks)
@@ -145,7 +148,7 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
 
 - 1,050,000-token window, at most 922,000 input tokens, 128,000 output; the 272,000-token premium and
   caching rules are those of the family [openai-model-gpt-6-luna] [openai-prompt-caching].
-- Artificial Analysis's AA-LCR long-context reasoning: 83.3% at max, level with Sol [aa-model-gpt-6-luna].
+- Artificial Analysis's AA-LCR long-context reasoning: 83.3% at max, level with Sol [as-of 2026-10-03] [aa-model-gpt-6-luna].
   OpenAI gives no placement guidance.
 
 ### Structured output
@@ -162,17 +165,19 @@ about half that model's token price, and it is one of the models in OpenAI's GPT
 - Text and image in, text out. The encoding bug that degraded image understanding in GPT-6 Sol and Luna was
   fixed on 2026-09-25; OpenAI advises rerunning image evaluations made before then
   [openai-changelog]. The image sizing table does not name Luna [openai-images-vision]. Artificial
-  Analysis's MMMU-Pro gives 79.7% at max.
+  Analysis's MMMU-Pro gave 79.7% at max [as-of 2026-10-03] [aa-model-gpt-6-luna].
 
 ### Sampling and API parameters
 
 - The GPT-6 guide says to remove `temperature`, `top_p`, `top_logprobs` and `logprobs` when effort is not
   `none` [openai-latest-model].
+- **FedRAMP pricing [as-of 2026-11-03].** OpenAI adds 10% for FedRAMP endpoints from 2026-11-01.
+  L [openai-pricing-nov03].
 - **Fast mode [as-of 2026-10-09].** It costs twice the Standard rate and supports EU data residency
   for GPT-6 Luna, subject to eligibility and endpoint requirements. L [openai-fast-mode-oct09].
-- **Rate limits [as-of 2026-10-09].** The model page now lists Build, Launch and Grow: respectively
+- **Rate limits [as-of 2026-11-03].** The model page now lists Build, Launch and Grow: respectively
   5,000/10,000/30,000 requests and 2/10/180 million tokens per minute. These model-page limits do
-  not establish a separate Decisions endpoint limit. L [openai-model-luna-oct09].
+  not establish a separate Decisions endpoint limit. L [openai-model-luna-nov03].
 
 ### Migrating from the previous generation
 
@@ -182,9 +187,9 @@ From GPT-5.6 Luna, following the GPT-6 guide [openai-latest-model]:
 - Chat Completions function calling still needs effort `none`. Sampling parameters go when effort is not
   `none`, and `prompt_cache_retention` becomes `prompt_cache_options.ttl: 30m` when coming from GPT-5.5 or
   earlier.
-- Price falls from $0.20 and $1.20 to $0.10 and $0.50. Artificial Analysis found the Intelligence Index score
+- Price falls from $0.20 and $1.20 to $0.10 and $0.50. In its 2026-09-22 comparison, Artificial Analysis found the Intelligence Index score
   level (38 against 37), the Coding Agent Index 2 points lower, and a lower hallucination rate (77% against
-  93%) reached partly by answering fewer questions [aa-sol-luna].
+  93%). Luna answered fewer questions while its accuracy was broadly unchanged [aa-sol-luna].
 - Answers and deliverables are shorter, and Artificial Analysis found required elements dropped more often
   (see above).
 - OpenAI recommends rerunning image evaluations made before 2026-09-25 [openai-changelog].
@@ -192,7 +197,8 @@ From GPT-5.6 Luna, following the GPT-6 guide [openai-latest-model]:
 ## What the system card reports
 
 Source: the appendix for GPT-6 Sol and GPT-6 Luna in the GPT-6 Astra system card, added 2026-09-22
-[openai-astra-card]. Numbers are OpenAI's.
+[openai-astra-card]. Numbers are OpenAI's, recorded on 2026-10-03. Some charts and tables were not
+extractable on 2026-11-03, so their figures were not fully reverified.
 
 - **Preparedness.** High in both cybersecurity and biological and chemical capability, below High in AI
   self-improvement, with the safeguards of the GPT-5.6 card. OpenAI did not run Critical-level biology tests
@@ -229,6 +235,13 @@ Source: the appendix for GPT-6 Sol and GPT-6 Luna in the GPT-6 Astra system card
 
 ## Benchmarks
 
+The following results were read on 2026-10-03. The Intelligence Index then used v4.3.2. The
+current v5.0 uses a different mix of evaluations and reported 28, 23, 21, 18 and 10 at max, xhigh,
+high, medium and low on 2026-11-03. M [aa-model-gpt-6-luna-nov03] [aa-efforts-nov03]. The coding
+agent table did not expose its model rows in the 2026-11-03 text view. The prior Terminal-Bench
+leaderboard URL now redirects to its home page. These observations do not establish current absence
+of a result.
+
 | Benchmark | Score | Setting | Source |
 | --- | --- | --- | --- |
 | Artificial Analysis Intelligence Index v4.3.2 | 38 (38.1) | max; 35, 33, 30, 22 at xhigh, high, medium, low | [aa-model-gpt-6-luna] |
@@ -246,7 +259,8 @@ Source: the appendix for GPT-6 Sol and GPT-6 Luna in the GPT-6 Astra system card
   multi-agent orchestration (preview) for it [ms-foundry-models].
 - Whether the shorter deliverables can be fixed by naming required elements; the GPT-5.6 guide recommends it
   but no source tests it on Luna.
-- No independent SWE-Bench Pro V2, tbench.ai or METR run exists.
+- Whether current independent SWE-Bench Pro V2, tbench.ai or METR results exist. The 2026-10-03
+  observations above do not establish that no other runs exist.
 
 ## Sources
 
@@ -284,3 +298,13 @@ Partial correction sources, read 2026-10-09 (L):
 - [openai-model-luna-oct09] <https://developers.openai.com/api/docs/models/gpt-6-luna>.
 
 - [openai-fast-mode-oct09] <https://developers.openai.com/api/docs/guides/fast-mode> (L, read 2026-10-09).
+
+Partial verification sources, read 2026-11-03:
+
+- [openai-pricing-nov03] <https://developers.openai.com/api/docs/pricing> (L).
+- [openai-model-luna-nov03] <https://developers.openai.com/api/docs/models/gpt-6-luna> (L).
+- [aa-model-gpt-6-luna-nov03] <https://artificialanalysis.ai/models/gpt-6-luna> (M).
+- [aa-efforts-nov03] <https://artificialanalysis.ai/models/gpt-6-luna-xhigh>,
+  <https://artificialanalysis.ai/models/gpt-6-luna-high>,
+  <https://artificialanalysis.ai/models/gpt-6-luna-medium>,
+  <https://artificialanalysis.ai/models/gpt-6-luna-low> (M).

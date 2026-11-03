@@ -69,13 +69,22 @@
       "read": "2026-10-03"
     },
     {
-      "name": "Artificial Analysis Intelligence Index",
+      "name": "Artificial Analysis Intelligence Index v4.3.2 (historical)",
       "score": 46,
       "setting": "xhigh",
       "harness": "Artificial Analysis standard harness (Intelligence Index v4.3.2 on AA's model page)",
       "measured_by": "independent",
-      "source": "aa-grok-47",
+      "source": "aa-grok-47-model",
       "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index v5.0",
+      "score": 35,
+      "setting": "xhigh",
+      "harness": "Artificial Analysis standard harness (v5.0; not directly comparable with v4.3.2)",
+      "measured_by": "independent",
+      "source": "aa-grok-47-model-current",
+      "read": "2026-11-03"
     },
     {
       "name": "Artificial Analysis Coding Agent Index",
@@ -217,7 +226,8 @@
     "https://docs.x.ai/developers/grok-4-7",
     "https://docs.x.ai/developers/model-capabilities/text/reasoning",
     "https://docs.x.ai/developers/advanced-api-usage/prompt-caching/best-practices",
-    "https://docs.x.ai/build/features/project-rules"
+    "https://docs.x.ai/build/features/project-rules",
+    "https://docs.x.ai/developers/model-capabilities/text/best-practices"
   ],
   "system_card": "https://media.x.ai/v1/website/4p7card-5eccc980.pdf",
   "model_page": "https://docs.x.ai/developers/models/grok-4.7",
@@ -592,6 +602,20 @@
       "read": "2026-11-03",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "aa-grok-47-model-current",
+      "url": "https://artificialanalysis.ai/models/grok-4-7",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "xai-text-best-20261103",
+      "url": "https://docs.x.ai/developers/model-capabilities/text/best-practices",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
@@ -602,6 +626,6 @@
     "knowledge cutoff: xAI's models page and overview give May 2026; the model card gives a June 2026 pretraining cutoff (and supplemental-training data as late as August 2026); the two disagree and no schema key holds it",
     "Terminal-Bench 4.0 leaderboard (tbench.ai): the page did not render its rows, so every Terminal-Bench 4.0 figure here is from the maker's card or Artificial Analysis",
     "max_output: no maximum is published; the model page gives none, the overview says no text output limit, and the API reference sets a default cap of 128,000 visible tokens when max_output_tokens is unset",
-    "prompting_guides: xAI publishes no prompting guide for a current text model; the pages listed are the maker's best-practice and operating pages that cover this model (overview, reasoning, prompt caching, Grok Build instruction files)"
+    "prompting_guides: the listed pages include the general text and reasoning best-practices guide, the model overview, reasoning, prompt caching and Grok Build instruction files; no dedicated Grok 4.7 prompt-writing guide was found"
   ]
 }

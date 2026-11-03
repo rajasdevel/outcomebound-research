@@ -16,7 +16,8 @@ sources:
 
 How five coding harnesses run once, with no person at the terminal: the command, the output, the
 flags that limit what the run can do or load, and how a run ends. Every claim is L (the vendor's
-documentation) and was read on 2026-10-19. "Silent" means the page read does not say. No harness
+documentation). Some claims were rechecked on 2026-11-03; their sections identify this partial check.
+Other claims retain their earlier dates. "Silent" means the page read does not say. No harness
 was run for this page, so no flag was tested.
 
 ## 1. At a glance
@@ -31,15 +32,20 @@ was run for this page, so no flag was tested.
 
 ## 2. Claude Code
 
+(partly checked 2026-11-03)
+
 Source: the [CLI reference](https://code.claude.com/docs/en/cli-reference).
 
 - `-p` / `--print` prints the response and exits. `--output-format` takes `text`, `json` or
   `stream-json`; `--input-format` takes `text` or `stream-json`; `--json-schema` returns output
   validated against a schema (print mode only).
 - `--bare` skips discovery of hooks, skills, custom commands, subagents, plugins, MCP servers,
-  auto memory and `CLAUDE.md`; Bash, file read and file edit stay available. `--safe-mode`
-  disables the same customisations but leaves authentication, model choice, built-in tools and
-  permissions as normal; managed-settings policy still applies.
+  auto memory and `CLAUDE.md`; skills in directories passed with `--add-dir` still load
+  [as-of 2026-11-03]. Bash, file read and file edit stay available. `--safe-mode`
+  disables customisations but leaves authentication, model choice, built-in tools and permissions
+  as normal. Managed policy still applies, including policy-configured hooks, status-line and
+  file-suggestion commands. Managed plugins, skills, `CLAUDE.md` and policy-configured MCP servers
+  do not load [as-of 2026-11-03].
 - `--restricted` (version 2.1.248 or later) removes the tools that run commands or code, and
   WebFetch, unless `--tools` names them; confines the file tools to the working directories;
   loads only managed settings and `--settings`; refuses `bypassPermissions`; and refuses to create
@@ -64,6 +70,8 @@ Source: the [CLI reference](https://code.claude.com/docs/en/cli-reference).
 
 ## 3. Codex
 
+(partly checked 2026-11-03)
+
 Source: the [non-interactive page](https://learn.chatgpt.com/docs/non-interactive-mode).
 
 - `codex exec` sends progress to stderr and only the final message to stdout. A prompt argument
@@ -73,7 +81,10 @@ Source: the [non-interactive page](https://learn.chatgpt.com/docs/non-interactiv
 - `-o <path>` writes the final message to a file and still prints it. `--json` makes stdout a
   JSON Lines stream (event types include `thread.started`, `turn.completed` and `error`).
 - The page names the default read-only sandbox and the values `workspace-write` and
-  `danger-full-access`; it does not show the short form `-s`.
+  `danger-full-access`. It says `--full-auto` is no longer supported; `--approve-for-me`
+  routes approval requests to automatic review with the workspace-write sandbox. A required
+  enabled MCP server that fails to initialize makes `codex exec` exit with an error
+  [as-of 2026-11-03].
 - Authentication in CI: set `CODEX_API_KEY` for a single invocation. The page warns against a
   job-level variable in workflows that run repository code; ChatGPT-managed authentication is
   offered for trusted runners.
@@ -90,6 +101,8 @@ Source: the [headless page](https://cursor.com/docs/cli/headless).
 
 ## 5. Gemini CLI
 
+(partly checked 2026-11-03)
+
 Sources: the [headless page](https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/headless.md)
 and the [plan-mode page](https://geminicli.com/docs/cli/plan-mode/).
 
@@ -100,25 +113,28 @@ and the [plan-mode page](https://geminicli.com/docs/cli/plan-mode/).
 - Exit codes: `0` success; `1` general error or API failure; `42` input error (invalid prompt or
   arguments); `53` turn limit exceeded.
 - `--approval-mode plan` is the documented read-only mode. Plan mode allows file reads, search,
-  web search, `web_fetch` (with confirmation), two research subagents, read-only MCP tools, and
-  writes only to `.md` files in the plans folder. In scripts and CI the policy engine approves the
+  web search, `web_fetch` (with confirmation), two research subagents, read-only MCP tools
+  (which require confirmation by default [as-of 2026-11-03]), and writes only to `.md` files in the plans folder. In scripts and CI the policy engine approves the
   `enter_plan_mode` and `exit_plan_mode` tools without a prompt, and when a plan is executed the
-  CLI switches to YOLO mode, so plan mode is not a boundary for a whole headless run.
+  CLI switches to YOLO mode, so plan mode is not a boundary for a whole headless run. User
+  policies can change the built-in restrictions [as-of 2026-11-03].
   (Prompt-denial in headless runs is in [gemini-cli.md §7.1](gemini-cli.md#71-policy-files-and-headless-planning-as-of-2026-10-09).)
-- **Availability.** The plan-mode page says Gemini CLI was replaced by Antigravity CLI on
-  2026-06-18 for unpaid-tier and Google One users, and that it is not optimised for the newest
-  Gemini model.
+- **Availability.** The plan-mode page no longer states the earlier availability notice.
+  Current availability by account tier was not independently verified [as-of 2026-11-03].
 
 ## 6. OpenCode
+
+(partly checked 2026-11-03)
 
 Source: the [permissions page](https://opencode.ai/docs/permissions).
 
 - Permission keys: `read`, `edit` (covers edit, write and patch), `glob`, `grep`, `bash`, `task`,
-  `skill`, `lsp`, `question`, `webfetch`, `websearch`, `external_directory`, `doom_loop`. Each takes
+  `todowrite` [as-of 2026-11-03], `skill`, `lsp`, `question`, `webfetch`, `websearch`,
+  `external_directory`, `doom_loop`. Each takes
   `allow`, `ask` or `deny`. When several patterns match, the last one wins, so a catch-all goes
   first.
 - Most keys default to `allow`; `doom_loop` and `external_directory` default to `ask`; `.env`
-  files are denied for `read`, except `*.env.example`.
+  files require approval for `read`, except `*.env.example` [as-of 2026-11-03].
 - `--auto` approves what would otherwise ask; explicit denies still apply.
 - Silent on this page: what `ask` does in a non-interactive run beyond `--auto`, and whether the
   keys cover MCP tools.

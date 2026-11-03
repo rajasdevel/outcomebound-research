@@ -15,17 +15,18 @@ sources:
   - https://docs.x.ai/developers/release-notes (read 2026-10-31)
   - https://docs.x.ai/developers/advanced-api-usage/custom-moderation-controls (read 2026-10-31)
   - https://docs.x.ai/developers/pricing (read 2026-10-31)
+  - https://media.x.ai/v1/website/4p7card-5eccc980.pdf (read 2026-11-03)
 ---
 
 # xAI API
 
 first-party lab API
 
-xAI trains the Grok models and serves them through its own API at `https://api.x.ai/v1`. Its current documentation pages name the company SpaceXAI (a press report dates the rename announcement on the company's X account to early July 2026 [rename]) and the docs have moved from `docs.x.ai/docs` to `docs.x.ai/developers`; the API host and the "xAI" name in the SDKs are unchanged. The API has a Responses endpoint it recommends and a Chat Completions endpoint it labels legacy, and it also serves image, video and voice models. [models, compare]
+xAI trains the Grok models and serves them through its own API at `https://api.x.ai/v1`. Its documentation pages call the company SpaceXSI [models] [as-of 2026-11-03]. The September 2026 model card identifies SpaceXAI as a doing-business-as name of XAI LLC [model-card-name]. The docs have moved from `docs.x.ai/docs` to `docs.x.ai/developers`; the API host and the "xAI" name in the SDKs are unchanged. The API has a Responses endpoint it recommends and a Chat Completions endpoint it labels legacy, and it also serves image, video and voice models. [models, compare]
 
 ## Models offered
 
-Only Grok models and the company's media models. On 2026-10-03 the models page names Grok 4.7 as its recommendation for code and chat, and lists these text models (context in tokens): `grok-4.7`, `grok-4.6` and `grok-4.5` (500k), `grok-4.3` and the `grok-4.20-0309` models (1M), `grok-build-0.1` (256k) and a multi-agent model (1M). Image models (Grok Imagine image), video models and voice models (speech-to-speech, speech-to-text, text-to-speech) are priced separately on the same page. [models, pricing] [as-of 2026-10-31] The speech-to-speech rows are `grok-voice-3.0` and `grok-voice-2.0` (marked deprecated), both at $0.08 a minute; `grok-voice-latest` points to 3.0. The two voice model files, [Grok Voice 3.0](../models/xai/grok-voice-3.0.md) and [Grok Voice 2.0](../models/xai/grok-voice-think-fast-2.0.md), and the [maker README](../models/xai/README.md) record the change [pricing-oct31, release-notes-oct31].
+Only Grok models and the company's media models. [as-of 2026-11-03] The models page recommends Grok 4.7 for code and chat; the pricing page lists these text models (context in tokens): `grok-4.7`, `grok-4.6` and `grok-4.5` (500k), `grok-4.3` and the `grok-4.20-0309` models (1M), `grok-build-0.1` (256k) and a multi-agent model (1M). Image models (Grok Imagine image), video models and voice models (speech-to-speech, speech-to-text, text-to-speech) are priced separately on the same page. [models, pricing] [as-of 2026-10-31] The speech-to-speech rows are `grok-voice-3.0` and `grok-voice-2.0` (marked deprecated), both at $0.08 a minute; `grok-voice-latest` points to 3.0. The two voice model files, [Grok Voice 3.0](../models/xai/grok-voice-3.0.md) and [Grok Voice 2.0](../models/xai/grok-voice-think-fast-2.0.md), and the [maker README](../models/xai/README.md) record the change [pricing-oct31, release-notes-oct31].
 
 | Model file | API id | Note |
 | --- | --- | --- |
@@ -36,7 +37,7 @@ Only Grok models and the company's media models. On 2026-10-03 the models page n
 | [Grok Voice 3.0](../models/xai/grok-voice-3.0.md) | `grok-voice-3.0` (alias `grok-voice-latest`) | [as-of 2026-10-31] speech-to-speech, $0.08 a minute; released 2026-10-14 [pricing-oct31, release-notes-oct31] |
 | [Grok Voice 2.0](../models/xai/grok-voice-think-fast-2.0.md) | `grok-voice-2.0` | [as-of 2026-10-31] previous voice generation, deprecated 2026-10-14 [release-notes-oct31] |
 
-Generic names point to the latest stable version, a `-latest` suffix to the newest features and a date suffix to a fixed snapshot. The 4.5, 4.3 and 4.20 models are listed on the page but have no file in the library (two generations per class). [models] The lineage is in the [maker README](../models/xai/README.md).
+Generic names point to the latest stable version, a `-latest` suffix to the newest features and a date suffix to a fixed snapshot. The 4.5, 4.3 and 4.20 models are listed on the pricing page but have no file in the library (two generations per class). [models] The lineage is in the [maker README](../models/xai/README.md).
 
 ## API surface
 
@@ -55,14 +56,14 @@ First-party, so the differences are between the two endpoints and between models
 - **Structured output.** `response_format` of type `json_schema` (or `json_object`), or tool arguments that are always validated against their schema. The schema subset accepts the JSON types, enums, non-circular `$ref` and `$defs`, `anyOf` and `oneOf`, and enforced formats (`date`, `time`, `date-time`, `email`, `uuid`, `ipv4`, `ipv6`, `uri`); `minLength` and `maxLength` up to 2,048, `minItems` and `maxItems` up to 256 and `minProperties` and `maxProperties` up to 64 are guaranteed; `not` and `if/then/else` are best effort. [structured]
 - **Caching.** Automatic; on the pricing page cached input costs 25 percent of the input rate on Grok 4.7 and 4.6, 20 percent on Grok Build 0.1 and 16 percent on the 4.3 and 4.20 models. [pricing]
 - **Batch [as-of 2026-11-03].** Grok 4.7 and 4.6 support Batch; the pricing page lists a 20 percent token discount for them, 4.5, 4.3 and the listed 4.20 models. Grok Build 0.1 does not support Batch. L, <https://docs.x.ai/developers/pricing>, <https://docs.x.ai/developers/models/grok-4.7>, <https://docs.x.ai/developers/models/grok-4.6>, <https://docs.x.ai/developers/models/grok-build-0.1>, read 2026-11-03.
-- **Long context.** 500k on 4.7; prompts above 200k tokens pay higher rates on every token. [grok-4.7, pricing]
+- **Long context.** 500k on 4.7; prompts at or above 200k tokens pay higher rates on every token. [grok-4.7, pricing]
 - **Vision.** Image input as jpg, jpeg or png up to 20 MiB, no stated count limit; audio and video are separate models. [models]
 - **Streaming.** The structured-outputs page shows streamed JSON output; the maker README documents a WebSocket mode for Responses. [structured]
 - **Custom moderation [as-of 2026-10-31].** A `guidelines` array on a Chat Completions or Responses request sets `decline` for the `nsfw`, `violence` or `profanity` category; categories left out keep the default behaviour, and the array applies only to the request that carries it. Multi-agent models, deferred completions and some requests that set `stop` or `n` above 1 are rejected with 400 [moderation, release-notes-oct31].
 
 ## Pricing
 
-Per token, with two bands by prompt size (under or at least 200,000 tokens). Grok 4.7 and 4.6 list $2 to $4 input, $0.50 to $1 cached input and $6 to $12 output per million tokens; the older 4.3 and 4.20 models are cheaper and `grok-build-0.1` is cheaper still. Priority processing charges 2 times the token rates. The US regional endpoint adds 10 percent. Server-side tools bill per call on top of tokens: web search, X search, code execution and attachment search $5 per 1,000 calls each, collections search $2.50 per 1,000. File storage is $0.025 per GiB a day and collection storage $0.10 per GiB a day. A request that the system judges a violation and stops before generating is billed a $0.05 fee. Media models are priced per image, per second of video or per minute of voice. The page lists no free credit. Per-model prices are in the model files. [pricing]
+Per token, with two bands by prompt size (under or at least 200,000 tokens) [as-of 2026-11-03]. Grok 4.7 and 4.6 list $2 to $4 input, $0.50 to $1 cached input and $6 to $12 output per million tokens; the older 4.3 and 4.20 models are cheaper and `grok-build-0.1` is cheaper still. Priority processing charges 2 times the token rates. The US regional endpoint adds 10 percent. Server-side tools bill per call on top of tokens: web search, X search, code execution and attachment search $5 per 1,000 calls each, collections search $2.50 per 1,000. File storage is $0.025 per GiB a day and collection storage $0.10 per GiB a day. A Responses API request that the system judges a violation and stops before generating is billed a $0.05 fee. Media models are priced per image, per second of video or per minute of voice. The page lists no free credit. Per-model prices are in the model files. [pricing]
 
 ## Limits and data
 
@@ -84,15 +85,16 @@ Per token, with two bands by prompt size (under or at least 200,000 tokens). Gro
 
 | Id | URL | Kind | Read |
 | --- | --- | --- | --- |
-| models | https://docs.x.ai/developers/models | L | 2026-10-03 |
+| models | https://docs.x.ai/developers/models | L | 2026-11-03 |
 | grok-4.7 | https://docs.x.ai/developers/models/grok-4.7 | L | 2026-10-03 |
-| pricing | https://docs.x.ai/developers/pricing | L | 2026-10-03 |
+| pricing | https://docs.x.ai/developers/pricing | L | 2026-11-03 |
 | regions | https://docs.x.ai/docs/key-information/regions | L | 2026-10-03 |
 | rates | https://docs.x.ai/docs/key-information/consumption-and-rate-limits | L | 2026-10-03 |
 | security | https://docs.x.ai/developers/faq/security | L | 2026-10-03 |
 | compare | https://docs.x.ai/developers/model-capabilities/text/comparison | L | 2026-10-03 |
 | structured | https://docs.x.ai/developers/model-capabilities/text/structured-outputs | L | 2026-10-03 |
 | rename | https://gigazine.net/news/20260707-xai-change-spacexai/ | A | 2026-10-03 |
+| model-card-name | https://media.x.ai/v1/website/4p7card-5eccc980.pdf | L | 2026-11-03 |
 | release-notes-oct31 | https://docs.x.ai/developers/release-notes | L | 2026-10-31 |
 | moderation | https://docs.x.ai/developers/advanced-api-usage/custom-moderation-controls | L | 2026-10-31 |
 | pricing-oct31 | https://docs.x.ai/developers/pricing | L | 2026-10-31 |
