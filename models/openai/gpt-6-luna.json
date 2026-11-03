@@ -45,13 +45,13 @@
     "input": 0.1,
     "output": 0.5,
     "cached_input": 0.01,
-    "notes": "list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27]"
+    "notes": "list price, standard tier, prompts up to 272K input tokens; 30-minute cache write 0.125; above 272K the whole request bills 2x input and cache, 1.5x output; Fast mode 2x; Batch and Flex 50%; regional processing +10%; no Ultrafast; Fast supports EU data residency subject to eligibility [as-of 2026-10-09] [openai-fast-mode-oct09]; Responses 12-hour cache writes cost 2.5x input [as-of 2026-10-27] [cache-oct27]; FedRAMP endpoints +10% from 2026-11-01 [as-of 2026-11-03] [openai-pricing-nov03]"
   },
   "benchmarks": [
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 38,
-      "setting": "max (index v4.3.2)",
+      "setting": "max (index v4.3.2); historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna",
@@ -60,7 +60,7 @@
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 35,
-      "setting": "xhigh (index v4.3.2)",
+      "setting": "xhigh (index v4.3.2); historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna-xhigh",
@@ -69,7 +69,7 @@
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 33,
-      "setting": "high (index v4.3.2)",
+      "setting": "high (index v4.3.2); historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna-high",
@@ -78,7 +78,7 @@
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 30,
-      "setting": "medium (index v4.3.2)",
+      "setting": "medium (index v4.3.2); historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna-medium",
@@ -87,7 +87,7 @@
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 22,
-      "setting": "low (index v4.3.2)",
+      "setting": "low (index v4.3.2); historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna-low",
@@ -96,7 +96,7 @@
     {
       "name": "Artificial Analysis Coding Agent Index",
       "score": 41,
-      "setting": "max",
+      "setting": "max; historical, read 2026-10-03",
       "harness": "Codex",
       "measured_by": "independent",
       "source": "aa-coding-agents",
@@ -105,7 +105,7 @@
     {
       "name": "Terminal-Bench 4.0 (Artificial Analysis Intelligence Index run)",
       "score": 12.6,
-      "setting": "max",
+      "setting": "max; historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna",
@@ -114,7 +114,7 @@
     {
       "name": "Terminal-Bench 4.0 (Artificial Analysis Coding Agent Index run)",
       "score": 15.2,
-      "setting": "max",
+      "setting": "max; historical, read 2026-10-03",
       "harness": "Codex",
       "measured_by": "independent",
       "source": "aa-coding-agents",
@@ -123,7 +123,7 @@
     {
       "name": "AA-Omniscience hallucination rate (percent, lower is better)",
       "score": 76.7,
-      "setting": "max",
+      "setting": "max; historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna",
@@ -132,11 +132,56 @@
     {
       "name": "AA-LCR v1.1 (long-context reasoning, percent)",
       "score": 83.3,
-      "setting": "max",
+      "setting": "max; historical, read 2026-10-03",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-model-gpt-6-luna",
       "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 28,
+      "setting": "max (index v5.0; read 2026-11-03)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-luna-nov03",
+      "read": "2026-11-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 23,
+      "setting": "xhigh (index v5.0; read 2026-11-03)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-luna-xhigh-nov03",
+      "read": "2026-11-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 21,
+      "setting": "high (index v5.0; read 2026-11-03)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-luna-high-nov03",
+      "read": "2026-11-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 18,
+      "setting": "medium (index v5.0; read 2026-11-03)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-luna-medium-nov03",
+      "read": "2026-11-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 10,
+      "setting": "low (index v5.0; read 2026-11-03)",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-luna-low-nov03",
+      "read": "2026-11-03"
     }
   ],
   "prompting_guides": [
@@ -306,14 +351,56 @@
       "read": "2026-10-27",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "openai-pricing-nov03",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-luna-nov03",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-luna-xhigh-nov03",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-xhigh",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-luna-high-nov03",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-high",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-luna-medium-nov03",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-medium",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-luna-low-nov03",
+      "url": "https://artificialanalysis.ai/models/gpt-6-luna-low",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
   "unknown": [
     "SWE-Bench Pro (Scale, public V2): not on Scale's V2 table on 2026-10-03",
     "METR 50% time horizon: METR's time-horizon page lists no GPT-5.5 or later entry on 2026-10-03",
-    "Terminal-Bench 4.0 on the tbench.ai leaderboard: no GPT-6 Luna entry; the rows above are Artificial Analysis's, whose Intelligence Index harness is not stated",
-    "Artificial Analysis Coding Agent Index at xhigh or lower effort: not listed; only the max-effort Codex row exists",
+    "Terminal-Bench 4.0 on the tbench.ai leaderboard: the prior leaderboard URL redirected to the home page on 2026-11-03; current entries are unverified. The historical rows above are Artificial Analysis measurements, whose Intelligence Index harness was not stated",
+    "Artificial Analysis Coding Agent Index: the current table was not extractable on 2026-11-03; the max-effort Codex result above is historical",
     "system_card: OpenAI has no card of its own for GPT-6 Luna; the card cited is the GPT-6 Astra system card, whose appendix covers this model",
     "reasoning.context all_turns and multi-agent support: the pages read list them for the GPT-5.6 models and GPT-6.1 Sol and do not mention GPT-6 Luna"
   ]

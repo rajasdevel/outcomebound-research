@@ -25,7 +25,7 @@ Vercel AI Gateway is a managed gateway, run by Vercel, that sits in front of man
 
 The catalogue covers many makers, and a model can be served by several providers, including its own maker, a cloud and an inference host. The docs give `anthropic/claude-opus-5`, `anthropic/claude-sonnet-5` and `openai/gpt-6-astra` as example ids, and the ZDR changelog links name Claude Opus 5.5 and Sonnet 5.5 as available. Makers in this library that the pages read name or imply include [Anthropic](../models/anthropic/README.md), [OpenAI](../models/openai/README.md), [Google](../models/google/README.md), [xAI](../models/xai/README.md), [DeepSeek](../models/deepseek/README.md), [Alibaba](../models/alibaba/README.md), [Moonshot](../models/moonshot/README.md), [MiniMax](../models/minimax/README.md), [Meta](../models/meta/README.md) and [Mistral](../models/mistral/README.md). The pages also use `spacexai/grok-4.5` as an example id, and list "SpaceXAI" as a provider; whether that is a new name for xAI is not stated in the pages read. The live list is `GET https://ai-gateway.vercel.sh/v1/models`, which needs no key and returns ids, context windows, prices and reasoning controls; `GET /v1/models/{creator}/{model}/endpoints` returns per-provider price, supported parameters, uptime, throughput and latency. The gateway also serves image, video, speech, transcription, realtime, embedding and reranking models. [models, home, zdr]
 
-**GPT-6.1 Terra [as-of 2026-10-27].** The gateway lists an OpenAI route at $1 input, $0.05 cached input, $1.25 cache write and $5 output per million tokens. Its Fast listing is $2, $0.10, $2.50 and $10 respectively. The listed US and EU inference options, account access and realized billing were not tested. L [terra-oct27] [terra-fast-oct27].
+**GPT-6.1 Terra [as-of 2026-11-03].** The gateway lists an OpenAI route at $1 input, $0.05 cached input, $1.25 cache write and $5 output per million tokens. Its Fast listing is $2, $0.10, $2.50 and $10 respectively. The standard listing also shows Azure at the same displayed rates. The listed US and EU inference options, account access and realized billing were not tested. L [terra-nov03] [terra-fast-nov03].
 
 ## API surface
 
@@ -80,3 +80,8 @@ The gateway states no markup and no platform fee on tokens, including for BYOK: 
 
 - [terra-oct27] <https://vercel.com/ai-gateway/models/gpt-6.1-terra> (L, read 2026-10-27).
 - [terra-fast-oct27] <https://vercel.com/ai-gateway/models/gpt-6.1-terra-fast> (L, read 2026-10-27).
+
+Partial check, read 2026-11-03 (L):
+
+- [terra-nov03] <https://vercel.com/ai-gateway/models/gpt-6.1-terra>.
+- [terra-fast-nov03] <https://vercel.com/ai-gateway/models/gpt-6.1-terra-fast>.

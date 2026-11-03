@@ -7,6 +7,7 @@ sources:
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
   - https://code.claude.com/docs/en/claude-code-on-the-web
   - https://code.claude.com/docs/en/cloud-environments
+  - https://learn.chatgpt.com/docs/environments/cloud-environments (read 2026-11-03)
   - https://learn.chatgpt.com/docs/environments/cloud-environment
   - https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment
   - https://cursor.com/docs/cloud-agent/setup
@@ -25,10 +26,12 @@ absent. Other cloud surfaces were not read.
 
 Source: the [cloud-sessions page](https://code.claude.com/docs/en/claude-code-on-the-web) and the
 [cloud-environments page](https://code.claude.com/docs/en/cloud-environments). The prose below is
-a paraphrase of both.
+a paraphrase of both. The environment details below describe Anthropic-hosted sessions;
+self-hosted sessions use the organization’s runners [as-of 2026-11-03].
 
-- **Start and platform.** A session runs in a fresh Ubuntu 24.04 x86_64 VM with the repository
-  cloned and common toolchains installed. It starts from the browser, the phone app, the desktop
+- **Start and platform.** An Anthropic-hosted session gets a fresh Ubuntu 24.04 x86_64 VM
+  with the repository cloned and common toolchains installed. Self-hosted sessions use the
+  tools in the runner image [as-of 2026-11-03]. It starts from the browser, the phone app, the desktop
   app, `claude --cloud` or a routine. `--cloud` and `--teleport` need a claude.ai sign-in; they
   are not available when Claude Code is set up for Amazon Bedrock, Google Cloud's Agent Platform
   or another third-party provider. The session counts toward the plan's usage limits, with no
@@ -86,10 +89,19 @@ a paraphrase of both.
     tasks are now marked as failed when auto mode stopped a turn because the server returned no
     safety verdict.
 
-## 2. Codex (cloud tasks)
+## 2. Codex (cloud tasks) (partly checked 2026-11-03)
 
-Source: the [cloud environment page](https://learn.chatgpt.com/docs/environments/cloud-environment).
-The page is labelled legacy, so a newer guide may replace it.
+Source: the [current cloud environments guide](https://learn.chatgpt.com/docs/environments/cloud-environments),
+read 2026-11-03. Each new task starts in its own workspace from a published environment.
+An existing task retains its own saved files. Republishing captures an updated prepared filesystem
+for new tasks; some saved settings apply to the active setup immediately. Environment variables
+reach programs directly; network secrets use placeholders and
+a proxy substitutes the credential for allowed HTTPS destinations on port 443 during setup and
+tasks. Network policy and workspace requirements apply together.
+
+The [legacy guide](https://learn.chatgpt.com/docs/environments/cloud-environment), also read
+2026-11-03, applies to Code Review and the Linear and GitHub integrations. The following details
+are from that legacy guide and must not be assumed for the current cloud experience:
 
 - **Instructions.** If the repository has an `AGENTS.md`, the agent uses it to find lint and test
   commands. Skills, user-level files and hooks in a cloud task: silent.
@@ -106,7 +118,7 @@ The page is labelled legacy, so a newer guide may replace it.
 - **How work leaves.** The agent shows its answer and a diff; the person can then open a pull
   request or ask a follow-up. Whether Codex pushes a branch itself: silent.
 
-## 3. GitHub Copilot cloud agent
+## 3. GitHub Copilot cloud agent (partly checked 2026-11-03)
 
 Source: the [environment customisation page](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment).
 
@@ -114,6 +126,10 @@ Source: the [environment customisation page](https://docs.github.com/en/copilot/
   `copilot-setup-steps`, and the file must be on the default branch before the workflow is used.
   Only the job keys `steps`, `permissions`, `runs-on`, `services`, `snapshot` and
   `timeout-minutes` are honoured; others are ignored. The maximum timeout is 59 minutes.
+  If a setup step exits nonzero, later setup steps are skipped and the agent starts with the
+  current environment.
+  These customizations apply to Actions environments, not cloud sandbox sessions
+  [as-of 2026-11-03].
 - **Runners.** The default is a GitHub-hosted Ubuntu runner. Larger hosted runners and
   self-hosted runners (selected by an ARC scale set name) are possible; for a self-hosted runner
   the page recommends ephemeral, single-use runners and says the integrated firewall must be off.
@@ -131,7 +147,7 @@ setup steps, and GitHub says sophisticated attacks may bypass it. This is not a 
 boundary. L, [firewall documentation](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-the-firewall),
 read 2026-11-03; not tested.
 
-## 4. Cursor cloud agents
+## 4. Cursor cloud agents (partly checked 2026-11-03)
 
 Source: the [setup page](https://cursor.com/docs/cloud-agent/setup).
 
@@ -139,8 +155,9 @@ Source: the [setup page](https://cursor.com/docs/cloud-agent/setup).
   setup and tests.
 - **Environment file.** `.cursor/environment.json` is read only when the saved environment's
   "environment.json location" points to it (new environments default to None). A single-repository
-  run can fall back to the repository's file when no saved environment matches. Self-hosted
-  machines never read it. Keys: `build` (`dockerfile`, `context`), `install` (from the project
+  run can fall back to the repository's file when no saved environment matches. When a cloud
+  agent start creates a saved environment for a single repository with a valid committed file,
+  the new environment points to that file [as-of 2026-11-03]. Self-hosted machines never read it. Keys: `build` (`dockerfile`, `context`), `install` (from the project
   root), `start`, `terminals` (a shared tmux session) and `snapshot` (a dashboard id).
 - **Builds.** Builds use the default branch's configuration. Only disk state persists between runs,
   not processes, exported variables or memory. `install` must be idempotent, since it can run on

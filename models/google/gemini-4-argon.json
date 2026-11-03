@@ -16,7 +16,7 @@
     "Antigravity agent in Gemini Managed Agents (selectable model)",
     "CodeMender on Agent Platform (preview, selectable model)",
     "Fairwind Program (vetted cyber defenders), as a managed model on Gemini Enterprise or inside CodeMender",
-    "Gemini app, Google Antigravity and Google AI Mode (named as distribution channels in the model card [gemini-argon-card])"
+    "Gemini app and Google AI Mode (Google AI Pro and Ultra); Google Antigravity (Google AI Ultra) [gemini-argon-ga]"
   ],
   "context_window": 1048576,
   "max_output": 1048576,
@@ -61,8 +61,8 @@
     {
       "name": "Terminal-Bench 4.0",
       "score": 57,
-      "setting": "high; Artificial Analysis's own run of all 66 tasks, three times each",
-      "harness": null,
+      "setting": "high; Artificial Analysis's own run of all 66 tasks, three times each; current methodology describes the mini-swe-agent harness [aa-terminal-method]",
+      "harness": "mini-swe-agent in current Artificial Analysis methodology; historical run unverified",
       "measured_by": "independent",
       "source": "aa-gemini-4-argon-article",
       "read": "2026-10-03"
@@ -70,11 +70,29 @@
     {
       "name": "Artificial Analysis Intelligence Index",
       "score": 53,
-      "setting": "high; index v4.3.2",
+      "setting": "high; historical launch result; index version not named in the launch article",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-gemini-4-argon-article",
+      "read": "2026-10-03"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 50,
+      "setting": "high; index v5.0",
       "harness": null,
       "measured_by": "independent",
       "source": "aa-gemini-4-argon",
-      "read": "2026-10-03"
+      "read": "2026-11-03"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 53,
+      "setting": "high; Coding Agent Index v2.0; 49% FrontierCode v1.1, 56% Terminal-Bench 4.0, 55% SWE-Atlas-QnA-AA",
+      "harness": "Antigravity CLI",
+      "measured_by": "independent",
+      "source": "aa-coding-argon",
+      "read": "2026-11-03"
     },
     {
       "name": "AutomationBench-AA",
@@ -288,7 +306,7 @@
     {
       "id": "aa-gemini-4-argon",
       "url": "https://artificialanalysis.ai/models/gemini-4-argon",
-      "read": "2026-10-03",
+      "read": "2026-11-03",
       "kind": "M",
       "quote": null
     },
@@ -351,7 +369,7 @@
     {
       "id": "gemini-argon-card",
       "url": "https://deepmind.google/models/model-cards/gemini-4-argon/",
-      "read": "2026-10-31",
+      "read": "2026-11-03",
       "kind": "L",
       "quote": null
     },
@@ -368,16 +386,36 @@
       "read": "2026-10-31",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "gemini-argon-ga",
+      "url": "https://blog.google/intl/en-in/products/introducing-gemini-4-argon/",
+      "read": "2026-11-03",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-argon",
+      "url": "https://artificialanalysis.ai/agents/coding-agents/comparisons/antigravity-cli-vs-claude-code",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-terminal-method",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-11-03",
+      "kind": "M",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
   "unknown": [
     "maker benchmark results table: the table in the methodology PDF is an image and was not read; the figures above come from the text table on Google's Gemini page",
     "SWE-Bench Pro (Scale, public V2): no row on Scale's V2 leaderboard (page dated 2026-09-22)",
-    "Artificial Analysis Coding Agent Index: Artificial Analysis shows no value for this model on its pages",
-    "METR 50% time horizon: METR lists no horizon for this model; its page was last updated 2026-05-08",
     "max_output: 1,048,576 needs long decode (background execution, or continuation on GenerateContent); the default synchronous limit is 65,536 [gemini-spec-argon] [gemini-latest-model-argon]",
-    "access: the model card names the Gemini app, Google Antigravity and Google AI Mode as channels; which plans, products or tiers inside them offer Argon was not checked on 2026-10-31",
-    "checked: kept at 2026-10-03; on 2026-10-31 the id, status, limits, modalities, effort levels, prices, guide and model card were re-read, and the benchmark entries and other unknown entries keep their 2026-10-03 reading"
+    "maker benchmark results table: the historical Google Gemini page no longer shows these results; the Argon model card shows the same numbers as of October 2026 [gemini-argon-card] (read 2026-11-03). The historical read dates and settings are retained.",
+    "METR 50% time horizon: the METR source was inaccessible on 2026-11-03; no current absence claim is established.",
+    "checked: kept at 2026-10-03; this is a partial update on 2026-11-03. The historical archive, METR page and separate safety report were inaccessible, and other historical claims remain unverified."
   ]
 }

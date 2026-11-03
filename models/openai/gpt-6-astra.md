@@ -248,7 +248,11 @@ shared parts, such as the API rules and the guide-by-guide summary, are in the
   possible, and function calling for connecting the model to an application's tools. Limits: the root must be an
   object and not `anyOf`; up to 5,000 properties and 10 levels of nesting; names, enum values and consts
   total at most 120,000 characters; at most 1,000 enum values; `allOf`, `not`, `if` and related keywords are
-  unsupported. The first request with a schema adds latency while the schema is processed. A safety refusal
+  unsupported. [as-of 2026-11-03] The guide's `response_format` section limits the first-schema
+  latency caveat to fine-tuned models and says other models do not have that limitation; some examples
+  on the same page still give an unqualified latency note. This documentation conflict does not establish
+  measured Astra latency. L, <https://developers.openai.com/api/docs/guides/structured-outputs>,
+  read 2026-11-03; runtime behavior is UNVERIFIED. A safety refusal
   appears as an explicit refusal item that OpenAI says applications should check for, and a response cut
   off at the token limit can be incomplete [openai-structured-outputs].
 - JSON mode (`json_object`) needs an instruction to produce JSON in the conversation, or the model can emit
