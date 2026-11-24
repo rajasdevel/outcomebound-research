@@ -478,6 +478,9 @@ exists, not what it tests (O).
 
 ## 6. A passing suite is not the outcome (K10)
 
+[AI-assisted mathematics](ai-assisted-mathematics.md) gives examples of separating the
+acceptance statement, the artifact, and its checker.
+
 - On 18 real issues, Claude 3.7 Sonnet passed the projects' own tests 38% of the time, but none of
   15 reviewed pull requests was mergeable as it stood; fix-up averaged 42 minutes, 26 even for
   test-passing ones [sizing-horizon-18] (M).

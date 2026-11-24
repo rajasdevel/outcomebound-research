@@ -817,6 +817,9 @@ required step for each task. An explanation is not correctness evidence; see
 
 ## 7. Contested
 
+[AI-assisted mathematics](ai-assisted-mathematics.md) gives examples of splitting candidate
+search, evaluation, and expert review in one research task.
+
 **"Small incremental steps" against "hand over the whole outcome."** On one side: Karpathy in 2025
 [sizing-prac-11], Harper Reed [sizing-prac-13], Osmani [sizing-prac-14], Hashimoto
 [sizing-prac-15], Spotify [sizing-prac-24], Amp [sizing-prac-34], Devin's three hours

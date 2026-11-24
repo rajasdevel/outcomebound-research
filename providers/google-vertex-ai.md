@@ -43,6 +43,12 @@ sources:
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash (read 2026-10-31)
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash (read 2026-10-31)
   - https://docs.cloud.google.com/vertex-ai/docs/release-notes (read 2026-10-31)
+  - https://cloud.google.com/model-garden/pricing (read 2026-11-24)
+  - https://cloud.google.com/terms/service-terms (read 2026-11-24)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-neon (read 2026-11-24)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon (read 2026-11-24)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen (read 2026-11-24)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon (read 2026-11-24)
 ---
 
 # Gemini Enterprise Agent Platform (formerly Vertex AI)
@@ -54,12 +60,19 @@ cloud platform; Google Cloud's model and agent service. Google's product page, r
 Google's partner page and open-model page list these (L). Availability varies by Region and endpoint type; each model page states it.
 
 - **Google Gemini.** [Gemini 3.8 Flash](../models/google/gemini-3.8-flash.md) (generally available 2026-09-02, 1,048,576-token context, 65,536 output), [3.7 Flash](../models/google/gemini-3.7-flash.md), [3.5 Flash-Lite](../models/google/gemini-3.5-flash-lite.md), [3.1 Flash-Lite](../models/google/gemini-3.1-flash-lite.md) and [3.1 Pro (preview)](../models/google/gemini-3.1-pro-preview.md), with 3.6 Flash, 3.5 Flash, 3 Flash (preview), 2.5 Pro, Flash and Flash-Lite, image, live-audio, text-to-speech, video, music and embedding models. [as-of 2026-10-31] [Gemini 4 Argon](../models/google/gemini-4-argon.md) (`gemini-4-argon`) is generally available on the platform since 2026-10-13, with `gemini-4-argon-cyber-permissive`, a version for defensive cyber work, GA behind the Fairwind Program allowlist. CodeMender can use Argon as a preview option; 3.8 Flash stays its default. Long decode on GenerateContent works only on the `v1beta1` API (L, [Agent Platform release notes](https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes), read 2026-10-31). The 3.7 Flash page now gives a retirement date of 2027-01-28 and names 3.8 Flash as the upgrade (L, [3.7 Flash page](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash), read 2026-10-31).
-- **Anthropic.** [Claude Fable 5.1](../models/anthropic/claude-fable-5-1.md), [Fable 5](../models/anthropic/claude-fable-5.md), [Opus 5.5](../models/anthropic/claude-opus-5-5.md), [Opus 5](../models/anthropic/claude-opus-5.md), [Sonnet 5.5](../models/anthropic/claude-sonnet-5-5.md), [Sonnet 5](../models/anthropic/claude-sonnet-5.md) and [Haiku 4.5](../models/anthropic/claude-haiku-4-5.md), plus Opus 4.8 to 4 and earlier Sonnet models. Anthropic's model-id table also lists the Mythos models, marked limited availability; Google's own Claude list does not show them.
+- **Anthropic.** [Claude Fable 5.1](../models/anthropic/claude-fable-5-1.md), Fable 5, [Opus 5.5](../models/anthropic/claude-opus-5-5.md), [Opus 5](../models/anthropic/claude-opus-5.md), [Sonnet 5.5](../models/anthropic/claude-sonnet-5-5.md), [Sonnet 5](../models/anthropic/claude-sonnet-5.md) and [Haiku 4.5](../models/anthropic/claude-haiku-4-5.md), plus Opus 4.8 to 4 and earlier Sonnet models. Anthropic's model-id table also lists the Mythos models, marked limited availability; Google's own Claude list does not show them.
 - **xAI.** [Grok 4.7](../models/xai/grok-4.7.md) ([as-of 2026-10-31] generally available since 2026-10-27 on the global endpoint and the US multi-region endpoint, after a preview in Model Garden; L, [Agent Platform release notes](https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes), read 2026-10-31) and [Grok 4.6](../models/xai/grok-4.6.md), with Grok 4.3, 4.20 (reasoning and non-reasoning) and the 4.1 Fast models, which Google marks deprecated.
 - **Meta.** [Muse Spark 1.3](../models/meta/muse-spark-1.3.md) (preview) as a partner model; Llama 4 Maverick, Llama 4 Scout and Llama 3.3 as managed open models.
 - **Mistral and AI21 Labs (partner models).** Mistral Medium 3, Mistral Small 3.1, Codestral 2 and Mistral OCR; AI21 Jamba 1.5 Large and Mini (preview).
 - **Open models as managed APIs (MaaS).** [gpt-oss-120b](../models/openai/gpt-oss-120b.md) and [gpt-oss-20b](../models/openai/gpt-oss-20b.md), [GLM 5.2](../models/zai/glm-5.2.md) (with GLM 5 and 4.7), [Gemma 4 26B A4B](../models/google/gemma-4-26b-a4b-it.md), DeepSeek V3.2, V3.1, R1-0528 and OCR, Kimi K2 Thinking, MiniMax M2, Qwen3 235B, Qwen3 Coder and Qwen3-Next 80B (instruct and thinking), and E5 embedding models. Google's Gemma page lists Gemma 4 [31B](../models/google/gemma-4-31b-it.md), 26B A4B, E4B and E2B in Model Garden for self-deployment; only 26B A4B is a managed API in the pages read, and no Gemma 4 12B appears on the page.
 - **Not found on Google's lists:** DeepSeek V4, Kimi K3, MiniMax M3, GLM 5.3, Qwen3.8 and Nemotron 3 Ultra.
+
+### Gemini 4 on Agent Platform [as-of 2026-11-24]
+
+- **Release and access.** Neon, Hydrogen and Carbon reached GA on 2026-11-18, 2026-11-12 and 2026-11-10 respectively. Base models use global, US and EU endpoints. The Neon and Carbon model pages limit access to verified enterprise customers in select regions. The Argon page gives 2027-10-13 or later for retirement of support on this platform. The Gemini API lifecycle table gives no shutdown date for Argon. [L: Cloud model pages, release notes and Gemini API lifecycle table below]
+- **Output limits.** Neon and Hydrogen allow 65,536 output tokens per foreground segment on the Cloud route. The Carbon page gives 65,536 for streaming and 32,768 for non-streaming. The models share a 1,048,576-token input and output window. Long decode is available on the Interactions API and on GenerateContent `v1beta1`. [L: Cloud model pages below]
+- **Standard PayGo.** Global input, output and cache-read prices match the Gemini API Standard figures for these three models. The Cloud price table charges 10 percent more outside the global endpoint. Cloud lists Carbon's introductory rate through 2026-11-30 and describes the promotion as credits on net spend. For Neon and Hydrogen, the Cloud cache-write prices take effect on 2027-01-12 at 1.25 times the Standard input rate for the default retention. [L: Cloud pricing and Cloud model pages below]
+- **Frontier terms.** Base Neon and Carbon are Google Frontier Models under Section 34 of the Cloud Service Specific Terms. Unless Google agrees otherwise in writing, the terms allow Google to store prompts and output in the customer's account for automated abuse monitoring for up to 30 days. The abuse-monitoring page says Cloud online terms also allow human review of flagged prompts. Customers with a Cloud Master Agreement are exempt from that review by default. The Cloud Neon and Carbon pages classify their separate cyber variants as Google Frontier Cyber Models. Section 31(b) applies the limits in Section 31(a)(i–iii) and Section 34 to that designation. The abuse-monitoring page lists Carbon for cyber and Argon Cyber Permissive in scope but omits Neon for cyber, which the Neon page and release notes classify as a Google Frontier Cyber Model. [L: Cloud model pages, release notes, terms and abuse monitoring below]
 
 ## API surface
 
@@ -151,3 +164,11 @@ Read 2026-10-31 (class L), for the text tagged `[as-of 2026-10-31]`:
 - Gemini 3.8 Flash page <https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-8-flash>: computer use listed as supported
 - Vertex AI release notes <https://docs.cloud.google.com/vertex-ai/docs/release-notes>: the banner that the Vertex AI documentation is no longer updated
 - Rename announcement date (2026-04-22): trade-press coverage seen only as search-result summaries (class A); not opened
+
+Read 2026-11-24 (class L), for the Gemini 4 section
+
+- [Neon](<https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-neon>), [Hydrogen](<https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-hydrogen>), [Carbon](<https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-carbon>) and [Argon](<https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon>) Cloud model pages
+- [Cloud release notes](<https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes>)
+- [Cloud pricing](<https://cloud.google.com/model-garden/pricing>)
+- [Cloud Service Specific Terms](<https://cloud.google.com/terms/service-terms>) and [Cloud abuse monitoring](<https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/abuse-monitoring>)
+- [Gemini API lifecycle table](<https://aistudio.google.com/docs/deprecations#gemini-4-models>)

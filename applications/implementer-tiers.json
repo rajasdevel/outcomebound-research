@@ -103,17 +103,6 @@
       "basis": "Inferred: Scale V2 92.2 at high [scale-swe-pro-v2]; Anthropic's own subset gives 92.3 at high and 88.6 at low, so a lower effort loses about 4 points there [anthropic-optimizing-cost]; the Fable 5 guide says to start at the top of the difficulty range and the effort page says to start at high [claude-g9, anthropic-effort]. Not independently tested below high, and no source compares tiers on it (inferred). Refusals can stall benign work.",
       "notes": []
     },
-    "claude-fable-5": {
-      "placements": [
-        {
-          "effort": null,
-          "tier": "outcome",
-          "confidence": "low"
-        }
-      ],
-      "basis": "Inferred: no source places Fable 5. It is the same family as Fable 5.1 (outcome at 92.2 on Scale [scale-swe-pro-v2]), but Fable 5 has no Scale row, and its Terminal-Bench 4.0 max score (44.55) is below Opus 5's 51.82 to 53.94 [tbench-leaderboard]; confidence is low, and design is the alternative reading.",
-      "notes": []
-    },
     "claude-haiku-4-5": {
       "placements": [
         {
@@ -492,17 +481,6 @@
       "basis": "Coding Agent Index 41 against Sol's 57 and Terminal-Bench 4.0 13 against Sol's 43, all at max [aa-sol-luna]; it stopped on a contradiction in 2 of 3 probed runs [ob-e13]. In the hand-off comparison (63 runs, 9 a cell, three small tasks, one maker, one harness) at xhigh it passed 6 of 9 with the ticket and 9 of 9 with the spec package; the whole gain is one row of one ticket [ob-e17]. Artificial Analysis measured max, not xhigh, so the row is labelled 'max measured'; lower efforts take spec, the lowest tier. Terminal-Bench 4.0 may be domain-skewed (Kimi K3 scores 12.6 there but 88.2 on Scale), so the 13 alone does not set the tier.",
       "notes": []
     },
-    "gpt-6-sol": {
-      "placements": [
-        {
-          "effort": null,
-          "tier": "design",
-          "confidence": "medium"
-        }
-      ],
-      "basis": "Artificial Analysis Coding Agent Index 57 and Terminal-Bench 4.0 43 at max [aa-sol-luna], plus the previous generation's Scale 82.4 (GPT-5.6 Sol, not this model); against it, deliverables omit required elements at max [openai-f19] and there is no guide of its own. Inferred. In the hand-off comparison (63 runs, 9 a cell, three small tasks, one maker, one harness) it passed 9 of 9 at medium effort with the ticket and 9 of 9 with the design package, which leaves the effect of the design package unshown [ob-e17].",
-      "notes": []
-    },
     "gpt-6.1-sol": {
       "placements": [
         {
@@ -621,7 +599,7 @@
           "confidence": "low"
         }
       ],
-      "basis": "Inferred. No source places Grok 4.6, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Artificial Analysis Coding Agent Index 47 sits between GPT-6 Luna (41, spec) and GPT-6 Sol (57, design) [aa-grok-47, aa-gpt6-sol-luna]; Terminal-Bench 4.0 20.3 is far below Grok 4.7's 38.0 [xai-47-card]. Grok 4.7's rows sit higher.",
+      "basis": "Inferred. No source places Grok 4.6, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Artificial Analysis Coding Agent Index 47 sits between GPT-6 Luna (41, spec) and GPT-6 Sol (57, historically placed in design) [aa-grok-47, aa-gpt6-sol-luna]; Terminal-Bench 4.0 20.3 is far below Grok 4.7's 38.0 [xai-47-card]. Grok 4.7's rows sit higher.",
       "notes": []
     },
     "grok-4.7-fast": {
@@ -643,7 +621,7 @@
           "confidence": "low"
         }
       ],
-      "basis": "Inferred. No source places Grok 4.7, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Evidence for design at high and above: Artificial Analysis Coding Agent Index 56 for 4.7 at xhigh in Grok Build [aa-grok-47] against 57 for GPT-6 Sol at max, a design-tier model [aa-gpt6-sol-luna]; at high, DeepSWE 71.0 against 72.7 for GPT-5.6 Sol at max and SWE-Marathon 46.0 against 42.5, both run by third parties but reported in the maker's card [xai-47-card]; Terminal-Bench 4.0 38.0 against 37.3 for GPT-5.6 Sol on the maker's chart [xai-47-card]. Against outcome: no Scale SWE-Bench Pro entry, AA's own Terminal-Bench 4.0 run at 33 (GPT-6 Sol 43 in AA's run), and a long-context regression [grok-f18]. Medium and below is unmeasured, so it takes the next tier down.",
+      "basis": "Inferred. No source places Grok 4.7, so the default rule (a model with no placement of its own takes the spec tier) gives spec. Evidence for design at high and above: Artificial Analysis Coding Agent Index 56 for 4.7 at xhigh in Grok Build [aa-grok-47] against 57 for GPT-6 Sol at max, historically placed in design [aa-gpt6-sol-luna]; at high, DeepSWE 71.0 against 72.7 for GPT-5.6 Sol at max and SWE-Marathon 46.0 against 42.5, both run by third parties but reported in the maker's card [xai-47-card]; Terminal-Bench 4.0 38.0 against 37.3 for GPT-5.6 Sol on the maker's chart [xai-47-card]. Against outcome: no Scale SWE-Bench Pro entry, AA's own Terminal-Bench 4.0 run at 33 (GPT-6 Sol 43 in AA's run), and a long-context regression [grok-f18]. Medium and below is unmeasured, so it takes the next tier down.",
       "notes": [
         "At xhigh it used about 81k output tokens per Artificial Analysis index task, more than twice Grok 4.6 (36k at high, 38k at xhigh): allow time and token budget, and do not default tickets to xhigh [grok-f12].",
         "Artificial Analysis measured lower long-context reasoning than Grok 4.6 (high), a 3.7-point fall on AA-LCR, although the maker says 4.7 manages longer context better: keep the package short and compact long loops [grok-f18, xai-47-news].",
@@ -659,8 +637,10 @@
           "confidence": "low"
         }
       ],
-      "basis": "Inferred. No independent or maker benchmark found, so the default rule gives spec.",
-      "notes": []
+      "basis": "Inferred from the default rule. The card's general index is for a June snapshot, and no comparable coding agent result is recorded here [aa-build-0616].",
+      "notes": [
+        "Historical placement. xAI says it ended service on its API on 2026-11-19 [xai-build01-eol]."
+      ]
     },
     "glm-5.2": {
       "placements": [

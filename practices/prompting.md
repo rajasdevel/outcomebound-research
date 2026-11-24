@@ -65,6 +65,13 @@ The page reports what named sources say. It is not a standard. Most sources are 
 
 **Scope** [as-of 2026-10-09]. The numbered GPT rows describe those models. `chat-latest` is a rolling Instant alias; its model page gives no numbered identity or effort levels [oa-chat-oct9]. Gemini 3.x guidance below refers to general text models. The dedicated 3.5 Transcribe endpoints and Live Translate Preview do not support thinking, caching or function calling [g-transcribe-oct9] [g-translate-oct9]. L.
 
+**GPT-6.2 [as-of 2026-11-24].** OpenAI's current migration guide gives family prompt examples
+based on observations from Astra. For work that can proceed without supervision, it gives an
+example that states the intended outcome and the decisions the model can make. For the API,
+OpenAI advises placing reusable guidance in the first `developer` message of Responses
+`input` and using top-level `instructions` for guidance specific to one request.
+L, [GPT-6.2 migration guide](https://developers.openai.com/api/docs/guides/latest-model).
+
 **Who publishes what.** Only some makers publish prompt-writing guidance. For the others, the advice below comes from API documents and model cards.
 
 | Maker | Prompting guidance published (as of 2026-10-03) | Detail |

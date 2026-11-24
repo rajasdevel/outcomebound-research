@@ -26,6 +26,8 @@ sources:
   - https://blog.google/intl/en-in/products/introducing-gemini-4-argon/ (read 2026-11-03)
   - https://artificialanalysis.ai/agents/coding-agents/comparisons/antigravity-cli-vs-claude-code (read 2026-11-03)
   - https://artificialanalysis.ai/evaluations/terminalbench-4-0 (read 2026-11-03)
+  - https://aistudio.google.com/docs/deprecations#gemini-4-models (read 2026-11-24)
+  - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon (read 2026-11-24)
 ---
 
 # Gemini 4 Argon
@@ -143,7 +145,7 @@ Maker-reported (Google, highest thinking setting; several self-computed): the ta
 - [as-of 2026-10-31] The id, availability, effort levels, window, modalities, cutoff, prices, model card and developer guide are now published (see above).
 - What the separate Argon safety and security report adds to the model card.
 - Whether the price drops to the standard rate on 2026-12-01 as listed, or the introductory rate is extended.
-- How Argon compares with Gemini 4 Carbon once Carbon is generally available.
+- [as-of 2026-11-24] Carbon is now generally available. Google gives no Gemini API shutdown date for Argon. Google Cloud lists 2027-10-13 or later for retirement of support on Gemini Enterprise Agent Platform [L: api-lifecycle-nov24, cloud-argon-nov24].
 
 ## Sources
 
@@ -181,3 +183,8 @@ Read 2026-11-03:
 - gemini-argon-ga (L): https://blog.google/intl/en-in/products/introducing-gemini-4-argon/
 - aa-coding-argon (M): https://artificialanalysis.ai/agents/coding-agents/comparisons/antigravity-cli-vs-claude-code
 - aa-terminal-method (M): https://artificialanalysis.ai/evaluations/terminalbench-4-0
+
+Read 2026-11-24, for the lifecycle update
+
+- api-lifecycle-nov24 (L) https://aistudio.google.com/docs/deprecations#gemini-4-models
+- cloud-argon-nov24 (L) https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon

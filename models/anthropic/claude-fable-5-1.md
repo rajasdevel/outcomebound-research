@@ -37,7 +37,7 @@ sources:
 # Claude Fable 5.1
 
 Claude Fable 5.1 (`claude-fable-5-1`) is the second generation of Anthropic's Fable class, its frontier
-class, released on 2026-09-01 as the successor to [Claude Fable 5](claude-fable-5.md). It is built for long-running
+class, released on 2026-09-01 as the successor to Claude Fable 5. It is built for long-running
 agentic coding, multistep research and document, spreadsheet and slide work, has a 1M-token window and always-on
 adaptive thinking, and lists at $10 / $50 per million tokens. It has the same weights as Mythos 5.1, which Anthropic
 offers only to approved organizations with fewer safeguards. [pg, wn]

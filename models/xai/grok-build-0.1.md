@@ -2,6 +2,7 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (a model's prices, limits, defaults and guidance change at each release)
 sources:
+  - https://docs.x.ai/developers/release-notes (read 2026-11-24)
   - https://x.ai/news/grok-build-0-1
   - https://docs.x.ai/developers/models/grok-build-0.1
   - https://docs.x.ai/developers/models
@@ -23,7 +24,12 @@ sources:
 
 # Grok Build 0.1
 
-Grok Build 0.1 (`grok-build-0.1`) is SpaceXAI's coding model, trained for agentic software work: web development, debugging and MCP support, as the API announcement puts it. It is the only generation of the Grok Build class and the successor to `grok-code-fast-1`, whose slug and two other aliases now route to it. It reached the API in public beta on 2026-05-29 at $1 input and $2 output per Mtok with a 256k context; the announcement called it the model behind the Grok Build agent. xAI's models page now names Grok 4.7 for code and chat, and the Grok 4.7 card names 4.7 as the agent's default model [xai-build01-news] [xai-docs-build01] [xai-docs-models] [xai-47-card]. Shared Grok API rules are in [the xAI README](README.md#family-wide-behaviour).
+Grok Build 0.1 (`grok-build-0.1`) is SpaceXAI's coding model, trained for agentic software work: web development, debugging and MCP support, as the API announcement puts it. It is the only generation of the Grok Build class and the successor to `grok-code-fast-1`. Its predecessor's slug and two other aliases routed to it after the May migration. It reached the API in public beta on 2026-05-29 at $1 input and $2 output per Mtok with a 256k context; the announcement called it the model behind the Grok Build agent. xAI's models page now names Grok 4.7 for code and chat, and the Grok 4.7 card names 4.7 as the agent's default model [xai-build01-news] [xai-docs-build01] [xai-docs-models] [xai-47-card]. Shared Grok API rules are in [the xAI README](README.md#family-wide-behaviour).
+
+**API status [as-of 2026-11-24].** xAI's November 19 release note says it ended service for
+`grok-build-0.1` on its API that day. The earlier access, limits, and price figures below
+describe the previous offering. Current third-party routing is `UNVERIFIED`. L,
+[xAI release notes](https://docs.x.ai/developers/release-notes).
 
 ## At a glance
 
@@ -36,7 +42,7 @@ Grok Build 0.1 (`grok-build-0.1`) is SpaceXAI's coding model, trained for agenti
 | Class | Grok Build |
 | Generation | 0.1 |
 | Released | 2026-05-29 |
-| Status | preview |
+| Status | deprecated (retires 2026-11-19) |
 | Weights | closed |
 | Access | SpaceXAI API; Grok Build; OpenRouter; Vercel AI Gateway |
 | Context window | 256k tokens |

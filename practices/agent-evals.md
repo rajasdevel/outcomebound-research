@@ -117,6 +117,9 @@ questions (inference).
 
 ## 3. Statistics: pass^k, standard errors, paired comparisons
 
+[AI-assisted mathematics](ai-assisted-mathematics.md) gives a research benchmark example with
+separate review scores and a search example with a record of attempts.
+
 - **pass@k and pass^k.** pass@k is the chance of at least one success in k attempts, pass^k the
   chance that all k succeed: "If your agent has a 75% per-trial success rate and you run 3 trials,
   the probability of passing all three is (0.75)³ ≈ 42%" (L, Anthropic). τ-bench defined pass^k

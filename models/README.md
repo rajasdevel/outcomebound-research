@@ -110,7 +110,7 @@ because its pages were not read in depth or because no rule settles it yet. The 
 | Google | Chirp 3: HD voices (Cloud Text-to-Speech) | Pace, pause and pronunciation controls; no emotion or style direction |
 | Gradium | Gradium TTS | Voice design, speed and temperature only |
 | Hugging Face (Parler-TTS) | Parler-TTS Mini v1.1, Large v1 and the multilingual model; Indic Parler-TTS | A written description sets speaking rate, pitch, expressiveness and recording quality, so the definition is met. No file was written, because the weights were last changed in October and November 2024 and no newer model exists. The scope rule counts generations, not age, so this waits on a decision about age; a candidate. The Indic Parler-TTS card is gated and was not read |
-| Hume AI | Octave 2 (preview) | Hume documents the `description` acting-instruction field for Octave 1 only, and lists it as coming soon for Octave 2; the delivery controls of Octave 2 are `speed` and `trailing_silence`. The TTS API ends on 2026-11-13 |
+| Hume AI | Octave 2 (historical preview) | Hume's October documentation listed `description` for Octave 1 only. The Octave 2 controls were `speed` and `trailing_silence`. The TTS overview now redirects to the Audio Decisions API [as-of 2026-11-24]. See the [Hume maker page](hume/README.md) |
 | Hume AI | TADA 1B and 3B-ml | A speech-language model; no delivery direction in the card |
 | Inworld | Realtime TTS-2 Flash (`inworld-tts-2-flash`) | Ignores steering instructions; plays non-verbal tags only |
 | Inworld | TTS 1.5 Max and Mini | Deprecated and not recommended for new projects; no steering. A Replicate page lists fixed bracket markups (six emotions, whispering, laughing, six sounds), but the maker's markup page now needs a login |
@@ -226,13 +226,13 @@ and run `make render`.
 | Qwen3-TTS-12Hz-1.7B-VoiceDesign | Alibaba (Qwen) | Qwen TTS | 3 | ga | 2026-01-22 | voice, no duplex | [alibaba/qwen3-tts-12hz-1.7b-voicedesign.md](alibaba/qwen3-tts-12hz-1.7b-voicedesign.md) |
 | Amazon Nova 2 Sonic | Amazon | Nova Sonic | 2 | ga | 2025-12-02 | full-duplex voice | [amazon/nova-2-sonic.md](amazon/nova-2-sonic.md) |
 | Amazon Nova Sonic | Amazon | Nova Sonic | 1 | retired 2026-09-14 | 2025-04-08 | full-duplex voice | [amazon/nova-sonic.md](amazon/nova-sonic.md) |
+| Claude Fable 5.2 | Anthropic | Claude Fable | 5.2 | ga | 2026-11-09 | - | [anthropic/claude-fable-5-2.md](anthropic/claude-fable-5-2.md) |
 | Claude Haiku 5.5 | Anthropic | Claude Haiku | 5.5 | ga | 2026-10-07 | - | [anthropic/claude-haiku-5-5.md](anthropic/claude-haiku-5-5.md) |
 | Claude Sonnet 5.5 | Anthropic | Claude Sonnet | 5.5 | ga | 2026-09-28 | - | [anthropic/claude-sonnet-5-5.md](anthropic/claude-sonnet-5-5.md) |
 | Claude Opus 5.5 | Anthropic | Claude Opus | 5.5 | ga | 2026-09-22 | - | [anthropic/claude-opus-5-5.md](anthropic/claude-opus-5-5.md) |
 | Claude Fable 5.1 | Anthropic | Claude Fable | 5.1 | ga | 2026-09-01 | - | [anthropic/claude-fable-5-1.md](anthropic/claude-fable-5-1.md) |
 | Claude Opus 5 | Anthropic | Claude Opus | 5 | ga | 2026-07-24 | - | [anthropic/claude-opus-5.md](anthropic/claude-opus-5.md) |
 | Claude Sonnet 5 | Anthropic | Claude Sonnet | 5 | ga | 2026-06-30 | - | [anthropic/claude-sonnet-5.md](anthropic/claude-sonnet-5.md) |
-| Claude Fable 5 | Anthropic | Claude Fable | 5 | ga | 2026-06-09 | - | [anthropic/claude-fable-5.md](anthropic/claude-fable-5.md) |
 | Claude Haiku 4.5 | Anthropic | Claude Haiku | 4.5 | ga | 2025-10-15 | - | [anthropic/claude-haiku-4-5.md](anthropic/claude-haiku-4-5.md) |
 | VoiceSculptor-VD | ASLP-lab | VoiceSculptor | unknown | ga | 2026-01-06 | voice, no duplex | [other/voicesculptor-vd.md](other/voicesculptor-vd.md) |
 | IndexTTS-2.5 | Bilibili (IndexTeam) | IndexTTS | 2.5 | ga | 2026-08-10 | voice, no duplex | [other/indextts-2.5.md](other/indextts-2.5.md) |
@@ -264,6 +264,9 @@ and run `make render`.
 | Fish Audio S2 Pro | Fish Audio | Fish Audio S Pro | 2 | ga | 2026-03-09 | voice, no duplex | [fishaudio/s2-pro.md](fishaudio/s2-pro.md) |
 | Gemini 2.5 Flash-Lite Preview TTS | Google | Gemini Flash-Lite TTS | 2.5 | preview | unknown | voice, no duplex | [google/gemini-2.5-flash-lite-preview-tts.md](google/gemini-2.5-flash-lite-preview-tts.md) |
 | Gemini 3.5 Live Translate Preview | Google | Gemini Live Translate | 3.5 | preview | unknown | voice | [google/gemini-3.5-live-translate-preview.md](google/gemini-3.5-live-translate-preview.md) |
+| Gemini 4 Neon | Google | Gemini Neon | 4 | ga | 2026-11-18 | - | [google/gemini-4-neon.md](google/gemini-4-neon.md) |
+| Gemini 4 Hydrogen | Google | Gemini Hydrogen | 4 | ga | 2026-11-12 | - | [google/gemini-4-hydrogen.md](google/gemini-4-hydrogen.md) |
+| Gemini 4 Carbon | Google | Gemini Carbon | 4 | ga | 2026-11-10 | - | [google/gemini-4-carbon.md](google/gemini-4-carbon.md) |
 | Gemini 4 Argon | Google | Gemini Argon | 4 | ga | 2026-10-13 | - | [google/gemini-4-argon.md](google/gemini-4-argon.md) |
 | Gemini 3.8 Flash-Lite TTS | Google | Gemini Flash-Lite TTS | 3.8 | ga | 2026-09-22 | voice, no duplex | [google/gemini-3.8-flash-lite-tts.md](google/gemini-3.8-flash-lite-tts.md) |
 | Gemini 3.8 Flash TTS | Google | Gemini Flash TTS | 3.8 | ga | 2026-09-22 | voice, no duplex | [google/gemini-3.8-flash-tts.md](google/gemini-3.8-flash-tts.md) |
@@ -331,10 +334,12 @@ and run `make render`.
 | NVIDIA Nemotron 3 Ultra | NVIDIA | Nemotron Ultra | 3 | ga | 2026-06-04 | - | [other/nemotron-3-ultra.md](other/nemotron-3-ultra.md) |
 | PersonaPlex-7B-v1 | NVIDIA | PersonaPlex | 1 | ga | 2026-01-15 | full-duplex voice | [other/personaplex-7b-v1.md](other/personaplex-7b-v1.md) |
 | Chat Latest | OpenAI | ChatGPT Instant alias | unknown | ga | unknown | - | [openai/chat-latest.md](openai/chat-latest.md) |
+| GPT-Live 1.1 | OpenAI | GPT Live | 1.1 | ga | 2026-11-19 | full-duplex voice | [openai/gpt-live-1.1.md](openai/gpt-live-1.1.md) |
+| GPT-6.2 Astra | OpenAI | GPT Astra | 6.2 | ga | 2026-11-17 | - | [openai/gpt-6.2-astra.md](openai/gpt-6.2-astra.md) |
+| GPT-6.2 Sol | OpenAI | GPT Sol | 6.2 | ga | 2026-11-17 | - | [openai/gpt-6.2-sol.md](openai/gpt-6.2-sol.md) |
 | GPT-6.1 Terra | OpenAI | GPT Terra | 6.1 | ga | 2026-10-26 | - | [openai/gpt-6.1-terra.md](openai/gpt-6.1-terra.md) |
 | GPT-6.1 Sol | OpenAI | GPT Sol | 6.1 | ga | 2026-09-29 | - | [openai/gpt-6.1-sol.md](openai/gpt-6.1-sol.md) |
 | GPT-6 Luna | OpenAI | GPT Luna | 6 | ga | 2026-09-22 | - | [openai/gpt-6-luna.md](openai/gpt-6-luna.md) |
-| GPT-6 Sol | OpenAI | GPT Sol | 6 | ga | 2026-09-22 | - | [openai/gpt-6-sol.md](openai/gpt-6-sol.md) |
 | GPT-Live 1 | OpenAI | GPT Live | 1 | ga | 2026-09-10 | full-duplex voice | [openai/gpt-live-1.md](openai/gpt-live-1.md) |
 | GPT-6 Astra | OpenAI | GPT Astra | 6 | ga | 2026-09-03 | - | [openai/gpt-6-astra.md](openai/gpt-6-astra.md) |
 | GPT-Live-Transcribe | OpenAI | GPT Realtime Transcribe | 2 | ga | 2026-07-28 | voice, no duplex | [openai/gpt-live-transcribe.md](openai/gpt-live-transcribe.md) |
@@ -365,7 +370,7 @@ and run `make render`.
 | Grok 4.7 Fast | SpaceXAI | Grok Fast | 4.7 | ga | 2026-09-21 | - | [xai/grok-4.7-fast.md](xai/grok-4.7-fast.md) |
 | Grok 4.6 | SpaceXAI | Grok | 4.6 | ga | 2026-08-12 | - | [xai/grok-4.6.md](xai/grok-4.6.md) |
 | Grok Voice Think Fast 2.0 | SpaceXAI | Grok Voice | 2.0 | deprecated | 2026-07-29 | full-duplex voice | [xai/grok-voice-think-fast-2.0.md](xai/grok-voice-think-fast-2.0.md) |
-| Grok Build 0.1 | SpaceXAI | Grok Build | 0.1 | preview | 2026-05-29 | - | [xai/grok-build-0.1.md](xai/grok-build-0.1.md) |
+| Grok Build 0.1 | SpaceXAI | Grok Build | 0.1 | deprecated (retires 2026-11-19) | 2026-05-29 | - | [xai/grok-build-0.1.md](xai/grok-build-0.1.md) |
 | Speechify Simba 3.5 | Speechify | Speechify Simba | 3.5 | ga | 2026-10-21 | voice, no duplex | [speechify/simba-3.5.md](speechify/simba-3.5.md) |
 | Speechify Simba 3.2 | Speechify | Speechify Simba | 3.2 | ga | 2026-07-08 | voice, no duplex | [speechify/simba-3.2.md](speechify/simba-3.2.md) |
 | StepAudio 3 Realtime (preview) | StepFun | StepAudio Realtime | 3 | preview | 2026-09-15 | full-duplex voice | [stepfun/stepaudio-3-realtime-preview.md](stepfun/stepaudio-3-realtime-preview.md) |

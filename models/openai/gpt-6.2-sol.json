@@ -1,0 +1,298 @@
+{
+  "id": "gpt-6.2-sol",
+  "name": "GPT-6.2 Sol",
+  "maker": "OpenAI",
+  "family": "GPT-6",
+  "class": "GPT Sol",
+  "generation": "6.2",
+  "released": "2026-11-17",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Responses, Chat Completions, Batch)",
+    "ChatGPT Work",
+    "Codex",
+    "Google Cloud (private preview as listed by OpenAI)"
+  ],
+  "context_window": 1050000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": 2,
+    "output": 10,
+    "cached_input": 0.1,
+    "notes": "Standard, up to 272,000 input tokens. Cache writes cost $2.50 and $5 per million tokens for 30 minutes and 12 hours respectively. Above 272,000 input tokens, the whole request bills at 2x input and cache rates and 1.5x output. Batch is 50% and Fast is 2x the applicable Standard rate. Ultrafast is 3x through 2027-02-28 and 6x from 2027-03-01 (Pacific time). Flex is unavailable. Eligible 2h and 8h Standard background requests are 30% and 40% below Standard respectively. Regional processing adds 10%. [api-pricing, gpt62-guide, background-guide]"
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0 (Artificial Analysis evaluation)",
+      "score": 60.1,
+      "setting": "max, pass@1 averaged across three repeats per task",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "aa-tbench-4-0",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "score": 57,
+      "setting": "max",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "score": 56,
+      "setting": "xhigh",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "score": 55,
+      "setting": "high",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "score": 53,
+      "setting": "medium",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index v5.0.1",
+      "score": 41,
+      "setting": "low",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (percent)",
+      "score": 48.62,
+      "setting": "max; evaluator labels the page v2.1, component version for row unconfirmed",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (percent)",
+      "score": 49.79,
+      "setting": "xhigh; evaluator labels the page v2.1, component version for row unconfirmed",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (percent)",
+      "score": 47.46,
+      "setting": "high; evaluator labels the page v2.1, component version for row unconfirmed",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (percent)",
+      "score": 45.35,
+      "setting": "medium; evaluator labels the page v2.1, component version for row unconfirmed",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index (percent)",
+      "score": 37.16,
+      "setting": "low; evaluator labels the page v2.1, component version for row unconfirmed",
+      "harness": "Codex",
+      "measured_by": "independent",
+      "source": "aa-coding-agents",
+      "read": "2026-11-24"
+    }
+  ],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/latest-model",
+    "https://developers.openai.com/api/docs/guides/reasoning"
+  ],
+  "system_card": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-6.2-sol",
+  "sources": [
+    {
+      "id": "model-page",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.2-sol",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "previous-model-page",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "launch",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "api-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "model-catalogue",
+      "url": "https://developers.openai.com/api/docs/models/all",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "gpt62-guide",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "reasoning-guide",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "api-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "background-guide",
+      "url": "https://developers.openai.com/api/docs/guides/background",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "multi-agent-guide",
+      "url": "https://developers.openai.com/api/docs/guides/responses-multi-agent",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "structured-output-guide",
+      "url": "https://developers.openai.com/api/docs/guides/structured-outputs",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "system-card",
+      "url": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "scale-swe-pro-v2",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tbench-4-0",
+      "url": "https://www.tbench.ai/?version=4.0",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-tbench-4-0",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding-agents",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizon-data",
+      "url": "https://metr.org/assets/benchmark_results_1_1.yaml",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-model",
+      "url": "https://artificialanalysis.ai/models/gpt-6-2-sol",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-11-24",
+  "unknown": [
+    "reasoning.default: OpenAI recommends medium for new integrations. Its model page and reasoning guide do not state the server default for this model. Artificial Analysis lists medium as its default effort metadata.",
+    "SWE-Bench Pro (Scale, public V2): no row for this model in Scale's public V2 leaderboard on the read date.",
+    "Terminal-Bench 4.0 (tbench.ai leaderboard): no verified row for this model in the evaluator's 4.0 view. Its current 4.1 result is a different variant.",
+    "METR 50% time horizon: neither METR's published results page nor its linked Time Horizon 1.1 data contains this model.",
+    "Artificial Analysis Coding Agent Index component version: the page labels the current suite v2.1 with Terminal-Bench 4.1. The cited row's embedded dataset label says Terminal-Bench v4. The exact minor version for that component of the row is unconfirmed.",
+    "access: the cited sources do not establish general availability through Google Cloud or a listing through Microsoft Foundry or Amazon Bedrock."
+  ]
+}

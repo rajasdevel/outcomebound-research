@@ -1,0 +1,208 @@
+{
+  "id": "gpt-live-1.1",
+  "name": "GPT-Live 1.1",
+  "maker": "OpenAI",
+  "family": "GPT Live",
+  "class": "GPT Live",
+  "generation": "1.1",
+  "released": "2026-11-19",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "OpenAI API (Live: WebRTC, WebSocket, SIP)",
+    "ChatGPT Voice (Plus and Pro)"
+  ],
+  "context_window": 128000,
+  "max_output": null,
+  "modalities": {
+    "input": [
+      "audio",
+      "text"
+    ],
+    "output": [
+      "audio",
+      "text"
+    ]
+  },
+  "voice": {
+    "duplex": "full",
+    "input_audio": "WebSocket: mono signed PCM16 at 24 kHz (default) or 16 kHz, or G.711 μ-law or A-law at 8 kHz. WebRTC and SIP negotiate audio format [openai-live-websockets] [openai-live-reference]",
+    "output_audio": "WebSocket uses the same format as input. WebRTC delivers output through the media track. Live sends input and output transcript fragments as events [openai-live-websockets] [openai-live-sessions]",
+    "voices": "Set audio.output.voice at startup. Default marin. The sessions guide lists built-in voices by language and regional influence. It permits authorized custom voices. The TypeScript reference lists fewer built-in names [openai-live-sessions] [openai-live-reference] [openai-custom-voices]",
+    "languages": [],
+    "turn_detection": "The full-duplex model manages conversational timing. For WebRTC standby, wake_policy.vad_threshold sets speech sensitivity from 0 to 1 (default 0.5), independent of active turn detection [openai-live-model] [openai-live-prompting] [openai-live-sessions] [openai-live-reference]",
+    "interruption": "The prompting guide tells the voice model to yield when the caller interrupts. Application task state controls backend cancellation [openai-live-prompting] [openai-live-delegation]",
+    "latency": null,
+    "session_limit": null
+  },
+  "reasoning": {
+    "control": "none",
+    "levels": [],
+    "default": null
+  },
+  "pricing_usd_per_mtok": {
+    "input": null,
+    "output": null,
+    "cached_input": null,
+    "notes": "US$0.05/min active and US$0.02/min on WebRTC standby, accrued per second. Default WebRTC startup bills 15 seconds up front, credited against running duration. Backend model and tool charges are separate [openai-live-pricing] [openai-live-cost]"
+  },
+  "benchmarks": [],
+  "prompting_guides": [
+    "https://developers.openai.com/api/docs/guides/live-prompting",
+    "https://developers.openai.com/api/docs/guides/live-delegation",
+    "https://developers.openai.com/api/docs/guides/live-conversations"
+  ],
+  "system_card": null,
+  "model_page": "https://developers.openai.com/api/docs/models/gpt-live-1.1",
+  "sources": [
+    {
+      "id": "openai-live-changelog",
+      "url": "https://developers.openai.com/api/docs/changelog#nov-19",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-model",
+      "url": "https://developers.openai.com/api/docs/models/gpt-live-1.1",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-release",
+      "url": "https://community.openai.com/t/gpt-live-1-1-has-arrived-in-the-api/1418537",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-chatgpt-notes",
+      "url": "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-start",
+      "url": "https://developers.openai.com/api/docs/guides/live",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-prompting",
+      "url": "https://developers.openai.com/api/docs/guides/live-prompting",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-delegation",
+      "url": "https://developers.openai.com/api/docs/guides/live-delegation",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-sessions",
+      "url": "https://developers.openai.com/api/docs/guides/live-conversations",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-reference",
+      "url": "https://developers.openai.com/api/reference/typescript/resources/live/methods/create",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-websockets",
+      "url": "https://developers.openai.com/api/docs/guides/voice-websockets?api=live",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-custom-voices",
+      "url": "https://developers.openai.com/api/docs/guides/custom-voices",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-cost",
+      "url": "https://developers.openai.com/api/docs/guides/voice-latency-cost?api=live",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-pricing",
+      "url": "https://developers.openai.com/api/docs/pricing#live-session-duration",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "openai-live-safety",
+      "url": "https://deploymentsafety.openai.com/gpt-live",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-speech-to-speech",
+      "url": "https://artificialanalysis.ai/speech-to-speech",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-speech-arena",
+      "url": "https://artificialanalysis.ai/speech-to-speech/arena",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-audiomc",
+      "url": "https://scale.com/leaderboard/audiomc?tab=audio",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "tau-voice",
+      "url": "https://arxiv.org/abs/2603.13686",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "full-duplex-bench",
+      "url": "https://arxiv.org/abs/2510.07838",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-11-24",
+  "unknown": [
+    "max_output: OpenAI lists no voice-model output-token cap [openai-live-model]",
+    "voice.languages: named presets and launch examples cover several languages, but the sources read give no complete model language list [openai-live-sessions] [openai-chatgpt-notes]",
+    "voice.latency: no numerical GPT-Live-1.1 figure found in OpenAI’s release or model page, or in the Artificial Analysis speech results [openai-live-release] [openai-live-model] [aa-speech-to-speech]",
+    "voice.session_limit: the sessions guide defines the expired close reason without giving a duration [openai-live-sessions]",
+    "pricing_usd_per_mtok: voice billing is by duration [openai-live-pricing]",
+    "system_card: no GPT-Live-1.1 system card found in the Deployment Safety Hub [openai-live-safety]",
+    "benchmarks: no score for GPT-Live-1.1 found on the Artificial Analysis speech leaderboard or Arena, the Scale AudioMultiChallenge audio leaderboard, or in the cited τ-voice and Full-Duplex-Bench-v2 papers [aa-speech-to-speech] [aa-speech-arena] [scale-audiomc] [tau-voice] [full-duplex-bench]",
+    "SWE-Bench Pro (Scale, public V2): not applicable to the voice frontend",
+    "Terminal-Bench 4.0: not applicable to the voice frontend",
+    "Artificial Analysis Intelligence Index: not applicable to the voice frontend",
+    "Artificial Analysis Coding Agent Index: not applicable to the voice frontend",
+    "METR 50% time horizon: not applicable to the voice frontend"
+  ]
+}

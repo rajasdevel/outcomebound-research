@@ -2,6 +2,8 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (the sunset notice, versions, prices and API behaviour change often)
 sources:
+  - https://dev.hume.ai/audio-decisions/docs/overview (read 2026-11-24)
+  - https://dev.hume.ai/audio-decisions/changelog (read 2026-11-24)
   - https://dev.hume.ai/docs/speech-to-speech-evi/overview
   - https://dev.hume.ai/docs/speech-to-speech-evi/configuration/evi-version
   - https://dev.hume.ai/docs/speech-to-speech-evi/guides/prompting
@@ -20,9 +22,17 @@ sources:
 
 # Hume AI
 
-Hume AI sells the Empathic Voice Interface (EVI), a realtime speech-to-speech API, and a text-to-speech API. This folder holds the two supported EVI versions and the Octave 1 text-to-speech model. Hume announced on 2026-10-02 that both APIs end on 2026-11-13. Everything here was read on 2026-10-03, except the Octave text, which was read on 2026-10-04.
+This folder records Hume's Empathic Voice Interface (EVI) and Octave text-to-speech models from before the scheduled API sunset. Hume announced on 2026-10-02 that both APIs were due to end on 2026-11-13. The model details below are from 2026-10-03, with the Octave text read on 2026-10-04.
 
-> **Note.** Hume's pages say access to the EVI and TTS APIs ends on 2026-11-13 at 12:01 a.m. EST, that both stay fully supported until then, and that account data is deleted after that date [hume-overview] [hume-changelog].
+The October notice gave 12:01 a.m. EST as the end of access and said account data would be
+deleted after that date [hume-overview] [hume-changelog].
+
+> **Note.** On 2026-11-24 the former [EVI overview](https://dev.hume.ai/docs/speech-to-speech-evi/overview)
+> and [TTS overview](https://dev.hume.ai/docs/text-to-speech-tts/overview) both redirected to Hume's
+> Audio Decisions API docs. Hume's new changelog dates that API's launch to 2026-11-02.
+> The new documentation describes an API that accepts audio and can return probability estimates
+> (L). Access to the former speech APIs
+> after the scheduled sunset is `UNVERIFIED`.
 
 ## Models and lineage
 
@@ -65,9 +75,9 @@ Hume publishes no system card or model card for EVI in the sources read. Its FAQ
 
 ## Open questions
 
-- Whether Hume will offer a migration route to another provider after 2026-11-13.
+- Whether any former EVI or TTS customers still have endpoint access after 2026-11-13.
 - The languages of EVI 3: the pages disagree.
-- Whether Hume will add `description` to Octave 2 before 2026-11-13.
+- Whether the historical Octave 2 preview ever added `description`.
 
 ## Sources
 

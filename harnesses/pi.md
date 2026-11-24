@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Pi's documentation lives on its main branch and changes without versioned releases of the pages)
 sources:
+  - https://github.com/earendil-works/pi/releases/tag/v1.6.0 (read 2026-11-24)
   - https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/configuration.md
   - https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/settings.md
   - https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/extensions.md
@@ -252,6 +253,17 @@ UNVERIFIED. The release reports:
   branch and bug-report summaries passing stored OAuth tokens as explicit API keys.
 
 The release notes do not establish which version is installed or how a particular run behaves.
+
+## 12. Release 1.6.0 [as-of 2026-11-24]
+
+The [1.6.0 release notes](https://github.com/earendil-works/pi/releases/tag/v1.6.0)
+say Pi adds GPT-6.2 Astra and Sol on its `openai`, `azure`, and `openai-codex` routes and
+makes GPT-6.2 Sol the default on each. This is Pi's routing and default behaviour (L).
+
+The same release fixes a silent model fallback on some resume or fork paths. Pi now reports it
+in each mode if the original model is unavailable or has no login. With
+`showCacheMissNotices` enabled, Pi can report dropped OpenAI reasoning items with the reason.
+The notice appears only when more items were dropped than in the previous response (L).
 
 ## Sources
 

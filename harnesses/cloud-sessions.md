@@ -7,7 +7,7 @@ sources:
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
   - https://code.claude.com/docs/en/claude-code-on-the-web
   - https://code.claude.com/docs/en/cloud-environments
-  - https://learn.chatgpt.com/docs/environments/cloud-environments (read 2026-11-03)
+  - https://learn.chatgpt.com/docs/environments/cloud-environments (read 2026-11-03 and 2026-11-24)
   - https://learn.chatgpt.com/docs/environments/cloud-environment
   - https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment
   - https://cursor.com/docs/cloud-agent/setup
@@ -99,6 +99,12 @@ reach programs directly; network secrets use placeholders and
 a proxy substitutes the credential for allowed HTTPS destinations on port 443 during setup and
 tasks. Network policy and workspace requirements apply together.
 
+**Default environment [as-of 2026-11-24].** OpenAI says a default environment, when available,
+can start a new task without a repository selection. In the desktop app, the default environment
+can automatically use a project's GitHub.com repositories when the account is connected. Automatic
+project setup excludes GitLab repositories. A task can separately clone any repository the
+environment can access. L, [current cloud environments guide](https://learn.chatgpt.com/docs/environments/cloud-environments).
+
 The [legacy guide](https://learn.chatgpt.com/docs/environments/cloud-environment), also read
 2026-11-03, applies to Code Review and the Linear and GitHub integrations. The following details
 are from that legacy guide and must not be assumed for the current cloud experience:
@@ -166,6 +172,9 @@ Source: the [setup page](https://cursor.com/docs/cloud-agent/setup).
   environment-scoped secrets never reach self-hosted machines.
 - **Network.** The page names a "Cloud Agent network allowlist" for restricted egress and does not
   say how to configure it or what the default is.
+- **App publishing [as-of 2026-11-24].** Cursor's November 5 changelog describes app publishing
+  from cloud agents with an explicit publish action and security checks. See
+  [factory platforms §3](../factories/platforms.md#3-intake-and-orchestration-volatile).
 
 ## Limits
 

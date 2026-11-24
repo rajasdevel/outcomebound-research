@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: STABLE (the long-context studies change only with new research) / VOLATILE (§1 windows, §3 countdown behaviour and the compaction APIs in §5)
 sources:
+  - https://www.glean.com/blog/waldo-launch (read 2026-11-24)
   - https://platform.claude.com/docs/en/build-with-claude/context-windows
   - https://platform.claude.com/docs/en/about-claude/models/overview
   - https://platform.claude.com/docs/en/build-with-claude/compaction
@@ -144,6 +145,12 @@ data or hide failures. What must survive compaction is written to files. L, M.
 
 ## 4. Keeping context small by design
 
+- **Retrieval before synthesis [as-of 2026-11-24].** Glean's Waldo runs a small search model
+  first with a fixed set of tools. It hands the conversation and tool results to a reasoning
+  model when it has enough evidence or reaches a task that needs a tool outside search. Glean
+  says making retrieval the initial step saved it the delay of having the reasoning model call
+  the search model and then resume. This is a case from Glean's enterprise-search harness.
+  L, [Glean technical account](https://www.glean.com/blog/waldo-launch).
 - Anthropic names three long-horizon techniques: compaction; structured note-taking, notes the agent
   keeps outside the window and reads back; and subagents that explore with clean windows and return
   "a condensed, distilled summary of its work (often 1,000-2,000 tokens)" [sizing-lab-10,

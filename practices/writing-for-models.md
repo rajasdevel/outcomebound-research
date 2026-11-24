@@ -1112,6 +1112,14 @@ the longest unchanged prefix, so a line in it that changes between sessions or r
 run id, a list in unstable order) re-bills everything after it; the caching mechanics are in
 [prompt-caching.md](prompt-caching.md).
 
+**A readable version of interactive data [as-of 2026-11-24].** Resend publishes the plan, price,
+email allowance, and overage unit in a Markdown table at a directly retrievable URL. Its operator
+advocates formats that models can read directly, such as `llms.txt`. The table can
+give an agent the values it needs for a comparison without requiring it to operate a slider
+(inference). This case establishes the format and its contents. Its effect on task success has
+not been measured here. L, [Resend pricing Markdown](https://resend.com/pricing.md) and
+[Resend's description of its approach](https://resend.com/blog/agent-experience).
+
 ## 4. Contested and open questions
 
 ### 4.1 Contested

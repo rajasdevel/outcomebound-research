@@ -23,6 +23,9 @@ sources:
 
 EVI 4-mini is the current version of Hume's Empathic Voice Interface, a realtime speech-to-speech API over WebSocket. EVI measures vocal expression in the user's speech, passes it with the transcript to a language model, and speaks the reply in a synthetic voice that it shapes to the context. EVI 4-mini needs a supplemental language model of your choice and adds 11 languages. Hume's changelog dates it 2025-10-03. Hume has announced that the EVI and TTS APIs end on 2026-11-13. Maker-wide facts are in the [Hume README](README.md) [hume-overview] [hume-evi-version] [hume-changelog].
 
+For the later documentation status and the unresolved question of endpoint access, see
+[Hume's maker page](README.md).
+
 ## At a glance
 
 <!-- card:begin -->

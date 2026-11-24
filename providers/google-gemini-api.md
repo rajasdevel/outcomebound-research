@@ -29,6 +29,12 @@ sources:
   - https://ai.google.dev/gemini-api/docs/logs-datasets (read 2026-10-31)
   - https://ai.google.dev/gemini-api/docs/logs-policy (read 2026-10-31)
   - https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ (read 2026-10-31)
+  - https://aistudio.google.com/docs/changelog (read 2026-11-24)
+  - https://aistudio.google.com/docs/deprecations#gemini-4-models (read 2026-11-24)
+  - https://aistudio.google.com/docs/choosing-a-model (read 2026-11-24)
+  - https://aistudio.google.com/docs/models/gemini-4-neon (read 2026-11-24)
+  - https://aistudio.google.com/docs/models/gemini-4-carbon (read 2026-11-24)
+  - https://aistudio.google.com/docs/models/gemini-4-hydrogen (read 2026-11-24)
 ---
 
 # Google Gemini API and AI Studio
@@ -39,7 +45,7 @@ Google DeepMind's models are sold to developers through the Gemini API (the Gemi
 
 ## Models offered
 
-On 2026-10-03 the models page lists text and multimodal Gemini models, live audio models, text-to-speech models, a transcription model, image-generation models, a video model (Veo 3.1), a music model, a deep-research agent and an embeddings model. Gemma open-weight models do not appear on that page. [models] [as-of 2026-10-31] Gemini 4 Argon is now on the page as a stable model. Gemini 4 Carbon, announced 2026-10-28 for a subset of cyber defenders, is not on it and has no published API id [models-oct31, carbon].
+On 2026-10-03 the models page lists text and multimodal Gemini models, live audio models, text-to-speech models, a transcription model, image-generation models, a video model (Veo 3.1), a music model, a deep-research agent and an embeddings model. Gemma open-weight models do not appear on that page. [models] [as-of 2026-10-31] Gemini 4 Argon is now on the page as a stable model. At that reading, Carbon had only been announced for a restricted group on 2026-10-28 [models-oct31, carbon]. The November Gemini 4 inventory is below.
 
 | Model file | API id | Status on the models page |
 | --- | --- | --- |
@@ -51,6 +57,17 @@ On 2026-10-03 the models page lists text and multimodal Gemini models, live audi
 | [Gemini 4 Argon](../models/google/gemini-4-argon.md) | `gemini-4-argon` | [as-of 2026-10-31] stable, GA 2026-10-13; paid tier only [changelog-oct31, argon-oct31] |
 
 The page also lists 3.6 Flash as stable and 3 Flash as a preview ([as-of 2026-10-31] 3.5 Flash is deprecated since 2026-10-08, and its requests are routed to 3.6 Flash [changelog-oct31]); they are older than the two generations the model files cover. The Gemma 4 files ([12B](../models/google/gemma-4-12b-it.md), [31B](../models/google/gemma-4-31b-it.md) and the other sizes) are open weights and are not served through this API according to the models page; the [maker README](../models/google/README.md) covers them. Google marks each id as stable, preview, latest (a moving alias) or experimental; the README gives the notice periods. [models]
+
+### Gemini 4 inventory [as-of 2026-11-24]
+
+| Stable model | API GA | Gemini API tier | Thinking levels and default |
+| --- | --- | --- | --- |
+| [Gemini 4 Neon](../models/google/gemini-4-neon.md) | 2026-11-18 | Paid | low, medium, high (default), xhigh |
+| [Gemini 4 Hydrogen](../models/google/gemini-4-hydrogen.md) | 2026-11-12 | Free and paid | low, medium, high (default), xhigh |
+| [Gemini 4 Carbon](../models/google/gemini-4-carbon.md) | 2026-11-10 | Paid | low, medium (default), high |
+| [Gemini 4 Argon](../models/google/gemini-4-argon.md) | 2026-10-13 | Paid | low, medium (default), high |
+
+The lifecycle table lists all four with no announced shutdown date. Neon, Carbon and Hydrogen each have a 1,048,576-token window shared by input and output, a 65,536-token synchronous limit on this route, long decode up to the unused part of the window, and implicit context caching only. Standard rates per million tokens for input, output and cached input are $3/$15/$0.15 for Neon, $1.50/$7.50/$0.075 for Hydrogen, and $2/$10/$0.10 for Carbon through 2026-11-30. Carbon rises to $4/$20/$0.20 on 2026-12-01. The Hydrogen model page also lists an invite-only Contributor tier [g4-release, g4-lifecycle, g4-choice, g4-neon, g4-carbon, g4-hydrogen].
 
 ### Dedicated speech inventory [as-of 2026-10-09]
 
@@ -145,3 +162,9 @@ Per token, with a free tier that exchanges data use for no charge, and a paid ti
 | logs-oct31 | https://ai.google.dev/gemini-api/docs/logs-datasets | L | 2026-10-31 |
 | logs-policy-oct31 | https://ai.google.dev/gemini-api/docs/logs-policy | L | 2026-10-31 |
 | carbon | https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ | L | 2026-10-31 |
+| g4-release | https://aistudio.google.com/docs/changelog | L | 2026-11-24 |
+| g4-lifecycle | https://aistudio.google.com/docs/deprecations#gemini-4-models | L | 2026-11-24 |
+| g4-choice | https://aistudio.google.com/docs/choosing-a-model | L | 2026-11-24 |
+| g4-neon | https://aistudio.google.com/docs/models/gemini-4-neon | L | 2026-11-24 |
+| g4-carbon | https://aistudio.google.com/docs/models/gemini-4-carbon | L | 2026-11-24 |
+| g4-hydrogen | https://aistudio.google.com/docs/models/gemini-4-hydrogen | L | 2026-11-24 |
