@@ -253,6 +253,12 @@ on 2026-10-23).
 
 ## 5. Cost (MONITOR)
 
+- **Usage cost at list prices [as-of 2026-11-24].** OpenAI reported about $2,400 per day at the
+  median and $23,000 at the 90th percentile for researchers in its research organization in
+  October 2026. It valued
+  agentic AI use at API list prices. The figures measure use and include changes in activity,
+  model mix, and harness behavior. They give no cost per accepted change. M, lab's own measurements,
+  [OpenAI research acceleration report](https://openai.com/index/research-acceleration-jagged-frontier/).
 - On SWE-bench Verified runs from eight frontier models, agentic coding used about 1,000 times more
   tokens than code chat or code reasoning, mostly input tokens; runs on the same task differed by up to
   30 times in total tokens; more tokens did not reliably buy accuracy; and models predicted their own

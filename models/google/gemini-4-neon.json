@@ -1,0 +1,235 @@
+{
+  "id": "gemini-4-neon",
+  "name": "Gemini 4 Neon",
+  "maker": "Google",
+  "family": "Gemini 4",
+  "class": "Gemini Neon",
+  "generation": "4",
+  "released": "2026-11-18",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Gemini API (paid tier only)",
+    "Gemini Enterprise Agent Platform (GA; global, us and eu endpoints; verified enterprise customers in select regions) [cloud-model]",
+    "Google AI Studio (Google AI Pro and Ultra)",
+    "Gemini app and Google Antigravity (Google AI Pro and Ultra)",
+    "Gemini for business (API and model dropdown at launch)"
+  ],
+  "context_window": 1048576,
+  "max_output": 1048576,
+  "modalities": {
+    "input": [
+      "text",
+      "image",
+      "video",
+      "audio",
+      "pdf"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 3,
+    "output": 15,
+    "cached_input": 0.15,
+    "notes": "Paid tier only. Batch and Flex cost $1.50 input, $7.50 output and $0.075 cached input. Priority costs $5.40, $27 and $0.27 respectively. Gemini API USD per million tokens. Output includes thinking. Implicit caching only. [api-model]"
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 63.6,
+      "setting": "xhigh; pass@1, averaged over three repeats per task across all 66 tasks",
+      "harness": "mini-swe-agent",
+      "measured_by": "independent",
+      "source": "aa-terminal",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 61,
+      "setting": "xhigh; v5.0.1",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 60,
+      "setting": "high; v5.0.1",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 55,
+      "setting": "medium; v5.0.1",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index",
+      "score": 44,
+      "setting": "low; v5.0.1",
+      "harness": null,
+      "measured_by": "independent",
+      "source": "aa-model",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 58.6,
+      "setting": "xhigh; v2.1",
+      "harness": "Antigravity CLI",
+      "measured_by": "independent",
+      "source": "aa-coding",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Terminal-Bench 4.1",
+      "score": 65.2,
+      "setting": "xhigh; component of Coding Agent Index v2.1",
+      "harness": "Antigravity CLI",
+      "measured_by": "independent",
+      "source": "aa-coding",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Terminal-Bench 4.1",
+      "score": 61.2,
+      "setting": "xhigh; public leaderboard; 95% CI ±2.8 percentage points",
+      "harness": "Antigravity CLI",
+      "measured_by": "independent",
+      "source": "terminal-board",
+      "read": "2026-11-24"
+    }
+  ],
+  "prompting_guides": [
+    "https://aistudio.google.com/docs/whats-new-gemini-4-neon",
+    "https://aistudio.google.com/docs/choosing-a-model"
+  ],
+  "system_card": "https://deepmind.google/models/model-cards/gemini-4-neon/",
+  "model_page": "https://aistudio.google.com/docs/models/gemini-4-neon",
+  "sources": [
+    {
+      "id": "api-model",
+      "url": "https://aistudio.google.com/docs/models/gemini-4-neon",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "api-guide",
+      "url": "https://aistudio.google.com/docs/whats-new-gemini-4-neon",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "api-release",
+      "url": "https://aistudio.google.com/docs/changelog#11-18-2026",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "api-lifecycle",
+      "url": "https://aistudio.google.com/docs/deprecations#gemini-4-models",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "model-choice",
+      "url": "https://aistudio.google.com/docs/choosing-a-model",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "launch",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "model-card",
+      "url": "https://deepmind.google/models/model-cards/gemini-4-neon/",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cloud-model",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-neon",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "aa-model",
+      "url": "https://artificialanalysis.ai/models/gemini-4-neon",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-coding",
+      "url": "https://artificialanalysis.ai/agents/coding-agents",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "terminal-board",
+      "url": "https://www.tbench.ai/",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale-board",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr-horizons",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-terminal",
+      "url": "https://artificialanalysis.ai/evaluations/terminalbench-4-0",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    }
+  ],
+  "checked": "2026-11-24",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): no matching public result found in the Scale page returned",
+    "METR 50% time horizon: no matching estimate found in the time-horizon page returned"
+  ]
+}

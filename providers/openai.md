@@ -28,6 +28,14 @@ sources:
   - https://developers.openai.com/api/reference/overview (read 2026-11-03)
   - https://developers.openai.com/api/reference/workload-identity-federation (read 2026-11-03)
   - https://developers.openai.com/api/reference/resources/uploads/methods/create (read 2026-11-03)
+  - https://openai.com/index/introducing-gpt-6-2-astra-sol/ (read 2026-11-24)
+  - https://developers.openai.com/api/docs/models/gpt-6.2-astra (read 2026-11-24)
+  - https://developers.openai.com/api/docs/models/gpt-6.2-sol (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/latest-model (read 2026-11-24)
+  - https://developers.openai.com/api/docs/pricing (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/background (read 2026-11-24)
+  - https://developers.openai.com/api/docs/models/all (read 2026-11-24)
+  - https://developers.openai.com/api/docs/changelog (read 2026-11-24)
 ---
 
 # OpenAI API
@@ -38,14 +46,16 @@ OpenAI trains the GPT models and serves them through its own platform at develop
 
 ## Models offered
 
-The GPT-6 guide lists Astra, GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna as current options [as-of 2026-10-27] L [guide-oct27]. Terra has a 1,050,000-token window, 128,000 maximum output tokens and image input [terra-oct27]. The model catalogue also lists specialist models (a cybersecurity set and a life-sciences model, GPT-Rosalind), image generation, realtime, transcription and speech models; embeddings and moderation models are linked from the page's navigation. The main model overview does not list the two open-weight gpt-oss models; the all-models catalogue lists both [as-of 2026-11-03] L [models-all-nov03]. They also have their own model pages. [models, astra, oss120, oss20]
+The GPT-6.2 guide leads with GPT-6.2 Astra and GPT-6.2 Sol [as-of 2026-11-24] L [gpt62-guide]. The API catalogue still lists GPT-6 Astra and GPT-6.1 Sol [gpt62-catalogue]. Terra has a 1,050,000-token window, 128,000 maximum output tokens and image input [terra-oct27]. The model catalogue also lists specialist models (a cybersecurity set and a life-sciences model, GPT-Rosalind), image generation, realtime, transcription and speech models; embeddings and moderation models are linked from the page's navigation. The main model overview does not list the two open-weight gpt-oss models; the all-models catalogue lists both [as-of 2026-11-03] L [models-all-nov03]. They also have their own model pages. [models, astra, oss120, oss20]
 
 | Model file | API id | Note |
 | --- | --- | --- |
+| [GPT-6.2 Astra](../models/openai/gpt-6.2-astra.md) | `gpt-6.2-astra` | general availability from 2026-11-17, for demanding work [gpt62-launch, gpt62-changelog] |
+| [GPT-6.2 Sol](../models/openai/gpt-6.2-sol.md) | `gpt-6.2-sol` | general availability from 2026-11-17, for everyday work and agents [gpt62-launch, gpt62-changelog] |
 | [GPT-6 Astra](../models/openai/gpt-6-astra.md) | `gpt-6-astra` | $10 in, $1 cached, $50 out per Mtok on its page |
 | [GPT-6.1 Sol](../models/openai/gpt-6.1-sol.md) | `gpt-6.1-sol` | listed on the catalogue as near-Astra at lower cost |
 | [GPT-6.1 Terra](../models/openai/gpt-6.1-terra.md) | `gpt-6.1-terra` | visual reasoning, computer use and writing [as-of 2026-10-27] L [terra-oct27] |
-| [GPT-6 Sol](../models/openai/gpt-6-sol.md) | `gpt-6-sol` | has its own page; not among the current guide's lead entries |
+| GPT-6 Sol | `gpt-6-sol` | existing API model page lists GPT-6.1 Sol as a successor |
 | [GPT-6 Luna](../models/openai/gpt-6-luna.md) | `gpt-6-luna` | the efficient, high-volume model; Decisions is generally available [as-of 2026-10-27] [decisions-oct27] |
 | [Chat Latest](../models/openai/chat-latest.md) | `chat-latest` | rolling Instant alias; October 7 update has no numbered generation [as-of 2026-10-09] [chat-oct09, changelog-oct09] |
 | GPT-5.6 Sol | `gpt-5.6-sol` | previous generation |
@@ -58,6 +68,12 @@ The lineage, knowledge cutoffs and the effort levels each model accepts are in t
 ## API surface
 
 - **Protocols.** Its own two: Responses (`/v1/responses`) and Chat Completions (`/v1/chat/completions`), plus Batch, Files, embeddings, moderation, image, audio and Realtime endpoints. The Assistants API shut down on 2026-08-26; the replacements are Responses and Conversations. Its entries in the retention table are historical. [as-of 2026-10-09] L [deprecations-oct09, changelog-oct09] The GPT-6 models take Chat Completions, Responses and Batch, and not Realtime, Assistants or fine-tuning. [your-data, astra]
+- **GPT-6.2 endpoints and tools [as-of 2026-11-24].** Both model ids are available in Responses, Chat Completions and Batch. Use Responses for tool calling and the Multi-agent beta. The model pages list streaming, structured outputs, image input and prompt caching. L [gpt62-guide, gpt62-astra-api, gpt62-sol-api]
+- **Live [as-of 2026-11-24].** The separate Live API serves [GPT-Live 1.1](../models/openai/gpt-live-1.1.md)
+  and [GPT-Live 1](../models/openai/gpt-live-1.md) over WebRTC, WebSocket, and SIP. WebRTC can
+  keep a session connected in standby with the active model paused. L,
+  [API changelog](https://developers.openai.com/api/docs/changelog#nov-19) and
+  [Live sessions guide](https://developers.openai.com/api/docs/guides/live-conversations#configure-standby).
 - **Endpoint limits by model.** In Chat Completions, GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra accept no tools [as-of 2026-10-27] L [guide-oct27], and GPT-6 Sol and GPT-6 Luna accept tools only with `reasoning_effort: "none"`. Tool calling with reasoning on needs the Responses API. [latest]
 - **Decisions [as-of 2026-10-27].** Generally available at `POST /v1/decisions`, currently with `gpt-6-luna`; it supports up to 400 questions and shared-input caching. L [decisions-oct27].
   Shared text/image input is judged through `predicate`, `choice` and `score` questions. It returns
@@ -72,6 +88,7 @@ The lineage, knowledge cutoffs and the effort levels each model accepts are in t
 
 For a first-party API, parity means differences between endpoints and between OpenAI's own models, and the maker README records what other routes (Amazon Bedrock, Microsoft Foundry) list. [latest]
 
+- **GPT-6.2 limits and effort [as-of 2026-11-24].** Each model takes text and images and returns text. Each lists 1,050,000 context tokens, 922,000 maximum input tokens and 128,000 maximum output tokens. OpenAI recommends `medium` to start and `low` to replace `none` or `minimal`. The GPT-6.2 guide lists the sampling parameters to omit. L [gpt62-astra-api, gpt62-sol-api, gpt62-guide]
 - **Reasoning and effort [as-of 2026-11-03].** Astra and 6.1 Sol support `low`, `medium`, `high`, `xhigh` and `max`, but not `none`; 6.1 Terra, GPT-6 Sol and Luna also support `none`. With effort above `none`, remove `temperature`, `top_p` and `top_logprobs`, also `logprobs` in Chat Completions or `message.output_text.logprobs` from `include` in Responses. Reasoning summaries are opt-in; the reasoning guide says raw reasoning is not returned for its reasoning models. The maker README has the persisted-reasoning and `configuration_update` details. L [guide-nov03, reasoning-nov03]
 - **Tools.** In the Responses API the model page lists web search, file search, image generation, code interpreter, hosted shell, apply patch, skills, computer use, MCP and tool search for Astra. The maker README describes programmatic tool calling, async tool calling and a multi-agent mode; the multi-agent support list does not cover every model. [astra]
 - **Structured output [as-of 2026-11-03].** `response_format: {type: "json_schema"}` in Chat Completions and `text.format` in Responses use a supported JSON Schema subset; strict mode also constrains function calls. The guide's `response_format` section says first use of a schema adds latency for fine-tuned models and not for other models; other examples in the same guide state the first-use latency without that qualification. Runtime behaviour is UNVERIFIED. Refusals and incomplete responses need separate handling. JSON mode aims for valid JSON rather than schema adherence. L [structured-nov03]
@@ -83,6 +100,8 @@ For a first-party API, parity means differences between endpoints and between Op
 
 ## Pricing
 
+**GPT-6.2 [as-of 2026-11-24].** Standard short-context rates per million tokens are $8 input, $0.40 cached input and $40 output for Astra, and $2 input, $0.10 cached input and $10 output for Sol. A request above 272,000 input tokens pays double the input and cache rates and 1.5 times the output rate on the whole request. Batch costs half and Fast costs twice the applicable Standard rate. Ultrafast costs three times Standard through 2027-02-28 and six times Standard from 2027-03-01, Pacific time. Both models launch without Flex. Eligible, non-streaming Standard Responses background requests in the public beta cost 30 percent less for a two-hour completion window and 40 percent less for an eight-hour window. L [gpt62-pricing, gpt62-guide, gpt62-background]
+
 Per token with five pricing modes on one pricing page: Standard; Batch and Flex at 50 percent off most models; Fast, which the page says was the renamed Priority processing from 2026-07-30 and which it prices per model (the Astra page gives 2 times the applicable rate); and Ultrafast. **[as-of 2026-10-09]** Ultrafast costs 6 times Standard on both GPT-6 Astra and GPT-6.1 Sol. Sol short-context prices per Mtok are $12 input, $0.60 cached input, $15 cache write and $60 output; long-context prices are $24, $1.20, $30 and $90. L [pricing-oct09, ultrafast-oct09]. On Astra, requests above 272,000 input tokens pay 2 times the input and cached-input rates and 1.5 times the output rate. **[as-of 2026-10-27]** Cached input costs 10 percent of input on Astra and Luna and 5 percent on GPT-6.1 Sol and Terra. On supported Responses models, 30-minute writes cost 1.25 times input and 12-hour writes 2.5 times input, as total rates [pricing-oct27, cache-oct27]. Regional processing, which the page also calls data residency, adds 10 percent for models released on or after 2026-03-05, and FedRAMP endpoints take the same 10 percent from 2026-11-01 [as-of 2026-11-03] L [pricing-nov03]. Tools bill separately: web search $10 per 1,000 calls plus content tokens, file search $0.10 per GB-day (1 GB free) plus $2.50 per 1,000 calls, Hosted Shell and Code Interpreter containers $0.03 to $1.92 per 20-minute equivalent, depending on memory. Eligible container sessions bill per minute with a 5-minute minimum [as-of 2026-10-09] L [pricing-oct09]. The page mentions promotional pricing for GPT-5.6 Sol through 2026-11-21 and lists no general free tier or starter credit. Per-model prices are in the model files. [pricing]
 
 **API credits for ChatGPT subscribers [as-of 2026-11-03].** From 2026-10-28, an owner of an eligible, paid ChatGPT Pro or Business subscription can link it to an API organization that the same person owns and claim monthly API credits. The subscription must be at least seven days old and the linked accounts must use the same email address. The amounts are $100, $200 or $500 for the three Pro tiers, and $20 per paid Business Standard seat or $100 per paid Business Premium seat, with a pooled cap of $500 for each Business workspace each month. Unused credits expire at the end of the billing cycle. The first grant is prorated; a Business workspace that pays annually upfront receives a full year in one grant that expires at the end of the annual billing cycle, with a $6,000 cap per annual cycle. L [credits-nov03] The credits do not cover Codex use through API keys. When no free or purchased credit remains, requests fail with HTTP 429 and code `credit_balance_exhausted`. This is a subscription benefit, not a free API tier. L [changelog-oct31, credits-oct31]
@@ -92,6 +111,8 @@ Per token with five pricing modes on one pricing page: Standard; Batch and Flex 
 **Decisions pricing [as-of 2026-10-27].** `/v1/decisions` with GPT-6 Luna costs $0.10 per Mtok of uncached input. Cache reads and writes use the standard Luna cache rates; output is not charged. Long-context input and regional processing multipliers apply. L [decisions-oct27].
 
 ## Limits and data
+
+- **GPT-6.2 rate limits and residency [as-of 2026-11-24].** Both model pages list Standard Build, Launch and Grow rates of 5,000, 10,000 and 15,000 RPM, and 1 million, 4 million and 40 million TPM, respectively. Discounted background requests share a pool with Batch. Both models list US and EU residency for Standard, Fast and Batch. Ultrafast residency is US only. Approved organizations can use Zero Data Retention on eligible endpoints and features. L [gpt62-astra-api, gpt62-sol-api, gpt62-guide, gpt62-background]
 
 - **Rate limits [as-of 2026-10-09].** Limits use requests, tokens or images per minute, with other
   time units for some models. Batch counts queued input tokens in a separate pool; some families
@@ -106,6 +127,8 @@ Per token with five pricing modes on one pricing page: Standard; Batch and Flex 
 - **Retention and training [as-of 2026-11-03].** API data is not used for training unless the customer opts in. Default abuse-monitoring logs are retained up to 30 days, with stated exceptions. Responses application state is retained for at least 30 days by default or with `store: true`; it is distinct from abuse logs. The Batch guide says output files are deleted 30 days after completion. The upload reference says `purpose=batch` files expire after 30 days by default and other uploaded files persist until deleted, unless an expiration policy is set. Zero Data Retention and Modified Abuse Monitoring need prior approval; ZDR forces `store` to false, but endpoint and feature exceptions apply. Data sent to an MCP server follows that server's retention policy. L [data-nov03, batch-nov03, uploads-nov03]. The retention table still has entries for Assistants logs and state, but that API is retired [as-of 2026-10-09] L [deprecations-oct09, changelog-oct09].
 
 ## Notes for agents and harnesses
+
+- **GPT-6.2 conversation state [as-of 2026-11-24].** Put stable developer guidance first in Responses `input`. The API appends top-level `instructions` after `input`. Keep the history prefix unchanged to retain reasoning items and cache eligibility. Certain model, user and organization changes can also cause reasoning items to be dropped. In eligible Zero Data Retention use, replay prior output items in order, including encrypted reasoning items. L [gpt62-guide]
 
 - **Tools with reasoning need Responses [as-of 2026-11-03].** Tool calling on Astra, 6.1 Sol and 6.1 Terra requires Responses. GPT-6 Sol and Luna support function calling in Chat Completions only with effort `none`. L [guide-nov03]
 - **Sampling parameters and effort `none`.** OpenAI's page says `temperature`, `top_p`, `top_logprobs` (and `logprobs` on Chat Completions) are removed once effort is above `none`. Its effort lists give Astra and 6.1 Sol no `none` and no GPT-6 model a `minimal`, so an effort map that sends `none` or `minimal` for a cheap setting fails on those two. [latest]
@@ -170,3 +193,11 @@ Partial correction sources:
 | oss120-nov03 | https://developers.openai.com/api/docs/models/gpt-oss-120b | L | 2026-11-03 |
 | oss20-nov03 | https://developers.openai.com/api/docs/models/gpt-oss-20b | L | 2026-11-03 |
 | reasoning-nov03 | https://developers.openai.com/api/docs/guides/reasoning | L | 2026-11-03 |
+| gpt62-launch | https://openai.com/index/introducing-gpt-6-2-astra-sol/ | L | 2026-11-24 |
+| gpt62-astra-api | https://developers.openai.com/api/docs/models/gpt-6.2-astra | L | 2026-11-24 |
+| gpt62-sol-api | https://developers.openai.com/api/docs/models/gpt-6.2-sol | L | 2026-11-24 |
+| gpt62-guide | https://developers.openai.com/api/docs/guides/latest-model | L | 2026-11-24 |
+| gpt62-pricing | https://developers.openai.com/api/docs/pricing | L | 2026-11-24 |
+| gpt62-background | https://developers.openai.com/api/docs/guides/background | L | 2026-11-24 |
+| gpt62-catalogue | https://developers.openai.com/api/docs/models/all | L | 2026-11-24 |
+| gpt62-changelog | https://developers.openai.com/api/docs/changelog | L | 2026-11-24 |

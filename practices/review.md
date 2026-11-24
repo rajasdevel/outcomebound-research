@@ -281,6 +281,9 @@ every later finding into its own ticket is the other failure: [work-breakdown.md
 
 ## 6. Verifying that accepted fixes landed (STABLE)
 
+[AI-assisted mathematics](ai-assisted-mathematics.md) gives examples of expert review of a formal
+statement and of the proof that checks against it.
+
 - **A fix round needs its own reading.** After the outside findings on the first tool were
   fixed, a reader with fresh context re-ran the review's counter-examples as probes rather than
   trusting the new tests: most findings closed, one closed only partly, and new

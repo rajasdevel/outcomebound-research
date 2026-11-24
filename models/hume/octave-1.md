@@ -21,6 +21,9 @@ sources:
 
 Hume Octave 1 is a speech synthesis model of the Hume Octave class, generation 1. Hume calls it a speech-language model. It takes natural-language acting instructions and voice descriptions, so a user can direct emotion, style and pace beyond choosing a voice. Hume published it on 2025-02-26. The whole TTS API, with Octave 2, ends on 2026-11-13. Family-wide rules are in the [Hume README](README.md).
 
+For the later documentation status and the unresolved question of endpoint access, see
+[Hume's maker page](README.md).
+
 ## At a glance
 
 <!-- card:begin -->

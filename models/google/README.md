@@ -125,6 +125,9 @@ sources:
   - https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/ (read 2026-10-31)
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes (read 2026-10-31)
   - https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash (read 2026-10-31)
+  - https://aistudio.google.com/docs/deprecations#gemini-4-models (read 2026-11-24)
+  - https://aistudio.google.com/docs/changelog (read 2026-11-24)
+  - https://aistudio.google.com/docs/choosing-a-model (read 2026-11-24)
 ---
 
 # Google models
@@ -137,7 +140,7 @@ Evidence classes in this folder: L is Google's own documentation or announcement
 
 ### Classes in this library
 
-The library keeps two generations of each class: the current one and the one before it. Google numbers Gemini generations 3, 3.1, 3.5, 3.6, 3.7 and 3.8 inside the Gemini 3 family, and 4 for Argon and ([as-of 2026-10-31]) for Carbon.
+The library keeps two generations of each class: the current one and the one before it. Google numbers Gemini generations 3, 3.1, 3.5, 3.6, 3.7 and 3.8 inside the Gemini 3 family, and 4 for Argon, Carbon, Hydrogen and Neon [as-of 2026-11-24; L: g4-release, g4-lifecycle].
 
 | Class | Current generation | Previous generation | Status on 2026-10-03 |
 | --- | --- | --- | --- |
@@ -152,10 +155,12 @@ The library keeps two generations of each class: the current one and the one bef
 | Gemini Transcribe (speech recognition) | [3.5 Transcribe](gemini-3.5-transcribe.md), GA 2026-08-26 | none found in the official inventory | [as-of 2026-10-09] Dedicated file transcription fits the format's transcription scope [L: google-inventory-october, google-releases-october] |
 | Gemini Transcribe Live (speech recognition) | [3.5 Transcribe Live](gemini-3.5-transcribe-live.md), GA 2026-08-26 | none found in the official inventory | [as-of 2026-10-09] A distinct selectable streaming model; same generation number does not make it a reasoning level of file Transcribe [L: google-inventory-october, google-releases-october] |
 | Gemini Argon | [4 Argon](gemini-4-argon.md), announced 2026-09-30, generally available 2026-10-13 | none | [as-of 2026-10-31] Stable as `gemini-4-argon` on the Gemini API (paid tier only) and GA on Agent Platform. Introductory price $2 input and $10 output per million tokens through 2026-11-30, then $4 and $20. Agent Platform also offers `gemini-4-argon-cyber-permissive`, a defensive-cyber version, behind the Fairwind allowlist [L: google-changelog-oct31, google-argon-spec-oct31, google-latest-model-oct31, google-cloud-release-notes-oct31] |
-| Gemini Carbon | none: Gemini 4 Carbon, announced 2026-10-28 | none | [as-of 2026-10-31] Restricted. Google offers it to a subset of cyber defenders, and says access will widen through the Fairwind Program. No API id is published, the API model page returns not-found, and the models, pricing and changelog pages do not name it, so it has no card or file. The announcement gives an introductory price equal to Argon's ($2 input, $10 output, then $4 and $20). Maker-reported figures in the announcement: Artificial Analysis Intelligence Index v5.0 59 (ranked first), SEC-bench Pro 88.2 percent, ExploitGym 54.8 percent, CWE-bench 71.0 percent and a 0.0 percent attack success rate on Gray Swan's indirect prompt-injection benchmark (Argon 0.7). Google says it ran the external security benchmarks without guardrails [L: google-gemini-4-carbon, google-inventory-oct31] |
+| Gemini Carbon | [4 Carbon](gemini-4-carbon.md), announced 2026-10-28, API GA 2026-11-10 | none | [as-of 2026-11-24] Stable as `gemini-4-carbon` on the paid API tier. Google recommends it for its most difficult reasoning and debugging tasks [L: g4-release, g4-choice] |
+| Gemini Hydrogen | [4 Hydrogen](gemini-4-hydrogen.md), API GA 2026-11-12 | none | [as-of 2026-11-24] Stable as `gemini-4-hydrogen` on the free and paid API tiers. Google recommends it for everyday coding and as an upgrade from 3.8 Flash [L: g4-release, g4-choice] |
+| Gemini Neon | [4 Neon](gemini-4-neon.md), API GA 2026-11-18 | none | [as-of 2026-11-24] Stable as `gemini-4-neon` on the paid API tier. Google recommends it for complex engineering and as an upgrade from 3.1 Pro Preview [L: g4-release, g4-choice] |
 | Gemma (open weights) | Gemma 4 in five sizes: [E2B](gemma-4-e2b-it.md), [E4B](gemma-4-e4b-it.md), [12B](gemma-4-12b-it.md), [26B A4B](gemma-4-26b-a4b-it.md), [31B](gemma-4-31b-it.md) | Gemma 3 (class Gemma, generation 3), in five instruction-tuned sizes: [270M](gemma-3-270m-it.md) (2025-08-14), [1B](gemma-3-1b-it.md), [4B](gemma-3-4b-it.md), [12B](gemma-3-12b-it.md) and [27B](gemma-3-27b-it.md) (all 2025-03-10); and Gemma 3n, the on-device models [E2B](gemma-3n-e2b-it.md) and [E4B](gemma-3n-e4b-it.md) (2025-06-26), recorded here as part of generation 3 so that the class holds two generations | Google's release list shows the E2B, E4B, 26B A4B and 31B sizes on 2026-03-31 and the 12B on 2026-06-03. Gemma uses its own chat format and special tokens, not Gemini's [L: gemma-releases, gemma-formatting] |
 
-Models that exist but have no file here: 3.6 Flash (2026-07-21), 3.5 Flash (2026-05-19) and 3 Flash Preview (2025-12-17), all older than the two generations in scope ([as-of 2026-10-31] 3.5 Flash is deprecated on the Gemini API since 2026-10-08, and its requests are routed to 3.6 Flash [L: google-changelog-oct31, google-deprecations-oct31]); Gemini 4 Carbon, which is restricted (see the table); the 3.8 Flash Cyber variant (id gemini-3.8-flash-cyber), a post-trained version of 3.8 Flash that Google Cloud lists as generally available behind an allowlist, with access through a Google account team or the Fairwind Program; Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, a third generation of the Flash TTS class, and gemini-2.5-flash-preview-tts on the Gemini API), and Google Cloud's Chirp 3: HD voices, which take pace, pause and pronunciation controls and no direction for emotion or style [L: gemini-tts-guide, gemini-tts-cloud, gemini-deprecations, gemini-chirp3], the 2.5 native-audio Live models that the 3.8 generation replaces, and Google's image-generation, video-generation, embedding and robotics models, which are other classes [L: gemini-models-page, google-3-8-flash-blog, gemini-cloud-3-8-flash-cyber].
+Models that exist but have no file here: 3.6 Flash (2026-07-21), 3.5 Flash (2026-05-19) and 3 Flash Preview (2025-12-17), all older than the two generations in scope ([as-of 2026-10-31] 3.5 Flash is deprecated on the Gemini API since 2026-10-08, and its requests are routed to 3.6 Flash [L: google-changelog-oct31, google-deprecations-oct31]); the 3.8 Flash Cyber variant (id gemini-3.8-flash-cyber), a post-trained version of 3.8 Flash that Google Cloud lists as generally available behind an allowlist, with access through a Google account team or the Fairwind Program; Gemini 2.5 Flash TTS (gemini-2.5-flash-tts on Google Cloud, a third generation of the Flash TTS class, and gemini-2.5-flash-preview-tts on the Gemini API), and Google Cloud's Chirp 3: HD voices, which take pace, pause and pronunciation controls and no direction for emotion or style [L: gemini-tts-guide, gemini-tts-cloud, gemini-deprecations, gemini-chirp3], the 2.5 native-audio Live models that the 3.8 generation replaces, and Google's image-generation, video-generation, embedding and robotics models, which are other classes [L: gemini-models-page, google-3-8-flash-blog, gemini-cloud-3-8-flash-cyber].
 
 Gemini 3.5 Pro was announced in May 2026 with a rollout promised for the following month. It is absent from the API model list, the DeepMind Gemini page and the changelog on 2026-10-03. Press accounts describe an indefinite delay with partner testing and no cancellation notice [A: letsdatascience-3-5-pro, gemini-models-page, gemini-deepmind-page].
 
@@ -205,6 +210,9 @@ Google's model cards name a base model for each release and defer to that model'
 | 2026-10-13 | 4 Argon generally available | `gemini-4-argon`: one 1,048,576-token window for input and output, long decode past 64K output tokens, thinking levels low, medium (default) and high, explicit caching not supported, sampling parameters ignored [L: google-changelog-oct31, google-latest-model-oct31, google-argon-spec-oct31] |
 | 2026-10-26 | Generate Content storage on by default | New paid-tier projects store Generate Content requests by default (`store=true`), as the Interactions API does [L: google-changelog-oct31, google-logs-oct31] |
 | 2026-10-28 | Gemini 4 Carbon announced | Restricted to a subset of cyber defenders; no API id [L: google-gemini-4-carbon] |
+| 2026-11-10 | Gemini 4 Carbon API GA | Paid tier [L: g4-release, g4-lifecycle] |
+| 2026-11-12 | Gemini 4 Hydrogen API GA | Free and paid tiers [L: g4-release, g4-lifecycle] |
+| 2026-11-18 | Gemini 4 Neon API GA | Paid tier [L: g4-release, g4-lifecycle] |
 | 2026-10-30 | Computer use generally available | GA on the Interactions and GenerateContent APIs [L: google-changelog-oct31] |
 
 ### Product names that moved
@@ -586,7 +594,7 @@ Per token on the Gemini API pricing page. 3.8 Flash TTS costs US$0.50 per Mtok o
 ## Open questions
 
 - Whether Google will ship a generally available Pro model: 3.1 Pro has been in preview since February 2026 and 3.5 Pro has no release date.
-- [as-of 2026-10-31] When Gemini 4 Carbon reaches the API, with what model id, limits and guidance. Argon's id, effort levels and guide are now published.
+- [as-of 2026-11-24] The Gemini API lifecycle table gives no shutdown date for any of the four stable Gemini 4 models [L: g4-lifecycle].
 - Whether the knowledge cutoff for 3.5 to 3.8 Flash is January 2025, March 2026 or domain-dependent in a way users can predict.
 - Why Google's own benchmark numbers for one model differ between pages.
 - Whether future Gemini generations will reject the sampling parameters with an error, as Google's July 2026 notice says they will.
@@ -730,3 +738,9 @@ Read 2026-10-31 (these sections carry `[as-of 2026-10-31]`; the whole document w
 - google-gemini-4-carbon (L, read 2026-10-31): https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/
 - google-cloud-release-notes-oct31 (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes
 - google-cloud-3-7-oct31 (L, read 2026-10-31): https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/3-7-flash
+
+Read 2026-11-24 (class L), for the Gemini 4 inventory
+
+- g4-release https://aistudio.google.com/docs/changelog
+- g4-lifecycle https://aistudio.google.com/docs/deprecations#gemini-4-models
+- g4-choice https://aistudio.google.com/docs/choosing-a-model

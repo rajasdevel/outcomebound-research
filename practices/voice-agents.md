@@ -427,6 +427,9 @@ speaking rate, emotion or the sound of the voice into rules about the words prod
 
 ## 6. Tools during a call (MONITOR)
 
+The [Cursor voice-chat case](../harnesses/cursor.md#13-voice-chat-as-of-2026-11-24) gives one
+example of a voice agent that stays available during work delegated to a separate coding agent.
+
 - **Synchronous and asynchronous.** In Gemini 3.8 Live the default function mode is non-blocking.
   Scheduling can be `SILENT`, `WHEN_IDLE` or `INTERRUPTED`, so the model uses a result without
   speaking, after it finishes, or at once. Gemini 3.8 Live Extended Thinking supports only
@@ -503,6 +506,16 @@ L.
 - **Closing idle sessions.** OpenAI says to close a GPT-Live session during long gaps and to pick an
   idle timeout by comparing avoided minutes with the cost and delay of a new session. Muting the
   microphone does not stop the session [chk-oai-live-sessions, chk-oai-cost]. L.
+- **[As of 2026-11-24] WebRTC standby.** OpenAI announced GPT-Live 1.1 for the Live API on
+  2026-11-19 and documented standby on WebRTC for both GPT-Live 1 and 1.1. Keep the microphone
+  track active and set a speech wake policy with a 5–60 s idle timeout to keep the call
+  connected while inference pauses. Speech resumes the same session. The rates are US$0.05/min
+  active and US$0.02/min in standby. Backend charges are separate. For 1.1, give backend handoff
+  rules in plain language. L, sources read 2026-11-24.
+  [Release](https://developers.openai.com/api/docs/changelog#nov-19) ·
+  [Standby settings](https://developers.openai.com/api/docs/guides/live-conversations#configure-standby) ·
+  [Pricing](https://developers.openai.com/api/docs/pricing#live-session-duration) ·
+  [Model and prompting](../models/openai/gpt-live-1.1.md)
 - **Compression has a cost.** Google says compression "might impact the quality of the conversation"
   since the model drops early history. OpenAI says older details "may be summarized or omitted" and
   that important facts and current task state belong in the application [chk-g-vertex-trouble,

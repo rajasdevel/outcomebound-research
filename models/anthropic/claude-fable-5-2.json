@@ -1,0 +1,279 @@
+{
+  "id": "claude-fable-5-2",
+  "name": "Claude Fable 5.2",
+  "maker": "Anthropic",
+  "family": "Claude Fable 5",
+  "class": "Claude Fable",
+  "generation": "5.2",
+  "released": "2026-11-09",
+  "status": "ga",
+  "retires": null,
+  "weights": "closed",
+  "access": [
+    "Claude API",
+    "Claude apps (claude.ai)",
+    "Claude Code",
+    "Amazon Bedrock (bedrock-runtime)",
+    "Claude Platform on AWS",
+    "Claude Models on Google Cloud (Anthropic managed)",
+    "Claude Models on Google Cloud (Google managed)",
+    "Microsoft Foundry"
+  ],
+  "context_window": 1000000,
+  "max_output": 128000,
+  "modalities": {
+    "input": [
+      "text",
+      "image"
+    ],
+    "output": [
+      "text"
+    ]
+  },
+  "voice": null,
+  "reasoning": {
+    "control": "effort",
+    "levels": [
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "default": "high"
+  },
+  "pricing_usd_per_mtok": {
+    "input": 8,
+    "output": 40,
+    "cached_input": 0.2,
+    "notes": "Standard Claude API list price. Cache writes are $10 for the 5-minute tier and $16 for the 1-hour tier. Batch is $4 input and $20 output. Fast mode is $16 input and $80 output on the Claude API [pricing]."
+  },
+  "benchmarks": [
+    {
+      "name": "Terminal-Bench 4.0",
+      "score": 65.76,
+      "setting": "max; 330 trials",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "terminal",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0.1)",
+      "score": 53.92,
+      "setting": "low, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0.1)",
+      "score": 56.41,
+      "setting": "medium, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0.1)",
+      "score": 61.82,
+      "setting": "high, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0.1)",
+      "score": 62.22,
+      "setting": "xhigh, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Intelligence Index (v5.0.1)",
+      "score": 64.56,
+      "setting": "max, default fallback",
+      "harness": "Artificial Analysis",
+      "measured_by": "independent",
+      "source": "aa",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 47.96,
+      "setting": "low, default fallback; composite scaled from 0–1 to 0–100",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-agent",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 53.04,
+      "setting": "medium, default fallback; composite scaled from 0–1 to 0–100",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-agent",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 58.24,
+      "setting": "high, default fallback; composite scaled from 0–1 to 0–100",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-agent",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 58.47,
+      "setting": "xhigh, default fallback; composite scaled from 0–1 to 0–100",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-agent",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "Artificial Analysis Coding Agent Index",
+      "score": 55.74,
+      "setting": "max, default fallback; composite scaled from 0–1 to 0–100",
+      "harness": "Claude Code",
+      "measured_by": "independent",
+      "source": "aa-agent",
+      "read": "2026-11-24"
+    },
+    {
+      "name": "FrontierCode 2.0",
+      "score": 49.1,
+      "setting": "xhigh",
+      "harness": null,
+      "measured_by": "maker",
+      "source": "announcement",
+      "read": "2026-11-24"
+    }
+  ],
+  "prompting_guides": [
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2"
+  ],
+  "system_card": "https://www.anthropic.com/document/claude-fable-5-2-mythos-5-2-system-card",
+  "model_page": "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+  "sources": [
+    {
+      "id": "release",
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "overview",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "new",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "migration",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-2/migration-guide",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "prompt",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "effort",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/effort",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "pricing",
+      "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "announcement",
+      "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "system",
+      "url": "https://www.anthropic.com/document/claude-fable-5-2-mythos-5-2-system-card",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "terminal",
+      "url": "https://www.tbench.ai/leaderboard/terminal-bench/4.0",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "scale",
+      "url": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa",
+      "url": "https://artificialanalysis.ai/models/claude-fable-5-2",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "aa-agent",
+      "url": "https://artificialanalysis.ai/agents/coding",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "metr",
+      "url": "https://metr.org/time-horizons/",
+      "read": "2026-11-24",
+      "kind": "M",
+      "quote": null
+    },
+    {
+      "id": "api-version",
+      "url": "https://platform.claude.com/docs/en/api/migration-2026-10-21",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    }
+  ],
+  "checked": "2026-11-24",
+  "unknown": [
+    "SWE-Bench Pro (Scale, public V2): the public leaderboard lists Fable 5.1 and gives no Fable 5.2 row.",
+    "Artificial Analysis Coding Agent Index: the exact Terminal-Bench minor version for the Fable 5.2 rows is unclear. The page's index description names 4.1 and the row data says v4.",
+    "METR 50% time horizon: METR's public time-horizon page gives no Fable 5.2 result."
+  ]
+}

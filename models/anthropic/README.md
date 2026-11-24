@@ -64,13 +64,17 @@ sources:
   - https://metr.org/time-horizons/
   - https://platform.claude.com/docs/en/build-with-claude/fast-mode (read 2026-10-31)
   - https://platform.claude.com/docs/en/api/migration-2026-10-21 (read 2026-10-31)
+  - https://platform.claude.com/docs/en/models/fable-5-2/overview (read 2026-11-24)
+  - https://platform.claude.com/docs/en/models/fable-5-2/migration-guide (read 2026-11-24)
+  - https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2 (read 2026-11-24)
+  - https://www.anthropic.com/claude-fable-and-mythos-5-2 (read 2026-11-24)
 ---
 
 # Anthropic models
 
 Anthropic's Claude models are served through its own API (the Messages API), through Amazon Bedrock,
 Google Cloud, Microsoft Foundry and Claude Platform on AWS, and through Anthropic's apps and Claude Code.
-This folder holds eight models in the current and previous generation of four classes: Fable, Opus,
+This folder covers models in four classes: Fable, Opus,
 Sonnet and Haiku. This page carries what holds for all of them: the lineage, the API surface, what
 the maker's prompting guides say, how to read a system card, and the behaviour the models share. Each
 model file says what differs for its model and links back here.
@@ -88,8 +92,8 @@ the small, fast class. [models-overview, ann-fable51]
 
 | Model (file) | API id | Released | Status at stated check | Retirement commitment | Context / max output | List price in / out per Mtok | Default effort |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [Claude Fable 5.1](claude-fable-5-1.md) | `claude-fable-5-1` | 2026-09-01 | active, latest Fable | not sooner than 2027-09-01 | 1M / 128k | $10 / $50 | `high` |
-| [Claude Fable 5](claude-fable-5.md) | `claude-fable-5` | 2026-06-09 | active, legacy | not sooner than 2027-06-09 | 1M / 128k | $10 / $50 | `high` |
+| [Claude Fable 5.2](claude-fable-5-2.md) | `claude-fable-5-2` | 2026-11-09 | active, latest Fable (2026-11-24) | not sooner than 2027-11-09 | 1M / 128k | $8 / $40 | `high` |
+| [Claude Fable 5.1](claude-fable-5-1.md) | `claude-fable-5-1` | 2026-09-01 | previous Fable (2026-11-24) | not sooner than 2027-09-01 | 1M / 128k | $10 / $50 | `high` |
 | [Claude Opus 5.5](claude-opus-5-5.md) | `claude-opus-5-5` | 2026-09-22 | active, latest Opus | not sooner than 2027-09-22 | 1M / 128k | $4 / $20 | `medium` |
 | [Claude Opus 5](claude-opus-5.md) | `claude-opus-5` | 2026-07-24 | active, legacy | not sooner than 2027-07-24 | 1M / 128k | $5 / $25 | `high` |
 | [Claude Sonnet 5.5](claude-sonnet-5-5.md) | `claude-sonnet-5-5` | 2026-09-28 | active, latest Sonnet | not sooner than 2027-09-28 | 1M / 128k | $2 / $10 | `high` on the API |
@@ -97,8 +101,9 @@ the small, fast class. [models-overview, ann-fable51]
 | [Claude Haiku 5.5](claude-haiku-5-5.md) | `claude-haiku-5-5` | 2026-10-07 | active, latest Haiku (2026-10-09) | not sooner than 2027-10-07 | 1M / 128k | $0.10 / $0.50 up to 100k input; $0.50 / $2.50 above | `medium` |
 | [Claude Haiku 4.5](claude-haiku-4-5.md) | `claude-haiku-4-5-20251001` (alias `claude-haiku-4-5`) | 2025-10-15 | previous Haiku (2026-10-09) | not sooner than 2026-10-15 | 200k / 64k | $1 / $5 | no effort parameter |
 
-The Haiku 5.5 row and the previous-generation status of Haiku 4.5 are checked on 2026-10-09 (L)
-[page-haiku55, ann-haiku55]. Other rows retain the document's 2026-10-03 check date.
+The Fable 5.2 row and the previous-generation status of Fable 5.1 were checked on 2026-11-24. (L)
+[page-fable52, models-nov24] The Haiku 5.5 row and the previous-generation status of Haiku 4.5 were
+checked on 2026-10-09. (L) [page-haiku55, ann-haiku55] Other row details retain the 2026-10-03 check date.
 
 What replaced what, from Anthropic's release notes, model pages and deprecation page [relnotes,
 deprecations]:
@@ -107,6 +112,9 @@ deprecations]:
   government applied export controls to both models and Anthropic suspended access for all users;
   the controls were lifted on 2026-06-30 and access returned on 2026-07-01. Fable 5.1 followed on
   2026-09-01 at the same list prices with cache reads cut to a quarter of the Fable 5 rate. [redeploy]
+  Fable 5.2 followed on 2026-11-09. Anthropic says Fable 5.2 and Mythos 5.2 use the same underlying
+  model with different safeguards. Fable 5.2 is open to all Claude API customers and Mythos 5.2 is
+  limited to verified organizations. [as-of 2026-11-24] (L) [page-fable52, ann-fable52]
 - **Opus.** Opus 5 (2026-07-24) replaced Opus 4.8 at $5 / $25. Opus 5.5 (2026-09-22) replaced Opus 5 at
   $4 / $20, with a cache-read price 60 percent lower than Opus 5's. Anthropic calls it the first model of its
   Claude 5.5 family. [ann-opus55]
@@ -122,12 +130,10 @@ deprecations]:
 Older Claude models (Opus 4.5 to 4.8, Sonnet 4.5 and 4.6, Mythos Preview) are outside this folder's scope.
 Sonnet 4.5 was deprecated on 2026-09-30, with retirement set for 2026-11-30. [deprecations]
 
-Anthropic's own recommendation on its models overview is to start with Opus 5.5 for most workloads, to use
-Fable 5.1 for demanding reasoning and long-horizon agentic work or where Opus 5.5 at higher effort still falls
-short, and to treat Haiku 5.5 as the fastest current model at standard speed
-[as-of 2026-10-09] (L) [models-current, ann-haiku55]. The Fable 5.1 "what's new" and overview pages still say to
-start with Claude Opus 5 (they predate Opus 5.5), so two pages of the same site disagree. [models-overview,
-page-fable51]
+Anthropic recommends Opus 5.5 for most workloads and Fable 5.2 for demanding reasoning and long-horizon
+agent work, including when Opus 5.5 at higher effort falls short in evaluations.
+[as-of 2026-11-24] (L) [models-nov24] In its October comparison, Anthropic listed Haiku 5.5 as the
+fastest at standard speed. [as-of 2026-10-09] (L) [models-current, ann-haiku55]
 
 "Legacy" is Anthropic's word for an older model that is still active, will not be updated and may be deprecated
 later. No in-scope model has a deprecation announced. The retirement column is a "not sooner than" floor on
@@ -273,6 +279,11 @@ no fallback credit; a manual model switch writes a new cache at full price. [as-
 
 ## Prompting guides
 
+**Fable 5.2 [as-of 2026-11-24].** Anthropic advises retesting effort settings during migration, stating
+the completion conditions for multistep tasks, and specifying who owns the code and which edits are in
+scope. Its guide also explains how a client can surface progress updates during long tool runs. (L)
+[prompt-fable52]
+
 Anthropic publishes one general page and one guide per model. The general page,
 [Prompting best practices](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices),
 is organised as model-specific notes first, then techniques for all current models, then migration notes; it
@@ -380,6 +391,12 @@ and cite an August 2026 Risk Report that is not model-specific. [sc-haiku45, sc-
 
 ## Family-wide behaviour
 
+**Fable 5.2 prefix validation [as-of 2026-11-24].** The API returns HTTP 400 by default for any
+account if the client resends a thinking block after it changes the preceding system prompt,
+tools, or messages.
+The [model file](claude-fable-5-2.md) describes the migration and cross-model thinking compatibility.
+(L) [migrate-fable52]
+
 These hold across the 5-series unless the model file says otherwise (L, from the guides, what's-new pages and system
 cards listed in Sources):
 
@@ -449,6 +466,14 @@ cards listed in Sources):
   stable across models) is unknown.
 
 ## Sources
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| page-fable52 | https://platform.claude.com/docs/en/models/fable-5-2/overview | L | 2026-11-24 |
+| models-nov24 | https://platform.claude.com/docs/en/about-claude/models/overview | L | 2026-11-24 |
+| migrate-fable52 | https://platform.claude.com/docs/en/models/fable-5-2/migration-guide | L | 2026-11-24 |
+| prompt-fable52 | https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2 | L | 2026-11-24 |
+| ann-fable52 | https://www.anthropic.com/claude-fable-and-mythos-5-2 | L | 2026-11-24 |
 
 Old ids below retain their 2026-10-03 read date. The second table holds only sources read on 2026-10-09; the document was not fully re-verified.
 

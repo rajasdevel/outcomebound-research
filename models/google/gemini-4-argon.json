@@ -407,6 +407,20 @@
       "read": "2026-11-03",
       "kind": "M",
       "quote": null
+    },
+    {
+      "id": "api-lifecycle-nov24",
+      "url": "https://aistudio.google.com/docs/deprecations#gemini-4-models",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "cloud-argon-nov24",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/gemini/4-argon",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",

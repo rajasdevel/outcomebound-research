@@ -2,6 +2,8 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Amp changes its loading, skills and plugin API between releases; several of its pages carry no version)
 sources:
+  - https://ampcode.com/news/bye-bye-dial (read 2026-11-24)
+  - https://ampcode.com/news/spaces (read 2026-11-24)
   - https://ampcode.com/docs/customize/agents-md (read 2026-11-03)
   - https://ampcode.com/docs/customize/skills (read 2026-11-03)
   - https://ampcode.com/docs/customize/plugins (read 2026-11-03)
@@ -132,6 +134,18 @@ that wait, the turn can start before plugin loading finishes and lifecycle event
 L, [execute mode](https://ampcode.com/docs/cli/execute-mode), read 2026-11-03.
 
 ## 7. Observing what loaded, and rendering
+
+**Model selection [as-of 2026-11-24].** Amp replaced its four Dial modes with a selector on
+2026-11-12. Users can pick a model and effort per thread and change both during a thread. The
+next user message uses the new selection, with the model-specific prompt and tools. Amp says
+that a model switch reads the thread without the previous model's prompt cache. The selector
+shows the billing route. Existing threads retain their model until changed, and plugin-agent
+threads keep their agent. L, [Amp announcement](https://ampcode.com/news/bye-bye-dial).
+
+**Spaces [as-of 2026-11-24].** A space has a coordinator that creates and organizes agent
+threads. Amp's launch post describes its own team using a space to hand work to separate
+threads and collect it for review. L for the feature, A for the team's experience,
+[Amp Spaces](https://ampcode.com/news/spaces), published 2026-11-06.
 
 [as-of 2026-11-03]
 

@@ -3,6 +3,7 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: first-party lab API
 sources:
+  - https://api-docs.deepseek.com/updates/ (read 2026-11-24)
   - https://api-docs.deepseek.com/quick_start/pricing
   - https://api-docs.deepseek.com/quick_start/rate_limit
   - https://api-docs.deepseek.com/guides/anthropic_api
@@ -43,6 +44,12 @@ The maker README records that `deepseek-chat` and `deepseek-reasoner` were annou
 - **Search and Fetch [as-of 2026-10-31].** Two standalone JSON APIs from 2026-10-17, on the same base URL and bearer key: `POST /v1/tools/search` (web results from DeepSeek's own search engine, 1 to 50 results, query operators such as `site:` and `after:`) and `POST /v1/tools/fetch` (one page as Markdown). Account limits are 100 requests a second for Search and 25 for Fetch, separate from the model concurrency limits, and Fetch also has a per-domain limit. [search, updates-1031]
 
 ## Feature parity
+
+**Standalone application APIs [as-of 2026-11-24].** DeepSeek's November 13 release notes
+announce separate APIs for search and fetch, optical character recognition, automatic speech
+recognition, and text-to-speech. The announcement also covers features of the DeepSeek app.
+The individual API guides determine which features each endpoint offers. L,
+[DeepSeek changelog](https://api-docs.deepseek.com/updates/).
 
 This is the maker's own API; parity here means what each format passes through. [anthropic, thinking, json]
 

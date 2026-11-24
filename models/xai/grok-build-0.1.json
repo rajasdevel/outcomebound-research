@@ -6,8 +6,8 @@
   "class": "Grok Build",
   "generation": "0.1",
   "released": "2026-05-29",
-  "status": "preview",
-  "retires": null,
+  "status": "deprecated",
+  "retires": "2026-11-19",
   "weights": "closed",
   "access": [
     "SpaceXAI API",
@@ -56,6 +56,13 @@
   "system_card": null,
   "model_page": "https://docs.x.ai/developers/models/grok-build-0.1",
   "sources": [
+    {
+      "id": "xai-build01-eol",
+      "url": "https://docs.x.ai/developers/release-notes",
+      "read": "2026-11-24",
+      "kind": "L",
+      "quote": null
+    },
     {
       "id": "xai-build01-news",
       "url": "https://x.ai/news/grok-build-0-1",

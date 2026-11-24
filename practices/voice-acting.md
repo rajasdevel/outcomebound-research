@@ -569,9 +569,10 @@ L.
   describe emotion control as beta, as experimental and, for Sonic 3.6, as not needing markup. One
   Cartesia documentation URL redirected to a login page on 2026-10-04, so the Markdown versions of the
   pages were read.
-- The Hume overview page says its text-to-speech and conversation APIs end on 2026-11-13. Octave 2 is a
-  preview, and the `description` field works only on Octave 1. The Hume maker page,
-  [the Hume folder](../models/hume/README.md), tracks the end date [vd-hume-ov].
+- **Hume [as-of 2026-11-24].** The earlier overview scheduled the TTS and conversation API sunset
+  for 2026-11-13. The former TTS overview now redirects to Audio Decisions documentation. The
+  Octave 2 preview and Octave 1's `description` field describe the historical TTS offering.
+  See the [Hume maker page](../models/hume/README.md) for the status and remaining access question.
 - OpenAI lists its text-to-speech models, including `gpt-4o-mini-tts`, for removal on 2027-01-06 and
   names `gpt-realtime-2.1-mini` as the replacement. The OpenAI guide on custom voices was read, and its
   limits may change [vd-oai-dep, vd-oai-voices].

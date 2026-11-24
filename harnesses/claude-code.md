@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Claude Code ships several releases a week; loading, hooks and settings keys change between them)
 sources:
+  - https://github.com/anthropics/claude-code/releases/tag/v2.1.331 (read 2026-11-24)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.314 (read 2026-10-31)
   - https://github.com/anthropics/claude-code/releases/tag/v2.1.316 (read 2026-10-31)
   - https://code.claude.com/docs/en/env-vars (read 2026-10-31)
@@ -642,6 +643,17 @@ pages did not name `CLAUDE_CODE_SUBAGENT_EFFORT` or `CLAUDE_CODE_DISABLE_ULTRATH
   again after 2026-11-30.
 - **Ultrathink.** 2.1.316 adds `CLAUDE_CODE_DISABLE_ULTRATHINK`, which turns the `ultrathink`
   keyword off. In VS Code, `ultrathink` now runs its turn at `xhigh` effort, as in the terminal.
+
+## 13. Release changes in 2.1.331 [as-of 2026-11-24]
+
+The [2.1.331 release notes](https://github.com/anthropics/claude-code/releases/tag/v2.1.331)
+report fixes for three behaviours relevant to long runs (L):
+
+- Compaction could lose part of a summary when the summary quoted certain XML tags.
+- In Claude Desktop, a Stop hook that read the transcript could miss the final reply.
+  The release also says SubagentStop hooks now wait for the reply.
+- Cloud turns and subagents could fail when a reply went silent during thinking. Claude Code
+  now retries that request once.
 
 ## Sources
 

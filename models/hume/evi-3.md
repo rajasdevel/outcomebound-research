@@ -23,6 +23,9 @@ sources:
 
 EVI 3 is the earlier of the two supported versions of Hume's Empathic Voice Interface. It is the version that a chat uses when the config names no version. Hume's changelog says EVI 3 became available in the API on 2025-07-18. It runs on two native speech-language models, `hume-evi-3` and `hume-evi-3-websearch`, and can use a supplemental language model. EVI 1 and EVI 2 ended support on 2025-08-30. Hume has announced that the EVI and TTS APIs end on 2026-11-13. This file says what differs from [Hume EVI 4-mini](evi-4-mini.md), which holds the full guide. Maker-wide facts are in the [Hume README](README.md) [hume-evi-version] [hume-changelog] [hume-overview].
 
+For the later documentation status and the unresolved question of endpoint access, see
+[Hume's maker page](README.md).
+
 ## At a glance
 
 <!-- card:begin -->

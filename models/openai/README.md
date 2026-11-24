@@ -109,13 +109,24 @@ sources:
   - https://deploymentsafety.openai.com/gpt-6-1-terra (read 2026-10-31)
   - https://developers.openai.com/api/docs/guides/agents-api/bedrock-managed-agents (read 2026-11-03)
   - https://developers.openai.com/api/docs/guides/tools-connectors-mcp (read 2026-11-03)
+  - https://openai.com/index/introducing-gpt-6-2-astra-sol/ (read 2026-11-24)
+  - https://developers.openai.com/api/docs/models/gpt-6.2-astra (read 2026-11-24)
+  - https://developers.openai.com/api/docs/models/gpt-6.2-sol (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/latest-model (read 2026-11-24)
+  - https://developers.openai.com/api/docs/pricing (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/background (read 2026-11-24)
+  - https://developers.openai.com/api/docs/models/all (read 2026-11-24)
+  - https://developers.openai.com/api/docs/changelog (read 2026-11-24)
+  - https://deploymentsafety.openai.com/gpt-6-2-astra-sol (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/reasoning (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/responses-multi-agent (read 2026-11-24)
+  - https://developers.openai.com/api/docs/guides/latest-model/gpt-6-astra (read 2026-11-24)
 ---
 
 # OpenAI models
 
 OpenAI sells closed models through its own API, ChatGPT and Codex, and through Amazon Bedrock and
-Microsoft Foundry, and it has published one family of open-weight models. As of 2026-10-27 its GPT-6 guide lists Astra, GPT-6.1 Sol, GPT-6.1 Terra and GPT-6 Luna [openai-guide-oct27] and keeps the earlier GPT-6 Sol and
-the GPT-5.6 trio (Sol, Terra, Luna) available. This page holds what those models share: how they are
+Microsoft Foundry, and it has published one family of open-weight models. The GPT-6.2 guide leads with GPT-6.2 Astra and GPT-6.2 Sol [as-of 2026-11-24] [gpt62-guide]. This page holds what the models share: how they are
 named, the API they use, what OpenAI's prompting guides say, how to read its system cards, and the
 behaviour that holds across them. Each model's own file says what differs for that model. OpenAI also sells voice models (realtime speech-to-speech, full-duplex GPT-Live, translation and transcription), and this page holds their lineage, the Realtime and GPT-Live API guide and the voice prompting guides.
 
@@ -123,23 +134,27 @@ behaviour that holds across them. Each model's own file says what differs for th
 
 OpenAI's class names changed meaning between generations, so read a class together with its generation.
 
-- **Sol** was the flagship of GPT-5.6. GPT-5.6 Sol has no file here, because its class has three generations (5.6, 6, 6.1) and this library keeps two; its prompting, migration and system-card findings that apply to the whole GPT-5.6 family are on this page. From GPT-6 it is the middle choice: OpenAI's GPT-6 guide describes
+- **Sol** was the flagship of GPT-5.6. GPT-5.6 Sol's guidance remains on this page. The two retained Sol generations are GPT-6.2 Sol and GPT-6.1 Sol [as-of 2026-11-24] [gpt62-catalogue, gpt62-launch]. From GPT-6 it is the middle choice: OpenAI's GPT-6 guide describes
   GPT-6.1 Sol as a balance of speed, cost and intelligence, with near-Astra performance at a lower cost
   [openai-latest-model].
 - **Terra** was the middle model of GPT-5.6. GPT-6.1 Terra was released on 2026-10-26 for visual reasoning, computer use and writing. L [openai-terra-oct27] [openai-changelog-oct27].
 - **Luna** is the small, cheap, fast class: nano-class in GPT-5.6 [openai-model-gpt-5.6-luna], and the most
   efficient model for focused, high-volume work in GPT-6 [openai-model-gpt-6-luna].
-- **Astra** begins with GPT-6 and sits above Sol. OpenAI calls it its most capable model, for demanding
-  reasoning, coding, computer use, research and document creation [openai-model-gpt-6-astra].
+- **Astra** has two published general-purpose generations in the API catalogue, GPT-6.2 Astra and
+  GPT-6 Astra. OpenAI compares the new Astra with GPT-6 Astra and the new Sol with GPT-6.1 Sol.
+  The catalogue and changelog have no GPT-6.1 Astra, GPT-6.2 Terra or GPT-6.2 Luna
+  [as-of 2026-11-24] [gpt62-catalogue, gpt62-launch, gpt62-changelog].
 - **gpt-oss** is the open-weight pair released under the Apache 2.0 licence on 2025-08-05
   [hf-gpt-oss-120b].
 
 | Model | Id | Released | Effort levels | Price in / out per Mtok | OpenAI's positioning |
 | --- | --- | --- | --- | --- | --- |
-| GPT-6 Astra | `gpt-6-astra` | 2026-09-03 | low to max (no none) | $10 / $50 | highest intelligence; first model OpenAI rates Critical for cyber capability |
+| [GPT-6.2 Astra](gpt-6.2-astra.md) | `gpt-6.2-astra` | 2026-11-17 | low, medium, high, xhigh, max | $8 / $40 | demanding work [gpt62-launch, gpt62-guide, gpt62-pricing] |
+| [GPT-6.2 Sol](gpt-6.2-sol.md) | `gpt-6.2-sol` | 2026-11-17 | low, medium, high, xhigh, max | $2 / $10 | everyday coding and agent workflows [gpt62-launch, gpt62-guide, gpt62-pricing] |
+| GPT-6 Astra | `gpt-6-astra` | 2026-09-03 | low to max (no none) | $10 / $50 | previous Astra generation [gpt62-catalogue, gpt62-pricing] |
 | GPT-6.1 Sol | `gpt-6.1-sol` | 2026-09-29 | low to max (no none, no minimal) | $2 / $10 | near-Astra performance at lower cost |
 | GPT-6.1 Terra | `gpt-6.1-terra` | 2026-10-26 | none to max | $1 / $5 | visual reasoning, computer use and writing [openai-terra-oct27] |
-| GPT-6 Sol | `gpt-6-sol` | 2026-09-22 | none to max | $2 / $10 | its model page points to GPT-6.1 Sol as the newer Sol |
+| GPT-6 Sol | `gpt-6-sol` | 2026-09-22 | none to max | $2 / $10 | historical Sol generation. Its API page points to GPT-6.1 Sol as successor |
 | GPT-6 Luna | `gpt-6-luna` | 2026-09-22 | none to max | $0.10 / $0.50 | fastest and most cost-effective |
 | GPT-5.6 Sol | `gpt-5.6-sol` | 2026-07-09 | none to max | $4 / $20 | flagship of GPT-5.6; the `gpt-5.6` alias routes to it |
 | GPT-5.6 Terra | `gpt-5.6-terra` | 2026-07-09 | none to max | $2 / $12 | strong performance at a lower price |
@@ -155,6 +170,10 @@ cached-input rate (GPT-6.1 Terra also uses 5% [openai-terra-oct27]) and multi-ag
 [openai-prompt-caching] [openai-multi-agent]. The GPT-5.6 Sol price is a promotional one that OpenAI says
 holds at least through 2026-11-21; the 20% input and 33% output cut of 2026-08-21 implies a launch price
 of $5 and $30 [openai-changelog] [openai-pricing].
+
+OpenAI released both GPT-6.2 models on 2026-11-17 in its API, ChatGPT Work and Codex.
+The two model pages list Google Cloud in private preview [as-of 2026-11-24].
+[gpt62-launch, gpt62-changelog, gpt62-astra-api, gpt62-sol-api]
 
 What OpenAI says replaced what, from its deprecation page [openai-deprecations]:
 
@@ -218,10 +237,11 @@ file here [openai-models-list] [hf-openai-org]. The voice models are in the next
 
 ### Voice models
 
-OpenAI also sells voice models. Speech-to-speech models take speech in and give speech out. Transcription models turn speech into text. One speech synthesis model turns text into speech and takes written instructions for how to speak it. One translation model turns speech in one language into speech in another. The table lists each one that is in the API on 2026-10-03, with the file that describes it [openai-models-list] [openai-pricing].
+OpenAI also sells voice models. Speech-to-speech models take speech in and give speech out. Transcription models turn speech into text. One speech synthesis model turns text into speech and takes written instructions for how to speak it. One translation model turns speech in one language into speech in another. The table uses the 2026-10-03 API inventory unless a row gives a later date [openai-models-list] [openai-pricing].
 
 | Model | Id | Released | What it is | Price | File |
 | --- | --- | --- | --- | --- | --- |
+| GPT-Live 1.1 | `gpt-live-1.1` | 2026-11-19 in the API [as-of 2026-11-24] | full-duplex voice model. The API changelog reports clearer pronunciation and more consistent accents. | $0.05/min active, $0.02/min WebRTC standby, backend charged separately | [file](gpt-live-1.1.md) · [changelog](https://developers.openai.com/api/docs/changelog#nov-19) · [price](https://developers.openai.com/api/docs/pricing#live-session-duration) |
 | GPT-Live 1 | `gpt-live-1` | 2026-09-10 in the API; in ChatGPT 2026-07-08 | full-duplex voice model that hands reasoning to a backend | $0.05 per minute of session, backend billed apart | [file](gpt-live-1.md) |
 | GPT-Realtime-2.1 | `gpt-realtime-2.1` | 2026-07-06 | reasoning speech-to-speech, 128,000-token window | audio $32 in, $64 out per Mtok; text $4 in, $24 out | [file](gpt-realtime-2.1.md) |
 | GPT-Realtime-2.1 Mini | `gpt-realtime-2.1-mini` | 2026-07-06 | smaller, cheaper reasoning speech-to-speech | audio $10 in, $20 out; text $0.60 in, $2.40 out | [file](gpt-realtime-2.1-mini.md) |
@@ -255,6 +275,12 @@ and GPT-6 Luna call functions only at effort `none` [openai-latest-model]. Every
 1,050,000-token window, at most 922,000 input tokens and 128,000 output tokens, with text and image in and
 text out. Knowledge cutoffs on the model pages: the GPT-5.6 models 2026-02-16, GPT-6 Sol 2026-04-20, GPT-6
 Astra and GPT-6.1 Sol 2026-04-30, GPT-6 Luna 2026-05-18, and GPT-6.1 Terra 2026-06-01 [as-of 2026-10-27] [openai-terra-oct27].
+
+**GPT-6.2 API [as-of 2026-11-24].** Both models support Responses, Chat Completions and Batch.
+Tool calling requires Responses, which supports the Multi-agent beta through `multi_agent.enabled`.
+Both model pages list 1,050,000 context tokens, 922,000 maximum input tokens and 128,000 maximum
+output tokens. The knowledge cutoffs are 2026-05-18 for Astra and 2026-06-01 for Sol.
+[gpt62-astra-api, gpt62-sol-api, gpt62-guide, gpt62-multi-agent]
 
 **Rate limits [as-of 2026-10-09].** The October 6 change replaced five numbered paid tiers with Build,
 Launch and Grow. Limits differ by model and service tier; the [provider file](../../providers/openai.md#limits-and-data)
@@ -372,7 +398,7 @@ OpenAI's rule is to choose the audio architecture first and then design the agen
 | API | Endpoint | Models | Connections |
 | --- | --- | --- | --- |
 | Realtime | `/v1/realtime` | GPT-Realtime-2.1, 2.1 Mini, 2, 1.5, Mini | WebRTC, WebSocket, SIP |
-| Live | `/v1/live/sessions` | GPT-Live 1 | WebRTC, WebSocket, SIP |
+| Live | `/v1/live/sessions` | [GPT-Live 1.1](gpt-live-1.1.md) and GPT-Live 1 [as-of 2026-11-24] | WebRTC, WebSocket, SIP |
 | Realtime translation | `/v1/realtime/translations` | GPT-Realtime-Translate | WebRTC, WebSocket |
 | Realtime transcription | `/v1/realtime/transcription_sessions` | GPT-Live-Transcribe, GPT-Realtime-Whisper, GPT-Transcribe (committed turns, WebSocket) | WebRTC, WebSocket |
 | Audio | `/v1/audio/transcriptions`, `/v1/audio/speech` | GPT-Transcribe, earlier transcription and speech models | HTTPS |
@@ -471,12 +497,22 @@ that carries from one generation to the next.
 | --- | --- | --- |
 | Prompting guidance for GPT-5.6 Sol [openai-gpt56-prompting] | lean prompts, outcome-first prompts, autonomy policy, tool routing, programmatic tool calling, grounding, reasoning effort, validation, a suggested prompt layout | GPT-5.6 Sol and the family |
 | Using GPT-5.6 [openai-guide-gpt-5.6] | what is new, safeguards, migration, effort guidance, pro mode | GPT-5.6 |
-| Using GPT-6, prompting best practices [openai-latest-model] | initiative and follow-through, instruction following, writing style, subagent delegation, testing | observed on Astra; offered as a start for the family, to be evaluated on the model in use |
+| Using GPT-6.2 [gpt62-guide] | prompt placement, migration, initiative, writing style, coding and interface guidance | GPT-6.2 Astra and Sol, with behavior examples drawn from Astra |
+| Using GPT-6, prompting best practices [gpt6-archived-guide] | initiative and follow-through, instruction following, writing style, subagent delegation, testing | observed on Astra; offered as a start for the family, to be evaluated on the model in use |
 | Rethinking skills and prompts for GPT-6 Astra [openai-astra-blog] | skill descriptions, instruction files, completion criteria, boundary wording | Astra |
 | Reasoning models [openai-reasoning-guide] | effort table, summaries, context and cache, configuration updates, prompting advice | all reasoning models |
 | Reasoning best practices [openai-reasoning-best-practices] | when to use reasoning models and how to prompt them; the examples are o-series | o-series, still linked from the reasoning guide |
 | Function calling, structured outputs, images, prompt caching [openai-function-calling] [openai-structured-outputs] [openai-images-vision] [openai-prompt-caching] | the API rules of each feature | all supported models |
 | Harmony response format, raw chain-of-thought handling [openai-harmony] [openai-gpt-oss-raw-cot] | message roles, channels, tool and output formats | gpt-oss only |
+
+**GPT-6.2 prompts and migration [as-of 2026-11-24].** Put reusable developer guidance first
+in Responses `input`. Top-level `instructions` follow `input` and suit guidance for the
+current response. Keep the conversation prefix stable to preserve reasoning items and cache
+eligibility. Use `configuration_update` to change effort or response format within a conversation.
+The guide recommends starting at `medium` and moving `none` or `minimal` integrations to `low`.
+The API default for these two models is unverified in OpenAI's guide. Evaluate inherited
+brevity rules and state what constitutes success and when the model must ask for input.
+[gpt62-guide, gpt62-reasoning]
 
 **What the GPT-5.6 guides say** [openai-gpt56-prompting] [openai-guide-gpt-5.6]. In our summary, by topic:
 
@@ -627,6 +663,13 @@ August updates (2026-08-06), GPT-Live (2026-07-08), GPT-6 Astra (2026-09-03) and
 (2026-09-29) [openai-hub]. The GPT-6 Astra card carries an appendix for GPT-6 Sol and GPT-6 Luna, added 2026-09-22, and
 one for dots, agents built on Astra, added 2026-09-29; Sol and Luna have no card of their own. For gpt-oss
 OpenAI published a model card, not a system card, on 2025-08-05 [openai-astra-card] [arxiv-gpt-oss].
+
+**GPT-6.2 system card [as-of 2026-11-24].** The joint card was published on 2026-11-17 and
+records updates on 2026-11-17 and 2026-11-22. Both models meet OpenAI's Critical cybersecurity
+and High biological and chemical capability thresholds. Astra meets High for AI
+Self-Improvement. Sol falls below that threshold. The card reports more omitted blockers in
+model-only tests and fewer high-severity improper actions in simulated workplace tasks.
+[gpt62-card]
 
 How to read a card:
 
@@ -947,3 +990,20 @@ Partial update, read 2026-11-03 (L):
 - [openai-bedrock-agents-nov03] <https://developers.openai.com/api/docs/guides/agents-api/bedrock-managed-agents>.
 - [openai-mcp-nov03] <https://developers.openai.com/api/docs/guides/tools-connectors-mcp>.
 - [openai-misalignment-nov03] <https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring>.
+
+Partial GPT-6.2 update, read 2026-11-24 (L)
+
+| Id | URL | Kind | Read |
+| --- | --- | --- | --- |
+| gpt62-launch | https://openai.com/index/introducing-gpt-6-2-astra-sol/ | L | 2026-11-24 |
+| gpt62-astra-api | https://developers.openai.com/api/docs/models/gpt-6.2-astra | L | 2026-11-24 |
+| gpt62-sol-api | https://developers.openai.com/api/docs/models/gpt-6.2-sol | L | 2026-11-24 |
+| gpt62-guide | https://developers.openai.com/api/docs/guides/latest-model | L | 2026-11-24 |
+| gpt62-pricing | https://developers.openai.com/api/docs/pricing | L | 2026-11-24 |
+| gpt62-background | https://developers.openai.com/api/docs/guides/background | L | 2026-11-24 |
+| gpt62-catalogue | https://developers.openai.com/api/docs/models/all | L | 2026-11-24 |
+| gpt62-changelog | https://developers.openai.com/api/docs/changelog | L | 2026-11-24 |
+| gpt62-card | https://deploymentsafety.openai.com/gpt-6-2-astra-sol | L | 2026-11-24 |
+| gpt62-reasoning | https://developers.openai.com/api/docs/guides/reasoning | L | 2026-11-24 |
+| gpt62-multi-agent | https://developers.openai.com/api/docs/guides/responses-multi-agent | L | 2026-11-24 |
+| gpt6-archived-guide | https://developers.openai.com/api/docs/guides/latest-model/gpt-6-astra | L | 2026-11-24 |

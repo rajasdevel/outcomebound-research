@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Codex CLI releases weekly; loader, hooks, sandbox and app-server change between them)
 sources:
+  - https://openai.com/index/inside-the-codex-sandbox/ (read 2026-11-24)
   - https://github.com/openai/codex/releases/tag/rust-v0.166.0 (read 2026-10-31)
   - https://raw.githubusercontent.com/openai/codex/rust-v0.166.0/codex-rs/models-manager/models.json (read 2026-10-31)
   - https://github.com/openai/codex/pull/56553 (read 2026-10-31)
@@ -254,6 +255,12 @@ reader cannot settle; a lexical scan reports those as `UNVERIFIED`.
 
 ## 9. Sandbox, permissions and isolated runs
 
+- **Named permission profiles [as-of 2026-11-24].** OpenAI describes the built-in `:workspace`
+  profile as allowing broad reads subject to OS permissions, allowing writes in the workspace with
+  protected paths, and disabling network access. Codex can enforce restricted network access through
+  a proxy. A tool call can request more access inside the sandbox or request execution outside it.
+  The harness evaluates the request under the user's preferences. L,
+  [OpenAI sandbox design](https://openai.com/index/inside-the-codex-sandbox/).
 - **Protected paths.** "In the default `workspace-write` sandbox policy, writable roots still include
   protected paths": `<writable_root>/.git` is read-only "whether it appears as a directory or file",
   and where `.git` is a pointer file (`gitdir: …`, as in a linked worktree) the resolved Git

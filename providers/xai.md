@@ -33,7 +33,7 @@ Only Grok models and the company's media models. [as-of 2026-11-03] The models p
 | [Grok 4.7](../models/xai/grok-4.7.md) | `grok-4.7` | 500k context; four effort levels, `high` by default |
 | [Grok 4.6](../models/xai/grok-4.6.md) | `grok-4.6` | previous generation |
 | [Grok 4.7 Fast](../models/xai/grok-4.7-fast.md) | none on the public API | the model files record it as offered only inside two products; not on the models page |
-| [Grok Build 0.1](../models/xai/grok-build-0.1.md) | `grok-build-0.1` | coding model, 256k context |
+| [Grok Build 0.1](../models/xai/grok-build-0.1.md) | `grok-build-0.1` | xAI's API stopped serving it on 2026-11-19 [as-of 2026-11-24] L, [release notes](https://docs.x.ai/developers/release-notes) |
 | [Grok Voice 3.0](../models/xai/grok-voice-3.0.md) | `grok-voice-3.0` (alias `grok-voice-latest`) | [as-of 2026-10-31] speech-to-speech, $0.08 a minute; released 2026-10-14 [pricing-oct31, release-notes-oct31] |
 | [Grok Voice 2.0](../models/xai/grok-voice-think-fast-2.0.md) | `grok-voice-2.0` | [as-of 2026-10-31] previous voice generation, deprecated 2026-10-14 [release-notes-oct31] |
 

@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Cursor ships monthly; rules, hooks and third-party loading change between releases)
 sources:
+  - https://cursor.com/changelog/voice-chat (read 2026-11-24)
   - https://cursor.com/docs/agent/security/run-modes (read 2026-11-03)
   - https://cursor.com/blog/claude-code-extension-security-notice (read 2026-10-31)
   - https://cursor.com/changelog/agent-sdk (read 2026-10-31)
@@ -253,6 +254,14 @@ These notes describe Cursor's changelog entries, not a runtime check. L, read 20
 
 The changelog entries of 2026-10-13 (Origin App Marketplace) and 2026-10-16 (cloud agent canvases
 and an Environments API) were read and are not in the scope of this page.
+
+## 13. Voice chat [as-of 2026-11-24]
+
+Cursor's November 6 release describes a voice agent that can talk while a coding agent works.
+It can hand a coding request to the agent in the current chat, report progress, and switch
+workers in a Project that has them. Cursor lists support in the Agents Window, IDE, web, and
+iOS. Its previous dictation feature still supplies text to the chat input. L,
+[Cursor release note](https://cursor.com/changelog/voice-chat).
 
 ## Sources
 

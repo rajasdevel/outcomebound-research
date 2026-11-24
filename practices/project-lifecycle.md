@@ -2,6 +2,7 @@
 last_checked: 2026-10-15
 volatility: MONITOR (maker guidance on agents, platform features and the status of drafts change monthly) / STABLE (§2, the measured studies and surveys) / VOLATILE (§6, plan costs on GitHub; §7, dates of laws, drafts and editions)
 sources:
+  - https://openai.com/index/research-acceleration-jagged-frontier/ (read 2026-11-24)
   - https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report (read 2026-10-15)
   - https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model (read 2026-10-15)
   - https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report (read 2026-10-15)
@@ -537,6 +538,15 @@ one or two generations old. Several measured sources sell tools that the result 
   al., ICLR 2026, v3 29 September 2026, [arXiv 2602.11988](https://arxiv.org/abs/2602.11988)) (M).
 
 ## 3. What coding agents change at each stage (MONITOR)
+
+**Task choice in one research organization [as-of 2026-11-24].** OpenAI estimated the share of
+delegated research tasks that its agents completed without human intervention. From August 1 to
+October 18, 2026, estimated success was 79% for monitoring training runs, 35% for launching them,
+and 25% for writing inference and serving code. The task mix can change as researchers choose
+what to delegate. This was an internal observational analysis. It measured estimated completion,
+with no delivery-quality result for these tasks. The spread shows how autonomy estimates can
+differ by task type within one organization (inference). M, lab's own measurement,
+[OpenAI research acceleration report](https://openai.com/index/research-acceleration-jagged-frontier/).
 
 | Stage | What the sources report | Sources |
 | --- | --- | --- |

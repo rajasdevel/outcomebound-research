@@ -2,6 +2,13 @@
 last_checked: 2026-10-23
 volatility: VOLATILE (most features are in preview or beta, limits and prices change at each release, and products were renamed or sold in October 2026)
 sources:
+  - https://factory.com/news/microsoft-collaboration (read 2026-11-24)
+  - https://factory.com/news/user-groups (read 2026-11-24)
+  - https://jules.google/docs/changelog/ (read 2026-11-24)
+  - https://ampcode.com/news/service-accounts (read 2026-11-24)
+  - https://ampcode.com/news/spaces (read 2026-11-24)
+  - https://ampcode.com/news/boxes (read 2026-11-24)
+  - https://cursor.com/changelog (read 2026-11-24)
   - https://factory.com/news/missions (read 2026-10-23)
   - https://factory.com/news/what-it-takes-for-coding-agents-to-complete-large-software-tasks (read 2026-10-23)
   - https://factory.com/news/automations (read 2026-10-23)
@@ -85,7 +92,8 @@ two exact quotations that were cited to the wrong page now cite the right one.
 ## Key findings
 
 **PL1. Most products stop at a pull request that a person merges.** Factory, Devin, Cursor,
-OpenHands, Jules and Copilot's cloud agent document opening a pull request, Codex hands a person a
+OpenHands and Copilot's cloud agent document opening a pull request, as did Jules before its
+wind-down. Codex hands a person a
 link to create one, and Amp's posts do not say; none of the docs
 read documents the platform merging its own agent's work with no human approval by default. Only
 GitHub's cloud agent, Warp Factories and the Claude Code GitHub Action state a rule against merging.
@@ -110,7 +118,7 @@ read says whether a Copilot approval counts on a pull request that Copilot's clo
 **PL4. Intake from triggers is now standard.** Schedules, issue and pull request events, comments,
 tracker assignment (Linear, Jira), Slack and incident tools (PagerDuty, Sentry) start agent sessions
 in Copilot automations, Cursor Automations, Factory Automations, Devin, Claude Code's scheduled tasks,
-Jules, OpenHands and Amp. (L) — §3.
+OpenHands and Amp. Jules offered schedules before its wind-down. (L) — §3.
 
 **PL5. The open orchestrators are specifications or previews.** OpenAI's Symphony is a preview for
 trusted environments that relies on a Codex interface OpenAI labels experimental; StrongDM's Attractor
@@ -121,8 +129,10 @@ repository is still active. (L, A) — §4.
 factory"), Warp Factories, and Harness's Cosmos Software Factory Agent, which Harness bought from
 Augment Code on 2026-10-08. (L) — §5.
 
-**PL7. No product read documents deploying to production as one of its own steps.** Harness says
-its delivery agents take Cosmos's work toward production; that part was not read. (L) — §6.
+**PL7. Some services also offer app publishing or hosting [as-of 2026-11-24].** Cursor documents
+an app-publishing flow with a publish action and security checks. Amp offers persistent machines
+to host deployments. The descriptions give separate workflows from merging a repository pull
+request. (L) — §3.
 
 ## 1. Who merges, and what enforces it (VOLATILE)
 
@@ -139,6 +149,7 @@ its delivery agents take Cosmos's work toward production; that part was not read
 | Claude Code scheduled tasks | Schedules, API calls, GitHub events | One cloud session per run | Not described; runs push to `claude/` branches | Branch protection | Research preview |
 | Claude Code Projects | A long conversation | Parallel cloud threads, each with its own pull request | The person, by an instruction to the thread | The instruction only; branch protection is the enforceable gate (inference) | Public beta |
 | Claude Code GitHub Action | `@claude` mentions, workflow events | One run | A person; the action pushes a branch and links the page to open a pull request | Claude's system prompt | Generally available |
+| Jules | Formerly scheduled tasks and task suggestions | Formerly parallel cloud tasks | Not established | Not established | Google announced read-only access after November 11 and wind-down on 2026-12-31 [as-of 2026-11-24], [Jules changelog](https://jules.google/docs/changelog/) |
 | OpenHands Cloud | An issue label or a mention | One conversation | Not described | Not described | Stage not stated |
 | Gas Town | Work split by a "Mayor" agent | Workers in git worktrees, state in the Beads tracker | A merge queue that merges green batches | The queue's verification gates | Repository active; its author stopped using it (§4) |
 
@@ -269,10 +280,11 @@ Sources: [GitHub risks](https://docs.github.com/en/copilot/concepts/agents/cloud
   [agents](https://code.claude.com/docs/en/agents)) (L). Agent teams, experimental and off by default,
   let a lead session start teammates that share a task list; hooks can block a task's completion as a
   quality gate ([agent teams](https://code.claude.com/docs/en/agent-teams)) (L).
-- **Jules.** Scheduled tasks, proactively suggested tasks, a CI fixer for Jules's own pull requests
-  (2026-02-19), parallel tasks from the CLI and an alpha REST API. The newest changelog entry is
-  2026-03-09 ([Jules changelog](https://jules.google/docs/changelog/)) (L); its status after that is
-  `UNVERIFIED`.
+- **Jules wind-down [as-of 2026-11-24].** Google says users had through November 11 to finish
+  sessions. It announced read-only access after that date and a wind-down on 2026-12-31.
+  Earlier features included scheduled tasks, task suggestions, a CI fixer for Jules's own
+  pull requests, parallel CLI tasks, and an alpha REST API. L,
+  [Jules changelog](https://jules.google/docs/changelog/).
 - **OpenHands.** OpenHands Cloud starts work when an issue gets the `openhands` label or a comment
   starts with `@openhands`, and opens a pull request only if it judges the issue resolved; automations
   run a full conversation on a schedule as the creating user
@@ -282,6 +294,23 @@ Sources: [GitHub risks](https://docs.github.com/en/copilot/concepts/agents/cloud
   assigning a Linear issue to Amp starts an agent session in an orb (2026-10-19). Neither post says
   whether Amp opens or merges pull requests ([Amp orbs](https://ampcode.com/news/agents-in-orbs),
   [Amp and Linear](https://ampcode.com/news/assign-it-to-amp)) (L).
+- **Amp workspace ownership [as-of 2026-11-24].** Workspace admins can create service accounts
+  with their own credentials. Workspace members can view and steer the accounts' threads. Amp's
+  spaces coordinate work across threads, and its boxes are persistent virtual machines that
+  can host deployments from more than one orb. These releases describe ownership,
+  coordination, and hosting. The team still has to choose the credentials and checks for each
+  workflow (inference). L, [service accounts](https://ampcode.com/news/service-accounts),
+  [spaces](https://ampcode.com/news/spaces), and [boxes](https://ampcode.com/news/boxes).
+- **Cursor app publishing [as-of 2026-11-24].** Cursor's November 5 changelog says cloud agents
+  can build shareable apps on paid plans with cloud agents enabled. Publishing requires an
+  explicit publish action and checks for common security issues. Team admins can set extra
+  review rules and approve a publish that the checks blocked. This is the app-publishing flow
+  (L), [Cursor changelog](https://cursor.com/changelog).
+- **Factory deployment controls [as-of 2026-11-24].** Factory says its OpenCompute orchestrator
+  can run agent workloads in a customer's Azure Kubernetes Service cluster or Virtual Network.
+  Its User Groups sync with an identity provider and can apply usage limits and model access
+  to groups within chosen organizations. L, [Azure announcement](https://factory.com/news/microsoft-collaboration)
+  and [User Groups](https://factory.com/news/user-groups).
 
 ## 4. Open orchestrators and techniques
 
@@ -358,7 +387,7 @@ Sources: [GitHub risks](https://docs.github.com/en/copilot/concepts/agents/cloud
 | Claude Code Projects | 200 new threads a day across all projects | [Projects](https://code.claude.com/docs/en/claude-projects) (L) |
 | Claude Code dynamic workflows | 16 agents at once by default (1 to 256 settable); 1,000 agents a run | [workflows](https://code.claude.com/docs/en/workflows) (L) |
 | Claude Code agent teams | One team per session; no nested teams; interactive sessions only; the docs suggest 3 to 5 teammates | [agent teams](https://code.claude.com/docs/en/agent-teams) (L) |
-| Jules | Per rolling 24 hours: 15 tasks and 3 at once (free), 100 and 15 (Pro), 300 and 60 (Ultra) | [Jules limits](https://jules.google/docs/usage-limits/) (L) |
+| Jules (historical limits before wind-down) | Per rolling 24 hours: 15 tasks and 3 at once (free), 100 and 15 (Pro), 300 and 60 (Ultra) | [Jules limits](https://jules.google/docs/usage-limits/) (L) |
 | Devin | Sessions can be resumed for 14 days after sleep; concurrency of "Up to 10" or "Unlimited" by plan, with the mapping to plans `UNVERIFIED` | [Devin release notes](https://docs.devin.ai/release-notes/2026), [Devin pricing](https://devin.ai/pricing) (L) |
 | Gas Town | The README claims 20 to 30 agents | [Gas Town](https://github.com/gastownhall/gastown) (L) |
 
@@ -384,8 +413,9 @@ not read.
 - Devin, Factory, Cursor and OpenHands document opening pull requests; most neither
   describe nor forbid the platform merging on its own. "Not described" in §1 means the docs read are
   silent, not that the product cannot merge.
-- No product read documents a deploy to production as its own step.
-- Jules's status after March 2026, Warp Factories' launch date and stage, the true date of Factory's
+- The repository workflows in §1 describe delivery through a pull request. Cursor app
+  publishing and Amp box deployments are separate delivery paths (§3).
+- Warp Factories' launch date and stage, the true date of Factory's
   Missions post, and Devin's concurrency by plan are
   `UNVERIFIED`.
 - Not covered for lack of primary sources: Kilo Code's cloud agents, Conductor, Imbue Sculptor and
@@ -395,7 +425,7 @@ not read.
 
 ## Sources
 
-All read on 2026-10-23.
+Sources below were read on 2026-10-23. November source reads are dated at their claims.
 
 **Factory.** Introducing Missions <https://factory.com/news/missions>; What it Takes for Coding
 Agents to Complete Large Software Tasks, 2026-08-27

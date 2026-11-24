@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: VOLATILE (minimums, lifetimes, prices and invalidation rules change with each model release) / STABLE (the prefix mechanism and the design rules that follow from it)
 sources:
+  - https://platform.claude.com/docs/en/release-notes/overview (read 2026-11-24)
   - https://platform.claude.com/docs/en/build-with-claude/prompt-caching
   - https://platform.claude.com/docs/en/build-with-claude/effort
   - https://platform.claude.com/docs/en/about-claude/pricing (read 2026-10-09)
@@ -86,6 +87,12 @@ than no cache. L.
   [latent-space-12 detail]. L.
 
 ## 2. Anthropic (VOLATILE)
+
+**Fable 5.2 and Mythos 5.2 [as-of 2026-11-24].** Anthropic's November 9 release note says the
+prefix check applies to accounts of every age on these models. If a request includes a
+thinking block from a later turn after editing an earlier message, the API returns HTTP 400.
+Check whether the client rewrites the prefix before moving a session to these models
+(inference). L, [Anthropic release notes](https://platform.claude.com/docs/en/release-notes/overview).
 
 All from Anthropic's prompt-caching, effort, mid-conversation system message and refusal pages, read
 2026-10-01 [chk-claude-caching, chk-claude-mid-system, chk-claude-refusals]. L.
