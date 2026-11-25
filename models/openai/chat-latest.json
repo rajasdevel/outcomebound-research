@@ -72,15 +72,29 @@
       "read": "2026-10-09",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "alias-model-nov25",
+      "url": "https://developers.openai.com/api/docs/models/chat-latest",
+      "read": "2026-11-25",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "alias-release-nov25",
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read": "2026-11-25",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-09",
   "unknown": [
     "generation: this is a rolling alias; OpenAI supplies no numbered generation for its current underlying snapshot",
-    "released: the October 7 changelog entry dates an update, not the first availability of this alias",
+    "released: the November 24 changelog entry dates a snapshot update; the first availability is unknown",
     "weights: the model page publishes no weights or licence information",
     "reasoning: the model page publishes no effort levels, default or reasoning control for this alias",
-    "system_card: no card for the October 7 underlying snapshot was identified in the official pages read",
+    "system_card: the changelog and model page identify no card for the November 24 snapshot (read 2026-11-25)",
     "benchmarks: no result for the current rolling snapshot was verified; the named benchmark families below remain evidence gaps",
     "SWE-Bench Pro (Scale, public V2): no independent measurement for the current rolling snapshot was verified",
     "Terminal-Bench 4.0: no independent measurement for the current rolling snapshot was verified",

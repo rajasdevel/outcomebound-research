@@ -395,6 +395,20 @@ requests, not from a run.
   tool mode `code_mode_only`. The new part is therefore the Vertex AI and Bedrock routes. The notes
   do not establish account access on either route.
 
+## 15. Selected November release changes [as-of 2026-11-25]
+
+- [0.169.0](https://github.com/openai/codex/releases/tag/rust-v0.169.0) keeps project config
+  and MCP servers disabled for `codex exec` in untrusted directories, including under
+  `workspace-write`. The release documents `--trust` on `codex exec` and `codex review`
+  as a way to save project trust explicitly. L, read 2026-11-25.
+- [0.171.0](https://github.com/openai/codex/releases/tag/rust-v0.171.0) adds GPT-6.2 Sol and
+  Astra to the catalog, with Sol selected by default. It enables the TUI workspace by
+  default and shows subagent transcripts alongside the main conversation. L, read 2026-11-25.
+- [0.172.0](https://github.com/openai/codex/releases/tag/rust-v0.172.0) makes `codex exec resume`
+  reuse the previous run's sandbox permissions, directory and workspace roots by default.
+  With a cached tool list, an optional stdio MCP server now waits for a tool call before
+  it starts. L, read 2026-11-25.
+
 ## Sources
 
 - `AGENTS.md` <https://learn.chatgpt.com/docs/agent-configuration/agents-md>; loader source

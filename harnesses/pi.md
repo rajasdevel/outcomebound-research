@@ -265,6 +265,18 @@ in each mode if the original model is unavailable or has no login. With
 `showCacheMissNotices` enabled, Pi can report dropped OpenAI reasoning items with the reason.
 The notice appears only when more items were dropped than in the previous response (L).
 
+## 13. Release 1.6.1 [as-of 2026-11-25]
+
+The [1.6.1 release notes](https://github.com/earendil-works/pi/releases/tag/v1.6.1),
+read 2026-11-25, say that Pi replaces `showCacheMissNotices` with four settings under
+Notices: `notices.cacheMisses`, `notices.cacheWarming`, `notices.compactionCosts` and
+`notices.reasoningDrops`. Pi migrates an existing value to all four (L).
+
+The release adds GPT-6 Luna Decisions on the GitHub Copilot route and Radius decision
+models to code mode's `models.classify()`. The result includes a provider response ID
+when supplied. It also fixes a case where GPT-6.2 could lose earlier reasoning after an
+OpenAI Codex WebSocket connection expired (L).
+
 ## Sources
 
 - Configuration

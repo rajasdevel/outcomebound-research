@@ -110,6 +110,16 @@ Live Translate uses a Live WebSocket with translation configuration instead of s
 
 The full model files distinguish audio-input and text-output prices and capture missing token integers and source disagreements. The provider's general thinking and schema guidance above does not establish support for these dedicated endpoints.
 
+### Tool retrieval in Interactions [as-of 2026-11-25]
+
+Google announced a `v1beta` preview on 2026-11-19 for Gemini 3.6 and later, including Gemini 4.
+With server-side search, the model can see a deferred tool's name and description before it
+loads the full parameter schema. The guide also describes client-side search, where the app
+supplies matching schemas. Server-side deferral works for functions and remote MCP servers.
+Google lists the feature for Interactions only. L,
+[release notes](https://aistudio.google.com/docs/changelog#11-19-2026) and
+[tool retrieval guide](https://aistudio.google.com/docs/tool-retrieval), read 2026-11-25.
+
 ## Pricing
 
 Per token, with a free tier that exchanges data use for no charge, and a paid tier billed through a Cloud billing account. Four modes: Standard; Batch at 50 percent of the standard rate; Flex at 50 percent; Priority at 1.8 times. Context caching adds a storage fee set per model, for example $0.50 per million tokens per hour on 3.8 Flash (rising to $1.00 on 2027-01-01) and $4.50 on 3.1 Pro preview. Search grounding includes 5,000 free requests a month across Gemini 3.x models, then $14 per 1,000. Pro models charge more above 200,000 prompt tokens (on 3.1 Pro preview, 2 times the input rate and 1.5 times the output rate). Recent models carry introductory prices through 2026-12-31 that double on 2027-01-01. Per-model prices are in the model files. [pricing] [as-of 2026-10-31] `gemini-4-argon` is $2 input and $10 output per million tokens through 2026-11-30, then $4 and $20, and has no free tier. An invite-only Contributor tier gives up to 50 percent off on four models in exchange for data use (see Limits and data) [pricing-oct31, logs-policy-oct31].
