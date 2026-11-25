@@ -57,7 +57,7 @@ The GPT-6.2 guide leads with GPT-6.2 Astra and GPT-6.2 Sol [as-of 2026-11-24] L 
 | [GPT-6.1 Terra](../models/openai/gpt-6.1-terra.md) | `gpt-6.1-terra` | visual reasoning, computer use and writing [as-of 2026-10-27] L [terra-oct27] |
 | GPT-6 Sol | `gpt-6-sol` | existing API model page lists GPT-6.1 Sol as a successor |
 | [GPT-6 Luna](../models/openai/gpt-6-luna.md) | `gpt-6-luna` | the efficient, high-volume model; Decisions is generally available [as-of 2026-10-27] [decisions-oct27] |
-| [Chat Latest](../models/openai/chat-latest.md) | `chat-latest` | rolling Instant alias; October 7 update has no numbered generation [as-of 2026-10-09] [chat-oct09, changelog-oct09] |
+| [Chat Latest](../models/openai/chat-latest.md) | `chat-latest` | rolling Instant alias; snapshot updated 2026-11-24 [as-of 2026-11-25] L [api-nov25] |
 | GPT-5.6 Sol | `gpt-5.6-sol` | previous generation |
 | [GPT-5.6 Terra](../models/openai/gpt-5.6-terra.md) | `gpt-5.6-terra` | previous generation |
 | [GPT-5.6 Luna](../models/openai/gpt-5.6-luna.md) | `gpt-5.6-luna` | previous generation |
@@ -74,6 +74,11 @@ The lineage, knowledge cutoffs and the effort levels each model accepts are in t
   keep a session connected in standby with the active model paused. L,
   [API changelog](https://developers.openai.com/api/docs/changelog#nov-19) and
   [Live sessions guide](https://developers.openai.com/api/docs/guides/live-conversations#configure-standby).
+- **Healthcare configurations [as-of 2026-11-25].** On 2026-11-24, OpenAI added
+  `gpt-6.2-astra-healthcare`, `gpt-6.2-sol-healthcare`, `gpt-6-astra-healthcare` and
+  `gpt-6.1-sol-healthcare` to Responses. The configurations use a harness for clinical
+  questions. When they use web search, it uses a dedicated index of medical sources.
+  OpenAI lists promotional rates through at least 2026-12-31. L [api-nov25, prices-nov25]
 - **Endpoint limits by model.** In Chat Completions, GPT-6 Astra, GPT-6.1 Sol and GPT-6.1 Terra accept no tools [as-of 2026-10-27] L [guide-oct27], and GPT-6 Sol and GPT-6 Luna accept tools only with `reasoning_effort: "none"`. Tool calling with reasoning on needs the Responses API. [latest]
 - **Decisions [as-of 2026-10-27].** Generally available at `POST /v1/decisions`, currently with `gpt-6-luna`; it supports up to 400 questions and shared-input caching. L [decisions-oct27].
   Shared text/image input is judged through `predicate`, `choice` and `score` questions. It returns
@@ -201,3 +206,5 @@ Partial correction sources:
 | gpt62-background | https://developers.openai.com/api/docs/guides/background | L | 2026-11-24 |
 | gpt62-catalogue | https://developers.openai.com/api/docs/models/all | L | 2026-11-24 |
 | gpt62-changelog | https://developers.openai.com/api/docs/changelog | L | 2026-11-24 |
+| api-nov25 | https://developers.openai.com/api/docs/changelog | L | 2026-11-25 |
+| prices-nov25 | https://developers.openai.com/api/docs/pricing#healthcare-model-configurations | L | 2026-11-25 |

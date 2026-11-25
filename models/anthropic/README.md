@@ -129,6 +129,10 @@ deprecations]:
 
 Older Claude models (Opus 4.5 to 4.8, Sonnet 4.5 and 4.6, Mythos Preview) are outside this folder's scope.
 Sonnet 4.5 was deprecated on 2026-09-30, with retirement set for 2026-11-30. [deprecations]
+Anthropic deprecated Opus 4.5 on 2026-11-23 and schedules its Claude API retirement for
+2027-01-22, including both the dated ID and `claude-opus-4-5`. Anthropic recommends Opus 5.5.
+[as-of 2026-11-25] L, [model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations),
+read 2026-11-25.
 
 Anthropic recommends Opus 5.5 for most workloads and Fable 5.2 for demanding reasoning and long-horizon
 agent work, including when Opus 5.5 at higher effort falls short in evaluations.

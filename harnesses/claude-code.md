@@ -655,6 +655,17 @@ report fixes for three behaviours relevant to long runs (L):
 - Cloud turns and subagents could fail when a reply went silent during thinking. Claude Code
   now retries that request once.
 
+## 14. Release changes in 2.1.332 [as-of 2026-11-25]
+
+The [2.1.332 release notes](https://github.com/anthropics/claude-code/releases/tag/v2.1.332),
+read 2026-11-25, describe these changes (L):
+
+- The `PreSkillShellCommand` hook can block inline shell commands when a skill or command
+  loads. A settings file that names this hook opens a startup dialog on 2.1.331 and older.
+- The slash menu shows skills from MCP servers in beta, using the name `server:skill`.
+- After three compaction replies hit the output limit, the final attempt requests a shorter
+  summary.
+
 ## Sources
 
 - Memory <https://code.claude.com/docs/en/memory> (2026-09-25, 2026-10-01); context window

@@ -200,12 +200,14 @@ that replaced GPT-5.5 Instant in ChatGPT are newer versions than the July ones t
 ChatGPT Work, and it labels them by release month [openai-56-aug]. A benchmark or system-card number states which version it measured only
 some of the time.
 
-**Rolling ChatGPT alias [as-of 2026-10-09].** [Chat Latest](chat-latest.md), API id
-`chat-latest`, points to the Instant model in ChatGPT. The October 7 update is an alias snapshot
-update, not a numbered GPT generation. It has a card with `generation: null`; the two-generation
-rule therefore does not imply an invented predecessor. OpenAI recommends GPT-6 models for production
-API use and describes the alias as a way to test chat improvements. L [openai-chat-latest-oct09]
-[openai-changelog-oct09]; scope treatment is this library's decision.
+**Rolling ChatGPT alias [as-of 2026-11-25].** [Chat Latest](chat-latest.md), API id
+`chat-latest`, points to the Instant model in ChatGPT. OpenAI updated the snapshot on 2026-11-24
+and lists only the rolling ID. The API changelog recommends the GPT-6.2 family for production
+and offers the alias for testing chat changes. L,
+[model page](https://developers.openai.com/api/docs/models/chat-latest) and
+[API changelog](https://developers.openai.com/api/docs/changelog), read 2026-11-25.
+This library uses `generation: null` for the rolling alias and reserves the two-generation rule
+for models with numbered generations.
 
 **Specialist and media scope [as-of 2026-10-09].** These are documented discoveries with explicit
 exclusions, rather than missing general-purpose cards:
@@ -226,6 +228,12 @@ exclusions, rather than missing general-purpose cards:
   [openai-changelog-oct09] [openai-changelog-oct31] [openai-pricing-oct31]; deferral is this
   library's scope decision.
 - **Legal configuration [as-of 2026-11-03].** OpenAI pricing lists `gpt-6-astra-law` as a legal model configuration at $10 input, $1 cached input and $50 output per million tokens; the promotional price lasts at least through 2026-12-31. The listing does not establish its release date, access, API compatibility or whether it is a separate model. L [openai-pricing-nov03].
+- **Healthcare configurations [as-of 2026-11-25].** OpenAI announced four specialist
+  configurations for Responses on 2026-11-24. The release entry leaves eligibility unspecified.
+  The [provider page](../../providers/openai.md#api-surface) lists the IDs. This inventory covers
+  each as a configuration of its base model. L,
+  [API changelog](https://developers.openai.com/api/docs/changelog), read 2026-11-25. The coverage
+  decision is this library's.
 - GPT Image 2.5 Sunburst and Flare (`gpt-image-2.5-sunburst`, `gpt-image-2.5-flare`) shipped on
   2026-09-08 for image generation and editing. Full image-model research remains deferred because
   this inventory covers language and voice. L [openai-changelog-oct09]; deferral is this library's

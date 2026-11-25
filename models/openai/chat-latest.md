@@ -11,9 +11,10 @@ sources:
 
 # Chat Latest
 
-`chat-latest` is a rolling API alias for the Instant model used in ChatGPT. OpenAI updated it on
-2026-10-07 and says it will update the underlying snapshot regularly. The update does not establish
-a numbered generation or the alias's first release date. L [openai-chat-latest] [openai-changelog].
+`chat-latest` is a rolling API alias for the Instant model used in ChatGPT. OpenAI updated the snapshot on
+2026-11-24. The model page says OpenAI will update it regularly. It lists a 2026-04-20
+knowledge cutoff and gives only the rolling ID. The first release date of the alias is unknown.
+[as-of 2026-11-25] L [alias-model-nov25, alias-release-nov25].
 
 ## At a glance
 
@@ -40,7 +41,7 @@ a numbered generation or the alias's first release date. L [openai-chat-latest] 
 | System card | unknown |
 | Model page | [developers.openai.com/api/docs/models/chat-latest](https://developers.openai.com/api/docs/models/chat-latest) |
 | Card checked | 2026-10-09 |
-| Not found | generation: this is a rolling alias; OpenAI supplies no numbered generation for its current underlying snapshot; released: the October 7 changelog entry dates an update, not the first availability of this alias; weights: the model page publishes no weights or licence information; reasoning: the model page publishes no effort levels, default or reasoning control for this alias; system_card: no card for the October 7 underlying snapshot was identified in the official pages read; benchmarks: no result for the current rolling snapshot was verified; the named benchmark families below remain evidence gaps; SWE-Bench Pro (Scale, public V2): no independent measurement for the current rolling snapshot was verified; Terminal-Bench 4.0: no independent measurement for the current rolling snapshot was verified; Artificial Analysis Intelligence Index: no independent measurement for the current rolling snapshot was verified; Artificial Analysis Coding Agent Index: no independent measurement for the current rolling snapshot was verified; METR 50% time horizon: no independent measurement for the current rolling snapshot was verified |
+| Not found | generation: this is a rolling alias; OpenAI supplies no numbered generation for its current underlying snapshot; released: the November 24 changelog entry dates a snapshot update; the first availability is unknown; weights: the model page publishes no weights or licence information; reasoning: the model page publishes no effort levels, default or reasoning control for this alias; system_card: the changelog and model page identify no card for the November 24 snapshot (read 2026-11-25); benchmarks: no result for the current rolling snapshot was verified; the named benchmark families below remain evidence gaps; SWE-Bench Pro (Scale, public V2): no independent measurement for the current rolling snapshot was verified; Terminal-Bench 4.0: no independent measurement for the current rolling snapshot was verified; Artificial Analysis Intelligence Index: no independent measurement for the current rolling snapshot was verified; Artificial Analysis Coding Agent Index: no independent measurement for the current rolling snapshot was verified; METR 50% time horizon: no independent measurement for the current rolling snapshot was verified |
 <!-- card:end -->
 
 ## How to instruct it
@@ -72,9 +73,9 @@ was verified for this snapshot.
 
 ### Coding
 
-No coding guide or coding-agent measurement for this alias's October snapshot was verified.
-OpenAI recommends GPT-6 models for production API work; a ChatGPT alias update is not evidence of
-coding-agent quality. L [openai-changelog].
+OpenAI recommends the GPT-6.2 family for production API work and offers this alias for testing
+changes to chat behaviour. Coding-agent quality for this snapshot requires separate evidence.
+[as-of 2026-11-25] L [alias-release-nov25]. The evidence requirement is this library's inference.
 
 ### Long context and retrieval
 
@@ -104,16 +105,16 @@ instructions again. L [openai-chat-latest] [openai-prompt-engineering].
 ### Migrating from the previous generation
 
 There is no numbered predecessor for this rolling alias. OpenAI's general guide recommends fixed
-snapshots and evaluations for production, but this alias's page lists only `chat-latest`. No dated
-id with which to pin its October snapshot was identified. A regression suite and the date of an
+snapshots and evaluations for production. The November model page lists only the rolling
+`chat-latest` ID. [as-of 2026-11-25] L [alias-model-nov25]. A regression suite and the date of an
 observation help distinguish behavior across alias updates; this is an inference from the documented
 update policy. L [openai-chat-latest] [openai-changelog] [openai-prompt-engineering].
 
 ## What the system card reports
 
-No system card specific to the October 7 underlying snapshot was identified in the official sources
-read. Assigning GPT-6 Astra's card to this alias would require evidence of the underlying identity.
-No such identity was established.
+The November release note and model page identify no system card specific to this snapshot.
+[as-of 2026-11-25] L [alias-model-nov25, alias-release-nov25]. Applying a system card for an
+identified model such as GPT-6 Astra would require evidence that it covers the alias's snapshot.
 
 ## Behaviour observed in practice
 
@@ -137,10 +138,12 @@ in the card format. This is an evidence gap; it does not mean that no result exi
 
 ## Sources
 
-All sources read 2026-10-09. Kind L: official OpenAI documentation.
+Sources were read 2026-10-09 unless dated below. Kind L: official OpenAI documentation.
 
 - [openai-chat-latest] <https://developers.openai.com/api/docs/models/chat-latest>.
 - [openai-pricing] <https://developers.openai.com/api/docs/pricing>.
 - [openai-changelog] <https://developers.openai.com/api/docs/changelog>, October 7 entry.
 - [openai-prompt-engineering] <https://developers.openai.com/api/docs/guides/prompt-engineering>.
 - [openai-structured-outputs] <https://developers.openai.com/api/docs/guides/structured-outputs>.
+- [alias-model-nov25] <https://developers.openai.com/api/docs/models/chat-latest>, read 2026-11-25.
+- [alias-release-nov25] <https://developers.openai.com/api/docs/changelog>, read 2026-11-25.
