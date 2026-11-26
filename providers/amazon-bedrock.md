@@ -3,6 +3,9 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often; the retention rules and the endpoint split are new in 2026 and still moving)
 kind: cloud platform
 sources:
+  - https://docs.aws.amazon.com/bedrock/latest/userguide/anthropic-efs-enterprise-data-controls.html (read 2026-11-26)
+  - https://docs.aws.amazon.com/bedrock/latest/userguide/data-retention.md (read 2026-11-26)
+  - https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.md (read 2026-11-26)
   - https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html (read 2026-10-09)
   - https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
   - https://docs.aws.amazon.com/bedrock/latest/userguide/apis.md
@@ -16,8 +19,6 @@ sources:
   - https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.md
   - https://docs.aws.amazon.com/bedrock/latest/userguide/quotas-mantle.md
   - https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.md
-  - https://docs.aws.amazon.com/bedrock/latest/userguide/data-retention.md
-  - https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.md
   - https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-openai-gpt-6-astra.md
   - https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-xai-grok-4-6.md
   - https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-moonshot-ai-kimi-k3.md
@@ -94,8 +95,34 @@ Against each maker's own API. The Claude items come from Anthropic's features ov
 
 - **Quotas.** `bedrock-runtime` has fixed per-model RPM and TPM with increases on request; the GPT-6 Astra card says each output token counts ten times against the TPM quota. `bedrock-mantle` has separate input and output tokens-per-minute quotas per model and Region, no RPM limit, and published defaults only for Claude Opus 4.7 (20 million input, 4 million output); other models are throttled by internal capacity. A Mantle request is admitted against the input quota using the prompt size plus `max_tokens` (or the model maximum when unset), and the unused part is returned afterwards. Mantle increases go through an AWS Support case, not Service Quotas. For Claude the default is 2 million input tokens per minute, with up to 5 million input and 500,000 output available without extra Anthropic approval.
 - **Regions.** Claude on Bedrock lists 27 Regions, all with the global endpoint, some with US, EU, JP or AU profiles and some with in-region-only routing; Fable 5.1 regional endpoints exist in `us-east-1` only. GPT-6 Astra on Mantle is in `us-east-1` and `us-west-2`, and on `bedrock-runtime` it is reached through US geographic and global profiles. Grok 4.6 on Mantle is in `us-west-2` and GovCloud East. Kimi K3 is reached through a US geographic profile and a global profile that covers most commercial Regions.
-- **Operator access and storage.** AWS states a zero-operator-access design and a default of not storing inputs or outputs. Model makers cannot read Bedrock logs or customer prompts, because the model software runs in AWS-owned deployment accounts. For abuse detection AWS may retain data for some models. For the OpenAI models it names (GPT-6 Astra, Sol and Luna, GPT-5.6 Sol, Terra and Luna, GPT-5.5, GPT-5.4 and the two Daybreak variants; GPT-6.1 Sol is not in the list), classifier-flagged traffic is kept up to 30 days, and eligible customers can ask the AWS account team for full zero retention. For Claude Fable 5 and 5.1, all traffic is kept up to 30 days and flagged traffic may get human review by AWS. Customers in the Enterprise Frontier Safeguards program get zero retention through 2026-12-31. Retained data is stored in the Region that processed the request, which under cross-Region inference is the destination Region. AWS may also scan image inputs for child sexual abuse material and reject a request with HTTP 400.
-- **Retention modes (new in 2026).** A per-Region setting at account or project level: `none` (zero retention; Responses `store` defaults to false), `default` (the model's own policy), `aws_review` (retention up to 30 days inside AWS for the human review some makers require, with nothing sent to the maker) and a legacy `provider_data_share` that AWS says shares nothing today. Claude Fable 5 and 5.1 need `aws_review` or the legacy mode; below that they show as unavailable (Mantle) or return a validation error (runtime). Zero retention for such models is a per-account, per-model request to the AWS account manager, and for Claude, eligibility is managed by Anthropic. Setting `store=false` on Responses does not by itself guarantee zero retention. At launch the settings had no console control and were set by API.
+- **Operator access and storage.** AWS states a zero-operator-access design and a default of not storing inputs or outputs. Model makers cannot read Bedrock logs or customer prompts, because the model software runs in AWS-owned deployment accounts. For abuse detection AWS may retain data for some models. AWS may also scan image inputs for child sexual abuse material and reject a request with HTTP 400.
+- **OpenAI retention [as-of 2026-11-26].** AWS keeps classifier-flagged traffic for up to
+  30 days for automated offline abuse detection. The rule covers all OpenAI models except
+  GPT OSS Safeguard 120B, GPT OSS Safeguard 20B, `gpt-oss-120b` and `gpt-oss-20b`.
+  Eligible customers can ask their AWS account team for full zero data retention. L,
+  [abuse detection](https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.md),
+  read 2026-11-26.
+- **Claude retention [as-of 2026-11-26].** Under standard abuse detection, AWS keeps all
+  traffic for Claude Fable 5, 5.1 and 5.2 for up to 30 days. AWS may review flagged
+  traffic. Its retention guide requires `aws_review` or legacy `provider_data_share`
+  for these models, with an exception for accounts approved for zero data retention
+  (ZDR) on the model. L,
+  [abuse detection](https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.md) and
+  [data retention](https://docs.aws.amazon.com/bedrock/latest/userguide/data-retention.md),
+  read 2026-11-26.
+- **Bedrock safeguards preview [as-of 2026-11-26].** AWS says eligible EFS customers
+  can use current Fable models and existing Cyber Verification Program models with
+  ZDR for internal use through at least 2027-06-30. The public preview of Enterprise
+  Frontier Safeguards (EFS) and Enterprise Data Controls (EDC) is for customers
+  already enrolled in EFS ZDR. Joining turns ZDR off for the enrolled accounts or
+  projects. For covered requests, EFS stores inputs and outputs in the customer's S3
+  bucket configured for the Region the customer calls, even when inference runs
+  in another Region. Deletion follows the bucket's lifecycle rules. EDC uses
+  Amazon-managed storage and deletes the data after 30 days. AWS tells preview users
+  to send only test traffic and exclude regulated data. L,
+  [AWS preview guide](https://docs.aws.amazon.com/bedrock/latest/userguide/anthropic-efs-enterprise-data-controls.html),
+  read 2026-11-26.
+- **Retention modes (new in 2026).** A per-Region setting at account or project level: `none` (zero retention; Responses `store` defaults to false), `default` (the model's own policy), `aws_review` (retention up to 30 days inside AWS for the human review some makers require, with nothing sent to the maker) and a legacy `provider_data_share` that AWS says shares nothing today. Below the mode a model requires, it shows as unavailable (Mantle) or returns a validation error (runtime). Zero retention for such models is a per-account, per-model request to the AWS account manager, and for Claude, eligibility is managed by Anthropic. Setting `store=false` on Responses does not by itself guarantee zero retention. At launch the settings had no console control and were set by API.
 - **Training use.** The Bedrock FAQ says neither AWS nor the third-party model providers use Bedrock inputs or outputs to train Amazon Nova, Amazon Titan or any third-party model, and that inputs and outputs are not made available to the model providers. The user-guide data-protection pages contain no sentence on training.
 - **Logging.** CloudWatch and CloudTrail; Anthropic recommends keeping activity logs on at least a rolling 30-day basis.
 

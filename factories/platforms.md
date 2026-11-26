@@ -2,6 +2,7 @@
 last_checked: 2026-10-23
 volatility: VOLATILE (most features are in preview or beta, limits and prices change at each release, and products were renamed or sold in October 2026)
 sources:
+  - https://github.blog/changelog/2026-11-25-copilot-code-review-billing-will-default-to-the-organization/ (read 2026-11-26)
   - https://factory.com/news/microsoft-collaboration (read 2026-11-24)
   - https://factory.com/news/user-groups (read 2026-11-24)
   - https://jules.google/docs/changelog/ (read 2026-11-24)
@@ -405,6 +406,15 @@ prices ([Devin pricing](https://devin.ai/pricing)) (L). Copilot automations bill
 AI credits to the user who created them ([GitHub automations](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-automations))
 (L). Prices for Cursor cloud agents, Amp orbs, Warp Factories, Harness Cosmos and OpenHands Cloud were
 not read.
+
+**Copilot code review billing [as-of 2026-11-26].** For Copilot Business and Enterprise,
+GitHub says that from 2026-12-30, reviews by members with a paid Copilot
+license default to billing the organization that owns the repository. This applies only
+when no billing choice is saved. Accounts without AI Credits paid usage enabled, with
+a billing lock, or without a billable customer default to member billing. GitHub keeps
+explicit choices and the separate policy for members without a license. L,
+[GitHub changelog](https://github.blog/changelog/2026-11-25-copilot-code-review-billing-will-default-to-the-organization/),
+read 2026-11-26.
 
 ## 7. Limits and open questions
 

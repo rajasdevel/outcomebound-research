@@ -2,8 +2,11 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (a model's prices, limits, defaults and guidance change at each release)
 sources:
-  - https://docs.x.ai/developers/release-notes (read 2026-11-24)
-  - https://x.ai/news/grok-build-0-1
+  - https://openrouter.ai/api/v1/models/x-ai/grok-build-0.1/endpoints (read 2026-11-26)
+  - https://vercel.com/ai-gateway/models/spacexai/grok-build-0.1 (read 2026-11-26)
+  - https://ai-gateway.vercel.sh/v1/models (read 2026-11-26)
+  - https://docs.x.ai/developers/release-notes (read 2026-11-26)
+  - https://x.ai/news/grok-build-0-1 (read 2026-11-26)
   - https://docs.x.ai/developers/models/grok-build-0.1
   - https://docs.x.ai/developers/models
   - https://media.x.ai/v1/website/4p7card-5eccc980.pdf
@@ -26,10 +29,21 @@ sources:
 
 Grok Build 0.1 (`grok-build-0.1`) is SpaceXAI's coding model, trained for agentic software work: web development, debugging and MCP support, as the API announcement puts it. It is the only generation of the Grok Build class and the successor to `grok-code-fast-1`. Its predecessor's slug and two other aliases routed to it after the May migration. It reached the API in public beta on 2026-05-29 at $1 input and $2 output per Mtok with a 256k context; the announcement called it the model behind the Grok Build agent. xAI's models page now names Grok 4.7 for code and chat, and the Grok 4.7 card names 4.7 as the agent's default model [xai-build01-news] [xai-docs-build01] [xai-docs-models] [xai-47-card]. Shared Grok API rules are in [the xAI README](README.md#family-wide-behaviour).
 
-**API status [as-of 2026-11-24].** xAI's November 19 release note says it ended service for
-`grok-build-0.1` on its API that day. The earlier access, limits, and price figures below
-describe the previous offering. Current third-party routing is `UNVERIFIED`. L,
-[xAI release notes](https://docs.x.ai/developers/release-notes).
+**Release dates [as-of 2026-11-26].** xAI's May 19 entry describes early access.
+The card uses the May 29 public API beta date. L,
+[xAI release notes](https://docs.x.ai/developers/release-notes) and
+[public beta announcement](https://x.ai/news/grok-build-0-1), read 2026-11-26.
+
+**API status [as-of 2026-11-26].** xAI's release notes say it ended API service for
+`grok-build-0.1` on 2026-11-19. OpenRouter's endpoint list is empty. Vercel still
+has a catalog page for the model. Its public model-list API omits the model.
+Live serving through Vercel or the Grok Build agent is `UNVERIFIED`. The card's limits
+and prices describe the earlier xAI API offering. L,
+[xAI release notes](https://docs.x.ai/developers/release-notes),
+[OpenRouter endpoint list](https://openrouter.ai/api/v1/models/x-ai/grok-build-0.1/endpoints),
+[Vercel catalog](https://vercel.com/ai-gateway/models/spacexai/grok-build-0.1) and
+[Vercel model list](https://ai-gateway.vercel.sh/v1/models),
+read 2026-11-26.
 
 ## At a glance
 
@@ -44,24 +58,26 @@ describe the previous offering. Current third-party routing is `UNVERIFIED`. L,
 | Released | 2026-05-29 |
 | Status | deprecated (retires 2026-11-19) |
 | Weights | closed |
-| Access | SpaceXAI API; Grok Build; OpenRouter; Vercel AI Gateway |
+| Access | unknown |
 | Context window | 256k tokens |
 | Max output | unknown |
 | Modalities | input text, image; output text |
 | Reasoning control | unknown |
-| Price | $1 in / $2 out per Mtok; cached input $0.2; list price for prompts under 200k tokens; 2.0 input, 4.0 output, 0.4 cached at 200k and above; no Batch API |
+| Price | $1 in / $2 out per Mtok; cached input $0.2; historical xAI API list price for prompts under 200k tokens; 2.0 input, 4.0 output, 0.4 cached at 200k and above; no Batch API |
 | Key benchmarks | Artificial Analysis Intelligence Index: 27 (reasoning version; effort not stated, Artificial Analysis standard harness (index v4.3.2); AA lists the 2026-06-16 snapshot 'Grok Build 0.1 0616' and marks it deprecated, independent) [aa-build-0616](https://artificialanalysis.ai/models/grok-build-0-1-06-16) |
 | Other benchmarks | none recorded |
 | Prompting guides | [web.archive.org/web/20251118014240/https://docs.x.ai/docs/guides/grok-code-prompt-engineering](http://web.archive.org/web/20251118014240/https://docs.x.ai/docs/guides/grok-code-prompt-engineering); [docs.x.ai/build/features/project-rules](https://docs.x.ai/build/features/project-rules) |
 | System card | unknown |
 | Model page | [docs.x.ai/developers/models/grok-build-0.1](https://docs.x.ai/developers/models/grok-build-0.1) |
 | Card checked | 2026-10-03 |
-| Not found | SWE-Bench Pro (Scale, public V2): no Grok entry on Scale's leaderboard (11 rows: Claude, GPT, Kimi K3, GLM-5.3, Gemini 3.8 Flash, Inkling); METR 50% time horizon: not measured; METR's page lists only Grok-4 (2025) and names Grok 4.3 as unmeasured; maker benchmarks: the announcement lists none; max_output: not published; reasoning: the docs say reasoning is supported; effort levels and default are not stated; base model, parameter count and knowledge cutoff: not disclosed; status: the API announcement (2026-05-29) calls it a public beta and xAI's release notes (May 2026 section, no day given) call it early access; the docs page no longer says beta, so preview is a judgement; retires: no notice found; released: xAI's release notes list an early-access entry in their May 2026 section without a day; the API announcement of 2026-05-29 (first public availability) is used; access: the maker's announcement names Cursor, Hermes Agent, OpenClaw, Kilo Code and OpenCode as harnesses where it performs best, which is not a statement that they serve it; Cursor's own price list and model docs do not list grok-build-0.1; Grok Build is listed because the announcement called it the agent's model, though Grok 4.7 is now the agent's default; Terminal-Bench 4.0: no result found; Artificial Analysis Coding Agent Index: no Grok Build 0.1 entry found on AA's coding-agents page; benchmarks: the maker's announcement lists none; Artificial Analysis lists the Intelligence Index for a June 2026 snapshot, and it is not stated whether the live slug is that snapshot; system_card: none for this model; xAI published a card for the predecessor grok-code-fast-1 on 2025-08-26 |
+| Not found | SWE-Bench Pro (Scale, public V2): no Grok entry on Scale's leaderboard (11 rows: Claude, GPT, Kimi K3, GLM-5.3, Gemini 3.8 Flash, Inkling); METR 50% time horizon: not measured; METR's page lists only Grok-4 (2025) and names Grok 4.3 as unmeasured; maker benchmarks: the announcement lists none; max_output: not published; reasoning: the docs say reasoning is supported; effort levels and default are not stated; base model, parameter count and knowledge cutoff: not disclosed; access: xAI ended API service on 2026-11-19; current serving through third parties or the Grok Build agent is unverified; Terminal-Bench 4.0: no result found; Artificial Analysis Coding Agent Index: no Grok Build 0.1 entry found on AA's coding-agents page; benchmarks: the maker's announcement lists none; Artificial Analysis lists the Intelligence Index for a June 2026 snapshot, and it is not stated whether the live slug is that snapshot; system_card: none for this model; xAI published a card for the predecessor grok-code-fast-1 on 2025-08-26 |
 <!-- card:end -->
 
 ## How to instruct it
 
-xAI publishes no prompting guide for this model. The only coding-model guide is the archived one for `grok-code-fast-1` (November 2025 copy), whose slug now routes here; nothing says it was revised for Build 0.1 [grok-f15] [grok-migration-may15].
+xAI publishes no prompting guide for this model. The archived guide for `grok-code-fast-1`
+(November 2025 copy) predates the May 2026 migration to Build 0.1. Whether xAI revised its
+advice for Build 0.1 is unknown [grok-f15] [grok-migration-may15].
 
 ### Setting up the prompt
 
@@ -140,7 +156,7 @@ xAI publishes no model card for `grok-build-0.1`. The card for its predecessor, 
 
 ## Sources
 
-- [xai-build01-news] <https://x.ai/news/grok-build-0-1>, kind L, read 2026-10-03.
+- [xai-build01-news] <https://x.ai/news/grok-build-0-1>, kind L, read 2026-10-03 and 2026-11-26.
 - [xai-docs-build01] <https://docs.x.ai/developers/models/grok-build-0.1>, kind L, read 2026-10-03.
 - [xai-docs-models] <https://docs.x.ai/developers/models>, kind L, read 2026-10-03.
 - [xai-47-card] <https://media.x.ai/v1/website/4p7card-5eccc980.pdf>, kind L, read 2026-10-03.
