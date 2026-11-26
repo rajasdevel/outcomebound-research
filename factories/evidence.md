@@ -2,6 +2,7 @@
 last_checked: 2026-10-23
 volatility: STABLE (§2 to §4, measured studies) / MONITOR (§5 to §9, positions, incidents and cost reports, which change monthly) / F (§10, forecasts; score each at its horizon)
 sources:
+  - https://arxiv.org/html/2611.34875v1 (read 2026-11-26)
   - https://metr.org/blog/2025-08-12-research-update-towards-reconciling-slowdown-with-time-horizons/ (read 2026-10-23)
   - https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/ (read 2026-10-23)
   - https://arxiv.org/abs/2511.04427 (read 2026-10-23)
@@ -171,6 +172,16 @@ on 2026-10-23).
   2026-09-26): METR's 80% horizon is 4 to 10 times shorter than its 50% horizon, and long unattended
   runs degrade through compounding errors and context growth, and in one run an early wrong choice
   was never reversed. Agents saturate a visible test suite while a held-out one lags (the same document) (M).
+- **Patch size and needed edits [as-of 2026-11-26].** A preprint examined 7,660 successful
+  Copilot CLI runs across 18 models on SWE-bench Verified (6,728) and DeepSWE (932).
+  The researchers reverted individual patch units and reran the task tests. On
+  SWE-bench Verified, an average of 11% of an agent patch's code units could be
+  removed one at a time while the patch still passed. The researchers probed 3,559
+  units that passed this removal test. Of those, 89% changed behaviour in the probes.
+  The main results cover only successful runs in Copilot CLI. An appendix compares
+  other harnesses on the same tasks. M,
+  [arXiv 2611.34875v1](https://arxiv.org/html/2611.34875v1), read 2026-11-26.
+  Inference: patch size alone is a poor rule for deciding which changes to remove.
 - Inference: a factory is only as good as its checks at catching this gap. StrongDM's holdout
   scenarios and Factory Research's hidden tests ([README.md](README.md) §5) are designed for it; no
   independent measure of either was found.

@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (each of these harnesses changes its loading between releases; several are previews)
 sources:
+  - https://github.com/anomalyco/opencode/releases/tag/v2.4.2 (read 2026-11-26)
   - https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings (read 2026-11-03)
   - https://github.blog/changelog/2026-10-28-github-copilot-in-vs-code-universe-releases (read 2026-10-31)
   - https://github.blog/changelog/2026-10-28-repository-plugin-defaults-and-enterprise-plugin-controls-generally-available (read 2026-10-31)
@@ -321,6 +322,16 @@ Docs dated 2026-09-24 [harness-loading-coverage-28, open-weight-harness].
     model's context window when the model's input limit is larger. A call to a tool named `bash` now runs as `shell` with the same
     permissions, unless a plugin tool is actually named `bash`. The permissions page, read
     2026-10-31, still keys shell commands as `bash`.
+
+### OpenCode 2.4.2 [as-of 2026-11-26]
+
+The [2.4.2 release notes](https://github.com/anomalyco/opencode/releases/tag/v2.4.2), read
+2026-11-26, say that new persistent web fetch approvals cover only the approved site.
+Approvals saved by earlier versions keep their previous scope. The release also schedules
+the next automation run after a failed run. It still pauses an automation if its original
+session or directory is gone, or its setup is invalid. An automation shell command that
+times out now stops and fails the call. These are documented changes (L). Runtime
+behaviour was not checked.
 
 ## Cline
 

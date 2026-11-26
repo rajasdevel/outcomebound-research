@@ -9,12 +9,7 @@
   "status": "deprecated",
   "retires": "2026-11-19",
   "weights": "closed",
-  "access": [
-    "SpaceXAI API",
-    "Grok Build",
-    "OpenRouter",
-    "Vercel AI Gateway"
-  ],
+  "access": [],
   "context_window": 256000,
   "max_output": null,
   "modalities": {
@@ -36,7 +31,7 @@
     "input": 1.0,
     "output": 2.0,
     "cached_input": 0.2,
-    "notes": "list price for prompts under 200k tokens; 2.0 input, 4.0 output, 0.4 cached at 200k and above; no Batch API"
+    "notes": "historical xAI API list price for prompts under 200k tokens; 2.0 input, 4.0 output, 0.4 cached at 200k and above; no Batch API"
   },
   "benchmarks": [
     {
@@ -59,14 +54,14 @@
     {
       "id": "xai-build01-eol",
       "url": "https://docs.x.ai/developers/release-notes",
-      "read": "2026-11-24",
+      "read": "2026-11-26",
       "kind": "L",
       "quote": null
     },
     {
       "id": "xai-build01-news",
       "url": "https://x.ai/news/grok-build-0-1",
-      "read": "2026-10-03",
+      "read": "2026-11-26",
       "kind": "L",
       "quote": null
     },
@@ -226,10 +221,7 @@
     "max_output: not published",
     "reasoning: the docs say reasoning is supported; effort levels and default are not stated",
     "base model, parameter count and knowledge cutoff: not disclosed",
-    "status: the API announcement (2026-05-29) calls it a public beta and xAI's release notes (May 2026 section, no day given) call it early access; the docs page no longer says beta, so preview is a judgement",
-    "retires: no notice found",
-    "released: xAI's release notes list an early-access entry in their May 2026 section without a day; the API announcement of 2026-05-29 (first public availability) is used",
-    "access: the maker's announcement names Cursor, Hermes Agent, OpenClaw, Kilo Code and OpenCode as harnesses where it performs best, which is not a statement that they serve it; Cursor's own price list and model docs do not list grok-build-0.1; Grok Build is listed because the announcement called it the agent's model, though Grok 4.7 is now the agent's default",
+    "access: xAI ended API service on 2026-11-19; current serving through third parties or the Grok Build agent is unverified",
     "Terminal-Bench 4.0: no result found",
     "Artificial Analysis Coding Agent Index: no Grok Build 0.1 entry found on AA's coding-agents page",
     "benchmarks: the maker's announcement lists none; Artificial Analysis lists the Intelligence Index for a June 2026 snapshot, and it is not stated whether the live slug is that snapshot",

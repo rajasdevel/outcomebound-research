@@ -3,6 +3,8 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: local runtime
 sources:
+  - https://github.com/vllm-project/vllm/releases/tag/v0.34.0 (read 2026-11-26)
+  - https://github.com/vllm-project/vllm/blob/v0.34.0/vllm/config/cache.py (read 2026-11-26)
   - https://docs.vllm.ai/
   - https://github.com/vllm-project/vllm
   - https://github.com/vllm-project/vllm/releases
@@ -48,6 +50,7 @@ Models in this library that vLLM's pages or release notes name:
 | [GLM-5.3-Flash](../models/zai/glm-5.3-flash.md), [GLM-5.2](../models/zai/glm-5.2.md) | v0.30.0 added GLM-5.3-Flash; `GlmMoeDsaForCausalLM` covers GLM-5 to 5.2; tool parser `glm47` |
 | [DeepSeek V4.1-Flash](../models/deepseek/deepseek-flash.md), [DeepSeek V4-Pro](../models/deepseek/deepseek-v4-pro.md) | `DeepseekV4ForCausalLM` is supported; v0.30.0 added V4.1-Flash, with a KV cache stored in MXFP8 on one GPU generation |
 | [MiniMax M3](../models/minimax/MiniMax-M3.md) | `MiniMaxM3SparseForCausalLM` is in the supported list |
+| [MiniMax M3.1 Flash](../models/minimax/MiniMax-M3.1-Flash.md) and [Mistral Large 4](../models/mistral/mistral-large-4.md) | The v0.34.0 release notes list support [as-of 2026-11-26] L [vl-rel-034] |
 | [Mistral Large 3](../models/mistral/mistral-large-3.md) | `MistralLarge3ForCausalLM` is supported |
 | [Qwen3.8 27B](../models/alibaba/qwen3.8-27b.md) | its file lists vLLM as an access route; the supported-models page names Qwen3.5 classes, not Qwen3.8 |
 | [Qwen3.8-Flash-Next](../models/alibaba/qwen3.8-flash-next.md) | v0.29.0 added it (BF16, FP8, NVFP4, MTP); v0.30.0 lists performance work |
@@ -67,7 +70,7 @@ vLLM hosts no models itself and offers no hosted service. [vl-readme]
 - **Auth.** `--api-key` (or `VLLM_API_KEY`) is a bearer key, but the docs warn that it protects only the `/v1`, `/v2`, `/inference` and `/cohere` prefixes, and that other routes on the same server, notably `/invocations`, are not protected and expose the same inference capability. Deployments are told to put a reverse proxy in front. Node-to-node traffic in multi-node serving is unencrypted and unauthenticated, to be isolated by network design. [vl-oai, vl-sec]
 - **SDKs.** A Python library with an offline `LLM` class and the server; no client SDK beyond the OpenAI and Anthropic SDKs pointed at the server. [vl-readme]
 - **Model ids.** The Hugging Face repository id, or the name set with `--served-model-name`. [vl-oai, vl-args]
-- **Startup flags that matter.** `--max-model-len`, `--gpu-memory-utilization` (default 0.92), `--tensor-parallel-size`, `--max-num-seqs`, `--max-num-batched-tokens`, `--kv-cache-dtype`, `--enable-auto-tool-choice`, `--tool-call-parser`, `--reasoning-parser` and `--generation-config`. [vl-args, vl-cache]
+- **Startup flags that matter.** `--max-model-len`, `--gpu-memory-utilization` (see memory sizing below), `--tensor-parallel-size`, `--max-num-seqs`, `--max-num-batched-tokens`, `--kv-cache-dtype`, `--enable-auto-tool-choice`, `--tool-call-parser`, `--reasoning-parser` and `--generation-config`. [vl-args, vl-cache]
 
 ## Feature parity
 
@@ -105,11 +108,19 @@ Free, open-source software; no charge, no plans and no cloud. The cost is hardwa
 - **Forced tool choice is guaranteed to parse, not to be good.** Named and `required` calls are generated under a grammar; the docs advise stating the schema in the prompt as well, and note that the first use compiles the grammar and can take several seconds. [vl-tools]
 - **Reasoning is a server flag plus a request flag.** A `--reasoning-parser` must be set for the `reasoning` field to appear; whether thinking is on by default differs by model (Gemma 4, Granite 3.2 and DeepSeek-V3.1 default off; Qwen3, Granite 4.2 and Holo2 default on), and `chat_template_kwargs` (`enable_thinking` or `thinking`) switches it. [vl-reason]
 - **Sampling defaults come from the model.** `--generation-config auto` (the default) loads the generation config from the model path, so the sampling values a maker ships apply when a request omits them; `--generation-config vllm` uses vLLM's own defaults instead. A `max_new_tokens` value in a loaded generation config becomes a server-wide output cap. Results compared with a maker's own API therefore depend on which setting is in force. [vl-model]
-- **Memory sizing.** `--gpu-memory-utilization` is a per-instance fraction (0.92 by default; two instances on one GPU each need their own share). `--max-model-len` defaults to the model's configured length; `-1` or `auto` picks the model's maximum if it fits in GPU memory and otherwise the largest length that does. [vl-cache, vl-model]
+- **Memory sizing.** `--max-model-len` defaults to the model's configured length; `-1` or `auto` picks the model's maximum if it fits in GPU memory and otherwise the largest length that does. [vl-cache, vl-model]
+  In v0.34.0, the extensible KV cache is on by default on supported CUDA and ROCm
+  configurations. It uses memory measured after warmup. With no
+  `--gpu-memory-utilization` value, the fraction resolves to 1.0 with the extensible
+  cache, or 0.92 without it. The release notes recommend an explicit value when
+  sharing a GPU. [as-of 2026-11-26] L [vl-rel-034, vl-cache-034].
 - **`--api-key` covers only some routes.** Because `--api-key` leaves some routes open (the security page names `/invocations`, `/pooling`, `/classify`, `/score` and `/rerank` among them), the documented recommendation is a reverse proxy that blocks every other route. Multi-node and gRPC traffic are not encrypted. [vl-sec]
 - **Prefix caching and agent loops.** With caching on by default, a request that shares a prefix with an earlier one reuses its computed state; the caching page names long-document queries and multi-turn chat as the workloads that gain. Because reuse stops at the first differing token, text that changes early in a prompt, such as a timestamp, shortens the shared part. [vl-prefix, vl-cache]
 - **Docs track the development branch.** The pages read are the `main` branch of the documentation, which the live site (`docs.vllm.ai`) labels a developer preview; a flag or default described there may not be in the v0.30.0 release. [vl-docs]
 - **Version drift.** Each release adds several models and changes defaults (v0.28.0 raised `max_num_batched_tokens` from 8192 to 16384; v0.29.0 made Model Runner V2 the default for all models) and lists breaking changes. A test that depends on parser behaviour is only reproducible against a pinned release. [vl-rel]
+  v0.34.0 removes Model Runner V1. With `VLLM_USE_V2_MODEL_RUNNER=0` still set, startup fails.
+  The default `--block-size` increases from 16 to 64, with 16 still used for ROCm paged
+  attention. [as-of 2026-11-26] L [vl-rel-034].
 
 ## Sources
 
@@ -118,6 +129,8 @@ Free, open-source software; no charge, no plans and no cloud. The cost is hardwa
 | vl-docs | https://docs.vllm.ai/ | L | 2026-10-03 |
 | vl-repo | https://github.com/vllm-project/vllm | L | 2026-10-03 |
 | vl-rel | https://github.com/vllm-project/vllm/releases | L | 2026-10-03 |
+| vl-rel-034 | https://github.com/vllm-project/vllm/releases/tag/v0.34.0 | L | 2026-11-26 |
+| vl-cache-034 | https://github.com/vllm-project/vllm/blob/v0.34.0/vllm/config/cache.py | L | 2026-11-26 |
 | vl-readme | https://github.com/vllm-project/vllm/blob/main/docs/README.md | L | 2026-10-03 |
 | vl-serve | https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/README.md | L | 2026-10-03 |
 | vl-oai | https://github.com/vllm-project/vllm/blob/main/docs/serving/online_serving/openai_compatible_server.md | L | 2026-10-03 |
