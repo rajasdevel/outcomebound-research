@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (each of these harnesses changes its loading between releases; several are previews)
 sources:
+  - https://github.com/aaif-goose/goose/releases/tag/v1.61.1 (read 2026-11-27)
   - https://github.com/anomalyco/opencode/releases/tag/v2.4.2 (read 2026-11-26)
   - https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings (read 2026-11-03)
   - https://github.blog/changelog/2026-10-28-github-copilot-in-vs-code-universe-releases (read 2026-10-31)
@@ -396,6 +397,15 @@ JetBrains AI or Junie had 9% at-work adoption in May–July 2026 in JetBrains' o
 
 `AGENTS.md`'s full content goes into the initial system prompt; legacy microagents without triggers
 always load; specialised guidance belongs in on-demand skills [harness-loading-coverage-27].
+
+## Goose
+
+**Session imports in v1.61.1 [as-of 2026-11-27].** Goose drops tool approval state when it
+imports a session. The release notes say this prevents tools from running automatically
+when Goose loads the imported session. Goose also stopped rendering recipe templates again
+when it loads or forks a session. The desktop app no longer loads environment variables
+through dotenv. L, [v1.61.1 release notes](https://github.com/aaif-goose/goose/releases/tag/v1.61.1), read 2026-11-27.
+Instruction loading and runtime behavior are UNVERIFIED here.
 
 ## GitHub Spec Kit
 

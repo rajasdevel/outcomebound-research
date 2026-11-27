@@ -10,6 +10,7 @@
   "retires": null,
   "weights": "closed",
   "access": [
+    "ElevenLabs changelog: Text to Speech (endpoint support is UNVERIFIED) [el-tts-limit-nov27]",
     "ElevenLabs API: Text to Dialogue WebSocket",
     "ElevenAgents (agent TTS model)",
     "ElevenCreative"
@@ -35,7 +36,7 @@
     "turn_detection": "none in the model. The Text to Dialogue WebSocket takes new_turn or a change of voice_id as a turn boundary; in ElevenAgents the platform's turn-taking system decides when the agent speaks [el-ws-ttd] [el-agents-flow]",
     "interruption": "Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled for the agent or a tool; on the Text to Dialogue WebSocket the docs describe no cancel message [el-agents-flow] [el-ws-ttd]",
     "latency": "[as-of 2026-10-31] About 100 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (read as median inference latency on 2026-10-03) [el-models-1031] [el-latency-method]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog]",
-    "session_limit": "Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow]"
+    "session_limit": "[as-of 2026-11-27] The changelog lists 100,000 characters per supported Text to Speech request [el-tts-limit-nov27]. The models page omits Turbo from its character-limit table [el-models-nov27]. Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow]"
   },
   "reasoning": {
     "control": "none",
@@ -201,12 +202,26 @@
       "read": "2026-10-31",
       "kind": "L",
       "quote": null
+    },
+    {
+      "id": "el-tts-limit-nov27",
+      "url": "https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request",
+      "read": "2026-11-27",
+      "kind": "L",
+      "quote": null
+    },
+    {
+      "id": "el-models-nov27",
+      "url": "https://elevenlabs.io/docs/overview/models",
+      "read": "2026-11-27",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
   "unknown": [
     "context_window: not applicable to a synthesis model; the limit is in characters",
-    "max_output: no per-request character limit is published for this model",
+    "max_output: no token limit is published; see voice.session_limit for the Text to Speech character limit",
     "pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes",
     "system_card: the maker publishes no system card or model card in the pages read",
     "Artificial Analysis Speech Arena Elo: Artificial Analysis lists no entry for this model on its text-to-speech pages",

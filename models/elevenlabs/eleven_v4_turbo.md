@@ -2,6 +2,7 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (a model's prices, limits, defaults and guidance change at each release)
 sources:
+  - https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (read 2026-11-27)
   - https://elevenlabs.io/docs/changelog/2026/9/28
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4
   - https://elevenlabs.io/blog/eleven-v4-turbo-in-elevenagents
@@ -49,7 +50,7 @@ Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the class
 | Released | 2026-09-28 |
 | Status | ga |
 | Weights | closed |
-| Access | ElevenLabs API: Text to Dialogue WebSocket; ElevenAgents (agent TTS model); ElevenCreative |
+| Access | ElevenLabs changelog: Text to Speech (endpoint support is UNVERIFIED) [el-tts-limit-nov27]; ElevenLabs API: Text to Dialogue WebSocket; ElevenAgents (agent TTS model); ElevenCreative |
 | Context window | unknown |
 | Max output | unknown |
 | Modalities | input text; output audio |
@@ -61,7 +62,7 @@ Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the class
 | Turn detection | none in the model. The Text to Dialogue WebSocket takes new_turn or a change of voice_id as a turn boundary; in ElevenAgents the platform's turn-taking system decides when the agent speaks [el-ws-ttd] [el-agents-flow] |
 | Interruption | Not handled by the model. In ElevenAgents, users can interrupt unless interruptions are disabled for the agent or a tool; on the Text to Dialogue WebSocket the docs describe no cancel message [el-agents-flow] [el-ws-ttd] |
 | Voice latency | [as-of 2026-10-31] About 100 ms median server-side latency on WebSocket streaming requests with warm voices, excluding application and network latency, in figures updated on 2026-10-29 (read as median inference latency on 2026-10-03) [el-models-1031] [el-latency-method]; the maker's launch material gives a median time to first speech of about 150 ms, measured in September 2026 with network latency removed [el-blog-v4], and a news site relays the maker's comparison chart: 262 ms for Cartesia Sonic 3.6 and 814 ms for GPT-4o mini TTS [pr-testingcatalog] |
-| Session limit | Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. The models page lists no character limit for this model. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow] |
+| Session limit | [as-of 2026-11-27] The changelog lists 100,000 characters per supported Text to Speech request [el-tts-limit-nov27]. The models page omits Turbo from its character-limit table [el-models-nov27]. Text to Dialogue WebSocket: closes after 20 seconds without a client message unless keep_alive is sent; each open connection holds one dialogue session from a pool of 14 (Free) to 105 (Scale, Business) [el-ws-ttd] [el-models]. An ElevenAgents conversation lasts 600 seconds by default, adjustable from 60 to 7,200 [el-agents-flow] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per character, not per token. API list price US$0.04 per 1,000 characters; a promotional price of US$0.011 per 1,000 characters (72% off) runs until 2026-10-12 [el-pricing-api]. In ElevenAgents the platform bills per call minute (US$0.08 per minute on the pricing page) and passes LLM cost through separately [el-pricing-agents] |
 | Key benchmarks | none recorded |
@@ -70,7 +71,7 @@ Eleven v4 Turbo is the low-latency variant of Eleven v4. It belongs to the class
 | System card | unknown |
 | Model page | [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4) |
 | Card checked | 2026-10-03 |
-| Not found | context_window: not applicable to a synthesis model; the limit is in characters; max_output: no per-request character limit is published for this model; pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes; system_card: the maker publishes no system card or model card in the pages read; Artificial Analysis Speech Arena Elo: Artificial Analysis lists no entry for this model on its text-to-speech pages; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model |
+| Not found | context_window: not applicable to a synthesis model; the limit is in characters; max_output: no token limit is published; see voice.session_limit for the Text to Speech character limit; pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes; system_card: the maker publishes no system card or model card in the pages read; Artificial Analysis Speech Arena Elo: Artificial Analysis lists no entry for this model on its text-to-speech pages; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model |
 <!-- card:end -->
 
 ## How to instruct it
@@ -88,12 +89,17 @@ None. ElevenLabs describes no reasoning or effort control for a speech synthesis
 ### Output: format, length, tone
 
 - **Formats.** The Text to Dialogue WebSocket takes an `output_format` query value from the same list as the other speech models. ElevenAgents defaults to PCM 16 kHz and accepts PCM 8 to 48 kHz and mu-law 8 kHz [el-ws-ttd] [el-api-agents].
-- **Length.** The models page gives no character limit for Turbo. The WebSocket sends audio after about 40 characters and 8 words, or at `flush` [el-models] [el-ws-ttd].
+- **Length [as-of 2026-11-27].** The ElevenLabs changelog lists 100,000 characters per
+  supported Text to Speech request for Turbo. The character-limit table on the models page
+  omits Turbo (L) [el-tts-limit-nov27] [el-models-nov27]. The Text to Dialogue WebSocket guide
+  describes when audio starts, at about 40 characters and 8 words or at `flush` [el-ws-ttd].
 - **Tone.** Both v4 variants use stability and similarity. Lower stability gives more varied delivery. Higher similarity holds closer to the reference voice [el-v4-page].
 
 ### Tools and agents
 
-- **Where it runs.** The Text to Dialogue WebSocket and ElevenAgents. The models page points to the WebSocket for Turbo. It says to use Turbo in agents for the most expressive delivery [el-models] [el-choose].
+- **Where it runs.** The models page points to the Text to Dialogue WebSocket and ElevenAgents
+  [el-models] [el-choose]. The November 23 changelog also lists Text to Speech support
+  [as-of 2026-11-27] (L) [el-tts-limit-nov27].
 - **In agents.** The agent speech model setting takes `eleven_v4_turbo`. Additional call minutes cost US$0.08 each on the pricing page, and the language model is billed on top [el-api-agents] [el-pricing-agents].
 - **Languages.** The maker says Turbo supports 90+ languages, and that an agent follows a caller who switches language mid-call, keeping the voice or changing it [el-blog-v4-agents].
 - **Professional clones.** A news site reports that the launch material says Turbo supports the same professional clone through a call (evidence class A) [pr-testingcatalog].
@@ -155,13 +161,15 @@ None independent. Maker figures: a median latency of 100 ms ([as-of 2026-10-31] 
 
 ## Open questions
 
-- Whether the plain Text to Speech endpoint accepts `eleven_v4_turbo`.
-- The character limit for the model.
+- Whether any Text to Speech endpoint accepts Turbo in practice, and the Text to Dialogue
+  WebSocket character limit.
 - Whether `expressive_mode` and `suggested_audio_tags` act on Turbo.
 - Whether the turn-taking system of expressive mode is `turn_v3`.
 - An independent time-to-first-audio measurement, with network time included.
 
 ## Sources
+
+- [el-tts-limit-nov27] https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (kind L, read 2026-11-27)
 
 - [el-changelog-v4] https://elevenlabs.io/docs/changelog/2026/9/28 (kind L, read 2026-10-03)
 - [el-v4-page] https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4 (kind L, read 2026-10-03)
@@ -172,6 +180,7 @@ None independent. Maker figures: a median latency of 100 ms ([as-of 2026-10-31] 
 - [el-api-agents] https://elevenlabs.io/docs/api-reference/agents/create (kind L, read 2026-10-03)
 - [el-ws-ttd] https://elevenlabs.io/docs/eleven-api/guides/how-to/websockets/realtime-tdd (kind L, read 2026-10-03)
 - [el-models] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-03)
+- [el-models-nov27] https://elevenlabs.io/docs/overview/models (kind L, read 2026-11-27)
 - [el-choose] https://elevenlabs.io/docs/eleven-api/choosing-the-right-model (kind L, read 2026-10-03)
 - [el-pricing-agents] https://elevenlabs.io/pricing/agents (kind L, read 2026-10-03)
 - [pr-testingcatalog] https://testingcatalog.com/elevenlabs-launches-eleven-v4-and-v4-turbo-voice-models (kind A, read 2026-10-03)
