@@ -2,6 +2,7 @@
 last_checked: 2026-10-23
 volatility: STABLE (§2 to §4, measured studies) / MONITOR (§5 to §9, positions, incidents and cost reports, which change monthly) / F (§10, forecasts; score each at its horizon)
 sources:
+  - https://arxiv.org/html/2611.29162v2 (read 2026-11-27)
   - https://arxiv.org/html/2611.34875v1 (read 2026-11-26)
   - https://metr.org/blog/2025-08-12-research-update-towards-reconciling-slowdown-with-time-horizons/ (read 2026-10-23)
   - https://metr.org/notes/2026-03-10-many-swe-bench-passing-prs-would-not-be-merged-into-main/ (read 2026-10-23)
@@ -182,6 +183,24 @@ on 2026-10-23).
   other harnesses on the same tasks. M,
   [arXiv 2611.34875v1](https://arxiv.org/html/2611.34875v1), read 2026-11-26.
   Inference: patch size alone is a poor rule for deciding which changes to remove.
+- **Repair of project rules [as-of 2026-11-27].** A preprint tested three Claude models on
+  25 pull requests with 31 planted rule violations across ten open-source projects, plus five
+  clean controls. All runs used Claude Code 2.1.285. With CodeAssure, the build-checked
+  repair rate rose from 26% to 69% for Haiku 4.5, 46% to 90% for Sonnet 5.5, and 45% to 93%
+  for Fable 5.1. After static scoring, the researchers checked builds where full compilation
+  was feasible and inspected the repaired diffs for stubs. They ran no tests.
+  The CodeAssure workflow used different instructions, gave findings with a location and a
+  repair goal, and allowed a second pass. The checker had the project rules, including the
+  types of rule that the study used for its planted violations. Agents working alone had rule
+  files in four of the ten projects. Agents had no build toolchain.
+  With the deletion check off, counts of runs that cleared the violation and removed a feature
+  rose from 7 to 19,
+  2 to 29, and 0 to 17, respectively, per 125 runs. This includes deleting or emptying an
+  added file or reverting a rename while clearing the violation. The author is affiliated
+  with the maker of the checker. The same team wrote the scorer. There was no blinded audit
+  of final diffs. Public data lets readers recompute the statistics. It does not include the
+  patches needed to score the runs again.
+  M, [arXiv 2611.29162v2](https://arxiv.org/html/2611.29162v2), read 2026-11-27.
 - Inference: a factory is only as good as its checks at catching this gap. StrongDM's holdout
   scenarios and Factory Research's hidden tests ([README.md](README.md) §5) are designed for it; no
   independent measure of either was found.

@@ -2,6 +2,8 @@
 last_checked: 2026-10-03
 volatility: MONITOR (lineage, guides and API behaviour change at each release)
 sources:
+  - https://elevenlabs.io/docs/changelog#2026-11-09-scribe-v3 (read 2026-11-27)
+  - https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (read 2026-11-27)
   - https://elevenlabs.io/docs/eleven-agents/overview
   - https://elevenlabs.io/docs/overview/models
   - https://elevenlabs.io/docs/changelog/2026/9/28
@@ -107,7 +109,7 @@ ElevenLabs models are voice models. A speech synthesis model takes text and give
 
 | Class | Generation | Model | Notes |
 | --- | --- | --- | --- |
-| Eleven Expressive | 4 | [Eleven v4](eleven_v4.md) | Released 2026-09-28. New architecture, 90+ languages, 10,000 characters a request, works with instant and professional voice clones [el-changelog-v4] [el-blog-v4] [el-models] |
+| Eleven Expressive | 4 | [Eleven v4](eleven_v4.md) | Released 2026-09-28. New architecture, 90+ languages, works with instant and professional voice clones [el-changelog-v4] [el-blog-v4] [el-models]. On 2026-11-23, ElevenLabs raised the Text to Speech limit to 100,000 characters for v4 and v4 Turbo [as-of 2026-11-27] (L) [el-tts-limit-nov27] |
 | Eleven Expressive | 3 | [Eleven v3](eleven_v3.md) | Alpha research preview 2025-06-03 (changelog entry 2025-06-08), API 2025-08-20, out of alpha 2026-02-02. 70+ languages, 5,000 characters a request. The docs call it the previous generation [el-changelog-v3-alpha] [el-changelog-v3-api] [el-changelog-v3-ga] [el-models] |
 | Eleven Expressive Low-Latency | 4 | [Eleven v4 Turbo](eleven_v4_turbo.md) | The low-latency variant of v4, for agents and live use. About 100 ms median inference latency [el-models] [el-v4-page] |
 | Eleven Expressive Low-Latency | 3 | [Eleven v3 Conversational](eleven_v3_conversational.md) | The low-latency version of v3. [as-of 2026-10-31] About 165 ms (280 ms on 2026-10-03) [el-latency-method]. Added to agents in the changelog entry of 2026-02-09 [el-changelog-v3conv] [el-agents-expressive] |
@@ -132,6 +134,10 @@ ElevenLabs models are voice models. A speech synthesis model takes text and give
 - Scribe v2 Realtime launched on 2025-11-11 (changelog entry 2025-11-12), before the batch model. Scribe v2 followed in January 2026 (the launch post and Artificial Analysis give 2026-01-09; the changelog entry is dated 2026-01-12). Scribe v2 Medical became generally available on 2026-09-11 [el-changelog-scribe-rt] [el-changelog-scribe-v2] [aa-stt-board] [el-changelog-scribe-med].
 
 **What the maker advises by use.** For top quality, use `eleven_v4`. For low latency, use `eleven_v4_turbo`. For agents, use `eleven_v4_turbo` for the most expressive delivery, or `eleven_flash_v2_5` and `eleven_flash_v2` for the lowest latency, with v2.5 for any language but English. For transcription, use `scribe_v2` for batch work, `scribe_v2_medical` for clinical audio and `scribe_v2_realtime` for live audio [el-choose]. The models page also names `eleven_multilingual_v2` for quality and for content creation [el-models].
+
+**Scribe coverage [as-of 2026-11-27].** The November 9 changelog names Scribe v3 and v3 Live
+as the successors to Scribe v2 and v2 Realtime. Both v2 models remain available. The v3 models
+have no cards in this library yet. L [el-scribe-v3-nov27].
 
 **Not in scope, and why.**
 
@@ -256,6 +262,9 @@ How to read the maker's claims.
 - Independent latency and word-error measurements for agent calls, for Eleven v4 Turbo and for Scribe v2 Medical. None were found.
 
 ## Sources
+
+- [el-scribe-v3-nov27] https://elevenlabs.io/docs/changelog#2026-11-09-scribe-v3 (L, read 2026-11-27)
+- [el-tts-limit-nov27] https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (L, read 2026-11-27)
 
 - [el-agents-overview] https://elevenlabs.io/docs/eleven-agents/overview (kind L, read 2026-10-03)
 - [el-models] https://elevenlabs.io/docs/overview/models (kind L, read 2026-10-03)

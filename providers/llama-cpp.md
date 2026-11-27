@@ -3,6 +3,8 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: local runtime
 sources:
+  - https://github.com/ggml-org/llama.cpp/blob/v1.1.0/include/llama.h (read 2026-11-27)
+  - https://github.com/ggml-org/llama.cpp/releases/tag/v1.1.0 (read 2026-11-27)
   - https://github.com/ggml-org/llama.cpp
   - https://github.com/ggml-org/llama.cpp/releases
   - https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md
@@ -15,7 +17,7 @@ sources:
 
 local runtime
 
-llama.cpp is an MIT-licensed C and C++ inference engine, built on the ggml tensor library, that runs quantised language and vision-language models on CPUs and many kinds of GPU. It reads and writes the GGUF file format, which Ollama and LM Studio also load, and it ships a command-line chat tool, an HTTP server (`llama-server`) that offers OpenAI-compatible and Anthropic-compatible endpoints with a web interface, and a quantisation tool. The README's quick start now uses the commands `llama cli` and `llama serve`; the server and quantisation pages still use the binary names `llama-server` and `llama-quantize`. There are no release numbers in the usual sense: the repository publishes a build per merged change, tagged `b<N>` (b11378, published at 15:00 UTC on 2026-10-03, when this file was checked), alongside a separate `v` tag series (v0.1.0 to v0.5.0). This file covers the server, since that is the part an application calls. [lc-readme, lc-rel, lc-server]
+llama.cpp is an MIT-licensed C and C++ inference engine, built on the ggml tensor library, that runs quantised language and vision-language models on CPUs and many kinds of GPU. It reads and writes the GGUF file format, which Ollama and LM Studio also load, and it ships a command-line chat tool, an HTTP server (`llama-server`) that offers OpenAI-compatible and Anthropic-compatible endpoints with a web interface, and a quantisation tool. The README's quick start now uses the commands `llama cli` and `llama serve`; the server and quantisation pages still use the binary names `llama-server` and `llama-quantize`. The repository publishes builds tagged `b<N>` (b11378 on 2026-10-03) and a separate series of versioned releases. That series reached v1.1.0 on 2026-11-26 [as-of 2026-11-27] (L) [lc-v1-1-0]. This file focuses on the server. [lc-readme, lc-rel, lc-server]
 
 ## Models offered
 
@@ -36,6 +38,11 @@ Models in this library whose files name llama.cpp as a route:
 llama.cpp has no hosted service and sells nothing; every model comes from the user's disk or Hugging Face. [lc-readme]
 
 ## API surface
+
+- **v1.1.0 [as-of 2026-11-27].** The server accepts OpenAI-style named `tool_choice`.
+  The release also changes how the server schedules slots. The C header deprecates `llama_batch` in favor of `llama_batch_ext`. For the
+  old encode and decode functions, it points to `llama_process`. L [lc-v1-1-0, lc-header-v1-1-0].
+  Server behavior and migration compatibility are UNVERIFIED at runtime.
 
 - **Native routes.** `/completion`, `/tokenize`, `/detokenize`, `/apply-template`, `/embedding`, `/reranking`, `/infill`, `/props`, `/slots` (with save, restore and erase of per-slot prompt caches), `/metrics` (Prometheus, off unless `--metrics`), `/lora-adapters` and `/health`. [lc-server]
 - **OpenAI-compatible routes.** `/v1/models`, `/v1/completions`, `/v1/chat/completions`, `/v1/responses`, `/v1/embeddings` and token counting at `/v1/responses/input_tokens` and `/v1/chat/completions/input_tokens`. The README says it makes no strong claim of full compatibility. A control route, `/v1/chat/completions/control`, can end a running reasoning block early. [lc-server]
@@ -84,12 +91,14 @@ Free, open-source software with no vendor charge for use, including commercial u
 - **`max_tokens` on the Anthropic route.** The default is 4096, a low ceiling for a thinking model, so a harness that omits it can see a cut-off answer. [lc-server]
 - **Preserved reasoning.** `--reasoning-preserve` (on by default) keeps earlier reasoning in the history for templates that declare support, such as the Z.ai preserved-thinking mode; templates without it ignore the setting. [lc-server]
 - **Exposure.** Binding to `0.0.0.0` without `--api-key` exposes the whole server, including the slot save and props routes if enabled. For a public deployment the server page's table recommends an API key and a reverse proxy, with `--cors-origins` optional; for a local network it recommends setting `--cors-origins` to the front end's origin. [lc-server]
-- **Build drift.** Several builds land each day (five on the morning of 2026-10-03 alone), and recent build notes show model-specific parser fixes (for example, b11377 makes one family's chat parser honour `response_format` JSON schemas, which it had left unconstrained). A test that depends on tool-call parsing, structured output or reasoning extraction is only reproducible against a pinned build number. [lc-rel]
+- **Build drift.** Several builds land each day (five on the morning of 2026-10-03 alone), and recent build notes show model-specific parser fixes (for example, b11377 makes one family's chat parser honour `response_format` JSON schemas, which it had left unconstrained). Inference [as-of 2026-11-27]: pin a build tag or versioned release to control version drift in tests of tool-call parsing, structured output or reasoning extraction. [lc-rel, lc-v1-1-0]
 
 ## Sources
 
 | Id | URL | Kind | Read |
 | --- | --- | --- | --- |
+| lc-v1-1-0 | https://github.com/ggml-org/llama.cpp/releases/tag/v1.1.0 | L | 2026-11-27 |
+| lc-header-v1-1-0 | https://github.com/ggml-org/llama.cpp/blob/v1.1.0/include/llama.h | L | 2026-11-27 |
 | lc-readme | https://github.com/ggml-org/llama.cpp | L | 2026-10-03 |
 | lc-rel | https://github.com/ggml-org/llama.cpp/releases | L | 2026-10-03 |
 | lc-server | https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md | L | 2026-10-03 |

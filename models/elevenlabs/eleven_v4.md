@@ -2,6 +2,7 @@
 last_checked: 2026-10-03
 volatility: VOLATILE (a model's prices, limits, defaults and guidance change at each release)
 sources:
+  - https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (read 2026-11-27)
   - https://elevenlabs.io/docs/changelog/2026/9/28
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices
@@ -60,7 +61,7 @@ Eleven v4 is the speech synthesis model of the Eleven Expressive class, generati
 | Turn detection | none: a synthesis model. On the Text to Dialogue WebSocket the client ends a speaker turn with new_turn or by changing voice_id [el-ws-ttd] |
 | Interruption | Not a conversation model: the client stops playback. The docs describe no cancel message for the Text to Dialogue WebSocket; flush forces buffered text out and close_socket ends the stream [el-ws-ttd] |
 | Voice latency | The docs state no inference latency for eleven_v4; Artificial Analysis reports a median of 73.5 characters generated per second (throughput, not latency) [aa-tts-board]. The low-latency variant is Eleven v4 Turbo |
-| Session limit | 10,000 characters per request, about 10 minutes of audio [el-models]; the Text to Dialogue page advises at most 2,000 characters per request [el-ttd-overview]; the Text to Dialogue WebSocket closes after 20 seconds without a client message unless keep_alive is sent [el-ws-ttd] |
+| Session limit | [as-of 2026-11-27] 100,000 characters per supported Text to Speech request [el-tts-limit-nov27]. The Text to Dialogue page advises at most 2,000 characters per request [el-ttd-overview]; the Text to Dialogue WebSocket closes after 20 seconds without a client message unless keep_alive is sent [el-ws-ttd] |
 | Reasoning control | none |
 | Price | unknown per Mtok; Per character, not per token. API list price US$0.08 per 1,000 characters; a promotional price of US$0.022 per 1,000 characters (72% off) runs until 2026-10-12 [el-pricing-api]. Artificial Analysis lists US$80 per 1M characters [aa-tts-v4]. Website generation draws credits from the plan; the credit rate for v4 was not found [el-billing] |
 | Key benchmarks | none recorded |
@@ -69,7 +70,7 @@ Eleven v4 is the speech synthesis model of the Eleven Expressive class, generati
 | System card | unknown |
 | Model page | [elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4) |
 | Card checked | 2026-10-03 |
-| Not found | context_window: not applicable to a synthesis model; the limit is in characters, see voice.session_limit; max_output: not published in tokens; the per-request limit is 10,000 characters [el-models]; pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes; system_card: the maker publishes no system card or model card in the pages read; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model |
+| Not found | context_window: not applicable to a synthesis model; the limit is in characters, see voice.session_limit; max_output: no token limit is published; see voice.session_limit for the Text to Speech character limit; pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes; system_card: the maker publishes no system card or model card in the pages read; SWE-Bench Pro (Scale, public V2): not applicable to a speech model; Terminal-Bench 4.0: not applicable to a speech model; Artificial Analysis Intelligence Index: not applicable to a speech model; Artificial Analysis Coding Agent Index: not applicable to a speech model; METR 50% time horizon: not applicable to a speech model |
 <!-- card:end -->
 
 ## How to instruct it
@@ -93,7 +94,11 @@ None. ElevenLabs describes no reasoning or effort control for a speech synthesis
 ### Output: format, length, tone
 
 - **Formats.** MP3, PCM, WAV, Opus, mu-law and A-law. The default is `mp3_44100_128`. MP3 at 192 kbps needs the Creator plan or above. PCM and WAV at 44.1 kHz need Pro or above [el-api-tts].
-- **Length.** 10,000 characters a request, about 10 minutes of audio. For Text to Dialogue, the page advises 2,000 characters or fewer in all inputs, and says longer requests can stop early in streaming or return an error [el-models] [el-ttd-overview] [el-api-ttd].
+- **Length [as-of 2026-11-27].** ElevenLabs raised the Text to Speech limit from 10,000 to
+  100,000 characters on 2026-11-23. It estimates about 100 minutes of audio at the new limit
+  (L) [el-tts-limit-nov27]. The Text to Dialogue guidance read on 2026-10-03 advised 2,000
+  characters or fewer across all inputs. It said longer requests can stop early in streaming
+  or return an error [el-ttd-overview] [el-api-ttd].
 - **Tone.** Tags, wording and punctuation set it. The two voice settings are stability and similarity. Lower stability gives a more varied and expressive delivery. Higher stability stays closer to a fixed baseline. Higher similarity holds closer to the reference voice and can cost some naturalness [el-v4-page].
 - **Output is not repeatable.** A `seed` gives a best effort at the same result. The maker says that regenerating fixes about half of the quality faults [el-tts-overview] [el-api-tts].
 
@@ -143,7 +148,8 @@ Eleven v4 is not a conversation model. It has no turn detection and no barge-in.
 
 The previous generation is Eleven v3. What changes [el-v4-page] [el-models] [el-tts-practices]:
 
-- A new architecture. Languages grow from 70+ to 90+. The request limit grows from 5,000 to 10,000 characters.
+- At launch, v4 introduced a new architecture, increased language coverage from 70+ to 90+,
+  and increased the request limit from 5,000 to 10,000 characters.
 - Clones follow the source voice more closely, so they can sound different. The maker advises comparing both models on one's own voices.
 - Cross-language speech drops the sample accent.
 - IPA between slashes is the pronunciation method. Break tags do not work on v3 or v4, and SSML does not work on v4.
@@ -179,6 +185,8 @@ Independent: the Artificial Analysis Speech Arena Elo of 1321.44 (blind pairwise
 - Independent latency for v4. The maker gives none for this model.
 
 ## Sources
+
+- [el-tts-limit-nov27] https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (kind L, read 2026-11-27)
 
 - [el-changelog-v4] https://elevenlabs.io/docs/changelog/2026/9/28 (kind L, read 2026-10-03)
 - [el-v4-page] https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4 (kind L, read 2026-10-03)

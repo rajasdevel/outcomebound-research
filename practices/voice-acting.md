@@ -2,6 +2,7 @@
 last_checked: 2026-10-04
 volatility: MONITOR (model ids, tag lists, limits, consent rules and benchmark standings change at each release) / STABLE (the SSML standard and the evaluation methods)
 sources:
+  - https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (read 2026-11-27)
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices
   - https://elevenlabs.io/docs/overview/models
   - https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4
@@ -339,10 +340,12 @@ of the called party, unless an emergency or an exemption applies [vd-fcc]. S.
   Dialogue endpoints take `previous_text`, `future_text` and request ids [vd-el-changelog-v4]. Hume says
   its continuation feature keeps emotional consistency across paragraphs by using earlier utterances as
   context [vd-hume-ov]. L.
-- **Chunk size.** ElevenLabs lists 5,000 characters per request for v3 and 10,000 for v4 and Multilingual
-  v2. MiniMax limits one request to 10,000 characters and advises streaming above 3,000. Fish Audio's
+- **Chunk size.** ElevenLabs lists 5,000 characters per request for v3 and 10,000 for Multilingual
+  v2 [vd-el-models]. For v4 Text to Speech, the limit rose from 10,000 to 100,000 on 2026-11-23
+  [as-of 2026-11-27] ([ElevenLabs changelog](https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request)).
+  MiniMax limits one request to 10,000 characters and advises streaming above 3,000. Fish Audio's
   chunk length runs from 100 to 300 characters with a default of 200. xAI allows 60,000 characters in one
-  request [vd-el-models, vd-mm-t2a, vd-fish-tts, vd-xai-tts]. L.
+  request [vd-mm-t2a, vd-fish-tts, vd-xai-tts]. L.
 - **Seeds and regeneration.** ElevenLabs says output is not deterministic. A `seed` gives a best effort,
   and regeneration fixes about half of the quality faults [vd-el-ttd]. L.
 - **Reference audio sets pace and tone.** ElevenLabs says the pace of a voice depends on the audio that

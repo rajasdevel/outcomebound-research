@@ -35,7 +35,7 @@
     "turn_detection": "none: a synthesis model. On the Text to Dialogue WebSocket the client ends a speaker turn with new_turn or by changing voice_id [el-ws-ttd]",
     "interruption": "Not a conversation model: the client stops playback. The docs describe no cancel message for the Text to Dialogue WebSocket; flush forces buffered text out and close_socket ends the stream [el-ws-ttd]",
     "latency": "The docs state no inference latency for eleven_v4; Artificial Analysis reports a median of 73.5 characters generated per second (throughput, not latency) [aa-tts-board]. The low-latency variant is Eleven v4 Turbo",
-    "session_limit": "10,000 characters per request, about 10 minutes of audio [el-models]; the Text to Dialogue page advises at most 2,000 characters per request [el-ttd-overview]; the Text to Dialogue WebSocket closes after 20 seconds without a client message unless keep_alive is sent [el-ws-ttd]"
+    "session_limit": "[as-of 2026-11-27] 100,000 characters per supported Text to Speech request [el-tts-limit-nov27]. The Text to Dialogue page advises at most 2,000 characters per request [el-ttd-overview]; the Text to Dialogue WebSocket closes after 20 seconds without a client message unless keep_alive is sent [el-ws-ttd]"
   },
   "reasoning": {
     "control": "none",
@@ -203,12 +203,19 @@
       "read": "2026-10-03",
       "kind": "A",
       "quote": null
+    },
+    {
+      "id": "el-tts-limit-nov27",
+      "url": "https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request",
+      "read": "2026-11-27",
+      "kind": "L",
+      "quote": null
     }
   ],
   "checked": "2026-10-03",
   "unknown": [
     "context_window: not applicable to a synthesis model; the limit is in characters, see voice.session_limit",
-    "max_output: not published in tokens; the per-request limit is 10,000 characters [el-models]",
+    "max_output: no token limit is published; see voice.session_limit for the Text to Speech character limit",
     "pricing_usd_per_mtok: the unit differs (US$ per 1,000 characters), see notes",
     "system_card: the maker publishes no system card or model card in the pages read",
     "SWE-Bench Pro (Scale, public V2): not applicable to a speech model",

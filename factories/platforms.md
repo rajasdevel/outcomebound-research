@@ -2,6 +2,7 @@
 last_checked: 2026-10-23
 volatility: VOLATILE (most features are in preview or beta, limits and prices change at each release, and products were renamed or sold in October 2026)
 sources:
+  - https://vercel.com/changelog/all-sandbox-runtimes-now-use-vercel-managed-images (read 2026-11-27)
   - https://github.blog/changelog/2026-11-25-copilot-code-review-billing-will-default-to-the-organization/ (read 2026-11-26)
   - https://factory.com/news/microsoft-collaboration (read 2026-11-24)
   - https://factory.com/news/user-groups (read 2026-11-24)
@@ -312,6 +313,12 @@ Sources: [GitHub risks](https://docs.github.com/en/copilot/concepts/agents/cloud
   Its User Groups sync with an identity provider and can apply usage limits and model access
   to groups within chosen organizations. L, [Azure announcement](https://factory.com/news/microsoft-collaboration)
   and [User Groups](https://factory.com/news/user-groups).
+
+- **Vercel Sandbox images [as-of 2026-11-27].** Vercel moved its Sandbox runtimes to Vercel
+  Managed Images on 2026-11-24. In version 3 and later of the JavaScript Sandbox SDK, the default
+  is `vercel/sandbox/universal:latest`. The image includes coding agents such as Claude Code and Pi. Vercel publishes the
+  image nightly and recommends pinning an image digest for reproducible environments. L,
+  [Vercel changelog](https://vercel.com/changelog/all-sandbox-runtimes-now-use-vercel-managed-images), read 2026-11-27.
 
 ## 4. Open orchestrators and techniques
 

@@ -3,6 +3,9 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: first-party lab API
 sources:
+  - https://elevenlabs.io/docs/changelog#2026-11-09-scribe-v3 (read 2026-11-27)
+  - https://elevenlabs.io/docs/changelog#2026-11-16-elevenagents (read 2026-11-27)
+  - https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request (read 2026-11-27)
   - https://elevenlabs.io/docs/eleven-agents/overview
   - https://elevenlabs.io/docs/eleven-agents/customization/llm
   - https://elevenlabs.io/docs/overview/models
@@ -95,6 +98,11 @@ The ElevenLabs models in this library ([as-of 2026-10-31] twelve), by class. The
 
 Other models on the platform have no file here. They are the deprecated `eleven_turbo_v2_5` and `eleven_turbo_v2`, and the voice changer models `eleven_multilingual_sts_v2` and `eleven_english_sts_v2`. They also include the voice design models `eleven_ttv_v3` and `eleven_multilingual_ttv_v2`, and `eleven_text_to_sound_v2`. The music models are `music_v2_5`, `music_v2` and the outclassed `music_v1`. The deprecated `scribe_v1` also has no file. So do dubbing, voice isolation, and the image and video models, many of which come from other makers [el-models] [el-pricing-api].
 
+**Scribe v3 [as-of 2026-11-27].** The November 9 changelog lists Scribe v3 (`scribe_v3`)
+and Scribe v3 Live (`scribe_v3_live`) in the Speech to Text API. It says Scribe v2 and v2
+Realtime remain available. The table above lists the models with cards in this library.
+L [el-scribe-v3-nov27].
+
 **Language models in ElevenAgents.** The agent page lists models of Google, OpenAI and Anthropic, and four hosted by ElevenLabs. Among the models that have a file in this library are [Claude Opus 5.5](../models/anthropic/claude-opus-5-5.md), [Claude Opus 5](../models/anthropic/claude-opus-5.md), [Claude Sonnet 5.5](../models/anthropic/claude-sonnet-5-5.md), [Claude Sonnet 5](../models/anthropic/claude-sonnet-5.md), [Claude Haiku 4.5](../models/anthropic/claude-haiku-4-5.md), [GPT-6 Astra](../models/openai/gpt-6-astra.md), [GPT-6.1 Sol](../models/openai/gpt-6.1-sol.md), GPT-6 Sol, [GPT-6 Luna](../models/openai/gpt-6-luna.md), [GPT-5.6 Terra](../models/openai/gpt-5.6-terra.md), [GPT-5.6 Luna](../models/openai/gpt-5.6-luna.md), [Gemini 3.8 Flash](../models/google/gemini-3.8-flash.md), [Gemini 3.7 Flash](../models/google/gemini-3.7-flash.md), [Gemini 3.5 Flash-Lite](../models/google/gemini-3.5-flash-lite.md), [Gemini 3.1 Pro (Preview)](../models/google/gemini-3.1-pro-preview.md), [Gemini 3.1 Flash-Lite](../models/google/gemini-3.1-flash-lite.md), [GLM-5.2](../models/zai/glm-5.2.md) and [Qwen3.6-35B-A3B](../models/alibaba/qwen3.6-35b-a3b.md). The page also lists "DeepSeek Flash 4.1", which may be the model of this library's DeepSeek V4.1-Flash file; the pages read do not confirm it [el-agents-llm].
 
 ## API surface
@@ -143,6 +151,17 @@ ElevenLabs bills per unit of media, not per token, and the card of each model ho
 
 ## Limits and data
 
+- **Text to Speech [as-of 2026-11-27].** ElevenLabs raised the limit to 100,000 characters per
+  request on 2026-11-23 for Eleven v4 and v4 Turbo on Text to Speech endpoints that serve those
+  models. The models page confirms the limit for v4. Its table omits Turbo, and the changelog
+  gives no endpoint-by-endpoint list. Turbo support is UNVERIFIED at runtime.
+  L [el-tts-limit-nov27, el-models-nov27].
+- **ElevenAgents API [as-of 2026-11-27].** On 2026-11-16, ElevenLabs announced that
+  `/v1/convai` would enforce server-side request timeouts from 2026-11-26. The notice says
+  a request can return HTTP 504 during temporary increases in latency. It suggests backoff
+  for retries and gives no timeout duration. Enforcement is UNVERIFIED at runtime.
+  L [el-convai-timeout-nov27].
+
 - **Concurrency.** A plan sets simultaneous requests per model group, with a priority level from 3 (Free) to 6 (Enterprise). The README lists the numbers. Response headers `current-concurrent-requests` and `maximum-concurrent-requests` show usage. Queued requests add about 50 ms. Enterprise requests over the limit can still run, slower [el-models].
 - **Agent calls.** Concurrent calls by plan: 4, 6, 10, 20, 30 and 40 (Free to Business). A wait queue can hold callers: `wait_timeout_seconds` is up to 1,800 and defaults to 180. A call lasts 600 seconds by default and 60 to 7,200 by setting [el-pricing-agents] [el-changelog-0817] [el-agents-flow].
 - **Regions.** Standard storage is in the USA. Enterprise customers can store data in the EU, India or Singapore. Storage stays in the chosen place, but processing may happen elsewhere for support and moderation. In the EU, Zero Retention Mode with the API can keep processing in the EU, unless an optional integration needs another region. Dubbing is not available in isolated environments. Language model choice differs by region [el-residency].
@@ -173,9 +192,13 @@ ElevenLabs bills per unit of media, not per token, and the card of each model ho
 
 | Id | URL | Kind | Read |
 | --- | --- | --- | --- |
+| el-tts-limit-nov27 | https://elevenlabs.io/docs/changelog#2026-11-23-100000-characters-per-eleven-v4-request | L | 2026-11-27 |
+| el-convai-timeout-nov27 | https://elevenlabs.io/docs/changelog#2026-11-16-elevenagents | L | 2026-11-27 |
+| el-scribe-v3-nov27 | https://elevenlabs.io/docs/changelog#2026-11-09-scribe-v3 | L | 2026-11-27 |
 | el-agents-overview | https://elevenlabs.io/docs/eleven-agents/overview | L | 2026-10-03 |
 | el-agents-llm | https://elevenlabs.io/docs/eleven-agents/customization/llm | L | 2026-10-03 |
 | el-models | https://elevenlabs.io/docs/overview/models | L | 2026-10-03 |
+| el-models-nov27 | https://elevenlabs.io/docs/overview/models | L | 2026-11-27 |
 | el-api-agents | https://elevenlabs.io/docs/api-reference/agents/create | L | 2026-10-03 |
 | el-agents-expressive | https://elevenlabs.io/docs/eleven-agents/customization/voice/expressive-mode | L | 2026-10-03 |
 | el-api-tts | https://elevenlabs.io/docs/api-reference/text-to-speech/convert | L | 2026-10-03 |
