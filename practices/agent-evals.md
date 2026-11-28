@@ -2,6 +2,7 @@
 last_checked: 2026-10-01
 volatility: STABLE (suite method, statistics, error analysis, SQL correctness) / VOLATILE (§8 what evaluation tools ship)
 sources:
+  - https://arxiv.org/html/2611.32946v1 (read 2026-11-28)
   - https://aclanthology.org/2026.emnlp-main.2035.pdf (read 2026-11-03)
   - https://arxiv.org/html/2607.22585v1 (read 2026-10-28)
   - https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents
@@ -380,6 +381,28 @@ not prove that logging captures every action or that current systems conceal mis
 The Scaffold Effect preprint compares Goose, OpenCode and OpenHands-SDK on 50 Terminal-Bench Pro tasks with Qwen3.6 Plus and MiniMax M2.5. It reports roughly 40 times more tokens per solved task for OpenCode than Goose, while paired pass-rate differences span 0–8 percentage points and most are not statistically clear. M, <https://arxiv.org/html/2607.22585v1>, read 2026-10-28.
 
 The limits matter: Goose exposes total tokens without the same input/output breakdown; the other harness totals include prompt, completion and cached tokens. Goose and OpenHands have a 40-turn cap, while OpenCode has the 900-second wall-time limit without that turn cap. Provider defaults may change. These results are neither a universal harness ranking nor proof of 40 times the billed spend. A comparison that keeps model and harness versions, effort, tools, budgets, successful outcomes, latency, cache accounting and actual billing separate is the inference supported here. No replication was run.
+
+### 10.6 Model and harness effects on everyday tasks [as-of 2026-11-28]
+
+The ShellBench preprint reports 53,100 runs on 100 everyday assistant tasks across
+twelve models and five harnesses. Eleven models ran in all five harnesses. The
+analysis uses 55 mean single-attempt pass rates across three effort levels. It
+assigns 95.7% of the total sum of squares to differences between models and 0.36%
+to differences between harness averages. Among the five highest-scoring models,
+those shares were 65.6% and 16.5%. The rest includes the
+interaction between model and harness and sampling noise. M [refresh-nov28-shellbench].
+
+The study changes the prompt, tools and runtime together. It uses Claude Code
+2.1.292, Codex 0.163.0, Hermes v2026.9.24, OpenClaw 2026.10.5 and Pi 1.3.0.
+The corresponding author and several co-authors list themselves as OpenClaw
+maintainers. For 90 tasks the judge is GPT-6.1 Sol at high effort in Pi. The
+study also evaluates that model and harness. In a blinded check of individual
+criteria, the judge agreed with 250 of 278 human reference labels. The human
+check confirmed 186 of the judge's 198 passes and 64 of its 80 fails. Whole-submission
+human agreement is UNVERIFIED. M [refresh-nov28-shellbench].
+
+Inference: a harness average over models with a wide range of scores can hide
+differences that matter when the choice is among a few models with similar scores.
 
 ## What the evidence supports (inference)
 

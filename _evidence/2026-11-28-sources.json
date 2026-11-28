@@ -1,0 +1,239 @@
+{
+  "scope": {
+    "read_date": "2026-11-28",
+    "repository_commit": "a1580e40a3fb6fcfb08a25f1365bff8e53478eba",
+    "read_scope": "Recent public release entries, current model lists, and selected primary research. The stale list guided selection of claims about tool approvals, resume, caching and API behavior.",
+    "coverage_limit": "A source that was read can omit changes. Availability on a live account, runtime behavior, and unrelated sections of the research pages were outside this check."
+  },
+  "coverage_sources": [
+    {
+      "url": "https://developers.openai.com/api/docs/changelog",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/models",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://openai.com/news/rss.xml",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/release-notes/overview",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+      "read_scope": "Recent entries or current catalog",
+      "effective_url": "https://platform.claude.com/docs/en/models/overview"
+    },
+    {
+      "url": "https://www.anthropic.com/news",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/changelog",
+      "read_scope": "Recent entries or current catalog",
+      "effective_url": "https://aistudio.google.com/docs/changelog"
+    },
+    {
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "read_scope": "Recent entries or current catalog",
+      "effective_url": "https://aistudio.google.com/docs/models"
+    },
+    {
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/release-notes",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/doc-history.html",
+      "read_scope": "Recent entries or current catalog",
+      "effective_url": "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-ug-doc-history.html"
+    },
+    {
+      "url": "https://aws.amazon.com/about-aws/whats-new/recent/feed/",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://github.blog/changelog/",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://cursor.com/changelog",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://ampcode.com/news",
+      "read_scope": "Recent entries or current catalog",
+      "effective_url": "https://ampcode.com/chronicle"
+    },
+    {
+      "url": "https://vercel.com/changelog",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://openrouter.ai/docs/changelog",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://elevenlabs.io/docs/changelog",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://docs.x.ai/developers/release-notes",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://docs.z.ai/release-notes/new-released",
+      "read_scope": "Recent entries displayed by this release-notes page. The newest dated entry displayed was August 26, 2026."
+    },
+    {
+      "url": "https://docs.mistral.ai/getting-started/changelog",
+      "read_scope": "Recent entries or current catalog",
+      "effective_url": "https://docs.mistral.ai/resources/release-notes"
+    },
+    {
+      "url": "https://qwen.ai/blog",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/whats-new-foundry",
+      "read_scope": "Page identifies itself as the August 2026 Foundry update. November coverage is UNVERIFIED."
+    },
+    {
+      "url": "https://arxiv.org/list/cs.SE/recent",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://arxiv.org/list/cs.AI/recent",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://metr.org/blog/",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/openai/codex/releases?per_page=8",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/anthropics/claude-code/releases?per_page=6",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/earendil-works/pi/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/google-gemini/gemini-cli/releases?per_page=8",
+      "read_scope": "Recent release entries through stable v0.71.1 and v0.72.0-preview.0. Coverage of changes between the documented v0.66.0 and the current stable release is UNVERIFIED."
+    },
+    {
+      "url": "https://api.github.com/repos/aaif-goose/goose/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/anomalyco/opencode/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/github/copilot-cli/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/vllm-project/vllm/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://api.github.com/repos/ollama/ollama/releases?per_page=5",
+      "read_scope": "Recent entries or current catalog"
+    },
+    {
+      "url": "https://developers.cloudflare.com/changelog/",
+      "read_scope": "Recent entries or current catalog"
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://api.github.com/repos/openai/codex/releases/latest",
+      "read_scope": "Latest stable release listed by GitHub"
+    },
+    {
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/releases/latest",
+      "read_scope": "Latest stable release listed by GitHub"
+    },
+    {
+      "url": "https://github.com/earendil-works/pi/releases/tag/v1.7.0",
+      "read_scope": "v1.7.0 release notes"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/earendil-works/pi/v1.7.0/packages/coding-agent/docs/terminal-setup.md",
+      "read_scope": "Versioned Program resume section"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/earendil-works/pi/v1.7.0/packages/coding-agent/docs/settings.md",
+      "read_scope": "Versioned cache-warming settings"
+    },
+    {
+      "url": "https://github.com/github/copilot-cli/releases/tag/v1.0.117",
+      "read_scope": "Stable v1.0.117 release notes"
+    },
+    {
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.40.16",
+      "read_scope": "v0.40.16 release notes"
+    },
+    {
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.40.17",
+      "read_scope": "v0.40.17 release notes, including the disabled thinking behavior"
+    },
+    {
+      "url": "https://docs.ollama.com/api/openai-compatibility",
+      "read_scope": "Responses request fields"
+    },
+    {
+      "url": "https://openrouter.ai/docs/api/api-reference/batch/create-a-batch",
+      "read_scope": "Current Batch API request and result schemas"
+    },
+    {
+      "url": "https://openrouter.ai/blog/announcements/batch-api/",
+      "read_scope": "Original Batch API launch terms"
+    },
+    {
+      "url": "https://vercel.com/changelog/agents-can-now-manage-ai-gateway-through-vercel-mcp",
+      "read_scope": "AI Gateway MCP announcement"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/",
+      "read_scope": "Current first API call and model IDs"
+    },
+    {
+      "url": "https://arxiv.org/abs/2611.32946",
+      "read_scope": "Submission history"
+    },
+    {
+      "url": "https://arxiv.org/html/2611.32946v1",
+      "read_scope": "Design, results and limitations in sections 3 to 6"
+    }
+  ],
+  "unread": [
+    {
+      "url": "https://api-docs.deepseek.com/news/news20261124",
+      "reason": "HTTP 404",
+      "read_instead": "https://api-docs.deepseek.com/"
+    },
+    {
+      "url": "https://api-docs.deepseek.com/news/",
+      "reason": "HTTP 404",
+      "read_instead": "https://api-docs.deepseek.com/"
+    },
+    {
+      "url": "https://openrouter.ai/docs/features/batch-api",
+      "reason": "HTTP 404",
+      "read_instead": "https://openrouter.ai/docs/api/api-reference/batch/create-a-batch"
+    }
+  ]
+}

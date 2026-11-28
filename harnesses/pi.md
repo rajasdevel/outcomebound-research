@@ -2,6 +2,9 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (Pi's documentation lives on its main branch and changes without versioned releases of the pages)
 sources:
+  - https://github.com/earendil-works/pi/releases/tag/v1.7.0 (read 2026-11-28)
+  - https://raw.githubusercontent.com/earendil-works/pi/v1.7.0/packages/coding-agent/docs/terminal-setup.md (read 2026-11-28)
+  - https://raw.githubusercontent.com/earendil-works/pi/v1.7.0/packages/coding-agent/docs/settings.md (read 2026-11-28)
   - https://github.com/earendil-works/pi/releases/tag/v1.6.0 (read 2026-11-24)
   - https://raw.githubusercontent.com/badlogic/pi-mono/main/packages/coding-agent/docs/configuration.md
   - https://github.com/badlogic/pi-mono/blob/main/packages/coding-agent/docs/settings.md
@@ -276,6 +279,23 @@ The release adds GPT-6 Luna Decisions on the GitHub Copilot route and Radius dec
 models to code mode's `models.classify()`. The result includes a provider response ID
 when supplied. It also fixes a case where GPT-6.2 could lose earlier reasoning after an
 OpenAI Codex WebSocket connection expired (L).
+
+## 14. Release 1.7.0 [as-of 2026-11-28]
+
+- **Terminal resume.** When a compatible terminal supplies `OSC7577_TOKEN`, Pi reports a
+  resume command with the session ID, non-default agent and session directories, and the
+  original flags for restrictions and resources such as tools, extensions and prompts.
+  The terminal must trust that command. The command that Pi prints at exit omits the
+  repeated restriction and resource flags. L [refresh-nov28-pi-resume].
+- **Copilot prompt cache.** Pi says that changing thinking level preserves the cache
+  for supported Claude 5.x and GPT-6 models on GitHub Copilot. Changing tools also
+  preserves it for supported Claude 5.x models. Pi adds cache warming for Copilot
+  Claude models. L [refresh-nov28-pi-cache].
+- **Cache warming default.** The global `cacheWarming` setting defaults to `idle`,
+  which allows refresh requests during active runs and for up to 30 minutes between
+  runs. Pi requires a declared cache lifetime and estimated savings of at least
+  $0.05. Refresh usage counts toward session totals. Actual cache hits
+  and cost are UNVERIFIED. L [refresh-nov28-pi-warming].
 
 ## Sources
 

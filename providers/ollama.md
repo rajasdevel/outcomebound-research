@@ -3,6 +3,9 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: local runtime
 sources:
+  - https://github.com/ollama/ollama/releases/tag/v0.40.16 (read 2026-11-28)
+  - https://github.com/ollama/ollama/releases/tag/v0.40.17 (read 2026-11-28)
+  - https://docs.ollama.com/api/openai-compatibility#responses-api (read 2026-11-28)
   - https://docs.ollama.com/
   - https://docs.ollama.com/llms.txt
   - https://docs.ollama.com/api/introduction
@@ -87,9 +90,19 @@ Parity here is against the makers' own APIs and against the OpenAI and Anthropic
 | Batch API, token counting, citations, PDF | none | no batch API | not supported |
 | Streaming | yes | yes | yes |
 
-Details from the pages. The Responses endpoint is stateless: no `previous_response_id`, no `conversation`, no `truncation`. Chat Completions does not support `logprobs`, `logit_bias`, `n` or `user`; Completions also lacks `best_of` and `echo`; embeddings do not accept token arrays as input. The cloud API does not support stateful Responses, built-in web search through `/v1/responses`, or replay of custom tool calls, and the structured-outputs page says Ollama Cloud does not support that feature. Anthropic-compatible token counts are approximations; the cloud endpoint rejects an `anthropic-version` older than `2023-06-01` and needs `Authorization: Bearer` (an `x-api-key` header alone is not accepted); and an error during an Anthropic-format stream comes back as an HTTP status, not as an `error` event. [ol-oai, ol-ant, ol-struct, ol-vision]
+Details from the pages. The Responses endpoint is stateless. It does not support state through `previous_response_id` or `conversation`. Chat Completions does not support `logprobs`, `logit_bias`, `n` or `user`; Completions also lacks `best_of` and `echo`; embeddings do not accept token arrays as input. The cloud API does not support stateful Responses, built-in web search through `/v1/responses`, or replay of custom tool calls, and the structured-outputs page says Ollama Cloud does not support that feature. Anthropic-compatible token counts are approximations; the cloud endpoint rejects an `anthropic-version` older than `2023-06-01` and needs `Authorization: Bearer` (an `x-api-key` header alone is not accepted); and an error during an Anthropic-format stream comes back as an HTTP status, not as an `error` event. [ol-oai, ol-ant, ol-struct, ol-vision]
+
+**Responses truncation [as-of 2026-11-28].** Ollama's sources disagree. The 0.40.16
+release notes say that `/v1/responses` honors `truncation` and stops silent truncation
+by default. The compatibility page marks `truncation` as unsupported. Runtime behavior
+and cloud rollout are UNVERIFIED. L [refresh-nov28-ollama-truncation].
+<https://docs.ollama.com/api/openai-compatibility#responses-api>, read 2026-11-28.
 
 Thinking. A `thinking` field is returned next to `content` in chat (and next to `response` in generate), and reasoning tokens stream before answer tokens. Since v0.34.3, `GET /api/show` reports each model's thinking levels and default: the release note's examples are a cloud GLM-5.3-Flash entry with values `low`, `high`, `max` and default `max`, and a local Gemma 4 with levels `false`, `true` and default `true`. [ol-think, ol-rel]
+
+**Disabling thinking [as-of 2026-11-28].** The 0.40.17 release notes say Ollama now
+maps a request to disable thinking to the model's lowest supported reasoning level.
+Behavior by API route and model is UNVERIFIED. L [refresh-nov28-ollama-thinking].
 
 Structured output on thinking models. The v0.34.4 notes say it now applies in a single pass, which they call faster and more reliable. The structured-outputs page advises a low temperature, for example 0, for more deterministic output, and suggests also putting the JSON schema into the prompt as text so the model's answer is grounded in it. [ol-rel, ol-struct]
 

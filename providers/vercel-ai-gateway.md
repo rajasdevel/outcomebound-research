@@ -3,6 +3,7 @@ last_checked: 2026-10-03
 volatility: VOLATILE (a provider's catalogue, prices, limits and feature support change often)
 kind: router or gateway
 sources:
+  - https://vercel.com/changelog/agents-can-now-manage-ai-gateway-through-vercel-mcp (read 2026-11-28)
   - https://vercel.com/docs/ai-gateway
   - https://vercel.com/docs/ai-gateway/models-and-providers
   - https://vercel.com/docs/ai-gateway/pricing
@@ -64,6 +65,12 @@ The gateway states no markup and no platform fee on tokens, including for BYOK: 
 - **Routing is visible in the response.** The overview describes setting a provider order and reading the response metadata to see which provider served a request; under ZDR the `planningReasoning` field also shows how providers were filtered. [home, zdr]
 - **Usage shows that reasoning happened, not how much was asked for.** Anthropic counts thinking tokens as output tokens with no separate breakdown. [reason]
 - **Budgets are soft caps.** The overview links to soft-cap budget semantics for cases that need zero overshoot, and BYOK spend does not count toward budgets. [home]
+- **Gateway changes through Vercel MCP [as-of 2026-11-28].** Vercel says clients with
+  team-level access and the required AI Gateway permissions can create, update or restore
+  virtual models, add or update team-wide routing rules, and set spending budgets for
+  teams, projects and members. A client can keep the same virtual model ID when the
+  underlying model or settings change. Exact permissions per operation and behavior
+  on a live account are UNVERIFIED. L [refresh-nov28-vercel-mcp].
 
 ## Sources
 
