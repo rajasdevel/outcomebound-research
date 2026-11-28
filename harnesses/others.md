@@ -2,6 +2,7 @@
 last_checked: 2026-09-25
 volatility: VOLATILE (each of these harnesses changes its loading between releases; several are previews)
 sources:
+  - https://github.com/github/copilot-cli/releases/tag/v1.0.117 (read 2026-11-28)
   - https://github.com/aaif-goose/goose/releases/tag/v1.61.1 (read 2026-11-27)
   - https://github.com/anomalyco/opencode/releases/tag/v2.4.2 (read 2026-11-26)
   - https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings (read 2026-11-03)
@@ -120,6 +121,15 @@ enterprise policy can make the effective policy stricter, and the summary does n
 the sandbox is running. L, [local sandbox settings](https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings),
 read 2026-11-03; not tested. Copilot's cloud firewall has separate limits in
 [cloud-sessions.md](cloud-sessions.md#copilot-firewall-as-of-2026-11-03).
+
+### Selected tool approval changes in Copilot CLI 1.0.117 [as-of 2026-11-28]
+
+GitHub says an approval for an MCP server's tools, given for a session or a location,
+no longer also approves built-in requests when the server name matches a built-in
+permission type. The approval still applies to that server's tools after session resume.
+The release also makes subagents follow the tool list in their custom agent file even
+when it has no prompt. These release notes cover the CLI. Runtime behavior is UNVERIFIED.
+L [refresh-nov28-copilot-approvals].
 
 ## Antigravity (Google's consumer harness)
 
